@@ -1,5 +1,5 @@
 ---
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-files:
 - content/nginx-one-console/connect-instances/add-instance.md
 - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
@@ -24,3 +24,7 @@ curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="<data
 ```
 
 Once the process is complete, you can configure that instance in your NGINX One Console.
+
+{{< call-out class="note" >}}
+To assign a display name that's easier to recognize than the hostname, set the `display-name` NGINX Agent label. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).
+{{< /call-out >}}

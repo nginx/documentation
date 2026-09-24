@@ -3,7 +3,7 @@ title: Management ConfigMap resource
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 When using F5 NGINX Ingress Controller LTS, it is required to pass a [command line argument]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments" >}}) to NGINX Ingress Controller LTS, `--mgmt-configmap=<namespace/name>` which specifies the ConfigMap to use. The minimal required ConfigMap must have a `license-token-secret-name` key. Helm users will not need to create this map or pass the argument, it will be created with a Helm install.

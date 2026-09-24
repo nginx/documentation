@@ -6,7 +6,7 @@ title: Debugging NGINX
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 ## Introduction

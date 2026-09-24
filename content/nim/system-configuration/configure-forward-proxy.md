@@ -3,7 +3,7 @@ title: Use a third-party forward proxy
 weight: 2
 toc: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Configure F5 NGINX Instance Manager to route outbound traffic through a third-party forward proxy for license verification, telemetry, and updates."
 f5-summary: >
   Configure F5 NGINX Instance Manager to use a third-party forward proxy for outbound internet access.

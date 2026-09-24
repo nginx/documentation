@@ -1,6 +1,6 @@
 ---
 f5-docs: DOCS-1295
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md
 - content/nim/fundamentals/api-overview.md

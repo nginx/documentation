@@ -1,5 +1,5 @@
 ---
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1324
 f5-files:
 - content/nim/deploy/kubernetes/deploy-using-helm.md
@@ -9,6 +9,9 @@ f5-files:
 
 | NGINX Instance Manager chart | Chart                      | Instance Manager |
 |------------------------------|----------------------------|------------------|
+| 2.3.1                        | nginx-stable/nim           | 2.23.1           |
+| 2.3.0                        | nginx-stable/nim           | 2.23.0           |
+| 2.2.2                        | nginx-stable/nim           | 2.22.2           |
 | 2.2.1                        | nginx-stable/nim           | 2.22.1           |
 | 2.2.0                        | nginx-stable/nim           | 2.22.0           |
 | 2.1.1                        | nginx-stable/nim           | 2.21.1           |

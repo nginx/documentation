@@ -2,9 +2,9 @@
 title: Connectivity test tool
 weight: 200
 toc: true
-url: /nginxaas/azure/get-help/connectivity
+url: /nginxaas-azure/get-help/connectivity
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 Use the connectivity test tool to determine whether a specific IP address is accessible from your deployment's dataplane. The connectivity test tool accepts an IP address and a port number. It uses [`netcat`](https://nc110.sourceforge.io/) to open a TCP connection with the given address, without sending any data to the address. The tool returns `netcat`'s output to the user. This is useful for debugging connectivity issues and determining if a problem is in NGINX configuration or Azure network configuration.

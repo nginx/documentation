@@ -9,7 +9,7 @@ toc: false
 f5-content-type: concept
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 You can now integrate the features of F5 WAF for NGINX v4 and v5 in F5 NGINX One Console. F5 WAF for NGINX offers advanced Web Application Firewall (WAF) capabilities.

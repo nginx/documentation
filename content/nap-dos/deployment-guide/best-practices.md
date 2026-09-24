@@ -5,7 +5,7 @@ title: Best Practices
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure F5 DoS For NGINX to protect a proxy server.

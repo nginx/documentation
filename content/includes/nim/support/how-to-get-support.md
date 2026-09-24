@@ -1,6 +1,6 @@
 ---
 f5-docs: DOCS-1225
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/security-monitoring/troubleshooting.md
 - content/nim/troubleshooting.md

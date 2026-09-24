@@ -6,7 +6,7 @@ title: RTMP
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The RTMP dynamic module enables video streaming in multiple formats, including  Real-Time Messaging Protocol (RTMP), HLS, and DASH.

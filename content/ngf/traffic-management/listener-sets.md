@@ -3,7 +3,7 @@ title: ListenerSet API
 toc: true
 weight: 1500
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
 f5-keywords: "NGINX Gateway Fabric, Gateway API, ListenerSet, ListenerSets, Kubernetes, Gateways"
 f5-description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
@@ -145,7 +145,7 @@ GW_PORT=<port number>
 
 ## Configure a ListenerSet
 
-For those that are familiar with the Gateway resource, ListenerSet `spec.listeners` is a direct copy of the Gateway's `spec.listeners`. For more information, view the [API Reference](https://gateway-api.sigs.k8s.io/reference/spec/#listenerset).
+For those that are familiar with the Gateway resource, ListenerSet `spec.listeners` is a direct copy of the Gateway's `spec.listeners`. For more information, view the [API Reference](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#listenerset).
 
 Create a ListenerSet:
 
@@ -359,11 +359,11 @@ Request ID: 7dbd29ec0c783475d50ed3b563b0a8a6
 
 ## See Also
 
-To set up HTTPS Termination or TLS passthrough on a listener from a `ListenerSet`, configure the listener on the `ListenerSet` as you would on a Gateway. Follow our [HTTPS Termination]({{< ref "ngf/traffic-management/https-termination.md" >}}) and [TLS passthrough]({{<ref "ngf/traffic-management/tls-passthrough.md" >}}) guides and copy the Gateway listener's configuration onto a `ListenerSet` to mimic the behavior.
+To set up HTTPS Termination, TLS passthrough, or TLSRoute Terminate mode on a listener from a `ListenerSet`, configure the listener on the `ListenerSet` as you would on a Gateway. Follow our [HTTPS Termination]({{< ref "ngf/traffic-management/https-termination.md" >}}) and [TLS routing with TLSRoute]({{<ref "ngf/traffic-management/tlsroute.md" >}}) guides and copy the Gateway listener's configuration onto a `ListenerSet` to mimic the behavior.
 
 To learn more about the `ListenerSet` Gateway API, see the following resources:
 
-- [ListenerSet Gateway API Description](https://gateway-api.sigs.k8s.io/api-types/listenerset/)
-- [ListenerSet Gateway API Guide](https://gateway-api.sigs.k8s.io/guides/listener-set/)
-- [ListenerSet API Reference](https://gateway-api.sigs.k8s.io/reference/spec/#listenerset)
+- [ListenerSet Gateway API Description](https://gateway-api.sigs.k8s.io/reference/api-types/listenerset/)
+- [ListenerSet Gateway API Guide](https://gateway-api.sigs.k8s.io/guides/user-guides/listener-set/)
+- [ListenerSet API Reference](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#listenerset)
 - [ListenerSet GEP](https://gateway-api.sigs.k8s.io/geps/gep-1713/)

@@ -5,7 +5,7 @@ title: Lua
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.

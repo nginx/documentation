@@ -3,7 +3,7 @@ title: Configure HTTPS termination
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1421
 f5-summary: >
    NGINX Gateway Fabric terminates HTTPS at the Gateway using a TLS certificate stored in a Kubernetes Secret that the HTTPS listener references through `certificateRefs`.
@@ -15,7 +15,7 @@ Learn how to terminate HTTPS traffic using NGINX Gateway Fabric.
 
 ## Overview
 
-In this guide, we will show how to configure HTTPS termination for your application, using an [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) redirect filter, secret, and [ReferenceGrant](https://gateway-api.sigs.k8s.io/api-types/referencegrant/).
+In this guide, we will show how to configure HTTPS termination for your application, using an [HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/) redirect filter, secret, and [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/).
 
 {{< call-out class="note" >}}To validate client certificates using mutual TLS (mTLS), see [Securing frontend client traffic using mutual TLS]({{< ref "/ngf/traffic-security/client-validation.md" >}}).{{< /call-out >}}
 
@@ -301,4 +301,4 @@ Server name: coffee-6b8b6d6486-7fc78
 
 - [Securing frontend client traffic using mutual TLS]({{< ref "/ngf/traffic-security/client-validation.md" >}}): Configure client certificate validation (mTLS) at the Gateway.
 - [Secure traffic using Let's Encrypt]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}}): Set up a production-ready integration with cert-manager.
-- [Gateway API Redirects](https://gateway-api.sigs.k8s.io/guides/http-redirect-rewrite/): Learn more about redirects using the Gateway API.
+- [Gateway API Redirects](https://gateway-api.sigs.k8s.io/guides/user-guides/http-redirect-rewrite/): Learn more about redirects using the Gateway API.

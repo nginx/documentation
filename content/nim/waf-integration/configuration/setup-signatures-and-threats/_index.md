@@ -4,7 +4,7 @@ f5-docs:
 weight: 200
 f5-landing-page: true
 url: /nginx-instance-manager/waf-integration/configuration/setup-signatures-and-threats/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Keep F5 WAF for NGINX attack signature, bot signature, and threat campaign packages current in F5 NGINX Instance Manager using automatic or manual updates."
 f5-summary: >

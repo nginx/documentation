@@ -3,7 +3,7 @@ title: ConfigMap resources
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-586
 ---
 
@@ -113,12 +113,21 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 
 ### Header manipulation
 
+{{< call-out class="caution"  >}}
+ `disable-forwarded-headers` removes the hardcoded X-Forwarded-* headers directives allowing users to manually manage forwarded headers using add-header. This setting is available only when `--enable-snippets` is enabled, due to the security implications of manually managing forwarded headers.
+
+Only enable disable-forwarded-headers if:
+- You fully trust all upstream proxies in your request path, and
+- You have validated that your infrastructure sanitizes or overwrites these headers before they reach NGINX (for example, via an external load balancer), or you want to explicitly set these values yourself.
+{{< /call-out >}}
+
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
 |*proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: *"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |
 |*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |
 |*add-header* | Adds one or more response headers with the [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive in the `http` context. Use the format *Header-Name: value[:always]* and separate entries with commas. Example: `X-Frame-Options: DENY` or  `X-Frame-Options: DENY: always`.  | N/A |
 |*add-header-inherit* | Controls how [add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) applies inherited response headers. Allowed values are *on*, *off*, and *merge*. | N/A |
+|*disable-forwarded-headers* | Disables automatic injection of standard `X-Forwarded-*` headers (`X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Port`, and `X-Forwarded-Proto`), allowing custom header management. Requires `-enable-snippets` CLI flag to be enabled.| *false* |
 
 ### Auth and SSL/TLS
 
@@ -127,10 +136,10 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*redirect-to-https* | Sets a redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `http-redirect-code` key. | *False* |
 |*ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `http-redirect-code` key. | *True* |
 |*http-redirect-code* | Sets the HTTP redirect code for HTTPS redirects. Supported codes: 301, 302, 307, 308. | *301* |
-|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. | *False* |
-|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. | *2592000* (1 month) |
-|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. | *False* | 
-|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. | *False* |
+|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. Not applicable to VS/VSR. | *False* |
+|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. Not applicable to VS/VSR | *2592000* (1 month) |
+|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. Not applicable to VS/VSR | *False* | 
+|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. Not applicable to VS/VSR. | *False* |
 |*ssl-protocols* | Sets the value of the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive. | *TLSv1 TLSv1.1 TLSv1.2* | 
 |*ssl-prefer-server-ciphers* | Enables or disables the [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) directive. | *False* |
 |*ssl-ciphers* | Sets the value of the [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive. | *HIGH:!aNULL:!MD5* |

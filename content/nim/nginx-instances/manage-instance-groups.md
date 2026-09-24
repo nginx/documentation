@@ -7,7 +7,7 @@ title: Create and manage instance groups
 toc: true
 weight: 600
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create and manage instance groups in F5 NGINX Instance Manager to treat multiple NGINX instances as a single entity for configuration and management.
   Instance groups let you push configurations and certificates to a collection of instances at the same time.

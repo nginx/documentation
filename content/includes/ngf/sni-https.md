@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 ## HTTPS Traffic without SNI (Server Name Indication)

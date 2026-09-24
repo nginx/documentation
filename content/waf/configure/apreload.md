@@ -3,7 +3,7 @@ title: "Apply security policy updates without reloading NGINX using apreload"
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This document describes how to use `apreload`, a tool for updating F5 WAF for NGINX configuration without reloading NGINX.
@@ -53,7 +53,7 @@ Concurrent NGINX reloads are enqueued and so are calls to _apreload_ by the F5 N
 
 When calling _apreload_ directly, it is possible to run it while the previous execution is still in progress. In this case, _apreload_ will wait until the current execution completes.
 
-The new execution will will apply a new configuration, and the most recent configuration will only apply during during the execution period.
+A new execution applies the new configuration; until it completes, the most recent configuration remains in effect.
 
 In a scenario where an execution from an NGINX reload is followed by a direct _ap_reload_ call, the NGINX workers with the new NGINX configuration will be loaded as soon as the Enforcer finishes processing the existing configuration.
 

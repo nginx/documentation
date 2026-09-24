@@ -3,7 +3,7 @@ title: View and edit an NGINX instance
 weight: 200
 toc: true
 f5-content-type: tutorial
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 <!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 

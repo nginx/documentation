@@ -6,7 +6,7 @@ title: NGINX SSL Termination
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This section describes how to configure an HTTPS server on NGINX and F5 NGINX Plus.

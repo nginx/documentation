@@ -3,6 +3,7 @@ title: Shortcode report
 description: Shortcode report
 f5-content-type: reference
 toc: true
+nollms: true
 ---
 
 This page contains usage information for shortcodes.

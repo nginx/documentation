@@ -3,7 +3,7 @@ title: Update the attack signature database
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1109
 description: "Update the attack signature database used by Security Monitoring in F5 NGINX Instance Manager to keep signature names, risk scores, and accuracy data current."
 f5-summary: >

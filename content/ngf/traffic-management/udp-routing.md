@@ -3,7 +3,7 @@ title: UDPRoute
 weight: 1300
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
 ---
 
@@ -12,12 +12,6 @@ Learn how to configure a UDPRoute to handle a UDP connection between NGINX Gatew
 ## Overview
 
 UDPRoute enables you to expose and route UDP traffic through a Gateway. In this guide, you’ll configure a Gateway with a UDP listener and attach a UDPRoute to it. The listener defines the external UDP port, and the UDPRoute specifies the backend services; packets arriving on the listener’s port are forwarded to the backend applications.
-
-## Note on Gateway API Experimental Features
-
-{{< call-out class="important" >}} UDPRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
-
-{{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
 
 ## Before you begin
 
@@ -168,7 +162,7 @@ Create UDPRoute for routing to `coredns` application:
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1alpha2
+apiVersion: gateway.networking.k8s.io/v1
 kind: UDPRoute
 metadata:
   name: coredns
@@ -294,4 +288,4 @@ example.com.		900	IN	SOA	elliott.ns.cloudflare.com. dns.cloudflare.com. 23931208
 
 ## Further Readings
 
-- [UDPRoute](https://gateway-api.sigs.k8s.io/reference/spec/#udproute)
+- [UDPRoute](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#udproute)

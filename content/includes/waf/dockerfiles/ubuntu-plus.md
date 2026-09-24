@@ -1,5 +1,5 @@
 ---
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-files:
 - content/waf/install/docker.md
 - content/waf/install/kubernetes.md
@@ -8,7 +8,7 @@ f5-files:
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_CODENAME's are: focal/jammy
+# Supported OS_CODENAME's are: jammy/noble/resolute
 ARG OS_CODENAME=jammy
 
 # Base image

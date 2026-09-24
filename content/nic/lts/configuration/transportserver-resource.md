@@ -3,7 +3,7 @@ title: TransportServer resources
 toc: true
 weight: 600
 f5-content-type : reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document is reference material for the TransportServer resource used by F5 NGINX Ingress Controller LTS.

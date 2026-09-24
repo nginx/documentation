@@ -3,7 +3,7 @@ title: Compile F5 WAF for NGINX policies using NGINX Instance Manager
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1863
 ---
 
@@ -14,6 +14,8 @@ This guide describes how to use F5 NGINX Instance Manager to compile F5 WAF for 
 F5 WAF for NGINX uses policies to configure which security features are set. When these policies are changed, they need to be compiled so that the engine can begin to use them. Compiling policies can take a large amount of time and resources. You can do this with the NGINX Instance Manager. This reduces the impact on a NGINX Ingress Controller deployment.
 
 By using NGINX Instance Manager to compile WAF policies, the policy bundle can also be used immediately by NGINX Ingress Controller without reloading.
+
+{{< call-out class="tip" >}} NGINX Ingress Controller can fetch compiled bundles directly from NGINX Instance Manager or NGINX One Console without the manual download and upload steps described on this page. See [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for details on automated bundle fetching with optional polling for updates. {{< /call-out >}}
 
 The following steps describe how to use the NGINX Instance Manager API to create a new security policy, compile a bundle, then add it to NGINX Ingress Controller.
 

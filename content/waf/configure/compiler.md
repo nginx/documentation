@@ -3,7 +3,7 @@ title: "Build and use the compiler tool"
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This document describes how to use the F5 WAF for NGINX compiler, a tool for converting security policies and logging profiles from JSON to a bundle file that F5 WAF can process and apply.
@@ -91,7 +91,7 @@ USER nginx
 
 {{< call-out class="note" >}}
 
-You can can upgrade or downgrade one of the Signatures by specifying a specific version, such as _app-protect-attack-signatures-2020.04.30_.
+You can upgrade or downgrade one of the Signatures by specifying a specific version, such as _app-protect-attack-signatures-2020.04.30_.
 
 {{< /call-out >}}
 

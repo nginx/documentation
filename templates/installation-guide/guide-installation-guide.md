@@ -55,7 +55,7 @@ Before writing, identify:
 - **Show expected output.** After commands that produce output the reader must verify — such as a version check or a status command — show a truncated example of the expected output. This lets readers confirm they are on the right path without guessing.
 - **Test your instructions end to end.** Run through every step on a clean machine or VM that matches the target platform. This uncovers omitted steps, version mismatches, and permissions gaps. If you cannot test them yourself, have a developer or subject matter expert demonstrate the steps.
 - **Re-test after every notable product release.** Package names, configuration keys, and service names can change between releases. Re-test end to end whenever a significant release affects the product you are documenting.
-- **Minimise links within the guide.** Keep users on a single page. Provide links to supporting or background information in the References section, not inline.
+- **Minimize links within the guide.** Keep users on a single page. Provide links to supporting or background information in the References section, not inline.
 
 ---
 
@@ -109,7 +109,7 @@ AI assistants and human readers parse documentation differently from search engi
 
 **f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product name. Check an existing document for the same product if you are unsure which name to use.
 
 **title**: Use an imperative verb phrase beginning with "Install". Keep it under 60 characters. Include the platform when the guide is platform-specific.
 

@@ -17,7 +17,7 @@ f5-landing-page: true
 f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 ## About

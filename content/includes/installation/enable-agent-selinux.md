@@ -1,7 +1,7 @@
 ---
 f5-product:
-- NIMNGR
-- NONECO
+- F5 NGINX Instance Manager
+- F5 NGINX One Console
 f5-files:
 - content/nginx-one-console/agent/configure-instances/configure-selinux.md
 - content/nim/system-configuration/configure-selinux.md

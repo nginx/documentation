@@ -3,7 +3,7 @@ title: Server technology signatures
 weight: 1900
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-docs: DOCS-000
 ---
 

@@ -6,7 +6,7 @@ title: Setting up JWT Authentication
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="intro"></span>

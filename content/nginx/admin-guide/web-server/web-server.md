@@ -6,7 +6,7 @@ title: Configuring NGINX and NGINX Plus as a Web Server
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This article explains how to configure NGINX Open Source and F5 NGINX Plus as a web server.

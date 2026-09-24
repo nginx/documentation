@@ -8,5 +8,5 @@ cascade:
   f5-banner:
     enabled: true
     md: /_banners/nic-lts.md
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---

@@ -1,6 +1,6 @@
 ---
 f5-docs: DOCS-1662
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/licensing-and-reporting/add-license-disconnected-deployment.md
 - content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md

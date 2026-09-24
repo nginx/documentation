@@ -5,7 +5,7 @@ title: Set-Misc
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The Set-Misc dynamic module extends the NGINX core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) by implementing numerous additional `set_*` directives. 

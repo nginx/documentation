@@ -1,5 +1,5 @@
 ---
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 f5-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 - content/nap-dos/deployment-guide/kubernetes.md
@@ -12,6 +12,13 @@ FROM registry.access.redhat.com/ubi9
 
 ARG RHEL_ORG
 ARG RHEL_ACTIVATION_KEY
+
+# Leave empty to install the most recent version. To build a specific version,
+# set the argument, for example:
+#   --build-arg DOS_VERSION="-37+4.9.6"
+# NGINX Plus needs no pin here, because dnf can select an older nginx-plus to
+# satisfy the module's nginx-plus-r<release> dependency.
+ARG DOS_VERSION=""
 
 # Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
@@ -26,7 +33,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf -y install ca-certificates \
     && curl -o /etc/yum.repos.d/plus-9.repo https://cs.nginx.com/static/files/plus-9.repo \
     && curl -o /etc/yum.repos.d/app-protect-dos-9.repo https://cs.nginx.com/static/files/app-protect-dos-9.repo \
-    && dnf -y install app-protect-dos \
+    && dnf -y install "app-protect-dos${DOS_VERSION}" \
     && cat license.jwt > /etc/nginx/license.jwt \
     && rm /etc/yum.repos.d/plus-9.repo \
     && rm /etc/yum.repos.d/app-protect-dos-9.repo \

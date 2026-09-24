@@ -3,7 +3,7 @@ title: "Upgrade NGINX Ingress Controller"
 weight: 900
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document describes how to upgrade F5 NGINX Ingress Controller when a new version releases.
@@ -41,6 +41,10 @@ Check the [release notes](https://www.github.com/nginx/kubernetes-ingress/releas
 ### Upgrade NGINX Ingress Controller charts
 
 Once the CRDs have been upgraded, you can then upgrade the release chart.
+
+{{< call-out class="note" title="Note" >}}
+When upgrading to version 5.6.0 or later, if you configured NGINX Service Mesh previously, remove any related values from the Helm chart before upgrading. These settings only applied to previous NGINX Service Mesh deployments. Users who never deployed service mesh are unaffected.
+{{< /call-out >}}
 
 The command depends on if you installed the chart using the registry or from source.
 

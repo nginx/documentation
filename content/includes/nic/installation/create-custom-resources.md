@@ -1,6 +1,6 @@
 ---
 f5-docs: DOCS-1463
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
@@ -21,7 +21,7 @@ The core custom CRDs are the following:
 
 - [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}})
 - [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}})
-- [Policy]({{< ref "/nic/configuration/policy-resource.md" >}})
+- [Policy]({{< ref "/nic/configuration/policy-resource/before-you-begin.md" >}})
 - [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}})
 
 {{<tabs name="install-crds">}}

@@ -3,7 +3,7 @@ title: Configure Cross-Origin Request Sharing (CORS)
 weight: 700
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 
@@ -95,7 +95,7 @@ kubectl describe gateways.gateway.networking.k8s.io gateway
 ```text
 Addresses:
   Type:   IPAddress
-  Value:  10.96.20.187
+  Value:  192.0.2.1
 ```
 
 Save the public IP address and port(s) of the Gateway into shell variables:
@@ -226,5 +226,5 @@ Response:
 ## Further reading
 
 - [Example deployment files for HTTPCORSFilter](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cors-filter)
-- [Gateway API Specification](https://gateway-api.sigs.k8s.io/reference/spec/#httpcorsfilter)
-- [Gateway API CORS](https://gateway-api.sigs.k8s.io/guides/http-cors/)
+- [Gateway API Specification](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httpcorsfilter)
+- [Gateway API CORS](https://gateway-api.sigs.k8s.io/guides/user-guides/http-cors/)

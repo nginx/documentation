@@ -4,7 +4,8 @@ url: /nginx-ingress-controller/lts/changelog
 weight: 10200
 f5-landing-page: true
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
+nollms: true
 ---
 
 ## New release model {#intro}
@@ -24,6 +25,50 @@ Since June 4, 2026, NGINX Ingress Controller follows a new release model: Long-T
 {{< call-out "note" "Important" >}} Since June 3, 2026, NGINX Ingress Controller transitions to a new release model: Long-Term Support Releases (LTS) and Continuous Releases (CR). {{< /call-out >}}
 
 This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
+
+## 2026-lts-r8
+
+16 Sept 2026
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.0.6.2 LTS
+
+## 2026-lts-r7
+
+15 Sept 2026
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.0.6.1 LTS
+
+## 2026-lts-r6
+
+04 Sept 2026
+
+### {{% icon arrow-up %}} Fixes
+
+- [10795](https://github.com/nginx/kubernetes-ingress/pull/10795) Fix path quoting on v1 ingress
+
+## 2026-lts-r5
+
+02 Sept 2026
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.0.5.1 LTS
+
+## 2026-lts-r4
+
+15 Jul 2026
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.0.3.1 LTS
+
+## 2026-lts-r3
+
+15 Jul 2026
 
 ## 2026-lts-r2
 

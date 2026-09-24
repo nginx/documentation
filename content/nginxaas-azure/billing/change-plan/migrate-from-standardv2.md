@@ -2,7 +2,7 @@
 title: Migrate to new plans
 weight: 100
 toc: true
-url: /nginxaas/azure/billing/change-plan/migrate-between-plans/
+url: /nginxaas-azure/billing/change-plan/migrate-between-plans/
 type:
 - how-to
 ---

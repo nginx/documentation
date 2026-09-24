@@ -3,7 +3,7 @@ title: TCPRoute
 weight: 1200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
 ---
 
@@ -12,12 +12,6 @@ Learn how to configure a TCPRoute to establish a TCP connection between NGINX Ga
 ## Overview
 
 TCPRoute is a Gateway API resource that is used to configure routing for TCP connections. When attached to a Gateway listener, it forwards connections arriving on the listener’s port to one or more backend Services. In this guide, you will configure two TCPRoutes for **coffee** and **tea** applications, and see how listeners are attached to backends to route TCP traffic.
-
-## Note on Gateway API Experimental Features
-
-{{< call-out class="important" >}} TCPRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
-
-{{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
 
 ## Before you begin
 
@@ -181,7 +175,7 @@ Create TCPRoutes for routing to `coffee` and `tea` applications:
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1alpha2
+apiVersion: gateway.networking.k8s.io/v1
 kind: TCPRoute
 metadata:
   name: tcp-coffee
@@ -194,7 +188,7 @@ spec:
     - name: coffee
       port: 8081
 ---
-apiVersion: gateway.networking.k8s.io/v1alpha2
+apiVersion: gateway.networking.k8s.io/v1
 kind: TCPRoute
 metadata:
   name: tcp-tea
@@ -296,5 +290,5 @@ Requests sent to port `${GW_PORT_1}` (listener `coffee`) are served by the coffe
 
 ## Further Readings
 
-- [TCPRoute](https://gateway-api.sigs.k8s.io/reference/spec/#tcproute)
-- [Gateway API TCP routing](https://gateway-api.sigs.k8s.io/guides/tcp/)
+- [TCPRoute](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#tcproute)
+- [Gateway API TCP routing](https://gateway-api.sigs.k8s.io/guides/user-guides/tcp/)

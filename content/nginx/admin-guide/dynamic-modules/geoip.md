@@ -6,7 +6,7 @@ title: GeoIP
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The GeoIP dynamic module captures information from the client IP address in variables using the MaxMind GeoLite databases.

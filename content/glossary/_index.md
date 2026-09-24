@@ -5,7 +5,7 @@ f5-docs: DOCS-602
 weight: 1000
 toc: true
 f5-content-type: reference
-f5-product: MISCEL
+f5-product: Miscellaneous
 f5-landing-page: true
 url: /glossary/
 ---

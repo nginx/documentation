@@ -7,7 +7,7 @@ title: Using NGINX or NGINX Plus as the Ingress Controller for Amazon Elastic Ku
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This guide explains how to use NGINX Open Source or F5 NGINX Plus with NGINX Ingress Controller for Amazon Elastic Kubernetes Services (EKS).

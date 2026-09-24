@@ -2,7 +2,7 @@
 title: Infrastructure as code
 weight: 300
 url: /nginx-instance-manager/deploy/infrastructure-as-code/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Deploy F5 NGINX Instance Manager using Ansible for automated, repeatable infrastructure-as-code workflows."
 f5-summary: >

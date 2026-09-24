@@ -6,7 +6,7 @@ title: UDP Health Checks
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 NGINX Plus can continually test your upstream servers that handle UDP network traffic (DNS, RADIUS, syslog), avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.

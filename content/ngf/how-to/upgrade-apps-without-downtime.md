@@ -3,7 +3,7 @@ title: Upgrade applications without downtime
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1841
 ---
 
@@ -52,7 +52,7 @@ As long as you have more than one endpoint ready, clients won't experience downt
 
 - You have deployed your application as a [deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - The pods of the deployment belong to a [service](https://kubernetes.io/docs/concepts/services-networking/service/) so that Kubernetes creates an [endpoint](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoints-v1/) for each pod.
-- You have exposed the application to the clients via an [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) resource that references that service.
+- You have exposed the application to the clients via an [HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/) resource that references that service.
 
 For example, an application can be exposed using a routing rule like below:
 

@@ -2,7 +2,7 @@
 title: Security Monitoring
 weight: 800
 url: /nginx-instance-manager/security-monitoring/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Monitor F5 WAF for NGINX security violations in F5 NGINX Instance Manager dashboards and keep attack signature and geolocation databases up to date."
 f5-summary: >

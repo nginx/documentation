@@ -1,6 +1,6 @@
 ---
 f5-docs: DOCS-1462
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/integrations/app-protect-dos/installation.md
 - content/nic/integrations/app-protect-waf/installation.md

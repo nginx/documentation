@@ -3,7 +3,7 @@ title: Access logs
 toc: false
 weight: 500
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 Access logs are NGINX's mechanism for logging requests.
@@ -37,7 +37,7 @@ These are the variables added to Access Log. They are a subset of the Security l
 | ---| ---| --- |
 |$app_protect_support_id | Unique ID assigned to the request by F5 WAF for NGINX. | To be used to correlate the access log with the security log.<br>       Left empty in failure mode. |
 |$app_protect_outcome | One of:<ul><li>**PASSED**: request was sent to origin server.</li><li>**REJECTED**: request was blocked.</li></ul> |  |
-|$app_protect_outcome_reason | One of:<ul><li>**SECURITY_WAF_OK**: allowed with no violations (legal request).</li><li>**SECURITY_WAF_VIOLATION**: blocked due to security violations.</li><li>**SECURITY_WAF_FLAGGED**: allowed although it has violations (illegal).</li><li>**SECURITY_WAF_BYPASS**: WAF was supposed to inspect the request but it didn't (because of unavailability or resource shortage). The request was PASSED or REJECTED according to the failure mode action determined by the user.</li><li>**SECURITY_WAF_REQUEST_IN_FILE_BYPASS**: WAF was supposed to inspect the request but it didn't (because request buffer was full and request was written to file). The request was PASSED or REJECTED according to the failure mode action determined by the user.</li><li>**SECURITY_WAF_COMPRESSED_REQUEST_BYPASS**: WAF was supposed to inspect the request but it didn't (because request was compressed). The request was PASSED or REJECTED according to the failure mode action determined by the user.</li></ul> |  |
+|$app_protect_outcome_reason | One of:<ul><li>**SECURITY_WAF_OK**: allowed with no violations (legal request).</li><li>**SECURITY_WAF_VIOLATION**: blocked due to security violations.</li><li>**SECURITY_WAF_FLAGGED**: allowed although it has violations (illegal).</li><li>**SECURITY_WAF_VIOLATION_TRANSPARENT**: allowed, when the policy is in transparent mode, but would be blocked if the policy is set to blocking mode.</li><li>**SECURITY_WAF_BYPASS**: WAF was supposed to inspect the request but it didn't (because of unavailability or resource shortage). The request was PASSED or REJECTED according to the failure mode action determined by the user.</li><li>**SECURITY_WAF_REQUEST_IN_FILE_BYPASS**: WAF was supposed to inspect the request but it didn't (because request buffer was full and request was written to file). The request was PASSED or REJECTED according to the failure mode action determined by the user.</li><li>**SECURITY_WAF_COMPRESSED_REQUEST_BYPASS**: WAF was supposed to inspect the request but it didn't (because request was compressed). The request was PASSED or REJECTED according to the failure mode action determined by the user.</li></ul> |  |
 |$app_protect_policy_name | The name of the policy that enforced the request. |  |
 |$app_protect_version | The F5 WAF for NGINX version string: major.minor.build format. | Does not include the F5 NGINX plus version (e.g. R21). The latter is available in `$version` variable. |
 

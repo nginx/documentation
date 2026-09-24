@@ -3,7 +3,7 @@ title: "Add a read-only filesystem for Kubernetes  "
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes how to add a read-only filesystem when deploying F5 WAF for NGINX when using Kubernetes.

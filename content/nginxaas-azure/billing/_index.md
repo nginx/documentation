@@ -1,5 +1,5 @@
 ---
 title: Marketplace billing
 weight: 400
-url: /nginxaas/azure/billing/
+url: /nginxaas-azure/billing/
 ---

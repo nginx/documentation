@@ -3,14 +3,14 @@ title: "gRPC protection"
 weight: 1200
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the gRPC protection feature for F5 WAF for NGINX.
 
 gRPC is a remote API standard and is an alternative to OpenAPI.
 
-F5 WAF for NGINX can protect applications exposing gRCP APIs by parsing their messages, ensuring sure they are compliant with the API specification and and enforcing security restrictions.
+F5 WAF for NGINX can protect applications exposing gRPC APIs by parsing their messages, ensuring they are compliant with the API specification and enforcing security restrictions.
 
 These security restrictions include size limits, detecting attack signatures, threat campaigns, and suspicious metacharacters in message string field values.
 

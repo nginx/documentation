@@ -3,11 +3,51 @@ title: Changelog
 toc: true
 weight: 99999
 f5-content-type: reference
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-docs: DOCS-1394
+nollms: true
 ---
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
+
+## September 15, 2026
+
+### Config Templates: Submit and copy templates from the Templates list
+
+You can now submit templates and copy templates directly from the Templates list in NGINX One Console. Use these row actions to work with templates without building API requests by hand. Both actions require template write permission.
+
+Key capabilities:
+
+- **Submit a template**: Select **Submit** on a finalized base template to open the **Submit Template** panel. Fill in parameters, add optional augment templates, choose target objects, and preview the configuration before you save.
+- **Copy a template**: Select **Make a Copy** on any template to create a new draft template from its latest version.
+
+For more information, see [Submit and copy templates from the Templates list]({{< ref "/nginx-one-console/nginx-configs/config-templates/submit-and-copy-templates.md" >}}).
+
+## September 8, 2026
+
+### F5 WAF for NGINX: gRPC protection through the API
+
+You can now configure [gRPC protection]({{< ref "/waf/policies/grpc-protection.md" >}}) for F5 WAF for NGINX policies through the NGINX One Console API. Upload the `.proto` IDL files referenced by a policy's `grpc-profiles` configuration alongside the policy, either as inline base64-encoded content or as a `.tar.gz` archive. For more information, see [Add gRPC protection to a policy]({{< ref "/nginx-one-console/waf-integration/policy/grpc-protection-api.md" >}}).
+
+## August 19, 2026
+
+### Instances: Custom display names
+
+You can now assign a display name to an NGINX instance by setting the `display-name` NGINX Agent label. When set, the display name appears alongside the hostname throughout NGINX One Console, and you can filter and sort your instances by display name. For more information, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).
+
+## July 16, 2026
+
+### Observability: Zone Filter
+
+You can now filter NGINX instance traffic metrics by configured status zones using the provided dropdown menu on the instance details or metrics screens.
+
+### F5 WAF for NGINX: Built-In Log Profile Support
+
+You can now use built-in F5 WAF for NGINX log profiles as starting points when you create new log profiles. The configuration editor now supports autocomplete for built-in log profile names, making it easier to reference them in a configuration.
+
+### F5 WAF for NGINX: Log Profile Copy Support
+
+You can now copy log profiles from the log profile list. Use row actions to create a copy and extend an existing log profile without overwriting its content.
 
 ## June 15, 2026
 

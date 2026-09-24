@@ -3,7 +3,7 @@ title: Customize OIDC Configuration with NGINX Ingress Controller
 weight: 1800
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1448
 ---
 
@@ -14,6 +14,8 @@ This guide will walk through how to customize and configure this default impleme
 ## Prerequisites
 
 {{< call-out class="note" >}}This guide only works with F5 NGINX Ingress Controller version 5.3.0 or above. Please make sure you are using a compatible version before proceeding.{{< /call-out >}}
+
+{{< call-out class="note" >}}Subrequests may not function as expected and may cause issues when OIDC configurations that rely on subrequests and a `WAF` policy are applied together on the same route.{{< /call-out >}}
 
 This guide assumes that you have an F5 NGINX Ingress Controller deployed. If not, please follow the installation steps using either the [Manifest]({{< ref "/nic/install/manifests.md" >}}) or [Helm]({{< ref "/nic/install/helm.md" >}}) approach.
 

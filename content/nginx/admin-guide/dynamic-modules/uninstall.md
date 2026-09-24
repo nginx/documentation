@@ -5,7 +5,7 @@ title: Uninstalling a dynamic module
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 You may need to uninstall a dynamic module in NGINX Plus in several scenarios:

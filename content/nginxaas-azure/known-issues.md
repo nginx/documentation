@@ -4,20 +4,56 @@ weight: 1000
 toc: true
 f5-content-type: reference
 f5-docs: "DOCS-871"
-f5-product: NAZURE
-url: /nginxaas/azure/known-issues/
+f5-product: NGINXaaS for Azure
+url: /nginxaas-azure/known-issues/
 
 ---
 
 List of known issues in the latest releases of F5 NGINXaaS for Azure.
 
-### {{% icon-bug %}} Certificate failures when managed identities with access is added after deployment creation
+### NGINX Plus 37.0 behavior impact
 
-This issue occurs when public access is disabled on Azure Key Vault (AKV) and the managed identity that has access to AKV is added to the NGINXaaS deployment after creation.
+The release of NGINX Plus [37.0]({{< ref "/nginx/releases/#pls.37.0.4" >}}) introduces the following behavioral changes that may affect upstream applications:
+- HTTP/1.1 is now the default protocol for connecting to proxy or upstream servers.
+- Keepalive connections between NGINX and upstream servers are enabled by default.
+- Upstream shared memory zone requires an additional 1KB of memory per upstream server.
 
-Updating managed identities on an NGINXaaS deployment after creation may result in the managed identity not being correctly delegated to the dataplane, which can cause certificate fetch failures.
+To preserve existing behavior, make the following configuration changes to your NGINX Plus [R36-P8]({{< ref "/nginx/releases/#r36" >}}) configuration before NGINXaaS is upgraded to NGINX Plus 37.0.4 on the stable upgrade channel (August 17, 2026):
 
-**Workaround**: To avoid this issue, when you create an NGINXaaS deployment, make sure that the managed identity with access to AKV is assigned during initial creation. If managed identities need to be updated after creation, enable public access to AKV or [configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}})
+- Explicitly set HTTP/1.0 as the default protocol for communicating with upstream or proxy servers:
+  ```shell
+  http {
+     proxy_http_version 1.0;
+     ...
+  }
+  ```
+
+- For all upstream or proxy servers that explicitly use the HTTP/1.1 protocol, use the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive to ensure the connection is closed after completing the request-response cycle:
+  ```shell
+  location  /example {
+     proxy_set_header Connection "close";
+     proxy_http_version 1.1;
+     ...
+  }
+  ```
+
+- Set the [`keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive to zero for all HTTP/1.1 upstream blocks where it has not been explicitly defined:
+  ```shell
+  upstream backend {
+     ...
+     keepalive 0;
+  }
+  ```
+
+- Increase the upstream block shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) size by approximately 1KB per upstream server, rounding up to leave some headroom:
+  ```shell
+  upstream backend {
+     ...
+     zone backend 64k; # Example only. New size depends on previous settings.
+  }
+  ```
+
+For further information on the new behavior of NGINX Plus 37.0, see **NGINX Plus PLS.37.0.4.1 LTS** [Upgrade Notes]({{< ref "/nginx/releases/#pls.37.0.4" >}}).
 
 ### {{% icon-bug %}} Terraform fails to apply due to validation errors, but creates "Failed" resources in Azure (ID-4424)
 
@@ -35,7 +71,7 @@ $ terraform apply
 │ Code: "NginxSaaSError"
 │ Message: "{\"Content\":\"{\\\"error\\\":{\\\"code\\\":\\\"CapacityOutOfRange\\\",\\\"message\\\":\\\"The deployment's capacity must
 │ be between 10 and 500 inclusive for marketplace plan standard. For more information about setting capacity see
-│ https://docs.nginx.com/nginxaas/azure/quickstart/scaling/.\\\"}}\\n\",\"StatusCode\":400}"
+│ https://docs.nginx.com/nginxaas-azure/quickstart/scaling/.\\\"}}\\n\",\"StatusCode\":400}"
 ```
 
 The error message describes how to fix the vailidation problem. In the Azure portal, you'll be able to see your NGINXaaS, but it will have a "Failed" status. Future **terraform apply** will fail with **Error: A resource with the ID "..." already exists**.

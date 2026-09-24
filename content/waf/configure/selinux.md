@@ -3,7 +3,7 @@ title: "Configure SELinux"
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 The default settings for Security-Enhanced Linux (SELinux) on modern Red Hat Enterprise Linux (RHEL) and related distros can be very strict, prioritizing security over user convenience.
@@ -47,7 +47,7 @@ For more information related to syslog, see the [Security logs]({{< ref "/waf/lo
 
 ## Review audits
 
-F5 WAF for NGINX files and processes are labelled with the `nap-compiler_t` and `nap-engine_t` contexts. NGINX Plus is labelled with `httpd_t`.
+F5 WAF for NGINX files and processes are labeled with the `nap-compiler_t` and `nap-engine_t` contexts. NGINX Plus is labeled with `httpd_t`.
 
 If SELinux denies access to something, you can search audit denials using one of the above contexts.
 

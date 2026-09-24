@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Understand how template resource files work in F5 NGINX Instance Manager to define reusable NGINX configuration components.
   Resource files combine Go templates and JSON schemas to create flexible configuration building blocks used by base and augment templates.

@@ -4,7 +4,7 @@ type: reference
 title: Known issues
 toc: true
 weight: 2
-f5-product: NIMNGR
+f5-product: F5 NGINX Instance Manager
 f5-content-type: reference
 description: "Known issues and possible workarounds for F5 NGINX Instance Manager, with issue IDs and conditions under which they occur."
 f5-summary: >
@@ -16,6 +16,179 @@ This document lists and describes the known issues and possible workarounds in F
 
 {{< call-out class="tip" >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /call-out >}}
 
+## 2.22.2
+
+July 17, 2026
+
+### {{% icon-bug %}} Mutual TLS is disabled by default {#47465}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 47465 | Open  |
+
+#### Description
+
+Mutual TLS, or mTLS, client certificate verification for NGINX Agent and internal service connections is off by default.
+
+This change simplifies first-time deployments. If you need mTLS, follow the steps below to turn it back on.
+
+How to re-enable mTLS for NGINX Agent and internal service connections:
+
+- VM or package-based installation
+
+    File: `/etc/nginx/conf.d/nms-http.conf`
+
+    1. Re-enable client certificate loading and verification in the `server` block.
+
+        Locate the `server { listen 443 ssl http2; }` block, then uncomment `ssl_client_certificate` and change `ssl_verify_client` from `off` to `optional` or `on`.
+
+        ```nginx
+        ssl_certificate /etc/nms/certs/manager-server.pem;
+        ssl_certificate_key /etc/nms/certs/manager-server.key;
+        ssl_client_certificate /etc/nms/certs/ca.pem;
+
+        ssl_verify_client optional;
+        ```
+
+        Use `ssl_verify_client optional` if some agents may not present a certificate. Use `ssl_verify_client on` to reject connections without a valid certificate.
+
+    2. Enable mTLS enforcement on gRPC agent endpoints.
+
+        In the gRPC location blocks for agent connections, `/f5.nginx.agent.sdk.MetricsService` and `/f5.nginx.agent.sdk.Commander`, uncomment the `auth_request` directive.
+
+        ```nginx
+        location /f5.nginx.agent.sdk.MetricsService {
+            auth_request /check-agent-client-cert;
+            grpc_pass grpc://ingestion-grpc-service;
+            ...
+        }
+
+        location /f5.nginx.agent.sdk.Commander {
+            auth_request /check-agent-client-cert;
+            grpc_pass grpc://dpm-grpc-service;
+            ...
+        }
+        ```
+
+        The internal `/check-agent-client-cert` location rejects any agent that does not present a certificate validated by the CA in `ca.pem`.
+
+    3. Optionally enable `proxy_ssl` for internal service communication.
+
+        If your deployment routes internal NGINX Instance Manager services over TCP instead of Unix sockets, turn on TLS for the proxy connections inside the `/api` location.
+
+        ```nginx
+        location /api {
+            proxy_ssl_trusted_certificate /etc/nms/certs/ca.pem;
+            proxy_ssl_certificate /etc/nms/certs/manager-client.pem;
+            proxy_ssl_certificate_key /etc/nms/certs/manager-client.key;
+            proxy_ssl_verify on;
+            proxy_ssl_name platform;
+            proxy_ssl_server_name on;
+
+            proxy_pass https://$mapped_upstream;
+            ...
+        }
+        ```
+
+    4. Reload NGINX.
+
+    ```shell
+    sudo nginx -t && sudo systemctl reload nginx
+    ```
+
+- Kubernetes (Helm) installation
+
+    File: `k8s/charts/generated/nms-http.conf`
+
+    (This file is generated from Helm templates. Configure it through `values.yaml`, not by editing the generated file directly.)
+
+    1. Enable mTLS enforcement in Helm values.
+
+        In `values.yaml`, set:
+
+        ```yaml
+        agent:
+        secure: true
+        ```
+
+        This flag controls the conditional `auth_request /check-agent-client-cert;` directive in both gRPC agent location blocks, `/f5.nginx.agent.sdk.MetricsService` and `/f5.nginx.agent.sdk.Commander`.
+
+    2. Re-enable client certificate loading and verification in the `server` block.
+
+        After rendering with Helm, or in the generated `nms-http.conf`, locate the `server` block that listens on `8443`, then apply the following settings:
+
+        ```nginx
+        ssl_client_certificate /etc/nms/certs/ca.pem;
+        ssl_verify_client optional;
+        ```
+
+        The CA certificate must be the same CA that signed the agent client certificates.
+
+    3. Verify internal TLS.
+
+        In Kubernetes, internal service-to-service communication already uses TLS with `proxy_pass https://...` and `grpc_pass grpcs://...`. The platform handles internal certificate management, so no additional changes are needed.
+
+    4. Apply the Helm upgrade.
+
+        ```shell
+        helm upgrade <release-name> <chart-path> -f values.yaml
+        ```
+
+---
+
+### {{% icon-resolved %}} Auto-downloaded WAF compiler v5.690.0 and later fails to compile policies {#47651}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 47651 | Fixed in Instance Manager 2.23.0  |
+
+#### Description
+
+WAF compiler v5.690.0 and later can fail to compile policies on hosts where NGINX Instance Manager auto-downloaded it before you upgraded to NGINX Instance Manager 2.23.0. This release fixes the auto-download process, so new downloads no longer have this problem.
+
+You'll see an error like this in the NGINX Instance Manager web interface:
+
+```text
+<instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
+```
+
+The `nms.log` file also shows one of the following errors, depending on your operating system.
+
+**Debian or Ubuntu:**
+
+```text
+/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
+```
+
+**RHEL:**
+
+```text
+Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
+```
+
+#### Workaround
+
+If NGINX Instance Manager auto-downloaded WAF compiler v5.690.0 or later on a host (not through `apt` or `yum`) before you upgraded to NGINX Instance Manager 2.23.0, do the following.
+
+1. Check the library filenames in your compiler's `lib` directory. The filenames in step 2 apply to compiler v5.690.0; later versions may bundle different library versions.
+
+ ```shell
+ ls /opt/nms-nap-compiler/app_protect-<VERSION>/lib/ | grep -E 'libre2|libprotobuf'
+ ```
+
+2. Replace `<VERSION>` with your installed compiler version and run the following command. If step 1 showed different filenames, edit the command to match before running it.
+
+ ```shell
+ sudo bash -c '
+ cd /opt/nms-nap-compiler/app_protect-<VERSION>/lib && \
+ ln -sfn libre2.so.11.0.0 libre2.so.11 && \
+ ln -sfn libprotobuf.so.3.21.12.0 libprotobuf.so.32 && \
+ ln -sfn libprotobuf.so.32 libprotobuf.so
+ '
+ ```
+
+---
+
 ## 2.22.0
 
 April 28, 2026
@@ -24,7 +197,7 @@ April 28, 2026
 
 | Issue ID       | Status |
 |----------------|--------|
-| 47286 | Open  |
+| 47286 | Won't be resolved  |
 
 #### Description
 
@@ -36,7 +209,7 @@ Custom users can't perform any actions on the **Security Log Profiles** tab.
 
 | Issue ID       | Status |
 |----------------|--------|
-| 47287 | Open  |
+| 47287 | Won't be resolved  |
 
 #### Description
 
@@ -165,43 +338,6 @@ The changes required have been made and the UI displays the values correctly now
 
 ---
 
-## 2.19.0
-
-February 06, 2025
-
-### {{% icon-resolved %}} Publishing the NAP policy fails with the error “The attack signatures with the given version was not found” {#45845}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 45845 | Fixed in Instance Manager 2.19.1  |
-
-#### Description
-
-In NGINX Instance Manager v2.19.0, publishing an F5 WAF for NGINX policy from the UI fails if the latest F5 WAF for NGINX compiler v5.264.0 (for F5 WAF for NGINX v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
-
-#### Workaround
-
-1. Download the NGINX repository certificate and key:
-   - Log in to [MyF5](https://account.f5.com/myf5).
-   - Go to **My Products and Plans > Subscriptions**.
-   - Download the SSL certificate (*nginx-repo.crt*) and private key (*nginx-repo.key*) for your NGINX App Protect subscription.
-
-2. Upload the certificate and key using the NGINX Instance Manager web interface:
-   - Go to **Settings > NGINX Repo Connect**.
-   - Select **Add Certificate**.
-   - Choose **Select PEM files** or **Manual entry**.
-   - If using manual entry, copy and paste your *certificate* and *key* details.
-
-    For detailed steps, see [Upload F5 WAF for NGINX certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
-
-3. Restart the `nms-integrations` service:
-
-    ```shell
-    sudo systemctl restart nms-integrations
-    ```
-
----
-
 ## 2.17.0
 
 July 10, 2024
@@ -210,7 +346,7 @@ July 10, 2024
 
 | Issue ID       | Status |
 |----------------|--------|
-| 45113 | Open  |
+| 45113 | Won't be resolved  |
 
 #### Description
 
@@ -226,7 +362,7 @@ Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_pub
 
 | Issue ID       | Status |
 |----------------|--------|
-| 45131 | Open  |
+| 45131 | Won't be resolved  |
 
 #### Description
 
@@ -343,7 +479,7 @@ August 28, 2023
 
 | Issue ID       | Status |
 |----------------|--------|
-| 43950 | Open  |
+| 43950 | Won't be resolved  |
 
 #### Description
 

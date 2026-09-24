@@ -1,7 +1,7 @@
 ---
 f5-content-type: installation-guide
 f5-docs: DOCS-003
-f5-product: KITCHEN
+f5-product: F5 Kitchen
 title: Install a drip coffee maker
 description: "Set up a drip coffee maker on a standard kitchen countertop and brew a verified first pot."
 weight: 100

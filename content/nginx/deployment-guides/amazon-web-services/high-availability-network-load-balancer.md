@@ -6,7 +6,7 @@ title: Active-Active HA for NGINX Plus on AWS Using AWS Network Load Balancer
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 These instructions explain how to deploy F5 NGINX Plus in the Amazon Web Services (AWS) cloud. Use these instructions to create a highly available, active-active deployment with load balancing.

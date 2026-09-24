@@ -4,7 +4,7 @@ linkTitle: NGINX Plus
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This page describes how to use Helm to install F5 NGINX Ingress Controller LTS with NGINX Plus. 
@@ -37,7 +37,7 @@ These commands should be run in the same directory as your **license.jwt** file.
 Create a secret for the NGINX Plus license:
 
 ```shell
-kubectl create secret generic nplus-license --from-file license.jwt
+kubectl create secret generic nplus-license --from-file=license.jwt --type=nginx.com/license
 ```
 
 Create a secret for the F5 registry:
@@ -78,7 +78,7 @@ JWTs are sensitive information and should be stored securely. Delete them after 
 Once you have obtained your license JWT, create a Kubernetes secret using `kubectl create`:
 
 ```shell
-kubectl create secret generic nplus-license --from-file license.jwt
+kubectl create secret generic nplus-license --from-file=license.jwt --type=nginx.com/license
 ```
 
 {{< details summary="Example output" >}}
@@ -137,7 +137,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller LTS 2026-lts-r1 has been installed.
+NGINX Ingress Controller LTS {{< nic-lts-version >}} has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 
@@ -186,7 +186,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller LTS 2026-lts-r1 has been installed.
+NGINX Ingress Controller LTS {{< nic-lts-version >}} has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 

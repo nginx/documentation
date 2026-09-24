@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create NGINX config templates in F5 NGINX Instance Manager and deploy them to your NGINX instances to standardize configurations.
   Templates predefine and enforce consistent NGINX settings, reducing manual configuration work and the risk of configuration drift.

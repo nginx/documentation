@@ -4,7 +4,7 @@ linkTitle: NGINX Plus (experimental)
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Plus.

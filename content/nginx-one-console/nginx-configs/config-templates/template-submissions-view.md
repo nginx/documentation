@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: View template submissions
 description: "View and manage template submissions for a config template in NGINX One Console."
 toc: true
@@ -19,6 +19,8 @@ f5-audience: operator
 Use this page to view and manage template submissions in NGINX One Console. The **Submissions** section on the [Template Detail page]({{< ref "template-detail-view.md" >}}) lists every submission for that template.
 
 Each row is a submission the [Submit Templates]({{< ref "submit-templates.md" >}}) API created. You can inspect which templates and targets are in each submission and delete submissions you no longer need.
+
+You can also create a new submission directly from the Templates list. Select **Submit** on a finalized base template. See [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}}).
 
 ## Before you begin
 
@@ -90,4 +92,5 @@ For more information, see:
 
 - [View template details]({{< ref "template-detail-view.md" >}})
 - [Submit templates]({{< ref "submit-templates.md" >}})
+- [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}})
 - [View template versions]({{< ref "template-versions.md" >}})

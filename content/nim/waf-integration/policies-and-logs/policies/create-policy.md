@@ -4,7 +4,7 @@ description: Create and customize F5 WAF for NGINX security policies in F5 NGINX
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create a new F5 WAF for NGINX security policy in F5 NGINX Instance Manager using the web interface or REST API.
   Policies control WAF behavior; you can start from a preset or write custom JSON to define exactly what traffic to inspect and block.
@@ -32,6 +32,17 @@ To create a security policy using the NGINX Instance Manager web interface:
    In the configuration file, this is set using the `enforcementMode` property.
 
 5. To change character encoding, select **Show Advanced Fields**, then select an application language. The default encoding is Unicode (`utf-8`).
+
+### Import a custom policy using JSON
+
+If you have a pre-existing custom policy, you can import it directly instead of configuring it through the guided form:
+
+1. On the **Security Policies** page, select **Create**.
+2. Select the **JSON** tab.
+3. In the text area, remove the existing default policy content.
+4. Paste your custom policy JSON.
+5. Correct any policy validation errors shown by the interface.
+6. Select **Add Policy**.
 
 ### Configure a policy
 

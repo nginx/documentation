@@ -6,7 +6,7 @@ title: Restricting Access by Geographical Location
 toc: true
 weight: 800
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="intro"></span>

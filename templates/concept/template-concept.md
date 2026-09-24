@@ -1,7 +1,7 @@
 ---
 f5-content-type: concept
 f5-docs: DOCS-000
-f5-product: {PRODUCT_CODE}
+f5-product: {PRODUCT_NAME}
 title: {Concept name — use a noun phrase, not "Understand X" or "About X"}
 description: "{One sentence summarizing what the concept is and why it matters, under 160 characters.}"
 weight: 100

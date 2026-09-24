@@ -2,7 +2,7 @@
 title: Fundamentals
 url: /nginx-instance-manager/fundamentals/
 weight: 1
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Learn the essentials of F5 NGINX Instance Manager: the dashboard, the REST API, and technical specifications before you deploy or manage the platform."
 f5-summary: >

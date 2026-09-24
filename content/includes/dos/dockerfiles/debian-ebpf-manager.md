@@ -1,5 +1,5 @@
 ---
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 f5-files:
 - content/nap-dos/deployment-guide/kubernetes-with-L4-accelerated-mitigation.md
 ---
@@ -7,6 +7,11 @@ f5-files:
 ```dockerfile
 # Where can be bullseye/bookworm
 FROM debian:bullseye
+
+# Set this to the same version you built the F5 DoS for NGINX image with, for example:
+#   --build-arg DOS_VERSION="=37+4.9.6-1~bullseye"
+# Left empty, the most recent version is installed, which may not match that image.
+ARG DOS_VERSION=""
 
 # Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
@@ -30,7 +35,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
         > /etc/apt/sources.list.d/nginx-app-protect-dos.list \
     && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y app-protect-dos-ebpf-manager \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y "app-protect-dos-ebpf-manager${DOS_VERSION}" \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

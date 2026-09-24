@@ -3,7 +3,7 @@ title: Logs available from NGINX Ingress Controller LTS
 toc: true
 weight: 100
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document gives an overview of logging provided by F5 NGINX Ingress Controller LTS.

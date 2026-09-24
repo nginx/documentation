@@ -4,7 +4,7 @@ description: Verify that F5 WAF for NGINX instances are connected and reporting 
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Verify that F5 WAF for NGINX instances are connected and reporting to F5 NGINX Instance Manager after installing and configuring NGINX Agent.
   This check confirms that NGINX Instance Manager can see the instances and that NGINX Agent is communicating correctly.

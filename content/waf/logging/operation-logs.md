@@ -3,7 +3,7 @@ title: Operation logs
 toc: false
 weight: 400
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 

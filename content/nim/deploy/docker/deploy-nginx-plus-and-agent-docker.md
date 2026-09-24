@@ -4,7 +4,7 @@ title: Deploy NGINX Plus in a container (data plane)
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Build and run an NGINX Plus container that connects to F5 NGINX Instance Manager using NGINX Agent for centralized data plane management."
 f5-summary: >
   Build an NGINX Plus container image and connect it to F5 NGINX Instance Manager using NGINX Agent.

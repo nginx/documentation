@@ -4,7 +4,7 @@ description: Confirm that F5 WAF for NGINX is active and running correctly on yo
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Verify that F5 WAF for NGINX is active and running correctly on your instances after applying a WAF configuration.
   You can confirm status and version details through the F5 NGINX Instance Manager web interface.

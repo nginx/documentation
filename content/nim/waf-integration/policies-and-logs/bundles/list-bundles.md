@@ -4,7 +4,7 @@ description: View and filter the list of compiled F5 WAF for NGINX security bund
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   View and filter the list of compiled F5 WAF for NGINX security bundles in F5 NGINX Instance Manager.
   The bundle list shows each bundle's name, status, version, and associated policy so you can track what is deployed across your instances.

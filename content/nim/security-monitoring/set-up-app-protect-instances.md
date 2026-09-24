@@ -3,7 +3,7 @@ title: Set up F5 WAF for NGINX instances for Security Monitoring
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1107
 description: "Connect F5 WAF for NGINX instances to Security Monitoring in F5 NGINX Instance Manager to collect and display security violation data."
 f5-summary: >

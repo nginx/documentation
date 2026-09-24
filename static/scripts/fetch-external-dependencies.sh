@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # This script is used to fetch external packages that are not available in standard Linux distribution
 
-# Example: ./fetch-external-dependencies ubuntu20.04
-# Script will create nms-dependencies-ubuntu20.04.tar.gz in local directory which can be copied
+# Example: ./fetch-external-dependencies ubuntu22.04
+# Script will create nms-dependencies-ubuntu22.04.tar.gz in local directory which can be copied
 # into target machine and packages inside can be installed manually
 
 if ((BASH_VERSINFO[0] < 4))
@@ -35,32 +35,32 @@ fetch() {
 }
 
 declare -A CLICKHOUSE_REPO
-CLICKHOUSE_REPO['ubuntu20.04']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse/"
-CLICKHOUSE_REPO['ubuntu22.04']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse/"
-CLICKHOUSE_REPO['debian11']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse/"
-CLICKHOUSE_REPO['debian12']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse/"
-CLICKHOUSE_REPO['centos7']="https://packages.clickhouse.com/rpm/stable/"
-CLICKHOUSE_REPO['centos8']="https://packages.clickhouse.com/rpm/stable/"
-CLICKHOUSE_REPO['rhel7']="https://packages.clickhouse.com/rpm/stable/"
-CLICKHOUSE_REPO['rhel8']="https://packages.clickhouse.com/rpm/stable/"
-CLICKHOUSE_REPO['rhel9']="https://packages.clickhouse.com/rpm/stable/"
-CLICKHOUSE_REPO['oracle7']="https://packages.clickhouse.com/rpm/stable/"
-CLICKHOUSE_REPO['oracle8']="https://packages.clickhouse.com/rpm/stable/"
-CLICKHOUSE_REPO['amzn2']="https://packages.clickhouse.com/rpm/stable/"
+CLICKHOUSE_REPO['ubuntu22.04']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse"
+CLICKHOUSE_REPO['ubuntu24.04']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse"
+CLICKHOUSE_REPO['debian11']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse"
+CLICKHOUSE_REPO['debian12']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse"
+CLICKHOUSE_REPO['debian13']="https://packages.clickhouse.com/deb/pool/main/c/clickhouse"
+CLICKHOUSE_REPO['rhel8']="https://packages.clickhouse.com/rpm/stable"
+CLICKHOUSE_REPO['rhel9']="https://packages.clickhouse.com/rpm/stable"
+CLICKHOUSE_REPO['rhel10']="https://packages.clickhouse.com/rpm/stable"
+CLICKHOUSE_REPO['oracle8']="https://packages.clickhouse.com/rpm/stable"
+CLICKHOUSE_REPO['rocky8']="https://packages.clickhouse.com/rpm/stable"
+CLICKHOUSE_REPO['rocky9']="https://packages.clickhouse.com/rpm/stable"
+CLICKHOUSE_REPO['rocky10']="https://packages.clickhouse.com/rpm/stable"
 
 declare -A NGINX_REPO
-NGINX_REPO['ubuntu20.04']="https://nginx.org/packages/mainline/ubuntu/pool/nginx/n/nginx/"
 NGINX_REPO['ubuntu22.04']="https://nginx.org/packages/mainline/ubuntu/pool/nginx/n/nginx/"
+NGINX_REPO['ubuntu24.04']="https://nginx.org/packages/mainline/ubuntu/pool/nginx/n/nginx/"
 NGINX_REPO['debian11']="https://nginx.org/packages/mainline/debian/pool/nginx/n/nginx/"
 NGINX_REPO['debian12']="https://nginx.org/packages/mainline/debian/pool/nginx/n/nginx/"
-NGINX_REPO['centos7']="https://nginx.org/packages/mainline/centos/7/x86_64/RPMS/"
-NGINX_REPO['centos8']="https://nginx.org/packages/mainline/centos/8/x86_64/RPMS/"
-NGINX_REPO['rhel7']="https://nginx.org/packages/mainline/rhel/7/x86_64/RPMS/"
+NGINX_REPO['debian13']="https://nginx.org/packages/mainline/debian/pool/nginx/n/nginx/"
 NGINX_REPO['rhel8']="https://nginx.org/packages/mainline/rhel/8/x86_64/RPMS/"
 NGINX_REPO['rhel9']="https://nginx.org/packages/mainline/rhel/9/x86_64/RPMS/"
-NGINX_REPO['oracle7']="https://nginx.org/packages/mainline/rhel/7/x86_64/RPMS/"
+NGINX_REPO['rhel10']="https://nginx.org/packages/mainline/rhel/10/x86_64/RPMS/"
 NGINX_REPO['oracle8']="https://nginx.org/packages/mainline/rhel/8/x86_64/RPMS/"
-NGINX_REPO['amzn2']="https://nginx.org/packages/mainline/amzn2/2/x86_64/RPMS/"
+NGINX_REPO['rocky8']="https://nginx.org/packages/mainline/rhel/8/x86_64/RPMS/"
+NGINX_REPO['rocky9']="https://nginx.org/packages/mainline/rhel/9/x86_64/RPMS/"
+NGINX_REPO['rocky10']="https://nginx.org/packages/mainline/rhel/10/x86_64/RPMS/"
 
 CLICKHOUSE_KEY="https://packages.clickhouse.com/rpm/lts/repodata/repomd.xml.key"
 NGINX_KEY="https://nginx.org/keys/nginx_signing.key"
@@ -76,32 +76,32 @@ CLICKHOUSE_PACKAGES['centos']="
 clickhouse-server-${CLICKHOUSE_VERSION}.x86_64.rpm
 clickhouse-common-static-${CLICKHOUSE_VERSION}.x86_64.rpm"
 
-CLICKHOUSE_PACKAGES['ubuntu20.04']=${CLICKHOUSE_PACKAGES['ubuntu']}
 CLICKHOUSE_PACKAGES['ubuntu22.04']=${CLICKHOUSE_PACKAGES['ubuntu']}
+CLICKHOUSE_PACKAGES['ubuntu24.04']=${CLICKHOUSE_PACKAGES['ubuntu']}
 CLICKHOUSE_PACKAGES['debian11']=${CLICKHOUSE_PACKAGES['ubuntu']}
 CLICKHOUSE_PACKAGES['debian12']=${CLICKHOUSE_PACKAGES['ubuntu']}
-CLICKHOUSE_PACKAGES['centos7']=${CLICKHOUSE_PACKAGES['centos']}
-CLICKHOUSE_PACKAGES['centos8']=${CLICKHOUSE_PACKAGES['centos']}
-CLICKHOUSE_PACKAGES['rhel7']=${CLICKHOUSE_PACKAGES['centos']}
+CLICKHOUSE_PACKAGES['debian13']=${CLICKHOUSE_PACKAGES['ubuntu']}
 CLICKHOUSE_PACKAGES['rhel8']=${CLICKHOUSE_PACKAGES['centos']}
 CLICKHOUSE_PACKAGES['rhel9']=${CLICKHOUSE_PACKAGES['centos']}
-CLICKHOUSE_PACKAGES['oracle7']=${CLICKHOUSE_PACKAGES['centos']}
+CLICKHOUSE_PACKAGES['rhel10']=${CLICKHOUSE_PACKAGES['centos']}
 CLICKHOUSE_PACKAGES['oracle8']=${CLICKHOUSE_PACKAGES['centos']}
-CLICKHOUSE_PACKAGES['amzn2']=${CLICKHOUSE_PACKAGES['centos']}
+CLICKHOUSE_PACKAGES['rocky8']=${CLICKHOUSE_PACKAGES['centos']}
+CLICKHOUSE_PACKAGES['rocky9']=${CLICKHOUSE_PACKAGES['centos']}
+CLICKHOUSE_PACKAGES['rocky10']=${CLICKHOUSE_PACKAGES['centos']}
 
 declare -A NGINX_PACKAGES
-NGINX_PACKAGES['ubuntu20.04']="nginx_1.21.2-1~focal_amd64.deb"
-NGINX_PACKAGES['ubuntu22.04']="nginx_1.21.6-1~jammy_amd64.deb"
-NGINX_PACKAGES['debian11']="nginx_1.21.6-1~bullseye_amd64.deb"
-NGINX_PACKAGES['debian12']="nginx_1.21.6-1~bookworm_amd64.deb"
-NGINX_PACKAGES['centos7']="nginx-1.21.4-1.el7.ngx.x86_64.rpm"
-NGINX_PACKAGES['centos8']="nginx-1.21.4-1.el8.ngx.x86_64.rpm"
-NGINX_PACKAGES['rhel7']="nginx-1.21.4-1.el7.ngx.x86_64.rpm"
-NGINX_PACKAGES['rhel8']="nginx-1.21.4-1.el8.ngx.x86_64.rpm"
-NGINX_PACKAGES['rhel9']="nginx-1.21.6-1.el9.ngx.x86_64.rpm"
-NGINX_PACKAGES['oracle7']="nginx-1.21.4-1.el7.ngx.x86_64.rpm"
-NGINX_PACKAGES['oracle8']="nginx-1.21.4-1.el8.ngx.x86_64.rpm"
-NGINX_PACKAGES['amzn2']="nginx-1.21.6-1.amzn2.ngx.x86_64.rpm"
+NGINX_PACKAGES['ubuntu22.04']="nginx_1.31.1-1~jammy_amd64.deb"
+NGINX_PACKAGES['ubuntu24.04']="nginx_1.31.1-1~noble_amd64.deb"
+NGINX_PACKAGES['debian11']="nginx_1.31.1-1~bullseye_amd64.deb"
+NGINX_PACKAGES['debian12']="nginx_1.31.1-1~bookworm_amd64.deb"
+NGINX_PACKAGES['debian13']="nginx_1.31.1-1~trixie_amd64.deb"
+NGINX_PACKAGES['rhel8']="nginx-1.31.1-1.el8.ngx.x86_64.rpm"
+NGINX_PACKAGES['rhel9']="nginx-1.31.1-1.el9.ngx.x86_64.rpm"
+NGINX_PACKAGES['rhel10']="nginx-1.31.1-1.el10.ngx.x86_64.rpm"
+NGINX_PACKAGES['oracle8']="nginx-1.31.1-1.el8.ngx.x86_64.rpm"
+NGINX_PACKAGES['rocky8']="nginx-1.31.1-1.el8.ngx.x86_64.rpm"
+NGINX_PACKAGES['rocky9']="nginx-1.31.1-1.el9.ngx.x86_64.rpm"
+NGINX_PACKAGES['rocky10']="nginx-1.31.1-1.el10.ngx.x86_64.rpm"
 
 download_packages() {
     local target_distribution=$1

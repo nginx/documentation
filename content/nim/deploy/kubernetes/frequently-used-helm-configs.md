@@ -4,7 +4,7 @@ title: Frequently used Helm configurations
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Common Helm chart configuration examples for F5 NGINX Instance Manager, covering ingress, persistence, resource limits, and other frequently needed settings."
 f5-summary: >
   Apply common Helm chart configurations for F5 NGINX Instance Manager by modifying the values.yaml file.

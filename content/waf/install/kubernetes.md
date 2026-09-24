@@ -3,7 +3,7 @@ title: "Kubernetes"
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes how to install F5 WAF for NGINX using Kubernetes.
@@ -63,7 +63,7 @@ This example uses NGINX Open Source as a base: it requires NGINX to be installed
 
 {{< call-out class="note" >}}
 
-If you are not using using `custom_log_format.json` or the IP intelligence feature,  you should remove any references to them from your Dockerfile.
+If you are not using `custom_log_format.json` or the IP intelligence feature, you should remove any references to them from your Dockerfile.
 
 {{< /call-out >}}
 
@@ -139,55 +139,45 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /tabs >}}
 
-### RHEL 8
+### RHEL 8, 9, and 10
 
-{{< tabs name="rhel8-instructions" >}}
+{{< call-out class="important" >}}
+The steps are identical for RHEL 8, 9, and 10. In the Dockerfile, set the `UBI_VERSION` argument to your operating system major version: `8`, `9`, or `10`.
+{{< /call-out >}}
+
+{{< tabs name="rhel-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 
-{{< include "/waf/dockerfiles/rhel8-oss.md" >}}
+{{< include "/waf/dockerfiles/rhel-oss.md" >}}
 
 {{% /tab %}}
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel8-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel-plus.md" >}}
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-### RHEL 9
+### Rocky Linux 8, 9, and 10
 
-{{< tabs name="rhel9-instructions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-{{< include "/waf/dockerfiles/rhel9-oss.md" >}}
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel9-plus.md" >}}
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-### Rocky Linux 9
+{{< call-out class="important" >}}
+The steps are identical for Rocky Linux 8, 9, and 10. In the Dockerfile, set the `ROCKY_VERSION` argument to your operating system major version: `8`, `9`, or `10`.
+{{< /call-out >}}
 
 {{< tabs name="rocky-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 
-{{< include "/waf/dockerfiles/rocky9-oss.md" >}}
+{{< include "/waf/dockerfiles/rocky-oss.md" >}}
 
 {{% /tab %}}
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rocky9-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rocky-plus.md" >}}
 
 {{% /tab %}}
 
@@ -464,7 +454,7 @@ spec:
             - name: app-protect-config
               mountPath: /opt/app_protect/config
         - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+          image: private-registry.nginx.com/nap/waf-enforcer:{{< version-waf-enforcer >}}
           imagePullPolicy: IfNotPresent
           env:
             - name: ENFORCER_PORT
@@ -473,7 +463,7 @@ spec:
             - name: app-protect-bd-config
               mountPath: /opt/app_protect/bd_config
         - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+          image: private-registry.nginx.com/nap/waf-config-mgr:{{< version-waf-config-mgr >}}
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false

@@ -2,7 +2,7 @@
 title: Administer your platform
 weight: 40
 url: /nginx-instance-manager/admin-guide/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Administer F5 NGINX Instance Manager: configure authentication, manage role-based access control, perform backups, and run system health checks."
 f5-summary: >

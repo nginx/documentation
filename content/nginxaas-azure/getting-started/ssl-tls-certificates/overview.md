@@ -1,10 +1,10 @@
 ---
 title: Overview
-url: /nginxaas/azure/getting-started/ssl-tls-certificates/overview/
+url: /nginxaas-azure/getting-started/ssl-tls-certificates/overview/
 toc: true
 weight: 50
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.
@@ -54,7 +54,7 @@ http {
 
 NGINXaaS for Azure regularly polls the AKV to check if the certificate has been updated. If an updated certificate is found, it is automatically rotated on the deployment within 4 hours. Any change to the NGINX configuration will trigger all SSL/TLS certificates to be rotated immediately.
 
-For Azure client tools, such as the Azure CLI or Azure Resource Manager, the certificate is referenced from AKV using its Key Vault secret identifier. If the secret identifier specifies a version, NGINXaaS will not rotate the certificate. To enable certificate rotation, ensure the secret id does not contain a version, for example, `https://myvault.vault.azure.net/secrets/mysecret`. Certificates added using the Azure Portal will automatically be rotated.
+When referencing a certificate in Azure Key Vault using a secret identifier, if the secret identifier specifies a version, NGINXaaS will not rotate the certificate. To enable certificate rotation, ensure the secret identifier does not contain a version, for example, `https://myvault.vault.azure.net/secrets/mysecret`.
 
 {{< call-out class="warning" >}}If any of your SSL/TLS certificates or your NGINX configuration has issues, the certificates will not be rotated.{{< /call-out >}}
 

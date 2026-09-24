@@ -3,7 +3,7 @@ title: "User-defined URLs and parameters"
 weight: 2150
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the user-defined URLs and parameters feature of F5 WAF for NGINX.

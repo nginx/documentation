@@ -4,7 +4,7 @@ description: Enable F5 NGINX Instance Manager to automatically download and inst
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Enable F5 NGINX Instance Manager to automatically download and install new WAF compiler versions as needed.
   Automatic updates require uploading an F5 WAF for NGINX certificate and key so NGINX Instance Manager can authenticate with the NGINX package repository.
@@ -48,5 +48,37 @@ If you see a message like this, the certificate or key is likely invalid or expi
 ```text
 error when creating the nginx repo retriever - NGINX repo certificates not found
 ```
+
+{{<call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages in the UI: 
+```text
+<instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
+```
+
+<b>AND</b></br>
+
+If the log contains any of the following error messages:</br>
+
+for Debian or Ubuntu-based systems:
+```text
+/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
+```
+
+<b>OR</b></br>
+
+for RHEL-based systems: 
+```text
+Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
+```
+
+<b>Workaround</b>: Run the following command:
+   ```shell
+   sudo bash -c '
+   cd /opt/nms-nap-compiler/app_protect-5.690.0/lib && \
+   ln -sfn libre2.so.11.0.0 libre2.so.11 && \
+   ln -sfn libprotobuf.so.3.21.12.0 libprotobuf.so.32 && \
+   ln -sfn libprotobuf.so.32 libprotobuf.so
+   '
+   ```
+{{</call-out>}}
 
 If needed, you can [install the WAF compiler manually]({{< ref "/nim/waf-integration/configuration/install-waf-compiler/install.md" >}}).

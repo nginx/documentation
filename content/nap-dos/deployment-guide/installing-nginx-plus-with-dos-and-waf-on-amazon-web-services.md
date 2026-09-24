@@ -8,7 +8,7 @@ title: Installing F5 WAF & DoS for NGINX AMIs on Amazon EC2
 toc: true
 weight: 110
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 

@@ -3,7 +3,7 @@ title: Troubleshooting
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1419
 ---
 
@@ -229,7 +229,7 @@ Key information to note is:
 1. Each `location` block has headers and directives that configure the NGINX proxy to forward requests to the `/coffee` path correctly, preserving important client information and ensuring compatibility with the upstream server.
 1. The `upstream` block in the given NGINX configuration defines a group of backend servers and configures how NGINX should load balance requests among them.
 
-Review the behaviour when a curl request is sent to the `coffee` application:
+Review the behavior when a curl request is sent to the `coffee` application:
 
 Matches location /coffee/ block
 
@@ -279,7 +279,7 @@ Metrics can be useful to identify performance bottlenecks and pinpoint areas of 
 #### Access the NGINX Plus Dashboard
 
 If you have NGINX Gateway Fabric installed with NGINX Plus, you can access the NGINX Plus dashboard at `http://localhost:8080/dashboard.html`.
-Verify that the port number (for example, `8080`) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the [dashboard guide]({{< ref "dashboard.md" >}})
+Verify that the port number (for example, `8080`) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the [dashboard guide]({{< relref "monitoring/dashboard.md" >}})
 
 ### Common errors
 
@@ -291,14 +291,14 @@ Verify that the port number (for example, `8080`) matches the port number you ha
 | NGINX Plus errors | Failure to start; traffic interruptions | Set up the [NGINX Plus JWT]({{< ref "/ngf/install/nginx-plus.md" >}}) | License is not configured or has expired. |
 | Client Settings | Request entity too large error | Adjust client settings. Refer to [Client Settings Policy]({{< ref "/ngf/traffic-management/client-settings.md" >}}) | Payload is greater than the [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) value.|
 
-##### NGINX fails to reload
+#### NGINX fails to reload
 
 NGINX reload errors can occur for various reasons, including syntax errors in configuration files, permission issues, and more. To determine if NGINX has failed to reload, check logs for your _nginx-gateway_ and _nginx_ containers.
 You will see the following error in the _nginx-gateway_ logs: `failed to reload NGINX:`, followed by the reason for the failure. Similarly, error logs in _nginx_ container start with `emerg`. For example, `2024/06/12 14:25:11 [emerg] 12345#0: open() "/var/run/nginx.pid" failed (13: Permission denied)` shows a critical error, such as a permission problem preventing NGINX from accessing necessary files.
 
 To debug why your reload has failed, start with verifying the syntax of your configuration files by opening a shell in the NGINX container following these [steps](#get-shell-access-to-nginx-container) and running `nginx -T`. If there are errors in your configuration file, the reload will fail and specify the reason for it.
 
-##### NGINX Gateway Fabric Pod is not running or ready
+#### NGINX Gateway Fabric Pod is not running or ready
 
 To understand why the NGINX Gateway Fabric Pod has not started running or is not ready, check the state of the Pod to get detailed information about the current status and events happening in the Pod. To do this, use `kubectl describe`:
 
@@ -350,7 +350,7 @@ Events:
   Normal  Started    20s   kubelet            Started container nginx-gateway
 ```
 
-##### NGINX Pod is not running or ready
+#### NGINX Pod is not running or ready
 
 To understand why the NGINX Pod has not started running or is not ready, check the state of the Pod to get detailed information about the current status and events happening in the Pod. To do this, use `kubectl describe`:
 
@@ -400,7 +400,7 @@ Events:
   Normal  Started    2m53s  kubelet            Started container nginx
 ```
 
-##### NGINX Plus failure to start or traffic interruptions
+#### NGINX Plus failure to start or traffic interruptions
 
 Beginning with NGINX Gateway Fabric 1.5.0, NGINX Plus requires a valid JSON Web Token (JWT) to run. If this is not set up properly, or your JWT token has expired, you may see errors in the NGINX logs that look like the following:
 
@@ -418,7 +418,7 @@ nginx: [emerg] license expired
 
 These errors could prevent NGINX Plus from starting or prevent traffic from flowing. To fix these issues, see the [NGINX Plus JWT]({{< ref "/ngf/install/nginx-plus.md" >}}) guide.
 
-##### 413 Request Entity Too Large
+#### 413 Request Entity Too Large
 
 If you receive the following error:
 
@@ -441,7 +441,7 @@ Or view the following error message in the NGINX logs:
 The request body exceeds the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size).
 To **resolve** this, you can configure the `client_max_body_size` using the `ClientSettingsPolicy` API. Read the [Client Settings Policy]({{< ref "/ngf/traffic-management/client-settings.md" >}}) documentation for more information.
 
-##### IP Family Mismatch Errors
+#### IP Family Mismatch Errors
 
 If you `describe` your HTTPRoute and see the following error:
 
@@ -475,7 +475,7 @@ To **resolve** this, you can do one of the following:
 
 - Adjust the IPFamily of your Service to match that of the NginxProxy configuration.
 
-##### Policy cannot be applied to target
+#### Policy cannot be applied to target
 
 If you `describe` your Policy and see the following error:
 
@@ -494,7 +494,7 @@ This means you are attempting to attach a Policy to a Route that has an overlapp
 - Combine the Route rules for the overlapping path into a single Route.
 - If the Policy allows it, specify both Routes in the `targetRefs` list.
 
-##### Broken Header error
+#### Broken Header error
 
 If you check your _nginx_ container logs and see the following error:
 

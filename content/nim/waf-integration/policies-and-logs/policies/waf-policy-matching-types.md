@@ -4,7 +4,7 @@ description: Learn how explicit and wildcard matching determine how F5 WAF for N
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Understand the difference between explicit and wildcard matching in F5 WAF for NGINX policies before configuring URL, cookie, and parameter protection.
   The matching type determines how closely the WAF compares incoming requests to the entities defined in your security policy.

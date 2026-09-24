@@ -4,7 +4,7 @@ weight: 500
 toc: true
 f5-content-type: reference
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 Beyond the [Default roles]({{< ref "/nginx-one-console/rbac/roles.md" >}}) for NGINX One Console access, you can create [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles) with more precisely defined access permissions.
@@ -45,3 +45,8 @@ The following table lists the available API groups that you can use to construct
 | f5xc-nginx-one-custom-ai-assistant                  | Write           | Interact with the F5 AI Assistant.                                                                                     |
 | f5xc-nginx-one-custom-staged-config-manage         | Write           | View, create, update, and delete Staged Configs.                                                                          |
 | f5xc-nginx-one-custom-staged-config-read           | Read            | View Staged Configs.                                                                                                      |
+| f5xc-nginx-one-custom-templates-manage             | Write           | View, create, update, and delete templates.                                                                               |
+| f5xc-nginx-one-custom-templates-read               | Read            | View templates.                                                                                                           |
+| f5xc-nginx-one-custom-templates-submissions-contributor | Write       | View and edit existing template submissions. Cannot create new submissions.                                                |
+| f5xc-nginx-one-custom-templates-submissions-manage  | Write           | View, create, update, and delete template submissions.                                                                     |
+| f5xc-nginx-one-custom-templates-submissions-owner   | Write           | View, create, and edit template submissions.                                                                               |

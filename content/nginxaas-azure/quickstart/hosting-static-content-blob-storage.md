@@ -2,9 +2,9 @@
 title: Hosting static content in Azure Blob Storage
 weight: 210
 toc: true
-url: /nginxaas/azure/quickstart/hosting-static-content-blob-storage/
+url: /nginxaas-azure/quickstart/hosting-static-content-blob-storage/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) can serve static content stored in Azure Blob Storage using private endpoints, ensuring maximum security by keeping your storage account completely inaccessible from the public Internet. This approach also eliminates the configuration payload size limitations of local hosting.

@@ -111,7 +111,7 @@ AI assistants and human readers parse documentation differently from search engi
 
 **f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product name. Check an existing document for the same product if you are unsure which name to use.
 
 **title**: Use a noun phrase that names the concept directly. Do not use "Understanding X" or "About X" — these add words without adding meaning.
 
@@ -206,7 +206,7 @@ Include background when historical or industry context is essential to understan
 Background may cover:
 
 - How or why the concept was designed the way it was
-- Historical decisions that explain current behaviour
+- Historical decisions that explain current behavior
 - Industry or regulatory context that shapes how the concept is used
 
 Keep this section short. Background that runs longer than a few paragraphs usually contains content that belongs elsewhere — either in the definition, a use case, or a separate concept document.

@@ -6,7 +6,7 @@ title: TCP and UDP Load Balancing
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 ## Introduction {#intro}

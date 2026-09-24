@@ -2,7 +2,7 @@
 title: RBAC
 weight: 200
 url: /nginx-instance-manager/admin-guide/rbac/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Manage user permissions in F5 NGINX Instance Manager using role-based access control: create roles, assign them to users or groups, and organize resources into groups."
 f5-summary: >

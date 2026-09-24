@@ -6,7 +6,7 @@ title: Installing NGINX Plus on Microsoft Azure
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 [F5 NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), the high-performance application delivery platform, load balancer, and web server, is available at the Microsoft Azure Marketplace as a virtual machine (VM) image.

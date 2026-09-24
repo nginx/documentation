@@ -4,14 +4,12 @@ description: Follow the steps in this guide to scan for and discover NGINX insta
 toc: true
 weight: 110
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-828
 f5-summary: >
   Scan your network to discover NGINX instances and add them to F5 NGINX Instance Manager for centralized management.
   The scan process uses NGINX Agent on target instances to register them with NGINX Instance Manager automatically.
 ---
-
-{{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 ## Prerequisites {#prerequisites}
 

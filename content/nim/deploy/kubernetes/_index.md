@@ -2,7 +2,7 @@
 title: Kubernetes
 weight: 200
 url: /nginx-instance-manager/deploy/kubernetes/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Deploy F5 NGINX Instance Manager on Kubernetes using the official Helm chart, with guides for TLS certificates, Helm settings, and common configurations."
 f5-summary: >

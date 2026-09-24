@@ -3,7 +3,7 @@ title: "GraphQL protection"
 weight: 1190
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the GraphQL protection feature for F5 WAF for NGINX.

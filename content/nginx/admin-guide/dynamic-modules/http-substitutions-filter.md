@@ -6,7 +6,7 @@ title: HTTP Substitutions Filter
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The HTTP Substitutions Filter dynamic module replaces text in response bodies, using regular expressions and fixed strings.

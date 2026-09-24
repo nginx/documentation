@@ -3,7 +3,7 @@ title: Download NGINX Ingress Controller LTS from the F5 Registry
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This page describes how to download an F5 NGINX Plus Ingress Controller LTS image from the official F5 Docker registry.
@@ -32,7 +32,7 @@ Identify which image you need using the [Technical specifications]({{< ref "/nic
 
 Next, pull the image from `private-registry.nginx.com`. 
 
-Replace `<version-tag>` with the specific version you need, for example, `2026-lts-r1`.
+Replace `<version-tag>` with the specific version you need, for example, `{{< nic-lts-version >}}`.
 
 - For NGINX Plus Ingress Controller, run:
 
@@ -52,7 +52,7 @@ curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/
 {
   "name": "nginx-ic/lts/nginx-plus-ingress",
   "tags": [
-    "2026-lts-r1"
+    "{{< nic-lts-version >}}"
   ]
 }
 ```
@@ -67,7 +67,7 @@ After pulling the image, tag it and upload it to your private registry.
    docker login <my-docker-registry>
    ```
 
-1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `2026-lts-r1`:
+1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `{{< nic-lts-version >}}`:
 
    - For NGINX Ingress Controller LTS, run:
 

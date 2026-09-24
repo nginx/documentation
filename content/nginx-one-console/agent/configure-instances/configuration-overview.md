@@ -4,7 +4,7 @@ toc: true
 weight: 300
 f5-content-type: how-to
 f5-docs: DOCS-1879
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.
@@ -84,4 +84,14 @@ sudo docker run \
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_CERT     | --collector-extensions-health-tls-cert          | TLS Certificate file path for communication with OTel health server.                                         | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_KEY      | --collector-extensions-health-tls-key           | File path for TLS key used when connecting with OTel health server.                                           | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_PROCESSORS_BATCH_SEND_BATCH_TIMEOUT    | --collector-processors-batch-send-batch-timeout                                               | Maximum time duration for sending batch data metrics regardless of size.                                      | 200ms
+{{</table >}}
+
+## Reserved labels
+
+NGINX One Console uses the following label keys for specific purposes:
+
+{{<table>}}
+| **Label**      | **Description**                                                                                                                                            |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| display-name   | Sets a display name for the instance in NGINX One Console. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}). |
 {{</table >}}

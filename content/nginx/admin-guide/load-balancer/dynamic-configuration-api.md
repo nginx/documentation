@@ -6,7 +6,7 @@ title: Dynamic Configuration of Upstreams with the NGINX Plus API
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="overview"></span>

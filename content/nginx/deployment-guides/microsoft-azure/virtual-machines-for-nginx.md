@@ -3,7 +3,7 @@ title: Create Microsoft Azure virtual machines for NGINX Open Source and F5 NGIN
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-458
 ---
 

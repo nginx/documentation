@@ -3,9 +3,9 @@ title: "Lab 5: Upgrade NGINX Plus to the latest version"
 weight: 500
 toc: true
 f5-content-type: tutorial
-f5-product: 
-- nginx-one
-- nginx-plus
+f5-product:
+- NGINX One Console
+- NGINX Plus
 ---
 
 ## Introduction
@@ -116,7 +116,7 @@ When you recreate containers, old entries remain in NGINX One Console. Clean the
 
 <span style="display: inline-block;">
 {{< img src="nginx-one-console/images/unavailable-instances.png"
-    alt="Table of three NGINX One Console instances filtered to 'Availability = Unavailable.' Shows hostnames, NGINX versions, grey Unavailable icons, and the Delete selected button." >}}
+    alt="Table of three NGINX One Console instances filtered to 'Availability = Unavailable.' Shows hostnames, NGINX versions, gray Unavailable icons, and the Delete selected button." >}}
 </span>
 
 ---

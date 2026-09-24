@@ -3,7 +3,7 @@ title: "User-defined HTTP headers"
 weight: 2100
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 HTTP header enforcement occurs in the headers section as part of a HTTP request: the header elements are parsed to check criteria used for enforcement.

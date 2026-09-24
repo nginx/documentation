@@ -9,7 +9,7 @@ toc: true
 f5-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 The NGINX One Console dashboard and metrics views present system metrics and detailed NGINX metrics gathered through the NGINX Plus API or the Stub Status API and NGINX access log (for NGINX Open Source).

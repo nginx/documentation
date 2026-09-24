@@ -6,7 +6,7 @@ title: Configuring Logging
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 Logging is essential for troubleshooting and understanding how traffic flows through your infrastructure. This article explains how to configure error and access logs in NGINX and NGINX Plus, customize access log formats, reduce noise with conditional logging, and forward logs to syslog for centralized collection.

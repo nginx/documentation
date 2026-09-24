@@ -3,7 +3,7 @@ title: Session Persistence
 weight: 1100
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs:
 ---
 
@@ -576,5 +576,5 @@ Because there is no session persistence configured for `latte`, traffic is distr
 
 ## Further reading
 
-- [Session Persistence](https://gateway-api.sigs.k8s.io/reference/spec/?h=sessionpersistence#sessionpersistence).
+- [Session Persistence](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/?h=sessionpersistence#sessionpersistence).
 - [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the `UpstreamSettingsPolicy` API.

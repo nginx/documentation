@@ -6,8 +6,8 @@ description: Learn how to use Azure Resource Manager (ARM) JSON and Bicep templa
 toc: true
 f5-content-type: how-to
 f5-docs: DOCS-1097
-f5-product: NAZURE
-url: /nginxaas/azure/client-tools/templates/
+f5-product: NGINXaaS for Azure
+url: /nginxaas-azure/client-tools/templates/
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the ARM API or the Azure CLI with ARM template deployments using JSON or Bicep formats. These deployments can be made locally or in a continuous integration pipeline. This document outlines common workflows using the ARM API. You can find example code to manage NGINXaaS deployments and related objects in the NGINXaaS GitHub repository, [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets).

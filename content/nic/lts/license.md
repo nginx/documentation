@@ -2,7 +2,7 @@
 title: Licensing
 weight: 10000
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 # License

@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 To confirm that NGINX Gateway Fabric is running, check the pods in the `nginx-gateway` namespace:

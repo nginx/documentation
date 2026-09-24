@@ -5,8 +5,8 @@ description: Install F5 NGINX Plus LTS with step-by-step instructions for
 toc: true
 weight: 120
 nd-content-type: how-to
-nd-product: NGPLUS
-nd-docs: DOCS-000
+f5-product: F5 NGINX Plus
+f5-docs: DOCS-000
 ---
 
 Since May 13, 2026, NGINX Plus is published in two release types: Long-Term Support (LTS) and Continuous Release (CR).
@@ -26,9 +26,9 @@ NGINX Plus CRs are published several times within an annual LTS cycle. Each CR c
 
 By default, NGINX Plus repositories are configured to receive [Continuous Releases]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). To use LTS, update your repository configuration to point to the LTS package URL, replacing the default URL. You can choose one of the options during installation:
 
-- **Pin to current LTS only**: receive only security updates for this LTS, no CRs, no automatic update to next LTS; supported up to three years. Follow the steps for your operating system in this guide.
-- **Pin to LTS track**: automatically upgrade to the newest LTS when it is released annually, no CRs. Follow the steps for your operating system in this guide.
-- **Default**: receive Continuous Releases within the current LTS release, automatically upgrade to each new LTS when it is released annually and then receive its CRs. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+- **Pin to current LTS only**: receive only security updates for this LTS, no CRs, no upgrade to next LTS; supported up to three years. Follow the steps for your operating system in this guide.
+- **Pin to LTS track**: upgrade to the newest LTS when it is released annually, no CRs. Follow the steps for your operating system in this guide.
+- **Default**: receive Continuous Releases within the current LTS release, upgrade to each new LTS when it is released annually and then receive its CRs. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 ## Prerequisites {#prereq}
 
@@ -92,7 +92,7 @@ Before you begin, make sure you have:
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -136,7 +136,7 @@ Before you begin, make sure you have:
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -236,7 +236,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -317,7 +317,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -397,7 +397,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -463,7 +463,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. Make sure license reporting to F5 licensing endpoint is configured. By default, no configuration is required. However, it becomes necessary when NGINX Plus is installed in a disconnected environment, uses NGINX Instance Manager for usage reporting, or uses a custom path for the license file. Configuration can be done in the [`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX Plus configuration file (`/usr/local/etc/nginx/nginx.conf`). For more information, see [About Subscription Licenses](https://docs.nginx.com/solutions/about-subscription-licenses/).
@@ -538,7 +538,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
@@ -595,7 +595,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
    The command output should indicate an LTS release: the second numeric component of the Plus release version should be `0`:
 
    ```none
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.6)
    ```
 
 1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}

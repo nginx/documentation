@@ -1,5 +1,5 @@
 ---
-f5-product: NAGENT
+f5-product: NGINX Agent
 f5-files:
 - content/nginx-one-console/agent/install-upgrade/install-from-github.md
 - content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md

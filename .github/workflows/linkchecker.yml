@@ -27,14 +27,14 @@ env:
   ignore: >
     --ignore-url ^http://127.0.0.1 --ignore-url ^http://localhost --ignore-url ^http://serv/ --ignore-url ^https://myserver.host.com
     --ignore-url ^https://product.apis.f5.com --ignore-url ^https://product-s.apis.f5.com --ignore-url ^https://linux.die.net/man/
-    --ignore-url ^http://www.example.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de --ignore-url ^https://www.domain.com
+    --ignore-url ^https?:\/\/[\w-]+\.*example\.com --ignore-url ^file:// --ignore-url ^https://www.fastbot.de --ignore-url ^https://www.domain.com
     --ignore-url ^https://lightstep.com --ignore-url ^https://www.owasp.org/ --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.splunk.com/
     --ignore-url ^https://oauth2.googleapis.com --ignore-url ^https://openidconnect.googleapis.com --ignore-url ^https://www.base64url.com/
     --ignore-url ^https://go.googlesource.com/ --ignore-url ^https://go.googlesource.com/sync --ignore-url ^https://linkerd.io/2.13/
     --ignore-url ^http://www.redirectpage.com/ --ignore-url ^https://www.gnu.org/ --ignore-url ^https://insert_your_tenant_name.console.ves.volterra.io
     --ignore-url ^https://pkgs.nginx.com
-    --ignore-url ^http://backend1.example.com --ignore-url ^http://example.com --ignore-url ^https://my-nginx.example.com
-    --ignore-url ^https://www.nginxroute53.com --ignore-url ^http://cafe --ignore-url ^http://192.168.1.23 --ignore-url ^https://company.com
+    --ignore-url ^http://backend1.example.com --ignore-url ^https?://example.com --ignore-url ^https://my-nginx.example.com
+    --ignore-url ^https://www.nginxroute53.com --ignore-url ^https?://cafe --ignore-url ^http://192.168.1.23 --ignore-url ^https://company.com
     --ignore-url ^https://my-nginx-plus.example.com --ignore-url ^https://cognito-idp --ignore-url ^https:///www.okta.com
     --ignore-url ^http://www.maxmind.com --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.opswat.com --ignore-url ^https://grsecurity.net
     --ignore-url ^https://support.pingidentity.com --ignore-url ^https://docs.pingidentity.com --ignore-url ^https://demo.example.com
@@ -56,7 +56,8 @@ jobs:
           - nginx-app-protect-dos
           - waf
           - nginx-ingress-controller
-          - nginxaas/azure
+          - nginxaas-azure
+          - nginxaas
           - nginx-amplify
           - nginx-controller
           - nginx-waf

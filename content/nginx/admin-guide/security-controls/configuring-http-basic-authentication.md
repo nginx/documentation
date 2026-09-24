@@ -6,7 +6,7 @@ title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="intro"></span>
@@ -46,9 +46,9 @@ To create username-password pairs, use a password file creation utility, for exa
 
     ```shell
     $ cat /etc/apache2/.htpasswd
-    user1:$apr1$/woC1jnP$KAh0SsVn5qeSMjTtn0E9Q0
-    user2:$apr1$QdR8fNLT$vbCEEzDj7LyqCMyNpSoBh/
-    user3:$apr1$Mr5A0e.U$0j39Hp5FfxRkneklXaMrr/
+    user1:<HASHED_PASSWORD>
+    user2:<HASHED_PASSWORD>
+    user3:<HASHED_PASSWORD>
     ```
 
 <span id="config"></span>
@@ -109,7 +109,7 @@ HTTP basic authentication can be effectively combined with access restriction by
     Access will be granted only for the `192.168.1.1/24` network excluding the `192.168.1.2` address. Note that the `allow` and `deny` directives will be applied in the order they are defined.
 
 2. Combine restriction by IP and HTTP authentication with the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
-    If you set the directive to to `all`, access is granted if a client satisfies both conditions. If you set the directive to `any`, access is granted if if a client satisfies at least one condition:
+    If you set the directive to `all`, access is granted if a client satisfies both conditions. If you set the directive to `any`, access is granted if if a client satisfies at least one condition:
 
     ```nginx
     location /api {

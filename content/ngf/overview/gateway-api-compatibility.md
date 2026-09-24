@@ -3,7 +3,7 @@ title: Gateway API compatibility
 weight: 200
 toc: true
 f5-content-type: reference
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1412
 ---
 
@@ -17,7 +17,7 @@ For information about NGINX Gateway Fabric and Gateway API version compatibility
 
 ## Terminology
 
-Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/concepts/conformance/#2-support-levels): Core, Extended and Implementation-specific. We use the following terms to describe the support status for each level and resource field:
+Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/docs/concepts/conformance/#2-support-levels): Core, Extended and Implementation-specific. We use the following terms to describe the support status for each level and resource field:
 
 - _Supported_. The resource or field is fully supported.
 - _Partially supported_. The resource or field is supported partially, with limitations. It will become fully
@@ -34,7 +34,7 @@ indicated. Support for such fields is provided on a best-effort basis.{{< /call-
 
 Each resource below includes the support status of their corresponding fields.
 
-For a description of each field, visit the [Gateway API documentation](https://gateway-api.sigs.k8s.io/references/spec/).
+For a description of each field, visit the [Gateway API documentation](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/).
 
 ### GatewayClass
 
@@ -97,7 +97,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `tls`
       - `mode`: Supported.
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`.
-      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
+      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers`, `nginx.org/ssl-prefer-server-ciphers`, `nginx.org/ssl-session-cache`, `nginx.org/ssl-session-timeout` and `nginx.org/ssl-ecdh-curve` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
     - `allowedRoutes`: Supported.
   - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX. Users should ensure that the IP Family of the address matches the IP Family set in the NginxProxy resource (default is dual, meaning both IPv4 and IPv6), otherwise there may be networking issues.
       - `type`: Partially supported. Allowed value: `IPAddress`.
@@ -189,6 +189,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
       - `cors`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `extensionRef`: Supported for SnippetsFilters and AuthenticationFilters.
+      - `externalAuth`: Supported. If multiple filters are configured, NGINX Gateway Fabric uses the first and ignores the rest.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
     - `name`: Not supported.
     - `timeouts`: Not supported.
@@ -341,7 +342,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| TCPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| TCPRoute | Supported          | Supported              | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 ### UDPRoute
@@ -350,7 +351,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| UDPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| UDPRoute | Supported          | Supported              | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 ### BackendTLSPolicy
@@ -414,7 +415,7 @@ Fields:
     - `tls`
       - `mode`: Supported.
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`.
-      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
+      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers`, `nginx.org/ssl-prefer-server-ciphers`, `nginx.org/ssl-session-cache`, `nginx.org/ssl-session-timeout` and `nginx.org/ssl-ecdh-curve` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
     - `allowedRoutes`: Supported.
 - `status`
   - `conditions`: Supported (Condition/Status/Reason):
@@ -461,6 +462,6 @@ Fields:
 {{< /table >}}
 
 Custom policies are NGINX Gateway Fabric-specific CRDs (Custom Resource Definitions) that support features such as tracing, and client connection settings. These important data-plane features are not part of the Gateway API specifications.
-While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/references/policy-attachment/).
+While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/reference/policy-attachment/).
 
 See the [custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}) document for more information.

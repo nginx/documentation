@@ -3,7 +3,7 @@ title: Configure WAF settings
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: Configure security logging, polling, TLS, authentication, cookie seed, bundle integrity, fail-open behavior, and WAF container settings for F5 WAF for NGINX.
 ---
 
@@ -25,7 +25,7 @@ The `securityLogs` field on a `WAFPolicy` supports multiple log destinations. Ea
 
 ### Log source types
 
-Each log entry must specify a `logSource` using one of:
+For the `NIM`, `N1C`, and `HTTP` source types, each log entry must specify a `logSource` using one of:
 
 | Field            | Description                          |
 |------------------|--------------------------------------|
@@ -35,6 +35,8 @@ Each log entry must specify a `logSource` using one of:
 | `n1cSource`      | NGINX One Console log profile configuration        |
 
 **Built-in log profiles:** `log_default`, `log_all`, `log_blocked`, `log_illegal`, `log_grpc_all`, `log_grpc_blocked`, `log_grpc_illegal`
+
+For the `PLM` source type, use `logRef.apLogConfRef` instead of `logSource` to reference an `APLogConf` custom resource by name and namespace. See [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}) for the full field comparison.
 
 ### Example: multiple log destinations
 
@@ -196,7 +198,7 @@ The `expectedChecksum` must be a 64-character hexadecimal SHA-256 digest.
 
 ## Policy fetch failure handling
 
-When a WAF policy bundle cannot be fetched — for example, due to a network error, authentication failure, or the bundle not yet being compiled — the behaviour of NGINX Gateway Fabric depends on whether this is the **first** fetch or a **subsequent** update.
+When a WAF policy bundle cannot be fetched — for example, due to a network error, authentication failure, or the bundle not yet being compiled — the behavior of NGINX Gateway Fabric depends on whether this is the **first** fetch or a **subsequent** update.
 
 ### First-time fetch failure
 

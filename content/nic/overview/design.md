@@ -3,7 +3,7 @@ title: The design of NGINX Ingress Controller
 toc: true
 weight: 200
 f5-content-type: concept
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-609
 ---
 
@@ -16,7 +16,7 @@ The intended audience for this information is primarily the two following groups
 
 We assume that the reader is familiar with core Kubernetes concepts, such as Pods, Deployments, Services, and Endpoints. For an understanding of how NGINX itself works, you can read the ["Inside NGINX: How We Designed for Performance & Scale"](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/) blog post.
 
-For conciseness in diagrams, NGINX Ingress Controller is often labelled "IC" on this page.
+For conciseness in diagrams, NGINX Ingress Controller is often labeled "IC" on this page.
 
 ## NGINX Ingress Controller at a high level
 

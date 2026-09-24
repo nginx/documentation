@@ -5,7 +5,7 @@ title: 'Overview: NGINX Instance Manager REST API'
 toc: true
 weight: 400
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Use this reference to understand the authentication methods, HTTP response codes, and verbs used by the F5 NGINX Instance Manager REST API.
   The REST API lets you manage instances, configurations, and platform settings programmatically.

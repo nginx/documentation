@@ -6,7 +6,7 @@ title: High Availability Support for NGINX Plus in On-Premises Deployments
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This article explains how to configure high availability of NGINX Plus instances in on‑premises deployment with a solution based on [keepalived](https://www.keepalived.org/).

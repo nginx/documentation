@@ -7,7 +7,7 @@ f5-banner:
     start-date: 2025-08-30
     md: /_banners/waf-early-availability.md
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 There are two new features available for Kubernetes through early access:
@@ -992,7 +992,7 @@ helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-
 ```
    
 {{< call-out class="warning">}}
-Helm charts come with a default `values.yaml` file: this should be ignored in favour of the customized file during set-up.
+Helm charts come with a default `values.yaml` file: this should be ignored in favor of the customized file during set-up.
 {{< /call-out >}}
 
 Then change into the directory and apply the CRDs:
@@ -1050,7 +1050,7 @@ In this type of environment, you should not create the _APSignatures_ resource.
 
 {{< /call-out >}}
 
-If you have followed the steps for [disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md">}}) or cannot use the NGINX repository, you have two alternative ways to to manage policies:
+If you have followed the steps for [disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md">}}) or cannot use the NGINX repository, you have two alternative ways to manage policies:
 
 **Manual bundle management**
 

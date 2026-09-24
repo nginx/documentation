@@ -4,8 +4,8 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-docs: DOCS-873
-f5-product: NAZURE
-url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
+f5-product: NGINXaaS for Azure
+url: /nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal/
 ---
 
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:
@@ -35,11 +35,13 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
 1. Select {{<icon "plus">}}**New File** to add a file path, then **Confirm**.
 
    {{< table >}}
+
    | Property | Description |
    | -------- | ----------- |
    | File path | Each NGINX configuration file can be uniquely identified by a file path (for example, nginx.conf or /etc/nginx/nginx.conf) to align with the intended NGINX configuration file structure. |
    | Root file | The root file is the main NGINX configuration file.<ul><li>The first file created will be the root file by default. You can designate a different root file if you have more than a single configuration file in your deployment.</li><li>The root file is designated with a {{< golden-star >}} icon on the portal.</li></ul> |
    | Protected File | Indicates that the file may contain sensitive data such as passwords or represent an ssl/tls certificate.<ul><li>To protect a file, enable the **Protected** {{<icon "toggle-right">}} toggle button.</li><li>You cannot access the file contents of a protected file saved to the NGINX configuration, but you can view its metadata, such as the SHA-256 hash of the file contents.</li><li>You can provide new contents for an existing protected file using the <u>**Overwrite**</u> link or resubmit it without having to provide the file contents again.</li><li>To modify the file path of a protected file or convert it to a regular file, delete the original file and create a new one.</li><li>A protected file is designated with a {{<icon "lock">}} icon on the portal.</li></ul> |
+
    {{< /table >}}
 
    {{< call-out class="note" >}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
@@ -54,10 +56,9 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
 
 NGINX configuration is validated real-time to check for syntax and compatibility with the service. Validation errors are reported in the editor for you to correct.
 
-For example, if you create/update an NGINX config with a particular directive that is not allowed, the service will analyse your NGINX config and provide real-time feedback.
+For example, if you create/update an NGINX config with a particular directive that is not allowed, the service will analyze your NGINX config and provide real-time feedback.
 
 {{< img src="nginxaas-azure/validation-error.png" alt="NGINX Configuration validation error" >}}
-
 
 The editing experience consists of a single view for both editing and validation
 

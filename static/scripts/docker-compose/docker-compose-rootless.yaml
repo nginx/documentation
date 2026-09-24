@@ -1,0 +1,163 @@
+
+Save New Duplicate & Edit Just Text
+# =============================================================================
+# NGINX Instance Manager (NIM) Docker Compose Configuration
+# =============================================================================
+# This Docker Compose file deploys NIM with ClickHouse as the metrics backend.
+#
+# Prerequisites:
+#   1. Create an admin_password.txt file containing your desired admin password
+#   2. (Optional) Create a clickhouse.xml for custom ClickHouse logging config
+#   3. Authenticate to the NGINX private registry:
+#      docker login private-registry.nginx.com
+#
+# Quick Start:
+#   1. Create password file:  echo "your-secure-password" > admin_password.txt
+#   2. Start services:        docker compose up -d
+#   3. Access NIM:            https://localhost:8443
+#
+# =============================================================================
+
+name: nim
+
+# -----------------------------------------------------------------------------
+# SECRETS - Sensitive configuration stored securely
+# -----------------------------------------------------------------------------
+secrets:
+  nim_admin_password:
+    file: admin_password.txt
+
+# -----------------------------------------------------------------------------
+# SERVICES
+# -----------------------------------------------------------------------------
+services:
+  # ---------------------------------------------------------------------------
+  # NIM - NGINX Instance Manager
+  # ---------------------------------------------------------------------------
+  nim:
+    image: private-registry.nginx.com/nms/nim-rootless:2.23.0
+    hostname: nim
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    ports:
+      - "8443:443"    # HTTPS web interface
+    networks:
+      - external_network
+      - clickhouse
+    volumes:
+      # Single volume covers all NIM persistent state via bind_storage symlinks:
+      #   /data/dqlite/       <- /var/lib/nms/dqlite   (databases)
+      #   /data/secrets/      <- /var/lib/nms/secrets  (encryption keys)
+      #   /data/streaming/    <- /var/lib/nms/streaming (NATS JetStream)
+      #   /data/certs/        <- /etc/nms/certs        (TLS certificates)
+      #   /data/local-auth/   <- /etc/nms/nginx/.htpasswd (admin credentials)
+      - nim-data:/data
+      # NAP compiler artifacts written by NIM services at runtime
+      - nim-nap-compiler:/opt/nms-nap-compiler
+      # Optional: trust custom CA certificates (e.g. for corporate proxies or private PKI)
+      - proxy-certs:/usr/local/share/ca-certificates
+    restart: "no"
+    healthcheck:
+      test: ["CMD", "sh", "/etc/nms/scripts/health.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    stop_grace_period: 30s
+    secrets:
+      - nim_admin_password
+    environment:
+      # --- ClickHouse Connection ---
+      NIM_CLICKHOUSE_ADDRESSPORT: "clickhouse:9000"
+      NIM_CLICKHOUSE_USERNAME: "default"
+      NIM_CLICKHOUSE_PASSWORD: ""
+
+      # --- Admin Credentials (seeds .htpasswd on first boot) ---
+      NIM_USERNAME: "admin"
+      NIM_PASSWORD: "admin"
+
+      # --- Logging ---
+      NIM_LOG_LEVEL: "INFO"                    # Options: DEBUG, INFO, WARN, ERROR
+
+      # --- Data Retention (days) ---
+      NIM_METRICS_TTL: "1"                     # Metrics retention period
+      NIM_EVENTS_TTL: "1"                      # Events retention period
+      NIM_SECURITY_TTL: "1"                    # Security violations retention
+
+      # --- Service Configuration ---
+      NIM_WATCHDOG_TIMEOUT: "60"               # Watchdog timeout in seconds
+      NIM_LICENSE_MODE_OF_OPERATION: "connected"  # Options: connected, disconnected
+
+      # --- Metrics ---
+      ENABLE_METRICS: "true"
+
+      # --- Proxy Settings (disabled by default) ---
+      PROXY_ENABLE: "false"
+      
+      # Optional: Set to "true" to start the container without launching NIM services (required for restore)
+      #NIM_MAINTENANCE: "true"
+
+  # ---------------------------------------------------------------------------
+  # ClickHouse - Analytics Database
+  # ---------------------------------------------------------------------------
+  clickhouse:
+    image: clickhouse/clickhouse-server:23-alpine
+    hostname: clickhouse
+    depends_on:
+      - precheck
+    ports:
+      - "8123:8123"   # HTTP interface
+      - "9000:9000"   # Native TCP interface
+    networks:
+      - clickhouse
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./clickhouse.xml:/etc/clickhouse-server/config.d/custom-logging.xml
+    environment:
+      CLICKHOUSE_DB_PATH: "/var/lib/clickhouse"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --query 'SELECT 1'"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    stop_grace_period: 60s
+    cap_add:
+      - SYS_NICE     # Required for ClickHouse on NUMA-supported systems
+
+  # ---------------------------------------------------------------------------
+  # Precheck - Initialization helper (cleans up stale ClickHouse status file)
+  # ---------------------------------------------------------------------------
+  precheck:
+    image: alpine
+    entrypoint: >
+      /bin/sh -c 'if [ -f "/var/lib/clickhouse/status" ]; then 
+        echo "Removing clickhouse status file..."; 
+        rm -f "/var/lib/clickhouse/status"; 
+      fi'
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+
+# -----------------------------------------------------------------------------
+# NETWORKS
+# -----------------------------------------------------------------------------
+networks:
+  external_network:
+    driver: bridge
+  clickhouse:
+    driver: bridge
+    internal: true    # Isolated network for ClickHouse communication
+
+# -----------------------------------------------------------------------------
+# VOLUMES - Persistent storage
+# -----------------------------------------------------------------------------
+volumes:
+  nim-data:
+    driver: local
+  nim-nap-compiler:
+    driver: local
+  proxy-certs:
+    driver: local
+  clickhouse-data:
+    driver: local

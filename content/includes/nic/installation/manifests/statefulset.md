@@ -1,5 +1,5 @@
 ---
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md

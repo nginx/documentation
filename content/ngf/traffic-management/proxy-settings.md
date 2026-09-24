@@ -3,7 +3,7 @@ title: Proxy Settings Policy API
 toc: true
 weight: 1400
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
 ---
 

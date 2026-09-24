@@ -3,7 +3,7 @@ title: Support
 weight: 800
 toc: true
 f5-content-type: reference
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1411
 ---
 

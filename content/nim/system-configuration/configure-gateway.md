@@ -4,7 +4,7 @@ title: Optimize NGINX proxy gateway for large data planes
 toc: true
 weight: 400
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Tune the NGINX proxy gateway worker connections and other settings in F5 NGINX Instance Manager to support a large number of managed instances."
 f5-summary: >
   Tune the NGINX proxy gateway in F5 NGINX Instance Manager to handle a large number of connected NGINX instances.

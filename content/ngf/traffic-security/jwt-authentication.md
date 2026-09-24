@@ -3,7 +3,7 @@ title: Configure JSON Web Token (JWT) authentication
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: How to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
 f5-summary: >
   NGINX Gateway Fabric supports JWT authentication via the AuthenticationFilter CRD, validating JSON Web Tokens in incoming requests using JSON Web Key Sets (JWKS).
@@ -151,7 +151,7 @@ kubectl describe gateways.gateway.networking.k8s.io cafe-gateway
 ```text
 Addresses:
   Type:   IPAddress
-  Value:  10.96.20.187
+  Value:  192.0.2.1
 ```
 
 Save the public IP address and port of the Gateway into shell variables:

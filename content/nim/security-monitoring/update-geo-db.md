@@ -3,7 +3,7 @@ title: Update the geolocation database used in dashboards
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1108
 description: "Update the MaxMind GeoLite2 geolocation database used by Security Monitoring dashboards in F5 NGINX Instance Manager."
 f5-summary: >
