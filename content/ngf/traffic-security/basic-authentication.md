@@ -158,8 +158,6 @@ If you're upgrading from an earlier release, move your basic authentication cred
 
 Deploy a secret with user credentials, and the AuthenticationFilter by running the following YAML with `kubectl apply`:
 
-{{< call-out class="important" >}} Make sure the secret you deploy is of type `Opaque` and the key is `auth`. {{< /call-out >}}
-
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: v1
