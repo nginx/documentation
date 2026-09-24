@@ -19,15 +19,15 @@ F5 Application Delivery Service for Google Cloud supports integrating with Googl
 
 ## Setting up error logs
 
-{{< include "/nginxaas/logging-config-error-logs.md" >}}
+{{< include "/f5ads/logging-config-error-logs.md" >}}
 
 ## Setting up access logs
 
-{{< include "/nginxaas/logging-config-access-logs.md" >}}
+{{< include "/f5ads/logging-config-access-logs.md" >}}
 
 ## Setting up F5 WAF for NGINX security logs
 
-{{< include "/nginxaas/logging-config-security-logs.md" >}}
+{{< include "/f5ads/logging-config-security-logs.md" >}}
 
 ## Export NGINX logs to a Google Cloud Project
 

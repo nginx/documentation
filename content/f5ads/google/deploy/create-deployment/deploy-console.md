@@ -27,7 +27,7 @@ Before you can deploy F5 Application Delivery Service, follow the steps in the [
 
 Once you have completed the subscription process, you can access the F5 ADS Console.
 
-{{< include "/nginxaas/access-console.md" >}}
+{{< include "/f5ads/access-console.md" >}}
 
 {{< call-out class="caution" >}}
 Select the Geography that supports the region where you plan to deploy.
@@ -36,7 +36,7 @@ See [F5 ADS for Google Cloud supported regions]({{< ref "/f5ads/google/overview.
 
 ## Create or import an NGINX configuration
 
-{{< include "/nginxaas/create-or-import-nginx-config.md" >}}
+{{< include "/f5ads/create-or-import-nginx-config.md" >}}
 
 ## Create a new deployment
 
@@ -70,7 +70,7 @@ Make a note of the deployment's **Region** and **Project ID**, both visible unde
 To connect your F5 Application Delivery Service deployment to your upstream servers, create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) and add it to your deployment.
 
 {{< call-out class="caution" >}}
-{{< include "/nginxaas/google/supported-regions.md" >}}
+{{< include "/f5ads/google/supported-regions.md" >}}
 {{< /call-out >}}
 
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).

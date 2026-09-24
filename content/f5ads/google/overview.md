@@ -121,7 +121,7 @@ F5 ADS for Google Cloud operates globally, and regional controllers handle manag
 
 ### Supported regions
 
-{{< include "/nginxaas/google/supported-regions.md" >}}
+{{< include "/f5ads/google/supported-regions.md" >}}
 
 ## Current limitations
 

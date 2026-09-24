@@ -23,7 +23,7 @@ The following metrics are reported by F5 ADS for Google Cloud in Google Cloud Mo
 The metrics are categorized by the namespace used in Google Cloud Monitoring. The labels allow you to filter or split your queries in Google Cloud Monitoring providing you with a granular view over the metrics reported.
 
 
-{{< include "/nginxaas/metrics-catalog.md" >}}
+{{< include "/f5ads/metrics-catalog.md" >}}
 
 
 ## References

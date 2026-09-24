@@ -21,7 +21,7 @@ This guide explains how to create an F5 Application Delivery Service for Google 
 
 ## Prerequisites
 
-{{< include "/nginxaas/google/terraform-prerequisites.md" >}}
+{{< include "/f5ads/google/terraform-prerequisites.md" >}}
 
 ## Configure the provider
 
