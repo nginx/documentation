@@ -11,7 +11,7 @@ Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.
 
 ## Overview
 
-[HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) filters can be used to configure HTTP redirects or rewrites. Redirects return HTTP 3XX responses to a client, instructing it to retrieve a different resource. Rewrites modify components of a client request (such as hostname and/or path) before proxying it upstream.
+[HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/) filters can be used to configure HTTP redirects or rewrites. Redirects return HTTP 3XX responses to a client, instructing it to retrieve a different resource. Rewrites modify components of a client request (such as hostname and/or path) before proxying it upstream.
 
 In this guide, we will set up the coffee application to demonstrate path URL rewriting, and the tea and soda applications to showcase path-based request redirection. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
@@ -27,7 +27,7 @@ We will configure a common gateway for the `URLRewrite` and `RequestRedirect` fi
 
 ### Deploy the Gateway resource for the applications
 
-The [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/) resource is typically deployed by the [Cluster Operator](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1). This Gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames. To deploy the Gateway:
+The [Gateway](https://gateway-api.sigs.k8s.io/reference/api-types/gateway/) resource is typically deployed by the [Cluster Operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/). This Gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames. To deploy the Gateway:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -524,4 +524,4 @@ Location: http://cafe.example.com:8080/flavors?test=v1
 
 To learn more about redirects and rewrites using the Gateway API, see the following resource:
 
-- [Gateway API Redirects and Rewrites](https://gateway-api.sigs.k8s.io/guides/http-redirect-rewrite/)
+- [Gateway API Redirects and Rewrites](https://gateway-api.sigs.k8s.io/guides/user-guides/http-redirect-rewrite/)

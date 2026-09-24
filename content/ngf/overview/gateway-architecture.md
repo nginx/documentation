@@ -15,7 +15,7 @@ This document is intended for:
 
 - _Application Developers_ who would like to use NGINX Gateway Fabric to expose and route traffic to their applications within Kubernetes.
 
-The reader needs to be familiar with core Kubernetes concepts, such as pods, deployments, services, and endpoints. For an understanding of how NGINX itself works, you can read the ["Inside NGINX: How We Designed for Performance & Scale"](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/) blog post.
+The reader needs to be familiar with core Kubernetes concepts, such as pods, deployments, services, and endpoints. For an understanding of how NGINX itself works, you can read the ["Inside NGINX: How We Designed for Performance & Scale"](https://blog.nginx.org/blog/inside-nginx-how-we-designed-for-performance-scale) blog post.
 
 If you are interested in contributing to the project or learning about its internal implementation details, please see the [Developer Architecture Guide](https://github.com/nginx/nginx-gateway-fabric/tree/main/docs/architecture).
 

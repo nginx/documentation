@@ -41,9 +41,10 @@ Create a new NGINXaaS deployment using the NGINXaaS Console:
    - Add an optional description for your deployment.
    - Change the [**NCUs**]({{< ref "/nginxaas/aws/overview.md#nginx-capacity-unit-ncu" >}}) if needed.
       - The default value of `20` works for most common scenarios.
+   - Enable **WAF** if you want [F5 WAF for NGINX]({{< ref "/waf" >}}) enabled for your deployment.
    - Select the AWS **Region** where you want the NGINXaaS deployment to be created.
    - Enter an **IPv4 CIDR Block** for the deployment's private network IP space.
-      - NGINXaaS only accepts block sizes between `/22` and `/18`.
+      - NGINXaaS only accepts block sizes between `/24` and `/18`.
       - For more information on choosing a VPC CIDR block, refer to AWS's [VPC CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html) documentation.
 
    {{< call-out class="caution" >}}
@@ -78,6 +79,7 @@ In the NGINXaaS Console,
 1. Select **Edit** to modify the deployment.
    - From this form, you can edit the description or reserved [NCUs]({{< ref "/nginxaas/aws/overview.md#nginx-capacity-unit-ncu" >}}).
    - You can apply a different NGINX configuration or configuration version.
+   - Enable or disable WAF.
    - Configure upstream connectivity by adding entries to the **VPC Peering Connections** list as detailed further in [Upstream connectivity](#upstream-connectivity).
    - You can also modify the **Service Frontend** configuration, including frontend type, ACL rules (Managed Public Endpoint) or PrivateLink Connection Allow List entries (Private Endpoint) from here.
       - This is where you can add VPC endpoint IDs to the allow list after you [create an interface VPC endpoint](#private-endpoint-traffic).
@@ -103,6 +105,8 @@ NGINXaaS doesn't currently support cross-region PrivateLink connections. You can
 1. Note the new interface endpoint's **VPC Endpoint Id**, for example `vpce-0123456789abcdef0`, shown in the AWS VPC console **Endpoints** list.
 1. Ensure your deployment's **PrivateLink Connection Allow List** includes the AWS account ID or VPC endpoint ID to accept the PrivateLink connection.
    - To add an entry to the allow list, go to your deployment's Details tab, select **Edit**, and add the VPC endpoint ID or AWS account ID to the allow list.
+1. Select **Save Changes** to allow NGINXaaS to accept the PrivateLink connection request.
+   - The VPC endpoint ID under **Cloud Settings** > **Service Frontend** > **PrivateLink Connection Allow List** changes to an accepted state. This confirms the deployment accepted the connection.
 
 {{< call-out class="important" >}}
 The allow list can contain either AWS account IDs or VPC endpoint IDs, but not both. If it uses AWS account IDs, NGINXaaS automatically accepts every PrivateLink connection from those accounts. If it uses VPC endpoint IDs, NGINXaaS accepts each endpoint's PrivateLink connection only after you add its ID to the list.
@@ -123,6 +127,7 @@ NGINXaaS doesn't currently support cross-region VPC peering connections. A peeri
 1. Note the resulting **VPC Peering Connection ID**, for example `pcx-0123456789abcdef0`, shown in the AWS VPC console **Peering Connections** list.
 1. On your deployment's Details tab, select **Edit**, go to **Cloud Details** > **Upstream Network**, select **+ Add Entry**, and add the VPC Peering Connection ID.
 1. Select **Save Changes** to allow NGINXaaS to accept the peering connection request.
+   - The VPC peering connection ID under **Cloud Settings** > **Upstream Network** changes to an accepted state. This confirms the deployment accepted the connection.
 1. You must update your upstream VPC's route tables, network ACLs, and security groups to allow traffic to and from the deployment's VPC CIDRs.
    - Open your deployment's Details tab and note its **IPv4 CIDR** and **IPv6 CIDR** (if you plan to use IPv6).
    - See AWS's [Update your route tables for a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) and [Configure security group rules for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-security-group-rules.html) documentation.

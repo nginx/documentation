@@ -64,7 +64,7 @@ Visit [http://127.0.0.1:16686](http://127.0.0.1:16686) to view the dashboard.
 
 To enable tracing, you must configure two resources:
 
-- `NginxProxy`: This resource contains global settings relating to the NGINX data plane. It is created and managed by the [cluster operator](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/), and is referenced in the `parametersRef` field of the GatewayClass. By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values.
+- `NginxProxy`: This resource contains global settings relating to the NGINX data plane. It is created and managed by the [cluster operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/), and is referenced in the `parametersRef` field of the GatewayClass. By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values.
 
 When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
 
@@ -72,7 +72,7 @@ When installed using the Helm chart, the NginxProxy resource is named `<release-
 
 {{< call-out class="note" >}} You can also override the tracing configuration for a particular Gateway by manually creating and attaching specific `NginxProxy` resources to target the different Gateways. This guide covers the global tracing configuration only. {{< /call-out >}}
 
-- `ObservabilityPolicy`: This resource is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that targets HTTPRoutes or GRPCRoutes. It is created by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/) and enables tracing for a specific route or routes. It requires the `NginxProxy` resource to exist in order to complete the tracing configuration.
+- `ObservabilityPolicy`: This resource is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that targets HTTPRoutes or GRPCRoutes. It is created by the [application developer](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/) and enables tracing for a specific route or routes. It requires the `NginxProxy` resource to exist in order to complete the tracing configuration.
 
 For all the possible configuration options for these resources, see the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
