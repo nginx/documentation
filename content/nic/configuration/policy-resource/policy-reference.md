@@ -882,6 +882,8 @@ data:
 
 When you use the [zone synchronization]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) feature, NGINX Ingress Controller synchronizes OIDC session data across all replicas. Put the ConfigMap in its final state, with or without zone sync turned on, before you create the OIDCNative policy and its referencing VirtualServer or Ingress. NGINX declares the native module's session zone with sync only when zone sync is turned on, and NGINX can't change the sync flag of an existing shared memory zone across a reload.
 
+You can find a complete, runnable example [in the GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/oidc-native). It sets up a Keycloak identity provider, TLS secrets, a resolver ConfigMap, a client secret, the `oidcNative` policy, and a VirtualServer.
+
 ### Differences from the NJS-based OIDC policy
 
 {{% table %}}
