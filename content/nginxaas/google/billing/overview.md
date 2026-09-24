@@ -15,12 +15,15 @@ F5 NGINXaaS for Google Cloud is deployed into your Google Cloud subscription, wh
 F5 NGINXaaS for Google Cloud is offered on an Enterprise plan, delivering enterprise-grade performance, scalability, and security backed by a 99.95% uptime SLA. The pricing model consists of three billing components, ensuring transparent and predictable costs based on resource usage.
 
 ### Pricing components
+
 {{< table >}}
+
 | Tier   | Fixed price per hour | NCU price per hour         | Data processing per GB | Google Cloud Regions                                                                                                   |
 |--------|---------------------|----------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------|
 | Tier 1 | $0.10               | $0.008                     | $0.0096               | us-east1, us-east4, us-west1, us-west2, us-west3, us-west4, us-central1, europe-west1, europe-west4, europe-north1, asia-south2    |
 | Tier 2 | $0.133              | $0.0106                    | $0.0127               | europe-west2, europe-west3, asia-southeast1, asia-south1                                                                           |
 | Tier 3 | $0.166              | $0.0132                    | $0.0159               | europe-central2                                                                                                       |
+
 {{< /table >}}
 
 ## NGINX Capacity Unit (NCU)
@@ -52,7 +55,7 @@ An NGINX Capacity Unit (NCU) quantifies the capacity for a deployment. Resources
 
 Billing data for F5 NGINXaaS for Google Cloud is reported per deployment and can be accessed through the Google Cloud Cost Management Dashboard. Usage metrics and costs are updated hourly, allowing customers to monitor and optimize resource allocation effectively.
 
-## Cancelling your NGINXaaS for Google Cloud subscription
+## Canceling your NGINXaaS for Google Cloud subscription
 
 You can unsubscribe from NGINXaaS for Google Cloud by visiting the [Google Cloud Marketplace Orders](https://console.cloud.google.com/marketplace/orders) page. Please note the following behavior when you cancel your subscription:
 

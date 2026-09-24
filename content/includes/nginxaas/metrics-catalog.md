@@ -95,8 +95,11 @@ server {
 | ------ | ------ | ---- | ----------- | ------------|
 | nginx.ssl.handshakes                  | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_ssl_status, nginx_ssl_handshake_reason | count | The total number of SSL handshakes (successful and failed).            | deployment |
 | nginx.ssl.certificate.verify_failures | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_ssl_verify_failure_reason | count | The total number of SSL certificate verification failures, categorized by reason.    | deployment |
+| nginx.ssl.certificate.expiry.time     | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, file_path, public_key_algorithm, serial_number, subject_common_name | gauge | The Unix timestamp, in seconds, at which an SSL/TLS certificate expires.    | deployment |
 
 {{< /table >}}
+
+{{< call-out class="note" >}} The `nginx.ssl.certificate.expiry.time` metric reports the expiry time of the certificate as an absolute Unix timestamp. To chart or alert on the time remaining, subtract the current time. For example, in PromQL: `nginx.ssl.certificate.expiry.time - time()`. {{< /call-out >}}
 
 ### NGINX cache statistics
 
