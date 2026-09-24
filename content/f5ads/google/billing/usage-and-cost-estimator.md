@@ -3,8 +3,8 @@ title: Usage and cost estimator
 weight: 200
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/google/billing/usage-and-cost-estimator/
-canonical: /f5ads/google/billing/usage-and-cost-estimator/
+url: /application-services/google/billing/usage-and-cost-estimator/
+canonical: /application-services/google/billing/usage-and-cost-estimator/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

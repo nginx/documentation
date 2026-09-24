@@ -4,7 +4,7 @@ description: "Overview of how F5 Application Delivery Service for AWS is billed 
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/aws/billing/overview/
+url: /application-services/aws/billing/overview/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, billing, AWS Marketplace, pricing, Early Access"

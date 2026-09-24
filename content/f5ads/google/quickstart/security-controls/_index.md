@@ -1,8 +1,8 @@
 ---
 title: Security controls
 weight: 200
-url: /f5ads/google/quickstart/security-controls/
-canonical: /f5ads/google/quickstart/security-controls/
+url: /application-services/google/quickstart/security-controls/
+canonical: /application-services/google/quickstart/security-controls/
 toc: false
 draft: true
 ---

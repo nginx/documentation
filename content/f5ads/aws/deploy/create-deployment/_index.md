@@ -1,5 +1,5 @@
 ---
 title: Create a deployment
 weight: 200
-url: /f5ads/aws/deploy/create-deployment/
+url: /application-services/aws/deploy/create-deployment/
 ---

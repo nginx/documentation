@@ -1,6 +1,6 @@
 ---
 title: Logging and monitoring
 weight: 300
-url: /f5ads/google/monitoring/
-canonical: /f5ads/google/monitoring/
+url: /application-services/google/monitoring/
+canonical: /application-services/google/monitoring/
 ---

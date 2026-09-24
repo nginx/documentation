@@ -3,7 +3,7 @@ title: NGINX configuration rules and limits
 description: "Reference for NGINX configuration file restrictions and workflows for F5 Application Delivery Service for AWS."
 weight: 50
 toc: true
-url: /f5ads/aws/deploy/nginx-configuration/configuration-rules/
+url: /application-services/aws/deploy/nginx-configuration/configuration-rules/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, NGINX configuration, filesystem restrictions, disallowed directives, configuration workflow"

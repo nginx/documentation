@@ -4,7 +4,7 @@ description: "Fetch SSL/TLS certificates for F5 Application Delivery Service for
 weight: 75
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager/
+url: /application-services/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, AWS Secrets Manager, SSL, TLS, certificates, IAM, automatic rotation, ABAC"

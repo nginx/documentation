@@ -4,8 +4,8 @@ description: "Overview of F5 Application Delivery Service for Google Cloud archi
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/google/overview/
-canonical: /f5ads/google/overview/
+url: /application-services/google/overview/
+canonical: /application-services/google/overview/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, architecture, service frontend, private endpoint, managed public endpoint, upstream network, NGINX Capacity Unit, NCU, geographical controller"
@@ -22,16 +22,16 @@ F5 Application Delivery Service for Google Cloud (F5 ADS for Google Cloud) is a 
 NGINX Plus extends NGINX Open Source with advanced functionality, giving you a complete application delivery solution. F5 ADS handles NGINX Plus license management automatically.
 
 {{<card-section showAsCards="true" isFeaturedSection="false">}}
-  {{<card title="Prerequisites" titleUrl="/f5ads/google/deploy/prerequisites/" icon="power">}}
+  {{<card title="Prerequisites" titleUrl="/application-services/google/deploy/prerequisites/" icon="power">}}
     Follow these steps to prepare for your F5 ADS deployment
   {{</card>}}
-  {{<card title="Create a deployment" titleUrl="/f5ads/google/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
+  {{<card title="Create a deployment" titleUrl="/application-services/google/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
     Step-by-step instructions to deploy F5 ADS using the F5 ADS Console
   {{</card>}}
-  {{<card title="Add certificates" titleUrl="/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
+  {{<card title="Add certificates" titleUrl="/application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your F5 ADS deployment using the F5 ADS Console
   {{</card>}}
-  {{<card title="Get help" titleUrl="/f5ads/google/support/" icon="message-circle-question-mark">}}
+  {{<card title="Get help" titleUrl="/application-services/google/support/" icon="message-circle-question-mark">}}
     Contact F5 support for assistance with F5 ADS for Google Cloud
   {{</card>}}
 {{</card-section>}}

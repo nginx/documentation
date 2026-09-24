@@ -4,8 +4,8 @@ description: "Create, and configure an F5 NGINXaaS for Google Cloud deployment u
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/google/deploy/create-deployment/deploy-terraform/
-canonical: /f5ads/google/deploy/create-deployment/deploy-terraform/
+url: /application-services/google/deploy/create-deployment/deploy-terraform/
+canonical: /application-services/google/deploy/create-deployment/deploy-terraform/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "NGINXaaS for Google Cloud, Terraform,create deployment, NGINXaaS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"

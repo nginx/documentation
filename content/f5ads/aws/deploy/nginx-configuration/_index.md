@@ -1,5 +1,5 @@
 ---
 title: Upload an NGINX configuration
 weight: 500
-url: /f5ads/aws/deploy/nginx-configuration/
+url: /application-services/aws/deploy/nginx-configuration/
 ---

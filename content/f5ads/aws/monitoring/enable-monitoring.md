@@ -4,7 +4,7 @@ description: "Learn how to enable, view, and disable Amazon CloudWatch metric ex
 weight: 200
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/aws/monitoring/enable-monitoring/
+url: /application-services/aws/monitoring/enable-monitoring/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, CloudWatch, metrics, monitoring, Embedded Metric Format, EMF, CloudWatch Logs, status_zone"

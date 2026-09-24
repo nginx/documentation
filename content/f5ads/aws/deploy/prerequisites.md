@@ -4,7 +4,7 @@ description: "Steps to subscribe to F5 Application Delivery Service for AWS in t
 weight: 100
 toc: false
 f5-docs: DOCS-000
-url: /f5ads/aws/deploy/prerequisites/
+url: /application-services/aws/deploy/prerequisites/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, prerequisites, AWS Marketplace, subscribe, Early Access"

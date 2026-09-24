@@ -4,7 +4,7 @@ description: "Configure F5 Application Delivery Service for Google Cloud to use 
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/google/quickstart/pqc/
+url: /application-services/google/quickstart/pqc/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, PQC, post-quantum cryptography, ML-KEM, ML-DSA, TLS 1.3, hybrid mode, quantum-safe"

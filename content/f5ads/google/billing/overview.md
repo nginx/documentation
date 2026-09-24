@@ -3,8 +3,8 @@ title: Billing overview
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/google/billing/overview/
-canonical: /f5ads/google/billing/overview/
+url: /application-services/google/billing/overview/
+canonical: /application-services/google/billing/overview/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

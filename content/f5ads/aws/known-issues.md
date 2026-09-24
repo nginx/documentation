@@ -4,7 +4,7 @@ description: "List of known issues in the latest release of F5 Application Deliv
 weight: 1100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/aws/known-issues/
+url: /application-services/aws/known-issues/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, known issues, limitations, release notes"

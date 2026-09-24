@@ -1,6 +1,6 @@
 ---
 title: Add SSL-TLS certificates
 weight: 400
-url: /f5ads/google/deploy/ssl-tls-certificates/
-canonical: /f5ads/google/deploy/ssl-tls-certificates/
+url: /application-services/google/deploy/ssl-tls-certificates/
+canonical: /application-services/google/deploy/ssl-tls-certificates/
 ---

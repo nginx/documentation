@@ -4,7 +4,7 @@ description: "Learn how to configure, export, view, and disable NGINX access and
 weight: 350
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/aws/monitoring/enable-nginx-logs/
+url: /application-services/aws/monitoring/enable-nginx-logs/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, CloudWatch Logs, access logs, error logs, log export, CloudWatch Logs Insights"

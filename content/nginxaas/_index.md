@@ -22,7 +22,7 @@ and reliable, and bringing advanced traffic services enabled with the commercial
   {{<card title="Create a deployment in Google Cloud" titleUrl="/nginxaas/google/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
     Step-by-step instructions to deploy NGINXaaS in Google Cloud using the NGINXaaS Console
   {{</card>}}
-  {{<card title="Create a deployment in AWS" titleUrl="/f5ads/aws/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
+  {{<card title="Create a deployment in AWS" titleUrl="/application-services/aws/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
     Step-by-step instructions to deploy F5 Application Delivery Service for AWS using the F5 ADS Console
   {{</card>}}
 {{</card-section>}}
@@ -32,7 +32,7 @@ and reliable, and bringing advanced traffic services enabled with the commercial
 Access the [NGINXaaS Console](https://console.nginxaas.net/) directly to manage organizations, NGINX configurations, and certificates. To create and manage deployments, subscribe to F5 NGINXaaS using your preferred cloud provider marketplace.
 
 {{<card-section showAsCards="true">}}
-  {{<card title="F5 ADS for AWS" titleUrl="/f5ads/aws/deploy/prerequisites/" icon="zap">}}
+  {{<card title="F5 ADS for AWS" titleUrl="/application-services/aws/deploy/prerequisites/" icon="zap">}}
     Use F5 ADS alongside your services running in AWS
   {{</card>}}
   {{<card title="NGINXaaS for Google Cloud" titleUrl="/nginxaas/google/deploy/prerequisites/" icon="power">}}

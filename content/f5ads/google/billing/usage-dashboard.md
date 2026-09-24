@@ -2,8 +2,8 @@
 title: Usage dashboard
 weight: 300
 toc: true
-url: /f5ads/google/billing/usage-dashboard/
-canonical: /f5ads/google/billing/usage-dashboard/
+url: /application-services/google/billing/usage-dashboard/
+canonical: /application-services/google/billing/usage-dashboard/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

@@ -4,7 +4,7 @@ description: "Configure F5 Application Delivery Service for AWS to use hybrid ML
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/aws/quickstart/pqc/
+url: /application-services/aws/quickstart/pqc/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, PQC, post-quantum cryptography, ML-KEM, ML-DSA, TLS 1.3, hybrid mode, quantum-safe"

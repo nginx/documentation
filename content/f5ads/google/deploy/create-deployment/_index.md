@@ -1,6 +1,6 @@
 ---
 title: Create a deployment
 weight: 200
-url: /f5ads/google/deploy/create-deployment/
-canonical: /f5ads/google/deploy/create-deployment/
+url: /application-services/google/deploy/create-deployment/
+canonical: /application-services/google/deploy/create-deployment/
 ---

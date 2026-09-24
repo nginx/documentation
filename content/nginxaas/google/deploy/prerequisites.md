@@ -7,7 +7,8 @@ url: /nginxaas/google/deploy/prerequisites/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-product-former: NGINXaaS for Google Cloud
-canonical: /f5ads/google/deploy/prerequisites/
+canonical: /application-services/google/deploy/prerequisites/
+f5-ref-path: /f5ads/google/deploy/prerequisites/
 ---
 
 {{< renamed-notice >}}

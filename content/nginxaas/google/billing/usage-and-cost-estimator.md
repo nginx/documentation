@@ -7,7 +7,8 @@ url: /nginxaas/google/billing/usage-and-cost-estimator/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-product-former: NGINXaaS for Google Cloud
-canonical: /f5ads/google/billing/usage-and-cost-estimator/
+canonical: /application-services/google/billing/usage-and-cost-estimator/
+f5-ref-path: /f5ads/google/billing/usage-and-cost-estimator/
 ---
 
 {{< renamed-notice >}}

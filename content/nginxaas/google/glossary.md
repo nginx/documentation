@@ -7,7 +7,8 @@ url: /nginxaas/google/glossary/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-product-former: NGINXaaS for Google Cloud
-canonical: /f5ads/google/glossary/
+canonical: /application-services/google/glossary/
+f5-ref-path: /f5ads/google/glossary/
 contentSource: nginxaas/overview/glossary.md
 ---
 

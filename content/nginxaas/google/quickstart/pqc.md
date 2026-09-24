@@ -8,7 +8,8 @@ url: /nginxaas/google/quickstart/pqc/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-product-former: NGINXaaS for Google Cloud
-canonical: /f5ads/google/quickstart/pqc/
+canonical: /application-services/google/quickstart/pqc/
+f5-ref-path: /f5ads/google/quickstart/pqc/
 f5-keywords: "NGINXaaS for Google Cloud, PQC, post-quantum cryptography, ML-KEM, ML-DSA, TLS 1.3, hybrid mode, quantum-safe"
 f5-summary: >
   Learn how to enable post-quantum cryptography in F5 NGINXaaS for Google Cloud using hybrid ML-KEM key exchange or ML-DSA certificates.

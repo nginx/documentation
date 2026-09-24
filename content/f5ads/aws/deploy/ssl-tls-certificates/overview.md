@@ -3,7 +3,7 @@ title: Overview
 description: "Reference for supported SSL/TLS certificate types and how to add them to an F5 Application Delivery Service for AWS deployment."
 weight: 50
 toc: true
-url: /f5ads/aws/deploy/ssl-tls-certificates/overview/
+url: /application-services/aws/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, SSL, TLS, certificates, AWS Secrets Manager, certificate rotation, PEM, ML-DSA, post-quantum, PQC"

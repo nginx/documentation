@@ -3,8 +3,8 @@ title: Add certificates from Secret Manager
 weight: 75
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
-canonical: /f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
+url: /application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
+canonical: /application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---
