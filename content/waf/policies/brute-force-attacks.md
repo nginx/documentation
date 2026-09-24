@@ -10,7 +10,7 @@ This topic describes how to configure brute force attack prevention in F5 WAF fo
 
 Brute force attacks try many username and password combinations to gain access to a protected application. To detect these attacks, F5 WAF for NGINX tracks failed login attempts for configured login pages.
 
-When a threshold is reached, the policy can log the attack, challenge the client with Client Side Integrity, or challenge the client with CAPTCHA.
+When a threshold is reached, the policy can log the attack, challenge the client with Client-side integrity, or challenge the client with CAPTCHA.
 
 ## User-defined URLs
 
