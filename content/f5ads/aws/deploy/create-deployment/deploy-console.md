@@ -105,7 +105,7 @@ F5 ADS doesn't currently support cross-region PrivateLink connections. You can o
 1. Note the new interface endpoint's **VPC Endpoint Id**, for example `vpce-0123456789abcdef0`, shown in the AWS VPC console **Endpoints** list.
 1. Ensure your deployment's **PrivateLink Connection Allow List** includes the AWS account ID or VPC endpoint ID to accept the PrivateLink connection.
    - To add an entry to the allow list, go to your deployment's Details tab, select **Edit**, and add the VPC endpoint ID or AWS account ID to the allow list.
-1. Select **Save Changes** to allow NGINXaaS to accept the PrivateLink connection request.
+1. Select **Save Changes** to allow F5 ADS to accept the PrivateLink connection request.
    - The VPC endpoint ID under **Cloud Settings** > **Service Frontend** > **PrivateLink Connection Allow List** changes to an accepted state. This confirms the deployment accepted the connection.
 
 {{< call-out class="important" >}}

@@ -49,7 +49,7 @@ The key capabilities of F5 ADS for Google Cloud are:
 
 ## F5 ADS for Google Cloud architecture
 
-{{< img src="nginxaas/google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how F5 ADS integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 ADS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
+{{< img src="f5ads/google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how F5 ADS integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 ADS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
 - Use the F5 ADS Console to create, update, and delete NGINX configurations, certificates, and F5 ADS deployments.
 - F5 ADS automatically adapts to application traffic demands through autoscaling.

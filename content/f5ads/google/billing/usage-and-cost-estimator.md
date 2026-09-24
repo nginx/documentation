@@ -10,7 +10,7 @@ f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
 {{< raw-html >}}
-<link rel="stylesheet" href="/nginxaas/google/css/cost-calculator_v2.css">
+<link rel="stylesheet" href="/f5ads/google/css/cost-calculator_v2.css">
 <div id="calculator">
   <h3 id="calculator-section-heading" data-testid="calculator-section-heading">
     Cost Estimation for Enterprise Plan
@@ -65,6 +65,6 @@ f5-product: F5 Application Delivery Service for Google Cloud
   </div>
 </div>
 
-<script type="module" src="/nginxaas/google/js/cost-calculator_gc.js"></script>
+<script type="module" src="/f5ads/google/js/cost-calculator_gc.js"></script>
 
 {{< /raw-html >}}
