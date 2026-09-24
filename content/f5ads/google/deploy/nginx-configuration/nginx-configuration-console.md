@@ -1,5 +1,5 @@
 ---
-title: Create or upload using the NGINXaaS Console
+title: Create or upload using the Console
 weight: 100
 toc: true
 f5-docs: DOCS-000
