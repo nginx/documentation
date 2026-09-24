@@ -295,23 +295,35 @@ kubectl describe wafpolicy gateway-base-protection
 Look for three conditions in the output:
 
 ```text
-Status:
-  Conditions:
-    Message:               The Policy is accepted
-    Observed Generation:   1
-    Reason:                Accepted
-    Status:                True
-    Type:                  Accepted
-    Message:               All references are resolved
-    Observed Generation:   1
-    Reason:                ResolvedRefs
-    Status:                True
-    Type:                  ResolvedRefs
-    Message:               Policy is programmed in the data plane
-    Observed Generation:   1
-    Reason:                Programmed
-    Status:                True
-    Type:                  Programmed
+Name:         gateway-base-protection
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+API Version:  gateway.nginx.org/v1alpha1
+Kind:         WAFPolicy
+Metadata:
+  Creation Timestamp:  2026-09-18T10:26:25Z
+  Generation:          1
+  Resource Version:    146109802
+  UID:                 53144c12-12cf-4306-8c90-116d716a5a3d
+Spec:
+  Policy Ref:
+    Ap Policy Ref:
+      Name:       attack-signatures
+      Namespace:  security
+  Security Logs:
+    Destination:
+      Type:  stderr
+    Log Ref:
+      Ap Log Conf Ref:
+        Name:       log-illegal
+        Namespace:  security
+  Target Refs:
+    Group:  gateway.networking.k8s.io
+    Kind:   Gateway
+    Name:   gateway
+  Type:     PLM
+Events:     <none>
 ```
 
 If any condition is `False`, the message field describes the problem. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for guidance.
