@@ -652,7 +652,7 @@ This feature uses the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/ht
 |``serverName`` | Turns on passing of the server name through the ``Server Name Indication`` extension. | ``bool`` | No |
 |``sslName`` | Lets you override the server name used to verify the certificate of the upstream HTTPS server. | ``string`` | No |
 |``ciphers`` | Specifies the enabled ciphers for requests to an upstream HTTPS server. The default is ``DEFAULT``. | ``string`` | No |
-|``protocols`` | Specifies the protocols for requests to an upstream HTTPS server. The default is ``TLSv1 TLSv1.1 TLSv1.2``. | ``string`` | No | > Note: NGINX Ingress Controller LTS doesn't validate the value of ``ciphers`` and ``protocols``. As a result, NGINX can fail to reload the configuration. To make sure the configuration for a VirtualServer or VirtualServerRoute that references the policy applied successfully, check its [status]({{< ref "/nic/lts/configuration/global-configuration/reporting-resources-status.md#virtualserver-and-virtualserverroute-resources" >}}). Validation for these fields is planned for a future release. |
+|``protocols`` | Specifies the protocols for requests to an upstream HTTPS server. Accepted values are ``SSLv2``, ``SSLv3``, ``TLSv1``, ``TLSv1.1``, ``TLSv1.2``, and ``TLSv1.3`` (case-insensitive). The default is ``TLSv1 TLSv1.1 TLSv1.2``. | ``string`` | No |
 
 {{% /table %}}
 

@@ -56,7 +56,7 @@ Before writing, identify:
 - **Limit steps per task.** Lengthy how-tos overwhelm users. Aim for a maximum of 8 to 10 steps per task. If the task is too large, break it into multiple logical sub-tasks, each with its own heading and steps.
 - **Test your instructions end to end.** Always verify that the steps are technically accurate by running through them yourself. This uncovers omitted steps, incorrect details, steps out of order, and gaps that block users. If you cannot test them yourself, have a developer or subject matter expert demonstrate the steps and record the session.
 - **Re-test after every notable product release.** Instructions can become inaccurate after product changes. Re-test end to end whenever a significant release affects the feature you are documenting.
-- **Minimise links within the guide.** Keep users on a single page as much as possible. Provide links to supporting or background information at the bottom of the page in the References section, not inline.
+- **Minimize links within the guide.** Keep users on a single page as much as possible. Provide links to supporting or background information at the bottom of the page in the References section, not inline.
 - **Do not document edge cases.** Avoid writing about scenarios at the boundaries of your product's capability.
 
 ---

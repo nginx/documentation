@@ -116,7 +116,7 @@ When you recreate containers, old entries remain in NGINX One Console. Clean the
 
 <span style="display: inline-block;">
 {{< img src="nginx-one-console/images/unavailable-instances.png"
-    alt="Table of three NGINX One Console instances filtered to 'Availability = Unavailable.' Shows hostnames, NGINX versions, grey Unavailable icons, and the Delete selected button." >}}
+    alt="Table of three NGINX One Console instances filtered to 'Availability = Unavailable.' Shows hostnames, NGINX versions, gray Unavailable icons, and the Delete selected button." >}}
 </span>
 
 ---

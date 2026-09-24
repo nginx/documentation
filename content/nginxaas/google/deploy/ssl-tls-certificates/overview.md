@@ -1,10 +1,17 @@
 ---
 title: Overview
+description: "Reference for supported SSL/TLS certificate types and how to add them to an F5 NGINXaaS for Google Cloud deployment."
 weight: 50
 toc: true
 url: /nginxaas/google/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
 f5-product: NGINXaaS for Google Cloud
+f5-docs: DOCS-000
+f5-keywords: "NGINXaaS for Google Cloud, SSL, TLS, certificates, Google Secret Manager, certificate rotation, PEM, ML-DSA, post-quantum, PQC"
+f5-summary: >
+  This reference covers the SSL/TLS certificate types and formats F5 NGINXaaS for Google Cloud supports, including post-quantum ML-DSA certificates, and the two ways to manage them: the NGINXaaS Console and Google Secret Manager.
+  Use it to choose a certificate management approach and understand automatic and manual rotation options.
+f5-audience: operator
 ---
 
 Use F5 NGINXaaS for Google Cloud (NGINXaaS) to secure traffic by adding SSL/TLS certificates to a deployment.
@@ -21,6 +28,13 @@ Encrypt your certificates, keys, and PEM files using one of these standards:
 
 - RSA
 - ECC/ECDSA
+- ML-DSA (post-quantum)
+
+{{< call-out class="note" title="ML-DSA key format support" >}}
+When you upload an ML-DSA private key using the NGINXaaS Console, use the seed-only key format.
+If you store your ML-DSA key in Google Secret Manager, you can use either the seed-only or seed-priv format.
+See [Enable post-quantum cryptography]({{< ref "/nginxaas/google/quickstart/pqc.md" >}}) for configuration guidance.
+{{< /call-out >}}
 
 ## Add SSL/TLS certificates
 
