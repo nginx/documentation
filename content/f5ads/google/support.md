@@ -7,5 +7,5 @@ url: /application-services/google/support/
 canonical: /application-services/google/support/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-contentSource: nginxaas/support/
+contentSource: f5ads/support/
 ---

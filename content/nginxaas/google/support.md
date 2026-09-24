@@ -9,7 +9,7 @@ f5-product: F5 Application Delivery Service for Google Cloud
 f5-product-former: NGINXaaS for Google Cloud
 canonical: /application-services/google/support/
 f5-ref-path: /f5ads/google/support/
-contentSource: nginxaas/support/
+contentSource: f5ads/support/
 ---
 
 {{< renamed-notice >}}

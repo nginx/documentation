@@ -7,7 +7,7 @@ url: /application-services/google/deploy/nginx-configuration/nginx-configuration
 canonical: /application-services/google/deploy/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-contentSource: nginxaas/overview/nginx-configuration/nginx-configuration-console.md
+contentSource: f5ads/overview/nginx-configuration/nginx-configuration-console.md
 ---
 
 ## What's next

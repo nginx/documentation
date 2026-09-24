@@ -7,7 +7,7 @@ url: /application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificat
 canonical: /application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-contentSource: nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
+contentSource: f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---
 
 ## What's next
