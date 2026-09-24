@@ -78,9 +78,9 @@ Verify that the `waf-enforcer` and `waf-config-mgr` container images are accessi
 
 ### Duplicate policy name error
 
-In NGINX Gateway Fabric 2.7.0 and later, bundle names are derived from the upstream source identity — the policy or log-profile source URL and its identifier — not from the `WAFPolicy` namespace and name. `WAFPolicy` resources that reference the same upstream bundle are deduplicated to a single bundle, including `WAFPolicy` resources in different namespaces, each targeting its own route that is itself attached to a shared Gateway. Deduplication is automatic, with nothing to enable. As a result, the `Duplicate policy name found` and `Duplicate logging profile name found` reload failures no longer occur.
+Bundle names are derived from the upstream source identity — the policy or log-profile source URL and its identifier — not from the `WAFPolicy` namespace and name. `WAFPolicy` resources that reference the same upstream bundle are deduplicated to a single bundle, including `WAFPolicy` resources in different namespaces, each targeting its own route that is itself attached to a shared Gateway. Deduplication is automatic, with nothing to enable.
 
-Both errors can still occur for genuinely distinct upstream bundles whose compiled definitions embed the same logical policy or log-profile name. When two `WAFPolicy` resources in the same Gateway reference different compiled bundles that were compiled under the **same policy name**, the WAF engine rejects the configuration with an error like:
+The `Duplicate policy name found` and `Duplicate logging profile name found` reload failures occur for genuinely distinct upstream bundles whose compiled definitions embed the same logical policy or log-profile name. When two `WAFPolicy` resources in the same Gateway reference different compiled bundles that were compiled under the **same policy name**, the WAF engine rejects the configuration with an error like:
 
 ```text
 "error_message": "Duplicate policy name found: <PolicyName>"
@@ -93,12 +93,8 @@ The WAF engine identifies policies and logging profiles by the logical name embe
 Check the NGINX Gateway Fabric controller logs for a configuration error containing `Duplicate policy name found` or `Duplicate logging profile name found`:
 
 ```shell
-kubectl logs -n nginx-gateway deploy/<NGF_DEPLOYMENT_NAME> -c nginx-gateway | grep -E "Duplicate (policy|logging profile) name"
+kubectl logs -n nginx-gateway deploy/nginx-gateway -c nginx-gateway | grep -E "Duplicate (policy|logging profile) name"
 ```
-
-This step reads the logs of the NGINX Gateway Fabric controller Deployment, not the `WAFPolicy` resource, so it may require namespace-level log access; a reader without it may need a cluster administrator's help.
-
-The Deployment name depends on your install method. For a Helm install it is `<release-name>-nginx-gateway-fabric`; run `kubectl get deploy -n nginx-gateway` to find it.
 
 **Resolution:**
 
