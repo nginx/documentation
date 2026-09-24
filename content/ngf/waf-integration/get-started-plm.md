@@ -72,7 +72,7 @@ Create a `values.yaml` file that enables WAF and sets the PLM storage connection
 ```yaml
 nginxGateway:
   plmStorage:
-    url: "https://plm-f5-waf-seaweed-filer.plm-system.svc.cluster.local"
+    url: "https://plm-f5-waf-seaweed-filer.plm-system.svc.cluster.local:9333"
     credentialsSecretName: "plm-system/plm-f5-waf-seaweedfs-auth"  # contains the seaweedfs_admin_secret field
     tls:
       caSecretName: "plm-ca-secret"  # Secret with ca.crt for verifying the storage service

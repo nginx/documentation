@@ -33,6 +33,17 @@ To create a security policy using the NGINX Instance Manager web interface:
 
 5. To change character encoding, select **Show Advanced Fields**, then select an application language. The default encoding is Unicode (`utf-8`).
 
+### Import a custom policy using JSON
+
+If you have a pre-existing custom policy, you can import it directly instead of configuring it through the guided form:
+
+1. On the **Security Policies** page, select **Create**.
+2. Select the **JSON** tab.
+3. In the text area, remove the existing default policy content.
+4. Paste your custom policy JSON.
+5. Correct any policy validation errors shown by the interface.
+6. Select **Add Policy**.
+
 ### Configure a policy
 
 When you use the web interface, a default policy is created automatically. You can also select **NGINX Strict** for a stricter configuration.

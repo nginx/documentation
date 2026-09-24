@@ -18,8 +18,8 @@ The following table lists the software versions NGINX Gateway Fabric supports. O
 
 | NGINX Gateway Fabric | Gateway API | Kubernetes | NGINX OSS | NGINX Plus | NGINX Agent | F5 WAF for NGINX |
 |----------------------|-------------|------------|-----------|------------|-------------|------------------|
-| Edge                 | 1.6.1       | 1.32+      | 1.31.6    | R37.1      | v3.11.4     | 5.15.0           |
-| 2.7.0                | 1.6.1       | 1.32+      | 1.31.4    | R37.1      | v3.11.4     | 5.15.0           |
+| Edge                 | 1.6.1       | 1.32+      | 1.31.6    | R37.1      | v3.12.0     | 5.15.0           |
+| 2.7.2                | 1.6.1       | 1.32+      | 1.31.6    | R37.1      | v3.12.0     | 5.15.0           |
 | 2.6.8                | 1.5.1       | 1.31+      | 1.31.3    | R37.0      | v3.11.2     | 5.13.2           |
 | 2.5.1                | 1.5.1       | 1.31+      | 1.29.7    | R36        | v3.8.0      | ---              |
 | 2.4.2                | 1.4.1       | 1.25+      | 1.29.5    | R36        | v3.7.1      | ---              |
@@ -32,6 +32,9 @@ The following table lists the software versions NGINX Gateway Fabric supports. O
 | 1.4.0                | 1.1.0       | 1.25+      | 1.27.1    | R32        | ---         | ---              |
 | 1.3.0                | 1.1.0       | 1.25+      | 1.27.0    | R32        | ---         | ---              |
 | 1.2.0                | 1.0.0       | 1.23+      | 1.25.4    | R31        | ---         | ---              |
+
+{{< call-out class="note" title="Note: NGINX Instance Manager integration" >}}
+For version requirements to export F5 WAF for NGINX security events to NGINX Instance Manager, see [Export security logs to F5 NGINX Instance Manager]({{< ref "/ngf/waf-integration/policy-sources.md#export-security-logs-to-f5-nginx-instance-manager" >}}).{{< /call-out >}}
 
 ### OpenShift Compatibility
 

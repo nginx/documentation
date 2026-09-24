@@ -753,7 +753,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    Expected output of the command:
 
    ```shell
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+   nginx version: nginx/1.31.3 (nginx-plus-r37.1.1)
    ```
 
 1. Prepare the build environment.
@@ -786,10 +786,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
 
    - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.29.8:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.31.3:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.29.8.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.31.3.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -805,7 +805,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    First, establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.29.8/ && \
+   cd nginx-1.31.3/ && \
    ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES> && \
    make modules
    ```
@@ -825,7 +825,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.29.8.so
+   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.31.3.so
    ```
 
 1. Transfer the resulting `.so` file from your build environment to the production environment.
@@ -837,7 +837,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    - `/usr/local/etc/nginx/modules` for FreeBSD
 
    ```shell
-   sudo cp ngx_http_hello_world_module_1.29.8.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.29.8.so
+   sudo cp ngx_http_hello_world_module_1.31.3.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.31.3.so
    ```
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
