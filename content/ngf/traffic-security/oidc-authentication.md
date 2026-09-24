@@ -643,8 +643,28 @@ spec:
 ## Troubleshooting
 
 ### AuthenticationFilter is not accepted
+
 - Confirm the filter's `type` is `OIDC` and the `oidc` block is present.
 - Check that the Secrets referenced by `clientSecretRef`, `caCertificateRefs`, and `crlSecretRef` exist in the same namespace as the filter and contain the expected keys (`client-secret`, `ca.crt`, `ca.crl`).
+- Reference at most one Secret in `caCertificateRefs`. If you list more than one, NGINX Gateway Fabric rejects the filter.
+- Make sure `clientID`, `session.cookieName`, the `client-secret` value in the referenced Secret, and each `extraAuthArgs` value contain none of these characters:
+
+  - A dollar sign (`$`)
+  - An unescaped double quote (`"`)
+  - A trailing unescaped backslash (`\`)
+  - A line break (newline or carriage return)
+
+  NGINX Gateway Fabric rejects a value that contains one of them. The filter reports `Accepted=False` with `Reason=Invalid`, and the message names the field, such as `spec.oidc.clientID`. For the `client-secret` value, the message begins with `the referenced Secret value is invalid:`.
+- Give each `extraAuthArgs` key only letters, numbers, hyphens, underscores, or dots.
+- Check the format of the URL and duration fields. NGINX Gateway Fabric rejects the filter when one of these values is malformed:
+
+  - `issuer` and `configURL` must be HTTPS URLs.
+  - `redirectURI` must be an HTTPS URL or a path that starts with `/`.
+  - `logout.uri` and `logout.frontChannelLogoutURI` must be paths that start with `/`.
+  - `logout.postLogoutURI` must be an HTTP or HTTPS URL or a path that starts with `/`.
+  - `session.timeout` must be a valid NGINX duration, such as `1h` or `30m`.
+
+  A path-only `redirectURI` or `logout.postLogoutURI` can't include query parameters. As with the character rules, the filter reports `Accepted=False` with `Reason=Invalid`, and the message names the field.
 
 ### HTTPRoute is not accepted or reports `ResolvedRefs=False`
 - Verify the `extensionRef` in the HTTPRoute matches the `AuthenticationFilter` name and namespace exactly.
