@@ -48,7 +48,7 @@ The key capabilities of F5 ADS for AWS are:
 
 ## F5 ADS for AWS architecture
 
-{{< img src="f5ads/aws/nginxaas-aws-cloud-architecture.svg" alt="Architecture diagram showing how F5 ADS integrates with AWS. At the top, inside the AWS IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 ADS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with AWS services such as AWS Secrets Manager, Amazon CloudWatch, and other AWS services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
+{{< img src="f5ads/aws/f5-ads-aws-architecture.svg" alt="Architecture diagram showing how F5 ADS integrates with AWS. At the top, inside the AWS IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 ADS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with AWS services such as AWS Secrets Manager, Amazon CloudWatch, and other AWS services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
 - Use the F5 ADS Console to create, update, and delete NGINX configurations, certificates, and F5 ADS deployments.
 - F5 ADS automatically adapts to application traffic demands through autoscaling.
