@@ -6,7 +6,7 @@ f5-docs: DOCS-000
 url: /nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-product-former: NGINXaaS for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
 canonical: /application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-ref-path: /f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 contentSource: f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console.md

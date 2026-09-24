@@ -7,7 +7,7 @@ f5-docs: DOCS-000
 url: /nginxaas/google/monitoring/metrics-catalog/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-product-former: NGINXaaS for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
 canonical: /application-services/google/monitoring/metrics-catalog/
 f5-ref-path: /f5ads/google/monitoring/metrics-catalog/
 f5-keywords: "NGINXaaS for Google, metrics catalog, Google Cloud monitoring, connections, requests, SSL, cache, memory, upstream, stream"

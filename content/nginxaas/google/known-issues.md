@@ -6,7 +6,7 @@ f5-docs: DOCS-000
 url: /nginxaas/google/known-issues/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-product-former: NGINXaaS for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
 canonical: /application-services/google/known-issues/
 f5-ref-path: /f5ads/google/known-issues/
 ---

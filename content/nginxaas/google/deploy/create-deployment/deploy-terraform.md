@@ -7,7 +7,7 @@ f5-docs: DOCS-000
 url: /nginxaas/google/deploy/create-deployment/deploy-terraform/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-product-former: NGINXaaS for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
 canonical: /application-services/google/deploy/create-deployment/deploy-terraform/
 f5-ref-path: /f5ads/google/deploy/create-deployment/deploy-terraform/
 f5-keywords: "NGINXaaS for Google Cloud, Terraform,create deployment, NGINXaaS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
