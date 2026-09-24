@@ -175,17 +175,17 @@ Encrypt and verify traffic to an in-cluster Guardrails backend, including a back
 
 Without a `BackendTLSPolicy`, an in-cluster backend is reached over plaintext `http`, as the Resolved URL table above shows. The payloads sent for inspection can carry sensitive content, such as the SSN in the examples below, so a `BackendTLSPolicy` encrypts and verifies that path instead of leaving it unencrypted across the cluster network.
 
-A `BackendTLSPolicy` is a Gateway API policy (`gateway.networking.k8s.io/v1`) that tells NGINX Gateway Fabric to verify a backend Service's TLS certificate. Attach one to the Guardrails Service, and NGINX Gateway Fabric switches that backend from `http` to `https`.
+A `BackendTLSPolicy` is a Gateway API policy that tells NGINX Gateway Fabric to verify a backend Service's TLS certificate. Attach one to the Guardrails Service, and NGINX Gateway Fabric switches that backend from `http` to `https`.
 
 Before you continue, make sure you have:
 
 - A PEM-encoded CA certificate (`ca.crt`) that signed the backend's serving certificate.
 - A backend that serves TLS on a known port.
 
-Create a ConfigMap from your CA certificate, where `./ca.crt` is your own CA file. The ConfigMap must live in the backend Service's namespace:
+Create a ConfigMap from your CA certificate, where `./ca.crt` is your own CA file. The ConfigMap must live in the backend Service's namespace, which these examples set to `default`:
 
 ```shell
-kubectl create configmap guardrails-ca --from-file=ca.crt=./ca.crt -n <namespace>
+kubectl create configmap guardrails-ca --from-file=ca.crt=./ca.crt -n default
 ```
 
 This Service and `BackendTLSPolicy` replace the plaintext in-cluster Service from the In-cluster tab, reusing the name `guardrails-api` on the TLS port. If you already applied that plaintext Service, reapply it with the manifest below.
@@ -221,11 +221,11 @@ spec:
     - group: ""
       kind: ConfigMap
       name: guardrails-ca
-    hostname: guardrails-api.<namespace>.svc.cluster.local
+    hostname: guardrails-api.default.svc.cluster.local
 EOF
 ```
 
-Replace `<namespace>` with the namespace of the backend Service. The `validation.hostname` must match the Service FQDN. Set the `PayloadProcessor`'s `backendRef` to this Service in the same namespace.
+These examples use the `default` namespace, like the rest of this guide. The `validation.hostname` must match the Service FQDN, and the `PayloadProcessor`'s `backendRef` must point to this Service in the same namespace. If your backend runs in another namespace, create the ConfigMap there and set `validation.hostname` to that namespace's FQDN.
 
 Confirm the policy was accepted:
 
@@ -253,7 +253,7 @@ Conditions:
 ```
 
 {{< call-out "note" >}}
-Set the `PayloadProcessor` `backendRef.port` to the TLS Service port, for example `8443`, so the URL resolves to `https://guardrails-api.<namespace>.svc.cluster.local:8443`.
+Set the `PayloadProcessor` `backendRef.port` to the TLS Service port, for example `8443`, so the URL resolves to `https://guardrails-api.default.svc.cluster.local:8443`.
 {{< /call-out >}}
 
 Keep these rules in mind when securing the in-cluster path:
