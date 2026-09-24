@@ -64,7 +64,7 @@ Install an InferencePool named `vllm-qwen3-32b` that selects from endpoints with
 
 NGINX will query the Endpoint Picker Extension to determine the appropriate pod endpoint to route traffic to. These pods are selected from a pool of ready pods designated by the assigned InferencePool's Selector field. For more information on the [Endpoint Picker](https://github.com/llm-d/llm-d-router/blob/main/pkg/epp/README.md).
 
-{{< call-out class="warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
+{{< call-out class="warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. By default, NGINX Gateway Fabric connects to the Endpoint Picker over TLS but doesn't verify its certificate. To verify the certificate, follow the **Verify the Endpoint Picker certificate** steps. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
 export IGW_CHART_VERSION=v{{< version-inference-extension >}}
@@ -192,6 +192,34 @@ curl -i $GW_IP:$GW_PORT/v1/completions -H 'Content-Type: application/json' -d '{
 }'
 ```
 
+## Verify the Endpoint Picker certificate
+
+By default, NGINX Gateway Fabric connects to the Endpoint Picker over TLS but doesn't verify the certificate it presents. To verify the certificate, attach a [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/reference/api-types/policy/backendtlspolicy/) to the Endpoint Picker Service. NGINX Gateway Fabric then validates the Endpoint Picker's certificate against the CA you provide during the TLS handshake.
+
+The Endpoint Picker must serve TLS with a certificate that the referenced CA signed. That certificate must also include the hostname you set in the policy. NGINX Gateway Fabric doesn't manage the Endpoint Picker, so its TLS setup is the responsibility of the Endpoint Picker deployment.
+
+Create a BackendTLSPolicy that targets the Endpoint Picker Service named in your InferencePool's `endpointPickerRef`. The following example targets the `vllm-qwen3-32b-epp` Service and validates its certificate against the CA in the `epp-ca` Secret:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: epp-tls
+spec:
+  targetRefs:
+  - group: ''
+    kind: Service
+    name: vllm-qwen3-32b-epp
+  validation:
+    caCertificateRefs:
+    - name: epp-ca
+      group: ''
+      kind: Secret
+    hostname: vllm-qwen3-32b-epp.default.svc
+EOF
+```
+
 ## Cleanup
 
 Uninstall the InferencePool and model server resources:
@@ -239,3 +267,4 @@ Remove the Gateway API CRDs:
 - [Gateway API Inference Extension API Overview](https://gateway-api-inference-extension.sigs.k8s.io/concepts/api-overview/): for an API overview.
 - [Gateway API Inference Extension User Guides](https://gateway-api-inference-extension.sigs.k8s.io/guides/implementers/): for additional use cases and guides.
 - [llm-d](https://github.com/llm-d/llm-d): for information on the llm-d project.
+- [Securing backend traffic using mutual TLS]({{< ref "/ngf/traffic-security/secure-backend.md" >}}): for more on BackendTLSPolicy and backend certificate validation.
