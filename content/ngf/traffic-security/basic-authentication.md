@@ -150,6 +150,12 @@ GW_PORT=<port number>
 
 ## Create a user credentials secret and AuthenticationFilter
 
+{{< call-out class="caution" >}}
+
+If you're upgrading from an earlier release, move your basic authentication credentials into an `Opaque` secret that uses the `auth` key. NGINX Gateway Fabric no longer supports the htpasswd secret type and rejects an AuthenticationFilter that references such a secret as invalid.
+
+{{< /call-out >}}
+
 Deploy a secret with user credentials, and the AuthenticationFilter by running the following YAML with `kubectl apply`:
 
 ```yaml
@@ -350,11 +356,10 @@ URI: /tea
 Request ID: c7eb0509303de1c160cb7e7d2ac1d99f
 ```
 
-
 ## Troubleshooting
 
 - Ensure the HTTPRoute is Accepted and references the correct AuthenticationFilter name and group.
-- Confirm the secret key is named `auth`.
+- Confirm the secret key is named `auth` and the secret is of type `Opaque`.
 - Ensure the secret referenced by the AuthenticationFilter is in the same namespace.
 
 ## Further reading
