@@ -419,9 +419,9 @@ If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy`
 
 ## Configure the global upstream zone size
 
-NGINX stores the configuration and run-time state of each upstream group in a shared memory zone. The `zoneSize` field of the `NginxProxy` resource sets one zone size for all HTTP upstreams. You then don't have to set the zone size on every `UpstreamSettingsPolicy`.
+NGINX stores the configuration and runtime state of each upstream group in a shared memory zone. By default, NGINX Gateway Fabric sizes this zone automatically for each upstream. The `zoneSize` field of the `NginxProxy` resource instead sets one fixed size for all HTTP upstreams, and overrides automatic sizing for them.
 
-You can set `zoneSize` globally through the `NginxProxy` resource, as shown below, or for a specific Service through the `zoneSize` field of an [`UpstreamSettingsPolicy`]({{< ref "/ngf/traffic-management/upstream-settings.md" >}}). When both are set for the same Service, the `UpstreamSettingsPolicy` value takes precedence. Use the per-service override when one Service's upstream needs a different size from the rest, for example a Service with substantially more backend Pods.
+You can set `zoneSize` globally on the `NginxProxy` resource, as shown below. You can also set it for one Service through the `zoneSize` field of an [`UpstreamSettingsPolicy`]({{< ref "/ngf/traffic-management/upstream-settings.md" >}}). When both are set for the same Service, the `UpstreamSettingsPolicy` value takes precedence. Use the per-service override when one Service's upstream needs a different size, for example a Service with many more backend Pods.
 
 The following command creates an `NginxProxy` resource that sets `zoneSize` to `1m`:
 
@@ -448,7 +448,7 @@ kubectl exec -it deployments/gateway-nginx -- nginx -T
 
 For a Service that has no `UpstreamSettingsPolicy` overriding it, the `zone` directive in its HTTP upstream shows the configured size.
 
-{{< call-out class="note" >}} `zoneSize` applies to HTTP upstreams only. Layer 4 (TCPRoute/UDPRoute) stream upstreams are unaffected and use their own defaults. When neither the global `zoneSize` nor an `UpstreamSettingsPolicy` sets it, the default NGINX Open Source or NGINX Plus value applies. See the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the exact default values. {{< /call-out >}}
+{{< call-out class="note" >}} `zoneSize` applies to HTTP upstreams only. When neither the global `zoneSize` nor an `UpstreamSettingsPolicy` sets a size, NGINX Gateway Fabric sizes the zone automatically. Layer 4 (TCPRoute/UDPRoute) stream upstreams don't use this field, and NGINX Gateway Fabric always sizes them automatically. See [Configure automatic upstream zone sizing](#configure-automatic-upstream-zone-sizing) for details. {{< /call-out >}}
 
 As with other `NginxProxy` fields, you can set `zoneSize` on the GatewayClass to apply globally, or on a Gateway to override the GatewayClass value. See the [Merging Semantics](#merging-semantics) section for details, and the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the full list of options.
 
