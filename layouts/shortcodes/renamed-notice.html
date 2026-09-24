@@ -1,0 +1,27 @@
+{{/* layouts/shortcodes/renamed-notice.html */}}
+{{ $newURL := index .Page.Params "f5-moved-to" }}
+{{ $newName := index .Page.Params "f5-product" }}
+{{ $oldName := index .Page.Params "f5-product-former" }}
+
+{{ if not $newURL }}
+  {{ errorf "renamed-notice: f5-moved-to front matter is required (used in %q)" .Page.File.Path }}
+{{ end }}
+{{ if not $newName }}
+  {{ errorf "renamed-notice: f5-product front matter is required (used in %q)" .Page.File.Path }}
+{{ end }}
+{{ if not $oldName }}
+  {{ errorf "renamed-notice: f5-product-former front matter is required (used in %q)" .Page.File.Path }}
+{{ end }}
+{{ if not (.Site.GetPage $newURL) }}
+  {{ errorf "renamed-notice: no page found at f5-moved-to %q (used in %q)" $newURL .Page.File.Path }}
+{{ end }}
+
+{{ $content := printf "%s is now **%s**. [View the current page →](%s)" $oldName $newName $newURL }}
+
+{{ partial "callout.html" (dict
+    "class" "warning call-out"
+    "title" "This page has moved"
+    "icon"  ""
+    "sideline" "false"
+    "content" $content
+) }}
