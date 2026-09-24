@@ -7,7 +7,7 @@ canonical: /f5ads/overview/nginx-configuration/configuration-rules/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service
 contentVars:
-  product: ADS
+  product: F5 ADS
 ---
 
 This document provides details about using NGINX configuration files with your
@@ -15,7 +15,7 @@ F5 Application Delivery Service deployment, restrictions, and available directiv
 
 ## NGINX configuration common user workflows
 
-You can upload NGINX configurations to your F5 ${product} deployment using the F5 ADS Console:
+You can upload NGINX configurations to your ${product} deployment using the F5 ADS Console:
 
 - [Upload using the console]({{< ref "/f5ads/overview/nginx-configuration/nginx-configuration-console.md" >}})
 
