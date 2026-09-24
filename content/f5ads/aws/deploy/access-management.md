@@ -212,7 +212,7 @@ Add inline policies to your role to grant the permissions your deployment requir
 
 For a full guide on monitoring and logging with F5 ADS, see [Enable monitoring]({{< ref "/f5ads/aws/monitoring/enable-monitoring.md" >}}) and [Enable NGINX logs]({{< ref "/f5ads/aws/monitoring/enable-nginx-logs.md" >}}).
 
-To add this policy in the AWS Management Console, follow [Adding inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the AWS documentation. Use the JSON below and name the policy `nginxaas-cloudwatch-logs`.
+To add this policy in the AWS Management Console, follow [Adding inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the AWS documentation. Use the JSON below and name the policy `f5ads-cloudwatch-logs`.
 
 ```json
 {
@@ -225,7 +225,7 @@ To add this policy in the AWS Management Console, follow [Adding inline policies
                 "logs:CreateLogStream",
                 "logs:PutLogEvents"
             ],
-            "Resource": "arn:aws:logs:*:*:log-group:nginxaas/*"
+            "Resource": "arn:aws:logs:*:*:log-group:*"
         }
     ]
 }
@@ -235,7 +235,7 @@ Alternatively, to use the AWS CLI:
 
 ```bash
 aws iam put-role-policy --role-name $ROLE_NAME \
-    --policy-name nginxaas-cloudwatch-logs \
+    --policy-name f5ads-cloudwatch-logs \
     --policy-document '{
     "Version": "2012-10-17",
     "Statement": [
@@ -246,7 +246,7 @@ aws iam put-role-policy --role-name $ROLE_NAME \
                 "logs:CreateLogStream",
                 "logs:PutLogEvents"
             ],
-            "Resource": "arn:aws:logs:*:*:log-group:nginxaas/*"
+            "Resource": "arn:aws:logs:*:*:log-group:*"
         }
     ]
 }'
@@ -258,7 +258,7 @@ aws iam put-role-policy --role-name $ROLE_NAME \
 
 Replace `$SECRET_ARN` with the ARN of your secret. For a full guide on using AWS Secrets Manager with F5 ADS, see [Add certificates from AWS Secrets Manager]({{< ref "/f5ads/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md" >}}).
 
-To add this policy in the AWS Management Console, follow [Adding inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the AWS documentation. Use the JSON below and name the policy `nginxaas-secrets-manager`.
+To add this policy in the AWS Management Console, follow [Adding inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the AWS documentation. Use the JSON below and name the policy `f5ads-secrets-manager`.
 
 ```json
 {
@@ -279,7 +279,7 @@ Alternatively, to use the AWS CLI:
 
 ```bash
 aws iam put-role-policy --role-name $ROLE_NAME \
-    --policy-name nginxaas-secrets-manager \
+    --policy-name f5ads-secrets-manager \
     --policy-document '{
     "Version": "2012-10-17",
     "Statement": [

@@ -1,6 +1,6 @@
 ---
-title: Deploy using the NGINXaaS Console
-description: "Create, configure, and connect an F5 NGINXaaS for Google Cloud deployment using the NGINXaaS Console."
+title: Deploy using the F5 ADS Console
+description: "Create, configure, and connect an F5 Application Delivery Service for Google Cloud deployment using the F5 ADS Console."
 weight: 100
 toc: true
 f5-docs: DOCS-000

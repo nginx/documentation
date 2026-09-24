@@ -66,11 +66,11 @@ Refer to the [AWS's CloudWatch Logs Insights](https://docs.aws.amazon.com/Amazon
 Within the log group, NGINX access and error logs are written to a log stream named `logs`, which you can use to separate NGINX logs from the rest of your log group's streams. You can also filter based on the following fields using a CloudWatch Logs Insights `filter` or `stats` query, for example,
 
 * `filename`
-* `nginxaas_deployment_location`
-* `nginxaas_deployment_name`
-* `nginxaas_deployment_object_id`
-* `nginxaas_namespace`
-* `nginxaas_organization_object_id`
+* `deployment_location`
+* `deployment_name`
+* `deployment_object_id`
+* `namespace`
+* `organization_object_id`
 
 For example, to query for a deployment's /var/log/nginx/access.log entries:
 

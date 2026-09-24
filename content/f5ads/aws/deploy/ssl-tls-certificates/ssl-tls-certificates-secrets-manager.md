@@ -51,7 +51,7 @@ F5 ADS for AWS also supports attribute-based access control (ABAC) by restrictin
 			"Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:secretName-AbCdEf",
 			"Condition": {
 				"StringEquals": {
-					"aws:PrincipalTag/NGINXaaS:DeploymentName": "test-deployment"
+					"aws:PrincipalTag/F5ADS:DeploymentName": "test-deployment"
 				}
 			}
 		}
@@ -61,9 +61,9 @@ F5 ADS for AWS also supports attribute-based access control (ABAC) by restrictin
 
 The session tags passed in the request to fetch the secret will appear in `AssumeRole` [events in CloudTrail](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs). The following tags are supported:
 
-- `NGINXaaS:OrganizationID`
-- `NGINXaaS:DeploymentID`
-- `NGINXaaS:DeploymentName`
+- `F5ADS:OrganizationID`
+- `F5ADS:DeploymentID`
+- `F5ADS:DeploymentName`
 
 ## Add an SSL/TLS certificate to AWS Secrets Manager
 
