@@ -651,7 +651,7 @@ This feature uses the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/ht
 |``serverName`` | Turns on passing of the server name through the ``Server Name Indication`` extension. | ``bool`` | No |
 |``sslName`` | Lets you override the server name used to verify the certificate of the upstream HTTPS server. | ``string`` | No |
 |``ciphers`` | Specifies the enabled ciphers for requests to an upstream HTTPS server. The default is ``DEFAULT``. | ``string`` | No |
-|``protocols`` | Specifies the protocols for requests to an upstream HTTPS server. The default is ``TLSv1 TLSv1.1 TLSv1.2``. | ``string`` | No | > Note: NGINX Ingress Controller doesn't validate the value of ``ciphers`` and ``protocols``. As a result, NGINX can fail to reload the configuration. To make sure the configuration for a VirtualServer or VirtualServerRoute that references the policy applied successfully, check its [status]({{< ref "/nic/configuration/global-configuration/reporting-resources-status.md#virtualserver-and-virtualserverroute-resources" >}}). Validation for these fields is planned for a future release. |
+|``protocols`` | Specifies the protocols for requests to an upstream HTTPS server. Accepted values are ``SSLv2``, ``SSLv3``, ``TLSv1``, ``TLSv1.1``, ``TLSv1.2``, and ``TLSv1.3`` (case-insensitive). The default is ``TLSv1 TLSv1.1 TLSv1.2``. | ``string`` | No |
 
 {{% /table %}}
 
@@ -1250,7 +1250,7 @@ For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< r
 |``url`` | Tenant URL for ``N1C``/``NIM``, or full ``.tgz`` bundle URL for ``HTTPS``. Must use ``https://``. | ``string`` | Yes |
 |``name`` | Management-plane policy name for ``N1C``/``NIM``. For ``apLogBundleSource``, set this to the log profile name. Ignored for ``HTTPS``. | ``string`` | No |
 |``namespace`` | Management-plane namespace or tenant. Required for ``N1C``. Not used for ``NIM`` or ``HTTPS``. | ``string`` | No |
-|``enablePolling`` | Must be explicitly set. When ``true``, NIC re-fetches the bundle at ``pollInterval``. When ``false``, NIC fetches the bundle once at policy creation or update. | ``bool`` | Yes |
+|``enablePolling`` | Optional. Defaults to ``false``. When ``false`` or unset, NGINX Ingress Controller fetches the bundle once at policy creation or update. When ``true``, NGINX Ingress Controller re-fetches the bundle at ``pollInterval``. | ``bool`` | No |
 |``pollInterval`` | How often to re-fetch when ``enablePolling`` is ``true``. Minimum ``1m``, default ``5m``. | ``string`` | No |
 |``secret`` | Secret in the same namespace as the Policy. For ``N1C``/``NIM``, use ``nginx.com/waf-bundle`` (token or username/password). For ``HTTPS``, use ``kubernetes.io/tls`` for client mTLS (``tls.crt`` and ``tls.key``). | ``string`` | No |
 |``trustedCertSecret`` | Name of an ``nginx.org/ca`` Secret containing a custom CA certificate (``ca.crt``) for verifying the server TLS certificate. Must be in the same namespace as the Policy. | ``string`` | No |
