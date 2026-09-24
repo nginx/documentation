@@ -452,6 +452,32 @@ To view the full list of configuration options, see the `NginxProxy spec` in the
 
 ---
 
+### Configure the load balancer class
+
+When the Service type is `LoadBalancer`, the `loadBalancerClass` field selects which controller manages the Service.
+
+By default, NGINX Gateway Fabric leaves this field unset. Your cloud provider or an external controller, such as an AWS Load Balancer or MetalLB, then manages the Service.
+
+To let the NGINX Gateway Controller manage the load balancer, set `loadBalancerClass` to `gateway.nginx.org/nginx-gateway-controller`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config-test
+spec:
+  kubernetes:
+    service:
+      type: LoadBalancer
+      loadBalancerClass: gateway.nginx.org/nginx-gateway-controller
+EOF
+```
+
+You can set `loadBalancerClass` only when the Service type is `LoadBalancer`. NGINX Gateway Fabric rejects the field on any other Service type.
+
+---
+
 ### Configure a PodDisruptionBudget for the data plane
 
 When you set the `podDisruptionBudget` field on the `NginxProxy` resource, the control plane creates a Kubernetes [PodDisruptionBudget](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/) (PDB) for the data plane. A PodDisruptionBudget caps how many pods in the NGINX data plane can be voluntarily evicted at once. This keeps a minimum number of pods serving traffic during node drains, upgrades, and autoscaler evictions. Without a PodDisruptionBudget, a node drain or autoscaler action can evict every data plane replica at once and interrupt traffic.
