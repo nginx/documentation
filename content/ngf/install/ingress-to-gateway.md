@@ -14,10 +14,10 @@ If you're already using NGINX Ingress Controller and want to migrate to NGINX Ga
 
 The [Gateway API](https://gateway-api.sigs.k8s.io/) is the next-generation Kubernetes networking API that builds on the limitations of Ingress. Compared to Ingress, Gateway API provides:
 
-- **Role-oriented resources**: Distinct resources for infrastructure providers, cluster operators, and application developers, enabling [separation of concerns](https://gateway-api.sigs.k8s.io/concepts/security-model/#role-oriented-resources).
-- **More expressive routing**: Support for [advanced traffic management](https://gateway-api.sigs.k8s.io/concepts/api-overview/#routes) such as path-based and header-based routing, traffic splitting, and TLS configuration.
+- **Role-oriented resources**: Distinct resources for infrastructure providers, cluster operators, and application developers, enabling [separation of concerns](https://gateway-api.sigs.k8s.io/docs/concepts/security/).
+- **More expressive routing**: Support for [advanced traffic management](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/) such as path-based and header-based routing, traffic splitting, and TLS configuration.
 - **Standardization and portability**: A Kubernetes [community standard](https://gateway-api.sigs.k8s.io/) supported by multiple vendors, ensuring consistent behavior across implementations.
-- **Extensibility**: Built on Kubernetes [CRD extensibility](https://gateway-api.sigs.k8s.io/guides/migrating-from-ingress/?h=extensibility#approach-to-extensibility) to support new capabilities without breaking the core API.
+- **Extensibility**: Built on Kubernetes [CRD extensibility](https://gateway-api.sigs.k8s.io/guides/getting-started/migrating-from-ingress/?h=extensibility#approach-to-extensibility) to support new capabilities without breaking the core API.
 
 Migrating to Gateway API with NGINX Gateway Fabric helps future-proof your Kubernetes networking stack, provide a standardized API across implementations, and unlock advanced traffic management features.
 

@@ -52,9 +52,9 @@ Before writing, identify:
 - **Remove setup friction wherever possible.** Use sandbox accounts, pre-configured environments, or sensible defaults to reduce the number of prerequisites the reader must satisfy before reaching the first meaningful step.
 - **Test your instructions end to end.** Run through every step on a clean environment. This uncovers missing steps, wrong commands, and version mismatches. If you cannot test them yourself, have a developer or subject matter expert demonstrate the steps and record the session.
 - **Re-test after every notable product release.** Instructions become inaccurate after product changes. Re-test end to end whenever a significant release affects the feature you are documenting.
-- **Do not document error scenarios or complex variations.** Getting started guides are optimised for the happy path. Unexpected scenarios belong in troubleshooting guides and how-tos.
+- **Do not document error scenarios or complex variations.** Getting started guides are optimized for the happy path. Unexpected scenarios belong in troubleshooting guides and how-tos.
 - **Limit steps.** Aim for a maximum of 8 to 10 steps per part. If more steps are required, break the guide into logical parts with separate headings.
-- **Minimise links within the guide.** Keep users on a single page. Provide links to supporting or background information at the bottom of the guide in the Next steps section, not inline.
+- **Minimize links within the guide.** Keep users on a single page. Provide links to supporting or background information at the bottom of the guide in the Next steps section, not inline.
 
 ---
 
