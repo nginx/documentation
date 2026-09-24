@@ -8,7 +8,7 @@ url: /application-services/google/monitoring/metrics-catalog/
 canonical: /application-services/google/monitoring/metrics-catalog/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-keywords: "NGINXaaS for Google, metrics catalog, Google Cloud monitoring, connections, requests, SSL, cache, memory, upstream, stream"
+f5-keywords: "F5 ADS for Google Cloud, metrics catalog, Google Cloud monitoring, connections, requests, SSL, cache, memory, upstream, stream"
 f5-summary: >
   Reference catalog of metrics exported by F5 ADS for Google Cloud.
   Use this guide to look up metric names, labels, data types, and roll-up scopes for NGINX config, connections, requests, SSL, cache, memory, upstream, and stream statistics.

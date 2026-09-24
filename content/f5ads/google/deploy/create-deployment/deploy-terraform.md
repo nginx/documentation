@@ -1,6 +1,6 @@
 ---
 title: Deploy using the Terraform provider
-description: "Create, and configure an F5 NGINXaaS for Google Cloud deployment using the Terraform provider."
+description: "Create and configure an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider."
 weight: 100
 toc: true
 f5-docs: DOCS-000
@@ -8,9 +8,9 @@ url: /application-services/google/deploy/create-deployment/deploy-terraform/
 canonical: /application-services/google/deploy/create-deployment/deploy-terraform/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-keywords: "NGINXaaS for Google Cloud, Terraform,create deployment, NGINXaaS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
+f5-keywords: "F5 ADS for Google Cloud, Terraform, create deployment, F5 ADS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
 f5-summary: >
-  Learn how to manage an F5 NGINXaaS for Google Cloud deployment using the Terraform provider.
+  Learn how to manage an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider.
   This guide covers setting up necessary Google Cloud resources, configuring the Terraform provider, and managing the deployment using Terraform.
 f5-audience: operator
 ---

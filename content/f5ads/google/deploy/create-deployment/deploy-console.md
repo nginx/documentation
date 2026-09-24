@@ -8,9 +8,9 @@ url: /application-services/google/deploy/create-deployment/deploy-console/
 canonical: /application-services/google/deploy/create-deployment/deploy-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-keywords: "NGINXaaS for Google Cloud, create deployment, NGINXaaS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
+f5-keywords: "F5 ADS for Google Cloud, create deployment, F5 ADS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
 f5-summary: >
-  Learn how to create an F5 NGINXaaS for Google Cloud deployment using the NGINXaaS Console.
+  Learn how to create an F5 Application Delivery Service for Google Cloud deployment using the F5 ADS Console.
   This guide covers configuring the deployment, setting up service frontend connectivity, and testing the deployment once it's ready.
 f5-audience: operator
 ---
