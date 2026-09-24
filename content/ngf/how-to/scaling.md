@@ -73,6 +73,8 @@ See the `NginxProxy` section of the [API reference]({{< ref "/ngf/reference/api.
 
 All of these fields are also available at installation time by setting them in the [helm values](https://github.com/nginx/nginx-gateway-fabric/blob/main/charts/nginx-gateway-fabric/values.yaml).
 
+{{< call-out class="note" >}} Running multiple replicas improves availability. To keep a minimum number of NGINX pods running during voluntary disruptions, configure a [PodDisruptionBudget for the data plane]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-a-poddisruptionbudget-for-the-data-plane" >}}). {{< /call-out >}}
+
 An alternate way to scale the data plane is by creating a new Gateway.  This is beneficial when you need distinct configurations, isolation, or separate policies. 
 
 For example, if you're routing traffic to a new domain `admin.example.com` and require a different TLS certificate, stricter rate limits, or separate authentication policies, creating a new Gateway could be a good approach.

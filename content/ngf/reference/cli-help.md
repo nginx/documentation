@@ -73,6 +73,7 @@ This command runs the NGINX Gateway Fabric control plane.
 | _endpoint-picker-disable-tls_       | _bool_   | Disables TLS when connecting to the EndpointPicker. Set to true only for development/testing or when using a service mesh for encryption. (Default: `false`) | 
 | _endpoint-picker-tls-skip-verify_   | _bool_   | Disables server certificate verification when connecting to the EndpointPicker, if TLS is enabled. REQUIRED: Must be true until Gateway API Inference Extension EndpointPicker supports mounting certificates. (Default `true`) |
 | _watch-namespaces_                  | _list_   | Comma-separated list of namespaces to watch for resources. If not set, all namespaces are watched. The controller's own namespace is always included. |
+| _watch-secret-label-selector_       | _string_ | Label selector to restrict which Secrets are watched and cached by the controller (e.g. "gateway.nginx.org/watch=true"). If not set, all Secrets in the watch scope are watched. Users must label all Gateway-relevant Secrets (TLS certificates, etc.) with the chosen label before enabling this option to avoid breaking existing Gateway configurations. |
 | _payload-processor_                 | _bool_   | Enable the PayloadProcessor API. PayloadProcessors enable declarative, ordered processing of HTTP request and response payloads by attaching to a Gateway or HTTPRoute, and are used to implement features such as Guardrails for AI workloads. |
 | _cluster-domain_                    | _string_ | The DNS domain of your Kubernetes cluster. |
 
