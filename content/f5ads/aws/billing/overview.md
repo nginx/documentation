@@ -13,4 +13,4 @@ f5-summary: >
 f5-audience: any
 ---
 
-F5 ADS for AWS is purchased and billed through the AWS Marketplace.
+F5 Application Delivery Service for AWS is purchased and billed through the AWS Marketplace.
