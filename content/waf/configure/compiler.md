@@ -16,10 +16,7 @@ The compiler is packaged as a Docker image and can executed using the Docker CLI
 
 If you use a virtual machine or bare-metal installation, see [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}).
 
-If you deploy in Kubernetes with Policy Lifecycle Management (PLM), see:
-
-- For F5 NGINX Ingress Controller, see [Install NGINX Ingress Controller with F5 WAF for NGINX using PLM]({{< ref "/nic/install/plm-installation.md" >}}).
-- For F5 NGINX Gateway Fabric, see [Get started with F5 WAF for NGINX (PLM)]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
+If you deploy in Kubernetes with Policy Lifecycle Management (PLM), see [Kubernetes Policy Lifecycle Management]({{< ref "/waf/install/kubernetes-plm.md" >}}).
 
 {{< /call-out >}}
 
