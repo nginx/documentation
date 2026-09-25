@@ -6,52 +6,50 @@ f5-content-type: reference
 f5-product: F5 WAF for NGINX
 ---
 
-This topic describes the brute force attack prevention feature of F5 WAF for NGINX.
+This topic describes how to configure brute force attack prevention in F5 WAF for NGINX.
 
-Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive, systematic, username/password combinations to discover legitimate authentication credentials.
+Brute force attacks try many username and password combinations to gain access to a protected application. To detect these attacks, F5 WAF for NGINX tracks failed login attempts for configured login pages.
 
-To prevent brute force attacks, F5 WAF for NGINX monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
-
-When brute force patterns are detected, F5 WAF for NGINX policy either triggers an alarm or blocks the attack if the failed login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
+When a threshold is reached, the policy can log the attack, challenge the client with Client-side integrity, or challenge the client with CAPTCHA.
 
 ## User-defined URLs
 
-In order to create a brute force configuration for a specific URL in F5 WAF for NGINX you must first create a user-defined URL, a login page, and then define the URL element in the brute force configuration section.
+To protect a login endpoint, first define it as a user-defined URL.
 
-```JSON
+```json
 "urls": [
-      {
-        "method": "*",
-        "name": "/html_login",
-        "protocol": "http",
-        "type": "explicit"
-      }
-    ],
+  {
+    "method": "*",
+    "name": "/html_login",
+    "protocol": "http",
+    "type": "explicit"
+  }
+],
 ```
 
 ## Login pages
 
-A login page specifies the URL that users must pass through to get authenticated.
+A login page identifies the endpoint that users submit credentials to. It also defines how F5 WAF for NGINX determines whether a login attempt succeeded or failed.
 
-The configuration of a login-pages includes the URL itself, the username and password parameters, and the validation criteria (Defining if a login was successful or failed).
+The `accessValidation` object is required for brute force protection. You can use fields such as `responseContains`, `responseOmits`, or HTTP status checks to classify the login result.
 
 ```json
 "login-pages": [
-            {
-               "accessValidation" : {
-                  "responseContains": "Success"
-               },
-               "authenticationType": "form",
-               "url" : {
-                  "method" : "*",
-                  "name" : "/html_login",
-                  "protocol" : "http",
-                  "type" : "explicit"
-               },
-               "usernameParameterName": "username",
-               "passwordParameterName": "password"
-            }
-        ]
+  {
+    "accessValidation": {
+      "responseContains": "Success"
+    },
+    "authenticationType": "form",
+    "url": {
+      "method": "*",
+      "name": "/html_login",
+      "protocol": "http",
+      "type": "explicit"
+    },
+    "usernameParameterName": "username",
+    "passwordParameterName": "password"
+  }
+]
 ```
 
 {{< call-out class="note" >}}
@@ -60,117 +58,175 @@ For more information, see the [login-pages section]({{< ref "/waf/policies/param
 
 {{< /call-out >}}
 
-## Examples
+## Mitigation actions
 
-This example shows a configuration applied to all login pages:
+Use these action values in your brute force configuration:
 
-```json
-"brute-force-attack-preventions" : [
-            {
-               "bruteForceProtectionForAllLoginPages" : true,
-               "loginAttemptsFromTheSameIp" : {
-                  "action" : "alarm",
-                  "enabled" : true,
-                  "threshold" : 20
-               },
-               "loginAttemptsFromTheSameUser" : {
-                  "action" : "alarm",
-                  "enabled" : true,
-                  "threshold" : 3
-               },
-               "reEnableLoginAfter" : 3600,
-               "sourceBasedProtectionDetectionPeriod" : 3600
-            }
-        ]
-```
+- `alarm` logs the brute force event and allows the request.
+- `alarm-and-client-side-integrity` serves a JavaScript challenge to verify that the client behaves like a browser.
+- `alarm-and-captcha` serves a CAPTCHA challenge to verify that the client is operated by a human user. This action requires a generated challenge pool.
 
-Brute force can be configured on an individual login page basis:
+## Configure brute force challenges
 
-```json
-"brute-force-attack-preventions" : [
-            {
-               "bruteForceProtectionForAllLoginPages" : false,
-               "loginAttemptsFromTheSameIp" : {
-                  "action" : "alarm",
-                  "enabled" : true,
-                  "threshold" : 20
-               },
-               "loginAttemptsFromTheSameUser" : {
-                  "action" : "alarm",
-                  "enabled" : true,
-                  "threshold" : 3
-               },
-               "reEnableLoginAfter" : 3600,
-               "sourceBasedProtectionDetectionPeriod" : 3600,
-               "url": {
-                 "method": "*",
-                 "name": "/html_login",
-                 "protocol": "http"
-               }
-            }
-        ]
-```
+1. Define the login endpoint in `urls`.
+2. Add the same endpoint to `login-pages` and configure `accessValidation` so F5 WAF for NGINX can classify successful and failed logins.
+3. Decide whether the brute force settings apply to all login pages or only one page.
+4. Set thresholds for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTheSameIp`, or `loginAttemptsFromTheSameDeviceId`, depending on how you want to track failed login activity.
+5. Choose a mitigation action: `alarm`, `alarm-and-client-side-integrity`, or `alarm-and-captcha`.
+6. Tune the timing fields for detection, mitigation, and re-enable behavior.
+7. If needed, configure bypass behavior for the selected challenge type.
 
-This example includes both configuration for all pages and configuration for individual pages:
+## Client Side Integrity example
+
+This example applies Client Side Integrity to all configured login pages.
 
 ```json
 {
   "policy": {
-    "name": "BruteForcePolicy",
-    "template": {
-      "name": "POLICY_TEMPLATE_NGINX_BASE"
-    },
-    "applicationLanguage": "utf-8",
-    "enforcementMode": "blocking",
-    "urls": [
-      {
-        "method": "*",
-        "name": "/html_login",
-        "protocol": "http",
-        "type": "explicit"
-      }
-    ],
-    "login-pages": [
-      {
-        "accessValidation": {
-          "responseContains": "Success"
-        },
-        "authenticationType": "form",
-        "url": {
-          "method": "*",
-          "name": "/html_login",
-          "protocol": "http",
-          "type": "explicit"
-        },
-        "usernameParameterName": "username",
-        "passwordParameterName": "password"
-      }
-    ],
     "brute-force-attack-preventions": [
       {
-        "bruteForceProtectionForAllLoginPages": false,
+        "bruteForceProtectionForAllLoginPages": true,
         "loginAttemptsFromTheSameIp": {
-          "action": "alarm",
-          "enabled": true,
-          "threshold": 20
-        },
-        "loginAttemptsFromTheSameUser": {
-          "action": "alarm",
+          "action": "alarm-and-client-side-integrity",
           "enabled": true,
           "threshold": 3
         },
-        "reEnableLoginAfter": 3600,
-        "sourceBasedProtectionDetectionPeriod": 3600,
-        "url": {
-          "method": "*",
-          "name": "/html_login",
-          "protocol": "http"
-        }
+        "loginAttemptsFromTheSameUser": {
+          "action": "alarm-and-client-side-integrity",
+          "enabled": true,
+          "threshold": 3
+        },
+        "clientSideIntegrityBypassCriteria": {
+          "action": "alarm-and-captcha",
+          "enabled": false,
+          "threshold": 1
+        },
+        "measurementPeriod": 60,
+        "preventionDuration": 60,
+        "reEnableLoginAfter": 60,
+        "sourceBasedProtectionDetectionPeriod": 60
       }
     ]
   }
 }
 ```
+
+In this example:
+
+- `loginAttemptsFromTheSameUser` challenges repeated failures for the same username.
+- `loginAttemptsFromTheSameIp` challenges repeated failures from the same source IP address.
+
+## CAPTCHA example
+
+This example protects a specific login page with CAPTCHA.
+
+```json
+{
+  "policy": {
+    "brute-force-attack-preventions": [
+      {
+        "bruteForceProtectionForAllLoginPages": false,
+        "url": {
+          "method": "*",
+          "name": "/html_login",
+          "protocol": "http"
+        },
+        "loginAttemptsFromTheSameIp": {
+          "action": "alarm-and-captcha",
+          "enabled": true,
+          "threshold": 3
+        },
+        "loginAttemptsFromTheSameUser": {
+          "action": "alarm-and-captcha",
+          "enabled": true,
+          "threshold": 3
+        },
+        "captchaBypassCriteria": {
+          "action": "alarm-and-drop",
+          "enabled": false,
+          "threshold": 5
+        },
+        "measurementPeriod": 60,
+        "preventionDuration": 60,
+        "reEnableLoginAfter": 60,
+        "sourceBasedProtectionDetectionPeriod": 60
+      }
+    ]
+  }
+}
+```
+
+Use the CAPTCHA example when you want to protect browser-based login flows with a human verification step instead of a JavaScript integrity challenge.
+
+{{< call-out class="important" >}}
+
+CAPTCHA actions have two requirements. A challenge pool must be available when your policy is compiled, otherwise the bundle contains no challenges. On a virtual server that serves plain HTTP, set `secureAttribute` to `never`, otherwise the browser discards the enforcer state cookie and the client can never pass the challenge. For more information, see [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
+
+{{< /call-out >}}
+
+## Device ID examples
+
+Use these examples when you want to track failed logins by device identifier instead of by username or source IP address.
+
+Set `url` when the brute force configuration applies to one login page. Omit `url` only when `bruteForceProtectionForAllLoginPages` is set to `true`.
+
+### Client Side Integrity
+
+```json
+{
+  "policy": {
+    "brute-force-attack-preventions": [
+      {
+        "bruteForceProtectionForAllLoginPages": false,
+        "url": {
+          "method": "*",
+          "name": "/html_login",
+          "protocol": "http"
+        },
+        "loginAttemptsFromTheSameDeviceId": {
+          "action": "alarm-and-client-side-integrity",
+          "enabled": true,
+          "threshold": 3
+        },
+        "measurementPeriod": 60,
+        "preventionDuration": 60,
+        "reEnableLoginAfter": 60,
+        "sourceBasedProtectionDetectionPeriod": 60
+      }
+    ]
+  }
+}
+```
+
+### CAPTCHA
+
+```json
+{
+  "policy": {
+    "brute-force-attack-preventions": [
+      {
+        "bruteForceProtectionForAllLoginPages": false,
+        "url": {
+          "method": "*",
+          "name": "/html_login",
+          "protocol": "http"
+        },
+        "loginAttemptsFromTheSameDeviceId": {
+          "action": "alarm-and-captcha",
+          "enabled": true,
+          "threshold": 3
+        },
+        "measurementPeriod": 60,
+        "preventionDuration": 60,
+        "reEnableLoginAfter": 60,
+        "sourceBasedProtectionDetectionPeriod": 60
+      }
+    ]
+  }
+}
+```
+
+## More information
 
 {{< call-out class="note" >}}
 
