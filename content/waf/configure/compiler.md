@@ -14,9 +14,9 @@ The compiler is packaged as a Docker image and can executed using the Docker CLI
 
 {{< call-out class="note" title="Alternatives to the compiler tool">}}
 
-If you are using a virtual machine/bare-metal installation, read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) topic.
+If you use a virtual machine or bare-metal installation, see [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}).
 
-If you are using a Helm-based Kubernetes deployment, read the [Kubernetes operations improvements (Early access)]({{< ref "/waf/install/kubernetes-plm.md" >}}) topic.
+If you deploy in Kubernetes with Policy Lifecycle Management, see [Kubernetes Policy Lifecycle Management]({{< ref "/waf/install/kubernetes-plm.md" >}}).
 
 {{< /call-out >}}
 
