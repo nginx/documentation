@@ -16,14 +16,14 @@ f5-audience: operator
 
 Policy Lifecycle Management (PLM) provides a declarative way to manage F5 WAF for NGINX security policies in Kubernetes.
 
-## What is Policy Lifecycle Management
+## How Policy Lifecycle Management works
 
-PLM uses the Kubernetes operator pattern to automate the lifecycle of F5 WAF security artifacts. Instead of manually compiling policies with the WAF compiler tool, you define policies as Kubernetes custom resources (`APPolicy`, `APLogConf`, and `APUserSig`).
+PLM uses the Kubernetes operator pattern to automate the lifecycle of F5 WAF security artifacts. You do not need to compile policies manually with the [F5 WAF compiler tool]({{< ref "/waf/configure/compiler.md" >}}). Instead, you define policies as Kubernetes custom resources (`APPolicy`, `APLogConf`, and `APUserSig`).
 
 The PLM Policy Controller compiles the custom resources automatically and publishes the compiled bundles to an in-cluster storage service. The data plane then downloads the bundles from storage and enforces them at request time. PLM also delivers automated attack signature updates.
 
 {{< call-out class="note" title="Early access transition" >}}
-PLM supersedes the early access preview previously known as Kubernetes operations improvements. If you deployed the early access preview, migrate your configuration to one of the supported production guides below.
+PLM supersedes the early access preview previously known as Kubernetes operations improvements. If you deployed the early access preview, migrate your configuration using the [Deployment options](#deployment-options).
 {{< /call-out >}}
 
 ## Deployment options
