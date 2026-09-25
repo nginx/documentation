@@ -354,14 +354,66 @@ spec:
 
 {{</tabs>}}
 
-Note that each subroute must have a `path` that starts with the same prefix (here `/coffee`), which is defined in the route of the VirtualServer. Additionally, the `host` in the VirtualServerRoute must be the same as the `host` of the VirtualServer.
+Note that each subroute must have a `path` that starts with the same prefix (here `/coffee`), which is defined in the route of the VirtualServer. If the VirtualServerRoute sets a `host`, it must be the same as the `host` of the VirtualServer that references it. If the VirtualServerRoute omits `host`, it inherits the host of whichever VirtualServer references it and can be shared by multiple VirtualServers. See [Share a VirtualServerRoute across VirtualServers](#share-a-virtualserverroute-across-virtualservers).
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. Must be the same as the ``host`` of the VirtualServer that references this resource. | ``string`` | Yes |
+|``host`` | The host (domain name) of the server. This field is optional. When set, the ``host`` must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. A wildcard domain like ``*.example.com`` must be enclosed in double quotes. A ``host`` that is set must match the ``host`` of the VirtualServer that references this resource. The VirtualServerRoute then attaches only to that VirtualServer. When omitted, the VirtualServerRoute inherits the ``host`` of whichever VirtualServer references it, so multiple VirtualServers with different hosts can share it. See [Share a VirtualServerRoute across VirtualServers](#share-a-virtualserverroute-across-virtualservers). | ``string`` | No |
 |``upstreams`` | A list of upstreams. | [[]upstream](#upstream) | No |
 |``subroutes`` | A list of subroutes. | [[]subroute](#virtualserverroutesubroute) | No |
 |``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string``_ | No |
+
+### Share a VirtualServerRoute across VirtualServers
+
+A VirtualServerRoute that omits `host` shares one route configuration across VirtualServers with different hosts. The shared VirtualServerRoute carries its own subroutes, upstreams, and policies, so you don't need a separate VirtualServerRoute for each host.
+
+A VirtualServerRoute without a `host` field is a hostless VirtualServerRoute. A hostless VirtualServerRoute inherits the host of whichever VirtualServer references it, by name with `route` or by label with [`routeSelector`](#virtualserverrouterouteselector). Because a hostless VirtualServerRoute carries no host of its own, any VirtualServer can reference it, and several VirtualServers can share it.
+
+The following VirtualServerRoute omits `host`:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: coffee-shared
+  namespace: coffee-shared-ns
+spec:
+  upstreams:
+  - name: latte
+    service: latte-svc
+    port: 80
+  - name: espresso
+    service: espresso-svc
+    port: 80
+  subroutes:
+  - path: /coffee/latte
+    action:
+      pass: latte
+  - path: /coffee/espresso
+    action:
+      pass: espresso
+```
+
+A VirtualServer references this VirtualServerRoute by its `namespace/name` in a `route`:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe
+  namespace: cafe-ns
+spec:
+  host: cafe.example.com
+  routes:
+  - path: /coffee
+    route: coffee-shared-ns/coffee-shared
+```
+
+A second VirtualServer with a different `host` can reference this same `coffee-shared-ns/coffee-shared` VirtualServerRoute. This many-to-one reference is what shares the route configuration.
+
+The `status.referencedBy` field of a VirtualServerRoute lists every referencing VirtualServer as a comma-separated list of `namespace/name` values. To view a VirtualServerRoute's status, including `referencedBy` and the `NoVirtualServerFound` reason, run `kubectl describe virtualserverroute <name>` (or `vsr` for short).
+
+A hostless VirtualServerRoute has no host to inherit until a VirtualServer references it. The controller reports it as not referenced by any VirtualServer. If you create the VirtualServerRoute before any VirtualServer references it, this status is expected. When a VirtualServer references the VirtualServerRoute, the status clears.
 
 ### VirtualServerRoute.Subroute
 
