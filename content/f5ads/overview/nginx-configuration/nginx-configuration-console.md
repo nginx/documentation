@@ -1,5 +1,5 @@
 ---
-title: Manage configs using the Console
+title: Manage configurations using the Console
 weight: 100
 toc: true
 f5-docs: DOCS-000

@@ -1,5 +1,6 @@
 ---
-title: About
+title: Key capabilities
+description: "An overview of what F5 Application Delivery Service does and the core capabilities it provides."
 weight: 100
 toc: true
 f5-docs: DOCS-000
@@ -9,7 +10,7 @@ f5-content-type: concept
 f5-product: F5 Application Delivery Service
 ---
 
-## What is F5 Application Delivery Service?
+## What is F5 ADS?
 
 F5 Application Delivery Service (F5 ADS) is a service offering that is tightly integrated into your cloud platform and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
 

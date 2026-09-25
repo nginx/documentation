@@ -1,6 +1,6 @@
 ---
 title: NGINX configurations
-weight: 500
+weight: 700
 url: /f5ads/overview/nginx-configuration/
 canonical: /f5ads/overview/nginx-configuration/
 ---

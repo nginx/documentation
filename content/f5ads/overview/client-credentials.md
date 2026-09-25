@@ -1,5 +1,5 @@
 ---
-title: "Programmatic authentication with client credentials"
+title: "Automate API access with client credentials"
 description: "Learn how to set up OAuth2 client credentials for programmatic access to the F5 Application Delivery Service API."
 weight: 400
 toc: true

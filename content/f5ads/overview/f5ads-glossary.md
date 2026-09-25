@@ -1,6 +1,7 @@
 ---
 title: Glossary
-weight: 900
+description: "Definitions for terms and acronyms used throughout F5 Application Delivery Service documentation."
+weight: 800
 toc: true
 f5-docs: DOCS-000
 url: /f5ads/overview/f5ads-glossary/
