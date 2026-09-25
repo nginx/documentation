@@ -27,8 +27,6 @@ The settings in `UpstreamSettingsPolicy` correspond to the following NGINX direc
 - [`ip_hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash)
 - [`hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 - [`variables`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables)
-- [`max_fails`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails)
-- [`fail_timeout`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout)
 - [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) (NGINX Plus only)
 
 `UpstreamSettingsPolicy` is a [Direct Policy Attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can be applied to one or more services in the same namespace as the policy.
@@ -575,7 +573,7 @@ Health checks let NGINX detect backend endpoints that are running but can't serv
 
 When `healthCheck` isn't set, NGF adds no health-check configuration and NGINX uses its default behavior for the upstream.
 
-{{< call-out class="important" >}}Active health checks require NGINX Plus. If you set `spec.healthCheck.active` on NGINX Open Source, NGINX Gateway Fabric rejects the policy: its status shows an `Accepted: False` condition with the reason `Invalid`, and NGINX applies no configuration, with no disruptive effect. If you're unsure which edition your data plane runs, apply the policy and check its status, or ask your cluster operator. See [Advanced features with NGINX Plus]({{< ref "/ngf/overview/nginx-plus.md" >}}). Use passive health checks with NGINX Open Source.{{< /call-out >}}
+{{< call-out class="important" >}}Active health checks require NGINX Plus. If you set `spec.healthCheck.active` on NGINX Open Source, NGINX Gateway Fabric rejects the policy: its status shows an `Accepted: False` condition with the reason `Invalid`, and NGINX applies no configuration, with no disruptive effect. If you're unsure which edition your data plane runs, apply the policy and check its status, or ask your cluster operator. See [Advanced features with NGINX Plus]({{< ref "/ngf/overview/nginx-plus.md" >}}).{{< /call-out >}}
 
 Health checks apply only to Layer 7 (HTTP, HTTPS, and gRPC) upstreams, that is, Services referenced by an HTTPRoute or GRPCRoute. They don't apply to L4/stream (TCP, UDP, or TLSRoute) upstreams.
 
@@ -658,7 +656,7 @@ Active health checks probe your backends on a schedule, separate from client tra
 - `jitter` (duration): a random delay added to each check.
 - `fails` (integer, minimum 1): consecutive failed checks before a server is considered unhealthy.
 - `passes` (integer, minimum 1): consecutive passed checks before a server is considered healthy again.
-- `path` (string): the URI for probe requests. The default is `/`. Mutually exclusive with `grpc`.
+- `path` (string): the URI for probe requests. The default is `/`. Mutually exclusive with `grpc`. Maps to the `uri` parameter on the `health_check` directive.
 - `port` (integer, 1 through 65535): the port used for the health-check connection.
 - `match.status` (string): the expected response status codes for a check to pass. The default is any 2xx or 3xx code. It accepts an optional leading `!` for negation and space-separated codes or ranges, for example `"200"`, `"! 500"`, `"200 204"`, or `"200-399"`. Mutually exclusive with `grpc`.
 - `mandatory` (boolean): require every newly added server to pass a check before it receives traffic. This requirement warms up new endpoints.
@@ -672,7 +670,7 @@ For gRPC upstreams, configure the check through `spec.healthCheck.active.grpc`. 
 - `service` (string): the gRPC service to check. If you don't set it, NGINX checks the health of the whole server.
 - `status` (string): the gRPC status code that counts as healthy. Set it only if your service doesn't implement the gRPC health-checking protocol. Use a status name, such as `UNIMPLEMENTED`, or its number, such as `12`.
 
-{{< call-out class="important" >}}CRD validation enforces two constraints on these fields. A policy that sets `persistent: true` without `mandatory: true`, or that sets `grpc` together with `path` or `match`, is rejected: its status shows an `Accepted: False` condition with the reason `Invalid`. NGINX Gateway Fabric also validates every header in `headers`: an invalid name or value causes the same rejection.{{< /call-out >}}
+{{< call-out class="important" >}}CRD validation enforces two constraints on these fields. A policy that sets `persistent: true` without `mandatory: true`, or that sets `grpc` together with `path` or `match`, is rejected: its status shows an `Accepted: False` condition with the reason `Invalid`.{{< /call-out >}}
 
 Active health checks require the upstream to have a shared-memory zone. Set the `zoneSize` field in the same policy, as the active example below shows, or see [Configure upstream zone size]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-upstream-zone-size" >}}) for details.
 
