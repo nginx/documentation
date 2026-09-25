@@ -7,9 +7,6 @@ f5-landing-page: true
 f5-content-type: landing-page
 cascade:
   logo: F5-NGINXaaS-icon.svg
-  f5-banner:
-    enabled: false
-    md: /_banners/f5ads-aws-ea.md
 ---
 
 Learn how to deliver, manage, and protect your applications using F5 Application Delivery Service.
@@ -43,7 +40,7 @@ Access the [F5 ADS Console](https://console.nginxaas.net/) directly to manage or
   {{<card title="Programmatic authentication" titleUrl="/f5ads/overview/client-credentials/" icon="key">}}
     Set up OAuth2 client credentials for automation and CI/CD pipelines
   {{</card>}}
-  {{<card title="F5 ADS for AWS" titleUrl="/application-services/aws/deploy/prerequisites/" icon="zap">}}
+  {{<card title="F5 ADS for AWS" titleUrl="/application-services/aws/deploy/create-deployment/deploy-console/" icon="zap">}}
     Use F5 ADS alongside your services running in AWS
   {{</card>}}
 {{</card-section>}}

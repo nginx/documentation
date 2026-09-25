@@ -20,7 +20,7 @@ This guide explains how to deploy F5 Application Delivery Service for AWS using 
 
 ## Before you begin
 
-Before you can deploy F5 ADS, follow the steps in the [Prerequisites]({{< ref "/f5ads/aws/deploy/prerequisites/" >}}) topic to subscribe to the F5 ADS for AWS offering in the AWS Marketplace.
+Before you can deploy F5 ADS, subscribe to the F5 ADS for AWS offering in the AWS Marketplace.
 
 ## Access the F5 ADS Console
 

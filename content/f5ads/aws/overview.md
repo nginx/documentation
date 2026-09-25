@@ -21,9 +21,6 @@ F5 Application Delivery Service for AWS (F5 ADS for AWS) is a SaaS offering tigh
 NGINX Plus extends NGINX Open Source with advanced functionality, giving you a complete application delivery solution. F5 ADS handles NGINX Plus license management automatically.
 
 {{<card-section showAsCards="true" isFeaturedSection="false">}}
-  {{<card title="Prerequisites" titleUrl="/application-services/aws/deploy/prerequisites/" icon="power">}}
-    Follow these steps to prepare for your F5 ADS deployment
-  {{</card>}}
   {{<card title="Create a deployment" titleUrl="/application-services/aws/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
     Step-by-step instructions to deploy F5 ADS using the F5 ADS Console
   {{</card>}}
@@ -150,4 +147,4 @@ Be aware of the following constraints when using F5 ADS for AWS:
 
 ## What's next
 
-To get started, check the [F5 ADS for AWS prerequisites]({{< ref "/f5ads/aws/deploy/prerequisites.md" >}}).
+To get started, [create a deployment]({{< ref "/f5ads/aws/deploy/create-deployment/deploy-console.md" >}}).
