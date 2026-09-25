@@ -1,11 +1,11 @@
 ---
 title: Deploy using the Terraform provider
+url: /app-delivery/google/deploy/create-deployment/deploy-terraform/
+canonical: /app-delivery/google/deploy/create-deployment/deploy-terraform/
 description: "Create and configure an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider."
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /application-services/google/deploy/create-deployment/deploy-terraform/
-canonical: /application-services/google/deploy/create-deployment/deploy-terraform/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, Terraform, create deployment, F5 ADS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"

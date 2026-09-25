@@ -1,10 +1,10 @@
 ---
 title: Add certificates using the Console
+url: /app-delivery/overview/ssl-tls-certificates/ssl-tls-certificates-console/
+canonical: /app-delivery/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console/
-canonical: /f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 contentVars:

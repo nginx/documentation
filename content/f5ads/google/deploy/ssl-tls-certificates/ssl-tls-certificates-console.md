@@ -1,10 +1,10 @@
 ---
 title: Add certificates using the Console
+url: /app-delivery/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
+canonical: /app-delivery/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
-canonical: /application-services/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 contentSource: f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console.md

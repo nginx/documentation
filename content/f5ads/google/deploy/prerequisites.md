@@ -1,10 +1,10 @@
 ---
 title: Prerequisites
+url: /app-delivery/google/deploy/prerequisites/
+canonical: /app-delivery/google/deploy/prerequisites/
 weight: 100
 toc: false
 f5-docs: DOCS-000
-url: /application-services/google/deploy/prerequisites/
-canonical: /application-services/google/deploy/prerequisites/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

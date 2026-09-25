@@ -1,10 +1,11 @@
 ---
 title: "NGINX config restrictions"
+url: /app-delivery/aws/deploy/nginx-configuration/nginx-config-restrictions/
+canonical: /app-delivery/aws/deploy/nginx-configuration/nginx-config-restrictions/
 description: "Reference for NGINX configuration restrictions specific to F5 Application Delivery Service for AWS deployments."
 weight: 150
 toc: true
 f5-docs: DOCS-000
-url: /application-services/aws/deploy/nginx-configuration/nginx-config-restrictions/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, NGINX configuration, listen restrictions, proxy_protocol, IPv6, UDP, QUIC, listen ports"

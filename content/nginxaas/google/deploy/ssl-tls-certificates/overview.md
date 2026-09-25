@@ -7,7 +7,7 @@ url: /nginxaas/google/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-product-former: F5 NGINXaaS for Google Cloud
-canonical: /application-services/google/deploy/ssl-tls-certificates/overview/
+canonical: /app-delivery/google/deploy/ssl-tls-certificates/overview/
 f5-ref-path: /f5ads/google/deploy/ssl-tls-certificates/overview/
 f5-docs: DOCS-000
 f5-keywords: "NGINXaaS for Google Cloud, SSL, TLS, certificates, Google Secret Manager, certificate rotation, PEM, ML-DSA, post-quantum, PQC"

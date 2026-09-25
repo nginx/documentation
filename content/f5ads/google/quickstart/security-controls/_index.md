@@ -1,8 +1,8 @@
 ---
 title: Security controls
+url: /app-delivery/google/quickstart/security-controls/
+canonical: /app-delivery/google/quickstart/security-controls/
 weight: 200
-url: /application-services/google/quickstart/security-controls/
-canonical: /application-services/google/quickstart/security-controls/
 toc: false
 draft: true
 ---

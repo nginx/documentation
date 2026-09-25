@@ -7,7 +7,8 @@ url: /nginxaas/overview/glossary/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /f5ads/overview/f5ads-glossary/
+canonical: /app-delivery/overview/f5ads-glossary/
+f5-ref-path: /f5ads/overview/f5ads-glossary/
 contentVars:
   product: NGINXaaS
 ---

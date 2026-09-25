@@ -1,6 +1,6 @@
 ---
 title: Upload an NGINX configuration
+url: /app-delivery/google/deploy/nginx-configuration/
+canonical: /app-delivery/google/deploy/nginx-configuration/
 weight: 500
-url: /application-services/google/deploy/nginx-configuration/
-canonical: /application-services/google/deploy/nginx-configuration/
 ---

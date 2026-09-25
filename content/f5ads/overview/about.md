@@ -1,11 +1,11 @@
 ---
 title: Key capabilities
+url: /app-delivery/overview/about/
+canonical: /app-delivery/overview/about/
 description: "An overview of what F5 Application Delivery Service does and the core capabilities it provides."
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/overview/about/
-canonical: /f5ads/overview/about/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service
 ---

@@ -6,7 +6,8 @@ toc: true
 url: /nginxaas/overview/client-credentials/
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /f5ads/overview/client-credentials/
+canonical: /app-delivery/overview/client-credentials/
+f5-ref-path: /f5ads/overview/client-credentials/
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
 f5-summary: >

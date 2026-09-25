@@ -1,6 +1,6 @@
 ---
 title: NGINX configurations
+url: /app-delivery/overview/nginx-configuration/
+canonical: /app-delivery/overview/nginx-configuration/
 weight: 700
-url: /f5ads/overview/nginx-configuration/
-canonical: /f5ads/overview/nginx-configuration/
 ---

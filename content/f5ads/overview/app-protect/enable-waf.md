@@ -1,12 +1,12 @@
 ---
 title: Turn on F5 WAF for NGINX
+url: /app-delivery/overview/app-protect/enable-waf/
+canonical: /app-delivery/overview/app-protect/enable-waf/
 linkTitle: Turn on F5 WAF protection
 description: "Turn on F5 WAF for NGINX on an F5 Application Delivery Service deployment using the F5 ADS Console."
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/overview/app-protect/enable-waf/
-canonical: /f5ads/overview/app-protect/enable-waf/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 f5-keywords: "F5 WAF, app protect, turn on, F5 ADS Console"

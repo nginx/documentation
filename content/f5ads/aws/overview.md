@@ -1,10 +1,11 @@
 ---
 title: Overview and architecture
+url: /app-delivery/aws/overview/
+canonical: /app-delivery/aws/overview/
 description: "Overview of F5 Application Delivery Service for AWS architecture, capabilities, and how it integrates with your AWS environment."
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /application-services/aws/overview/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, architecture, service frontend, private endpoint, managed public endpoint, upstream network, NGINX Capacity Unit, NCU, geographical controller"
@@ -21,13 +22,13 @@ F5 Application Delivery Service for AWS (F5 ADS for AWS) is a SaaS offering tigh
 NGINX Plus extends NGINX Open Source with advanced functionality, giving you a complete application delivery solution. F5 ADS handles NGINX Plus license management automatically.
 
 {{<card-section showAsCards="true" isFeaturedSection="false">}}
-  {{<card title="Create a deployment" titleUrl="/application-services/aws/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
+  {{<card title="Create a deployment" titleUrl="/app-delivery/aws/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
     Step-by-step instructions to deploy F5 ADS using the F5 ADS Console
   {{</card>}}
-  {{<card title="Add certificates" titleUrl="/application-services/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
+  {{<card title="Add certificates" titleUrl="/app-delivery/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your F5 ADS deployment using the F5 ADS Console
   {{</card>}}
-  {{<card title="Get help" titleUrl="/f5ads/support/" icon="message-circle-question-mark">}}
+  {{<card title="Get help" titleUrl="/app-delivery/support/" icon="message-circle-question-mark">}}
     Contact F5 support for assistance with F5 ADS for AWS
   {{</card>}}
 {{</card-section>}}

@@ -7,7 +7,8 @@ url: /nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console/
+canonical: /app-delivery/overview/ssl-tls-certificates/ssl-tls-certificates-console/
+f5-ref-path: /f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 contentVars:
   product: NGINXaaS
 ---

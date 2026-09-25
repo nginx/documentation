@@ -6,7 +6,8 @@ url: /nginxaas/overview/nginx-configuration/configuration-rules/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /f5ads/overview/nginx-configuration/configuration-rules/
+canonical: /app-delivery/overview/nginx-configuration/configuration-rules/
+f5-ref-path: /f5ads/overview/nginx-configuration/configuration-rules/
 contentVars:
   product: NGINXaaS
 ---

@@ -1,12 +1,12 @@
 ---
 title: Configure F5 WAF for NGINX
+url: /app-delivery/overview/app-protect/configure-waf/
+canonical: /app-delivery/overview/app-protect/configure-waf/
 linkTitle: Configure F5 WAF protection
 description: "Configure F5 WAF for NGINX security features by editing the NGINX configuration file."
 weight: 110
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/overview/app-protect/configure-waf/
-canonical: /f5ads/overview/app-protect/configure-waf/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 f5-keywords: "F5 WAF, app protect, security policy, NGINX configuration"

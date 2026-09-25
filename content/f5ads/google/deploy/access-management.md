@@ -1,10 +1,10 @@
 ---
 title: Identity and access management
+url: /app-delivery/google/deploy/access-management/
+canonical: /app-delivery/google/deploy/access-management/
 weight: 600
 toc: true
 f5-docs: DOCS-000
-url: /application-services/google/deploy/access-management/
-canonical: /application-services/google/deploy/access-management/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

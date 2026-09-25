@@ -1,5 +1,6 @@
 ---
 title: Quickstart guides
+url: /app-delivery/google/quickstart/
+canonical: /app-delivery/google/quickstart/
 weight: 500
-url: /application-services/google/quickstart/
 ---

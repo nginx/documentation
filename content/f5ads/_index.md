@@ -2,7 +2,7 @@
 title: F5 Application Delivery Service
 linkTitle: F5 Application Delivery Service
 description: Learn how to deliver, manage, and protect your applications using F5 Application Delivery Service.
-url: /f5ads/
+url: /app-delivery/
 f5-landing-page: true
 f5-content-type: landing-page
 cascade:
@@ -18,13 +18,13 @@ F5 Application Delivery Service (F5 ADS) is a SaaS offering that is tightly inte
 ### Featured content
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
-  {{<card title="Manage NGINX configuration" titleUrl="/f5ads/overview/nginx-configuration/nginx-configuration-console/" icon="file-sliders">}}
+  {{<card title="Manage NGINX configuration" titleUrl="/app-delivery/overview/nginx-configuration/nginx-configuration-console/" icon="file-sliders">}}
     Follow these steps to create an NGINX configuration for your F5 ADS deployment
   {{</card>}}
-  {{<card title="Create a deployment in AWS" titleUrl="/application-services/aws/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
+  {{<card title="Create a deployment in AWS" titleUrl="/app-delivery/aws/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
     Step-by-step instructions to deploy F5 ADS for AWS using the F5 ADS Console
   {{</card>}}
-  {{<card title="F5 WAF for NGINX" titleUrl="/f5ads/overview/app-protect/enable-waf/" icon="shield-check">}}
+  {{<card title="F5 WAF for NGINX" titleUrl="/app-delivery/overview/app-protect/enable-waf/" icon="shield-check">}}
     Enable and configure web application firewall protection for your deployment
   {{</card>}}
 {{</card-section>}}
@@ -34,13 +34,13 @@ F5 Application Delivery Service (F5 ADS) is a SaaS offering that is tightly inte
 Access the [F5 ADS Console](https://console.nginxaas.net/) directly to manage organizations, NGINX configurations, and certificates. To create and manage deployments, subscribe to F5 ADS using your preferred cloud provider marketplace.
 
 {{<card-section showAsCards="true">}}
-  {{<card title="Manage users and organizations" titleUrl="/f5ads/overview/manage-users-organizations/" icon="users">}}
+  {{<card title="Manage users and organizations" titleUrl="/app-delivery/overview/manage-users-organizations/" icon="users">}}
     Create organizations and manage user access to your F5 ADS resources
   {{</card>}}
-  {{<card title="Programmatic authentication" titleUrl="/f5ads/overview/client-credentials/" icon="key">}}
+  {{<card title="Programmatic authentication" titleUrl="/app-delivery/overview/client-credentials/" icon="key">}}
     Set up OAuth2 client credentials for automation and CI/CD pipelines
   {{</card>}}
-  {{<card title="F5 ADS for AWS" titleUrl="/application-services/aws/deploy/create-deployment/deploy-console/" icon="zap">}}
+  {{<card title="F5 ADS for AWS" titleUrl="/app-delivery/aws/deploy/create-deployment/deploy-console/" icon="zap">}}
     Use F5 ADS alongside your services running in AWS
   {{</card>}}
 {{</card-section>}}
@@ -48,7 +48,7 @@ Access the [F5 ADS Console](https://console.nginxaas.net/) directly to manage or
 ### Get help
 
 {{<card-section showAsCards="true" >}}
-  {{<card title="Get help" titleUrl="/f5ads/support/" icon="wallet">}}
+  {{<card title="Get help" titleUrl="/app-delivery/support/" icon="wallet">}}
     Get in touch with the F5 support team for assistance
   {{</card>}}
 {{</card-section>}}

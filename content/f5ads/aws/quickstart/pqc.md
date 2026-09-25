@@ -1,10 +1,11 @@
 ---
 title: Enable post-quantum cryptography
+url: /app-delivery/aws/quickstart/pqc/
+canonical: /app-delivery/aws/quickstart/pqc/
 description: "Configure F5 Application Delivery Service for AWS to use hybrid ML-KEM key exchange or ML-DSA certificates for post-quantum TLS protection."
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /application-services/aws/quickstart/pqc/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, PQC, post-quantum cryptography, ML-KEM, ML-DSA, TLS 1.3, hybrid mode, quantum-safe"

@@ -1,9 +1,9 @@
 ---
 title: NGINX configuration rules and limits
+url: /app-delivery/google/deploy/nginx-configuration/configuration-rules/
+canonical: /app-delivery/google/deploy/nginx-configuration/configuration-rules/
 weight: 50
 toc: true
-url: /application-services/google/deploy/nginx-configuration/configuration-rules/
-canonical: /application-services/google/deploy/nginx-configuration/configuration-rules/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
 contentSource: f5ads/overview/nginx-configuration/configuration-rules.md

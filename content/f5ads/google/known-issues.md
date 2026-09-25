@@ -1,10 +1,10 @@
 ---
 title: "Known issues"
+url: /app-delivery/google/known-issues/
+canonical: /app-delivery/google/known-issues/
 weight: 1100
 toc: true
 f5-docs: DOCS-000
-url: /application-services/google/known-issues/
-canonical: /application-services/google/known-issues/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

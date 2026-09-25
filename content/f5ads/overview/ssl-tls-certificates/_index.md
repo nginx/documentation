@@ -1,6 +1,6 @@
 ---
 title: Manage SSL/TLS certificates
+url: /app-delivery/overview/ssl-tls-certificates/
+canonical: /app-delivery/overview/ssl-tls-certificates/
 weight: 500
-url: /f5ads/overview/ssl-tls-certificates/
-canonical: /f5ads/overview/ssl-tls-certificates/
 ---

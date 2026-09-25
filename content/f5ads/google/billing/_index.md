@@ -1,6 +1,6 @@
 ---
 title: Marketplace billing
+url: /app-delivery/google/billing/
+canonical: /app-delivery/google/billing/
 weight: 400
-url: /application-services/google/billing/
-canonical: /application-services/google/billing/
 ---

@@ -1,10 +1,11 @@
 ---
 title: Support
+url: /app-delivery/aws/support/
+canonical: /app-delivery/aws/support/
 description: "How to contact F5 support for help with F5 Application Delivery Service for AWS."
 weight: 9999
 toc: true
 f5-docs: DOCS-000
-url: /application-services/aws/support/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, support, MyF5, help, contact support, create a case"

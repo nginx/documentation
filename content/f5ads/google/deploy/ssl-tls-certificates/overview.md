@@ -1,10 +1,10 @@
 ---
 title: Overview
+url: /app-delivery/google/deploy/ssl-tls-certificates/overview/
+canonical: /app-delivery/google/deploy/ssl-tls-certificates/overview/
 description: "Reference for supported SSL/TLS certificate types and how to add them to an F5 Application Delivery Service for Google Cloud deployment."
 weight: 50
 toc: true
-url: /application-services/google/deploy/ssl-tls-certificates/overview/
-canonical: /application-services/google/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, SSL, TLS, certificates, Google Secret Manager, certificate rotation, PEM, ML-DSA, post-quantum, PQC"

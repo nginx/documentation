@@ -1,9 +1,10 @@
 ---
 title: Get help
+url: /app-delivery/support/
+canonical: /app-delivery/support/
 weight: 9999
 toc: true
 f5-docs: DOCS-000
-url: /f5ads/support/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 contentVars:

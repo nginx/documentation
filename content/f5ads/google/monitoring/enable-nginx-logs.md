@@ -1,10 +1,10 @@
 ---
 title: Enable NGINX logs
+url: /app-delivery/google/monitoring/enable-nginx-logs/
+canonical: /app-delivery/google/monitoring/enable-nginx-logs/
 weight: 350
 toc: true
 f5-docs: DOCS-000
-url: /application-services/google/monitoring/enable-nginx-logs/
-canonical: /application-services/google/monitoring/enable-nginx-logs/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

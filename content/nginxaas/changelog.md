@@ -7,7 +7,8 @@ url: /nginxaas/changelog/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /f5ads/changelog/
+canonical: /app-delivery/changelog/
+f5-ref-path: /f5ads/changelog/
 nollms: true
 ---
 

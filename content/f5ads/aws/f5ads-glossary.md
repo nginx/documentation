@@ -1,10 +1,11 @@
 ---
 title: Glossary
+url: /app-delivery/aws/f5ads-glossary/
+canonical: /app-delivery/aws/f5ads-glossary/
 description: "Definitions for terms and acronyms used in F5 Application Delivery Service for AWS documentation."
 weight: 900
 toc: true
 f5-docs: DOCS-000
-url: /application-services/aws/f5ads-glossary/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, glossary, terminology, geographical controller, F5 ADS deployment, service frontend, upstream network, VPC endpoint, VPC peering"

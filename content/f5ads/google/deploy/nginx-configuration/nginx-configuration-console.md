@@ -1,10 +1,10 @@
 ---
 title: Create or upload using the Console
+url: /app-delivery/google/deploy/nginx-configuration/nginx-configuration-console/
+canonical: /app-delivery/google/deploy/nginx-configuration/nginx-configuration-console/
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /application-services/google/deploy/nginx-configuration/nginx-configuration-console/
-canonical: /application-services/google/deploy/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 contentSource: f5ads/overview/nginx-configuration/nginx-configuration-console.md

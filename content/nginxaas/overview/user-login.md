@@ -6,7 +6,8 @@ f5-docs: DOCS-000
 url: /nginxaas/overview/user-login/
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /f5ads/overview/user-login/
+canonical: /app-delivery/overview/user-login/
+f5-ref-path: /f5ads/overview/user-login/
 f5-content-type: how-to
 f5-keywords: "login,authentication"
 f5-summary: >

@@ -8,7 +8,8 @@ url: /nginxaas/overview/app-protect/enable-waf/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /f5ads/overview/app-protect/enable-waf/
+canonical: /app-delivery/overview/app-protect/enable-waf/
+f5-ref-path: /f5ads/overview/app-protect/enable-waf/
 f5-keywords: "F5 WAF, app protect, turn on, NGINXaaS Console"
 f5-summary: >
   This page explains how to turn on F5 WAF for NGINX on an NGINXaaS deployment through the NGINXaaS Console.
