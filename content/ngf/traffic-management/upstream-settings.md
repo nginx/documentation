@@ -667,11 +667,16 @@ Active health checks probe your backends on a schedule, separate from client tra
 - `timeout.connect`, `timeout.read`, and `timeout.send` (durations): the timeouts for health-check requests.
 - `headers` (list, maximum 16): request headers to send with each check. NGINX Plus always sets `Host`, `User-Agent`, and `Connection`, which you can't override. A header name can contain only alphanumeric characters or `-`. NGINX Gateway Fabric also rejects the names `host`, `connection`, and `upgrade` (case-insensitive), even when they meet that format rule. A value can't contain line breaks, but it can include NGINX variables such as `$remote_addr`.
 
-For gRPC upstreams, configure the check through `spec.healthCheck.active.grpc`, using its `service` and `status` fields. This follows the [gRPC health-checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md). The `grpc` field is mutually exclusive with `path` and `match`.
+For gRPC upstreams, configure the check through `spec.healthCheck.active.grpc`. The check follows the [gRPC health-checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md), and the `grpc` field is mutually exclusive with `path` and `match`. The `grpc` field contains two settings:
+
+- `service` (string): the gRPC service to check. If you don't set it, NGINX checks the health of the whole server.
+- `status` (string): the gRPC status code that counts as healthy. Set it only if your service doesn't implement the gRPC health-checking protocol. Use a status name, such as `UNIMPLEMENTED`, or its number, such as `12`.
 
 {{< call-out class="important" >}}CRD validation enforces two constraints on these fields. A policy that sets `persistent: true` without `mandatory: true`, or that sets `grpc` together with `path` or `match`, is rejected: its status shows an `Accepted: False` condition with the reason `Invalid`. NGINX Gateway Fabric also validates every header in `headers`: an invalid name or value causes the same rejection.{{< /call-out >}}
 
 Active health checks require the upstream to have a shared-memory zone. Set the `zoneSize` field in the same policy, as the active example below shows, or see [Configure upstream zone size]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-upstream-zone-size" >}}) for details.
+
+If a valid BackendTLSPolicy targets the same Service, active health checks use TLS as well. The health-check location connects over HTTPS, or over gRPC with TLS for a gRPC check. It verifies the backend certificate with the certificate authority (CA) certificate and hostname from the BackendTLSPolicy. You don't need to add TLS settings to the `UpstreamSettingsPolicy`. To set up a BackendTLSPolicy, see [Securing backend traffic using mutual TLS]({{< ref "/ngf/traffic-security/secure-backend.md" >}}).
 
 The following `UpstreamSettingsPolicy` configures an active health check for the `tea` Service:
 
@@ -810,6 +815,8 @@ Status:
     Controller Name:         gateway.nginx.org/nginx-gateway-controller
 Events:                      <none>
 ```
+
+For a gRPC check, the health-check location uses the `grpc_pass` directive instead of `proxy_pass`. Its `health_check` directive includes `type=grpc`, and `grpc_service=my.grpc.Service` for this example. To confirm, run `nginx -T` as in the [active health check example for the `tea` Service]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-an-active-health-check-nginx-plus" >}}).
 
 ## Enable routing to Service ClusterIPs
 
