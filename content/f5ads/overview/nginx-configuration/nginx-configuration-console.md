@@ -1,7 +1,5 @@
 ---
 title: Manage configurations using the Console
-url: /app-delivery/overview/nginx-configuration/nginx-configuration-console/
-canonical: /app-delivery/overview/nginx-configuration/nginx-configuration-console/
 weight: 100
 toc: true
 f5-docs: DOCS-000

@@ -1,7 +1,5 @@
 ---
 title: "Automate API access with client credentials"
-url: /app-delivery/overview/client-credentials/
-canonical: /app-delivery/overview/client-credentials/
 description: "Learn how to set up OAuth2 client credentials for programmatic access to the F5 Application Delivery Service API."
 weight: 400
 toc: true

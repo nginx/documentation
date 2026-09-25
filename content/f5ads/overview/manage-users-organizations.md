@@ -1,7 +1,5 @@
 ---
 title: Manage users and organizations
-url: /app-delivery/overview/manage-users-organizations/
-canonical: /app-delivery/overview/manage-users-organizations/
 description: "Learn how to manage users, organizations, and access settings in F5 Application Delivery Service using the F5 ADS Console."
 weight: 200
 toc: true

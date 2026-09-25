@@ -1,7 +1,5 @@
 ---
 title: Identity and access management
-url: /app-delivery/aws/deploy/access-management/
-canonical: /app-delivery/aws/deploy/access-management/
 description: "Configure AWS IAM roles so F5 Application Delivery Service for AWS can access CloudWatch and Secrets Manager on your behalf."
 weight: 600
 toc: true

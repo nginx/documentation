@@ -1,7 +1,5 @@
 ---
 title: Add certificates from Secret Manager
-url: /app-delivery/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
-canonical: /app-delivery/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
 weight: 75
 toc: true
 f5-docs: DOCS-000

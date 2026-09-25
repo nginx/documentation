@@ -1,7 +1,5 @@
 ---
 title: Add certificates using the Console
-url: /app-delivery/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
-canonical: /app-delivery/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 weight: 100
 toc: true
 f5-docs: DOCS-000

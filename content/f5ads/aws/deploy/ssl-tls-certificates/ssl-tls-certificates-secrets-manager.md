@@ -1,7 +1,5 @@
 ---
 title: Add certificates from AWS Secrets Manager
-url: /app-delivery/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager/
-canonical: /app-delivery/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager/
 description: "Fetch SSL/TLS certificates for F5 Application Delivery Service for AWS directly from AWS Secrets Manager."
 weight: 75
 toc: true

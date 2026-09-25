@@ -1,7 +1,5 @@
 ---
 title: Overview and architecture
-url: /app-delivery/google/overview/
-canonical: /app-delivery/google/overview/
 description: "Overview of F5 Application Delivery Service for Google Cloud architecture, capabilities, and how it integrates with your Google Cloud environment."
 weight: 100
 toc: true

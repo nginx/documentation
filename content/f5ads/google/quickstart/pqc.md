@@ -1,7 +1,5 @@
 ---
 title: Enable post-quantum cryptography
-url: /app-delivery/google/quickstart/pqc/
-canonical: /app-delivery/google/quickstart/pqc/
 description: "Configure F5 Application Delivery Service for Google Cloud to use hybrid ML-KEM key exchange or ML-DSA certificates for post-quantum TLS protection."
 weight: 100
 toc: true

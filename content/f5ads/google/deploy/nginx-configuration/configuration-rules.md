@@ -1,7 +1,5 @@
 ---
 title: NGINX configuration rules and limits
-url: /app-delivery/google/deploy/nginx-configuration/configuration-rules/
-canonical: /app-delivery/google/deploy/nginx-configuration/configuration-rules/
 weight: 50
 toc: true
 f5-content-type: reference

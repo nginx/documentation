@@ -1,7 +1,5 @@
 ---
 title: Support
-url: /app-delivery/google/support/
-canonical: /app-delivery/google/support/
 weight: 9999
 toc: true
 f5-docs: DOCS-000

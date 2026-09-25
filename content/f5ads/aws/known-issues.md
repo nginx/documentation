@@ -1,7 +1,5 @@
 ---
 title: "Known issues"
-url: /app-delivery/aws/known-issues/
-canonical: /app-delivery/aws/known-issues/
 description: "List of known issues in the latest release of F5 Application Delivery Service for AWS."
 weight: 1100
 toc: true

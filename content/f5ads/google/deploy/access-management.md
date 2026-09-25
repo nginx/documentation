@@ -1,7 +1,5 @@
 ---
 title: Identity and access management
-url: /app-delivery/google/deploy/access-management/
-canonical: /app-delivery/google/deploy/access-management/
 weight: 600
 toc: true
 f5-docs: DOCS-000

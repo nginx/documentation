@@ -1,7 +1,5 @@
 ---
 title: Usage dashboard
-url: /app-delivery/google/billing/usage-dashboard/
-canonical: /app-delivery/google/billing/usage-dashboard/
 weight: 300
 toc: true
 f5-content-type: concept

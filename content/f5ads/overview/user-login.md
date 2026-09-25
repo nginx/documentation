@@ -1,7 +1,5 @@
 ---
 title: Log in and manage account access
-url: /app-delivery/overview/user-login/
-canonical: /app-delivery/overview/user-login/
 description: "Learn about F5 Application Delivery Service login methods, how to reset your password, and how to grant Entra admin consent for social login."
 weight: 300
 toc: true

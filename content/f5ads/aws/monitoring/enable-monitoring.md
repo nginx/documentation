@@ -1,7 +1,5 @@
 ---
 title: Enable monitoring
-url: /app-delivery/aws/monitoring/enable-monitoring/
-canonical: /app-delivery/aws/monitoring/enable-monitoring/
 description: "Learn how to enable, view, and disable Amazon CloudWatch metric export for F5 Application Delivery Service for AWS deployments."
 weight: 200
 toc: true

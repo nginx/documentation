@@ -1,7 +1,5 @@
 ---
 title: Get help
-url: /app-delivery/support/
-canonical: /app-delivery/support/
 weight: 9999
 toc: true
 f5-docs: DOCS-000

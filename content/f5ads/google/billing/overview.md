@@ -1,7 +1,5 @@
 ---
 title: Billing overview
-url: /app-delivery/google/billing/overview/
-canonical: /app-delivery/google/billing/overview/
 weight: 100
 toc: true
 f5-docs: DOCS-000

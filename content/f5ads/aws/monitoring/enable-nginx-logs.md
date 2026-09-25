@@ -1,7 +1,5 @@
 ---
 title: Enable NGINX logs
-url: /app-delivery/aws/monitoring/enable-nginx-logs/
-canonical: /app-delivery/aws/monitoring/enable-nginx-logs/
 description: "Learn how to configure, export, view, and disable NGINX access and error log export to Amazon CloudWatch Logs."
 weight: 350
 toc: true

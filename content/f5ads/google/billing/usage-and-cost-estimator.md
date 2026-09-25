@@ -1,7 +1,5 @@
 ---
 title: Usage and cost estimator
-url: /app-delivery/google/billing/usage-and-cost-estimator/
-canonical: /app-delivery/google/billing/usage-and-cost-estimator/
 weight: 200
 toc: true
 f5-docs: DOCS-000

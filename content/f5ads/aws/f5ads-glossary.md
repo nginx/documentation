@@ -1,7 +1,5 @@
 ---
 title: Glossary
-url: /app-delivery/aws/f5ads-glossary/
-canonical: /app-delivery/aws/f5ads-glossary/
 description: "Definitions for terms and acronyms used in F5 Application Delivery Service for AWS documentation."
 weight: 900
 toc: true

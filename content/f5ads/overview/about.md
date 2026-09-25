@@ -1,7 +1,5 @@
 ---
 title: Key capabilities
-url: /app-delivery/overview/about/
-canonical: /app-delivery/overview/about/
 description: "An overview of what F5 Application Delivery Service does and the core capabilities it provides."
 weight: 100
 toc: true

@@ -1,7 +1,5 @@
 ---
 title: Deploy using the F5 ADS Console
-url: /app-delivery/google/deploy/create-deployment/deploy-console/
-canonical: /app-delivery/google/deploy/create-deployment/deploy-console/
 description: "Create, configure, and connect an F5 Application Delivery Service for Google Cloud deployment using the F5 ADS Console."
 weight: 100
 toc: true

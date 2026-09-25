@@ -1,7 +1,5 @@
 ---
 title: Overview and architecture
-url: /app-delivery/aws/overview/
-canonical: /app-delivery/aws/overview/
 description: "Overview of F5 Application Delivery Service for AWS architecture, capabilities, and how it integrates with your AWS environment."
 weight: 100
 toc: true

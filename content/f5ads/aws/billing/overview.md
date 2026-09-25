@@ -1,7 +1,5 @@
 ---
 title: Billing overview
-url: /app-delivery/aws/billing/overview/
-canonical: /app-delivery/aws/billing/overview/
 description: "Overview of how F5 Application Delivery Service for AWS is billed through the AWS Marketplace."
 weight: 100
 toc: true

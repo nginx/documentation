@@ -1,7 +1,5 @@
 ---
 title: Deploy using the Terraform provider
-url: /app-delivery/google/deploy/create-deployment/deploy-terraform/
-canonical: /app-delivery/google/deploy/create-deployment/deploy-terraform/
 description: "Create and configure an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider."
 weight: 100
 toc: true

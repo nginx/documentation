@@ -1,7 +1,5 @@
 ---
 title: "Known issues"
-url: /app-delivery/google/known-issues/
-canonical: /app-delivery/google/known-issues/
 weight: 1100
 toc: true
 f5-docs: DOCS-000

@@ -1,7 +1,5 @@
 ---
 title: Turn off F5 WAF for NGINX
-url: /app-delivery/overview/app-protect/disable-waf/
-canonical: /app-delivery/overview/app-protect/disable-waf/
 linkTitle: Turn off F5 WAF protection
 description: "Turn off F5 WAF for NGINX on an F5 Application Delivery Service deployment using the F5 ADS Console."
 weight: 120

@@ -1,7 +1,5 @@
 ---
 title: Metrics catalog
-url: /app-delivery/aws/monitoring/metrics-catalog/
-canonical: /app-delivery/aws/monitoring/metrics-catalog/
 description: "Reference catalog of Amazon CloudWatch metrics exported by F5 Application Delivery Service for AWS deployments."
 weight: 400
 toc: false

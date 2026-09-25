@@ -1,7 +1,5 @@
 ---
 title: Create or upload using the Console
-url: /app-delivery/aws/deploy/nginx-configuration/nginx-configuration-console/
-canonical: /app-delivery/aws/deploy/nginx-configuration/nginx-configuration-console/
 description: "Create, upload, and update NGINX configurations for F5 Application Delivery Service for AWS using the F5 ADS Console."
 weight: 100
 toc: true

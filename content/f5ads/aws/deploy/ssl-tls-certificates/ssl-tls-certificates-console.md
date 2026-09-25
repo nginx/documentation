@@ -1,7 +1,5 @@
 ---
 title: Add certificates using the Console
-url: /app-delivery/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
-canonical: /app-delivery/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 description: "Add, update, and delete SSL/TLS certificates for F5 Application Delivery Service for AWS using the F5 ADS Console."
 weight: 100
 toc: true

@@ -1,7 +1,5 @@
 ---
 title: Enable monitoring
-url: /app-delivery/google/monitoring/enable-monitoring/
-canonical: /app-delivery/google/monitoring/enable-monitoring/
 weight: 200
 toc: true
 f5-docs: DOCS-000

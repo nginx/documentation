@@ -1,7 +1,5 @@
 ---
 title: Support
-url: /app-delivery/aws/support/
-canonical: /app-delivery/aws/support/
 description: "How to contact F5 support for help with F5 Application Delivery Service for AWS."
 weight: 9999
 toc: true

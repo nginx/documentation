@@ -1,7 +1,5 @@
 ---
 title: Prerequisites
-url: /app-delivery/google/deploy/prerequisites/
-canonical: /app-delivery/google/deploy/prerequisites/
 weight: 100
 toc: false
 f5-docs: DOCS-000

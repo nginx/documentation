@@ -1,7 +1,5 @@
 ---
 title: NGINX configuration rules and limits
-url: /app-delivery/aws/deploy/nginx-configuration/configuration-rules/
-canonical: /app-delivery/aws/deploy/nginx-configuration/configuration-rules/
 description: "Reference for NGINX configuration file restrictions and workflows for F5 Application Delivery Service for AWS."
 weight: 50
 toc: true

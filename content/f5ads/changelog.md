@@ -1,7 +1,5 @@
 ---
 title: "Changelog"
-url: /app-delivery/changelog/
-canonical: /app-delivery/changelog/
 weight: 1000
 toc: true
 f5-docs: DOCS-000

@@ -1,7 +1,5 @@
 ---
 title: Metrics catalog
-url: /app-delivery/google/monitoring/metrics-catalog/
-canonical: /app-delivery/google/monitoring/metrics-catalog/
 description: "Reference catalog of NGINX metrics exported by F5 Application Delivery Service for Google Cloud deployments."
 weight: 400
 toc: false

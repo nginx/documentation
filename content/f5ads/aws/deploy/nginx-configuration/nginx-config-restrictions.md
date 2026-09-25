@@ -1,7 +1,5 @@
 ---
 title: "NGINX config restrictions"
-url: /app-delivery/aws/deploy/nginx-configuration/nginx-config-restrictions/
-canonical: /app-delivery/aws/deploy/nginx-configuration/nginx-config-restrictions/
 description: "Reference for NGINX configuration restrictions specific to F5 Application Delivery Service for AWS deployments."
 weight: 150
 toc: true

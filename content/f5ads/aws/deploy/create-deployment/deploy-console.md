@@ -1,7 +1,5 @@
 ---
 title: Deploy using the Console
-url: /app-delivery/aws/deploy/create-deployment/deploy-console/
-canonical: /app-delivery/aws/deploy/create-deployment/deploy-console/
 description: "Create, configure, and connect an F5 Application Delivery Service for AWS deployment using the F5 ADS Console."
 weight: 100
 toc: true
