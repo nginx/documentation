@@ -11,5 +11,5 @@ f5-summary: >
   This glossary defines terms and acronyms commonly used in F5 Application Delivery Service for AWS documentation.
   Use it to look up definitions for concepts like geographical controllers, service frontends, and VPC networking as they apply to F5 ADS deployments.
 f5-audience: any
-contentSource: f5ads/overview/f5ads-glossary.md
+contentSource: f5ads/platform/f5ads-glossary.md
 ---

@@ -7,12 +7,17 @@ url: /nginxaas/changelog/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /app-delivery/changelog/
-f5-ref-path: /f5ads/changelog/
+canonical: /app-delivery/google/changelog/
 nollms: true
 ---
 
-{{< renamed-notice >}}
+{{< call-out class="important" title="This page has moved" >}}
+F5 NGINXaaS is now **F5 Application Delivery Service**. This changelog has split into separate pages:
+
+- [View the current F5 ADS for AWS changelog →]({{< ref "/f5ads/aws/changelog.md" >}})
+- [View the current F5 ADS for Google Cloud changelog →]({{< ref "/f5ads/google/changelog.md" >}})
+- [View the current F5 ADS platform changelog →]({{< ref "/f5ads/platform/changelog.md" >}})
+{{< /call-out >}}
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 

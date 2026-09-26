@@ -11,7 +11,7 @@ f5-summary: >
   Learn how to add, use, and delete SSL/TLS certificates for F5 Application Delivery Service for AWS using the F5 ADS Console.
   This guide covers uploading certificates and referencing them in an NGINX configuration.
 f5-audience: operator
-contentSource: f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
+contentSource: f5ads/platform/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---
 
 ## What's next

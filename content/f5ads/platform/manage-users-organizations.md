@@ -25,7 +25,7 @@ Before you start, ensure you understand the following concepts:
       - Google social login
       - Email and password
 
-   You can configure the F5 ADS Organization to allow any or all of these methods. By default, all listed methods are enabled. See [user login]({{< ref "/f5ads/overview/user-login.md" >}}) for further details.
+   You can configure the F5 ADS Organization to allow any or all of these methods. By default, all listed methods are enabled. See [user login]({{< ref "/f5ads/platform/user-login.md" >}}) for further details.
    - **Google Authorized Domains**: If Google social login is enabled, authorized users can configure the list of domains with which users must be associated.
       - This can be used to restrict access to Google identities within your Google Cloud Organization or Google Workspace, or other known, trusted Workspaces. For example, your Google Cloud Organization may have users created under the `example.com` domain. By setting the Authorized Domains in your F5 ADS Organization to only allow `example.com`, users attempting to log in with the same email associated with `alternative.net` Google Workspace would not be authenticated.
       - By default, an F5 ADS Organization has an empty authorized domains list, which accepts matching users from any Google Workspace.
@@ -37,7 +37,7 @@ Before you start, ensure you understand the following concepts:
 
 {{< include "/f5ads/access-console.md" >}}
 
-Once logged in, you can create and manage [NGINX configurations]({{< ref "/f5ads/overview/nginx-configuration/nginx-configuration-console.md" >}}) and [SSL/TLS certificates]({{< ref "/f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
+Once logged in, you can create and manage [NGINX configurations]({{< ref "/f5ads/platform/nginx-configuration/nginx-configuration-console.md" >}}) and [SSL/TLS certificates]({{< ref "/f5ads/platform/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
 
 If you want to create an F5 ADS deployment, subscribe to your preferred cloud provider(s) (such as [AWS]({{< ref "/f5ads/aws/deploy/create-deployment/deploy-console.md" >}}) or [Google Cloud]({{< ref "/f5ads/google/deploy/prerequisites.md#subscribe-to-the-f5-ads-for-google-cloud-offering" >}})).
 
@@ -97,4 +97,4 @@ To delete a user in an F5 ADS Organization:
 
 ## What's next
 
-[Add an NGINX configuration using the F5 ADS Console]({{< ref "/f5ads/overview/nginx-configuration/nginx-configuration-console.md" >}})
+[Add an NGINX configuration using the F5 ADS Console]({{< ref "/f5ads/platform/nginx-configuration/nginx-configuration-console.md" >}})

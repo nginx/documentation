@@ -8,8 +8,8 @@ url: /nginxaas/overview/app-protect/configure-waf/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /app-delivery/overview/app-protect/configure-waf/
-f5-ref-path: /f5ads/overview/app-protect/configure-waf/
+canonical: /app-delivery/platform/app-protect/configure-waf/
+f5-ref-path: /f5ads/platform/app-protect/configure-waf/
 f5-keywords: "F5 WAF, app protect, security policy, NGINX configuration"
 f5-summary: >
   This page explains how to configure F5 WAF for NGINX by loading the module and setting the enforcer address, then enabling a security policy.

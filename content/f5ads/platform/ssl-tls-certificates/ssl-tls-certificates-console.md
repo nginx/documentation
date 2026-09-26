@@ -44,7 +44,7 @@ To use a certificate in an NGINX configuration, follow these steps:
    | Field                       | Description                  | Note |
    |---------------------------- | ---------------------------- | ---- |
    | Certificate File Path       | This path can match one or more ssl_certificate directive file arguments in your NGINX configuration. | The certificate path must be unique within the same deployment. |
-   | Key File Path               | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration. | The key path must be unique within the same deployment. See the [NGINX Filesystem Restrictions table]({{< ref "/f5ads/overview/nginx-configuration/configuration-rules.md#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to. |
+   | Key File Path               | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration. | The key path must be unique within the same deployment. See the [NGINX Filesystem Restrictions table]({{< ref "/f5ads/platform/nginx-configuration/configuration-rules.md#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to. |
 
     {{< /table >}}
 - Update the NGINX configuration to reference the certificate you just added by the path value.
@@ -65,6 +65,6 @@ To use a certificate in an NGINX configuration, follow these steps:
 
 ## Add certificates via aux files
 
-You can upload certificate and key files as part of your NGINX configuration filesystem by selecting **Add File** > **Upload Auxiliary / Other File** in the [F5 ADS Console configuration editor]({{< ref "/f5ads/overview/nginx-configuration/nginx-configuration-console.md" >}}), then reference them with the `ssl_certificate` and `ssl_certificate_key` directives.
+You can upload certificate and key files as part of your NGINX configuration filesystem by selecting **Add File** > **Upload Auxiliary / Other File** in the [F5 ADS Console configuration editor]({{< ref "/f5ads/platform/nginx-configuration/nginx-configuration-console.md" >}}), then reference them with the `ssl_certificate` and `ssl_certificate_key` directives.
 
 {{< call-out class="warning" title="Warning" >}}Storing certificates, private keys, or any sensitive data in aux files is not recommended for security reasons. Use this method only when the other certificate management approaches are not suitable.{{< /call-out >}}

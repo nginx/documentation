@@ -36,4 +36,4 @@ F5 WAF for NGINX is turned off by default. Turn it on for your F5 ADS deployment
 
 ## What's next
 
-[Configure F5 WAF for NGINX]({{< ref "/f5ads/overview/app-protect/configure-waf.md" >}})
+[Configure F5 WAF for NGINX]({{< ref "/f5ads/platform/app-protect/configure-waf.md" >}})

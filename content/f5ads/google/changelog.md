@@ -1,0 +1,219 @@
+---
+title: "Changelog"
+weight: 1000
+toc: true
+f5-docs: DOCS-000
+f5-content-type: reference
+f5-product: F5 Application Delivery Service for Google Cloud
+nollms: true
+---
+
+Learn about the latest updates, new features, and resolved bugs in F5 Application Delivery Service for Google Cloud.
+
+To see a list of currently active issues, visit the [Known issues]({{< ref "/f5ads/google/known-issues.md" >}}) page.
+
+For updates to platform-wide features shared across cloud providers, see the [F5 ADS changelog]({{< ref "/f5ads/platform/changelog.md" >}}).
+
+## September 15, 2026
+
+- {{% icon-feature %}} **Google Cloud Network Attachment is now optional and modifiable**
+
+You can now create a Google Cloud deployment without a Network Attachment, and you can add, update, or remove the Network Attachment on existing Google Cloud deployments.
+
+## September 9, 2026
+
+- {{% icon-feature %}} **F5 ADS Terraform provider is now available (Alpha)**
+
+You can now manage F5 ADS for Google Cloud deployments with the first release of the `F5Networks/f5ads` Terraform provider, version `0.1.0-alpha.1`.
+
+- [Provider docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs)
+- [`f5ads_deployment` resource docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs/resources/deployment)
+- [`f5ads_deployment` data source docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs/data-sources/deployment)
+- [Deploy using the F5 ADS Terraform provider]({{< ref "/f5ads/google/deploy/create-deployment/deploy-terraform.md" >}})
+
+## September 4, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is now generally available in more regions**
+
+  F5 ADS for Google Cloud is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+
+  | F5 ADS Geography | Google Cloud Regions                              |
+  | ---------------- | -------------------------------------------------- |
+  | APAC              | asia-northeast1, asia-northeast2, asia-northeast3 |
+  | CA                | northamerica-northeast1, northamerica-northeast2  |
+
+  {{< /table >}}
+
+See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 ADS for Google Cloud is available.
+
+## July 30, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is now running NGINX Plus 37.0 Continuous Releases (CR).**
+
+F5 ADS for Google Cloud deployments have been automatically upgraded to NGINX Plus 37.0 (PLS.37.0). Please review the [NGINX Plus Release 37.0]({{< ref "/nginx/releases/#pls.37.0.4" >}}) Release Notes carefully for details about NGINX Plus behavioral changes.
+
+Please note the following changes:
+
+- HTTP/1.1 is now the default protocol for connecting to proxy or upstream servers.
+- Keepalive connections between NGINX and upstream servers are enabled by default.
+- Upstream shared memory zone requires an additional 1KB of memory per upstream server.
+
+NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. F5 ADS for Google Cloud does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/f5ads/google/deploy/nginx-configuration/configuration-rules.md#disallowed-configuration-directives" >}}).
+
+For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/f5ads/google/deploy/nginx-configuration/configuration-rules.md#configuration-directives-list" >}}).
+
+F5 ADS for Google Cloud also upgraded F5 WAF for NGINX to version 5.13.4. For more information, see the [F5 WAF for NGINX Release Notes]({{< ref "/waf/changelog/#f5-waf-for-nginx-5134" >}}).
+
+## June 1, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud now supports free trials**
+
+You can now sign up for a free trial of F5 ADS for Google Cloud through the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud). The free trial provides up to USD 100 in credits for a maximum of 30 days, whichever comes first, to help you explore F5 ADS for Google Cloud and its features.
+
+See the [Free trial]({{< ref "/f5ads/google/billing/overview.md#free-trial" >}}) documentation for more information.
+
+## May 15, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud now supports F5 WAF for NGINX (Preview)**
+
+You can now deploy F5 ADS with [F5 WAF for NGINX]({{< ref "/waf" >}}); an advanced high-performance web application firewall (WAF) to provide protection from OWASP Top 10 web application security risks.
+
+**Note:** This feature is currently in Preview and free to use during the preview period. Custom security policies and custom logging profiles are not yet supported.
+
+## April 16, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud now supports Managed Public Endpoint deployments (Preview)**
+
+You can now deploy F5 ADS with an internet-facing managed public endpoint. Unlike private endpoint deployments, which require Private Service Connect (PSC) in your Google Cloud project, managed public endpoints provide a publicly resolvable, unique DNS name you can use to route traffic directly to your deployment over the internet.
+
+**Note:** This feature is currently in preview; pricing may change.
+
+See the [Service Frontend]({{< ref "/f5ads/google/overview.md#service-frontend" >}}) documentation for more information about managed public endpoint.
+
+## February 11, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is now generally available in more regions**
+
+  F5 ADS for Google Cloud is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+
+  | F5 ADS Geography | Google Cloud Regions |
+  | ---------------- | --------------------- |
+  | APAC | asia-south1, asia-south2 |
+
+  {{< /table >}}
+
+See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 ADS for Google Cloud is available.
+
+## February 10, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud supports fetching SSL/TLS certificates from Secret Manager**
+
+Customers can now reference SSL/TLS certificates and keys from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview). F5 ADS for Google Cloud securely fetches them for use in deployments, ensuring your secrets remain within Google Cloud.
+
+For instructions on getting started, see our documentation to [add certificates from Secret Manager]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}}).
+
+## February 4, 2026
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is now generally available in Asia Pacific (APAC)**
+
+  F5 ADS for Google Cloud is now available in the following regions in APAC:
+
+  {{< table "table" >}}
+
+  | F5 ADS Geography | Google Cloud Regions |
+  | ---------------- | --------------------- |
+  | APAC              | asia-southeast1      |
+
+  {{< /table >}}
+
+See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 ADS for Google Cloud is available.
+
+## January 15, 2026
+
+- {{% icon-feature %}} **Required configuration no longer needed for deployments**
+
+The previously required configuration is no longer necessary for your deployments.
+
+## December 29, 2025
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is now generally available in more regions**
+
+  F5 ADS for Google Cloud is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+
+  | F5 ADS Geography | Google Cloud Regions          |
+  | ---------------- | ------------------------------ |
+  | EU                | europe-west3, europe-central2 |
+
+  {{< /table >}}
+
+See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 ADS for Google Cloud is available.
+
+## December 15, 2025
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is now generally available in more regions**
+
+  F5 ADS for Google Cloud is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+
+  | F5 ADS Geography | Google Cloud Regions        |
+  | ---------------- | ---------------------------- |
+  | EU                | europe-west4, europe-north1 |
+
+  {{< /table >}}
+
+See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 ADS for Google Cloud is available.
+
+## December 10, 2025
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is now generally available in more regions**
+
+  F5 ADS for Google Cloud is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+
+  | F5 ADS Geography | Google Cloud Regions                   |
+  | ---------------- | ---------------------------------------- |
+  | US                | us-east4, us-west2, us-west3, us-west4 |
+
+  {{< /table >}}
+
+See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 ADS for Google Cloud is available.
+
+## October 13, 2025
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud is generally available**
+
+We are pleased to announce the general availability of F5 Application Delivery Service for Google Cloud.
+
+F5 Application Delivery Service for Google Cloud (F5 ADS for Google Cloud) is a fully managed load balancer and application delivery service that streamlines cloud-native application delivery without the operational complexity of managing infrastructure. This service simplifies the deployment of APIs, microservices, and web applications while enhancing performance, visibility, security, and scalability in Google Cloud.
+
+Key features include adaptive load balancing, advanced connectivity patterns for deployment strategies like blue-green and canary, detailed visibility with over 200 real-time metrics, and strong security controls such as role-based access control and end-to-end encryption. The service also consolidates technology with unified L4/L7 load balancing combined with advanced security and programmability into a single platform for enhanced operational efficiency.
+
+This announcement marks a significant step in application delivery modernization, empowering organizations to improve user experiences and achieve seamless integration with Google Cloud Monitoring.
+
+To learn more, refer to the following resources:
+
+- **Product Information:**
+  - [F5 Application Delivery Service for Google Cloud](https://www.f5.com/products/nginx/f5-nginxaas-for-google-cloud)
+  - [Overview and architecture]({{< ref "/f5ads/google/overview.md" >}})
+  - [Getting Started]({{< ref "/f5ads/google/deploy/prerequisites.md" >}})
+
+- **Blogs:** [F5 Application Delivery Service for Google Cloud: Delivering resilient, scalable applications](https://f5.com/company/blog/delivering-resilient-scalable-applications.html)
+- **Webinars:** [Why F5 Application Delivery Service for Google Cloud is a game changer](https://events.actualtechmedia.com/on-demand/1603/why-f5-nginxaas-for-google-cloud-is-a-game-changer/)
+
+[Visit the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud) and start leveraging F5 ADS for Google Cloud today!
+
+## September 18, 2025
+
+- {{% icon-feature %}} **F5 ADS for Google Cloud Early Access**
+
+  F5 ADS for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud.
+  - To learn more about F5 ADS for Google Cloud, see the [Overview and architecture]({{< ref "/f5ads/google/overview.md" >}}) topic.
+  - To deploy F5 ADS, see the [Getting Started]({{< ref "/f5ads/google/deploy/prerequisites.md" >}}) guide.

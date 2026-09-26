@@ -1,7 +1,7 @@
 ---
 f5-product: F5 Application Delivery Service
 f5-files:
-- content/f5ads/overview/nginx-configuration/nginx-configuration-console.md
+- content/f5ads/platform/nginx-configuration/nginx-configuration-console.md
 - content/f5ads/aws/deploy/create-deployment/deploy-console.md
 - content/f5ads/aws/deploy/nginx-configuration/nginx-configuration-console.md
 ---

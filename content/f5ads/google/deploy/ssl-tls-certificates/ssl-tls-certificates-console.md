@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-contentSource: f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
+contentSource: f5ads/platform/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---
 
 ## What's next

@@ -4,7 +4,7 @@ weight: 50
 toc: true
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
-contentSource: f5ads/overview/nginx-configuration/configuration-rules.md
+contentSource: f5ads/platform/nginx-configuration/configuration-rules.md
 ---
 
 This document provides details about using NGINX configuration files with your

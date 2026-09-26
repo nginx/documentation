@@ -12,6 +12,8 @@ Learn about the latest updates, new features, and resolved bugs in F5 Applicatio
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/f5ads/aws/known-issues.md" >}}) page.
 
+For updates to platform-wide features shared across cloud providers, see the [F5 ADS changelog]({{< ref "/f5ads/platform/changelog.md" >}}).
+
 ## September 4, 2026
 
 - {{% icon-feature %}} **F5 ADS for AWS is now generally available in more regions**

@@ -17,7 +17,7 @@ F5 Application Delivery Service for AWS enforces additional restrictions on NGIN
 
 ## Listen address restrictions
 
-For general listen address and port restrictions that apply to all F5 ADS deployments, see [Listener restrictions]({{< ref "/f5ads/overview/nginx-configuration/configuration-rules.md#listener-restrictions" >}}).
+For general listen address and port restrictions that apply to all F5 ADS deployments, see [Listener restrictions]({{< ref "/f5ads/platform/nginx-configuration/configuration-rules.md#listener-restrictions" >}}).
 
 ## IPv6 requirement for UDP and QUIC
 

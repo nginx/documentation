@@ -7,8 +7,8 @@ url: /nginxaas/overview/about/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /app-delivery/overview/about/
-f5-ref-path: /f5ads/overview/about/
+canonical: /app-delivery/platform/about/
+f5-ref-path: /f5ads/platform/about/
 ---
 
 {{< renamed-notice >}}

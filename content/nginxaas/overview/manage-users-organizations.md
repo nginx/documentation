@@ -7,8 +7,8 @@ url: /nginxaas/overview/manage-users-organizations/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS
-canonical: /app-delivery/overview/manage-users-organizations/
-f5-ref-path: /f5ads/overview/manage-users-organizations/
+canonical: /app-delivery/platform/manage-users-organizations/
+f5-ref-path: /f5ads/platform/manage-users-organizations/
 ---
 
 {{< renamed-notice >}}
