@@ -192,7 +192,7 @@ See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions
 
 We are pleased to announce the general availability of F5 Application Delivery Service for Google Cloud.
 
-F5 Application Delivery Service for Google Cloud (F5 ADS for Google Cloud) is a fully managed load balancer and application delivery service that streamlines cloud-native application delivery without the operational complexity of managing infrastructure. This service simplifies the deployment of APIs, microservices, and web applications while enhancing performance, visibility, security, and scalability in Google Cloud.
+F5 ADS for Google Cloud is a fully managed load balancer and application delivery service that streamlines cloud-native application delivery without the operational complexity of managing infrastructure. This service simplifies the deployment of APIs, microservices, and web applications while enhancing performance, visibility, security, and scalability in Google Cloud.
 
 Key features include adaptive load balancing, advanced connectivity patterns for deployment strategies like blue-green and canary, detailed visibility with over 200 real-time metrics, and strong security controls such as role-based access control and end-to-end encryption. The service also consolidates technology with unified L4/L7 load balancing combined with advanced security and programmability into a single platform for enhanced operational efficiency.
 

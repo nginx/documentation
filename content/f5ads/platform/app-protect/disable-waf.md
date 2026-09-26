@@ -18,7 +18,7 @@ contentVars:
 
 ## Overview
 
-This guide explains how to turn off F5 WAF for NGINX on an F5 Application Delivery Service (F5 ADS) deployment.
+This guide explains how to turn off F5 WAF for NGINX on an F5 Application Delivery Service deployment.
 
 ## Before you start
 

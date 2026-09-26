@@ -12,7 +12,7 @@ f5-summary: >
 f5-audience: operator
 ---
 
-Use F5 Application Delivery Service for Google Cloud (F5 ADS for Google Cloud) to secure traffic by adding SSL/TLS certificates to a deployment.
+Use F5 Application Delivery Service for Google Cloud to secure traffic by adding SSL/TLS certificates to a deployment.
 
 ## Supported certificate types and formats
 

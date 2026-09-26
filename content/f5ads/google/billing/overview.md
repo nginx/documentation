@@ -13,7 +13,7 @@ f5-summary: >
 f5-audience: any
 ---
 
-F5 Application Delivery Service for Google Cloud (F5 ADS for Google Cloud) deploys into your Google Cloud subscription. Your deployment resource is visible there and integrates with the Google Cloud ecosystem. F5 fully manages the underlying infrastructure, software maintenance, availability, and scaling. Billing runs hourly, and you can track it in the Google Cloud Cost Management Dashboard.
+F5 Application Delivery Service for Google Cloud deploys into your Google Cloud subscription. Your deployment resource is visible there and integrates with the Google Cloud ecosystem. F5 fully manages the underlying infrastructure, software maintenance, availability, and scaling. Billing runs hourly, and you can track it in the Google Cloud Cost Management Dashboard.
 
 ## Pricing plans
 

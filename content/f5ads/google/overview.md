@@ -15,7 +15,7 @@ f5-audience: any
 
 ## What is F5 Application Delivery Service for Google Cloud?
 
-F5 Application Delivery Service for Google Cloud (F5 ADS for Google Cloud) is a SaaS offering tightly integrated with Google Cloud and its ecosystem of services. It helps make your applications fast, efficient, and reliable, using advanced traffic management from [NGINX Plus](https://www.nginx.com/products/nginx/) without the operational overhead.
+F5 Application Delivery Service for Google Cloud is a SaaS offering tightly integrated with Google Cloud and its ecosystem of services. It helps make your applications fast, efficient, and reliable, using advanced traffic management from [NGINX Plus](https://www.nginx.com/products/nginx/) without the operational overhead.
 
 NGINX Plus extends NGINX Open Source with advanced functionality, giving you a complete application delivery solution. F5 ADS handles NGINX Plus license management automatically.
 

@@ -13,7 +13,7 @@ Learn how to deliver, manage, and protect your applications using F5 Application
 
 ## F5 Application Delivery Service
 
-F5 Application Delivery Service (F5 ADS) is a SaaS offering that is tightly integrated into your public cloud provider and its ecosystem of services, making applications fast, efficient, and reliable, and bringing advanced traffic services enabled with the commercial version of NGINX, without any of the operational toil.
+F5 Application Delivery Service is a SaaS offering that is tightly integrated into your public cloud provider and its ecosystem of services, making applications fast, efficient, and reliable, and bringing advanced traffic services enabled with the commercial version of NGINX, without any of the operational toil.
 
 ### Featured content
 
