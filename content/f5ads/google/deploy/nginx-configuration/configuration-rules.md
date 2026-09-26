@@ -12,7 +12,7 @@ F5 Application Delivery Service for Google Cloud deployment, restrictions, and a
 
 ## NGINX configuration common user workflows
 
-You can upload NGINX configurations to your F5 ADS for Google Cloud deployment using the Google Cloud console:
+You can upload NGINX configurations to your F5 ADS for Google Cloud deployment using the F5 ADS Console:
 
 - [Upload using the console]({{< ref "/f5ads/google/deploy/nginx-configuration/nginx-configuration-console.md" >}})
 

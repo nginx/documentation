@@ -33,7 +33,7 @@ There are many ways to manage your SSL/TLS certificates and keys. For example, y
 
 ## Use a Secret Manager certificate in an NGINX configuration
 
-To add your Secret Manager certificate and key to an NGINX configuration in the F5 ADS console,
+To add your Secret Manager certificate and key to an NGINX configuration in the F5 ADS Console,
 
 1. Select **Configurations** in the left menu.
 2. Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
@@ -59,7 +59,7 @@ If you set `$VERSION` to `latest`, F5 Application Delivery Service automatically
 
 ## Update your F5 Application Delivery Service deployment's NGINX configuration
 
-Before updating your F5 Application Delivery Service deployment to use your new NGINX configuration, make sure your deployment already has a [workload identity pool provider set up]({{< ref "/f5ads/google/deploy/access-management.md#configure-wif" >}}) with the **Secret Manager Secret Accessor** role granted, so it can fetch certificates. Then, in the F5 ADS console:
+Before updating your F5 Application Delivery Service deployment to use your new NGINX configuration, make sure your deployment already has a [workload identity pool provider set up]({{< ref "/f5ads/google/deploy/access-management.md#configure-wif" >}}) with the **Secret Manager Secret Accessor** role granted, so it can fetch certificates. Then, in the F5 ADS Console:
 
 1. Select **Deployments**.
 1. Select the deployment you want to edit.
@@ -90,7 +90,7 @@ To immediately refetch secrets without editing your NGINX configuration, use **R
 
 To reapply your configuration:
 
-1. In the F5 ADS console, go to your deployment.
+1. In the F5 ADS Console, go to your deployment.
 2. Select **Reapply Configuration** in the **Configuration Info** panel.
 
 F5 Application Delivery Service reapplies your current configuration version and immediately refetches all referenced secrets.

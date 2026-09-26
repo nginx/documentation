@@ -28,7 +28,7 @@ If it's your first time using F5 ADS for Google Cloud, you need to find the offe
    - This approval process may take several seconds to complete in the background.
 1. Next, select **Sign up with F5, Inc.** to proceed.
    - In the **Welcome to F5 ADS for Google Cloud** window, select **Close Window** to return to the Google Cloud Console.
-1. You can now log into the F5 ADS for Google Cloud console by selecting **Manage on provider** from the Google Cloud Marketplace.
+1. You can now log into the F5 ADS Console by selecting **Manage on provider** from the Google Cloud Marketplace.
 
 ## What's next
 

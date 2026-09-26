@@ -29,7 +29,7 @@ F5 Application Delivery Service for Google Cloud supports integrating with Googl
 
 ## Export NGINX logs to a Google Cloud Project
 
-To enable sending logs to your desired Google Cloud project, you must specify the project ID when creating or updating a deployment. To create a deployment, see [our documentation on creating an F5 Application Delivery Service deployment]({{< ref "/f5ads/google/deploy/create-deployment/" >}}) for a step-by-step guide. To update the deployment, in the F5 ADS console,
+To enable sending logs to your desired Google Cloud project, you must specify the project ID when creating or updating a deployment. To create a deployment, see [our documentation on creating an F5 Application Delivery Service deployment]({{< ref "/f5ads/google/deploy/create-deployment/" >}}) for a step-by-step guide. To update the deployment, in the F5 ADS Console,
 
 1. On the left menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
@@ -56,7 +56,7 @@ NGINX access and error logs sent to Cloud Logging will have the log name `nginx-
 
 ## Disable Exporting NGINX logs to a Google Cloud Project
 
-To disable sending logs to your Google Cloud project, update your F5 Application Delivery Service deployment to remove the reference to your project ID. To update the deployment, in the F5 ADS console,
+To disable sending logs to your Google Cloud project, update your F5 Application Delivery Service deployment to remove the reference to your project ID. To update the deployment, in the F5 ADS Console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
@@ -67,7 +67,7 @@ To disable sending logs to your Google Cloud project, update your F5 Application
 
 If Google Cloud Logging is not showing any logs, check for **Failed Log Export to Google** events from your F5 Application Delivery Service deployment.
 
-In the F5 ADS console:
+In the F5 ADS Console:
 
 1. On the navigation menu, select **Events**.
 1. Select **Add Filter**.
