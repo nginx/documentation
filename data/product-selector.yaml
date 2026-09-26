@@ -26,11 +26,11 @@
 - productGroup: F5 NGINX cloud services
   products:
     - title: "F5 Application Delivery Service"
-      url: "f5ads"
+      url: "app-delivery"
     - title: "F5 ADS for AWS"
-      url: "application-services/aws/overview/"
+      url: "app-delivery/aws/overview/"
     - title: "F5 ADS for Google Cloud"
-      url: "application-services/google/overview/"
+      url: "app-delivery/google/overview/"
     - title: "NGINXaaS for Azure"
       url: "nginxaas-azure/"
 
