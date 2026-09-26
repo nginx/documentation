@@ -1,10 +1,18 @@
 {{/* layouts/shortcodes/renamed-notice.html */}}
-{{ $newURL := index .Page.Params "f5-moved-to" }}
+{{ $newURL := index .Page.Params "canonical" }}
 {{ $newName := index .Page.Params "f5-product" }}
 {{ $oldName := index .Page.Params "f5-product-former" }}
+{{/* f5-ref-path is optional. Use it to validate against the moved page's content
+     path when that path no longer matches its public URL (for example, when a
+     page's URL front matter changes independently of where the file lives in
+     content/). Falls back to canonical when the two still match. */}}
+{{ $refPath := index .Page.Params "f5-ref-path" }}
+{{ if not $refPath }}
+  {{ $refPath = $newURL }}
+{{ end }}
 
 {{ if not $newURL }}
-  {{ errorf "renamed-notice: f5-moved-to front matter is required (used in %q)" .Page.File.Path }}
+  {{ errorf "renamed-notice: canonical front matter is required (used in %q)" .Page.File.Path }}
 {{ end }}
 {{ if not $newName }}
   {{ errorf "renamed-notice: f5-product front matter is required (used in %q)" .Page.File.Path }}
@@ -12,14 +20,14 @@
 {{ if not $oldName }}
   {{ errorf "renamed-notice: f5-product-former front matter is required (used in %q)" .Page.File.Path }}
 {{ end }}
-{{ if not (.Site.GetPage $newURL) }}
-  {{ errorf "renamed-notice: no page found at f5-moved-to %q (used in %q)" $newURL .Page.File.Path }}
+{{ if not (.Site.GetPage $refPath) }}
+  {{ errorf "renamed-notice: no page found at %q (used in %q)" $refPath .Page.File.Path }}
 {{ end }}
 
 {{ $content := printf "%s is now **%s**. [View the current page →](%s)" $oldName $newName $newURL }}
 
 {{ partial "callout.html" (dict
-    "class" "warning call-out"
+    "class" "important call-out"
     "title" "This page has moved"
     "icon"  ""
     "sideline" "false"

@@ -4,13 +4,18 @@ weight: 350
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/user-login/
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /app-delivery/platform/user-login/
+f5-ref-path: /f5ads/platform/user-login/
 f5-content-type: how-to
 f5-keywords: "login,authentication"
 f5-summary: >
     Use this guide to sign up to NGINXaaS using an email address and password. The guide includes instructions on how to reset a password and how to grant admin consent for users of an Entra tenant to use the F5 Social Login Entra app.
 f5-audience: operator
 ---
+
+{{< renamed-notice >}}
 
 ## Overview
 

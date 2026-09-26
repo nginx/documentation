@@ -4,9 +4,14 @@ weight: 50
 toc: true
 url: /nginxaas/google/deploy/nginx-configuration/configuration-rules/
 f5-content-type: reference
-f5-product: NGINXaaS for Google Cloud
-contentSource: nginxaas/overview/nginx-configuration/configuration-rules.md
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
+canonical: /app-delivery/google/deploy/nginx-configuration/configuration-rules/
+f5-ref-path: /f5ads/google/deploy/nginx-configuration/configuration-rules/
+contentSource: f5ads/platform/nginx-configuration/configuration-rules.md
 ---
+
+{{< renamed-notice >}}
 
 This document provides details about using NGINX configuration files with your
 F5 NGINXaaS for Google Cloud deployment, restrictions, and available directives.

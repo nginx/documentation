@@ -5,8 +5,13 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-nginx-logs/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
+canonical: /app-delivery/google/monitoring/enable-nginx-logs/
+f5-ref-path: /f5ads/google/monitoring/enable-nginx-logs/
 ---
+
+{{< renamed-notice >}}
 
 F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs, and F5 WAF for NGINX security logs.
 

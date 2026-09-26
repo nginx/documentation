@@ -5,10 +5,13 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/access-management/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
+canonical: /app-delivery/google/deploy/access-management/
+f5-ref-path: /f5ads/google/deploy/access-management/
 ---
 
-
+{{< renamed-notice >}}
 
 F5 NGINXaaS for Google Cloud (NGINXaaS) uses Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, with WIF configured, your NGINXaaS deployment can perform the following integrations:
 
