@@ -135,7 +135,7 @@ F5 ADS for AWS operates globally, and regional controllers handle management req
 
 ## Current limitations
 
-F5 is committed to enhancing F5 ADS for AWS and welcomes your feedback to help shape its future. If there are features you'd like to see prioritized, submit a [support ticket]({{< ref "/f5ads/aws/support.md" >}}) to share your suggestions.
+F5 is committed to enhancing F5 ADS for AWS and welcomes your feedback to help shape its future. If there are features you'd like to see prioritized, submit a [support ticket]({{< ref "/f5ads/support.md" >}}) to share your suggestions.
 
 Be aware of the following constraints when using F5 ADS for AWS:
 

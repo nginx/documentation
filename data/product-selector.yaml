@@ -28,9 +28,9 @@
     - title: "F5 Application Delivery Service"
       url: "app-delivery"
     - title: "F5 ADS for AWS"
-      url: "app-delivery/aws/overview/"
+      url: "app-delivery/aws/"
     - title: "F5 ADS for Google Cloud"
-      url: "app-delivery/google/overview/"
+      url: "app-delivery/google/"
     - title: "NGINXaaS for Azure"
       url: "nginxaas-azure/"
 

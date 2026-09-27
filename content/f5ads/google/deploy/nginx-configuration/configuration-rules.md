@@ -37,7 +37,7 @@ There are limits to where files, including NGINX configuration files, certificat
 
 For example, `/etc/nginx` is only readable by the NGINX master process, making it a secure location for certificate files that won't be accidentally served due to configuration errors. `/var/www` is a secure location for static content because the NGINX worker process can serve files from it but cannot modify them, ensuring content integrity. `/tmp` is a good choice for storing temporary files with `proxy_temp_path` or `client_body_temp_path` since it is writable by the NGINX worker process.
 
-If you need access to additional directories, please [contact us]({{< ref "/f5ads/google/support.md" >}}).
+If you need access to additional directories, please [contact us]({{< ref "/f5ads/support.md" >}}).
 
 ## Disallowed configuration directives
 

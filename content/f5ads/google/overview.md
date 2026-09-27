@@ -29,7 +29,7 @@ NGINX Plus extends NGINX Open Source with advanced functionality, giving you a c
   {{<card title="Add certificates" titleUrl="/app-delivery/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your F5 ADS deployment using the F5 ADS Console
   {{</card>}}
-  {{<card title="Get help" titleUrl="/app-delivery/google/support/" icon="message-circle-question-mark">}}
+  {{<card title="Get help" titleUrl="/app-delivery/support/" icon="message-circle-question-mark">}}
     Contact F5 support for assistance with F5 ADS for Google Cloud
   {{</card>}}
 {{</card-section>}}
@@ -123,7 +123,7 @@ F5 ADS for Google Cloud operates globally, and regional controllers handle manag
 
 ## Current limitations
 
-F5 is committed to enhancing F5 ADS for Google Cloud and welcomes your feedback to help shape its future. If there are features you'd like to see prioritized, submit a [support ticket]({{< ref "/f5ads/google/support.md" >}}) to share your suggestions.
+F5 is committed to enhancing F5 ADS for Google Cloud and welcomes your feedback to help shape its future. If there are features you'd like to see prioritized, submit a [support ticket]({{< ref "/f5ads/support.md" >}}) to share your suggestions.
 
 Be aware of the following constraints when using F5 ADS for Google Cloud:
 
