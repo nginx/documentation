@@ -125,8 +125,7 @@ kubectl create secret docker-registry regcred \
 
 kubectl create secret generic license-token \
   --namespace nginx-ingress \
-  --from-file=license.jwt=nginx-repo.jwt \
-  --type=nginx.com/license
+  --from-file=license.jwt=nginx-repo.jwt
 ```
 
 Add the NGINX Helm repository:

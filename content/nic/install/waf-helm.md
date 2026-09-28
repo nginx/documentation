@@ -152,8 +152,7 @@ kubectl create secret \
 
 kubectl create secret \
     generic license-token \
-    --from-file=license.jwt=./nginx-repo.jwt \
-    --type=nginx.com/license
+    --from-file=license.jwt=./nginx-repo.jwt
 ```
 
 Install the required CRDs for NGINX Ingress Controller:
