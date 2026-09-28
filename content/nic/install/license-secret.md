@@ -29,12 +29,12 @@ The JWT is required for validating your subscription and reporting telemetry dat
 
 The JWT needs to be configured before deploying NGINX Ingress Controller. 
 
-It must be stored in a Kubernetes Secret of type `nginx.com/license` in the same namespace as your NGINX Ingress Controller pod(s).
+From NGINX Ingress Controller 5.7.0, store the JWT under the `license.jwt` key of a standard `Opaque` Kubernetes secret. Put the secret in the same namespace as your NGINX Ingress Controller pods. If the `license.jwt` key is absent, NGINX Ingress Controller rejects the secret. Add the key to resolve it.
 
 Create the Secret with the following command:
 
 ```shell
-kubectl create secret generic license-token --from-file=license.jwt=<PATH/TO/YOUR_JWT> --type=nginx.com/license -n <NAMESPACE>
+kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> -n <your-namespace>
 ```
 
 Replace `<PATH/TO/YOUR_JWT>` with the path to your JWT license file.
@@ -55,8 +55,7 @@ Next, use the following command to generate the updated Secret manifest and appl
 kubectl create secret generic license-token \
 --save-config \
 --dry-run=client \
---from-file=license.jwt=<NEW_JWT_FILE_PATH> \
---type=nginx.com/license \
+--from-file=license.jwt=<new-jwt-file-path> \
 -o yaml | \
 kubectl apply -f -
 ```
@@ -127,15 +126,12 @@ To use Client Auth with NGINX Instance Manager, first create a Secret of type `k
 kubectl create secret tls ssl-certificate --cert=<PATH/TO/YOUR_CLIENT.PEM> --key=<PATH/TO/YOUR_CLIENT.KEY> -n <NAMESPACE>
 ```
 
-Replace `<PATH/TO/YOUR_CLIENT.PEM>` with the path to your client certificate (PEM) file and `<PATH/TO/YOUR_CLIENT.KEY>` with the path to your client private key file.
-
-To provide a SSL trusted certificate, and an optional Certificate Revocation List, create a Secret of type `nginx.org/ca` in the Namespace that the NIC Pod(s) are in.
+To provide an SSL trusted certificate and an optional certificate revocation list, create a standard `Opaque` secret. Put the secret in the same namespace as the NGINX Ingress Controller pods:
 
 ```shell
 kubectl create secret generic ssl-trusted-certificate \
-   --from-file=ca.crt=<PATH/TO/YOUR_CA.CRT> \
-   --from-file=ca.crl=<PATH/TO/YOUR_CA.CRL> \ # optional
-   --type=nginx.org/ca
+   --from-file=ca.crt=<path-to-your-ca.crt> \
+   --from-file=ca.crl=<path-to-your-ca.crl> # optional
 ```
 
 Replace `<PATH/TO/YOUR_CA.CRT>` with the path to your CA certificate file and `<PATH/TO/YOUR_CA.CRL>` with the path to your certificate revocation list (CRL) file.
