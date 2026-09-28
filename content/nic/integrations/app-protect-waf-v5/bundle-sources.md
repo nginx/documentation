@@ -43,7 +43,7 @@ Complete end-to-end NGINX Ingress Controller with F5 WAF for NGINX bundle source
 
 ### Create a credentials Secret
 
-Create a secret in the same namespace as the Policy to hold your NGINX One Console API token. From NGINX Ingress Controller `<VERSION>`, the secret can be a standard `Opaque` secret or an `nginx.com/waf-bundle` secret. If the `token` key is absent, NGINX Ingress Controller rejects the secret. Store the token under the key `token`:
+Create a secret in the same namespace as the Policy to hold your NGINX One Console API token. From NGINX Ingress Controller 5.7.0, the secret can be a standard `Opaque` secret or an `nginx.com/waf-bundle` secret. If the `token` key is absent, NGINX Ingress Controller rejects the secret. Store the token under the key `token`:
 
 To create an API token, see [Authentication]({{< ref "/nginx-one-console/api/authentication.md" >}}).
 

@@ -132,7 +132,7 @@ secret: cafe-secret
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the TransportServer. The secret must be of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that contain the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). | ``string`` | No |
+|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the TransportServer. The secret must contain keys named `tls.crt` and `tls.key` for the certificate and private key. For details, see the [Kubernetes Ingress TLS documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). Use a `kubernetes.io/tls` secret, or a standard `Opaque` secret with the same keys. | ``string`` | No |
 
 ### Upstream
 

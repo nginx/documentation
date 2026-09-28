@@ -29,7 +29,7 @@ The JWT is required for validating your subscription and reporting telemetry dat
 
 The JWT needs to be configured before deploying NGINX Ingress Controller. 
 
-From NGINX Ingress Controller `<VERSION>`, store the JWT in a Kubernetes secret. Put it in the same namespace as your NGINX Ingress Controller pods. NGINX Ingress Controller validates the secret by its `license.jwt` key, so the secret can be a standard `Opaque` secret or an `nginx.com/license` secret. If the `license.jwt` key is absent, NGINX Ingress Controller rejects the secret. Add the key to resolve it.
+From NGINX Ingress Controller 5.7.0, store the JWT in a Kubernetes secret. Put it in the same namespace as your NGINX Ingress Controller pods. NGINX Ingress Controller validates the secret by its `license.jwt` key, so the secret can be a standard `Opaque` secret or an `nginx.com/license` secret. If the `license.jwt` key is absent, NGINX Ingress Controller rejects the secret. Add the key to resolve it.
 
 Create the Secret with the following command:
 

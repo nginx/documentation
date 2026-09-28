@@ -16,7 +16,7 @@ This reference describes the fields and merging behavior for each Policy type.
 
 {{< call-out class="note" >}}
 
-From version `<VERSION>`, NGINX Ingress Controller validates each referenced secret by its data keys, not by its `type`. Wherever a section below shows an `nginx.org/*` or `nginx.com/*` type, you can provide either of these:
+From version 5.7.0, NGINX Ingress Controller validates each referenced secret by its data keys, not by its `type`. Wherever a section below shows an `nginx.org/*` or `nginx.com/*` type, you can provide either of these:
 
 - A standard `Opaque` Kubernetes secret that holds the required keys, so you can reuse a secret that your existing credential tooling (for example, cert-manager, External Secrets Operator, or a GitOps pipeline) already produces.
 - A secret of the NGINX-specific type shown for that field.
@@ -280,7 +280,7 @@ data:
 |``suppliedIn`` | `header` or `query`. | | Yes |
 |``suppliedIn.header`` | An array of headers that the API Key may appear in. | ``string[]`` | No |
 |``suppliedIn.query`` | An array of query params that the API Key may appear in. | ``string[]`` | No |
-|``clientSecret`` | The name of the Kubernetes secret that stores the API keys. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/apikey` secret. Store each API key as a key-value pair, where each key is a unique clientID and each value is a unique base64-encoded API key. | ``string`` | Yes |
+|``clientSecret`` | The name of the Kubernetes secret that stores the API keys. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/apikey` secret. Store each API key as a key-value pair, where each key is a unique clientID and each value is a unique base64-encoded API key. If the secret holds two or more keys and every key belongs to another secret format, such as `tls.crt` and `tls.key`, NGINX Ingress Controller rejects the secret. | ``string`` | Yes |
 
 {{% /table %}}
 
@@ -654,7 +654,7 @@ This feature uses the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/ht
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``tlsSecret`` | The name of the Kubernetes secret that stores the TLS certificate and key. It must be in the same namespace as the Policy resource. Use a `kubernetes.io/tls` secret, with the certificate under the key `tls.crt` and the key under `tls.key`. If either key is absent, or the certificate and key don't form a valid pair, NGINX Ingress Controller rejects the secret. | ``string`` | No |
+|``tlsSecret`` | The name of the Kubernetes secret that stores the TLS certificate and key. It must be in the same namespace as the Policy resource. Store the certificate under the key `tls.crt` and the private key under `tls.key`. Use a `kubernetes.io/tls` secret, so that Kubernetes checks for both keys when you create it. A standard `Opaque` secret with the same keys also works. If either key is absent, or the certificate and key don't form a valid pair, NGINX Ingress Controller rejects the secret. | ``string`` | No |
 |``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 |``verifyServer`` | Turns on verification of the upstream HTTPS server certificate. | ``bool`` | No |
 |``verifyDepth`` | Sets the verification depth in the proxied HTTPS server certificates chain. The default is ``1``. | ``int`` | No |
