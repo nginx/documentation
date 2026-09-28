@@ -566,12 +566,12 @@ upstream default_tea_80 {
 
 ## Configure health checks
 
-Health checks let NGINX detect backend endpoints that are running but can't serve requests, then stop routing traffic to them. NGF supports two kinds through `UpstreamSettingsPolicy.spec.healthCheck`:
+Health checks let NGINX detect backend endpoints that are running but can't serve requests, then stop routing traffic to them. NGINX Gateway Fabric supports two kinds through `UpstreamSettingsPolicy.spec.healthCheck`:
 
 - Passive checks (`spec.healthCheck.passive`) work on both NGINX Open Source and NGINX Plus: NGINX monitors the responses to real client requests and marks a server unavailable after repeated failures.
 - Active checks (`spec.healthCheck.active`) work on NGINX Plus only: NGINX sends probe requests to a dedicated health-check location and marks a server unavailable when those probes fail.
 
-When `healthCheck` isn't set, NGF adds no health-check configuration and NGINX uses its default behavior for the upstream.
+When `healthCheck` isn't set, NGINX Gateway Fabric adds no health-check configuration and NGINX uses its default behavior for the upstream.
 
 {{< call-out class="important" >}}Active health checks require NGINX Plus. If you set `spec.healthCheck.active` on NGINX Open Source, NGINX Gateway Fabric rejects the policy: its status shows an `Accepted: False` condition with the reason `Invalid`, and NGINX applies no configuration, with no disruptive effect. If you're unsure which edition your data plane runs, apply the policy and check its status, or ask your cluster operator. See [Advanced features with NGINX Plus]({{< ref "/ngf/overview/nginx-plus.md" >}}).{{< /call-out >}}
 
@@ -670,11 +670,7 @@ For gRPC upstreams, configure the check through `spec.healthCheck.active.grpc`. 
 - `service` (string): the gRPC service to check. If you don't set it, NGINX checks the health of the whole server.
 - `status` (string): the gRPC status code that counts as healthy. Set it only if your service doesn't implement the gRPC health-checking protocol. Use a status name, such as `UNIMPLEMENTED`, or its number, such as `12`.
 
-{{< call-out class="important" >}}CRD validation enforces two constraints on these fields. A policy that sets `persistent: true` without `mandatory: true`, or that sets `grpc` together with `path` or `match`, is rejected: its status shows an `Accepted: False` condition with the reason `Invalid`.{{< /call-out >}}
-
-Active health checks require the upstream to have a shared-memory zone. Set the `zoneSize` field in the same policy, as the active example below shows, or see [Configure upstream zone size]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-upstream-zone-size" >}}) for details.
-
-If a valid BackendTLSPolicy targets the same Service, active health checks use TLS as well. The health-check location connects over HTTPS, or over gRPC with TLS for a gRPC check. It verifies the backend certificate with the certificate authority (CA) certificate and hostname from the BackendTLSPolicy. You don't need to add TLS settings to the `UpstreamSettingsPolicy`. To set up a BackendTLSPolicy, see [Securing backend traffic using mutual TLS]({{< ref "/ngf/traffic-security/secure-backend.md" >}}).
+If a valid BackendTLSPolicy targets the same Service, active health checks use TLS as well. The health-check location connects over HTTPS, or over gRPC with TLS for a gRPC check. It verifies the backend certificate with the certificate authority (CA) certificate and hostname from the BackendTLSPolicy. To set up a BackendTLSPolicy, see [Securing backend traffic using mutual TLS]({{< ref "/ngf/traffic-security/secure-backend.md" >}}).
 
 The following `UpstreamSettingsPolicy` configures an active health check for the `tea` Service:
 
