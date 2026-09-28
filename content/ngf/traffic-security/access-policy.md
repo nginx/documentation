@@ -256,11 +256,11 @@ More than one AccessPolicy can target the same resource. NGINX Gateway Fabric me
 
 **Symptom**: `kubectl apply` returns an error, and Kubernetes doesn't create the AccessPolicy. The error includes one of these messages:
 
-- `AccessRule names must be unique`
-- `Cannot mix Gateway kind with HTTPRoute or GRPCRoute kinds in targetRefs`
-- `TargetRef Kind must be one of: Gateway, HTTPRoute, or GRPCRoute`
-- `TargetRef Kind and Name combination must be unique`
-- `ipAddress must be set when type is IPAddress`
+- `AccessRule` names must be unique
+- Cannot mix `Gateway` kind with `HTTPRoute` or `GRPCRoute` kinds in `targetRefs`
+- `TargetRef` Kind must be one of: `Gateway`, `HTTPRoute`, or `GRPCRoute`
+- `TargetRef` Kind and Name combination must be unique
+- `ipAddress` must be set when type is `IPAddress`
 
 **Cause**: The AccessPolicy CRD checks the policy when you apply it. The policy breaks one of the rules in [AccessPolicy fields](#accesspolicy-fields).
 
