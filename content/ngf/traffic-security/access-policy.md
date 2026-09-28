@@ -268,7 +268,7 @@ More than one AccessPolicy can target the same resource. NGINX Gateway Fabric me
 
 ### The AccessPolicy status is Invalid
 
-**Symptom**: The AccessPolicy has an `Accepted` condition with the status `False` and the reason `Invalid`. The condition message names the field, such as `spec.rules[0].source.ipAddress.address`, and includes `must be a valid IPv4/IPv6 address or CIDR range`.
+**Symptom**: The AccessPolicy has an `Accepted` condition with the status `False` and the reason `Invalid`. The condition message includes the text "must be a valid IPv4/IPv6 address or CIDR range" and names the field, such as `spec.rules[0].source.ipAddress.address`.
 
 **Cause**: A value in `ipAddress.address` isn't a valid IPv4 address, IPv6 address, or CIDR range.
 
