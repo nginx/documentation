@@ -14,7 +14,7 @@ Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension t
 The [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) is an official Kubernetes project that aims to provide optimized load-balancing for self-hosted Generative AI Models on Kubernetes. 
 The project's goal is to improve and standardize routing to inference workloads across the ecosystem. 
 
-Coupled with the provided LLM-D Router, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions), with additional AI specific traffic management features such as model-aware routing, serving priority for models, model rollouts, and more. 
+Coupled with the provided llm-d Router, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions). An Inference Gateway adds AI-specific traffic management features, such as model-aware routing, serving priority for models, and model rollouts. 
 
 ## Set up
 
@@ -62,12 +62,12 @@ The InferencePool is a Gateway API Inference Extension resource that represents 
 
 Install an InferencePool named `vllm-qwen3-32b` that selects from endpoints with label `app: vllm-qwen3-32b` and listening on port 8000. The Helm install command automatically installs the llm-d router and InferencePool.
 
-NGINX will query the llm-d router to determine the appropriate pod endpoint to route traffic to. These pods are selected from a pool of ready pods designated by the assigned InferencePool's Selector field. For more information, see the README for the llm-d router's [Endpoint Picker](https://github.com/llm-d/llm-d-router/blob/main/pkg/epp/README.md).
+NGINX queries the llm-d Router to find the pod endpoint that gets the traffic. The llm-d Router picks from the ready pods that the InferencePool `selector` field matches. For more information, see the README for the llm-d router's [Endpoint Picker](https://github.com/llm-d/llm-d-router/blob/main/pkg/epp/README.md).
 
-{{< call-out class="warning" >}} The llm-d router is a third-party application written and provided by the llm-d project. Communication between NGINX and the llm-d router uses TLS with certificate verification disabled by default. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party llm-d routerapplication. {{< /call-out >}}
+{{< call-out class="warning" >}} The llm-d router is a third-party application written and provided by the llm-d project. Communication between NGINX and the llm-d router uses TLS with certificate verification disabled by default. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party llm-d router application. {{< /call-out >}}
 
 {{< call-out class="tip" >}}
-See [here](https://github.com/llm-d/llm-d-router/tree/main/config/charts) for additional information on the llm-d router helm chart.
+For all chart values, see the [llm-d Router Helm charts](https://github.com/llm-d/llm-d-router/tree/main/config/charts).
 {{< /call-out >}}
 
 ```shell
