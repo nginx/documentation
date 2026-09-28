@@ -5,8 +5,13 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/about/
 f5-content-type: concept
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /app-delivery/platform/about/
+f5-ref-path: /f5ads/platform/about/
 ---
+
+{{< renamed-notice >}}
 
 ## What is F5 ${product}?
 
@@ -36,5 +41,5 @@ The key capabilities of ${product} are:
 
 ${product} is available for use with multiple public cloud providers. See specific documentation for more details:
 
-- [NGINXaaS for AWS]({{< ref "/nginxaas/aws/overview.md" >}})
+- [F5 Application Delivery Service for AWS]({{< ref "/f5ads/aws/overview.md" >}})
 - [NGINXaaS for Google Cloud]({{< ref "/nginxaas/google/overview.md" >}})
