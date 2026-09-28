@@ -155,8 +155,6 @@ kubectl create secret \
     --from-file=license.jwt=./nginx-repo.jwt
 ```
 
-This creates a standard `Opaque` secret. An `nginx.com/license` secret also works.
-
 Install the required CRDs for NGINX Ingress Controller:
 
 ```shell

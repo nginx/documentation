@@ -29,7 +29,7 @@ The JWT is required for validating your subscription and reporting telemetry dat
 
 The JWT needs to be configured before deploying NGINX Ingress Controller. 
 
-From NGINX Ingress Controller 5.7.0, store the JWT in a Kubernetes secret. Put it in the same namespace as your NGINX Ingress Controller pods. NGINX Ingress Controller validates the secret by its `license.jwt` key, so the secret can be a standard `Opaque` secret or an `nginx.com/license` secret. If the `license.jwt` key is absent, NGINX Ingress Controller rejects the secret. Add the key to resolve it.
+From NGINX Ingress Controller 5.7.0, store the JWT under the `license.jwt` key of a standard `Opaque` Kubernetes secret. Put the secret in the same namespace as your NGINX Ingress Controller pods. If the `license.jwt` key is absent, NGINX Ingress Controller rejects the secret. Add the key to resolve it.
 
 Create the Secret with the following command:
 
@@ -122,7 +122,7 @@ To use Client Auth with NGINX Instance Manager, first create a Secret of type `k
 kubectl create secret tls ssl-certificate --cert=<path-to-your-client.pem> --key=<path-to-your-client.key> -n <Your Namespace>
 ```
 
-To provide an SSL trusted certificate and an optional certificate revocation list, create a secret. Put it in the same namespace as the NGINX Ingress Controller pods. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret:
+To provide an SSL trusted certificate and an optional certificate revocation list, create a standard `Opaque` secret. Put the secret in the same namespace as the NGINX Ingress Controller pods:
 
 ```shell
 kubectl create secret generic ssl-trusted-certificate \

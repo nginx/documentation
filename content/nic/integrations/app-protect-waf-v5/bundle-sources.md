@@ -43,7 +43,7 @@ Complete end-to-end NGINX Ingress Controller with F5 WAF for NGINX bundle source
 
 ### Create a credentials Secret
 
-Create a secret in the same namespace as the Policy to hold your NGINX One Console API token. From NGINX Ingress Controller 5.7.0, the secret can be a standard `Opaque` secret or an `nginx.com/waf-bundle` secret. If the `token` key is absent, NGINX Ingress Controller rejects the secret. Store the token under the key `token`:
+Create a standard `Opaque` secret in the same namespace as the Policy to hold your NGINX One Console API token. If the `token` key is absent, NGINX Ingress Controller rejects the secret. Store the token under the key `token`:
 
 To create an API token, see [Authentication]({{< ref "/nginx-one-console/api/authentication.md" >}}).
 
@@ -198,7 +198,7 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ### Create a credentials Secret
 
-Create a secret in the same namespace as the Policy. The secret can be a standard `Opaque` secret or an `nginx.com/waf-bundle` secret. If neither the `token` key nor the `username` and `password` keys are present, NGINX Ingress Controller rejects the secret. For bearer auth, store the token under the key `token`. For basic auth, store the credentials under the keys `username` and `password`:
+Create a standard `Opaque` secret in the same namespace as the Policy. If neither the `token` key nor the `username` and `password` keys are present, NGINX Ingress Controller rejects the secret. For bearer auth, store the token under the key `token`. For basic auth, store the credentials under the keys `username` and `password`:
 
 If you use bearer auth, get an access token using your configured authentication flow. For supported methods, see [API Overview]({{< ref "/nim/fundamentals/api-overview.md#authentication" >}}).
 
@@ -402,7 +402,7 @@ After compiling your policy with the [F5 WAF compiler]({{< ref "/waf/configure/c
 
 Skip this step if your HTTPS server uses a publicly trusted certificate.
 
-- **Custom CA certificate** — If your server uses a self-signed or internal CA, create a secret with a `ca.crt` key. If the `ca.crt` key is absent, NGINX Ingress Controller rejects the secret. Reference it in `trustedCertSecret`. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret:
+- **Custom CA certificate** — If your server uses a self-signed or internal CA, create an `Opaque` secret with a `ca.crt` key. Reference the secret in `trustedCertSecret`. If the `ca.crt` key is absent, NGINX Ingress Controller rejects the secret:
 
   ```shell
   kubectl create secret generic bundle-ca-cert \
