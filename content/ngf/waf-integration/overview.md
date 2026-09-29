@@ -147,7 +147,7 @@ in-cluster storage → deploys to the data plane
 
 Changes to an `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch. No polling is required, and no change to the `WAFPolicy` resource is needed.
 
-When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/api-types/referencegrant/) in the target namespace to permit the reference.
+When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/) in the target namespace to permit the reference.
 
 {{< call-out "note" >}} PLM requires the PLM system to be installed in the cluster and PLM storage to be configured on NGINX Gateway Fabric at install time. For a complete walkthrough, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}). {{< /call-out >}}
 

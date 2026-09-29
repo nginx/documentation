@@ -40,7 +40,7 @@ If you do not have an NGINXaaS deployment, follow the steps in [Deploy using the
 
 ## Add an SSL/TLS certificate to your key vault
 
-Next, you can add an SSL/TLS certificate to your key vault by following [Azure's documentation to import an existing certificiate](https://learn.microsoft.com/en-us/azure/key-vault/certificates/tutorial-import-certificate?tabs=azure-portal), or you can generate a certificate. This tutorial will generate a self-signed certificate to quickly get started.
+Next, you can add an SSL/TLS certificate to your key vault by following [Azure's documentation to import an existing certificate](https://learn.microsoft.com/en-us/azure/key-vault/certificates/tutorial-import-certificate?tabs=azure-portal), or you can generate a certificate. This tutorial will generate a self-signed certificate to quickly get started.
 
 1. Go to your key vault, `nginxaas-kv`.
 1. Select **Certificates** in the left menu.
@@ -61,7 +61,7 @@ Next, you can add an SSL/TLS certificate to your key vault by following [Azure's
 
 ## Assign a managed identity to your NGINXaaS deployment
 
-In order for your NGINXaaS deployment to access your key vault, it must have an assinged managed idenity with the `Key Vault Secrets User` role. For more information, see [Assign Managed Identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) and [Prerequisites for adding SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md#prerequisites" >}}).
+In order for your NGINXaaS deployment to access your key vault, it must have an assigned managed identity with the `Key Vault Secrets User` role. For more information, see [Assign Managed Identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) and [Prerequisites for adding SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md#prerequisites" >}}).
 
 1. Go to your NGINXaaS deployment.
 1. Select **Identity** in the left menu.
@@ -88,7 +88,8 @@ Now, you can add your SSL/TLS certificate from your key vault to your NGINXaaS d
 1. Go to your NGINXaaS deployment.
 1. Select **NGINX certificates** in the left menu.
 1. Select {{< icon "plus">}}**Add certificate** and provide the following information:
-   {{< table >}}
+  
+    {{< table >}}
    | Field                       | Description                |
    |---------------------------- | ---------------------------- |
    | Name                        | A unique name for the certificate. For this tutorial, we use `my-cert`. |
@@ -98,7 +99,7 @@ Now, you can add your SSL/TLS certificate from your key vault to your NGINXaaS d
 
 1. Select **Select certificate** and provide the following information:
 
-     {{< table >}}
+    {{< table >}}
    | Field                  | Description                |
    |----------------------- | ---------------------------- |
    | Key vault                   | Select `nginxaas-kv`. |
@@ -136,7 +137,7 @@ http {
 
 For more information on using NGINX for SSL/TLS termination, see [NGINX SSL Termination](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/).
 
-### Use case 2: Securing traffic to upstream servers
+### Use case 2: Secure traffic to upstream servers
 
 NGINXaaS supports backend encryption by encrypting traffic between your NGINXaaS deployment and your upstream servers.
 
@@ -160,8 +161,7 @@ http {
 
 For more information on using NGINX to secure traffic to upstream servers, refer to [Securing HTTP Traffic to Upstream Servers](https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/) and [Securing TCP Traffic to Upstream Servers](https://docs.nginx.com/nginx/admin-guide/security-controls/securing-tcp-traffic-upstream/).
 
-
-## Restrict Public Access to Key Vault
+## Restrict public access to Key Vault
 
 If you want to restrict public access to your key vault, you can configure:
 
@@ -173,7 +173,7 @@ If you want to restrict public access to your key vault, you can configure:
 
 ### Configure Network Security Perimeter (NSP)
 
-1. Follow [Azure's documentation on prerequisites](https://learn.microsoft.com/en-us/azure/private-link/create-network-security-perimeter-portal#prerequisites) to ensure you are registed to create an NSP.
+1. Follow [Azure's documentation on prerequisites](https://learn.microsoft.com/en-us/azure/private-link/create-network-security-perimeter-portal#prerequisites) to ensure you are registered to create an NSP.
 1. In the Search box, enter **Network Security Perimeters** and select **Network Security Perimeters** from the search results.
 1. Select {{< icon "plus">}}**Create**.
 1. In the **Basics** tab, provide the following information:
@@ -198,7 +198,7 @@ If you want to restrict public access to your key vault, you can configure:
    {{< /table >}}
 1. Select **Review + Create** and then **Create**.
 
-By default, the key vault will be associated to the NSP in [Learning mode](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts#access-modes-in-network-security-perimeter). This means traffic will be evaluated first based on the NSP's access rules. If no rules apply, evaluation will fall back to the key vault's firewall configuration. To fully secure public access, it is reccommended to [transition to Enforced mode](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-transition#transition-to-enforced-mode-for-existing-resources).
+By default, the key vault will be associated to the NSP in [Learning mode](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts#access-modes-in-network-security-perimeter). This means traffic will be evaluated first based on the NSP's access rules. If no rules apply, evaluation will fall back to the key vault's firewall configuration. To fully secure public access, it is recommended to [transition to Enforced mode](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-transition#transition-to-enforced-mode-for-existing-resources).
 
 1. Go to resource `nginxaas-nsp`.
 1. Select **Associated resources** in the left menu.
