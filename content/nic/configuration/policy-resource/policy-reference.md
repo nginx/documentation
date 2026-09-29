@@ -238,8 +238,6 @@ The API Key auth policy configures NGINX to authorize client requests based on t
 
 This feature uses the NGINX [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
 
-Subrequests may not function as expected and may cause issues when the `APIKey` policy and a `WAF` policy are applied together on the same route.
-
 {{< /call-out >}}
 
 The policy stores API keys securely using SHA-256 hashing. When a client sends an API Key, NJS hashes it and compares it to the hashed API Key in the NGINX configuration.
@@ -447,8 +445,6 @@ jwt:
 {{< call-out class="note" >}}
 
 This feature uses the NGINX Plus directive [auth_jwt_key_request](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request), part of [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
-
-Subrequests may not function as expected and may cause issues when fetching JWKs from a remote URI (`jwksURI`) in a `JWT` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -677,12 +673,6 @@ In this example, NGINX Ingress Controller uses the configuration from the first 
 
 ## ExternalAuth
 
-{{< call-out class="note" >}}
-
-Subrequests may not function as expected and may cause issues when the `ExternalAuth` policy and a `WAF` policy are applied together on the same route.
-
-{{< /call-out >}}
-
 The ExternalAuth policy configures NGINX to authenticate client requests using an external authentication server. You can use this policy with services such as [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/) or any custom authentication service that supports the `auth_request` pattern.
 
 When a client sends a request, NGINX makes an internal subrequest to the external authentication service. If the service returns a `2xx` response, NGINX forwards the original request to the upstream. If it returns `401` or `403`, NGINX denies access. If you configure `authSigninURI`, NGINX redirects unauthenticated clients to a sign-in page.
@@ -752,12 +742,6 @@ This means all routes on the same host that require OAuth2 sign-in must use the 
 {{< call-out class="tip" >}}
 
 This feature is turned off by default. To turn it on, set the [enable-oidc]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument of NGINX Ingress Controller.
-
-{{< /call-out >}}
-
-{{< call-out class="note" >}}
-
-Subrequests may not function as expected and may cause issues when the `OIDC` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -849,12 +833,6 @@ In this example, NGINX Ingress Controller uses the configuration from the first 
 {{< call-out class="note" >}}
 
 This feature is only available with NGINX Plus and requires the [enable-oidc]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument.
-
-{{< /call-out >}}
-
-{{< call-out class="note" >}}
-
-Subrequests may not function as expected and may cause issues when the `OIDCNative` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -1185,7 +1163,9 @@ A VirtualServer or VirtualServerRoute can reference multiple CORS policies, but 
 
 {{< call-out class="note" >}}
 
-Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and a `WAF` policy may not function as expected and may cause issues when applied together on the same route.
+Some policies use NGINX subrequests: `APIKey`, `ExternalAuth`, `JWT` with `jwksURI`, `OIDC`, and `OIDCNative`. NGINX Ingress Controller turns off F5 WAF for NGINX in the internal locations that serve these subrequests. As a result, you can apply these policies and a `WAF` policy to the same route. F5 WAF for NGINX continues to inspect client requests to the route.
+
+A `Cache` policy with `cacheBackgroundUpdate` also uses subrequests. These subrequests may not work as expected when a `WAF` policy applies to the same route.
 
 {{< /call-out >}}
 
