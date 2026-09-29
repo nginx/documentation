@@ -5,10 +5,15 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /app-delivery/platform/ssl-tls-certificates/ssl-tls-certificates-console/
+f5-ref-path: /f5ads/platform/ssl-tls-certificates/ssl-tls-certificates-console/
 contentVars:
   product: NGINXaaS
 ---
+
+{{< renamed-notice >}}
 
 You can manage SSL/TLS certificates for F5 ${product} using the NGINXaaS console.
 
