@@ -282,7 +282,7 @@ spec:
     logSource:
       nimSource:
         url: https://nim.example.com
-        profileName: "secops_dashboard_ngf_otel"
+        profileName: "secops_dashboard_f5_ngf"
       auth:
         secretRef:
           name: nim-credentials
