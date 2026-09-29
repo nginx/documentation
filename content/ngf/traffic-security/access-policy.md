@@ -176,7 +176,7 @@ Attach an AccessPolicy to a Gateway to set access rules for every route attached
     kubectl describe gateways.gateway.networking.k8s.io gateway
     ```
 
-    Look for the `AccessPolicyAffected` condition. This condition shows that an AccessPolicy targets the Gateway:
+    Look for the `AccessPolicyAffected` condition. This condition shows that a valid AccessPolicy targets the Gateway:
 
     ```text
     Status:
@@ -268,7 +268,7 @@ More than one AccessPolicy can target the same resource. NGINX Gateway Fabric me
 
 ### The AccessPolicy status is Invalid
 
-**Symptom**: The AccessPolicy has an `Accepted` condition with the status `False` and the reason `Invalid`. The condition message includes the text "must be a valid IPv4/IPv6 address or CIDR range" and names the field, such as `spec.rules[0].source.ipAddress.address`.
+**Symptom**: The AccessPolicy has an `Accepted` condition with the status `False` and the reason `Invalid`. The condition message includes the text "must be a valid IPv4/IPv6 address or CIDR range" and names the field, such as `spec.rules[0].source.ipAddress.address`. The target Gateway or route doesn't get the `AccessPolicyAffected` condition from this AccessPolicy.
 
 **Cause**: A value in `ipAddress.address` isn't a valid IPv4 address, IPv6 address, or CIDR range.
 
