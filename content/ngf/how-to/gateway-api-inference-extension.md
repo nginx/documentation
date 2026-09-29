@@ -14,7 +14,7 @@ Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension t
 The [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) is an official Kubernetes project that aims to provide optimized load-balancing for self-hosted Generative AI Models on Kubernetes. 
 The project's goal is to improve and standardize routing to inference workloads across the ecosystem. 
 
-Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions), with additional AI specific traffic management features such as model-aware routing, serving priority for models, model rollouts, and more. 
+Coupled with the provided llm-d Router, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions). An Inference Gateway adds AI-specific traffic management features, such as model-aware routing, serving priority for models, and model rollouts. 
 
 ## Set up
 
@@ -50,49 +50,48 @@ See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gatewa
 
 ## Deploy a sample model server
 
-The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. To deploy the vLLM simulator, run the following command:
+The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim) model server does not use GPUs and is ideal for test/development environments. To deploy the vLLM simulator, run the following command:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v{{< version-inference-extension >}}/config/manifests/vllm/sim-deployment.yaml
 ```
 
-## Deploy the InferencePool and Endpoint Picker Extension
+## Deploy the InferencePool and llm-d router
 
 The InferencePool is a Gateway API Inference Extension resource that represents a set of Inference-focused Pods. With InferencePool, you can configure a routing extension as well as inference-specific routing optimizations. For more information on this resource, refer to the Gateway API Inference Extension [InferencePool documentation](https://gateway-api-inference-extension.sigs.k8s.io/api-types/inferencepool/).
 
-Install an InferencePool named `vllm-qwen3-32b` that selects from endpoints with label `app: vllm-qwen3-32b` and listening on port 8000. The Helm install command automatically installs the Endpoint Picker Extension and InferencePool.
+Install an InferencePool named `vllm-qwen3-32b` that selects from endpoints with label `app: vllm-qwen3-32b` and listening on port 8000. The Helm install command automatically installs the llm-d router and InferencePool.
 
-NGINX will query the Endpoint Picker Extension to determine the appropriate pod endpoint to route traffic to. These pods are selected from a pool of ready pods designated by the assigned InferencePool's Selector field. For more information on the [Endpoint Picker](https://github.com/llm-d/llm-d-router/blob/main/pkg/epp/README.md).
+NGINX queries the llm-d Router to find the pod endpoint that gets the traffic. The llm-d Router picks from the ready pods that the InferencePool `selector` field matches. For more information, see the README for the llm-d router's [Endpoint Picker](https://github.com/llm-d/llm-d-router/blob/main/pkg/epp/README.md).
 
-{{< call-out class="warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. By default, NGINX Gateway Fabric connects to the Endpoint Picker over TLS but doesn't verify its certificate. To verify the certificate, follow the **Verify the Endpoint Picker certificate** steps. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
+{{< call-out class="warning" >}} The llm-d router is a third-party application written and provided by the llm-d project. By default, NGINX Gateway Fabric connects to the llm-d router's Endpoint Picker over TLS but doesn't verify its certificate. To verify the certificate, follow the **Verify the Endpoint Picker certificate** steps. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party llm-d router application. {{< /call-out >}}
+
+{{< call-out class="tip" >}}
+For all chart values, see the [llm-d Router Helm charts](https://github.com/llm-d/llm-d-router/tree/main/config/charts).
+{{< /call-out >}}
 
 ```shell
-export IGW_CHART_VERSION=v{{< version-inference-extension >}}
-helm install vllm-qwen3-32b \
---dependency-update \
---set inferencePool.modelServers.matchLabels.app=vllm-qwen3-32b \
---version $IGW_CHART_VERSION \
---set inferenceExtension.resources.requests.memory=4Gi \
-oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
+helm install vllm-qwen3-32b  \
+--set router.modelServers.matchLabels.app=vllm-qwen3-32b \
+--version v{{< ngf-version-llmd-router >}} \
+oci://ghcr.io/llm-d/charts/llm-d-router-gateway
 ```
 
 {{< call-out class="tip" title="Test environments only" >}} For test environments, lower the CPU and memory requests and limits to reduce resource use:
 
 ```shell
-export IGW_CHART_VERSION=v{{< version-inference-extension >}}
-helm install vllm-qwen3-32b \
---dependency-update \
---set inferencePool.modelServers.matchLabels.app=vllm-qwen3-32b \
---version $IGW_CHART_VERSION \
---set inferenceExtension.resources.requests.cpu=100m \
---set inferenceExtension.resources.requests.memory=512Mi \
---set inferenceExtension.resources.limits.memory=2Gi \
-oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
+helm install vllm-qwen3-32b  \
+--set router.modelServers.matchLabels.app=vllm-qwen3-32b \
+--version v{{< ngf-version-llmd-router >}} \
+--set router.epp.resources.requests.cpu=100m \
+--set router.epp.resources.requests.memory=512Mi \
+--set router.epp.resources.limits.memory=2Gi \
+oci://ghcr.io/llm-d/charts/llm-d-router-gateway
 ```
 
- {{< /call-out >}}
+{{< /call-out >}}
 
-Confirm that the Endpoint Picker was deployed and is running:
+Confirm that the llm-d router was deployed and is running:
 
 ```shell
 kubectl describe deployment vllm-qwen3-32b-epp

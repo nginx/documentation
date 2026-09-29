@@ -5,7 +5,10 @@ weight: 50
 toc: true
 url: /nginxaas/google/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
+canonical: /app-delivery/google/deploy/ssl-tls-certificates/overview/
+f5-ref-path: /f5ads/google/deploy/ssl-tls-certificates/overview/
 f5-docs: DOCS-000
 f5-keywords: "NGINXaaS for Google Cloud, SSL, TLS, certificates, Google Secret Manager, certificate rotation, PEM, ML-DSA, post-quantum, PQC"
 f5-summary: >
@@ -13,6 +16,8 @@ f5-summary: >
   Use it to choose a certificate management approach and understand automatic and manual rotation options.
 f5-audience: operator
 ---
+
+{{< renamed-notice >}}
 
 Use F5 NGINXaaS for Google Cloud (NGINXaaS) to secure traffic by adding SSL/TLS certificates to a deployment.
 

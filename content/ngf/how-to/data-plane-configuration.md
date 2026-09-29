@@ -313,7 +313,49 @@ EOF
 
 NGINX Gateway Fabric supports errorLog in JSON format for NGINX Plus users. When  `errorLogFormat` is set to `json` and no custom access log format is defined, the access log also defaults to JSON format.
 
-{{< call-out class="note" >}} File destinations in `logging.accessLog` are not currently supported it is always set to `/dev/stdout`. {{< /call-out >}}
+By default, NGINX Gateway Fabric writes access logs to `/dev/stdout`. To send them to a file or a syslog server instead, set `destination` under `spec.logging.accessLog` in the `NginxProxy` resource.
+
+The following command creates an `NginxProxy` that writes access logs to a file, paired with a custom log format:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    accessLog:
+      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
+      destination:
+        type: file
+        file:
+          path: /var/log/nginx/access.log
+EOF
+```
+
+The following command creates an `NginxProxy` that sends access logs to a syslog server, paired with a custom log format. Give the server as a `host:port` value:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    accessLog:
+      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
+      destination:
+        type: syslog
+        syslog:
+          server: syslog-svc.default.svc.cluster.local:514
+EOF
+```
+
+{{< call-out class="note" >}} A destination takes effect only when an access log format is also defined. Set `accessLog.format` to a custom format, or set `errorLogFormat` to `json` to use the built-in JSON format. {{< /call-out >}}
+
+**For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
 ---
 
@@ -421,7 +463,7 @@ If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy`
 
 ## Configure infrastructure-related settings
 
-You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under the `nginx` section in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types and load balancer settings.
+You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under the `nginx` section in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types, load balancer settings, and PodDisruptionBudgets.
 
 The following command creates an `NginxProxy` resource with 2 replicas, sets `container.resources.requests` to 100m CPU and 128Mi memory, configures a 90 second `pod.terminationGracePeriodSeconds`, and sets the service type to `LoadBalancer` with IP `192.87.9.1` and AWS NLB annotation.
 
@@ -447,6 +489,119 @@ spec:
       loadBalancerIP: "192.87.9.1"
 EOF
 ```
+
+To view the full list of configuration options, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
+
+---
+
+### Configure the load balancer class
+
+When the Service type is `LoadBalancer`, the `loadBalancerClass` field selects which controller manages the Service.
+
+By default, NGINX Gateway Fabric leaves this field unset. Your cloud provider or an external controller, such as an AWS Load Balancer or MetalLB, then manages the Service.
+
+To let the NGINX Gateway Controller manage the load balancer, set `loadBalancerClass` to `gateway.nginx.org/nginx-gateway-controller`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config-test
+spec:
+  kubernetes:
+    service:
+      type: LoadBalancer
+      loadBalancerClass: gateway.nginx.org/nginx-gateway-controller
+EOF
+```
+
+You can set `loadBalancerClass` only when the Service type is `LoadBalancer`. NGINX Gateway Fabric rejects the field on any other Service type.
+
+---
+
+### Configure a PodDisruptionBudget for the data plane
+
+When you set the `podDisruptionBudget` field on the `NginxProxy` resource, the control plane creates a Kubernetes [PodDisruptionBudget](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/) (PDB) for the data plane. A PodDisruptionBudget caps how many pods in the NGINX data plane can be voluntarily evicted at once. This keeps a minimum number of pods serving traffic during node drains, upgrades, and autoscaler evictions. Without a PodDisruptionBudget, a node drain or autoscaler action can evict every data plane replica at once and interrupt traffic.
+
+The control plane creates one PodDisruptionBudget for each NGINX Deployment it provisions, which is one per Gateway that uses this `NginxProxy`.
+
+{{< call-out class="note" >}} A data plane PodDisruptionBudget applies only when the data plane runs as a Deployment (`nginx.kind: deployment`). It has no effect on a DaemonSet data plane. {{< /call-out >}}
+
+Set the PodDisruptionBudget through the `spec.kubernetes.deployment.podDisruptionBudget` field. This field has no `enable` setting: the control plane creates the PodDisruptionBudget when the field is present. The field takes these settings:
+
+- `minAvailable`: the minimum number of pods that must stay available after an eviction. Use an absolute number such as `1`, or a percentage such as `50%`.
+- `maxUnavailable`: the maximum number of pods that can be unavailable after an eviction. Use an absolute number or a percentage.
+- `unhealthyPodEvictionPolicy`: optional. `IfHealthyBudget` blocks eviction of unhealthy pods when that eviction would break the budget. `AlwaysAllow` always permits eviction of unhealthy pods. When unset, Kubernetes applies `IfHealthyBudget`.
+
+{{< call-out class="warning" >}} Set exactly one of `minAvailable` or `maxUnavailable`. If you set both or neither, the API server rejects the `NginxProxy` and creates no PodDisruptionBudget. {{< /call-out >}}
+
+{{< call-out class="caution" >}} Setting `minAvailable` to an absolute number equal to or greater than the replica count blocks every voluntary eviction. Set it below the replica count. To set the replica count, see [Scaling the control plane and data plane]({{< ref "/ngf/how-to/scaling.md" >}}). {{< /call-out >}}
+
+The following command creates an `NginxProxy` that keeps at least one data plane pod available during voluntary disruptions:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  kubernetes:
+    deployment:
+      podDisruptionBudget:
+        minAvailable: 1
+EOF
+```
+
+To limit how many pods can be unavailable instead, set `maxUnavailable` and omit `minAvailable`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  kubernetes:
+    deployment:
+      podDisruptionBudget:
+        maxUnavailable: 50%
+EOF
+```
+
+You can also set the PodDisruptionBudget at install or upgrade time under the `nginx.podDisruptionBudget` section in the Helm values. This section exposes four keys: `enable`, `minAvailable`, `maxUnavailable`, and `unhealthyPodEvictionPolicy`. Set `nginx.podDisruptionBudget.enable` to `true` to turn it on. Through Helm, `minAvailable` defaults to `1`, so `enable: true` on its own produces a valid PodDisruptionBudget. `unhealthyPodEvictionPolicy` defaults to an empty string, so Helm omits the field and Kubernetes applies `IfHealthyBudget`.
+
+The following partial values fragment, set in a values file or with `--set`, turns on the data plane PodDisruptionBudget with a `minAvailable` of `1`:
+
+```yaml
+nginx:
+  kind: deployment
+  podDisruptionBudget:
+    enable: true
+    minAvailable: 1
+```
+
+To use `maxUnavailable` through Helm, set `minAvailable` to an empty string and set `maxUnavailable`. The empty `minAvailable` is dropped, so only `maxUnavailable` renders:
+
+```yaml
+nginx:
+  kind: deployment
+  podDisruptionBudget:
+    enable: true
+    minAvailable: ""
+    maxUnavailable: 1
+```
+
+After you apply either configuration, list the PodDisruptionBudgets in the namespace of the Gateway that uses this `NginxProxy`:
+
+```shell
+kubectl get poddisruptionbudgets -n <namespace>
+```
+
+Confirm a PodDisruptionBudget exists for each NGINX Deployment. Each one reports its configured `minAvailable` or `maxUnavailable` and the number of voluntary disruptions it currently allows.
+
+This check matters most for a DaemonSet data plane. Setting the field on a DaemonSet produces no PodDisruptionBudget, and the control plane reports no error. The list is how you confirm one was created. The exactly-one-of mistake fails differently, and it is not silent. If you set both or neither of `minAvailable` and `maxUnavailable`, the API server rejects the `NginxProxy`. The `kubectl apply` or `kubectl edit` command then fails at apply time.
 
 To view the full list of configuration options, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
