@@ -58,25 +58,6 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 ---
 
-## Submit usage report to F5
-
-### Automatic reporting
-
-When you [add your JSON Web Token (JWT)]({{< ref "nim/licensing-and-reporting/add-license-connected-deployment.md" >}}) to NGINX Instance Manager, usage reporting is enabled by default. NGINX Instance Manager automatically reports subscription entitlement and usage data to F5.
-
-### Manual reporting
-
-{{<call-out class="important" title="Usage reporting requirement:" icon="triangle-alert" >}}Report usage to F5 regularly. **If usage isn't reported for 180 days, NGINX Plus stops processing traffic**. See [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}) for details.{{</call-out>}}
-
-To submit usage reports manually:
-
-1. Log in to NGINX Instance Manager (`https://<NIM_FQDN>/ui/`).
-1. Select the **Settings** (gear) icon.
-1. On the **Licenses > Overview** page, turn off **Enable Continuous Connection**.
-1. Select **Send Usage to F5**.
-
----
-
 ## What's reported
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
