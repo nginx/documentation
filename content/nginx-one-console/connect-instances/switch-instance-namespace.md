@@ -7,16 +7,16 @@ f5-keywords: "namespace, switch namespace, data plane key, NGINX Agent, NGINX On
 f5-product: NGINX One Console
 f5-summary: >
   This guide explains how to move an existing NGINX instance from one namespace to another in NGINX One Console.
-  You might need to do this when reorganizing your infrastructure, changing team ownership, or migrating instances between tenants.
+  You might do this when you reorganize your infrastructure or move an instance to a different team.
 toc: true
 weight: 350
 ---
 
 ## Overview
 
-This guide explains how to move an existing NGINX instance from one namespace to another in F5 NGINX One Console. You might need to do this when reorganizing your infrastructure, changing team ownership, or migrating instances between tenants.
+This guide explains how to move an existing NGINX instance from one namespace to another in F5 NGINX One Console. You might do this when you reorganize your infrastructure or move an instance to a different team.
 
-The process has three parts. First, create a new data plane key in the target namespace. Then update the NGINX Agent configuration on the instance to use that key. Finally, restart NGINX Agent so it registers under the new namespace.
+To switch namespaces, create a data plane key in the target namespace and point NGINX Agent to it. Then restart NGINX Agent and confirm the instance appears in the target namespace. Finally, revoke the old key.
 
 ## Before you start
 
@@ -33,24 +33,25 @@ Before switching an instance to a new namespace, make sure:
 ### Create a data plane key in the target namespace
 
 1. From the namespace selector, select the target namespace in NGINX One Console.
-1. On the left menu, select **Data Plane Keys**.
+1. Select **Data Plane Keys**.
 1. Select **Add Data Plane Key**.
-1. Enter a name for the new key (for example, `namespace-switch-key`). Optionally, set an expiration date.
+1. Enter a name for the new key (for example, `namespace-switch-key`).
+1. (Optional) Set an expiration date.
 1. Select **Generate**.
-1. Copy and save the new data plane key. It's displayed only once and can't be retrieved later.
+1. Copy the new data plane key and store it securely. NGINX One Console shows the key only once.
 
 For more information, see [Prepare - Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}).
 
 ### Revoke the old data plane key
 
-After you switch the instance to the new namespace, revoke the old data plane key from the previous namespace to prevent unauthorized access.
+Revoke the old data plane key in the original namespace. A revoked key can't connect instances to NGINX One Console.
 
 1. Switch back to the original namespace in NGINX One Console.
-1. On the left menu, select **Data Plane Keys**.
+1. Select **Data Plane Keys**.
 1. Find the data plane key that the instance was previously registered with.
 1. In the **Actions** column, select the ellipsis (three dots).
 1. Select **Revoke**.
-1. In the dialog, select **Revoke** to confirm.
+1. In the pop-up window, select **Revoke** to confirm.
 
 {{< call-out class="important" >}}Revoking a data plane key disconnects all instances registered with that key. If other instances use the same key, create a new key for them before revoking.{{< /call-out >}}
 
@@ -72,7 +73,7 @@ On the host where the NGINX instance is running, update the NGINX Agent configur
        host: "agent.connect.nginx.com"
        port: 443
      auth:
-       token: "<your-new-data-plane-key>"
+       token: "<NEW_DATA_PLANE_KEY>"
      tls:
        skip_verify: false
    ```
@@ -96,8 +97,8 @@ On the host where the NGINX instance is running, update the NGINX Agent configur
 ### Verify the instance appears in the target namespace
 
 1. Switch to the target namespace in NGINX One Console.
-1. On the left menu, select **Instances**.
-1. Confirm that your instance appears in the list and its status is **Connected**.
+1. Select **Instances**.
+1. Confirm that your instance appears in the list and its status is **Connected**. The instance can take up to 60 seconds to appear after you restart NGINX Agent.
 
 {{< call-out class="note" >}}It may take up to 60 seconds for the instance to appear in the new namespace after restarting NGINX Agent.{{< /call-out >}}
 
