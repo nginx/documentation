@@ -1,10 +1,13 @@
 ---
-title: "Programmatic authentication with client credentials"
+title: "Automate API access with client credentials"
 description: "Learn how to set up OAuth2 client credentials for programmatic access to the NGINXaaS API."
 weight: 400
 toc: true
 url: /nginxaas/overview/client-credentials/
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /app-delivery/platform/client-credentials/
+f5-ref-path: /f5ads/platform/client-credentials/
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
 f5-summary: >
@@ -15,6 +18,8 @@ f5-summary: >
     Credentials are scoped to a single organization.
 f5-audience: operator
 ---
+
+{{< renamed-notice >}}
 
 ## Overview
 
