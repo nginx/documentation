@@ -238,7 +238,7 @@ The VirtualServerRoute resource defines a route for a VirtualServer. It can cons
 
 VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. With `routeSelector`, you can add new VirtualServerRoute resources without changing the VirtualServer configuration.
 
-A VirtualServerRoute can define a `host` to restrict route attachment to a specific VirtualServer, or omit `host` (hostless mode) so multiple VirtualServers can share the same route configuration.
+A VirtualServerRoute can set `host` to attach only to the VirtualServer with that host, or omit `host` (hostless mode). A hostless VirtualServerRoute uses the host of whichever VirtualServer references it, by name with `route` or by label with `routeSelector`. Several VirtualServers can share it. Because any VirtualServer with a matching `routeSelector` can attach a hostless VirtualServerRoute, choose its labels carefully.
 
 {{<tabs name="vs-vsr-examples">}}
 
