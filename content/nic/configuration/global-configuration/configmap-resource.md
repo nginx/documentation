@@ -149,7 +149,7 @@ Only enable disable-forwarded-headers if:
 
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
-|*http2* | Enables HTTP/2 in servers with SSL enabled. | *False* |  |
+|*http2* | Enables HTTP/2 in servers with SSL enabled. To override the key for one resource, set the `nginx.org/http2` Ingress annotation or the `tls.http2` VirtualServer field. | *False* |  |
 |*proxy-protocol* | Enables PROXY Protocol for incoming connections. | *False* | [Proxy Protocol](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/shared-examples/proxy-protocol). |
 
 ### Backend services (Upstreams)

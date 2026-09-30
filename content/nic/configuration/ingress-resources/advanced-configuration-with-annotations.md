@@ -174,6 +174,7 @@ The table below summarizes the available annotations.
 | ---| ---| ---| ---|
 | *nginx.org/listen-ports* | N/A | Configures HTTP ports that NGINX will listen on. Not supported on Ingress resources without a `host`; use the `-default-http-listener-port` command-line argument instead. | *[80]* |
 | *nginx.org/listen-ports-ssl* | N/A | Configures HTTPS ports that NGINX will listen on. Not supported on Ingress resources without a `host`; use the `-default-https-listener-port` command-line argument instead. | *[443]* |
+| `nginx.org/http2` | `http2` | Turns HTTP/2 on or off for the TLS server of the Ingress. The annotation overrides the `http2` ConfigMap key. For mergeable Ingresses, set the annotation on the `master` Ingress. Minion Ingresses use the value from the `master` Ingress. | *False* |
 
 ### Backend services (Upstreams)
 
@@ -183,7 +184,7 @@ The table below summarizes the available annotations.
 | ---| ---| ---| ---| --- |
 | *nginx.org/lb-method* | *lb-method* | Sets the [load balancing method]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#choosing-a-load-balancing-method" >}}). To use the round-robin method, specify `"round_robin"`. | `"random two least_conn"` |  |
 | *nginx.org/ssl-services* | N/A | Enables HTTPS or gRPC over SSL when connecting to the endpoints of services. | N/A | [ssl-services](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/ssl-services) |
-| *nginx.org/grpc-services* | N/A | Enables gRPC for services. Note: requires HTTP/2 (see `http2` ConfigMap key); only works for Ingresses with TLS termination enabled. | N/A | [grpc-services](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/grpc-services) |
+| *nginx.org/grpc-services* | N/A | Enables gRPC for services. Note: requires HTTP/2 (see the `nginx.org/http2` annotation or the `http2` ConfigMap key); only works for Ingresses with TLS termination enabled. | N/A | [grpc-services](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/grpc-services) |
 | *nginx.org/websocket-services* | N/A | Enables WebSocket for services. | N/A | [websocket](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/websocket) |
 | *nginx.org/max-fails* | *max-fails* | Sets the value of the [max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) parameter of the `server` directive. | *1* |  |
 | *nginx.org/max-conns* | N\A | Sets the value of the [max_conns](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns) parameter of the `server` directive. | *0* |  |
