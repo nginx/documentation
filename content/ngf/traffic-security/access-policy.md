@@ -19,7 +19,7 @@ Use an AccessPolicy to define an IP address allowlist or denylist in F5 NGINX Ga
 
 AccessPolicy is an [inherited policy attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/). You can attach an AccessPolicy to a Gateway, an HTTPRoute, or a GRPCRoute in the same namespace as the policy. A cluster operator can attach a policy to a Gateway. An application developer can attach a policy to the routes for their application.
 
-In this guide, you create an AccessPolicy for a Gateway and an AccessPolicy for an HTTPRoute. Then you check the status of each policy and its target.
+In this guide, you create an AccessPolicy for a Gateway and an AccessPolicy for an HTTPRoute. Then you check the status of each policy and its target. The guide also explains how NGINX combines the rules from the two policies.
 
 ## Before you begin
 
@@ -249,6 +249,42 @@ An AccessPolicy has the following fields in its `spec`:
   - `source`: The request source for the rule. Set `type` to `IPAddress`, and set `ipAddress.address` to an IPv4 address, an IPv6 address, or a CIDR range. If you leave out `source`, the rule matches requests from any source.
 
 More than one AccessPolicy can target the same resource. NGINX Gateway Fabric merges these policies and doesn't mark any of them as `Conflicted`.
+
+## How NGINX applies the access rules
+
+NGINX Gateway Fabric turns each AccessPolicy into NGINX `allow` and `deny` directives. NGINX checks a request against these rules in order and stops at the first match. When NGINX blocks a request, it returns a `403 Forbidden` response.
+
+The `action` field also sets what happens to a request that matches no rule:
+
+- `Allow`: NGINX blocks the request.
+- `Deny`: NGINX passes the request.
+
+A rule without a `source` matches every client. In an `Allow` policy, this rule passes all requests. In a `Deny` policy, this rule blocks all requests.
+
+### Gateway and route policies
+
+An AccessPolicy for a Gateway applies to every HTTPRoute and GRPCRoute attached to that Gateway. An AccessPolicy for a route applies only to that route. A route without its own AccessPolicy uses the Gateway rules. If the Gateway has no AccessPolicy either, the route accepts requests from all clients.
+
+When a Gateway and a route both have AccessPolicies, NGINX Gateway Fabric combines them for that route:
+
+- **Deny rules add up**: NGINX blocks a request that matches any Gateway or route Deny rule. A route policy can't override a Gateway Deny rule. This holds even when a route Allow rule lists the same address.
+- **Route Allow rules replace Gateway Allow rules**: If the route has an Allow policy, NGINX passes only the addresses in the route Allow rules. If the route has only Deny policies, the Gateway Allow rules still apply.
+- **Deny rules come first**: NGINX checks every Deny rule before it checks the Allow rules.
+
+When several AccessPolicies with the same `action` target one resource, NGINX Gateway Fabric merges all of their rules.
+
+The following table shows the result for `cafe.example.com/coffee` after you create the two AccessPolicies in this guide. The `gateway-denylist` rules still apply to the `coffee` route.
+
+| Client IP address | Result | Reason |
+|---|---|---|
+| `198.51.100.25` | Blocked | Matches a `gateway-denylist` rule |
+| `192.0.2.10` | Passed | Matches a `coffee-allowlist` rule |
+| `2001:db8::10` | Passed | Matches a `coffee-allowlist` rule |
+| Any other address | Blocked | Matches no rule, and `coffee-allowlist` is an allowlist |
+
+### Client IP address behind a proxy
+
+NGINX compares the rules with the client IP address of each request. If a load balancer or proxy forwards the traffic, NGINX receives the IP address of that proxy instead. To match the rules against the original client address, set up `rewriteClientIP` in the NginxProxy resource. For the steps, see [Configure PROXY protocol and RewriteClientIP settings]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-proxy-protocol-and-rewriteclientip-settings" >}}).
 
 ## Troubleshooting
 
