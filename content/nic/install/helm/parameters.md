@@ -117,11 +117,11 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.service.customPorts** | A list of custom ports to expose through the NGINX Ingress Controller service. Follows the conventional Kubernetes yaml syntax for service ports. | [] |
 | **controller.service.httpPort.enable** | Enables the HTTP port for the NGINX Ingress Controller service. | true |
 | **controller.service.httpPort.port** | The HTTP port of the NGINX Ingress Controller service. | 80 |
-| **controller.service.httpPort.nodePort** | The custom NodePort for the HTTP port. Requires `controller.service.type` set to `NodePort`. | "" |
+| **controller.service.httpPort.nodePort** | The custom NodePort for the HTTP port. Requires `controller.service.type` set to `NodePort` or `LoadBalancer`. If you don't set a value, Kubernetes assigns a port. | "" |
 | **controller.service.httpPort.targetPort** | The target port of the HTTP port of the NGINX Ingress Controller service. | 80 |
 | **controller.service.httpsPort.enable** | Enables the HTTPS port for the NGINX Ingress Controller service. | true |
 | **controller.service.httpsPort.port** | The HTTPS port of the NGINX Ingress Controller service. | 443 |
-| **controller.service.httpsPort.nodePort** | The custom NodePort for the HTTPS port. Requires `controller.service.type` set to `NodePort`. | "" |
+| **controller.service.httpsPort.nodePort** | The custom NodePort for the HTTPS port. Requires `controller.service.type` set to `NodePort` or `LoadBalancer`. If you don't set a value, Kubernetes assigns a port. | "" |
 | **controller.service.httpsPort.targetPort** | The target port of the HTTPS port of the NGINX Ingress Controller service. | 443 |
 | **controller.service.sessionAffinity.enable** | Enable session affinity. | `false` |
 | **controller.service.sessionAffinity.type** | Session affinity type. Valid values: `None`, `ClientIP`. | `ClientIP` |
