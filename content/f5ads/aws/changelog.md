@@ -14,9 +14,40 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/f5a
 
 For updates to platform-wide features shared across cloud providers, see the [F5 ADS changelog]({{< ref "/f5ads/platform/changelog.md" >}}).
 
+## October 1, 2026
+
+- {{% icon-feature %}} **F5 ADS for AWS is now generally available**
+
+To get application delivery in the cloud, you can combine several native services. Each service has its own configuration, limits, and management overhead. F5 ADS for AWS brings these capabilities into a fully managed platform:
+
+- **Reverse proxy and load balancing**: Unified Layer 4 and Layer 7 traffic management
+- **API gateway and rate limiting**: Secure, high-performance API delivery
+- **Authentication and authorization**: Built-in access controls
+- **Content caching**: Accelerated content delivery at the edge
+- **Web application firewall**: Integrated application-layer security
+
+F5 ADS for AWS gives you consistent configuration and unified observability.
+
+Other key capabilities include:
+
+- **Adaptive load balancing** for optimized traffic management
+- **Advanced deployment strategies**, including blue-green and canary patterns
+- **Deep visibility** with more than 200 real-time metrics and Amazon CloudWatch integration
+- **Strong security controls**, including role-based access control and end-to-end encryption
+
+F5 ADS for AWS is part of the F5 Application Delivery and Security Platform. The platform delivers and secures apps and APIs wherever they run.
+
+To learn more, refer to the following resources:
+
+- Product documentation:
+  - [Overview and architecture]({{< ref "/f5ads/aws/overview.md" >}})
+  - [Deploy on AWS]({{< ref "/f5ads/aws/deploy" >}})
+
+- [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-4pollrykhmexa)
+
 ## September 4, 2026
 
-- {{% icon-feature %}} **F5 ADS for AWS is now generally available in more regions**
+- {{% icon-feature %}} **F5 ADS for AWS is now available in more regions**
 
   F5 ADS for AWS is now available in the following additional regions per geography:
 
