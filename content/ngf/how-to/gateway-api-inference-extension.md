@@ -48,18 +48,24 @@ To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/"
 
 See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/inference/deploy.yaml) for clarification.
 
-{{< call-out class="warning" >}} By default, NGINX Gateway Fabric verifies the Endpoint Picker's TLS certificate (--endpoint-picker-tls-skip-verify=false). For testing or development environments without certificates, you can disable verification:
+{{< call-out class="important" >}} To verify the llm-d router certificate, attach a BackendTLSPolicy to the llm-d router Service. If no BackendTLSPolicy targets the llm-d router Service, NGINX Gateway Fabric connects over TLS but skips certificate verification. For the steps, see **Configure TLS verification for the llm-d router**. {{< /call-out >}}
 
-- Using Helm: set `nginxGateway.gwAPIInferenceExtension.endpointPicker.skipVerify=true` (or disable TLS entirely using `nginxGateway.gwAPIInferenceExtension.endpointPicker.disableTLS=true`).
-- Using manifests: add `--endpoint-picker-tls-skip-verify=true` (or disable TLS using `--endpoint-picker-disable-tls`). {{< /call-out >}}
+You can also change how NGINX Gateway Fabric connects to the llm-d router:
+
+- To skip certificate verification even when a BackendTLSPolicy exists, set the `nginxGateway.gwAPIInferenceExtension.endpointPicker.skipVerify=true` Helm value or the `--endpoint-picker-tls-skip-verify=true` flag.
+- To turn off TLS, set the `nginxGateway.gwAPIInferenceExtension.endpointPicker.disableTLS=true` Helm value or the `--endpoint-picker-disable-tls` flag. Use this option only for development, testing, or a service mesh that encrypts the traffic.
 
 ### Set up cert-manager
 
-Make sure you have a Certificate Authority (CA) and a tool to issue certificates. This guide uses [cert-manager]({{< ref "/ngf/install/secure-certificates.md" >}}). If `cert-manager` is not yet installed in your cluster, follow the [Securing backend traffic using mutual TLS]({{< ref "/ngf/traffic-security/secure-backend.md" >}}) guide to deploy cert-manager and configure a `local-ca-issuer`.
+This guide uses cert-manager to issue the llm-d router certificate from a local certificate authority (CA). If your cluster already has cert-manager and the `local-ca-issuer` ClusterIssuer, go to **Create a TLS certificate for the llm-d router**.
 
-### Create the Endpoint Picker TLS certificate
+{{< include "ngf/deploy-cert-manager.md" >}}
 
-If using cert-manager, create a `Certificate` with Subject Alternative Names (SANs) matching the Endpoint Picker Service:
+{{< include "ngf/cert-manager-local-ca.md" >}}
+
+### Create a TLS certificate for the llm-d router
+
+Create a cert-manager `Certificate` with Subject Alternative Names (SANs) that match the llm-d router Service. The `epp-ca` Secret that cert-manager creates holds the certificate, the private key, and the CA certificate:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -102,7 +108,7 @@ Install an InferencePool named `vllm-qwen3-32b` that selects from endpoints with
 
 NGINX queries the llm-d Router to find the pod endpoint that gets the traffic. The llm-d Router picks from the ready pods that the InferencePool `selector` field matches. For more information, see the README for the llm-d router's [Endpoint Picker](https://github.com/llm-d/llm-d-router/blob/main/pkg/epp/README.md).
 
-{{< call-out class="warning" >}} The llm-d router is a third-party application written and provided by the llm-d project. By default, NGINX Gateway Fabric connects to the llm-d router's Endpoint Picker over TLS and verifies its certificate. To verify the certificate, follow the **Configure TLS verification for the Endpoint Picker** steps. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party llm-d router application. {{< /call-out >}}
+{{< call-out class="warning" >}} The llm-d router is a third-party application written and provided by the llm-d project. NGINX Gateway Fabric connects to the llm-d router over TLS. To verify the llm-d router certificate, follow the steps in **Configure TLS verification for the llm-d router**. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party llm-d router application. {{< /call-out >}}
 
 {{< call-out class="tip" >}}
 For all chart values, see the [llm-d Router Helm charts](https://github.com/llm-d/llm-d-router/tree/main/config/charts).
@@ -114,8 +120,11 @@ helm install vllm-qwen3-32b  \
 --version v{{< ngf-version-llmd-router >}} \
 --set-json 'router.epp.volumes=[{"name":"tls","secret":{"secretName":"epp-ca"}}]' \
 --set-json 'router.epp.volumeMounts=[{"name":"tls","mountPath":"/etc/tls","readOnly":true}]' \
+--set router.epp.flags.cert-path=/etc/tls \
 oci://ghcr.io/llm-d/charts/llm-d-router-gateway
 ```
+
+The `volumes` and `volumeMounts` values mount the `epp-ca` Secret in the llm-d router container. The `cert-path` flag points the llm-d router to the mounted certificate and key. Without the flag, the llm-d router uses a self-signed certificate, and certificate verification fails.
 
 {{< call-out class="tip" title="Test environments only" >}} For test environments, lower the CPU and memory requests and limits to reduce resource use:
 
@@ -128,6 +137,7 @@ helm install vllm-qwen3-32b  \
 --set router.epp.resources.limits.memory=2Gi \
 --set-json 'router.epp.volumes=[{"name":"tls","secret":{"secretName":"epp-ca"}}]' \
 --set-json 'router.epp.volumeMounts=[{"name":"tls","mountPath":"/etc/tls","readOnly":true}]' \
+--set router.epp.flags.cert-path=/etc/tls \
 oci://ghcr.io/llm-d/charts/llm-d-router-gateway
 ```
 
@@ -139,13 +149,13 @@ Confirm that the llm-d router was deployed and is running:
 kubectl describe deployment vllm-qwen3-32b-epp
 ```
 
-## Configure TLS verification for the Endpoint Picker
+## Configure TLS verification for the llm-d router
 
-By default, NGINX Gateway Fabric connects to the Endpoint Picker over TLS and verifies its certificate. To verify the certificate, attach a [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/reference/api-types/policy/backendtlspolicy/) to the Endpoint Picker Service. NGINX Gateway Fabric then validates the Endpoint Picker's certificate against the CA you provide during the TLS handshake.
+NGINX Gateway Fabric connects to the llm-d router over TLS. If no [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/reference/api-types/policy/backendtlspolicy/) targets the llm-d router Service, NGINX Gateway Fabric skips certificate verification. To verify the certificate, attach a BackendTLSPolicy to the llm-d router Service. NGINX Gateway Fabric then checks the llm-d router certificate against the CA and hostname in the policy.
 
-The Endpoint Picker must serve TLS with a certificate that the referenced CA signed, and that certificate must include the hostname you set in the policy. Because NGINX Gateway Fabric doesn't manage the Endpoint Picker, configuring server-side TLS is the responsibility of the Endpoint Picker deployment.
+The llm-d router must serve a certificate that the referenced CA signed. The certificate must also include the hostname that you set in the policy. NGINX Gateway Fabric doesn't manage the llm-d router, so set up server-side TLS in the llm-d router deployment.
 
-Create a BackendTLSPolicy that targets the Endpoint Picker Service named in your InferencePool's `endpointPickerRef`. The following example targets the `vllm-qwen3-32b-epp` Service and validates its certificate against the CA in the `epp-ca` Secret:
+Create a BackendTLSPolicy that targets the llm-d router Service. Your InferencePool names this Service in its `endpointPickerRef` field. The following example targets the `vllm-qwen3-32b-epp` Service and checks its certificate against the CA in the `epp-ca` Secret:
 
 ```yaml
 kubectl apply -f - <<EOF
