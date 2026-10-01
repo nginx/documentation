@@ -298,7 +298,6 @@ We need to edit the two exported out .yaml files and change a few parts.
 Edit `osm-ca-bundle-secret.yaml`
 Remove the `private.key` section under `data.`
 Change the `namespace` field to your nginx-ingress location
-Change the `type` to `type: nginx.org/ca`
 
 Updated file should look like the following.
 
@@ -308,7 +307,7 @@ kind: Secret
 metadata:
   name: osm-ca-bundle
   namespace: nginx-ingress
-type: nginx.org/ca
+type: Opaque
 data:
   ca.crt: <ca_cert_data>
 ```
@@ -344,7 +343,7 @@ Ensure the secrets exist in the `nginx-ingress` namespace:
 kubectl get secrets -n nginx-ingress
 NAME                    TYPE                DATA   AGE
 osm-nginx-client-cert   kubernetes.io/tls   2      23m
-osm-ca-bundle           nginx.org/ca        1      23m
+osm-ca-bundle           Opaque              1      23m
 ```
 
 We now need to create our CRDs (virtualServer and policy).
