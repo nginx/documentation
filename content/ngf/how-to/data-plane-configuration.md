@@ -520,7 +520,7 @@ You can set `loadBalancerClass` only when the Service type is `LoadBalancer`. NG
 
 When `loadBalancerClass` is the controller name, NGINX Gateway Fabric writes the IP addresses from the Gateway `spec.addresses` field to the Service status.
 
-If the Gateway `spec.addresses` field lists IP addresses, the Gateway status reports those IP addresses. The Gateway status doesn't report the IP addresses that the load balancer assigns. It still reports the hostnames that the load balancer assigns.
+The Gateway status reports the IP addresses from the Gateway `spec.addresses` field together with the IP addresses and hostnames that the load balancer assigns. NGINX Gateway Fabric removes duplicates and reports at most 16 addresses, the limit that the Gateway API sets. When it has more, it keeps IP addresses ahead of hostnames.
 
 ---
 
