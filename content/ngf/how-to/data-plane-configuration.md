@@ -500,7 +500,7 @@ When the Service type is `LoadBalancer`, the `loadBalancerClass` field selects w
 
 By default, NGINX Gateway Fabric leaves this field unset. Your cloud provider or an external controller, such as an AWS Load Balancer or MetalLB, then manages the Service.
 
-To let the NGINX Gateway Controller manage the load balancer, set `loadBalancerClass` to `gateway.nginx.org/nginx-gateway-controller`:
+To let NGINX Gateway Fabric manage the load balancer, set `loadBalancerClass` to the controller name. The controller name comes from the `--gateway-ctlr-name` flag or the `nginxGateway.gatewayControllerName` Helm value. The default is `gateway.nginx.org/nginx-gateway-controller`. If you changed the controller name, use your value in the following example:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -517,6 +517,10 @@ EOF
 ```
 
 You can set `loadBalancerClass` only when the Service type is `LoadBalancer`. NGINX Gateway Fabric rejects the field on any other Service type.
+
+When `loadBalancerClass` is the controller name, NGINX Gateway Fabric writes the IP addresses from the Gateway `spec.addresses` field to the Service status.
+
+The Gateway status reports the IP addresses from the Gateway `spec.addresses` field together with the IP addresses and hostnames that the load balancer assigns. NGINX Gateway Fabric removes duplicates and reports at most 16 addresses, the limit that the Gateway API sets. When it has more, it keeps IP addresses ahead of hostnames.
 
 ---
 
