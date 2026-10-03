@@ -51,19 +51,21 @@ If NGINX Instance Manager doesn't receive security events from a NGINX Gateway F
 
 ### Resolution
 
-Check the following on NGINX Instance Manager, in order:
+First, make sure you've completed all NIM-side setup steps described in [Configure NGINX Instance Manager]({{< ref "/nim/security-monitoring/ngf-security-events.md#configure-nginx-instance-manager" >}}), including enabling the OpenTelemetry collector and creating the collector configuration file.
+
+Then check the following on NGINX Instance Manager, in order:
 
 1. Confirm the embedded OpenTelemetry collector is turned on. In `nms.conf`, verify `collector_config.enable` is set to `true`:
 
    ```yaml
-      collector_config:
-         enable: true
+   collector_config:
+     enable: true
    ```
 
    If you change this setting, restart the service:
 
    ```shell
-      sudo systemctl restart nms
+   sudo systemctl restart nms
    ```
 
 2. Confirm NGINX Instance Manager is reachable from the Kubernetes cluster on port `4317` (gRPC).
