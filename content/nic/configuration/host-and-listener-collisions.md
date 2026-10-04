@@ -104,9 +104,9 @@ It is possible to merge configuration for multiple Ingress resources for the sam
 
 The [Cross-namespace configuration]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md">}}) topic has more information.
 
-It is *not* possible to merge the configurations for multiple VirtualServer resources for the same host. However, you can split a VirtualServer into multiple VirtualServerRoute resources, which a single VirtualServer can then reference.
+It is *not* possible to merge the configurations for multiple VirtualServer resources for the same host. However, you can split a VirtualServer into multiple VirtualServerRoute resources, which a single VirtualServer can then reference. See the [corresponding example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/cross-namespace-configuration) on GitHub.
 
-Additionally, a VirtualServerRoute can omit `spec.host` (hostless mode). Because hostless routes do not configure a host, they do not cause host collisions and can serve multiple VirtualServers with different hosts. See the [corresponding example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/cross-namespace-configuration) on GitHub.
+Additionally, a VirtualServerRoute can omit `spec.host` (hostless mode). Because hostless routes do not configure a host, they do not cause host collisions and can serve multiple VirtualServers with different hosts. See the [corresponding example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/vsr-hostless) on GitHub.
 
 It is *not* possible to merge configuration for multiple TransportServer resources.
 

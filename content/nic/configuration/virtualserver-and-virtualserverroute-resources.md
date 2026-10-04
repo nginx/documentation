@@ -300,7 +300,7 @@ spec:
 
 In this example, the VirtualServerRoute `shared-coffee` omits the `host` field (hostless mode). Multiple VirtualServers with different domains can reference the same route configuration.
 
-VirtualServer:
+First VirtualServer:
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -318,6 +318,21 @@ spec:
   - path: /tea
     action:
       pass: tea
+  - path: /coffee
+    route: coffee-ns/shared-coffee
+```
+
+Second VirtualServer:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe2
+  namespace: cafe2-ns
+spec:
+  host: cafe2.example.com
+  routes:
   - path: /coffee
     route: coffee-ns/shared-coffee
 ```
