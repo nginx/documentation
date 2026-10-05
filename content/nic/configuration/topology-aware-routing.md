@@ -1,27 +1,30 @@
 ---
 title: Set up topology-aware routing
-description: "Send traffic from NGINX Ingress Controller to endpoints on the same node or in the same zone by setting trafficDistribution on a Service."
+description: "Turn on topology-aware routing so that NGINX Ingress Controller prefers endpoints in its own node or zone when a Service sets trafficDistribution."
 weight: 875
 toc: true
 f5-product: F5 NGINX Ingress Controller
 f5-content-type: how-to
-f5-keywords: "topology-aware routing, trafficDistribution, PreferSameZone, PreferSameNode, PreferClose, EndpointSlice hints, topology hints, zone-aware routing, same-zone routing, availability zone, cross-zone traffic, use-cluster-ip, NGINX Ingress Controller"
+f5-keywords: "topology-aware routing, enable-topology-aware-routing, enableTopologyAwareRouting, trafficDistribution, PreferSameZone, PreferSameNode, PreferClose, EndpointSlice hints, topology hints, zone-aware routing, same-zone routing, availability zone, cross-zone traffic, use-cluster-ip, NGINX Ingress Controller"
 f5-summary: >
-  Set the spec.trafficDistribution field on a Kubernetes Service to make NGINX Ingress Controller send traffic to endpoints on its own node or in its own zone.
+  Turn on the -enable-topology-aware-routing command-line argument, then set the spec.trafficDistribution field on a Kubernetes Service, to make NGINX Ingress Controller send traffic to endpoints on its own node or in its own zone.
   Same-zone routing keeps requests inside one zone, which can lower latency and the cost of cross-zone data transfer.
-  The field applies to Ingress, VirtualServer, VirtualServerRoute, and TransportServer upstreams, but not to use-cluster-ip upstreams or ExternalName Services.
+  Topology-aware routing is off by default and applies to Ingress, VirtualServer, VirtualServerRoute, and TransportServer upstreams, but not to use-cluster-ip upstreams or ExternalName Services.
 f5-audience: operator
 ---
 
 ## Overview
 
-F5 NGINX Ingress Controller supports the `spec.trafficDistribution` field of a Kubernetes Service. When a Service sets this field, each NGINX Ingress Controller pod sends traffic to nearby endpoints of the Service. Nearby endpoints run on the same node or in the same zone as the pod. Same-zone routing keeps requests inside one zone. Keeping requests in one zone can lower latency and the cost of cross-zone data transfer.
+F5 NGINX Ingress Controller can follow the `spec.trafficDistribution` field of a Kubernetes Service. With topology-aware routing turned on, each NGINX Ingress Controller pod sends traffic to nearby endpoints of the Service. Nearby endpoints run on the same node or in the same zone as the pod. Same-zone routing keeps requests inside one zone. Keeping requests in one zone can lower latency and the cost of cross-zone data transfer.
 
-You don't need an annotation, a custom resource field, a ConfigMap key, or a Helm value. The `spec.trafficDistribution` field on the Service is the only setting. kube-proxy reads the same field for traffic to the cluster IP of the Service, so one setting controls both paths.
+Topology-aware routing is off by default. It needs two settings:
 
-{{< call-out "important" >}}
-Earlier versions of NGINX Ingress Controller ignore `spec.trafficDistribution`. If a Service already sets this field, NGINX Ingress Controller starts to prefer same-node or same-zone endpoints for that Service. To keep cluster-wide distribution, follow the steps in [Return to cluster-wide distribution](#return-to-cluster-wide-distribution).
-{{< /call-out >}}
+- **On NGINX Ingress Controller**: The `-enable-topology-aware-routing` command-line argument. With Helm, set `controller.enableTopologyAwareRouting` to `true`.
+- **On each Service**: The `spec.trafficDistribution` field. kube-proxy reads the same field for traffic to the cluster IP of the Service.
+
+The argument applies to the whole controller because the safe use of topology-aware routing depends on where the NGINX Ingress Controller pods run. For example, if all pods run in one zone, all ingress traffic goes to the endpoints in that zone. For more information, see [Spread NGINX Ingress Controller pods across zones](#spread-nginx-ingress-controller-pods-across-zones).
+
+While the argument is off, NGINX Ingress Controller ignores topology hints and uses all ready endpoints.
 
 ### Supported upstreams
 
@@ -59,6 +62,43 @@ Before you begin, make sure you have:
 - **Kubernetes 1.34 or later**: These versions accept `PreferSameZone` and `PreferSameNode` by default. On earlier versions, use `PreferClose`.
 - **Zone labels on your nodes**: Same-zone routing needs the `topology.kubernetes.io/zone` label on each node. In most cloud clusters, Kubernetes sets this label for you.
 - **Permission to list nodes**: NGINX Ingress Controller reads the zone of its own node at startup. The ClusterRole in the Helm chart and in the manifests already grants `list` on nodes.
+
+---
+
+## Turn on topology-aware routing
+
+{{< call-out "important" >}}
+Before you turn on topology-aware routing, find the Services that already request topology hints. These Services set `spec.trafficDistribution` or the `service.kubernetes.io/topology-mode: Auto` annotation. After the restart, NGINX Ingress Controller routes these Services by node or by zone.
+{{< /call-out >}}
+
+Use the steps for your installation method.
+
+### Turn on topology-aware routing with Helm
+
+1. Set `controller.enableTopologyAwareRouting` to `true` in your release:
+
+    ```shell
+    helm upgrade <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress --reuse-values --set controller.enableTopologyAwareRouting=true
+    ```
+
+    Replace `<RELEASE_NAME>` with the name of your Helm release. Kubernetes then restarts the NGINX Ingress Controller pods with the `-enable-topology-aware-routing` argument.
+
+### Turn on topology-aware routing with manifests
+
+1. Add the argument to the `args` list of the NGINX Ingress Controller container in your Deployment or DaemonSet manifest:
+
+    ```yaml
+    args:
+      - -enable-topology-aware-routing
+    ```
+
+1. Apply the manifest:
+
+    ```shell
+    kubectl apply -f <MANIFEST_FILE>
+    ```
+
+    Replace `<MANIFEST_FILE>` with the path to your Deployment or DaemonSet manifest. Kubernetes then restarts the NGINX Ingress Controller pods with the argument.
 
 ---
 
@@ -152,9 +192,10 @@ NGINX Ingress Controller reads the zone of its node once, at startup. If the `to
 
 ## Return to cluster-wide distribution
 
-To make NGINX Ingress Controller send traffic to all ready endpoints of a Service again, use one of these options:
+To make NGINX Ingress Controller send traffic to all ready endpoints again, use one of these options:
 
-- **Remove the field**: Remove `trafficDistribution` from the Service manifest, and apply the manifest again. NGINX Ingress Controller then uses all ready endpoints. kube-proxy also stops preferring nearby endpoints for traffic to the cluster IP.
+- **Turn off topology-aware routing**: Set `controller.enableTopologyAwareRouting` to `false`, or remove the `-enable-topology-aware-routing` argument from your manifest. NGINX Ingress Controller then ignores topology hints for all Services. kube-proxy still applies `spec.trafficDistribution` to traffic sent to the cluster IP.
+- **Remove the field**: Remove `trafficDistribution` from the Service manifest, and apply the manifest again. NGINX Ingress Controller then uses all ready endpoints of that Service. kube-proxy also stops preferring nearby endpoints for traffic to the cluster IP.
 - **Use a second Service**: To keep the preference for kube-proxy traffic only, create a second Service without `trafficDistribution`. Then point your Ingress, VirtualServer, or TransportServer resources at the second Service.
 
 ---
@@ -165,14 +206,17 @@ To make NGINX Ingress Controller send traffic to all ready endpoints of a Servic
 
 **Symptom**: The upstream for a Service lists endpoints from every zone, even though the Service sets `spec.trafficDistribution`.
 
-**Cause**: NGINX Ingress Controller falls back to all ready endpoints in these cases:
+**Cause**: NGINX Ingress Controller uses all ready endpoints in these cases:
 
+- NGINX Ingress Controller runs without the `-enable-topology-aware-routing` argument.
 - At least one ready endpoint has no hint. This state is temporary during a rollout or a scale event.
 - No hint names the zone or the node of the NGINX Ingress Controller pod.
 - NGINX Ingress Controller couldn't detect its zone at startup.
 - The upstream uses `use-cluster-ip`, or the Service is of type `ExternalName`.
 
-**Fix**: Check the hints and the detected zone with the steps in [Verify the endpoints that NGINX Ingress Controller uses](#verify-the-endpoints-that-nginx-ingress-controller-uses). For missing hints, wait for the EndpointSlice controller to finish. For a failed zone detection, see the next entry.
+**Fix**: Make sure that NGINX Ingress Controller runs with the argument, as described in [Turn on topology-aware routing](#turn-on-topology-aware-routing). Then check the hints and the detected zone with the steps in [Verify the endpoints that NGINX Ingress Controller uses](#verify-the-endpoints-that-nginx-ingress-controller-uses). For missing hints, wait for the EndpointSlice controller to finish. For a failed zone detection, see the next entry.
+
+To see the mode that NGINX Ingress Controller chooses for each upstream, set the log level to `debug`. Use the `-log-level` argument or the `controller.logLevel` Helm parameter. For each Service whose endpoints have hints, the log contains a line with `topology mode`. The line names `PreferSameNode`, `PreferSameZone`, or `none, hints ignored`, and the number of ready endpoints in use.
 
 ### Zone detection fails at startup
 
@@ -201,6 +245,7 @@ After the fix, restart the NGINX Ingress Controller pod.
 
 For more information, see:
 
+- [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}})
 - [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}})
 - [TransportServer resource]({{< ref "/nic/configuration/transportserver-resource.md" >}})
 - [Helm installation parameters]({{< ref "/nic/install/helm/parameters.md" >}})
