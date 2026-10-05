@@ -463,7 +463,7 @@ If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy`
 
 ## Configure the global upstream zone size
 
-NGINX keeps the configuration and runtime state of each upstream in a shared memory zone. The more servers (backend Pods) an upstream has, the larger the zone it needs. By default, NGINX Gateway Fabric gives every upstream the same fixed zone size. To change that size for all HTTP and gRPC upstreams, set the `zoneSize` field of the `NginxProxy` resource.
+NGINX keeps the configuration and runtime state of each upstream in a shared memory zone. The more servers (backend Pods) an upstream has, the larger the zone it needs. By default, NGINX Gateway Fabric gives each upstream a fixed default zone size. To change that size for all HTTP and gRPC upstreams, set the `zoneSize` field of the `NginxProxy` resource.
 
 The following command creates an `NginxProxy` resource that sets `zoneSize` to `1m`:
 
