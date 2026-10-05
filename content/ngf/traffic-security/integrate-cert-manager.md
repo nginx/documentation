@@ -19,7 +19,7 @@ Securing client server communication is a crucial part of modern application arc
 
 Follow the steps in this guide to:
 
-- Configure HTTPS for your application using a [gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/).
+- Configure HTTPS for your application using a [gateway](https://gateway-api.sigs.k8s.io/reference/api-types/gateway/).
 - Use [Let’s Encrypt](https://letsencrypt.org) as the Certificate Authority (CA) issuing the TLS certificate.
 - Use [cert-manager](https://cert-manager.io) to automate the provisioning and management of the certificate.
 
@@ -64,7 +64,7 @@ At a high level, the process looks like this:
 
 ### Create a ClusterIssuer
 
-Next we need to create a [ClusterIssuer](https://cert-manager.io/docs/concepts/issuer/), a Kubernetes resource that represents the certificate authority (CA) that will generate the signed certificates by honouring certificate signing requests.
+Next we need to create a [ClusterIssuer](https://cert-manager.io/docs/concepts/issuer/), a Kubernetes resource that represents the certificate authority (CA) that will generate the signed certificates by honoring certificate signing requests.
 
 We are using the ACME Issuer type, and Let's Encrypt as the CA server. In order for Let's Encypt to verify that we own the domain a certificate is being requested for, we must complete "challenges". This is to ensure clients are unable to request certificates for domains they do not own. We will configure the issuer to use a HTTP01 challenge, and our gateway resource that we will create in the next step as the solver. To read more about HTTP01 challenges, see the [cert-manager documentation](https://cert-manager.io/docs/configuration/acme/http01/). Use the following YAML definition to create the resource, but please note the `email` field must be updated to your own email address.
 
@@ -144,6 +144,7 @@ cafe-secret   kubernetes.io/tls   2      20s
 ```
 
 ---
+
 - Multiple `certificateRefs` apply to the listener's `hostname` and are not automatically selected based on the hostnames of attached HTTPRoute resources. Use separate HTTPS listeners for different domains that require different certificates.
 
 ### Deploy our application and HTTPRoute

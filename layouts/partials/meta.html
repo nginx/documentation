@@ -1,0 +1,126 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{{ block "title" . }}
+    <!-- First use page or site title    -->
+    {{ $title := .Title }}
+    <!-- If not home append site title to page title    -->
+    {{ if and (not .IsHome) .Site.Title }}
+        {{ $title = printf "%s | %s" .Title .Site.Title }}
+    {{ end }}
+    <title>{{- $title -}}</title>
+{{ end }}
+
+<!-- Try page defined desc first -->
+{{ with .Description }}
+    <meta name="description" content="{{ . | markdownify }}">
+<!-- Fallback to site config if defined -->
+{{ else with .Site.Params.description }}
+    <meta name="description" content="{{ . }}">
+{{ end }}
+
+{{ if .Params.categories }}
+<meta name="keywords" content="{{ delimit .Params.categories ", " }}">
+{{ end }}
+
+
+{{/* Local override: honour a `canonical` front matter key when present, so that
+     duplicated content (for example, a renamed product tree) can point search
+     engines at the authoritative page. Falls back to Hugo's default behaviour. */}}
+{{ if .Params.canonical }}
+<link rel="canonical" href="{{ .Params.canonical | absURL }}">
+{{ else }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end }}
+
+<!-- noindex meta -->
+{{ $default_noindex_kinds := slice "section" "taxonomy" "taxonomyTerm" }}
+{{ $noindex_kinds := .Site.Params.noindex_kinds | default $default_noindex_kinds }}
+{{ $is_noindex_true := and (isset .Params "noindex") .Params.noindex }}
+{{ if or (in $noindex_kinds .Kind) ($is_noindex_true) }}
+<meta name="robots" content="noindex,nofollow" />
+{{ end }}
+
+{{ $richMetaEnabled := partial "get-feature-flags.html" "disable_rich_meta" }}
+
+{{ if $richMetaEnabled }}
+    {{ $metaImage := .Site.Params.rich_meta.thumbnail }}
+
+    <!-- Normalzize path for preview URLs    -->
+    {{ $imageUrl := urls.JoinPath .Site.BaseURL $metaImage | relURL }}
+    {{ $fbPublisher := .Site.Params.rich_meta.fb_publisher }}
+
+    {{ if $fbPublisher }}
+        <meta property="article:publisher" content="{{ $fbPublisher }}" />
+    {{ end }}
+
+    {{ $imageRes := .Site.Params.rich_meta.thumbnail_res }}
+    {{ $parsedRes := split $imageRes "x" }}
+
+    <meta property="og:image" content="{{ $imageUrl }}" />
+
+    <!-- Homepage is website, all other pages should be articles    -->
+    {{ if .IsHome }}
+        <meta property="og:type" content="website" />
+    {{ else }}
+        <meta property="og:type" content="article" />
+        {{ with .Page.Lastmod }}
+            <meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z0700" }}">
+        {{ end }}
+        {{ with .Parent.Title }}
+            <meta property="article:section" content="{{ . }}" />
+        {{ end }}
+    {{ end }}
+
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:image:width" content="{{ index $parsedRes 0}}" />
+    <meta property="og:image:height" content="{{ index $parsedRes 1 }}" />
+
+    {{ $twitterUsername := .Site.Params.rich_meta.twitter_username }}
+
+    {{ if $twitterUsername }}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="{{ $twitterUsername }}" />
+    {{ end }}
+{{ end }}
+
+{{ if .Page.Lastmod }}
+<meta http-equiv="last-modified" content="{{ .Page.Lastmod.Format "02/01/2006" }}" />
+{{ end }}
+
+{{ $coveoEnabled := partial "get-feature-flags.html" "disable_coveo" }}
+{{ $qualtricsEnabled := partial "get-feature-flags.html"  "disable_qualtrics" }}
+{{/* set custom CSP to load styles and scripts with special handling for GTM scripts (requires unsafe-inline) and Dev Portal page(s) (requires 'unsafe-eval') */}}
+<meta http-equiv="Content-Security-Policy" content="
+    script-src 'self' 'unsafe-inline'
+    https://consent.trustarc.com/
+    {{ if $coveoEnabled }}https://static.cloud.coveo.com/{{ end }} 
+    https://*.f5.com/
+    https://*.amplitude.com
+    https://*.netlify.app https://gist.github.com
+    https://tag.demandbase.com/pscSDsz4.min.js
+    https://munchkin.brightfunnel.com/js/build/bf-munchkin.min.js
+    https://www.googletagmanager.com/
+    https://www.google-analytics.com/
+    https://www.google-analytics.com/analytics.js
+    https://www.google-analytics.com/plugins/ua/linkid.js
+    https://cdn.bizible.com/scripts/bizible.js
+    https://cdn.bizible.com/xdc.js
+    https://f5networksglobalprod.122.2o7.net/
+    https://f5networksnginxdocs.122.2o7.net/
+    {{ if $qualtricsEnabled }}https://*.siteintercept.qualtrics.com/SIE/{{ end }}
+    {{ if $qualtricsEnabled }}https://siteintercept.qualtrics.com/{{ end }}
+    {{ if in .Params.doctypes "devportal" }} 'unsafe-eval' {{end}};
+    worker-src 'self' blob:">
+{{/* end */}}
+
+<!-- build metadata -->
+<meta property="environment" type="{{ hugo.Environment }}" />
+<meta property="buildtype" type="{{ .Site.Params.buildtype }}" />
+<meta property="isServer" type="{{ hugo.IsServer }}" />
+
+<!-- Coveo metadata-->
+<meta name="product" content="{{ .Site.Title }}">
+<meta name="version" content="{{ .Site.Params.currentVersion }}">
+<meta name="doc_type" content="Manual">

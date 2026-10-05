@@ -29,6 +29,28 @@ The value `debug` is useful for troubleshooting: you will be able to see how NGI
 
 Read more about NGINX Ingress Controller [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}).
 
+### Resource attributes on process log lines
+
+In a multi-tenant cluster, these attributes let you filter, route, and triage the NGINX Ingress Controller process log lines by namespace or resource, and trace a log line back to the object that produced it, without manual investigation. To make this possible, NGINX Ingress Controller stamps its process log lines with the identity of the Kubernetes resource it is processing.
+
+Three attributes carry this identity:
+
+- `resource_namespace`: the resource's namespace.
+- `resource_kind`: the resource's kind, such as `Ingress`, `VirtualServer`, `VirtualServerRoute`, `TransportServer`, or `Policy`.
+- `resource_name`: the resource's name.
+
+These attributes appear only on NGINX Ingress Controller process log lines emitted at any log level while it processes a resource. They do not appear in the NGINX access or error logs.
+
+One, two, or all three attributes can appear, depending on the code path. A line about a namespace-scoped operation may carry only `resource_namespace` and `resource_kind`, while a line about a specific object carries all three.
+
+How the attributes render depends on the [`-log-format`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-log-format" >}}) command-line argument. The `glog` format renders them as space-separated `key=value` pairs, placed after the `file:line]` bracket and before the message. The `json` format emits them as native JSON fields, and the `text` format emits them as `key=value` fields.
+
+The following example shows an NGINX Ingress Controller log line in the default `glog` format. It is illustrative, not runnable:
+
+```text
+W20260806 14:07:23.267011   1 controller.go:3057] resource_namespace=log-test-1 resource_kind=VirtualServer resource_name=webapp1 Error trying to get the secret log-test-1/tls-secret for VirtualServer webapp1: secret doesn't exist or of an unsupported type
+```
+
 ## NGINX Logs
 
 NGINX includes two logs:
