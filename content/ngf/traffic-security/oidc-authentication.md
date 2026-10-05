@@ -243,7 +243,7 @@ spec:
     spec:
       containers:
       - name: coffee
-        image: nginxdemos/nginx-hello
+        image: nginxdemos/nginx-hello:plain-text
         ports:
         - containerPort: 8080
 ---
@@ -276,7 +276,7 @@ spec:
     spec:
       containers:
       - name: tea
-        image: nginxdemos/nginx-hello
+        image: nginxdemos/nginx-hello:plain-text
         ports:
         - containerPort: 8080
 ---
@@ -667,10 +667,12 @@ spec:
   A path-only `redirectURI` or `logout.postLogoutURI` can't include query parameters. As with the character rules, the filter reports `Accepted=False` with `Reason=Invalid`, and the message names the field.
 
 ### HTTPRoute is not accepted or reports `ResolvedRefs=False`
+
 - Verify the `extensionRef` in the HTTPRoute matches the `AuthenticationFilter` name and namespace exactly.
 - Confirm the route's `parentRefs` points to an HTTPS listener. OIDC filters are rejected on non-HTTPS listeners.
 
 ### Browser is stuck in a redirect loop
+
 - Confirm the `redirectURI` registered in the IdP exactly matches the path NGINX is using (default: `/oidc_callback_<namespace>_<filtername>`).
 - Ensure the Gateway's TLS certificate is valid for the hostname the browser is using.
 
