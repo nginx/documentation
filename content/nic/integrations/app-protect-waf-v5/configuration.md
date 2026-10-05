@@ -23,7 +23,9 @@ F5 WAF for NGINX v5 can be enabled for VirtualServer, VirtualServerRoute, and In
 
 {{< call-out class="note" >}}
 
-Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
+Some policies use NGINX subrequests: `APIKey`, `ExternalAuth`, `JWT` with `jwksURI`, `OIDC`, and `OIDCNative`. NGINX Ingress Controller turns off F5 WAF for NGINX in the internal locations that serve these subrequests. As a result, you can apply these policies and F5 WAF for NGINX to the same route. F5 WAF for NGINX continues to inspect client requests to the route.
+
+A `Cache` policy with `cacheBackgroundUpdate` also uses subrequests. These subrequests may not work as expected when F5 WAF for NGINX applies to the same route.
 
 {{< /call-out >}}
 
