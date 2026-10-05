@@ -243,7 +243,7 @@ The maximum time in milliseconds that NGINX Ingress Controller waits to apply a 
 - A higher value means fewer reloads, but NGINX can keep an outdated configuration for longer.
 - A lower value applies configuration changes sooner, but NGINX Ingress Controller reloads NGINX more often.
 
-The value can't be negative. If you set it to `0`, NGINX Ingress Controller uses the default.
+The value can't be negative. If you set it to `0`, NGINX Ingress Controller applies a pending reload only when the task queue is empty. During continuous changes, a configuration change then waits for its reload until the changes stop.
 
 Default is 2000.
 
