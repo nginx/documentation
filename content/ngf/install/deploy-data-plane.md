@@ -11,7 +11,7 @@ f5-docs: DOCS-1854
 
 This document describes how to use a Gateway to deploy the NGINX data plane, and how to modify it using an NGINX custom resource.
 
-[A Gateway](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
+[A Gateway](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
 
 When a Gateway is attached to a GatewayClass associated with NGINX Gateway Fabric, it creates a Service and an NGINX deployment in the same namespace as the Gateway. This forms the NGINX data plane, handling requests.
 
@@ -96,7 +96,7 @@ NAME         TYPE            CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 cafe-nginx   LoadBalancer    10.96.125.117   192.0.2.1   80:30180/TCP   5m2s
 ```
 
-The Service type can be changed, as explained in the next section. NGINX Gateway Fabric uses the created Service to update the **Addresses** field in the **Gateway Status** resource. Using a **LoadBalancer** Service sets this field to the IP address and/or hostname of that service. Without a Service, the pod IP address is used.
+The Service type can be changed, as explained in the next section. NGINX Gateway Fabric uses the created Service to update the **Addresses** field in the **Gateway Status** resource. This field includes the IP addresses listed in the Gateway `spec.addresses` field. A **LoadBalancer** Service adds the IP addresses and hostnames that the load balancer assigns. Other Service types add the cluster IP address only when `spec.addresses` lists no IP addresses. Without a Service, the pod IP address is used.
 
 ## Modify provisioned NGINX instances
 

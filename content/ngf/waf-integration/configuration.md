@@ -198,7 +198,7 @@ The `expectedChecksum` must be a 64-character hexadecimal SHA-256 digest.
 
 ## Policy fetch failure handling
 
-When a WAF policy bundle cannot be fetched — for example, due to a network error, authentication failure, or the bundle not yet being compiled — the behaviour of NGINX Gateway Fabric depends on whether this is the **first** fetch or a **subsequent** update.
+When a WAF policy bundle cannot be fetched — for example, due to a network error, authentication failure, or the bundle not yet being compiled — the behavior of NGINX Gateway Fabric depends on whether this is the **first** fetch or a **subsequent** update.
 
 ### First-time fetch failure
 

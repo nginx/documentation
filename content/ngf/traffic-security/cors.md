@@ -226,5 +226,5 @@ Response:
 ## Further reading
 
 - [Example deployment files for HTTPCORSFilter](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cors-filter)
-- [Gateway API Specification](https://gateway-api.sigs.k8s.io/reference/spec/#httpcorsfilter)
-- [Gateway API CORS](https://gateway-api.sigs.k8s.io/guides/http-cors/)
+- [Gateway API Specification](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httpcorsfilter)
+- [Gateway API CORS](https://gateway-api.sigs.k8s.io/guides/user-guides/http-cors/)

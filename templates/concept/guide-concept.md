@@ -206,7 +206,7 @@ Include background when historical or industry context is essential to understan
 Background may cover:
 
 - How or why the concept was designed the way it was
-- Historical decisions that explain current behaviour
+- Historical decisions that explain current behavior
 - Industry or regulatory context that shapes how the concept is used
 
 Keep this section short. Background that runs longer than a few paragraphs usually contains content that belongs elsewhere — either in the definition, a use case, or a separate concept document.
