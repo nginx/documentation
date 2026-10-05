@@ -463,9 +463,7 @@ If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy`
 
 ## Configure the global upstream zone size
 
-NGINX stores the configuration and runtime state of each upstream group in a shared memory zone. By default, NGINX Gateway Fabric sizes this zone automatically for each upstream. The `zoneSize` field of the `NginxProxy` resource instead sets one fixed size for all HTTP upstreams, and overrides automatic sizing for them.
-
-You can set `zoneSize` globally on the `NginxProxy` resource, as shown below. You can also set it for one Service through the `zoneSize` field of an [`UpstreamSettingsPolicy`]({{< ref "/ngf/traffic-management/upstream-settings.md" >}}). When both are set for the same Service, the `UpstreamSettingsPolicy` value takes precedence. Use the per-service override when one Service's upstream needs a different size, for example a Service with many more backend Pods.
+NGINX keeps the configuration and runtime state of each upstream in a shared memory zone. The more servers (backend Pods) an upstream has, the larger the zone it needs. By default, NGINX Gateway Fabric gives every upstream the same fixed zone size. To change that size for all HTTP and gRPC upstreams, set the `zoneSize` field of the `NginxProxy` resource.
 
 The following command creates an `NginxProxy` resource that sets `zoneSize` to `1m`:
 
@@ -480,21 +478,21 @@ spec:
 EOF
 ```
 
-Set the value as a size string of one to four digits with an optional `k`, `m`, or `g` suffix. For example, `512k`, `1m`, or `8k`. A value with no suffix is in bytes.
+Enter the size as a number of up to four digits followed by `k`, `m`, or `g`. For example, `512k`, `1m`, or `2m`.
 
-The zone size an upstream needs scales with the number of servers (backend Pods) in that upstream: the more servers an upstream has, the larger the zone it requires. See the `zoneSize` field in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the rationale.
+To set a different size for one Service, use the `zoneSize` field of an `UpstreamSettingsPolicy`. For the steps, see [Configure upstream zone size]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-upstream-zone-size" >}}). When both are set for the same Service, the `UpstreamSettingsPolicy` value takes precedence. For example, give a Service with many more backend Pods than the others a larger zone.
 
-To confirm the global `zoneSize` took effect, inspect the running NGINX configuration:
+To confirm the new size, inspect the running NGINX configuration:
 
 ```shell
 kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
-For a Service that has no `UpstreamSettingsPolicy` overriding it, the `zone` directive in its HTTP upstream shows the configured size.
+The `zone` directive of each HTTP upstream shows `1m`, unless an `UpstreamSettingsPolicy` sets another size for that Service.
 
-{{< call-out class="note" >}} `zoneSize` applies to HTTP upstreams only. When neither the global `zoneSize` nor an `UpstreamSettingsPolicy` sets a size, NGINX Gateway Fabric sizes the zone automatically. Layer 4 (TCPRoute/UDPRoute) stream upstreams don't use this field, and NGINX Gateway Fabric always sizes them automatically. See [Configure automatic upstream zone sizing](#configure-automatic-upstream-zone-sizing) for details. {{< /call-out >}}
+Layer 4 stream upstreams for TLSRoute, TCPRoute, and UDPRoute don't use this setting. They keep their default zone size.
 
-As with other `NginxProxy` fields, you can set `zoneSize` on the GatewayClass to apply globally, or on a Gateway to override the GatewayClass value. See the [Merging Semantics](#merging-semantics) section for details, and the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the full list of options.
+You can set `zoneSize` on the GatewayClass to apply it to all Gateways. To override that value for one Gateway, set it on the Gateway. See the [Merging Semantics](#merging-semantics) section for details. The `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) lists the default zone sizes and the full list of options.
 
 ---
 
