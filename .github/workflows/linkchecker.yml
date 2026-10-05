@@ -85,7 +85,7 @@ jobs:
       - name: Retrieve secrets from Keyvault
         if: env.isProduction != 'true'
         id: keyvault
-        uses: azure/cli@9f7ce6f37c31b777ec6c6b6d1dfe7db79f497956
+        uses: azure/cli@9eb25b8360668fb0ecbafa808d40e2197b2f5f52
         with:
           inlineScript: |
             secrets_get=(frontdoorUsername frontdoorPassword)

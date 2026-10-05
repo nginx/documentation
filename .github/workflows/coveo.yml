@@ -161,7 +161,7 @@ jobs:
           env-names: AZ_RESOURCE_GROUP, AZ_CDN_PROFILE, AZ_CDN, AZ_ACCOUNT
 
       - name: Push to Azure container storage
-        uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd # v3.0.0
+        uses: azure/cli@9eb25b8360668fb0ecbafa808d40e2197b2f5f52 # v3.0.0
         with:
           azcliversion: latest
           inlineScript: |
