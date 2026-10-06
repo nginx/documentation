@@ -238,7 +238,7 @@ The VirtualServerRoute resource defines a route for a VirtualServer. It can cons
 
 VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. With `routeSelector`, you can add new VirtualServerRoute resources without changing the VirtualServer configuration.
 
-A VirtualServerRoute can set `host` to attach only to the VirtualServer with that host, or omit `host` (hostless mode). A hostless VirtualServerRoute uses the host of whichever VirtualServer references it, by name with `route` or by label with `routeSelector`. Several VirtualServers can share it. Because any VirtualServer with a matching `routeSelector` can attach a hostless VirtualServerRoute, choose its labels carefully.
+A VirtualServerRoute can set `host` to attach only to the VirtualServer with that host, or omit `host` (hostless mode). A hostless VirtualServerRoute uses the host of each VirtualServer that references it, by name with `route` or by label with `routeSelector`. Any VirtualServer in any namespace whose `routeSelector` matches the labels of a hostless VirtualServerRoute attaches that route. Use labels that only the intended VirtualServers select.
 
 {{<tabs name="vs-vsr-examples">}}
 
@@ -428,7 +428,7 @@ Each subroute path must start with the prefix defined in the VirtualServer route
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com``, wrap the domain in double quotes. When set, it must match the ``host`` of the VirtualServer that references this resource. When omitted (hostless mode), any VirtualServer can reference the VirtualServerRoute regardless of host, so multiple VirtualServers can share the same route configuration. | ``string`` | No |
+|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com``, wrap the domain in double quotes. When set, it must match the ``host`` of the VirtualServer that references this resource. If you omit ``host`` (hostless mode), the VirtualServerRoute uses the host of each VirtualServer that references it. | ``string`` | No |
 |``upstreams`` | A list of upstreams. | [[]upstream](#upstream) | No |
 |``subroutes`` | A list of subroutes. | [[]subroute](#virtualserverroutesubroute) | No |
 |``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string`` | No |
@@ -1184,7 +1184,7 @@ Status:
   State:    Invalid
 ```
 
-NGINX Ingress Controller validates VirtualServerRoute resources in a similar way. For example, if a VirtualServerRoute defines a `host` that doesn't match the referencing VirtualServer, NGINX Ingress Controller rejects the route attachment. When you omit `host` (hostless mode), any VirtualServer can reference the route without host matching.
+NGINX Ingress Controller validates VirtualServerRoute resources in a similar way. For example, if a VirtualServerRoute defines a `host` that doesn't match the referencing VirtualServer, NGINX Ingress Controller rejects the route attachment.
 
 If you make an existing resource invalid, NGINX Ingress Controller rejects it and removes the corresponding configuration from NGINX.
 

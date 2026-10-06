@@ -11,7 +11,7 @@ This page describes how to troubleshoot VirtualServer and VirtualServerRoute res
 
 ## Inspecting VirtualServer and VirtualServerRoute resource events
 
-After creating or updating a VirtualServer resource, you can immediately check if the NGINX configuration for that resource was successful by using `kubectl describe vs <resource-name>`:
+After you create or update a VirtualServer resource, run `kubectl describe vs <RESOURCE_NAME>` to check whether NGINX applied the configuration for that resource:
 
 ```shell
 kubectl describe vs cafe
@@ -43,9 +43,9 @@ Events:
 
 ### Host mismatch rejection
 
-If a VirtualServerRoute defines a `spec.host` that doesn't match the referencing VirtualServer, NGINX Ingress Controller rejects the route attachment and logs a warning event on the resource.
+If a VirtualServerRoute defines a `spec.host` that doesn't match the referencing VirtualServer, F5 NGINX Ingress Controller rejects the route attachment and logs a warning event on the resource.
 
-To resolve a host mismatch:
+To fix a host mismatch, do one of the following:
 
 - Update `spec.host` in the VirtualServerRoute to match the VirtualServer `host` exactly.
 - Omit `spec.host` from the VirtualServerRoute (hostless mode) so any VirtualServer can reference it.
