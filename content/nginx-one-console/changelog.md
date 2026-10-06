@@ -10,6 +10,12 @@ nollms: true
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 12, 2026
+
+### Instances: Display and sort by WAF version
+
+You can now view, filter, and sort by the F5 WAF for NGINX version through the NGINX One Console instances list and API. Each instance is labelled with its installed F5 WAF for NGINX release (e.g., `5.4.0`), or `None` if WAF is not installed. 
+
 ## September 15, 2026
 
 ### Config Templates: Submit and copy templates from the Templates list
