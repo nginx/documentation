@@ -193,6 +193,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.startupStatus.successThreshold** | Minimum consecutive successes for the probe to be considered successful. | N/A |
 | **controller.startupStatus.failureThreshold** | When a probe fails, Kubernetes will try failureThreshold times before giving up. | N/A |
 | **controller.enableLatencyMetrics** | Enable collection of latency metrics for upstreams. Requires `prometheus.create`. | false |
+| **controller.latencyMetricsBuckets** | Sets the histogram buckets, in milliseconds, for upstream latency metrics. Enter a comma-separated list of positive numbers in strictly ascending order, for example `5,10,25,50,100,250,500,1000`. Fewer buckets mean fewer time series. If not set, NGINX Ingress Controller uses the default buckets. Requires `controller.enableLatencyMetrics`. | "" |
 | **controller.minReadySeconds** | Specifies the minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available. [docs](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds) | 0 |
 | **controller.autoscaling.enabled** | Enables HorizontalPodAutoscaling. | false |
 | **controller.autoscaling.create** | Create the HorizontalPodAutoscaler resource. This can be set to false to manage the HPA externally. | true |
