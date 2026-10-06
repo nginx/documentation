@@ -109,6 +109,8 @@ basedOn: scheme
 |``code`` | The status code of a redirect. The allowed values are: ``301`` , ``302`` , ``307`` , ``308``.  The default is ``301``. | ``int`` | No |
 |``basedOn`` | The attribute of a request that NGINX will evaluate to send a redirect. The allowed values are ``scheme`` (the scheme of the request) or ``x-forwarded-proto`` (the ``X-Forwarded-Proto`` header of the request). The default is ``scheme``. | ``string`` | No | ### VirtualServer.Policy |
 
+The redirect doesn't apply to active cert-manager HTTP-01 challenges. For details, see [HTTP-01 challenges with cert-manager](#http-01-challenges-with-cert-manager).
+
 ### VirtualServer.TLS.CertManager
 
 The cert-manager field configures x509 automated Certificate management for VirtualServer resources using cert-manager (cert-manager.io). Please see the [cert-manager configuration documentation](https://cert-manager.io/docs/configuration/) for more information on deploying and configuring Issuers. Example:
@@ -129,6 +131,33 @@ cert-manager:
 |``renew-before`` |  this annotation allows you to configure spec.renewBefore field for the Certificate to be generated. Must be specified using a [Go time.Duration](https://pkg.go.dev/time#ParseDuration) string format, which does not allow the d (days) suffix. You must specify these values using s, m, and h suffixes instead. | ``string`` | No |
 |``usages`` |  This field allows you to configure spec.usages field for the Certificate to be generated. Pass a string with comma-separated values i.e. ``key agreement,digital signature, server auth``. An exhaustive list of supported key usages can be found in the [the cert-manager api documentation](https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.KeyUsage). | ``string`` | No |
 |``issue-temp-cert`` | When ``true``, ask cert-manager for a [temporary self-signed certificate](https://cert-manager.io/docs/usage/certificate/#temporary-certificates-while-issuing) pending the issuance of the Certificate. This allows HTTPS-only servers to use ACME HTTP01 challenges when the TLS secret does not exist yet. | ``boolean`` | No |
+
+#### HTTP-01 challenges with cert-manager
+
+An Automatic Certificate Management Environment (ACME) issuer in cert-manager can use the HTTP-01 solver. With this solver, the ACME server must reach `http://<HOST>/.well-known/acme-challenge/<TOKEN>` over plain HTTP. NGINX Ingress Controller detects active challenge locations and exempts them from the TLS redirect and from authentication policies. You don't need extra configuration. Setting `redirect.enable: true` doesn't require `issue-temp-cert`.
+
+NGINX Ingress Controller treats a location as a challenge location only when all of these conditions are true:
+
+- The location comes from the solver Ingress that cert-manager creates. This requires the [`-enable-cert-manager`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-cert-manager" >}}) argument.
+- The solver Ingress is in the same namespace as the VirtualServer.
+- The path starts with `/.well-known/acme-challenge/`.
+- The name of the backend Service starts with `cm-acme-http-solver-`.
+
+A path alone never qualifies. For example, a VirtualServerRoute route with a `/.well-known/acme-challenge/` path isn't a challenge location.
+
+While a challenge is active for a host, NGINX Ingress Controller changes the configuration in these ways:
+
+- Plain HTTP requests to any path under `/.well-known/acme-challenge/` on the host skip the `tls.redirect` redirect.
+- The challenge location skips basic auth, JWT, API key, external auth, and OpenID Connect policies.
+- Access control, WAF, and rate-limiting policies in the VirtualServer `spec.policies` still apply to the challenge location.
+- Policies on routes and subroutes don't apply, because the challenge location isn't part of a VirtualServer route.
+- The challenge location is an exact-match location. NGINX selects it before any regular expression route, such as `~ ^/`.
+
+A VirtualServer or VirtualServerRoute can already have an exact-match route for the token path. In that case, NGINX Ingress Controller keeps that route and doesn't generate the challenge location. It also reports a warning on the VirtualServer.
+
+When no challenge is active, the generated NGINX configuration doesn't change.
+
+{{< call-out class="note" title="Note" >}}While a challenge is active, every path under `/.well-known/acme-challenge/` on the host skips the redirect, not only the token path. Other paths under that prefix still require credentials. But clients can send those credentials over plain HTTP until the challenge ends, typically after seconds to minutes. {{< /call-out >}}
 
 ### VirtualServer.Listener
 

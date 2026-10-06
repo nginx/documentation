@@ -92,6 +92,29 @@ Note how the events section includes a Warning event with the Rejected reason.
 
 The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
+## HTTP-01 challenges with cert-manager
+
+An Automatic Certificate Management Environment (ACME) issuer in cert-manager can use the HTTP-01 solver. With this solver, the ACME server must reach `http://<HOST>/.well-known/acme-challenge/<TOKEN>` over plain HTTP. NGINX Ingress Controller exempts active challenge paths from HTTPS redirects and authentication. You don't need extra annotations.
+
+The exemption requires the `acme.cert-manager.io/http01-edit-in-place: "true"` annotation on your Ingress. With this annotation, cert-manager adds the challenge path to your existing Ingress. NGINX Ingress Controller treats a path as a challenge path only when both of these conditions are true:
+
+- The path starts with `/.well-known/acme-challenge/`.
+- The name of the backend Service starts with `cm-acme-http-solver-`.
+
+While a challenge is active for a host, NGINX Ingress Controller changes the configuration in these ways:
+
+- Plain HTTP requests to any path under `/.well-known/acme-challenge/` on the host skip the `nginx.org/ssl-redirect` and `nginx.org/redirect-to-https` redirects.
+- The challenge path skips basic auth, JWT, external auth, and OpenID Connect.
+- Access control and WAF still apply to the challenge path, whether you set them with policies or annotations. The `nginx.org/limit-req-*` annotations also still apply.
+
+When no challenge is active, the generated NGINX configuration doesn't change.
+
+Edit-in-place is required. Without edit-in-place, cert-manager creates a separate solver Ingress for the host. The existing Ingress keeps the host, and NGINX Ingress Controller doesn't serve the challenge.
+
+For [mergeable Ingress resources]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}), the TLS configuration and the `cert-manager.io/*` annotations are on the master. But cert-manager can't add the challenge path to the master, because a master has no paths. To complete the challenge, set `solvers[].http01.ingress.name` in the issuer to the name of a minion Ingress.
+
+{{< call-out class="note" title="Note" >}}While a challenge is active, every path under `/.well-known/acme-challenge/` on the host skips the redirect, not only the token path. Other paths under that prefix still require credentials. But clients can send those credentials over plain HTTP until the challenge ends, typically after seconds to minutes. {{< /call-out >}}
+
 ## Summary of Annotations
 
 The table below summarizes the available annotations.
@@ -150,8 +173,8 @@ The table below summarizes the available annotations.
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
 | *nginx.org/app-root* | N/A | Configures the application root path that the controller redirects requests for / to. Returns 302 redirect that will take precedence over other redirects. | N/A | `/` redirects to `/coffee` |
-| *nginx.org/redirect-to-https* | *redirect-to-https* | Sets a redirect rule based on the value of the `http_x_forwarded_proto` header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of NGINX Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `nginx.org/http-redirect-code` annotation or the `http-redirect-code` ConfigMap key. | *False* |  |
-| *nginx.org/ssl-redirect* | *ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `nginx.org/http-redirect-code` annotation or the `http-redirect-code` ConfigMap key. | *True* |  |
+| *nginx.org/redirect-to-https* | *redirect-to-https* | Sets a redirect rule based on the value of the `http_x_forwarded_proto` header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of NGINX Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `nginx.org/http-redirect-code` annotation or the `http-redirect-code` ConfigMap key. Paths for active cert-manager HTTP-01 challenges skip this redirect. See [HTTP-01 challenges with cert-manager](#http-01-challenges-with-cert-manager). | *False* |  |
+| *nginx.org/ssl-redirect* | *ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `nginx.org/http-redirect-code` annotation or the `http-redirect-code` ConfigMap key. Paths for active cert-manager HTTP-01 challenges skip this redirect. See [HTTP-01 challenges with cert-manager](#http-01-challenges-with-cert-manager). | *True* |  |
 | *nginx.org/http-redirect-code* | *http-redirect-code* | Sets the HTTP redirect code for HTTPS redirects. Supported codes: 301, 302, 307, 308. | *301* | *307* |
 | *nginx.org/hsts* | *hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/)\ : the HSTS header is added to the responses from backends. The `preload` directive is included in the header. | *False* |  |
 | *nginx.org/hsts-max-age* | *hsts-max-age* | Sets the value of the `max-age` directive of the HSTS header. | *2592000* (1 month) |  |
