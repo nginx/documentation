@@ -295,11 +295,11 @@ In lightweight mode, `clickhouse-data` is not needed and should be removed from 
 Before you run `docker compose up -d`, make sure your NFS volumes are mounted:
 
 ```shell
-sudo mount -t nfs <NFS_IP>:/mnt/nfs_share/data /mnt/nfs_share/data
-sudo mount -t nfs <NFS_IP>:/mnt/nfs_share/clickhouse /mnt/nfs_share/clickhouse
+sudo mount -t nfs <NFS_SERVER_IP>:/mnt/nfs_share/data /mnt/nfs_share/data
+sudo mount -t nfs <NFS_SERVER_IP>:/mnt/nfs_share/clickhouse /mnt/nfs_share/clickhouse
 ```
 
-Replace `<NFS_IP>` with the IP address of your NFS server.
+Replace `<NFS_SERVER_IP>` with the IP address of your NFS server.
 
 Update the volumes section in your Compose file:
 
@@ -309,14 +309,14 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<NFS_IP>,rw"
+      o: "addr=<NFS_SERVER_IP>,rw"
       device: ":/mnt/nfs_share/data"
 
   clickhouse-data:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<NFS_IP>,rw"
+      o: "addr=<NFS_SERVER_IP>,rw"
       device: ":/mnt/nfs_share/clickhouse"
 ```
 

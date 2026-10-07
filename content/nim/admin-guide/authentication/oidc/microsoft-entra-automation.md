@@ -113,10 +113,10 @@ Additionally, complete the following steps:
 1. Send a `POST` request to the Microsoft Entra token endpoint:
 
     ```shell
-    https://login.microsoftonline.com/<AZURE_TENANT_ID>/oauth2/v2.0/token
+    https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token
     ```
 
-    Replace `<AZURE_TENANT_ID>` with your Microsoft Entra (Azure) tenant ID.
+    Replace `<TENANT_ID>` with your Microsoft Entra tenant ID.
 
 2. Include the following in your request body:
     - `client_id`: The client ID of the application you created.

@@ -164,10 +164,10 @@ Once the `Volume` and `VolumeMount` has been added the manifest file, apply the 
 Confirm the `oidc.tmpl` file has been updated:
 
 ```shell
-kubectl exec -it -n <NAMESPACE> <INGRESS_CONTROLLER_POD> -- cat /oidc.tmpl
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- cat /oidc.tmpl
 ```
 
-Replace `<INGRESS_CONTROLLER_POD>` with the name of your NGINX Ingress Controller pod.
+Replace `<NGINX_INGRESS_POD>` with the name of your NGINX Ingress Controller pod.
 
 ### Helm
 
@@ -236,5 +236,5 @@ Once the Deployment/DaemonSet/StatefulSet has been edited, save the file and exi
 Confirm the `oidc.tmpl` file has been updated:
 
 ```shell
-kubectl exec -it -n <NAMESPACE> <INGRESS_CONTROLLER_POD> -- cat /oidc.tmpl
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- cat /oidc.tmpl
 ```

@@ -502,10 +502,10 @@ metadata:
 apiVersion: v1
 type: nginx.org/ca
 data:
-  ca.crt: <BASE64ENCODED_CERTIFICATE>
+  ca.crt: <BASE64_ENCODED_CERTIFICATE>
 ```
 
-Replace `<BASE64ENCODED_CERTIFICATE>` with your base64-encoded certificate.
+Replace `<BASE64_ENCODED_CERTIFICATE>` with your base64-encoded certificate.
 
 A VirtualServer that references an IngressMTLS policy must:
 
@@ -562,11 +562,11 @@ You can use only one of these configuration options at a time.
    apiVersion: v1
    type: nginx.org/ca
    data:
-     ca.crt: <BASE64ENCODED_CERTIFICATE>
-     ca.crl: <BASE64ENCODED_CRL>
+     ca.crt: <BASE64_ENCODED_CERTIFICATE>
+     ca.crl: <BASE64_ENCODED_CRL>
    ```
 
-   Replace `<BASE64ENCODED_CRL>` with your base64-encoded certificate revocation list (CRL).
+   Replace `<BASE64_ENCODED_CRL>` with your base64-encoded certificate revocation list (CRL).
 
 2. Add the `crlFileName` field to your IngressMTLS policy spec with the name of the CRL file.
 
@@ -1277,7 +1277,7 @@ spec:
     enable: true
     apBundleSource:
       type: NIM
-      url: "https://<NIM_HOST>"
+      url: "https://<NIM_FQDN>"
       name: "<POLICY_NAME>"
       secret: "nim-credentials"
       enablePolling: true
@@ -1286,7 +1286,7 @@ spec:
     - enable: true
       apLogBundleSource:
         type: NIM
-        url: "https://<NIM_HOST>"
+        url: "https://<NIM_FQDN>"
         name: "<LOG_PROFILE_NAME>"
         secret: "nim-credentials"
         enablePolling: true
@@ -1296,7 +1296,7 @@ spec:
 
 Replace the placeholders as follows:
 
-- `<NIM_HOST>`: the hostname of your NGINX Instance Manager
+- `<NIM_FQDN>`: the fully qualified domain name (FQDN) of your NGINX Instance Manager host
 - `<POLICY_NAME>`: the name of your policy
 - `<LOG_PROFILE_NAME>`: the name of your log profile
 

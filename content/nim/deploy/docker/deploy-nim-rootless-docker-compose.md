@@ -194,17 +194,17 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<NFS_IP>,rw"
+      o: "addr=<NFS_SERVER_IP>,rw"
       device: ":/mnt/nfs_share/data"
   clickhouse-data:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<NFS_IP>,rw"
+      o: "addr=<NFS_SERVER_IP>,rw"
       device: ":/mnt/nfs_share/clickhouse"
 ```
 
-Replace `<NFS_IP>` with the IP address of your NFS server.
+Replace `<NFS_SERVER_IP>` with the IP address of your NFS server.
 
 ---
 

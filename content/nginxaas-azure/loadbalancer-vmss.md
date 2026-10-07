@@ -263,10 +263,10 @@ az role assignment create \
   --assignee-object-id $principalId \
   --assignee-principal-type ServicePrincipal \
   --role $roleName \
-  --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>
+  --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>
 ```
 
-Replace `<RESOURCE_GROUP_NAME>` with the name of your resource group.
+Replace `<RESOURCE_GROUP>` with the name of your resource group.
 
 #### Verify role assignment
 
@@ -449,7 +449,7 @@ az role assignment create \
 #   --assignee-object-id $IDENTITY_PRINCIPAL_ID \
 #   --assignee-principal-type ServicePrincipal \
 #   --role $roleName \
-#   --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>
+#   --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>
 ```
 
 ##### Create container instance

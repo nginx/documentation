@@ -508,10 +508,10 @@ metadata:
 apiVersion: v1
 type: nginx.org/ca
 data:
-  ca.crt: <BASE64ENCODED_CERTIFICATE>
+  ca.crt: <BASE64_ENCODED_CERTIFICATE>
 ```
 
-Replace `<BASE64ENCODED_CERTIFICATE>` with your base64-encoded certificate.
+Replace `<BASE64_ENCODED_CERTIFICATE>` with your base64-encoded certificate.
 
 A VirtualServer that references an IngressMTLS policy must:
 
@@ -563,11 +563,11 @@ You can use only one of these configuration options at a time.
    apiVersion: v1
    type: nginx.org/ca
    data:
-     ca.crt: <BASE64ENCODED_CERTIFICATE>
-     ca.crl: <BASE64ENCODED_CRL>
+     ca.crt: <BASE64_ENCODED_CERTIFICATE>
+     ca.crl: <BASE64_ENCODED_CRL>
    ```
 
-   Replace `<BASE64ENCODED_CRL>` with your base64-encoded certificate revocation list (CRL).
+   Replace `<BASE64_ENCODED_CRL>` with your base64-encoded certificate revocation list (CRL).
 
 2. Add the `crlFileName` field to your IngressMTLS policy spec with the name of the CRL file.
 

@@ -256,10 +256,10 @@ If you encounter issues connecting your instances to NGINX One Console, try the 
 Check the NGINX Agent version:
 
 ```shell
-kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD_NAME> -- nginx-agent -v
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- nginx-agent -v
 ```
 
-Replace `<NGINX_INGRESS_POD_NAME>` with the name of your NGINX Ingress Controller pod.
+Replace `<NGINX_INGRESS_POD>` with the name of your NGINX Ingress Controller pod.
 
 Verify that the output shows `nginx-agent version v3.x.x`. If the agent version is v2, you are using an image that includes NGINX Agent 2 instead of NGINX Agent 3. Use an image variant with the `-agent` suffix (available starting with NGINX Ingress Controller 5.5.0):
 
@@ -270,7 +270,7 @@ Verify that the output shows `nginx-agent version v3.x.x`. If the agent version 
 Check the NGINX Agent configuration:
 
 ```shell
-kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD_NAME> -- cat /etc/nginx-agent/nginx-agent.conf
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- cat /etc/nginx-agent/nginx-agent.conf
 ```
 
 If using F5 WAF for NGINX, verify that `logs-nap` is listed under `features` and `/etc/app_protect` is listed under `allowed_directories`.
@@ -278,7 +278,7 @@ If using F5 WAF for NGINX, verify that `logs-nap` is listed under `features` and
 Check NGINX Agent logs:
 
 ```shell
-kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD_NAME> -- nginx-agent
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- nginx-agent
 ```
 
 Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see information associated with:
