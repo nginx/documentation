@@ -46,17 +46,17 @@ To delete a policy using the REST API:
 {{< table >}}
 | Method | Endpoint                                                   |
 |--------|------------------------------------------------------------|
-| DELETE | `/api/platform/v1/security/policies/{policy-uid}` |
+| DELETE | `/api/platform/v1/security/policies/{policy_uid}` |
 {{</ table >}}
 
 **Example:**
 
 ```shell
-curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/policies/<POLICY_UID> \
+curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/policies/{policy_uid} \
   -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-Replace `<POLICY_UID>` with the unique identifier (UID) of the security policy.
+Replace `{policy_uid}` with the unique identifier (UID) of the security policy.
 
 {{%/tab%}}
 
