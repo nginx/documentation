@@ -15,7 +15,7 @@ f5-files:
 | clickhouse.username          |                                    | The username NGINX Instance Manager uses to connect to ClickHouse, if authentication is enabled. |
 | clickhouse.password          |                                    | The password for the specified ClickHouse user. |
 | clickhouse.tls_mode          | false                              | Set to `true` to enable TLS for the ClickHouse connection. This setting will be deprecated in a future release. Use the `clickhouse.tls` section instead. |
-| clickhouse.tls.address       | tcp://localhost:9440               | The address NGINX Instance Manager uses to connect to ClickHouse over TLS. Format: `<ip-address>:<port>`. |
+| clickhouse.tls.address       | tcp://localhost:9440               | The address NGINX Instance Manager uses to connect to ClickHouse over TLS. Format: `<IP_ADDRESS>:<PORT>`. |
 | clickhouse.tls.skip_verify   | false                              | Set to `true` to skip TLS certificate verification. Use only for self-signed certificates in non-production environments. |
 | clickhouse.tls.key_path      |                                    | Path to the client TLS key file in PEM format. Required for client authentication. |
 | clickhouse.tls.cert_path     |                                    | Path to the client TLS certificate file in PEM format. Required for client authentication. |

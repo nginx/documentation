@@ -13,9 +13,11 @@ f5-files:
 
     ```nginx
     mgmt {
-     usage_report endpoint=<NGINX-INSTANCE-MANAGER-FQDN>;
+     usage_report endpoint=<NIM_FQDN>;
     }
     ```
+
+    Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
 
 1. Reload NGINX:
 

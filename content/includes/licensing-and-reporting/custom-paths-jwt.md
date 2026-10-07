@@ -18,6 +18,8 @@ If you’re upgrading from NGINX Plus R32 or earlier to R33 or later and plan to
 
    ```nginx
    mgmt {
-     license_token <custom_path>;
+     license_token <CUSTOM_PATH>;
    }
    ```
+
+   Replace `<CUSTOM_PATH>` with the path to your JWT license file.

@@ -37,14 +37,14 @@ log "Script started"
 
 # Function to display usage
 usage() {
-  echo "Usage: $0 -j <JWT file> -i <NIM IP> -u <username> -p <password> -s <initial|telemetry>"
+  echo "Usage: $0 -j <JWT_FILE> -i <NIM_IP> -u <USERNAME> -p <PASSWORD> -s <initial|telemetry>"
   echo
   echo "Options:"
-  echo "  -j <JWT file>     Path to the JWT (JSON Web Token) file used for authentication."
-  echo "  -i <NIM IP>       IP address of the NIM (NGINX Instance Manager) to connect to."
-  echo "  -u <username>     Username for login/authentication to NIM (NGINX Instance Manager)."
-  echo "  -p <password>     Password corresponding to the username for NIM (NGINX Instance Manager) authentication."
-  echo "  -s <mode>         Script execution mode. One of the following:"
+  echo "  -j <JWT_FILE>     Path to the JWT (JSON Web Token) file used for authentication."
+  echo "  -i <NIM_IP>       IP address of the NIM (NGINX Instance Manager) to connect to."
+  echo "  -u <USERNAME>     Username for login/authentication to NIM (NGINX Instance Manager)."
+  echo "  -p <PASSWORD>     Password corresponding to the username for NIM (NGINX Instance Manager) authentication."
+  echo "  -s <MODE>         Script execution mode. One of the following:"
   echo "                      initial       - Perform Initial License Activation"
   echo "                      telemetry     - Perform telemetry submission: download usage report from NGINX Instance Manager and submit to F5."
   exit 1
@@ -430,5 +430,13 @@ if [ "$UPLOAD_MESSAGE" != "Report uploaded successfully." ] || [ "$HTTP_STATUS" 
 fi
 echo -e "Acknowledgement uploaded successfully to NGINX Instance Manager."
 ```
+
+Replace the placeholders as follows:
+
+- `<JWT_FILE>`: the path to your JWT license file
+- `<NIM_IP>`: the IP address of your NGINX Instance Manager host
+- `<USERNAME>`: your username
+- `<PASSWORD>`: your password
+- `<MODE>`: the script execution mode, `initial` or `telemetry`
 
 {{< /details >}}
