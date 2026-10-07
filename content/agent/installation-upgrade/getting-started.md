@@ -41,8 +41,10 @@ If it doesn't already exist, create the `/etc/nginx-agent/` directory and copy t
 
 ```shell
 sudo mkdir /etc/nginx-agent
-sudo cp <project_root_directory>/nginx-agent.conf /etc/nginx-agent/
+sudo cp <PROJECT_ROOT_DIRECTORY>/nginx-agent.conf /etc/nginx-agent/
 ```
+
+Replace `<PROJECT_ROOT_DIRECTORY>` with the path to the root directory of the NGINX Agent project.
 
 Create the `agent-dynamic.conf` file, which is required for NGINX Agent to run.
 
@@ -84,9 +86,11 @@ api:
   # Set this value to a secure port number to prevent information leaks
   port: 8038
   # REST TLS parameters
-  cert: "<TLS-CERTIFICATE>.crt"
-  key: "<PRIVATE-KEY>.key"
+  cert: "<TLS_CERTIFICATE>.crt"
+  key: "<PRIVATE_KEY>.key"
 ```
+
+Replace `<TLS_CERTIFICATE>` with the filename of your TLS certificate and `<PRIVATE_KEY>` with the filename of your private key.
 
 The mock control plane can use either gRPC or REST protocols to communicate with NGINX Agent.
 
