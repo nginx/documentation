@@ -198,10 +198,10 @@ It is one of two unique IDs we will use to download the bundle: it will be refer
 Use a GET request to download the security bundle using the policy and bundle IDs:
 
 ```shell
-curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/policies/<POLICY_UID>/bundles/<BUNDLE_UID>" -H "Authorization: Bearer <ACCESS_TOKEN>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
+curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/policies/{policy_uid}/bundles/{bundle_uid}" -H "Authorization: Bearer <ACCESS_TOKEN>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 
-Replace `<POLICY_UID>` with the unique identifier (UID) of the policy and `<BUNDLE_UID>` with the unique identifier (UID) of the policy bundle.
+Replace `{policy_uid}` with the unique identifier (UID) of the policy and `{bundle_uid}` with the unique identifier (UID) of the policy bundle.
 
 This GET request uses the policy and bundle IDs from the previous examples:
 

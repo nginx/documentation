@@ -62,11 +62,11 @@ Send a GET request to the Security Log Profiles API to download a compiled bundl
 2. Send the GET request using curl or your preferred API client.
 
     ```sh
-    curl --location 'https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<LOG_PROFILE_NAME>/<COMPILER_VERSION>/bundle' \
+    curl --location 'https://<NIM_FQDN>/api/platform/v1/security/logprofiles/{log_profile_name}/{compiler_version}/bundle' \
     --header 'Authorization: Bearer <ACCESS_TOKEN>'
     ```
 
-    Replace `<NIM_FQDN>` with your NGINX Instance Manager hostname. Replace `<LOG_PROFILE_NAME>` with the name of the log profile. Replace `<COMPILER_VERSION>` with the target WAF compiler version. Replace `<ACCESS_TOKEN>` with your authentication token.
+    Replace `<NIM_FQDN>` with your NGINX Instance Manager hostname. Replace `{log_profile_name}` with the name of the log profile. Replace `{compiler_version}` with the target WAF compiler version. Replace `<ACCESS_TOKEN>` with your authentication token.
 
 3. Review the JSON response to confirm the download succeeded and to retrieve the bundle content and integrity values.
 

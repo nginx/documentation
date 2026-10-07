@@ -92,14 +92,14 @@ For PingFederate: `https://pingfederate.example.com:9031/<REALM_PATH>/.well-know
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://auth.pingone.com/<ENVIRONMENT_ID>/as/.well-known/openid-configuration | jq
+   curl https://auth.pingone.com/{environment_id}/as/.well-known/openid-configuration | jq
    ```
 
    Where:
 
    - the `auth.pingone.com` is your PingOne server address (or your PingFederate server for on-premises)
 
-   - the `<ENVIRONMENT_ID>` is your PingOne environment ID
+   - the `{environment_id}` is your PingOne environment ID
 
    - the `/as` is the authorization server path
 

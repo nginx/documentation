@@ -40,15 +40,15 @@ You must have `"READ"` permission for the bundle to retrieve it.
 Example:
 
 ```shell
-curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/<POLICY_UID>/bundles/<BUNDLE_UID> \
+curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/{policy_uid}/bundles/{bundle_uid} \
   -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 Replace the placeholders as follows:
 
 - `<NIM_FQDN>`: the fully qualified domain name (FQDN) of your NGINX Instance Manager host
-- `<POLICY_UID>`: the unique identifier (UID) of the security policy
-- `<BUNDLE_UID>`: the unique identifier (UID) of the security policy bundle
+- `{policy_uid}`: the unique identifier (UID) of the security policy
+- `{bundle_uid}`: the unique identifier (UID) of the security policy bundle
 - `<ACCESS_TOKEN>`: your access token
 
 The response includes a `content` field that contains the bundle in base64 format. To use it, decode the content and save it as a `.tgz` file.
@@ -56,7 +56,7 @@ The response includes a `content` field that contains the bundle in base64 forma
 Example:
 
 ```shell
-curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/policies/<POLICY_UID>/bundles/<BUNDLE_UID>" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/policies/{policy_uid}/bundles/{bundle_uid}" \
   -H "Authorization: Bearer <ACCESS_TOKEN>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 

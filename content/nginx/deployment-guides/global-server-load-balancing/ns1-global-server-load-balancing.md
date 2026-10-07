@@ -241,12 +241,12 @@ We run the following commands on a host located in the US.
 
 2. Query the NS1 API to verify that NS1 also sees the US **my_backend** upstream group as ``up``. (For details about this API call, see the [NS1 documentation](https://ns1.com/api#getget-active-data-feeds-for-a-source). If the page doesn't scroll automatically to the relevant section, search for "Get active data feeds for a source".)
 
-   On the command line, <span style="white-space: nowrap;">``<NS1_API_KEY>``</span> and <span style="white-space: nowrap;">``<NS1_DATA_SOURCE_ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install).
+   On the command line, <span style="white-space: nowrap;">``<NS1_API_KEY>``</span> and <span style="white-space: nowrap;">``{ns1_data_source_id}``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install).
 
    The output includes a ``destinations`` entry for each data feed, so we search for the one where the ``label`` field says <span style="white-space: nowrap;">``us-nginxgslb-datafeed``</span>, and verify that the ``up`` field in that entry says ``true``.
 
     ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/{ns1_data_source_id} | python -m json.tool
    [
      ...
      {
@@ -298,7 +298,7 @@ We run the following commands on a host located in the US.
 6. Repeat Step 2. The NS1 API now returns ``false`` in the ``up`` field.
 
    ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/{ns1_data_source_id} | python -m json.tool
    [
      ...
      {
@@ -395,14 +395,14 @@ We run the following commands on a host located in the US.
 
    On the command line:
 
-      - <span style="white-space: nowrap;">``<NS1_API_KEY>``</span> and <span style="white-space: nowrap;">``<NS1_DATA_SOURCE_ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install) and used in Step 2 of [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down).
+      - <span style="white-space: nowrap;">``<NS1_API_KEY>``</span> and <span style="white-space: nowrap;">``{ns1_data_source_id}``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install) and used in Step 2 of [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down).
 
-      - <span style="white-space: nowrap;">``<NS1_FEED_ID>``</span> is the ID assigned by NS1 to the **us-nginxgslb-datafeed** data feed. It was reported as <span style="white-space: nowrap;">``<FEED_ID>``</span> in the ``id`` field of the output in Step 2 in [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down). (It also appears in that field in the following output.)
+      - <span style="white-space: nowrap;">``{ns1_feed_id}``</span> is the ID assigned by NS1 to the **us-nginxgslb-datafeed** data feed. It was reported as <span style="white-space: nowrap;">``<FEED_ID>``</span> in the ``id`` field of the output in Step 2 in [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down). (It also appears in that field in the following output.)
 
    The relevant field in the output is ``connections`` in the ``data`` section, and in this example it indicates there is one active connection.
 
    ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID>/<NS1_FEED_ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/{ns1_data_source_id}/{ns1_feed_id} | python -m json.tool
 
    {
      "config": {
@@ -453,7 +453,7 @@ We run the following commands on a host located in the US.
 6. Repeat Step 2. The NS1 API also reports five active connections.
 
    ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID>/<NS1_FEED_ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/{ns1_data_source_id}/{ns1_feed_id} | python -m json.tool
 
    {
      "config": {

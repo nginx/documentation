@@ -83,12 +83,12 @@ Check the OpenID Connect Discovery URL. By default, Microsoft Entra ID publishes
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://login.microsoftonline.com/<TENANT_ID>/v2.0/.well-known/openid-configuration | jq
+   curl https://login.microsoftonline.com/{tenant_id}/v2.0/.well-known/openid-configuration | jq
    ```
 
    Where:
 
-   - the `<TENANT_ID>` is your Microsoft Entra Tenant ID
+   - the `{tenant_id}` is your Microsoft Entra Tenant ID
 
    - the `login.microsoftonline.com` is your Microsoft Entra server address
 

@@ -95,14 +95,14 @@ Check the OpenID Connect Discovery URL. By default, Keycloak publishes the `.wel
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>/.well-known/openid-configuration | jq
+   curl https://<KEYCLOAK_SERVER>/realms/{realm_name}/.well-known/openid-configuration | jq
    ```
 
    Where:
 
    - the `<KEYCLOAK_SERVER>` is your Keycloak server address
 
-   - the `<REALM_NAME>` is your Keycloak realm name
+   - the `{realm_name}` is your Keycloak realm name
 
    - the `/.well-known/openid-configuration` is the default address for Keycloak for document location
 

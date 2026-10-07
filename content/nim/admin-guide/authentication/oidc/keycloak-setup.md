@@ -144,9 +144,9 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
     # Choose an appropriate Hash-Based Message Authentication Code (HMAC)
     export HMAC_KEY="<HMAC_KEY>"
 
-    export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<REALM_NAME>/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
-    export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<REALM_NAME>/.well-known/openid-configuration" | jq -r ".token_endpoint")
-    export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<REALM_NAME>/.well-known/openid-configuration" | jq -r ".jwks_uri")
+    export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/{realm_name}/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
+    export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/{realm_name}/.well-known/openid-configuration" | jq -r ".token_endpoint")
+    export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/{realm_name}/.well-known/openid-configuration" | jq -r ".jwks_uri")
     ```
 
     Replace the placeholders as follows:
@@ -155,7 +155,7 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
     - `<KEYCLOAK_CLIENT_ID>`: the client ID you created in Keycloak
     - `<KEYCLOAK_CLIENT_SECRET>`: the client secret you copied from Keycloak
     - `<HMAC_KEY>`: a randomly generated HMAC key
-    - `<REALM_NAME>`: the name of your Keycloak realm
+    - `{realm_name}`: the name of your Keycloak realm
 
   - **For Keycloak versions 18.x and later**:
 
@@ -170,15 +170,15 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
     export HMAC_KEY="<HMAC_KEY>"
 
     export KEYCLOAK_AUTH_ENDPOINT=$(curl -k \
-      "https://$KEYCLOAK_IP:8443/realms/<REALM_NAME>/.well-known/openid-configuration" | \
+      "https://$KEYCLOAK_IP:8443/realms/{realm_name}/.well-known/openid-configuration" | \
       jq -r ".authorization_endpoint")
 
     export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k \
-      "https://$KEYCLOAK_IP:8443/realms/<REALM_NAME>/.well-known/openid-configuration" | \
+      "https://$KEYCLOAK_IP:8443/realms/{realm_name}/.well-known/openid-configuration" | \
       jq -r ".token_endpoint")
 
     export KEYCLOAK_KEYS_ENDPOINT=$(curl -k \
-      "https://$KEYCLOAK_IP:8443/realms/<REALM_NAME>/.well-known/openid-configuration" | \
+      "https://$KEYCLOAK_IP:8443/realms/{realm_name}/.well-known/openid-configuration" | \
       jq -r ".jwks_uri")
     ```
 
