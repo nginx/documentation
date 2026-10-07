@@ -138,16 +138,18 @@ These steps cover RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux, Rocky Lin
 1. Select **Manage > Config Sync Groups**, then pick your group's name.  
 2. On the **Details** tab, in the **Instances** pane, select **Add Instance to Config Sync Group**.  
 3. Select **Register a new instance with NGINX One then add to config sync group**, then select **Next**.  
-4. Select **Use existing key**, paste `<your-key>` into the **Data Plane Key** box.  
+4. Select **Use existing key**, paste `<DATA_PLANE_KEY>` into the **Data Plane Key** box.  
 5. Copy the pre-filled `curl` command and run it on your VM:
 
     **Example**:
 
     ```shell
     curl https://agent.connect.nginx.com/nginx-agent/install | \
-    DATA_PLANE_KEY="<your-key>" \
-    sh -s -- -y -c "<config-sync-group-name>"
+    DATA_PLANE_KEY="<DATA_PLANE_KEY>" \
+    sh -s -- -y -c "<CONFIG_SYNC_GROUP>"
     ```
+
+    Replace `<CONFIG_SYNC_GROUP>` with the name of your config sync group.
 
 6. Back in NGINX One Console, select **Refresh**. Your VM appears in the list with **Config Sync Status = In Sync**.  
 

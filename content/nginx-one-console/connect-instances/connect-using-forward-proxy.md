@@ -30,7 +30,7 @@ Ensure you have the following:
       host: agent.connect.nginx.com
       port: 443
       proxy:
-         url: "http://proxy.example.com:<port number>"
+         url: "http://proxy.example.com:<PROXY_PORT>"
    ```
 
 1. Restart NGINX Agent to apply the changes:
@@ -52,7 +52,7 @@ To configure NGINX Agent in a containerized environment:
       --env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
       --env=NGINX_AGENT_COMMAND_AUTH_TOKEN=<YOUR_DATAPLANE_KEY_HERE> \
       --env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
-      --env=NGINX_AGENT_COMMAND_SERVER_PROXY_URL=http://myproxy.example.com:<port number> \
+      --env=NGINX_AGENT_COMMAND_SERVER_PROXY_URL=http://myproxy.example.com:<PROXY_PORT> \
       --restart=always \
       --runtime=runc \
       -d private-registry.nginx.com/nginx-plus/agentv3:latest
@@ -68,7 +68,7 @@ If your forward proxy requires authentication, you can specify the username and 
 
    ```conf
    proxy:
-      url: "http://proxy.example.com:<port number>"
+      url: "http://proxy.example.com:<PROXY_PORT>"
       auth_method: "basic"
       username: "user"
       password: "pass"
@@ -92,9 +92,9 @@ To set proxy authentication in a containerized environment:
       --add-host "myproxy.example.com:host-gateway" \
       --env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
       --env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
-      --env=NGINX_AGENT_COMMAND_AUTH_TOKEN="<your-data-plane-key-here>" \
+      --env=NGINX_AGENT_COMMAND_AUTH_TOKEN="<DATA_PLANE_KEY>" \
       --env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
-      --env NGINX_AGENT_COMMAND_SERVER_PROXY_URL=http://proxy.example.com:<port number>
+      --env NGINX_AGENT_COMMAND_SERVER_PROXY_URL=http://proxy.example.com:<PROXY_PORT>
       --env NGINX_AGENT_COMMAND_SERVER_PROXY_AUTH_METHOD=basic
       --env NGINX_AGENT_COMMAND_SERVER_PROXY_USERNAME="user"
       --env NGINX_AGENT_COMMAND_SERVER_PROXY_PASSWORD="pass"
@@ -103,6 +103,8 @@ To set proxy authentication in a containerized environment:
       -d private-registry.nginx.com/nginx-plus/agentv3:latest
    ```
 
+   Replace `<DATA_PLANE_KEY>` with your data plane key.
+
 ## Validate connectivity between the components
 
 To test the connectivity between NGINX Agent, your proxy, and NGINX One Console, you can use the `curl` command with the proxy settings.
@@ -110,16 +112,16 @@ To test the connectivity between NGINX Agent, your proxy, and NGINX One Console,
 1. Open a secure connection to your instance using SSH and log in.
 1. Run the following `curl` command to test the connection:
    ```sh
-   curl -x http://proxy.example.com:<port number> -U your_user:your_password https://agent.connect.nginx.com/api/v1/agents
+   curl -x http://proxy.example.com:<PROXY_PORT> -U your_user:your_password https://agent.connect.nginx.com/api/v1/agents
    ```
 
-   - Replace `proxy.example.com:<port number>` with your proxy address and port number.
+   - Replace `proxy.example.com:<PROXY_PORT>` with your proxy address and port number.
    - Replace `your_user` and `your_password` with the credentials you set up for proxy in the previous steps.
 
 To test the configuration from a containerized environment, run the following command from within the container:
 
    ```sh
-   curl -x http://host.docker.internal:<port number> -U your_user:your_password https://agent.connect.nginx.com/api/v1/agents
+   curl -x http://host.docker.internal:<PROXY_PORT> -U your_user:your_password https://agent.connect.nginx.com/api/v1/agents
    ```
 
    - Replace `your_user` and `your_password` with the credentials you set up for proxy in the previous steps.

@@ -77,8 +77,10 @@ To manually add NGINX users to the `nginx-agent` group, take the following steps
 3. To add NGINX user(s) to the `nginx-agent` group, run the following command:
 
     ```shell
-    sudo usermod -a -G nginx-agent <username>
+    sudo usermod -a -G nginx-agent <USERNAME>
     ```
+
+    Replace `<USERNAME>` with your username.
 
     For example to add the `nginx` user, take the following step:
 
