@@ -103,14 +103,14 @@ Configure NGINX Plus as the OpenID Connect relying party:
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the AD FS configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields.
 
    ```shell
-   $ curl https://<ADFS-server-address>/oidc/adfs/.well-known/openid-configuration | python -m json.tool
+   $ curl https://<ADFS_SERVER_ADDRESS>/oidc/adfs/.well-known/openid-configuration | python -m json.tool
    {
     ...
-       "authorization_endpoint": "https://<ADFS-server-address>/oidc/adfs/auth",
+       "authorization_endpoint": "https://<ADFS_SERVER_ADDRESS>/oidc/adfs/auth",
        ...
-       "jwks_uri": "https://<ADFS-server-address>/oidc/adfs/certs",
+       "jwks_uri": "https://<ADFS_SERVER_ADDRESS>/oidc/adfs/certs",
        ...
-       "token_endpoint": "https://<ADFS-server-address>/oidc/adfs/token",
+       "token_endpoint": "https://<ADFS_SERVER_ADDRESS>/oidc/adfs/token",
     ...
    }
    ```
@@ -118,8 +118,8 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-variables"></span>
 4. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the "default" parameter value of each of the following [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directives to the specified value:
 
-   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/auth`</span>)
-   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/token`</span>)
+   - `map $host $oidc_authz_endpoint` – Value of `authorization_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS_SERVER_ADDRESS>/oidc/adfs/auth`</span>)
+   - `map $host $oidc_token_endpoint` – Value of `token_endpoint` from [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS_SERVER_ADDRESS>/oidc/adfs/token`</span>)
    - `map $host $oidc_client` – Value in the **Client ID** field from [Step 3 of _Configuring AD FS_](#ad-fs-server-application) (in this guide, <span style="white-space: nowrap;">`3e23f0eb-9329-46ff-9d37-6ad24afdfaeb`</span>)
    - `map $host $oidc_client_secret` – Value in the **Client secret** field from [Step 4 of _Configuring AD FS_](#ad-fs-configure-application-credentials) (in this guide, <span style="white-space: nowrap;">`NUeuULtSCjgXTGSkq3ZwEeCOiig4-rB2XiW_W`</span>)
    - `map $host $oidc_hmac_key` – A unique, long, and secure phrase
@@ -130,11 +130,11 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
       1. Comment out (or remove) the [auth_jwt_key_file](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) directive.
       2. Uncomment the [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) directive. (Its parameter, `/_jwks_uri`, refers to the value of the `$oidc_jwt_keyfile` variable, which you set in the next step.)
-      3. Change the second parameter of the `set $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/certs`</span>).
+      3. Change the second parameter of the `set $oidc_jwt_keyfile` directive to the value reported in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS_SERVER_ADDRESS>/oidc/adfs/certs`</span>).
 
    - In <span style="white-space: nowrap;">NGINX Plus R16</span> and earlier, the JWK file must be on the local disk. (You can also use this method with <span style="white-space: nowrap;">NGINX Plus R17</span> and later if you wish.)
 
-       1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS-server-address>/oidc/adfs/certs`</span>) to a local file (for example, `/etc/nginx/my_adfs_jwk.json`).
+       1. Copy the JSON contents from the JWK file named in the `jwks_uri` field in [Step 3](#nginx-plus-urls) (in this guide, <span style="white-space: nowrap;">`https://<ADFS_SERVER_ADDRESS>/oidc/adfs/certs`</span>) to a local file (for example, `/etc/nginx/my_adfs_jwk.json`).
        2. In **/etc/nginx/conf.d/frontend.conf**, change the second parameter of the <span style="white-space: nowrap;">`set $oidc_jwt_keyfile`</span> directive to the local file path.
 
 6. Confirm that the user named by the [user](http://nginx.org/en/docs/ngx_core_module.html#user) directive in the NGINX Plus configuration (in **/etc/nginx/nginx.conf** by convention) has read permission on the JWK file.

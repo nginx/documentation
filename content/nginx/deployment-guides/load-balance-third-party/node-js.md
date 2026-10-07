@@ -121,8 +121,10 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
    ```shell
-   root# cp ~/example.com.key <SECURE-DIR>/example.com.key.backup
+   root# cp ~/example.com.key <SECURE_DIR>/example.com.key.backup
    ```
+
+   Replace `<SECURE_DIR>` with the directory where you store your SSL certificate and private key.
 
 4. Create a Certificate Signing Request (CSR) file.
 
@@ -248,12 +250,14 @@ These directives define virtual servers for HTTP and HTTPS traffic in separate `
        listen 443 ssl;
        server_name example.com;
 
-       ssl_certificate           /etc/nginx/ssl/<certificate-name>;
-       ssl_certificate_key       /etc/nginx/ssl/<private-key>;
+       ssl_certificate           /etc/nginx/ssl/<CERTIFICATE_NAME>;
+       ssl_certificate_key       /etc/nginx/ssl/<PRIVATE_KEY>;
        ssl_session_cache         shared:SSL:1m;
        ssl_prefer_server_ciphers on;
     }
     ```
+
+   Replace `<CERTIFICATE_NAME>` with the filename of your SSL certificate and `<PRIVATE_KEY>` with the filename of your private key.
 
     Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name), [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate), [ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key), [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers), [ssl_session_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache)
 
@@ -756,7 +760,7 @@ In the `http` block, add the `resolver` directive pointing to your DNS server an
 
 ```nginx
 # In the 'http' block
-resolver <IP-address-of-DNS-server>;
+resolver <DNS_SERVER_IP>;
 
 upstream nodejs {
     zone nodejs 64k;
@@ -764,13 +768,15 @@ upstream nodejs {
 }
 ```
 
+Replace `<DNS_SERVER_IP>` with the IP address of your DNS server.
+
 Directive and parameter documentation: [resolve](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve), [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver)
 
 [NGINX Plus Release 9](https://www.nginx.com/blog/nginx-plus-r9-released/#dns-srv) and later can also use the additional information in DNS `SRV` records, such as the port number. Include the `service` parameter to the `server` directive, along with the `resolve` parameter:
 
 ```nginx
 # In the 'http' block
-resolver <IP-address-of-DNS-server>;
+resolver <DNS_SERVER_IP>;
 
 upstream nodejs {
     zone nodejs 64k;

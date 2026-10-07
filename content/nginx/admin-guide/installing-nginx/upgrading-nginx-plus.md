@@ -119,13 +119,15 @@ Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JW
    - For **Linux**:
 
      ```shell
-     sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
+     sudo cp <DOWNLOADED_FILE_NAME>.jwt /etc/nginx/license.jwt
      ```
+
+     Replace `<DOWNLOADED_FILE_NAME>` with the name of the file you downloaded.
 
    - For **FreeBSD**:
 
      ```shell
-     sudo cp <downloaded-file-name>.jwt /usr/local/etc/nginx/license.jwt
+     sudo cp <DOWNLOADED_FILE_NAME>.jwt /usr/local/etc/nginx/license.jwt
      ```
 
 4. Perform an upgrade.

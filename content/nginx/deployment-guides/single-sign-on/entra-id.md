@@ -51,10 +51,10 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
    - Create a client secret for your application by running:
 
      ```bash
-     az ad app credential reset --id <appId>
+     az ad app credential reset --id <APP_ID>
      ```
 
-    - Replace the `<appId>` with the value obtained in the previous step.
+    - Replace the `<APP_ID>` with the value obtained in the previous step.
 
     - From the command output, copy the the `password` value which represents your **Client Secret**. You will need it later when configuring NGINX Plus. Make sure to securely save the generated client secret, as it will not be displayed again.
 
@@ -65,10 +65,10 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
    - Add a logout URL for your application by running:
 
      ```bash
-     az ad app update --id <appId> --web-logout-urls "https://demo.example.com/post_logout/"
+     az ad app update --id <APP_ID> --web-logout-urls "https://demo.example.com/post_logout/"
      ```
 
-   - Replace the `<appId>` with the value obtained in step 2.
+   - Replace the `<APP_ID>` with the value obtained in step 2.
 
    - To enable OpenID Connect front-channel logout (single sign-out when the user signs out of another application), configure the *Front-channel logout URL* for your application in the Microsoft Entra admin center. Set it to the absolute HTTPS URL that matches the `frontchannel_logout_uri` you will configure in NGINX Plus, for example `https://demo.example.com/front_logout`.
 
@@ -78,17 +78,17 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
 
 Check the OpenID Connect Discovery URL. By default, Microsoft Entra ID publishes the `.well-known/openid-configuration` document at the following address:
 
-`https://login.microsoftonline.com/<tenant_id>/v2.0/.well-known/openid-configuration`.
+`https://login.microsoftonline.com/<TENANT_ID>/v2.0/.well-known/openid-configuration`.
 
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://login.microsoftonline.com/<tenant_id>/v2.0/.well-known/openid-configuration | jq
+   curl https://login.microsoftonline.com/<TENANT_ID>/v2.0/.well-known/openid-configuration | jq
    ```
 
    Where:
 
-   - the `<tenant_id>` is your Microsoft Entra Tenant ID
+   - the `<TENANT_ID>` is your Microsoft Entra Tenant ID
 
    - the `login.microsoftonline.com` is your Microsoft Entra server address
 
@@ -111,7 +111,7 @@ Check the OpenID Connect Discovery URL. By default, Microsoft Entra ID publishes
    }
    ```
 
-2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Microsoft Entra ID is `https://login.microsoftonline.com/<tenant_id>/v2.0`.
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Microsoft Entra ID is `https://login.microsoftonline.com/<TENANT_ID>/v2.0`.
 
 {{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Tenant ID** in the next steps. {{< /call-out >}}
 
@@ -171,7 +171,7 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
 
         The `issuer` is typically:
 
-        `https://login.microsoftonline.com/<tenant_id>/v2.0`.
+        `https://login.microsoftonline.com/<TENANT_ID>/v2.0`.
 
         By default, NGINX Plus creates the metadata URL by appending the `/.well-known/openid-configuration` part to the Issuer URL. If your metadata URL is different, you can explicitly specify it with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
 
@@ -198,9 +198,9 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
         resolver 10.0.0.1 ipv4=on valid=300s;
 
         oidc_provider entra {
-            issuer            https://login.microsoftonline.com/<tenant_id>/v2.0;
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            issuer            https://login.microsoftonline.com/<TENANT_ID>/v2.0;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             logout_uri        /logout;
             post_logout_uri   https://demo.example.com/post_logout/;
             logout_token_hint on;
@@ -215,6 +215,8 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -325,12 +327,12 @@ http {
 
     oidc_provider entra {
         # The issuer is typically something like:
-        # https://login.microsoftonline.com/<tenant_id>/v2.0
-        issuer https://login.microsoftonline.com/<tenant_id>/v2.0;
+        # https://login.microsoftonline.com/<TENANT_ID>/v2.0
+        issuer https://login.microsoftonline.com/<TENANT_ID>/v2.0;
 
         # Replace with your actual Entra client_id and client_secret
-        client_id <client_id>;
-        client_secret <client_secret>;
+        client_id <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;

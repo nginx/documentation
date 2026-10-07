@@ -31,8 +31,10 @@ Sample output:
 --error-log-path=/var/log/nginx/error.log
 --http-log-path=/var/log/nginx/access.log
 --pid-path=/var/run/nginx.pid
---...<more parameters>
+--...<MORE_PARAMETERS>
 ```
+
+Where `<MORE_PARAMETERS>` represents any additional parameters you want to pass.
 
 ## Directives
 

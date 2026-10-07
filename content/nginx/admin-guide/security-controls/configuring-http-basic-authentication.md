@@ -51,6 +51,8 @@ To create username-password pairs, use a password file creation utility, for exa
     user3:<HASHED_PASSWORD>
     ```
 
+    Replace `<HASHED_PASSWORD>` with the hashed password.
+
 <span id="config"></span>
 ## Configuring NGINX and NGINX Plus for HTTP Basic Authentication
 

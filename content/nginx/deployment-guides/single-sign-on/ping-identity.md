@@ -46,7 +46,7 @@ Create a new application for NGINX Plus:
 
    - In the **Connection Details** section, copy your **Issuer ID**. You will need it later when configuring NGINX Plus.
 
-     For PingOne Cloud, the Issuer ID generally structured as `https://auth.pingone.com/<environment_id>/as`.
+     For PingOne Cloud, the Issuer ID generally structured as `https://auth.pingone.com/<ENVIRONMENT_ID>/as`.
 
      For PingFederate, the Issuer ID generally structured as `https://pingfederate.example.com:9031` appended with the realm path of your environment.
 
@@ -85,21 +85,21 @@ This feature is optional and requires NGINX Plus Release 36 or later, together w
 
 Check the OpenID Connect Discovery URL. By default, Ping Identity publishes the `.well-known/openid-configuration` document at the following address:
 
-For PingOne: `https://auth.pingone.com/<environment_id>/as/.well-known/openid-configuration`
+For PingOne: `https://auth.pingone.com/<ENVIRONMENT_ID>/as/.well-known/openid-configuration`
 
-For PingFederate: `https://pingfederate.example.com:9031/<realm_path>/.well-known/openid-configuration`
+For PingFederate: `https://pingfederate.example.com:9031/<REALM_PATH>/.well-known/openid-configuration`
 
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://auth.pingone.com/<environment_id>/as/.well-known/openid-configuration | jq
+   curl https://auth.pingone.com/<ENVIRONMENT_ID>/as/.well-known/openid-configuration | jq
    ```
 
    Where:
 
    - the `auth.pingone.com` is your PingOne server address (or your PingFederate server for on-premises)
 
-   - the `<environment_id>` is your PingOne environment ID
+   - the `<ENVIRONMENT_ID>` is your PingOne environment ID
 
    - the `/as` is the authorization server path
 
@@ -112,17 +112,17 @@ For PingFederate: `https://pingfederate.example.com:9031/<realm_path>/.well-know
    ```json
    {
        ...
-       "issuer": "https://auth.pingone.com/<environment_id>/as",
-       "authorization_endpoint": "https://auth.pingone.com/<environment_id>/as/authorize",
-       "token_endpoint": "https://auth.pingone.com/<environment_id>/as/token",
-       "jwks_uri": "https://auth.pingone.com/<environment_id>/as/jwks",
-       "userinfo_endpoint": "https://auth.pingone.com/<environment_id>/as/userinfo",
-       "end_session_endpoint": "https://auth.pingone.com/<environment_id>/as/signoff",
+       "issuer": "https://auth.pingone.com/<ENVIRONMENT_ID>/as",
+       "authorization_endpoint": "https://auth.pingone.com/<ENVIRONMENT_ID>/as/authorize",
+       "token_endpoint": "https://auth.pingone.com/<ENVIRONMENT_ID>/as/token",
+       "jwks_uri": "https://auth.pingone.com/<ENVIRONMENT_ID>/as/jwks",
+       "userinfo_endpoint": "https://auth.pingone.com/<ENVIRONMENT_ID>/as/userinfo",
+       "end_session_endpoint": "https://auth.pingone.com/<ENVIRONMENT_ID>/as/signoff",
        ...
    }
    ```
 
-2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for PingOne is `https://auth.pingone.com/<environment_id>/as`.
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for PingOne is `https://auth.pingone.com/<ENVIRONMENT_ID>/as`.
 
 {{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
@@ -181,7 +181,7 @@ With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGIN
 
         The `issuer` is typically your Ping Identity OIDC URL.
 
-        For PingOne Cloud, the URL is `https://auth.pingone.com/<environment_id>/as`.
+        For PingOne Cloud, the URL is `https://auth.pingone.com/<ENVIRONMENT_ID>/as`.
 
         For PingFederate, the URL is `https://pingfederate.example.com:9031` followed by your environment's realm path.
 
@@ -209,9 +209,9 @@ With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGIN
         resolver 10.0.0.1 ipv4=on valid=300s;
 
         oidc_provider ping {
-            issuer                  https://auth.pingone.com/<environment_id>/as;
-            client_id               <client_id>;
-            client_secret           <client_secret>;
+            issuer                  https://auth.pingone.com/<ENVIRONMENT_ID>/as;
+            client_id               <CLIENT_ID>;
+            client_secret           <CLIENT_SECRET>;
             logout_uri              /logout;
             logout_token_hint       on;
             post_logout_uri         https://demo.example.com/post_logout/;
@@ -226,6 +226,8 @@ With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGIN
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -334,12 +336,12 @@ http {
 
     oidc_provider ping {
         # The issuer is typically something like:
-        # https://auth.pingone.com/<environment_id>/as
-        issuer https://auth.pingone.com/<environment_id>/as;
+        # https://auth.pingone.com/<ENVIRONMENT_ID>/as
+        issuer https://auth.pingone.com/<ENVIRONMENT_ID>/as;
 
         # Your Ping Identity Client ID and Secret
-        client_id <client_id>;
-        client_secret <client_secret>;
+        client_id <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;

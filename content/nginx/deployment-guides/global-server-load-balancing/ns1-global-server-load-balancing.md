@@ -136,9 +136,9 @@ In this section we install and configure the NS1 agent on the same hosts as our 
    - {{<nb>}}**de-nginxgslb-datafeed**{{</nb>}} for instance 2 in Germany
    - {{<nb>}}**sg-nginxgslb-datafeed**{{</nb>}} for instance 3 in Singapore
 
-   After creating the three feeds, note the value in the **Feeds URL** field on the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> INTEGRATIONS </span> tab. The final element of the URL is the ``<NS1-data-source-ID>`` you will specify in the YAML configuration file in Step 4. In the third screenshot in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154), for example, it is **e566332c5d22c6b66aeaa8837eae90ac**.
+   After creating the three feeds, note the value in the **Feeds URL** field on the <span style="background-color:#000000; color:white; font-family:helvetica; white-space: nowrap;"> INTEGRATIONS </span> tab. The final element of the URL is the ``<NS1_DATA_SOURCE_ID>`` you will specify in the YAML configuration file in Step 4. In the third screenshot in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360020474154), for example, it is **e566332c5d22c6b66aeaa8837eae90ac**.
 
-2. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360017341694-Creating-managing-API-keys) to create an NS1 API key for the agent, if you have not already. (To access **Account Settings** in Step 1, click your username in the upper right corner of the NS1 title bar.) We're naming the app {{<nb>}}**NGINX-GSLB**{{</nb>}}. Make note of the key value – you'll specify it as ``<NS1-API-key>`` in the YAML configuration file in Step 4. To see the actual hexadecimal value, click on the circled letter **i** in the **API Key** field.
+2. Follow the instructions in the [NS1 documentation](https://help.ns1.com/hc/en-us/articles/360017341694-Creating-managing-API-keys) to create an NS1 API key for the agent, if you have not already. (To access **Account Settings** in Step 1, click your username in the upper right corner of the NS1 title bar.) We're naming the app {{<nb>}}**NGINX-GSLB**{{</nb>}}. Make note of the key value – you'll specify it as ``<NS1_API_KEY>`` in the YAML configuration file in Step 4. To see the actual hexadecimal value, click on the circled letter **i** in the **API Key** field.
 
 3. On each NGINX Plus host, clone the [GitHub repo](https://github.com/nginxinc/nginx-ns1-gslb) for the NS1 agent.
 
@@ -156,9 +156,9 @@ In this section we install and configure the NS1 agent on the same hosts as our 
      api_endpoint: "/api"
      client_timeout: 10
    nsone:
-     api_key: "<NS1-API-key>"
+     api_key: "<NS1_API_KEY>"
      client_timeout: 10
-     source_id: "<NS1-data-source-ID>"
+     source_id: "<NS1_DATA_SOURCE_ID>"
    services:
      method: "upstream_groups"
      threshold: 2
@@ -170,7 +170,7 @@ In this section we install and configure the NS1 agent on the same hosts as our 
 
    The ``hosts`` section configures the agent to run on the same host as the NGINX Plus instance from which it collects metrics – in this guide, localhost. Because localhost is identified by its IP address (127.0.0.1) in the ``host`` field, hostname resolution is unnecessary and ``resolve`` is set to ``false``. The agent gathers metrics from the <span style="white-space: nowrap;">NGINX Plus API</span> (the ``/api`` endpoint) on port 8000.
 
-   In the ``nsone`` section, include the ``<NS1-API-key>`` and ``<NS1-data-source-ID>`` values you noted in Step 2 and Step 1, respectively.
+   In the ``nsone`` section, include the ``<NS1_API_KEY>`` and ``<NS1_DATA_SOURCE_ID>`` values you noted in Step 2 and Step 1, respectively.
 
    In the ``services`` section, we're specifying [upstream_groups](https://github.com/nginxinc/nginx-ns1-gslb/tree/master/configs#services) as the method for the NS1 agent to use, meaning that it collects metrics about the upstream group that the NGINX Plus instance is load balancing – ``my_backend``, as specified in the ``name`` field of the ``feeds`` section. The ``threshold`` field defines how many servers in the upstream group must be healthy for the backend app to be considered up, and the ``sampling_type`` field tells the agent to collect the sum of active connections to backend servers. (We're leaving actual setup of the backend app and the configuration file for the NGINX Plus instance as exercises for the reader.)
 
@@ -232,30 +232,32 @@ We run the following commands on a host located in the US.
 1. Query the <span style="white-space: nowrap;">NGINX Plus API</span> to verify that the current status is ``up`` for the **my_backend** upstream group being proxied by the NGINX Plus instance in the US:
 
    ```shell
-   $ curl -X GET "127.0.0.1:8000/api/<version>/http/upstreams/my_backend/" -H "accept: application/json" | python -m json.tool | grep state
+   $ curl -X GET "127.0.0.1:8000/api/<VERSION>/http/upstreams/my_backend/" -H "accept: application/json" | python -m json.tool | grep state
 
    "state": "up",
    ```
 
+   Replace `<VERSION>` with the version of the NGINX Plus API.
+
 2. Query the NS1 API to verify that NS1 also sees the US **my_backend** upstream group as ``up``. (For details about this API call, see the [NS1 documentation](https://ns1.com/api#getget-active-data-feeds-for-a-source). If the page doesn't scroll automatically to the relevant section, search for "Get active data feeds for a source".)
 
-   On the command line, <span style="white-space: nowrap;">``<NS1-API-key>``</span> and <span style="white-space: nowrap;">``<NS1-data-source-ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install).
+   On the command line, <span style="white-space: nowrap;">``<NS1_API_KEY>``</span> and <span style="white-space: nowrap;">``<NS1_DATA_SOURCE_ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install).
 
    The output includes a ``destinations`` entry for each data feed, so we search for the one where the ``label`` field says <span style="white-space: nowrap;">``us-nginxgslb-datafeed``</span>, and verify that the ``up`` field in that entry says ``true``.
 
     ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID> | python -m json.tool
    [
      ...
      {
        "destinations": [
          {
-           "destid": "<Answer-ID>",
+           "destid": "<ANSWER_ID>",
            "desttype": "answer",
-           "record": "<Record-ID>"
+           "record": "<RECORD_ID>"
          }
        ],
-       "id": "<Feed-ID>",
+       "id": "<FEED_ID>",
        "data": {
          "up": "true"
        },
@@ -267,6 +269,8 @@ We run the following commands on a host located in the US.
      ...
    ]
    ```
+
+    Where `<ANSWER_ID>` is the ID of the answer in your NS1 record and `<RECORD_ID>` is the ID of your NS1 record.
 
 3. Determine which site NS1 is returning for hosts in the US. Appropriately, it's 10.10.10.1, the IP address of the US‑based NGINX Plus instance.
 
@@ -286,7 +290,7 @@ We run the following commands on a host located in the US.
 5. Repeat Step 1. The <span style="white-space: nowrap;">NGINX Plus API</span> now reports the status as ``unhealthy``.
 
    ```	none
-   $ curl -X GET "127.0.0.1:8000/api/<version>/http/upstreams/my_backend/" -H "accept: application/json" | python -m json.tool | grep state
+   $ curl -X GET "127.0.0.1:8000/api/<VERSION>/http/upstreams/my_backend/" -H "accept: application/json" | python -m json.tool | grep state
 
    "state": "unhealthy",
    ```
@@ -294,18 +298,18 @@ We run the following commands on a host located in the US.
 6. Repeat Step 2. The NS1 API now returns ``false`` in the ``up`` field.
 
    ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID> | python -m json.tool
    [
      ...
      {
        "destinations": [
          {
-           "destid": "<Answer-ID>",
+           "destid": "<ANSWER_ID>",
            "desttype": "answer",
-           "record": "<Record-ID>"
+           "record": "<RECORD_ID>"
          }
        ],
-       "id": "<Feed-ID>",
+       "id": "<FEED_ID>",
        "data": {
          "up": "false"
        },
@@ -382,7 +386,7 @@ We run the following commands on a host located in the US.
 1. Query the <span style="white-space: nowrap;">NGINX Plus API</span> for the number of active connections:
 
    ```shell
-   $ curl -X GET "127.0.0.1:8000/api/<version>/connections" -H "accept: application/json" | python -m json.tool | grep active
+   $ curl -X GET "127.0.0.1:8000/api/<VERSION>/connections" -H "accept: application/json" | python -m json.tool | grep active
 
    "active": 1,
    ```
@@ -391,14 +395,14 @@ We run the following commands on a host located in the US.
 
    On the command line:
 
-      - <span style="white-space: nowrap;">``<NS1-API-key>``</span> and <span style="white-space: nowrap;">``<NS1-data-source-ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install) and used in Step 2 of [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down).
+      - <span style="white-space: nowrap;">``<NS1_API_KEY>``</span> and <span style="white-space: nowrap;">``<NS1_DATA_SOURCE_ID>``</span> are the same values we included in the YAML file in Step 4 of [Installing the NS1 Agent](#agent-install) and used in Step 2 of [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down).
 
-      - <span style="white-space: nowrap;">``<NS1-feed-ID>``</span> is the ID assigned by NS1 to the **us-nginxgslb-datafeed** data feed. It was reported as <span style="white-space: nowrap;">``<Feed-ID>``</span> in the ``id`` field of the output in Step 2 in [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down). (It also appears in that field in the following output.)
+      - <span style="white-space: nowrap;">``<NS1_FEED_ID>``</span> is the ID assigned by NS1 to the **us-nginxgslb-datafeed** data feed. It was reported as <span style="white-space: nowrap;">``<FEED_ID>``</span> in the ``id`` field of the output in Step 2 in [Verifying Traffic Redistribution When an Upstream Group Is Down](#verify-when-upstream-down). (It also appears in that field in the following output.)
 
    The relevant field in the output is ``connections`` in the ``data`` section, and in this example it indicates there is one active connection.
 
    ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID>/<NS1-feed-ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID>/<NS1_FEED_ID> | python -m json.tool
 
    {
      "config": {
@@ -410,12 +414,12 @@ We run the following commands on a host located in the US.
      },
      "destinations": [
        {
-         "destid": "<Answer-ID>",
+         "destid": "<ANSWER_ID>",
          "desttype": "answer",
-         "record": "<Record-ID>"
+         "record": "<RECORD_ID>"
        }
      ],
-     "id": "<Feed-ID>",
+     "id": "<FEED_ID>",
      "name": "us-nginxgslb-datafeed",
      "networks": [
        0
@@ -441,7 +445,7 @@ We run the following commands on a host located in the US.
 5. Repeat Step 1. The <span style="white-space: nowrap;">NGINX Plus API</span> now reports five active connections.
 
    ```shell
-   $ curl -X GET "127.0.0.1:8000/api/<version>/connections" -H "accept: application/json" | python -m json.tool | grep active
+   $ curl -X GET "127.0.0.1:8000/api/<VERSION>/connections" -H "accept: application/json" | python -m json.tool | grep active
 
    "active": 5,
    ```
@@ -449,7 +453,7 @@ We run the following commands on a host located in the US.
 6. Repeat Step 2. The NS1 API also reports five active connections.
 
    ```shell
-   $ curl -X GET -H 'X-NSONE-Key: <NS1-API-key>' https://api.nsone.net/v1/data/feeds/<NS1-data-source-ID>/<NS1-feed-ID> | python -m json.tool
+   $ curl -X GET -H 'X-NSONE-Key: <NS1_API_KEY>' https://api.nsone.net/v1/data/feeds/<NS1_DATA_SOURCE_ID>/<NS1_FEED_ID> | python -m json.tool
 
    {
      "config": {
