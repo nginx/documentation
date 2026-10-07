@@ -383,6 +383,8 @@ EOF
 
 This `UpstreamSettingsPolicy` targets both the `coffee` and `tea` services we created in the setup by specifying both services in the `targetRefs` field. It limits the upstream zone size of the `coffee` and `tea` services to 1 megabyte.
 
+For the Services it targets, the `zoneSize` of an `UpstreamSettingsPolicy` overrides the global `zoneSize` of the `NginxProxy` resource. To set one size for all Services instead, see [Configure the global upstream zone size]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-the-global-upstream-zone-size" >}}).
+
 Verify that the `UpstreamSettingsPolicy` is Accepted:
 
 ```shell
