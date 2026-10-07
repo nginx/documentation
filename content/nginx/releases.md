@@ -34,7 +34,7 @@ CR Track builds are released regularly and include the latest features and enhan
 
 ### Release numbering
 
-Starting with NGINX Plus PLS.37 LTS, release numbering became unified with other F5 products. Versions follow the format `PLS.<major>.<minor>.<patch>.<package> LTS`. Example: `NGINX Plus PLS.37.0.4.1 LTS`.
+Starting with NGINX Plus PLS.37 LTS, release numbering became unified with other F5 products. Versions follow the format `PLS.<MAJOR>.<MINOR>.<PATCH>.<PACKAGE> LTS`. Example: `NGINX Plus PLS.37.0.4.1 LTS`.
 
 - **First number** represents the major release, corresponding to a yearly LTS release.
 
@@ -74,7 +74,7 @@ Before upgrading from NGINX Plus R36 â€” regardless of which release track youâ€
 
 The LTS release track builds on the [initial LTS release](#r37.0) and delivers patches releases focused on stability and security. These patch releases contain only security fixes and CVE mitigations and are published as soon as a mitigation becomes disclosed.
 
-LTS patch versions follow the numbering format: `PLS.37.0.<patch>.<package>`: the second component remains `0`, the third component increments for each new patch (e.g., PLS.37.0.`1`.1, PLS.37.0.`2`.1), and the fourth reflects packaging updates when needed.
+LTS patch versions follow the numbering format: `PLS.37.0.<PATCH>.<PACKAGE>`: the second component remains `0`, the third component increments for each new patch (e.g., PLS.37.0.`1`.1, PLS.37.0.`2`.1), and the fourth reflects packaging updates when needed.
 
 To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
 

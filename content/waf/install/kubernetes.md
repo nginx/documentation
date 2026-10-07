@@ -210,13 +210,13 @@ Your folder should contain the following files:
 - _license.jwt_
 - _Dockerfile_
 
-To build an image, use the following command, replacing <your-image-name> as appropriate:
+To build an image, use the following command, replacing <YOUR_IMAGE_NAME> as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
-  -t <your-image-name> .
+  -t <YOUR_IMAGE_NAME> .
 ```
 
 Once you have built the image, push it to your private image repository, which should be accessible to your Kubernetes cluster.
@@ -234,10 +234,10 @@ To get the Helm chart, first configure Docker for the F5 Container Registry.
 
 {{< include "waf/install-services-registry.md" >}}
 
-Then use `helm pull` to get the chart, replacing `<release-version>`:
+Then use `helm pull` to get the chart, replacing `<RELEASE_VERSION>`:
 
 ```shell
-helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <release-version> --untar
+helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <RELEASE_VERSION> --untar
 ```
 
 Change the working directory afterwards:
@@ -260,7 +260,7 @@ You can encode your credentials with the following command:
 echo '{
     "auths": {
         "private-registry.nginx.com": {
-            "username": "<JWT Token>",
+            "username": "<JWT_TOKEN>",
             "password": "none"
         }
     }
@@ -270,25 +270,29 @@ echo '{
 Alternatively, you can use `kubectl` to create a secret:
 
 ```shell
-kubectl create secret docker-registry regcred -n <namespace> \
+kubectl create secret docker-registry regcred -n <NAMESPACE> \
     --docker-server=private-registry.nginx.com \
-    --docker-username=<JWT Token> \
+    --docker-username=<JWT_TOKEN> \
     --docker-password=none
 ```
 
-The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
+Replace `<NAMESPACE>` with the namespace where F5 WAF for NGINX is deployed.
+
+The `<JWT_TOKEN>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
 Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `helm install`:
 
 ```shell
-helm install <release-name> .
+helm install <RELEASE_NAME> .
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 You can verify the deployment is successful with `kubectl get`, replacing `namespace` accordingly:
 
 ```shell
-kubectl get pods -n <namespace>
-kubectl get svc -n <namespace>
+kubectl get pods -n <NAMESPACE>
+kubectl get svc -n <NAMESPACE>
 ```
 
 {{< call-out class="note" >}}
@@ -311,7 +315,7 @@ To understand the _mTLS Configuration_ options, view the [Secure traffic using m
 | **F5 WAF for NGINX Configuration** | _appprotect.replicas_ | The number of replicas for the F5 WAF for NGINX deployment. | 1 |
 | | _appprotect.readOnlyRootFilesystem_ | Specifies if the root filesystem is read-only. | false |
 | | _appprotect.annotations_ | Custom annotations for the deployment. | {} |
-| **NGINX Configuration** | _appprotect.nginx.image.repository_ | Docker image repository for NGINX. | \<your-private-registry>/nginx-app-protect-5 |
+| **NGINX Configuration** | _appprotect.nginx.image.repository_ | Docker image repository for NGINX. | \<YOUR_PRIVATE_REGISTRY>/nginx-app-protect-5 |
 | | _appprotect.nginx.image.tag_ | Docker image tag for NGINX. | latest |
 | | _appprotect.nginx.imagePullPolicy_ | Image pull policy. | IfNotPresent |
 | | _appprotect.nginx.resources_ | The CPU and memory resources of the NGINX container. | requests: cpu=10m,memory=16Mi |
@@ -369,10 +373,10 @@ Before you can start the Manifest deployment, you need a Kubernetes secret for t
 You can create the secret using `kubectl create`:
 
 ```shell
-kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none
+kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=<JWT_TOKEN> --docker-password=none
 ```
 
-The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
+The `<JWT_TOKEN>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
 ### Create Manifest files
 
@@ -380,7 +384,7 @@ The default configuration provided creates two replicas, each hosting NGINX and 
 
 Create all of these files in a single folder (Such as `/manifests`).
 
-In each file, replace `<your-private-registry>/waf:<your-tag>` with your actual image tag.
+In each file, replace `<YOUR_PRIVATE_REGISTRY>/waf:<YOUR_TAG>` with your actual image tag.
 
 {{< tabs name="manifest-files" >}}
 
@@ -446,7 +450,7 @@ spec:
         - name: regcred
       containers:
         - name: nginx
-          image: <your-private-registry>/waf:<your-tag>
+          image: <YOUR_PRIVATE_REGISTRY>/waf:<YOUR_TAG>
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: app-protect-bd-config
@@ -550,8 +554,14 @@ At this stage, you have finished deploying F5 WAF for NGINX and can look at [Pos
 Or from an external host:
 
 ```shell
-curl "<node-external-ip>:<node-port>/<script>"
+curl "<NODE_EXTERNAL_IP>:<NODE_PORT>/<SCRIPT_PATH>"
 ```
+
+Replace the placeholders as follows:
+
+- `<NODE_EXTERNAL_IP>`: the external IP address of your node
+- `<NODE_PORT>`: the node port of the service
+- `<SCRIPT_PATH>`: the path of the resource you are requesting
 
 ## Next steps
 

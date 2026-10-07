@@ -27,8 +27,10 @@ To view the version of the NGINX Plus modules that are part of your deployment, 
 
 Request Example:
 ```shell
-   curl -H "Authorization: ApiKey <your_base64_api_key>" https://<your-dataplane-api-endpoint>/packages
+   curl -H "Authorization: ApiKey <BASE64_ENCODED_API_KEY>" https://<DATAPLANE_ENDPOINT>/packages
 ```
+
+Replace `<BASE64_ENCODED_API_KEY>` with your base64-encoded data plane API key and `<DATAPLANE_ENDPOINT>` with your NGINXaaS data plane API endpoint.
 
 Response Example:
 ```json

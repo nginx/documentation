@@ -185,6 +185,8 @@ Create a file called `vmss-network-read-role-uniform.json`:
 }
 ```
 
+Replace `<SUBSCRIPTION_ID>` with your Azure subscription ID.
+
 **Flexible VMSS:**
 
 Create a file called `vmss-network-read-role-flexible.json`:
@@ -261,8 +263,10 @@ az role assignment create \
   --assignee-object-id $principalId \
   --assignee-principal-type ServicePrincipal \
   --role $roleName \
-  --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>
+  --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>
 ```
+
+Replace `<RESOURCE_GROUP>` with the name of your resource group.
 
 #### Verify role assignment
 
@@ -445,7 +449,7 @@ az role assignment create \
 #   --assignee-object-id $IDENTITY_PRINCIPAL_ID \
 #   --assignee-principal-type ServicePrincipal \
 #   --role $roleName \
-#   --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>
+#   --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>
 ```
 
 ##### Create container instance
@@ -532,7 +536,7 @@ subscription_id: <SUBSCRIPTION_ID>
 resource_group_name: your_vmss_resource_group
 
 # NGINXaaS dataplane API endpoint (note the /nplus suffix)
-# Example : <DataplaneAPIEndpoint>/nplus
+# Example : <DATAPLANE_ENDPOINT>/nplus
 api_endpoint: https://your-nginxaas-endpoint.region.nginxaas.net/nplus
 sync_interval: 5s
 
@@ -552,6 +556,8 @@ upstreams:
     fail_timeout: 10s
     slow_start: 0s
 ```
+
+Replace `<DATAPLANE_ENDPOINT>` with your NGINXaaS data plane API endpoint.
 
 #### Configuration parameters
 
@@ -620,10 +626,12 @@ Check that upstreams are being updated in NGINXaaS:
 
    ```bash
    # Check upstream status using the dataplane API
-   curl -H "Authorization: ApiKey <base64_encoded_dataplane_api_key>" \
+   curl -H "Authorization: ApiKey <BASE64_ENCODED_API_KEY>" \
         -H "Content-Type: application/json" \
-        "<dataplane_endpoint>/nplus/9/http/upstreams/<upstream_name>/servers"
+        "<DATAPLANE_ENDPOINT>/nplus/9/http/upstreams/<UPSTREAM_NAME>/servers"
    ```
+
+   Replace `<BASE64_ENCODED_API_KEY>` with your base64-encoded data plane API key and `<UPSTREAM_NAME>` with the name of your upstream.
 
    Example output showing VMSS instances synchronized to the upstream:
 

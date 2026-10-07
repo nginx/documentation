@@ -180,7 +180,7 @@ spec:
     name: gateway
   policySource:
     n1cSource:
-      url: https://<tenant>.console.ves.volterra.io
+      url: https://<TENANT>.console.ves.volterra.io
       namespace: default
       policyObjectID: pol_12345_WTHGmDEX9qnbVjQ
       policyVersionID: pv_Tm__12345oWmJgwxiKlHAg
@@ -194,7 +194,7 @@ spec:
         server: syslog-svc.default.svc.cluster.local:514
     logSource:
       n1cSource:
-        url: https://<tenant>.console.ves.volterra.io
+        url: https://<TENANT>.console.ves.volterra.io
         namespace: default
         profileObjectID: "lp_8s8uZxLpThWwEGF7LTn_rA"
       auth:
@@ -203,7 +203,7 @@ spec:
 EOF
 ```
 
-Replace `<tenant>` with your NGINX One Console tenant hostname. The `namespace` field refers to the NGINX One Console namespace where the policy resides.
+Replace `<TENANT>` with your NGINX One Console tenant hostname. The `namespace` field refers to the NGINX One Console namespace where the policy resides.
 
 {{< call-out class="tip" title="Tip: Pin a policy version" >}} To pin a specific policy version, set `policyVersionID`. A pinned version always resolves to the same compiled bundle. Turn off polling to avoid unnecessary network requests. If you use only `policyName` or `policyObjectID` without a version pin, NGINX Gateway Fabric fetches the latest compiled bundle on each reconciliation or poll cycle. {{< /call-out >}}
 
@@ -233,7 +233,7 @@ NGINX Instance Manager and NGINX One Console don't show which F5 WAF policies ar
 
 This is intentional. NGINX Gateway Fabric pulls compiled bundles from the management plane and deploys them directly in Kubernetes using native manifests, not through NGINX Instance Manager or NGINX One Console. This design lets you create and compile policies, then make them available to NGINX Gateway Fabric through the API, without a console-managed deployment step.
 
-F5 plans to add policy association visibility for NGINX Instance Manager and NGINX One Console in a future release. In the meantime, use `kubectl describe wafpolicy <name>` to check deployment status.
+F5 plans to add policy association visibility for NGINX Instance Manager and NGINX One Console in a future release. In the meantime, use `kubectl describe wafpolicy <NAME>` to check deployment status.
 
 ---
 
@@ -326,7 +326,7 @@ spec:
   type: N1C
   policySource:
     n1cSource:
-      url: https://<tenant>.console.ves.volterra.io
+      url: https://<TENANT>.console.ves.volterra.io
       namespace: default
       policyName: "ngfExample"
     auth:
@@ -339,7 +339,7 @@ spec:
         server: localhost:1514
     logSource:
       n1cSource:
-        url: https://<tenant>.console.ves.volterra.io
+        url: https://<TENANT>.console.ves.volterra.io
         namespace: default
         profileName: "secops_dashboard"
       auth:

@@ -56,8 +56,10 @@ Each F5 WAF for NGINX release requires a matching WAF compiler version. To confi
 You can verify that the WAF compiler is installed and responsive.
 
 ```shell
-sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-<VERSION>/bin/apcompile -h
 ```
+
+Replace `<VERSION>` with the version number.
 
 **Example:**
 
@@ -69,7 +71,7 @@ sudo /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -h
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile <OPTIONS>
 
 Examples:
     /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
@@ -78,6 +80,8 @@ Examples:
     /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
     /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
+
+Where `<OPTIONS>` is the compiler options you want to use.
 
 ---
 

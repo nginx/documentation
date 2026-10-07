@@ -34,8 +34,10 @@ It must be stored in a Kubernetes Secret of type `nginx.com/license` in the same
 Create the Secret with the following command:
 
 ```shell
-kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> --type=nginx.com/license -n <your-namespace>
+kubectl create secret generic license-token --from-file=license.jwt=<PATH/TO/YOUR_JWT> --type=nginx.com/license -n <NAMESPACE>
 ```
+
+Replace `<PATH/TO/YOUR_JWT>` with the path to your JWT license file.
 
 Once created, you can download the `.jwt` file.
 
@@ -53,15 +55,17 @@ Next, use the following command to generate the updated Secret manifest and appl
 kubectl create secret generic license-token \
 --save-config \
 --dry-run=client \
---from-file=license.jwt=<new-jwt-file-path> \
+--from-file=license.jwt=<NEW_JWT_FILE_PATH> \
 --type=nginx.com/license \
 -o yaml | \
 kubectl apply -f -
 ```
 
+Replace `<NEW_JWT_FILE_PATH>` with the path to your new JWT license file.
+
 Notes:
 - Replace `license.jwt` on the `--from-file` flag with the path to your renewed JWT file if it's not in the current directory.
-- If your Secret resides in a specific namespace, include `-n <your-namespace>` on the `kubectl create secret` command so the generated YAML contains the correct namespace.
+- If your Secret resides in a specific namespace, include `-n <NAMESPACE>` on the `kubectl create secret` command so the generated YAML contains the correct namespace.
 - Ensure the Secret name (`license-token` by default) matches the name referenced by your Helm values or Management ConfigMap.
 - After the Secret is updated, the mounted Secret volume in the Pod is refreshed automatically by Kubernetes. NGINX Plus applies the updated license automatically. If you do not see the update take effect after a short period, restart the Ingress Controller Pod(s) to force a re-read of the Secret.
 
@@ -120,17 +124,21 @@ To configure SSL certificates or SSL trusted certificates, extra steps are neces
 To use Client Auth with NGINX Instance Manager, first create a Secret of type `kubernetes.io/tls` in the same namespace as the NGINX Ingress Controller pods.
 
 ```shell
-kubectl create secret tls ssl-certificate --cert=<path-to-your-client.pem> --key=<path-to-your-client.key> -n <Your Namespace>
+kubectl create secret tls ssl-certificate --cert=<PATH/TO/YOUR_CLIENT.PEM> --key=<PATH/TO/YOUR_CLIENT.KEY> -n <NAMESPACE>
 ```
+
+Replace `<PATH/TO/YOUR_CLIENT.PEM>` with the path to your client certificate (PEM) file and `<PATH/TO/YOUR_CLIENT.KEY>` with the path to your client private key file.
 
 To provide a SSL trusted certificate, and an optional Certificate Revocation List, create a Secret of type `nginx.org/ca` in the Namespace that the NIC Pod(s) are in.
 
 ```shell
 kubectl create secret generic ssl-trusted-certificate \
-   --from-file=ca.crt=<path-to-your-ca.crt> \
-   --from-file=ca.crl=<path-to-your-ca.crl> \ # optional
+   --from-file=ca.crt=<PATH/TO/YOUR_CA.CRT> \
+   --from-file=ca.crl=<PATH/TO/YOUR_CA.CRL> \ # optional
    --type=nginx.org/ca
 ```
+
+Replace `<PATH/TO/YOUR_CA.CRT>` with the path to your CA certificate file and `<PATH/TO/YOUR_CA.CRL>` with the path to your certificate revocation list (CRL) file.
 
 Providing an optional CRL (certificate revocation list) will configure the [`ssl_crl`](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_crl) directive.
 

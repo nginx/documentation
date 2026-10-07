@@ -86,13 +86,15 @@ In the preceding example, there are two data series for the queried metric. The 
 You can view the full list of the supported metrics and dimensions, with detailed descriptions, by querying the Catalog API:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/catalogs/metrics" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/catalogs/metrics" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 Likewise, you can get a full list of the available dimensions by querying the Catalogs API:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/catalogs/dimensions" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/catalogs/dimensions" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 This information is also provided in the [Catalogs Reference]({{< ref "/nim/monitoring/catalogs/" >}})).
@@ -110,7 +112,7 @@ The `names` parameter is the only required parameter in the Metrics API.
 The following example query returns a response with the last recorded value for the queried metric: `nginx.http.request.count`:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 If the dimension values differ, the `series` array in the response will contain multiple items.
@@ -118,7 +120,7 @@ If the dimension values differ, the `series` array in the response will contain 
 It is possible to query the API for several metrics simultaneously. To do so, provide the metric names as a comma-separated list:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count,nginx.http.conn.accepted" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count,nginx.http.conn.accepted" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 #### Time Window
@@ -139,13 +141,13 @@ You can define time using the `ISO 8601` format or as an offset (for example, `2
 The following example request returns all the recorded metric values for the last 12 hours.
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&startTime=now-12h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&startTime=now-12h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 The following example query contains a fully defined time window:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&startTime=now-5h&endTime=2020-07-01T09:00:00Z" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&startTime=now-5h&endTime=2020-07-01T09:00:00Z" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 In this case, the response contains metrics from 05:00:00 to 09:00:00 on the 1st of July 2020.
@@ -177,7 +179,7 @@ The list of supported aggregate functions for any particular metric is available
 For example, the following query returns a single value (per dimension set), which is the sum of the metric values for the last 12 hours. To get proper values, ensure that the `endTime` is greater than the `startTime`.
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&startTime=now-12h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&startTime=now-12h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 It is possible to use aggregated and non-aggregated metrics in a single query. For this query, the Metrics API returns a single value per dimension set. That value is the sum of all of the metric's values for the last 12 hours.
@@ -185,7 +187,7 @@ It is possible to use aggregated and non-aggregated metrics in a single query. F
 For example:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count),nginx.http.conn.accepted&startTime=now-12h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count),nginx.http.conn.accepted&startTime=now-12h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 #### Resolution
@@ -197,7 +199,7 @@ The `resolution` parameter must be a valid duration. The duration is a string th
 The following example query returns three aggregated metric values. Here, we're asking for the data from last 12 hours with one-hour granularity:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&startTime=now-12h&resolution=1h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&startTime=now-12h&resolution=1h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 #### Filter
@@ -213,7 +215,7 @@ The `filter` query consists of one or more predicates in the form of `<DIMENSION
 For example, the following query includes a simple filter on the app name. The query returns data for the application named `app1` for the last 12 hours.
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&filter=nginx_id='nginx_id1'&startTime=now-12h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&filter=nginx_id='nginx_id1'&startTime=now-12h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 {{< call-out class="tip" >}}
@@ -227,7 +229,7 @@ curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http
 The following example request uses `filter` with logical expressions:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&filter=nginx_id='nginx_id1*' and server_zone='zone1'&startTime=now-12h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&filter=nginx_id='nginx_id1*' and server_zone='zone1'&startTime=now-12h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 #### GroupBy
@@ -246,7 +248,7 @@ The `groupBy` parameter helps to gather results according to the specified dimen
 For example, the following query returns data grouped by `nginx_id` for the last 12 hours.
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&groupBy=nginx_id&startTime=now-12h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&groupBy=nginx_id&startTime=now-12h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 The API response for the query looks similar to the following:
@@ -297,7 +299,7 @@ Dimensions not specified in the query parameter will not be included in the resp
 The following example returns results for the specified metric, where `dimensions=nginx_id`:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&dimensions=nginx_id&startTime=now-12h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&dimensions=nginx_id&startTime=now-12h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ```json
@@ -340,7 +342,7 @@ If `dimensions` and `groupBy` parameters are both used, the list of provided `di
 The following example uses `dimensions` with `groupBy`:
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&groupBy=nginx_id&dimensions=system_id&startTime=now-12h&resolution=5m" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&groupBy=nginx_id&dimensions=system_id&startTime=now-12h&resolution=5m" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 The `dimensions` parameter also lets you omit the dimensions from the response altogether. To do so, define `dimensions` as an empty list (`dimensions=`).
@@ -350,5 +352,5 @@ This results in several data series for the `http.request.count` metric without 
 For example, the following example query sums all the values in all of the series of the `http.request.count` metric for the past three hours using the default `resolution`.
 
 ```shell
-curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&startTime=now-12h&dimensions=" -H "Authorization: Bearer <access token>"
+curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.http.request.count)&startTime=now-12h&dimensions=" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```

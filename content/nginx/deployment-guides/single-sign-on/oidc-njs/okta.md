@@ -122,17 +122,19 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
    The output in the example below is abridged to show only the relevant fields.
 
    ```shell
-   curl https://<username>-admin.okta.com/.well-known/openid-configuration | jq
+   curl https://<USERNAME>-admin.okta.com/.well-known/openid-configuration | jq
    ...
    {
-       "authorization_endpoint": "https://<username>.okta.com/oauth2/v1/authorize",
+       "authorization_endpoint": "https://<USERNAME>.okta.com/oauth2/v1/authorize",
        ...
-       "jwks_uri": "https://<username>.okta.com/oauth2/v1/keys",
+       "jwks_uri": "https://<USERNAME>.okta.com/oauth2/v1/keys",
        ...
-       "token_endpoint": "https://<username>.okta.com/oauth2/v1/token",
+       "token_endpoint": "https://<USERNAME>.okta.com/oauth2/v1/token",
     ...
     }
     ```
+
+   Here, `<USERNAME>` represents your Okta organization's subdomain, not your login username.
 
    <span id="nginx-plus-variables"></span>
 

@@ -297,8 +297,8 @@ error_log /var/log/nginx/error.log error;
 
 http {
     upstream backend_servers {
-        server <Upstream-1-private-ip>:80;
-        server <Upstream-2-private-ip>:80;
+        server <UPSTREAM_1_PRIVATE_IP>:80;
+        server <UPSTREAM_2_PRIVATE_IP>:80;
         keepalive 16;
     }
     server {
@@ -361,8 +361,8 @@ error_log /var/log/nginx/error.log error;
 
 http {
     upstream backend_servers {
-        server <Upstream-1-private-ip>:80;
-        server <Upstream-2-private-ip>:80;
+        server <UPSTREAM_1_PRIVATE_IP>:80;
+        server <UPSTREAM_2_PRIVATE_IP>:80;
         keepalive 16;
     }
     server {
@@ -390,6 +390,8 @@ EOT
 }
 ```
 
+Replace `<UPSTREAM_1_PRIVATE_IP>` with the private IP address of the first upstream server and `<UPSTREAM_2_PRIVATE_IP>` with the private IP address of the second upstream server.
+
 {{< /details >}}
 
 ### Step 6: DNS and failover
@@ -406,7 +408,7 @@ resource "azurerm_traffic_manager_profile" "nginxaas_failover_monitor" {
 
   dns_config {
     # relative_name needs to be globally unique
-    # <relative_name>.trafficmanager.net resolves to the public IP of either NGINXaaS deployment
+    # <RELATIVE_NAME>.trafficmanager.net resolves to the public IP of either NGINXaaS deployment
     relative_name = "nginxaas-global-record"
     ttl           = 60
   }
@@ -435,6 +437,8 @@ resource "azurerm_traffic_manager_external_endpoint" "secondary" {
   target              = azurerm_nginx_deployment.secondary_nginxaas_deployment.ip_address
 }
 ```
+
+Replace `<RELATIVE_NAME>` with the relative DNS name of your Traffic Manager profile.
 
 {{< /details >}}
 

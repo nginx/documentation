@@ -118,7 +118,7 @@ The `dnsName` field in the server Certificate represents the name that the NGINX
 
 {{%tab name="Helm"%}}
 
-The full service name is of the format: `<helm-release-name>-nginx-gateway-fabric.<namespace>.svc`.
+The full service name is of the format: `<RELEASE_NAME>-nginx-gateway-fabric.<NAMESPACE>.svc`.
 
 The default Helm release name used in our installation docs is `ngf`, and the default namespace is `nginx-gateway`, so the `dnsName` should be `ngf-nginx-gateway-fabric.nginx-gateway.svc`.
 
@@ -126,7 +126,7 @@ The default Helm release name used in our installation docs is `ngf`, and the de
 
 {{%tab name="Manifests"%}}
 
-The full service name is of the format: `<service-name>.<namespace>.svc`.
+The full service name is of the format: `<SERVICE_NAME>.<NAMESPACE>.svc`.
 
 By default, the base service name is `nginx-gateway`, and the namespace is `nginx-gateway`, so the `dnsName` should be `nginx-gateway.nginx-gateway.svc`.
 

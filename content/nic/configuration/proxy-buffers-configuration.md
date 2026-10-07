@@ -143,5 +143,7 @@ I20250826 14:06:43.734842   1 annotations.go:341] Changes made to proxy values: 
 
 View adjustment logs:
 ```bash
-kubectl logs <pod-name> -n <namespace> | grep "Changes made to proxy values"
+kubectl logs <POD_NAME> -n <NAMESPACE> | grep "Changes made to proxy values"
 ```
+
+Replace `<POD_NAME>` with the name of the pod and `<NAMESPACE>` with the Kubernetes namespace where NGINX Ingress Controller is installed.

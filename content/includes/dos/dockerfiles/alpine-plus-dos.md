@@ -19,7 +19,7 @@ FROM alpine:${OS_VER}
 # set the argument, for example:
 #   --build-arg DOS_VERSION="=37+4.9.6-r1"
 # NGINX Plus needs no pin here, because apk can select an older nginx-plus to
-# satisfy the module's nginx-plus-r<release> dependency.
+# satisfy the module's nginx-plus-r<RELEASE> dependency.
 ARG DOS_VERSION=""
 
 # Install F5 DoS for NGINX

@@ -32,8 +32,10 @@ If you'd like to test the latest changes in NGINX Ingress Controller before a ne
 You can install the `edge` version by specifying the `--version` flag with the value `0.0.0-edge`:
 
 ```shell
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress --version 0.0.0-edge
+helm install <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress --version 0.0.0-edge
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 ## Install the Helm chart
 
@@ -44,7 +46,7 @@ You have two options for installing the Helm chart: directly from the OCI regist
 To install NGINX Ingress Controller using the OCI registry, run this command with your release name:
 
 ```shell
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}}
+helm install <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}}
 ```
 
 {{< details summary="Example output" >}}
@@ -95,7 +97,7 @@ cd nginx-ingress
 Finally, install the chart with your release name with `helm install`:
 
 ```shell
-helm install <my-release> . 
+helm install <RELEASE_NAME> . 
 ```
 
 {{< details summary="Example output" >}}

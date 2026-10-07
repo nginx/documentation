@@ -176,9 +176,11 @@ nic-nginx-ingress-controller-xxxxx  3/3     Running   0          2m
 Save the public IP address and HTTP port of the NGINX Ingress Controller LoadBalancer service to shell variables:
 
 ```shell
-IC_IP=<public IP address>
-IC_HTTP_PORT=<port number>
+IC_IP=<PUBLIC_IP_ADDRESS>
+IC_HTTP_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PUBLIC_IP_ADDRESS>` with the public IP address of your NGINX Ingress Controller and `<PORT_NUMBER>` with the port number to use.
 
 ## Define the WAF policy
 
@@ -543,5 +545,5 @@ A `State: Valid` and `Reason: AddedOrUpdated` status confirms the bundles were f
 
 ## Troubleshooting
 
-- **Policy status is `Warning` with reason `BundleFetchFailed`.** Run `kubectl describe appolicy <name> --namespace security` and confirm `status.bundle.state` is `ready`. If PLM hasn't compiled the resource yet, the Policy fetch can't proceed.
+- **Policy status is `Warning` with reason `BundleFetchFailed`.** Run `kubectl describe appolicy <NAME> --namespace security` and confirm `status.bundle.state` is `ready`. If PLM hasn't compiled the resource yet, the Policy fetch can't proceed.
 - **NGINX Ingress Controller reports the referenced namespace isn't watched.** If `controller.watchNamespace` is set, include the namespace that holds the `APPolicy` and `APLogConf` resources. If `controller.watchSecretNamespace` is set, include the PLM namespace so the controller can observe storage Secret rotation.

@@ -41,6 +41,6 @@ August 26, 2026
 
 ### Important notes
 
-- F5 DoS for NGINX 4.10 requires NGINX Plus **R37.1**, whereas 4.9 requires **R37.0**. Each `nginx-plus-module-appprotectdos` package depends on a virtual package named `nginx-plus-r<release>` that only its own NGINX Plus release provides, so F5 DoS for NGINX and NGINX Plus must be upgraded together.
+- F5 DoS for NGINX 4.10 requires NGINX Plus **R37.1**, whereas 4.9 requires **R37.0**. Each `nginx-plus-module-appprotectdos` package depends on a virtual package named `nginx-plus-r<RELEASE>` (where `<RELEASE>` is the NGINX Plus release number) that only its own NGINX Plus release provides, so F5 DoS for NGINX and NGINX Plus must be upgraded together.
 - On Debian and Ubuntu, `apt` considers only the newest `nginx-plus` available and will not select an older one on its own. When installing a specific F5 DoS for NGINX version, pin `nginx-plus` as well, or the install fails with `Unable to correct problems, you have held broken packages`. See the [F5 DoS for NGINX Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}) for the exact commands.
 - If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the same version as `app-protect-dos`. Left unpinned, it installs the most recent version, which may not match the rest of your installation.

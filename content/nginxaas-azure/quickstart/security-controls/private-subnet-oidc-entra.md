@@ -53,9 +53,11 @@ Both solutions require these initial steps:
    ```nginx
    # Use the correct Microsoft Entra ID keys endpoint
    map $host $oidc_jwt_keyfile {
-       default "https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys";
+       default "https://login.microsoftonline.com/<TENANT_ID>/discovery/v2.0/keys";
    }
    ```
+
+   Replace `<TENANT_ID>` with your Microsoft Entra tenant ID.
 
    {{< call-out class="note" >}}The `oidc_jwt_keyfile` endpoint is not listed in the Microsoft App Registration's endpoints pane but is required for proper OIDC configuration.{{< /call-out >}}
 
@@ -103,22 +105,31 @@ When you create an NGINXaaS deployment, Azure automatically creates and attaches
    ```bash
    # Create Azure NAT Gateway
    az network nat gateway create \
-     --resource-group <resource-group> \
-     --name <nat-gateway-name> \
-     --location <location> \
-     --public-ip-addresses <public-ip-name>
+     --resource-group <RESOURCE_GROUP> \
+     --name <NAT_GATEWAY_NAME> \
+     --location <LOCATION> \
+     --public-ip-addresses <PUBLIC_IP_NAME>
    ```
+
+   Replace the placeholders as follows:
+
+   - `<RESOURCE_GROUP>`: the name of your Azure resource group
+   - `<NAT_GATEWAY_NAME>`: the name of your NAT gateway
+   - `<LOCATION>`: the Azure region of your deployment
+   - `<PUBLIC_IP_NAME>`: the name of the public IP address
 
 1. Associate the Azure NAT Gateway with your NGINXaaS subnet:
 
    ```bash
    # Associate Azure NAT Gateway with subnet
    az network vnet subnet update \
-     --resource-group <resource-group> \
-     --vnet-name <vnet-name> \
-     --name <nginxaas-subnet-name> \
-     --nat-gateway <nat-gateway-name>
+     --resource-group <RESOURCE_GROUP> \
+     --vnet-name <VNET_NAME> \
+     --name <NGINXAAS_SUBNET_NAME> \
+     --nat-gateway <NAT_GATEWAY_NAME>
    ```
+
+   Replace `<VNET_NAME>` with the name of your virtual network and `<NGINXAAS_SUBNET_NAME>` with the name of the subnet delegated to NGINXaaS.
 
 This configuration allows NGINXaaS to reach Microsoft Entra ID endpoints while blocking general internet access.
 
@@ -147,18 +158,20 @@ Create two new subnets in your virtual network:
 ```bash
 # Create Azure Firewall subnet
 az network vnet subnet create \
-  --resource-group <resource-group> \
-  --vnet-name <vnet-name> \
+  --resource-group <RESOURCE_GROUP> \
+  --vnet-name <VNET_NAME> \
   --name AzureFirewallSubnet \
-  --address-prefixes <firewall-subnet-cidr>
+  --address-prefixes <FIREWALL_SUBNET_CIDR>
 
 # Create Firewall Management subnet
 az network vnet subnet create \
-  --resource-group <resource-group> \
-  --vnet-name <vnet-name> \
+  --resource-group <RESOURCE_GROUP> \
+  --vnet-name <VNET_NAME> \
   --name AzureFirewallManagementSubnet \
-  --address-prefixes <management-subnet-cidr>
+  --address-prefixes <MANAGEMENT_SUBNET_CIDR>
 ```
+
+Replace `<FIREWALL_SUBNET_CIDR>` with the CIDR range of the firewall subnet and `<MANAGEMENT_SUBNET_CIDR>` with the CIDR range of the firewall management subnet.
 
 ### Create Azure Firewall
 
@@ -167,26 +180,33 @@ az network vnet subnet create \
    ```bash
    # Create public IPs for firewall
    az network public-ip create \
-     --name <firewall-public-ip> \
-     --resource-group <resource-group> \
+     --name <FIREWALL_PUBLIC_IP> \
+     --resource-group <RESOURCE_GROUP> \
      --allocation-method Static \
      --sku Standard
 
    az network public-ip create \
-     --name <firewall-mgmt-public-ip> \
-     --resource-group <resource-group> \
+     --name <FIREWALL_MGMT_PUBLIC_IP> \
+     --resource-group <RESOURCE_GROUP> \
      --allocation-method Static \
      --sku Standard
 
    # Create firewall with new policy
    az extension add --name azure-firewall
    az network firewall create \
-     --name <firewall-name> \
-     --resource-group <resource-group> \
-     --vnet-name <vnet-name> \
-     --public-ip <firewall-public-ip> \
-     --firewall-policy <firewall-policy-name>
+     --name <FIREWALL_NAME> \
+     --resource-group <RESOURCE_GROUP> \
+     --vnet-name <VNET_NAME> \
+     --public-ip <FIREWALL_PUBLIC_IP> \
+     --firewall-policy <FIREWALL_POLICY_NAME>
    ```
+
+   Replace the placeholders as follows:
+
+   - `<FIREWALL_PUBLIC_IP>`: the name of the firewall public IP address
+   - `<FIREWALL_MGMT_PUBLIC_IP>`: the name of the firewall management public IP address
+   - `<FIREWALL_NAME>`: the name of your Azure Firewall
+   - `<FIREWALL_POLICY_NAME>`: the name of your firewall policy
 
    {{< call-out class="note" >}}The Standard SKU is required at minimum because it allows Azure Firewall to be configured as a DNS proxy, which is necessary for FQDN-based filtering. During creation, choose to create a new Firewall Policy and use your existing virtual network that contains the NGINXaaS subnet.{{< /call-out >}}
 
@@ -197,8 +217,8 @@ az network vnet subnet create \
    ```bash
    # Enable DNS proxy
    az network firewall policy update \
-     --name <firewall-policy-name> \
-     --resource-group <resource-group> \
+     --name <FIREWALL_POLICY_NAME> \
+     --resource-group <RESOURCE_GROUP> \
      --enable-dns-proxy true \
      --dns-servers 168.63.129.16
    ```
@@ -215,25 +235,27 @@ Create a network rule collection to allow NGINXaaS subnet access to Microsoft En
 # Create network rule collection
 az network firewall policy rule-collection-group create \
   --name NetworkRuleCollectionGroup \
-  --policy-name <firewall-policy-name> \
-  --resource-group <resource-group> \
+  --policy-name <FIREWALL_POLICY_NAME> \
+  --resource-group <RESOURCE_GROUP> \
   --priority 200
 
 # Add network rule for Microsoft Entra ID
 az network firewall policy rule-collection-group collection add-filter-collection \
   --name EntraIDAccess \
-  --policy-name <firewall-policy-name> \
-  --resource-group <resource-group> \
+  --policy-name <FIREWALL_POLICY_NAME> \
+  --resource-group <RESOURCE_GROUP> \
   --collection-priority 100 \
   --rule-collection-group-name NetworkRuleCollectionGroup \
   --action Allow \
   --rule-name AllowEntraID \
   --rule-type NetworkRule \
   --protocols TCP \
-  --source-addresses <nginxaas-subnet-cidr> \
+  --source-addresses <NGINXAAS_SUBNET_CIDR> \
   --destination-fqdns login.microsoftonline.com \
   --destination-ports 443
 ```
+
+Replace `<NGINXAAS_SUBNET_CIDR>` with the CIDR range of the NGINXaaS subnet.
 
 ### Configure route table
 
@@ -246,29 +268,31 @@ Direct NGINXaaS subnet traffic through the firewall:
    ```bash
    # Create route table
    az network route-table create \
-     --name <route-table-name> \
-     --resource-group <resource-group> \
-     --location <location>
+     --name <ROUTE_TABLE_NAME> \
+     --resource-group <RESOURCE_GROUP> \
+     --location <LOCATION>
 
    # Add default route pointing to firewall
    az network route-table route create \
-     --route-table-name <route-table-name> \
-     --resource-group <resource-group> \
+     --route-table-name <ROUTE_TABLE_NAME> \
+     --resource-group <RESOURCE_GROUP> \
      --name DefaultRoute \
      --address-prefix 0.0.0.0/0 \
      --next-hop-type VirtualAppliance \
-     --next-hop-ip-address <firewall-private-ip>
+     --next-hop-ip-address <FIREWALL_PRIVATE_IP>
    ```
+
+   Replace `<ROUTE_TABLE_NAME>` with the name of your route table and `<FIREWALL_PRIVATE_IP>` with the private IP address of your firewall.
 
 1. Associate the route table with the NGINXaaS subnet:
 
    ```bash
    # Associate route table with NGINXaaS subnet
    az network vnet subnet update \
-     --resource-group <resource-group> \
-     --vnet-name <vnet-name> \
-     --name <nginxaas-subnet-name> \
-     --route-table <route-table-name>
+     --resource-group <RESOURCE_GROUP> \
+     --vnet-name <VNET_NAME> \
+     --name <NGINXAAS_SUBNET_NAME> \
+     --route-table <ROUTE_TABLE_NAME>
    ```
 
 ## Testing the configuration

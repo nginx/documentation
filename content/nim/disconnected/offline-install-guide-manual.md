@@ -56,8 +56,10 @@ To download external dependencies:
 2. Run the script to download the external dependencies for your specific Linux distribution:
 
     ```bash
-    sudo bash fetch-external-dependencies.sh <linux distribution>
+    sudo bash fetch-external-dependencies.sh <LINUX_DISTRIBUTION>
     ```
+
+    Replace `<LINUX_DISTRIBUTION>` with your Linux distribution, such as `ubuntu20.04` or `rhel8`.
 
     Supported Linux distributions:
 
@@ -89,14 +91,14 @@ To download external dependencies:
     - **For RHEL and RPM-based systems**:
 
         ```shell
-        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
+        tar -kzxvf nms-dependencies-<LINUX_DISTRIBUTION>.tar.gz
         sudo rpm -ivh *.rpm
         ```
 
     - **For Debian, Ubuntu, Deb-based systems**:
 
         ```shell
-        tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
+        tar -kzxvf nms-dependencies-<LINUX_DISTRIBUTION>.tar.gz
         sudo dpkg -i ./*.deb
         ```
 
@@ -115,13 +117,15 @@ The administrator username (default: **admin**) and the generated password are d
    - **For RHEL and RPM-based systems**:
 
         ```shell
-        sudo rpm -ivh --nosignature /home/<user>/nms-instance-manager_<version>.x86_64.rpm
+        sudo rpm -ivh --nosignature /home/<USER>/nms-instance-manager_<VERSION>.x86_64.rpm
         ```
+
+        Replace `<USER>` with your username on the host and `<VERSION>` with the version number.
 
    - **For Debian, Ubuntu, Deb-based systems**:
 
         ```shell
-        sudo apt-get -y install -f /home/<user>/nms-instance-manager_<version>_amd64.deb
+        sudo apt-get -y install -f /home/<USER>/nms-instance-manager_<VERSION>_amd64.deb
         ```
 
 3. Enable and start NGINX Instance Manager services:
@@ -175,7 +179,7 @@ To upgrade NGINX Instance Manager to a newer version:
    - **For RHEL and RPM-based systems**:
 
         ```shell
-        sudo rpm -Uvh --nosignature /home/user/nms-instance-manager_<version>.x86_64.rpm
+        sudo rpm -Uvh --nosignature /home/user/nms-instance-manager_<VERSION>.x86_64.rpm
         sudo systemctl restart nms
         sudo systemctl restart nginx
         ```
@@ -183,7 +187,7 @@ To upgrade NGINX Instance Manager to a newer version:
    - **For Debian, Ubuntu, Deb-based systems**:
 
         ```shell
-        sudo apt-get -y install -f /home/user/nms-instance-manager_<version>_amd64.deb
+        sudo apt-get -y install -f /home/user/nms-instance-manager_<VERSION>_amd64.deb
         sudo systemctl restart nms
         sudo systemctl restart nginx
         ```

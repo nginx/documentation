@@ -228,8 +228,10 @@ There are several ways to obtain the required certificate, including the followi
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
    ```shell
-   root# cp ~/company.com.key <SECURE-DIR>/company.com.key.backup
+   root# cp ~/company.com.key <SECURE_DIR>/company.com.key.backup
    ```
+
+   Replace `<SECURE_DIR>` with the directory where you store your SSL certificate and private key.
 
 4. Create a Certificate Signing Request (CSR) file.
 

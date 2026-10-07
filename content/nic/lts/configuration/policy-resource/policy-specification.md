@@ -440,9 +440,11 @@ The following example policy rejects all requests that don't include a valid JWT
 jwt:
   realm: MyProductAPI
   token: $http_token
-  jwksURI: <uri_to_remote_server_or_idp>
+  jwksURI: <URI_TO_REMOTE_SERVER_OR_IDP>
   keyCache: 1h
 ```
+
+Replace `<URI_TO_REMOTE_SERVER_OR_IDP>` with the URI of your remote JWKS server or identity provider.
 
 {{< call-out "note" >}}
 
@@ -506,8 +508,10 @@ metadata:
 apiVersion: v1
 type: nginx.org/ca
 data:
-  ca.crt: <base64encoded-certificate>
+  ca.crt: <BASE64_ENCODED_CERTIFICATE>
 ```
+
+Replace `<BASE64_ENCODED_CERTIFICATE>` with your base64-encoded certificate.
 
 A VirtualServer that references an IngressMTLS policy must:
 
@@ -559,9 +563,11 @@ You can use only one of these configuration options at a time.
    apiVersion: v1
    type: nginx.org/ca
    data:
-     ca.crt: <base64encoded-certificate>
-     ca.crl: <base64encoded-crl>
+     ca.crt: <BASE64_ENCODED_CERTIFICATE>
+     ca.crl: <BASE64_ENCODED_CRL>
    ```
+
+   Replace `<BASE64_ENCODED_CRL>` with your base64-encoded certificate revocation list (CRL).
 
 2. Add the `crlFileName` field to your IngressMTLS policy spec with the name of the CRL file.
 

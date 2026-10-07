@@ -165,9 +165,11 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT_1=<Listener-1 Port number>
-GW_PORT_2=<Listener-2 Port number>
+GW_PORT_1=<LISTENER_1_PORT>
+GW_PORT_2=<LISTENER_2_PORT>
 ```
+
+Replace `<LISTENER_1_PORT>` with the port number of the first listener and `<LISTENER_2_PORT>` with the port number of the second listener.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 

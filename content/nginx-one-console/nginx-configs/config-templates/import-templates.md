@@ -40,12 +40,19 @@ Each template archive must contain:
 - **Static include files** (optional) - additional files referenced by NGINX `include` directives within the template. Any file extension is valid (`.conf`, `.types`, etc.). See [Static include files]({{< ref "author-templates.md#static-include-files" >}}) for details.
 
 ```text
-<archive-name>.tar.gz
+<ARCHIVE_NAME>.tar.gz
 │
-├── <template-file>.tmpl
-├── <schema-file>.yaml        # optional
-└── <static-file>.conf        # optional, one or more include files
+├── <TEMPLATE_FILE>.tmpl
+├── <SCHEMA_FILE>.yaml        # optional
+└── <STATIC_FILE>.conf        # optional, one or more include files
 ```
+
+Replace the placeholders as follows:
+
+- `<ARCHIVE_NAME>`: the name of your template archive
+- `<TEMPLATE_FILE>`: the name of your template file
+- `<SCHEMA_FILE>`: the name of your schema file
+- `<STATIC_FILE>`: the name of your static include file
 
 ### Naming conventions
 

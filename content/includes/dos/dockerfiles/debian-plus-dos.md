@@ -15,7 +15,7 @@ FROM debian:bullseye
 # To build a specific version, set both, for example:
 #   --build-arg DOS_VERSION="=37+4.9.6-1~bullseye" --build-arg NGINX_PLUS_VERSION="=37.0.*-1~bullseye"
 # Pin NGINX Plus as well: apt considers only the newest nginx-plus available and
-# does not select an older one to satisfy the module's nginx-plus-r<release> dependency.
+# does not select an older one to satisfy the module's nginx-plus-r<RELEASE> dependency.
 ARG DOS_VERSION=""
 ARG NGINX_PLUS_VERSION=""
 

@@ -124,8 +124,10 @@ To complete the steps in this guide, ensure the following:
     helm repo add nginx-stable https://helm.nginx.com/stable
     helm repo update
     helm pull nginx-stable/nms
-    tar zxvf nms-<version>.tgz
+    tar zxvf nms-<VERSION>.tgz
     ```
+
+    Replace `<VERSION>` with the version number.
 
 ### Back up NGINX Instance Manager
 
@@ -134,7 +136,7 @@ To back up NGINX Instance Manager deployed in a Kubernetes cluster:
 1. Copy the backup script `k8s-backup.sh` from the extracted Helm chart to your working directory:
 
     ```shell
-    cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
+    cp nms-<VERSION>/charts/nms-hybrid/backup-restore/k8s-backup.sh .
     ```
 
 2. Make the script executable:
@@ -151,7 +153,7 @@ To back up NGINX Instance Manager deployed in a Kubernetes cluster:
 
     {{< call-out class="note" >}}The backup script does not require `sudo` permissions or the `utility` pod.{{< /call-out >}}
 
-4. The script will prompt you for the NGINX Instance Manager namespace. It will create a backup archive called `k8s-backup-<timestamp>.tar.gz`.
+4. The script will prompt you for the NGINX Instance Manager namespace. It will create a backup archive called `k8s-backup-<TIMESTAMP>.tar.gz`.
 
 ### Full restoration to the same Kubernetes Cluster
 
@@ -160,7 +162,7 @@ To restore NGINX Instance Manager to the same Kubernetes cluster:
 1. Copy the restore script `k8s-restore.sh` from the extracted Helm chart to your working directory:
 
     ```shell
-    cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-restore.sh .
+    cp nms-<VERSION>/charts/nms-hybrid/backup-restore/k8s-restore.sh .
     ```
 
 2. Make the script executable:
@@ -169,12 +171,12 @@ To restore NGINX Instance Manager to the same Kubernetes cluster:
     chmod +x k8s-restore.sh
     ```
 
-3. Copy your backup file (`k8s-backup-<timestamp>.tar.gz`) to the same directory as `k8s-restore.sh`.
+3. Copy your backup file (`k8s-backup-<TIMESTAMP>.tar.gz`) to the same directory as `k8s-restore.sh`.
 
 4. Run the restore script:
 
     ```shell
-    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<timestamp>.tar.gz -r
+    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<TIMESTAMP>.tar.gz -r
     ```
 
     If the Kubernetes configuration is different, update the path accordingly.
@@ -192,7 +194,7 @@ To restore NGINX Instance Manager to a different Kubernetes cluster:
 1. Copy the restore script `k8s-restore.sh` from the extracted Helm chart to your working directory:
 
     ```shell
-    cp nms-<version>/charts/nms-hybrid/backup-restore/k8s-restore.sh .
+    cp nms-<VERSION>/charts/nms-hybrid/backup-restore/k8s-restore.sh .
     ```
 
 2. Make the script executable:
@@ -201,12 +203,12 @@ To restore NGINX Instance Manager to a different Kubernetes cluster:
     chmod +x k8s-restore.sh
     ```
 
-3. Copy your backup file (`k8s-backup-<timestamp>.tar.gz`) to the same directory as `k8s-restore.sh`.
+3. Copy your backup file (`k8s-backup-<TIMESTAMP>.tar.gz`) to the same directory as `k8s-restore.sh`.
 
 4. Run the restore script:
 
     ```shell
-    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<timestamp>.tar.gz -r -d
+    sudo KUBECONFIG=/etc/kubernetes/admin.conf ./k8s-restore.sh -i k8s-backup-<TIMESTAMP>.tar.gz -r -d
     ```
 
     If the Kubernetes configuration differs, update the path accordingly.
@@ -218,10 +220,12 @@ To restore NGINX Instance Manager to a different Kubernetes cluster:
 If you want to restore user passwords, extract the backup archive and run the following commands:
 
   ```shell
-  cd k8s-backup-<version>/secrets
+  cd k8s-backup-<VERSION>/secrets
   kubectl -n nms apply -f nms-auth.json
-  kubectl -n nms delete pod apigw-<hash>
+  kubectl -n nms delete pod apigw-<HASH>
   ```
+
+  Replace `<HASH>` with the unique suffix Kubernetes adds to the pod name.
 
 ---
 

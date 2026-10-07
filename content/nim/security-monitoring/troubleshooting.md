@@ -27,9 +27,11 @@ F5 WAF for NGINX supports logging to multiple destinations. You can send logs to
    app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
    app_protect_security_log_enable on;
    app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
-   app_protect_security_log "/etc/app_protect/conf/log_sm.json" <Path to store log file>;
+   app_protect_security_log "/etc/app_protect/conf/log_sm.json" <PATH_TO_STORE_LOG_FILE>;
    # Example: app_protect_security_log "/etc/app_protect/conf/log_sm.json" /var/log/app_protect/security.log;
    ```
+
+   Replace `<PATH_TO_STORE_LOG_FILE>` with the path where you want the Security Monitoring log file to be written.
 
 2. **For an instance with Security Monitoring and F5 NGINX Instance Manager:**
 
@@ -37,7 +39,7 @@ F5 WAF for NGINX supports logging to multiple destinations. You can send logs to
    app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
    app_protect_security_log_enable on;
    app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
-   app_protect_security_log "/etc/nms/secops_dashboard.tgz" <Path to store log file>;
+   app_protect_security_log "/etc/nms/secops_dashboard.tgz" <PATH_TO_STORE_LOG_FILE>;
    # Example: app_protect_security_log "/etc/nms/secops_dashboard.tgz" /var/log/app_protect/security.log;
    ```
 

@@ -38,10 +38,12 @@ Include the following details in your request body, depending on what you’re p
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/publish \
-    -H "Authorization: Bearer <access token>" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
     -H "Content-Type: application/json" \
     -d @publish-request.json
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 {{< details summary="JSON request" open=true >}}
 
@@ -50,35 +52,45 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/publish \
   "publications": [
     {
       "attackSignatureLibrary": {
-        "uid": "<attack-signature-library-uid>",
+        "uid": "<ATTACK_SIGNATURE_LIBRARY_UID>",
         "versionDateTime": "2022.10.02"
       },
       "botSignatureLibrary": {
-        "uid": "<bot-signature-library-uid>",
+        "uid": "<BOT_SIGNATURE_LIBRARY_UID>",
         "versionDateTime": "2022.10.03"
       },
       "instanceGroups": [
-        "<instance-group-uid>"
+        "<INSTANCE_GROUP_UID>"
       ],
       "instances": [
-        "<instance-uid>"
+        "<INSTANCE_UID>"
       ],
       "logProfileContent": {
         "name": "default-log-profile",
-        "uid": "<log-profile-uid>"
+        "uid": "<LOG_PROFILE_UID>"
       },
       "policyContent": {
         "name": "default-enforcement",
-        "uid": "<policy-uid>"
+        "uid": "<POLICY_UID>"
       },
       "threatCampaign": {
-        "uid": "<threat-campaign-uid>",
+        "uid": "<THREAT_CAMPAIGN_UID>",
         "versionDateTime": "2022.10.01"
       }
     }
   ]
 }
 ```
+
+Replace the placeholders as follows:
+
+- `<ATTACK_SIGNATURE_LIBRARY_UID>`: the unique identifier (UID) of the attack signature library
+- `<BOT_SIGNATURE_LIBRARY_UID>`: the unique identifier (UID) of the bot signature library
+- `<INSTANCE_GROUP_UID>`: the unique identifier (UID) of the instance group
+- `<INSTANCE_UID>`: the unique identifier (UID) of the instance
+- `<LOG_PROFILE_UID>`: the unique identifier (UID) of the log profile
+- `<POLICY_UID>`: the unique identifier (UID) of the security policy
+- `<THREAT_CAMPAIGN_UID>`: the unique identifier (UID) of the threat campaign library
 
 {{< /details >}}
 

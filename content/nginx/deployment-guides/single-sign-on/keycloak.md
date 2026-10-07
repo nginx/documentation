@@ -20,7 +20,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 ## Configure Keycloak {#keycloak-setup}
 
-1. Log in to your Keycloak admin console, for example, `https://<keycloak-server>/admin/master/console/`.
+1. Log in to your Keycloak admin console, for example, `https://<KEYCLOAK_SERVER>/admin/master/console/`.
 
 2. In the left navigation, go to **Clients**, then
 
@@ -90,19 +90,19 @@ This step is optional, and is necessary if you need to restrict or organize user
 
 Check the OpenID Connect Discovery URL. By default, Keycloak publishes the `.well-known/openid-configuration` document at the following address:
 
-`https://<keycloak-server>/realms/<realm_name>/.well-known/openid-configuration`.
+`https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>/.well-known/openid-configuration`.
 
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://<keycloak-server>/realms/<realm_name>/.well-known/openid-configuration | jq
+   curl https://<KEYCLOAK_SERVER>/realms/{realm_name}/.well-known/openid-configuration | jq
    ```
 
    Where:
 
-   - the `<keycloak-server>` is your Keycloak server address
+   - the `<KEYCLOAK_SERVER>` is your Keycloak server address
 
-   - the `<realm_name>` is your Keycloak realm name
+   - the `{realm_name}` is your Keycloak realm name
 
    - the `/.well-known/openid-configuration` is the default address for Keycloak for document location
 
@@ -113,17 +113,17 @@ Check the OpenID Connect Discovery URL. By default, Keycloak publishes the `.wel
    ```json
    {
        ...
-       "issuer": "https://<keycloak-server>/realms/<realm_name>",
-       "authorization_endpoint": "https://<keycloak-server>/realms/<realm_name>/protocol/openid-connect/auth",
-       "token_endpoint": "https://<keycloak-server>/realms/<realm_name>/protocol/openid-connect/token",
-       "jwks_uri": "https://<keycloak-server>/realms/<realm_name>/protocol/openid-connect/certs",
-       "userinfo_endpoint": "https://<keycloak-server>/realms/<realm_name>/protocol/openid-connect/userinfo",
-       "end_session_endpoint": "https://<keycloak-server>/realms/<realm_name>/protocol/openid-connect/logout",
+       "issuer": "https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>",
+       "authorization_endpoint": "https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>/protocol/openid-connect/auth",
+       "token_endpoint": "https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>/protocol/openid-connect/token",
+       "jwks_uri": "https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>/protocol/openid-connect/certs",
+       "userinfo_endpoint": "https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>/protocol/openid-connect/userinfo",
+       "end_session_endpoint": "https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>/protocol/openid-connect/logout",
        ...
    }
    ```
 
-2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Keycloak is `https://<keycloak-server>/realms/<realm_name>`.
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Keycloak is `https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>`.
 
 {{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
@@ -184,7 +184,7 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
         The `issuer` is typically your Keycloak OIDC URL:
 
-        `https://<keycloak-server>/realms/<realm_name>`.
+        `https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>`.
 
         By default, NGINX Plus creates the metadata URL by appending the `/.well-known/openid-configuration` part to the Issuer URL. If your metadata URL is different, you can explicitly specify it with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
 
@@ -210,9 +210,9 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
         resolver 10.0.0.1 ipv4=on valid=300s;
 
         oidc_provider keycloak {
-            issuer            https://<keycloak-server>/realms/<realm_name>;
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            issuer            https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             logout_uri        /logout;
             post_logout_uri   https://demo.example.com/post_logout/;
             logout_token_hint on;
@@ -227,6 +227,8 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -333,12 +335,12 @@ http {
 
     oidc_provider keycloak {
         # The 'issuer' typically matches your Keycloak realm's base URL:
-        # For example: https://<keycloak-server>/realms/<realm_name>
-        issuer https://<keycloak-server>/realms/master;
+        # For example: https://<KEYCLOAK_SERVER>/realms/<REALM_NAME>
+        issuer https://<KEYCLOAK_SERVER>/realms/master;
 
         # Replace with your actual Keycloak client_id and secret
-        client_id <client_id>;
-        client_secret <client_secret>;
+        client_id <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;
@@ -356,7 +358,7 @@ http {
 
         # If the .well-known endpoint can't be derived automatically,
         # specify config_url:
-        # config_url https://<keycloak-server>/realms/master/.well-known/openid-configuration;
+        # config_url https://<KEYCLOAK_SERVER>/realms/master/.well-known/openid-configuration;
     }
 
     server {

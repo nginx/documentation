@@ -66,10 +66,10 @@ Then run the command below to update your NGINXaaS deployment, replacing the SKU
 
 ```shell
 az nginx deployment update --name myDeployment --resource-group myResourceGroup \
-  --sku name="<target_sku_name>"
+  --sku name="<TARGET_SKU_NAME>"
 ```
 
-Replace `<target_sku_name>` with one of the following:
+Replace `<TARGET_SKU_NAME>` with one of the following:
 
 - `developer_n7ja87drquhy` for Developer plan
 - `standardv3_Monthly_n7ja87drquhy` for Standard V3 plan

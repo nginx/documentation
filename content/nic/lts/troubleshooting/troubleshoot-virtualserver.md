@@ -10,7 +10,7 @@ This page describes how to troubleshoot VirtualServer and VirtualServer resource
 
 ## Inspecting VirtualServer and VirtualServerRoute resource events
 
-After creating or updating a VirtualServer resource, you can immediately check if the NGINX configuration for that resource was successfully by using `kubectl describe vs <resource-name>`:
+After creating or updating a VirtualServer resource, you can immediately check if the NGINX configuration for that resource was successfully by using `kubectl describe vs <RESOURCE_NAME>`:
 
 ```shell
 kubectl describe vs cafe

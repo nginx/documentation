@@ -47,8 +47,10 @@ To compile NGINX Open Source with the debug support:
 3. Add the `--with-debug` option to the list of configure commands and run the configure script:
 
     ```shell
-    ./configure --with-debug <other configure arguments>
+    ./configure --with-debug <OTHER_CONFIGURE_ARGUMENTS>
     ```
+
+    Replace `<OTHER_CONFIGURE_ARGUMENTS>` with any additional `configure` arguments you use.
 
 4. Compile and install NGINX:
 
@@ -149,8 +151,10 @@ To extract the debugging log from memory:
 2. Launch the GDB debugger:
 
     ```shell
-    sudo gdb -p <nginx PID obtained at the previous step>
+    sudo gdb -p <NGINX_PID>
     ```
+
+    Replace `<NGINX_PID>` with the process ID of the NGINX process you obtained in the previous step.
 
 3. Copy the script, paste it to GDB and press “Enter”. The script will save the log in the _debug_log.txt_ file located in the current directory:
 
@@ -330,8 +334,10 @@ To get a backtrace from a core dump file:
 1. Open a core dump file with the GDB debugger using the pattern:
 
     ```shell
-    sudo gdb <nginx_executable_path> <coredump_file_path>
+    sudo gdb <NGINX_EXECUTABLE_PATH> <COREDUMP_FILE_PATH>
     ```
+
+    Replace `<NGINX_EXECUTABLE_PATH>` with the path to the NGINX executable and `<COREDUMP_FILE_PATH>` with the path to the core dump file.
 
 2. Type-in the “_backtrace_ command to get a stack trace from the time of the crash:
 
@@ -366,7 +372,7 @@ The configuration dump can be obtained with a GDB script provided that your NGIN
 3. Launch the GDB debugger:
 
     ```shell
-    sudo gdb -p <nginx PID obtained at the previous step>
+    sudo gdb -p <NGINX_PID>
     ```
 
 4. Copy and paste the script to GDB and press “Enter”. The script will save the configuration in the _nginx_conf.txt_ file in the current directory:

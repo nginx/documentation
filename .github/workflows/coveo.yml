@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "0 */23 * * *"
 
+permissions:
+  id-token: write
+
 jobs:
   generate-coveo-search-token:
     name: Generate Coveo Search Tokens
@@ -144,36 +147,35 @@ jobs:
         run: ls -R
 
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@532459ea530d8321f2fb9bb10d1e0bcf23869a43 # v3.0.0
         with:
-          creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
+          client-id: ${{ secrets.DOCS_OIDC_CLIENT }}
+          tenant-id: ${{ secrets.DOCS_OIDC_TENANT }}
+          subscription-id: ${{ secrets.DOCS_OIDC_SUB }}
 
-      - name: Retrieve secrets from Keyvault
-        id: keyvault
-        uses: azure/cli@9f7ce6f37c31b777ec6c6b6d1dfe7db79f497956
+      - name: Retrieve secrets from keyvault
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@0fc1fc087a55f75740cebba008010c812b6d0da2 #main
         with:
-          inlineScript: |
-            secrets_get=(productionHostname previewHostname resourceGroupName cdnProfileName cdnName accountName)
-            for secret_get in ${secrets_get[@]}
-            do
-              value=$(az keyvault secret show --name $secret_get --vault-name ${{ secrets.AZURE_KEY_VAULT_DOCS }} --query value --output tsv)
-              echo "::add-mask::$value"
-              echo "$secret_get=$value" >> $GITHUB_OUTPUT
-            done
+          vault-name: ${{ secrets.AZURE_KEY_VAULT_DOCS }}
+          secret-names: resourceGroupName, cdnProfileName, cdnName, accountName
+          env-names: AZ_RESOURCE_GROUP, AZ_CDN_PROFILE, AZ_CDN, AZ_ACCOUNT
 
       - name: Push to Azure container storage
-        run: |
-          az storage blob upload-batch \
-            -s ./ \
-            -d '$web' \
-            --account-name ${{steps.keyvault.outputs.accountName}} \
-            --overwrite \
-            --content-cache-control "no-store" \
-            --auth-mode login
-
-          az afd endpoint purge \
-            --resource-group ${{steps.keyvault.outputs.resourceGroupName}} \
-            --profile-name ${{steps.keyvault.outputs.cdnProfileName}} \
-            --endpoint-name ${{steps.keyvault.outputs.cdnName}} \
-            --domains docs.nginx.com docs-dev.nginx.com docs-staging.nginx.com \
-            --content-paths '/.netlify/functions/*'
+        uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd # v3.0.0
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az storage blob upload-batch \
+              -s ./ \
+              -d '$web' \
+              --account-name ${{ env.AZ_ACCOUNT }} \
+              --overwrite \
+              --content-cache-control "no-store" \
+              --auth-mode login
+  
+            az afd endpoint purge \
+              --resource-group ${{ env.AZ_RESOURCE_GROUP }} \
+              --profile-name ${{ env.AZ_CDN_PROFILE }} \
+              --endpoint-name ${{ env.AZ_CDN }} \
+              --domains docs.nginx.com docs-dev.nginx.com docs-staging.nginx.com \
+              --content-paths '/.netlify/functions/*'

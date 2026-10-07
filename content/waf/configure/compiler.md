@@ -43,8 +43,8 @@ Create a directory and copy your certificate and key to this directory:
 
 ```shell
 mkdir -p /etc/docker/certs.d/private-registry.nginx.com
-cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
-cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
+cp <PATH/TO/NGINX_REPO.CRT> /etc/docker/certs.d/private-registry.nginx.com/client.cert
+cp <PATH/TO/NGINX_REPO.KEY> /etc/docker/certs.d/private-registry.nginx.com/client.key
 ```
 
 ## Create the Dockerfile
@@ -97,21 +97,21 @@ You can upgrade or downgrade one of the Signatures by specifying a specific vers
 
 You can use the Docker registry API to list the available image tags.
 
-Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate.
+Replace `<PATH/TO/NGINX_REPO.KEY>` with the location of your client key and `<PATH/TO/NGINX_REPO.CRT>` with the location of your client certificate.
 
 ```shell
-curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <path-to-your-nginx-repo.key> --cert <path-to-your-nginx-repo.crt>
+curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <PATH/TO/NGINX_REPO.KEY> --cert <PATH/TO/NGINX_REPO.CRT>
 ```
 
 ## Build the container image
 
-Run the following command to build your image, where `waf-compiler-<version-tag>:custom` is an example of the image tag:
+Run the following command to build your image, where `waf-compiler-<VERSION_TAG>:custom` is an example of the image tag:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
 --secret id=nginx-crt,src=nginx-repo.crt \
 --secret id=nginx-key,src=nginx-repo.key \
--t waf-compiler-<version-tag>:custom .
+-t waf-compiler-<VERSION_TAG>:custom .
 ```
 
 {{< call-out class="warning" >}}
@@ -151,7 +151,7 @@ To compile a security policy from a JSON file and create a policy bundle, run th
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-<version-tag>:custom \
+ waf-compiler-<VERSION_TAG>:custom \
  -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -171,18 +171,20 @@ An example `global_settings.json` might look as follows:
 {
     "waf-settings": {
         "cookie-protection": {
-            "seed": "<seed value>"
+            "seed": "<SEED_VALUE>"
         }
     }
 }
 ```
+
+Replace `<SEED_VALUE>` with your seed value.
 
 To compile a policy with global settings, add the `-g` parameter:
 
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-<version-tag>:custom \
+ waf-compiler-<VERSION_TAG>:custom \
  -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -191,7 +193,7 @@ You can incorporate the source of the policy (as `policy.json`) or logging profi
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-<version-tag>:custom \
+ waf-compiler-<VERSION_TAG>:custom \
  -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -206,7 +208,7 @@ To compile a logging profile, execute the command below:
 ```shell
 docker run \
  -v $(pwd):$(pwd) \
- waf-compiler-<version-tag>:custom \
+ waf-compiler-<VERSION_TAG>:custom \
  -l $(pwd)/log_01.json -o $(pwd)/log01.tgz
 ```
 
@@ -217,7 +219,7 @@ To view information about a bundle file, such as attack signatures versions, use
 ```shell
 docker run \
  -v $(pwd):$(pwd) \
- waf-compiler-<version-tag>:custom \
+ waf-compiler-<VERSION_TAG>:custom \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
 

@@ -38,10 +38,10 @@ Before you begin, make sure you have:
 The NGINX Instance Manager REST API base URL uses the following format:
 
 ```text
-https://<NIM-FQDN>/api/[nim|platform]/<API_VERSION>
+https://<NIM_FQDN>/api/[nim|platform]/<API_VERSION>
 ```
 
-Replace `<NIM-FQDN>` with the fully qualified domain name of your NGINX Instance Manager host and `<API_VERSION>` with the target API version. All requests require authentication. For details on authentication methods, see the [API overview]({{< ref "/nim/fundamentals/api-overview/" >}}).
+Replace `<NIM_FQDN>` with the fully qualified domain name of your NGINX Instance Manager host and `<API_VERSION>` with the target API version. All requests require authentication. For details on authentication methods, see the [API overview]({{< ref "/nim/fundamentals/api-overview/" >}}).
 
 ---
 
@@ -62,11 +62,11 @@ Send a GET request to the Security Log Profiles API to download a compiled bundl
 2. Send the GET request using curl or your preferred API client.
 
     ```sh
-    curl --location 'https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<LOG_PROFILE_NAME>/<COMPILER_VERSION>/bundle' \
+    curl --location 'https://<NIM_FQDN>/api/platform/v1/security/logprofiles/{log_profile_name}/{compiler_version}/bundle' \
     --header 'Authorization: Bearer <ACCESS_TOKEN>'
     ```
 
-    Replace `<NIM_FQDN>` with your NGINX Instance Manager hostname. Replace `<LOG_PROFILE_NAME>` with the name of the log profile. Replace `<COMPILER_VERSION>` with the target WAF compiler version. Replace `<ACCESS_TOKEN>` with your authentication token.
+    Replace `<NIM_FQDN>` with your NGINX Instance Manager hostname. Replace `{log_profile_name}` with the name of the log profile. Replace `{compiler_version}` with the target WAF compiler version. Replace `<ACCESS_TOKEN>` with your authentication token.
 
 3. Review the JSON response to confirm the download succeeded and to retrieve the bundle content and integrity values.
 
