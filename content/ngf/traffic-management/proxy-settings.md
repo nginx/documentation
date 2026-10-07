@@ -90,8 +90,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 
@@ -137,10 +139,10 @@ This request will fail with a 502 Bad Gateway error:
 This error occurs because the coffee application generates a 10KB response header, which exceeds NGINX's default `proxy_buffer_size` (typically 4KB-8KB). You can verify this by checking the NGINX data plane logs:
 
 ```shell
-kubectl logs <gateway-nginx-pod-name>
+kubectl logs <GATEWAY_NGINX_POD_NAME>
 ```
 
-Replace `<gateway-nginx-pod-name>` with the name of your NGINX Gateway Fabric data plane Pod (in the same namespace as your Gateway). You should see an error similar to:
+Replace `<GATEWAY_NGINX_POD_NAME>` with the name of your NGINX Gateway Fabric data plane Pod (in the same namespace as your Gateway). You should see an error similar to:
 
 ```text
 [error] upstream sent too big header while reading response header from upstream, client: 127.0.0.1, server: cafe.example.com, request: "GET /coffee HTTP/1.1", upstream: "http://10.244.0.7:8080/coffee", host: "cafe.example.com:8080"
@@ -412,7 +414,7 @@ NGINX uses three independent timeouts when communicating with upstream servers:
 
 Because `read` and `send` are per-operation rather than end-to-end timeouts, a large response or request body can take longer than the configured value as long as data keeps flowing within the timeout window.
 
-All three fields accept a duration value in the format `<number>(ms|s|m|h)` — for example, `5s`, `500ms`, `2m`. A value with no unit is interpreted as seconds. They are fully independent: there is no required ordering between them.
+All three fields accept a duration value in the format `<NUMBER>(ms|s|m|h)` — for example, `5s`, `500ms`, `2m`. A value with no unit is interpreted as seconds. They are fully independent: there is no required ordering between them.
 
 ### Set proxy timeouts for the Gateway
 

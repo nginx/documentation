@@ -257,7 +257,9 @@ Host the Docker image on either a local or remote registry that your Kubernetes 
 Edit the `integrations` Kubernetes deployment resource to reference to the new Docker image hosted in your registry. 
 
 ```shell
-  kubectl edit deploy -n <namespace> integrations 
+  kubectl edit deploy -n <NAMESPACE> integrations 
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX Instance Manager is installed.
 
 Once the `integrations` deployment's pod initializes with the latest image, NIM will have both compilers installed and will be able to compile policies on NGINX instances containing either version of F5 WAF for NGINX.

@@ -34,8 +34,10 @@ restorecon -Rv /etc/security_policies
 If you want to send logs to a custom, unreserved port, you can use `semanage` to add the desired port to the syslogd_port_t type:
 
 ```shell
-semanage port -a -t syslogd_port_t -p tcp <your-port>
+semanage port -a -t syslogd_port_t -p tcp <PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port you want to allow.
 
 Review the syslog ports by entering the following command:
 

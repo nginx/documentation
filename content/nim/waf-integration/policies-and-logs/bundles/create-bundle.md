@@ -65,10 +65,12 @@ Example:
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
-  -H "Authorization: Bearer <access token>" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
   -H "Content-Type: application/json" \
   -d @security-policy-bundles.json
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 {{< details summary="JSON request" open=true >}}
 
@@ -78,7 +80,7 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
     {
       "appProtectWAFVersion": "4.457.0",
       "policyName": "default-enforcement",
-      "policyUID": "<policy-uid>",
+      "policyUID": "<POLICY_UID>",
       "attackSignatureVersionDateTime": "2023.06.20",
       "botSignatureVersionDateTime": "2023.07.09",
       "threatCampaignVersionDateTime": "2023.07.18"
@@ -98,6 +100,8 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
 }
 ```
 
+Replace `<POLICY_UID>` with the unique identifier (UID) of the security policy.
+
 {{< /details >}}
 
 {{< details summary="JSON response" open=true >}}
@@ -111,11 +115,11 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "default-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyUID": "<POLICY_UID>",
         "attackSignatureVersionDateTime": "2023.06.20",
         "botSignatureVersionDateTime": "2023.07.09",
         "threatCampaignVersionDateTime": "2023.07.18",
-        "uid": "<bundle-uid>"
+        "uid": "<BUNDLE_UID>"
       },
       "content": "",
       "compilationStatus": {
@@ -129,11 +133,11 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.279.0",
         "policyName": "default-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyUID": "<POLICY_UID>",
         "attackSignatureVersionDateTime": "2023.08.10",
         "botSignatureVersionDateTime": "2023.08.09",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "<BUNDLE_UID>"
       },
       "content": "",
       "compilationStatus": {
@@ -147,11 +151,11 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "ignore-xss",
-        "policyUID": "<policy-uid>",
+        "policyUID": "<POLICY_UID>",
         "attackSignatureVersionDateTime": "2023.08.10",
         "botSignatureVersionDateTime": "2023.08.09",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "<BUNDLE_UID>"
       },
       "content": "",
       "compilationStatus": {
@@ -162,6 +166,8 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
   ]
 }
 ```
+
+Where `<BUNDLE_UID>` is the unique identifier (UID) of the security policy bundle.
 
 {{< /details >}}
 

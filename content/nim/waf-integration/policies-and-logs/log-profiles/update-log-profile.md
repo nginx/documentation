@@ -29,10 +29,12 @@ To update a log profile, use one of the following methods:
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/logprofiles?isNewRevision=true \
-    -H "Authorization: Bearer <access token>" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
     -H "Content-Type: application/json" \
     -d @update-default-log.json
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 ### Overwrite an existing log profile
 
@@ -41,15 +43,17 @@ To overwrite an existing security log profile:
 1. Retrieve the profile’s UID:
 
     ```shell
-    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
-      -H "Authorization: Bearer <access token>" \
+    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles/{log_profile_uid} \
+      -H "Authorization: Bearer <ACCESS_TOKEN>" \
     ```
+
+    Replace `{log_profile_uid}` with the unique identifier (UID) of the log profile.
 
 2. Update the log profile using the UID:
 
     ```shell
-    curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
-      -H "Authorization: Bearer <access token>" \
+    curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/logprofiles/{log_profile_uid} \
+      -H "Authorization: Bearer <ACCESS_TOKEN>" \
       -H "Content-Type: application/json" \
       -d @update-log-profile.json
       ```

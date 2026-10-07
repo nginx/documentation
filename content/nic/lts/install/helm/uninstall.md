@@ -20,8 +20,10 @@ To uninstall NGINX Ingress Controller LTS, you must first remove the chart.
 To remove a release named **\<my-release\>**, use the following command:
 
 ```shell
-helm uninstall <my-release>
+helm uninstall <RELEASE_NAME>
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 The command removes all the Kubernetes components associated with the release, then deletes the release itself.
 

@@ -95,9 +95,9 @@ The Guardrails backend can live outside or inside the cluster. NGINX Gateway Fab
 
 | Backend location | Service type | BackendTLSPolicy targeting the Service | Resolved URL |
 | ---------------- | ------------ | -------------------------------------- | ------------ |
-| External | `ExternalName` | Ignored | `https://<externalName>:<backendRef.port>` (verified against the system trust store) |
-| In-cluster | `ClusterIP` (or any non-`ExternalName`) | None | `http://<name>.<namespace>.svc.cluster.local:<backendRef.port>` |
-| In-cluster | `ClusterIP` (or any non-`ExternalName`) | Present and valid | `https://<name>.<namespace>.svc.cluster.local:<backendRef.port>` (verified against the policy's CA certificate) |
+| External | `ExternalName` | Ignored | `https://<EXTERNAL_NAME>:<BACKEND_PORT>` (verified against the system trust store) |
+| In-cluster | `ClusterIP` (or any non-`ExternalName`) | None | `http://<NAME>.<NAMESPACE>.svc.cluster.local:<BACKEND_PORT>` |
+| In-cluster | `ClusterIP` (or any non-`ExternalName`) | Present and valid | `https://<NAME>.<NAMESPACE>.svc.cluster.local:<BACKEND_PORT>` (verified against the policy's CA certificate) |
 
 {{< call-out "note" >}}
 The `cluster.local` suffix in the in-cluster URL is the cluster's DNS domain. If your cluster uses a different domain, configure it with the `--cluster-domain` flag or `clusterDomain` Helm value when deploying NGINX Gateway Fabric (default: `cluster.local`).
@@ -166,7 +166,7 @@ spec:
       value: "10.96.0.10"   # in-cluster kube-dns/CoreDNS ClusterIP (cluster-dependent)
 ```
 
-Find your cluster's DNS ClusterIP with `kubectl -n kube-system get svc kube-dns` (or `coredns`). Without a resolver, NGINX fails to load the configuration with `no resolver defined to resolve <host>`.
+Find your cluster's DNS ClusterIP with `kubectl -n kube-system get svc kube-dns` (or `coredns`). Without a resolver, NGINX fails to load the configuration with `no resolver defined to resolve <HOST>`.
 {{< /call-out >}}
 
 ### Secure an in-cluster backend with TLS
@@ -334,8 +334,10 @@ Save the public IP address and port of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Create an HTTPRoute
 

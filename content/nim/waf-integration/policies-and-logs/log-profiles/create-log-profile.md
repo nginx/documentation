@@ -33,9 +33,11 @@ Example:
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/logprofiles \
-    -H "Authorization: Bearer <access token>" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
     -d @default-log-example.json
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 <details open>
 <summary>JSON Request</summary>
@@ -62,10 +64,12 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/logprofiles \
     "modified": "2023-07-05T22:09:19.634358096Z",
     "name": "default-log-example",
     "revisionTimestamp": "2023-07-05T22:09:19.634358096Z",
-    "uid": "<log-profile-uid>"
+    "uid": "<LOG_PROFILE_UID>"
   },
   "selfLink": {
-    "rel": "/api/platform/v1/security/logprofiles/<log-profile-uid>"
+    "rel": "/api/platform/v1/security/logprofiles/<LOG_PROFILE_UID>"
   }
 }
 ```
+
+Where `<LOG_PROFILE_UID>` is the unique identifier (UID) of the log profile.

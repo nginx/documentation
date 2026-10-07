@@ -84,10 +84,12 @@ Download the SSL certificate and private key needed for NGINX Instance Manager t
 3. Rename the cert and key to `nginx-repo.crt` and `nginx-repo.key`, move them to the `/etc/ssl/nginx/` directory. Rename the JWT file to `license.jwt` and move it to the `/etc/nginx/` directory:
 
     ```shell
-    sudo mv nginx-<subscription-id>.crt /etc/ssl/nginx/nginx-repo.crt
-    sudo mv nginx-<subscription-id>.key /etc/ssl/nginx/nginx-repo.key
-    sudo mv <nginx-license-id>.jwt /etc/nginx/license.jwt
+    sudo mv nginx-<SUBSCRIPTION_ID>.crt /etc/ssl/nginx/nginx-repo.crt
+    sudo mv nginx-<SUBSCRIPTION_ID>.key /etc/ssl/nginx/nginx-repo.key
+    sudo mv <NGINX_LICENSE_ID>.jwt /etc/nginx/license.jwt
     ```
+
+    Replace `<SUBSCRIPTION_ID>` with your NGINX subscription ID, as it appears in your certificate and key file names and `<NGINX_LICENSE_ID>` with your NGINX license ID, as it appears in your JWT license file name.
 
 ---
 
@@ -145,7 +147,7 @@ You can customize the installation using the following options:
 |----------|----------------|
 | **Installation platform** | {{< include "nim/installation/install-script-flags/distribution.md" >}} |
 | **SSL certificate and key** | {{< include "nim/installation/install-script-flags/cert.md" >}}<br>{{< include "nim/installation/install-script-flags/key.md" >}} |
-| **NGINX installation** | `-n` Install the latest version of NGINX Open Source. *(Default if `-n` or `-p` not specified)*<br><br>`-p` Install NGINX Plus as the API gateway. Must be used with `-j` to provide a JWT license.<br><br>`-j <path>` Path to the `license.jwt` file. Required when using `-p`. |
+| **NGINX installation** | `-n` Install the latest version of NGINX Open Source. *(Default if `-n` or `-p` not specified)*<br><br>`-p` Install NGINX Plus as the API gateway. Must be used with `-j` to provide a JWT license.<br><br>`-j <PATH_TO_DIRECTORY>` Path to the `license.jwt` file. Required when using `-p`. |
 | **ClickHouse installation** | {{< include "nim/installation/install-script-flags/skip-clickhouse.md" >}}<br>{{< include "nim/installation/install-script-flags/clickhouse-version.md" >}} |
 
 **Example: install with default key and certificate paths**
@@ -164,20 +166,28 @@ To install NGINX Instance Manager on Ubuntu 24.04 with the latest version of NGI
 
 ```bash
 sudo bash install-nim-bundle.sh \
-  -c <path/to/nginx-repo.crt> \  # in case of non-default name or location
-  -k <path/to/nginx-repo.key> \  # in case of non-default name or location
+  -c <PATH/TO/NGINX_REPO.CRT> \  # in case of non-default name or location
+  -k <PATH/TO/NGINX_REPO.KEY> \  # in case of non-default name or location
   -p \
   -d ubuntu24.04 \
-  -j <path/to/license.jwt> # in case of non-default name or location
+  -j <PATH/TO/LICENSE.JWT> # in case of non-default name or location
 ```
+
+Replace the placeholders as follows:
+
+- `<PATH/TO/NGINX_REPO.CRT>`: the path to your NGINX repository certificate (`nginx-repo.crt`)
+- `<PATH/TO/NGINX_REPO.KEY>`: the path to your NGINX repository private key (`nginx-repo.key`)
+- `<PATH/TO/LICENSE.JWT>`: the path to your JWT license file
 
 <br>
 
 After installing NGINX Instance Manager and related packages, the script generates an admin password. This may take a few minutes to appear:
 
 ```bash
-Regenerated Admin password: <encrypted password>
+Regenerated Admin password: <ENCRYPTED_PASSWORD>
 ```
+
+Replace `<ENCRYPTED_PASSWORD>` with the generated admin password, shown encrypted in the output.
 
 Save this password. You'll need it to log in to NGINX Instance Manager.
 

@@ -77,14 +77,18 @@ To change a user's password with the `basic_passwords.sh` script:
 2. Run the `basic_passwords.sh` script, providing the username you want to update and the desired password. Be sure to enclose the password in single quotation marks.
 
     ```bash
-    sudo bash /etc/nms/scripts/basic_passwords.sh <username> '<desired password>'
+    sudo bash /etc/nms/scripts/basic_passwords.sh <USERNAME> '<DESIRED_PASSWORD>'
     ```
+
+    Replace `<USERNAME>` with your username and `<DESIRED_PASSWORD>` with the password you want to set for the user.
 
     For example:
 
     ```bash
-    sudo bash /etc/nms/scripts/basic_passwords.sh johndoe '<password>'
+    sudo bash /etc/nms/scripts/basic_passwords.sh johndoe '<PASSWORD>'
     ```
+
+    Replace `<PASSWORD>` with your password.
 
 ### Manually set user passwords {#manually-set-basic-passwords}
 

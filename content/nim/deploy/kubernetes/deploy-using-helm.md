@@ -178,6 +178,8 @@ utility:
     repository: private-registry.nginx.com/nms/utility
 ```
 
+Replace `<PORT>` with the port number of the ClickHouse server.
+
 The values required to pull images from the NGINX private registry are now automatically resolved, including image tags. Each image’s `tag:` is set by default to the latest NGINX Instance Manager version. See the [Helm chart table in the chart installation section]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#install-the-chart" >}}) for version details.
 
 Use the file with the `-f values.yaml` flag when installing the chart.
@@ -295,6 +297,8 @@ To uninstall NGINX Instance Manager, run:
 helm uninstall <RELEASE_NAME> -n <NAMESPACE>
 ```
 
+Replace `<RELEASE_NAME>` with the name of your Helm release and `<NAMESPACE>` with the Kubernetes namespace where NGINX Instance Manager is installed.
+
 This command removes the deployment and all Kubernetes resources managed by the Helm chart.
 
 For example, if you used the default release and namespace names:
@@ -393,6 +397,8 @@ utility:
     repository: private-registry.nginx.com/nms/utility
     tag: <VERSION>
 ```
+
+Replace `<VERSION>` with the version number.
 
 
 2. Save and close the `values.yaml` file.
@@ -504,7 +510,7 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
 
 Run the `helm install` command to deploy NGINX Instance Manager:
 
-1. Replace `<path-to-your-values.yaml>` with the path to your `values.yaml` file.
+1. Replace `<PATH_TO_VALUES_FILE>` with the path to your `values.yaml` file.
 2. Replace `YourPassword123#` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
    {{< call-out class="important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}

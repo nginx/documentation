@@ -41,10 +41,16 @@ To recreate the deployment:
 
 ```shell
 az deployment group create \
-    --subscription=<deployment subscription ID> \
-    --resource-group=<resource group name> \
-    --template-file=<path to template file>
+    --subscription=<SUBSCRIPTION_ID> \
+    --resource-group=<RESOURCE_GROUP> \
+    --template-file=<PATH/TO/TEMPLATE_FILE>
 ```
+
+Replace the placeholders as follows:
+
+- `<SUBSCRIPTION_ID>`: your Azure subscription ID
+- `<RESOURCE_GROUP>`: the name of your Azure resource group
+- `<PATH/TO/TEMPLATE_FILE>`: the path to your template file
 
 ## DNS migration strategy
 

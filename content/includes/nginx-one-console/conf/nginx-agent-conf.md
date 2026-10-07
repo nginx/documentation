@@ -11,9 +11,9 @@ command:
     host: "agent.connect.nginx.com" # Command server host
     port: 443                       # Command server port
   auth:
-    token: "<your-data-plane-key-here>" # Authentication token for the command server
+    token: "<DATA_PLANE_KEY>" # Authentication token for the command server
   tls:
     skip_verify: false
 ```
 
-Replace `<your-data-plane-key-here>` with your Data Plane key.
+Replace `<DATA_PLANE_KEY>` with your Data Plane key.

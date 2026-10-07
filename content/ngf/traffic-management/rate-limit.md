@@ -92,8 +92,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 
@@ -525,8 +527,10 @@ for i in `seq 1 5`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://ca
 View the NGINX logs:
 
 ```shell
-kubectl logs <gateway-nginx-pod-name>
+kubectl logs <GATEWAY_NGINX_POD_NAME>
 ```
+
+Replace `<GATEWAY_NGINX_POD_NAME>` with the name of your NGINX Gateway Fabric data plane Pod.
 
 ```text
 127.0.0.1 - - [15/Jan/2026:20:44:57 +0000] "GET /coffee HTTP/1.1" 200 161 "-" "curl/8.7.1"
@@ -582,7 +586,7 @@ for i in `seq 1 5`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://ca
 Viewing the NGINX logs we can see the changes:
 
 ```shell
-kubectl logs <gateway-nginx-pod-name>
+kubectl logs <GATEWAY_NGINX_POD_NAME>
 ```
 
 ```text

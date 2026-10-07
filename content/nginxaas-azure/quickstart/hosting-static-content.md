@@ -47,8 +47,10 @@ test-static-files $ tree .
 3. Create the tarball.
 
 ```shell
-test-static-files $ tar -cvzf <path to store tarball>/test.tar.gz *
+test-static-files $ tar -cvzf <TARBALL_DIRECTORY>/test.tar.gz *
 ```
+
+Replace `<TARBALL_DIRECTORY>` with the directory where you want to store the tarball.
 
 4. Upload the tarball following instructions listed in the [NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#upload-gzip-nginx-configuration" >}}) documentation.
 

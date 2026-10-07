@@ -95,7 +95,7 @@ spec:
         - name: regcred
       containers:
         - name: nginx
-          image: <your-private-registry>/nginx-app-protect-5:<your-tag>
+          image: <YOUR_PRIVATE_REGISTRY>/nginx-app-protect-5:<YOUR_TAG>
           imagePullPolicy: IfNotPresent
           securityContext:
             readOnlyRootFilesystem: true
@@ -111,7 +111,7 @@ spec:
             - name: app-protect-bundles
               mountPath: /etc/app_protect/bundles
         - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+          image: private-registry.nginx.com/nap/waf-enforcer:<VERSION_TAG>
           imagePullPolicy: IfNotPresent
           securityContext:
             readOnlyRootFilesystem: true
@@ -122,7 +122,7 @@ spec:
             - name: app-protect-bd-config
               mountPath: /opt/app_protect/bd_config
         - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+          image: private-registry.nginx.com/nap/waf-config-mgr:<VERSION_TAG>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -150,6 +150,12 @@ spec:
           persistentVolumeClaim:
             claimName: nap5-bundles-pvc
 ```
+
+Replace the placeholders as follows:
+
+- `<YOUR_PRIVATE_REGISTRY>`: the path to your private registry
+- `<YOUR_TAG>`: the tag of your image
+- `<VERSION_TAG>`: the image version tag
 
 ## Update NGINX configuration with writable paths
 

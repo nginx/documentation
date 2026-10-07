@@ -563,9 +563,11 @@ This example uses `responsePageReference`, but the same `basicAuth` configuratio
     "responsePageReference": {
         "link": "https://securedomain.com:8081/response-pages.txt",
         "basicAuth": {
-            "user": "<user>",
-            "passwordBase64": "<passwordBase64>"
+            "user": "<USER>",
+            "passwordBase64": "<PASSWORD_BASE64>"
         }
     }
 }
 ```
+
+Where `<USER>` is the username for the external reference and `<PASSWORD_BASE64>` is the base64-encoded password for the external reference.

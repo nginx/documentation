@@ -47,8 +47,10 @@ Example:
 
 ```shell
 curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
-  -H "Authorization: Bearer <access token>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 {{< details summary="JSON response" open=true >}}
 
@@ -61,11 +63,11 @@ curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "default-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyUID": "<POLICY_UID>",
         "attackSignatureVersionDateTime": "2023.06.20",
         "botSignatureVersionDateTime": "2023.07.09",
         "threatCampaignVersionDateTime": "2023.07.18",
-        "uid": "<bundle-uid>"
+        "uid": "<BUNDLE_UID>"
       },
       "content": "",
       "compilationStatus": {
@@ -79,11 +81,11 @@ curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.279.0",
         "policyName": "default-enforcement",
-        "policyUID": "<policy-uid>",
+        "policyUID": "<POLICY_UID>",
         "attackSignatureVersionDateTime": "2023.08.10",
         "botSignatureVersionDateTime": "2023.08.09",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "<BUNDLE_UID>"
       },
       "content": "",
       "compilationStatus": {
@@ -97,11 +99,11 @@ curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
         "modified": "2023-10-04T23:19:58.502Z",
         "appProtectWAFVersion": "4.457.0",
         "policyName": "ignore-xss",
-        "policyUID": "<policy-uid>",
+        "policyUID": "<POLICY_UID>",
         "attackSignatureVersionDateTime": "2023.08.10",
         "botSignatureVersionDateTime": "2023.08.09",
         "threatCampaignVersionDateTime": "2023.08.09",
-        "uid": "<bundle-uid>"
+        "uid": "<BUNDLE_UID>"
       },
       "content": "",
       "compilationStatus": {
@@ -112,6 +114,8 @@ curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
   ]
 }
 ```
+
+Where `<POLICY_UID>` is the unique identifier (UID) of the security policy and `<BUNDLE_UID>` is the unique identifier (UID) of the security policy bundle.
 
 {{< /details >}}
 

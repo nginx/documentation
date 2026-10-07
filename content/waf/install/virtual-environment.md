@@ -69,8 +69,10 @@ If you need to install a specific version of F5 WAF for NGINX, you can use `apk 
 
 ```shell
 sudo apk info app-protect
-sudo apk add openssl ca-certificates app-protect=<desired-version>
+sudo apk add openssl ca-certificates app-protect=<DESIRED_VERSION>
 ```
+
+Replace `<DESIRED_VERSION>` with the F5 WAF for NGINX package version you want to install.
 
 {{< /details >}}
 
@@ -100,7 +102,7 @@ If you need to install a specific version of F5 WAF for NGINX, you can use `--sh
 
 ```shell
 sudo dnf --showduplicates list app-protect
-sudo dnf install app-protect-=<desired-version>
+sudo dnf install app-protect-=<DESIRED_VERSION>
 ```
 
 {{< /details >}}
@@ -140,7 +142,7 @@ If you need to install a specific version of F5 WAF for NGINX, you can use `apt-
 ```shell
 sudo apt-get update
 sudo apt-cache policy app-protect
-sudo apt-get install app-protect=<desired-version>
+sudo apt-get install app-protect=<DESIRED_VERSION>
 ```
 
 When installing a specific version of F5 WAF for NGINX, you will also need to manually install its package dependencies. 
@@ -149,7 +151,7 @@ You can use the following script to get the dependent packages:
 
 ```shell
 findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
-findDeps app-protect=<desired-version>
+findDeps app-protect=<DESIRED_VERSION>
 ```
 
 {{< /details >}}
@@ -158,14 +160,14 @@ findDeps app-protect=<desired-version>
 
 {{< call-out class="important" >}}
 
-The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<version>` with your operating system major version: `8`, `9`, or `10`.
+The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<VERSION>` with your operating system major version: `8`, `9`, or `10`.
 
 {{< /call-out >}}
 
 Add the F5 WAF for NGINX repository:
 
 ```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-<version>.repo
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-<VERSION>.repo
 ```
 
 Add F5 WAF for NGINX dependencies:
@@ -198,7 +200,7 @@ If you need to install a specific version of F5 WAF for NGINX, you can use `--sh
 
 ```shell
 sudo dnf --showduplicates list app-protect
-sudo dnf install app-protect-=<desired-version>
+sudo dnf install app-protect-=<DESIRED_VERSION>
 ```
 
 {{< /details >}}
@@ -238,7 +240,7 @@ If you need to install a specific version of F5 WAF for NGINX, you can use `apt-
 ```shell
 sudo apt-get update
 sudo apt-cache policy app-protect
-sudo apt-get install app-protect=<desired-version>
+sudo apt-get install app-protect=<DESIRED_VERSION>
 ```
 
 When installing a specific version of F5 WAF for NGINX, you will also need to manually install its package dependencies.
@@ -247,7 +249,7 @@ You can use the following script to get the dependent packages:
 
 ```shell
 findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
-findDeps app-protect=<desired-version>
+findDeps app-protect=<DESIRED_VERSION>
 ```
 
 {{< /details >}}
@@ -257,8 +259,10 @@ findDeps app-protect=<desired-version>
 If you have not already copied your NGINX Plus JWT license file to the `/etc/nginx/` directory (for example, if NGINX Plus was installed automatically as a dependency), do so now:
 
 ```shell
-sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
+sudo cp <DOWNLOADED_FILE_NAME>.jwt /etc/nginx/license.jwt
 ```
+
+Replace `<DOWNLOADED_FILE_NAME>` with the name of the JWT license file you downloaded.
 
 ## Update configuration files
 

@@ -11,5 +11,5 @@ All usage reporting logs are written by the `nms-integrations` process. Where yo
 | Deployment | Log location |
 |------------|--------------|
 | Linux (systemd) | `journalctl -u nms-integrations` or `/var/log/nms/nms.log` |
-| Container | `docker logs <integrations-container>` or `kubectl logs <pod> -c integrations` |
+| Container | `docker logs <INTEGRATIONS_CONTAINER>` or `kubectl logs <POD_NAME> -c integrations` |
 {{</table >}}

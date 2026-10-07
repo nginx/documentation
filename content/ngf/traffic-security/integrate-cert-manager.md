@@ -276,7 +276,7 @@ Request ID: e64c54a2ac253375ac085d48980f000a
   - The temporary HTTPRoute created by cert-manager routes the traffic between cert-manager and the Let's Encrypt server through NGINX Gateway Fabric. If the challenge is not successful, it may be useful to inspect the NGINX logs to see the ACME challenge requests. You should see something like the following:
 
     ```shell
-    kubectl logs <nginx-pod-name> -n <nginx-pod-namespace>
+    kubectl logs <NGINX_POD_NAME> -n <NGINX_POD_NAMESPACE>
     <...>
     52.208.162.19 - - [15/Aug/2023:13:18:12 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "cert-manager-challenges/v1.12.0 (linux/amd64) cert-manager/bd192c4f76dd883f9ee908035b894ffb49002384"
     52.208.162.19 - - [15/Aug/2023:13:18:14 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "cert-manager-challenges/v1.12.0 (linux/amd64) cert-manager/bd192c4f76dd883f9ee908035b894ffb49002384"
@@ -288,6 +288,8 @@ Request ID: e64c54a2ac253375ac085d48980f000a
     35.166.192.222 - - [15/Aug/2023:13:18:22 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "Mozilla/5.0 (compatible; Let's Encrypt validation server; +https://www.letsencrypt.org)"
     <...>
     ```
+
+    Replace `<NGINX_POD_NAME>` with the name of your NGINX data plane Pod and `<NGINX_POD_NAMESPACE>` with the namespace of your NGINX data plane Pod.
 
 {{< include "ngf/sni-https.md" >}}
 

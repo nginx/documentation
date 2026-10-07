@@ -208,6 +208,8 @@ curl -k -u <USERNAME>:<PASSWORD> \
   "https://<NIM_FQDN>/api/platform/v1/usage-records?deploymentType=vm&nginxUid=<NGINX_INSTANCE_UUID>"
 ```
 
+Replace `<USERNAME>` with your username and `<PASSWORD>` with your password.
+
 Query by `clusterId` to retrieve every record for a specific Kubernetes cluster:
 
 ```shell

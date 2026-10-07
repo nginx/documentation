@@ -9,14 +9,18 @@ f5-files:
 To use basic authentication for API requests, include your base64-encoded credentials as a "Basic" token in the "Authorization" header. To create the base64-encoded credentials, run the following command:
 
 ```shell
-echo -n <username>:<password> | base64
+echo -n <USERNAME>:<PASSWORD> | base64
 ```
+
+Replace `<USERNAME>` with your username and `<PASSWORD>` with your password.
 
 Once you've generated the credentials, you can include them in your API request. Here's how to do it with `curl`:
 
 ```shell
-curl -X GET "https://<NIM_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Basic <base64_encoded_credentials>"
+curl -X GET "https://<NIM_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Basic <BASE64_ENCODED_CREDENTIALS>"
 ```
+
+Replace `<BASE64_ENCODED_CREDENTIALS>` with your base64-encoded `username:password` credentials.
 
 In this example, replace `<NIM_FQDN>` with your NGINX Instance Manager's fully qualified domain name and `<API_VERSION>` with the API version you want to use.
 

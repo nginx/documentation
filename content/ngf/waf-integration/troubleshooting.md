@@ -143,6 +143,8 @@ kubectl exec <GATEWAY_POD> -n <NAMESPACE> -c nginx -- \
   tail -100 /var/log/nginx-agent/opentelemetry-collector-agent.log
 ```
 
+Replace `<GATEWAY_POD>` with the name of your NGINX data plane Pod and `<NAMESPACE>` with the namespace of your Gateway.
+
 If the event isn't in this log, F5 WAF for NGINX isn't reaching NGINX Agent. If the event is in the log but not in NGINX Instance Manager, the export from NGINX Agent is failing.
 
 **Resolution:**

@@ -179,10 +179,10 @@ Only **operational metrics** are reported — no **personally identifiable infor
 To pull an image for local use, use this command:
 
 ```shell
-docker login private-registry.nginx.com --username=<JWT Token> --password=none
+docker login private-registry.nginx.com --username=<JWT_TOKEN> --password=none
 ```
 
-Replace the contents of `<JWT Token>` with the contents of the JWT token itself.
+Replace the contents of `<JWT_TOKEN>` with the contents of the JWT token itself.
 
 You can then pull the image:
 

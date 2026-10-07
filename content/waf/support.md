@@ -88,12 +88,12 @@ tar cvfz logs.tgz docker_compose_logs.txt
 
 {{% tab name="Kubernetes" %}}
 
-In the following steps, replace `<example-ns>` with the namespace you used to deploy F5 WAF for NGINX.
+In the following steps, replace `<NAMESPACE>` with the namespace you used to deploy F5 WAF for NGINX.
 
 Verify the pods in your deployment:
 
 ```shell
-kubectl get pods -n <example-ns>
+kubectl get pods -n <NAMESPACE>
 ```
 
 Use the following script to collect logs from every pod, which will create a timestamped directory with files after each pod and container:
@@ -104,7 +104,7 @@ Use the following script to collect logs from every pod, which will create a tim
 set -x
 
 # Define the namespace variable
-NAMESPACE="<example-ns>"
+NAMESPACE="<NAMESPACE>"
 
 # Define a directory to store log files
 log_dir="k8s_logs_$(date +%Y%m%d_%H%M%S)"

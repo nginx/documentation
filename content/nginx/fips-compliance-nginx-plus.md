@@ -289,8 +289,10 @@ openssl req -newkey rsa:2048 -nodes -keyout /etc/nginx/ssl/test.key -x509 -days 
 Verify that you can access the website using HTTPS from a remote host. Connect to the NGINX IP address using the `openssl s_client` command, and enter the HTTP message `GET /`:
 
 ```shell
-(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX_PLUS_ADDRESS>:443
 ```
+
+Replace `<NGINX_PLUS_ADDRESS>` with the IP address or hostname of your NGINX Plus instance.
 
 Use `openssl s_client` for this test because it unambiguously confirms which SSL/TLS cipher was negotiated in the connection. After some debugging information (including the cipher selected), the body of the default “Welcome to nginx!” greeting page is displayed.
 
@@ -305,7 +307,7 @@ You can test compliance with FIPS 140-2 / 140-3 by issuing SSL/TLS requests with
 `RC4-MD5` is considered insecure and deprecated across all modern cryptographic standards. It is disallowed and disabled by default in FIPS-compliant OpenSSL, and TLS 1.2 and 1.3. The SSL handshake always fails.
 
 ```shell
-(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher RC4-MD5
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX_PLUS_ADDRESS>:443 -cipher RC4-MD5
 ```
 
 For FIPS compliance, alternative cipher suites can be used such as:
@@ -318,7 +320,7 @@ For FIPS compliance, alternative cipher suites can be used such as:
 #### CAMELLIA-SHA
 
 ```shell
-(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher CAMELLIA256-SHA
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX_PLUS_ADDRESS>:443 -cipher CAMELLIA256-SHA
 ```
 
 This cipher is considered secure but is not permitted by the FIPS standard. The SSL handshake fails if the target system is compliant with FIPS 140-2 /140-3, and succeeds otherwise.
@@ -328,7 +330,7 @@ This cipher is considered secure but is not permitted by the FIPS standard. The 
 The cipher is permitted under FIPS 140-2 as it combines AES encryption with SHA-1. However, under FIPS 140-3, SHA-1 is explicitly disallowed due to its vulnerabilities, such as susceptibility to collision attacks. As a result, the SSL handshake fails under FIPS 140-3 and succeeds under FIPS 140-2:
 
 ```shell
-(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher AES256-SHA
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX_PLUS_ADDRESS>:443 -cipher AES256-SHA
 ```
 
 For FIPS 140-3 compliance, alternative cipher suites that leverage SHA-2 or SHA-3 for hashing can be used:
@@ -352,7 +354,7 @@ The `3DES` (Triple DES) cipher is allowed under FIPS 140-2, but disallowed under
 As a result, the SSL handshake always fails in FIPS-3 compliant environment:
 
 ```shell
-(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher DES-CBC3
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX_PLUS_ADDRESS>:443 -cipher DES-CBC3
 ```
 For FIPS 140-3 compliance, AES-Based or ChaCha20-Based cipher suites can be used:
 
@@ -369,13 +371,13 @@ Under FIPS 140-2, Diffie-Hellman (DH) and Digital Signature Algorithm (DSA) were
 For example, the `TLS_DH_RSA_WITH_AES_128_CBC_SHA` algorithm is FIPS 140-2 compliant, but not FIPS 140-3 compliant due to its use of DH with a key size of less than 2048 bits, CBC mode encryption, and SHA-1 hashing:
 
 ```shell
-(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher TLS_DH_RSA_WITH_AES_128_CBC_SHA
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX_PLUS_ADDRESS>:443 -cipher TLS_DH_RSA_WITH_AES_128_CBC_SHA
 ```
 
 The `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` algorithm is FIPS 140-3 compliant as it uses Elliptic Curve Diffie-Hellman Ephemeral (ECDHE), AES-GCM for encryption, and SHA-256 for hashing:
 
 ```shell
-(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX-Plus-address>:443 -cipher  TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+(echo "GET /" ; sleep 1) | openssl s_client -connect <NGINX_PLUS_ADDRESS>:443 -cipher  TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 ```
 
 ## Ciphers disabled in FIPS Mode
@@ -385,7 +387,7 @@ The FIPS 140-2 standard only permits a [subset of the typical SSL and TLS cipher
 In the following test, the ciphers presented by NGINX Plus are surveyed using the `nmap` utility (installed separately). In its default configuration, with the [`ssl_ciphers HIGH:!aNULL:!MD5`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
 
 ```shell
-nmap --script ssl-enum-ciphers -p 443 <NGINX-Plus-address>
+nmap --script ssl-enum-ciphers -p 443 <NGINX_PLUS_ADDRESS>
 ```
 
 The output of the command for NGINX Plus running on Red Hat Enterprise Linux 9 without FIPS enabled:
