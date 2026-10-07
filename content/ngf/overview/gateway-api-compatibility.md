@@ -176,7 +176,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
   - `hostnames`: Supported.
   - `rules`
     - `matches`
-      - `path`: Partially supported. Only `PathPrefix` and `Exact` types.
+      - `path`: Supported. `Exact`, `PathPrefix`, and `RegularExpression` types.
       - `headers`: Supported.
       - `queryParams`: Supported.
       - `method`: Supported.
