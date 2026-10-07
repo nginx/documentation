@@ -746,10 +746,10 @@ You should see a `location` with the `health_check` directive and its `match` bl
 server {
     location @hc-default_tea_80 {
         internal;
+        proxy_pass http://default_tea_80;
         proxy_connect_timeout 2s;
         proxy_read_timeout 2s;
         proxy_send_timeout 2s;
-        proxy_pass http://default_tea_80;
         health_check interval=10s jitter=3s fails=3 passes=2 uri=/healthz mandatory persistent keepalive_time=60s match=default_tea_80_match;
     }
 }
