@@ -135,8 +135,8 @@ Upload your NGINX configuration to your NGINXaaS deployment following the instru
 
 ## Test the configuration
 
-1. Go to `https://<NGINXaaS IP>/static/<your-file-name>` to access your static content.
-   - For example, if you have an `index.html` file in your `content` container, access it via `https://<NGINXaaS IP>/static/index.html`.
+1. Go to `https://<NGINXAAS_IP>/static/<YOUR_FILE_NAME>` to access your static content.
+   - For example, if you have an `index.html` file in your `content` container, access it via `https://<NGINXAAS_IP>/static/index.html`.
 1. Your content should be served from Azure Blob Storage through the private endpoint.
 
 ## Verify private endpoint connectivity
