@@ -34,7 +34,7 @@ Sample output:
 --...<MORE_PARAMETERS>
 ```
 
-Where `<MORE_PARAMETERS>` represents any additional parameters you want to pass.
+Here, `<MORE_PARAMETERS>` represents additional build-time `configure` arguments omitted from the sample output.
 
 ## Directives
 

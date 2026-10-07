@@ -137,7 +137,7 @@ Replace `<TAG_NAME>` with the name of your signature tag.
 
 Signatures can be uniquely identified with a combination of name and tag.
 
-The _\<tag-name\>_ value is a placeholder for the tag name, which is assigned to all signatures in the file or group. The `revisionDatetime` value specifies the date or version of the signature file.
+The `<TAG_NAME>` value is a placeholder for the tag name, which is assigned to all signatures in the file or group. The `revisionDatetime` value specifies the date or version of the signature file.
 
 Tags are useful for organizing user-defined signatures in a bundle, such as grouping signatures by author, shared purpose or set of applications they will be used to protect. They also create namespaces that avoid name conflicts with other user-defined signatures. 
 

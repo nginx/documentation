@@ -11,4 +11,4 @@ Copy the downloaded JWT file to the **/etc/nginx/** directory and make sure it i
 sudo cp <DOWNLOADED_FILE_NAME>.jwt /etc/nginx/license.jwt
 ```
 
-Replace `<DOWNLOADED_FILE_NAME>` with the name of the file you downloaded.
+Replace `<DOWNLOADED_FILE_NAME>` with the downloaded filename without the `.jwt` extension.

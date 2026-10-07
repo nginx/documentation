@@ -510,7 +510,7 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
 
 Run the `helm install` command to deploy NGINX Instance Manager:
 
-1. Replace `<PATH/TO/VALUES.YAML>` with the path to your `values.yaml` file.
+1. Replace `<PATH_TO_VALUES_FILE>` with the path to your `values.yaml` file.
 2. Replace `YourPassword123#` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
    {{< call-out class="important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}

@@ -12,4 +12,4 @@ sudo cp <DOWNLOADED_FILE_NAME>.crt /etc/ssl/nginx/nginx-repo.crt
 sudo cp <DOWNLOADED_FILE_NAME>.key /etc/ssl/nginx/nginx-repo.key
 ```
 
-Replace `<DOWNLOADED_FILE_NAME>` with the name of the file you downloaded.
+In each command, replace `<DOWNLOADED_FILE_NAME>` with the corresponding downloaded filename without its `.crt` or `.key` extension.

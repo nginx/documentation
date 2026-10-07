@@ -150,10 +150,10 @@ To find the latest dependencies for a specific package version:
 3. **Save the admin password**. After installation completes, the script takes a few minutes to generate a password. At the end of the process, you'll see:
 
     ```shell
-    Regenerated Admin password: <ENCRYPTED_PASSWORD>
+    Regenerated Admin password: <GENERATED_PASSWORD>
     ```
 
-    Replace `<ENCRYPTED_PASSWORD>` with the generated admin password, shown encrypted in the output.
+    `<GENERATED_PASSWORD>` represents the generated admin password, which the script displays in plain text.
 
     Save that password. You'll need it when you sign in to NGINX Instance Manager.
 

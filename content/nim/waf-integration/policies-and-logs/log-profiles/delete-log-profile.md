@@ -35,8 +35,8 @@ To delete a security log profile, send a `DELETE` request to the Security Log Pr
 2. Send the delete request:
 
     ```shell
-    curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<LOG_PROFILE_UID> \
+    curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/logprofiles/{log_profile_uid} \
         -H "Authorization: Bearer <ACCESS_TOKEN>"
     ```
 
-    Replace `<LOG_PROFILE_UID>` with the unique identifier (UID) of the log profile.
+    Replace `{log_profile_uid}` with the unique identifier (UID) of the log profile.

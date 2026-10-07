@@ -39,7 +39,7 @@ The installation process closely follows the [NGINX Plus installation procedure]
     sudo cp <DOWNLOADED_FILE_NAME>.key /etc/ssl/nginx/nginx-repo.key
     ```
 
-    Replace `<DOWNLOADED_FILE_NAME>` with the name of the file you downloaded.
+    In each command, replace `<DOWNLOADED_FILE_NAME>` with the corresponding downloaded filename without its `.crt` or `.key` extension.
 
     For Alpine, the **nginx-repo.crt** to **/etc/apk/cert.pem** and **nginx-repo.key** files should be added to **/etc/apk/cert.key**. Ensure these files contain only the specific key and certificate as Alpine Linux does not support mixing client certificates for multiple repositories.
 

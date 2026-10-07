@@ -43,16 +43,16 @@ To overwrite an existing security log profile:
 1. Retrieve the profile’s UID:
 
     ```shell
-    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<LOG_PROFILE_UID> \
+    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles/{log_profile_uid} \
       -H "Authorization: Bearer <ACCESS_TOKEN>" \
     ```
 
-    Replace `<LOG_PROFILE_UID>` with the unique identifier (UID) of the log profile.
+    Replace `{log_profile_uid}` with the unique identifier (UID) of the log profile.
 
 2. Update the log profile using the UID:
 
     ```shell
-    curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<LOG_PROFILE_UID> \
+    curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/logprofiles/{log_profile_uid} \
       -H "Authorization: Bearer <ACCESS_TOKEN>" \
       -H "Content-Type: application/json" \
       -d @update-log-profile.json

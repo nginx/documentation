@@ -134,7 +134,7 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
     }
     ```
 
-   Where `<USERNAME>` is your Okta username.
+   Here, `<USERNAME>` represents your Okta organization's subdomain, not your login username.
 
    <span id="nginx-plus-variables"></span>
 

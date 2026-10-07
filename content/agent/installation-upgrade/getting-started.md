@@ -90,7 +90,7 @@ api:
   key: "<PRIVATE_KEY>.key"
 ```
 
-Replace `<TLS_CERTIFICATE>` with the filename of your TLS certificate and `<PRIVATE_KEY>` with the filename of your private key.
+Replace `<TLS_CERTIFICATE>` with your TLS certificate filename without `.crt`. Replace `<PRIVATE_KEY>` with your private key filename without `.key`.
 
 The mock control plane can use either gRPC or REST protocols to communicate with NGINX Agent.
 

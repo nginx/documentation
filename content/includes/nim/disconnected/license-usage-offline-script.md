@@ -431,7 +431,7 @@ fi
 echo -e "Acknowledgement uploaded successfully to NGINX Instance Manager."
 ```
 
-Replace the placeholders as follows:
+The script's usage output uses these placeholders for values you supply as command-line arguments:
 
 - `<JWT_FILE>`: the path to your JWT license file
 - `<NIM_IP>`: the IP address of your NGINX Instance Manager host
