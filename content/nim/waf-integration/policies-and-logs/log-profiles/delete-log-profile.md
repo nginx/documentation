@@ -27,12 +27,16 @@ To delete a security log profile, send a `DELETE` request to the Security Log Pr
 
     ```shell
     curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles \
-        -H "Authorization: Bearer <access token>"
+        -H "Authorization: Bearer <ACCESS_TOKEN>"
     ```
+
+    Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 2. Send the delete request:
 
     ```shell
-    curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
-        -H "Authorization: Bearer <access token>"
+    curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<LOG_PROFILE_UID> \
+        -H "Authorization: Bearer <ACCESS_TOKEN>"
     ```
+
+    Replace `<LOG_PROFILE_UID>` with the unique identifier (UID) of the log profile.

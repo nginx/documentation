@@ -44,7 +44,7 @@ Follow these steps to configure Keycloak.
 3. Select **Create**.
 4. On the **Add Client** form, in the **Client ID** box, type `nim` as the name for the client.
 5. In the **Client Protocol** list, select **openid-connect**.
-6. Set the **Root URL** to the URL of the NGINX Instance Manager instance, for example, `https://<your instance IP>:443/_codexch`.
+6. Set the **Root URL** to the URL of the NGINX Instance Manager instance, for example, `https://<NIM_IP>:443/_codexch`.
 7. Select **Save**.
 
 After the client is created, configure it as follows:
@@ -59,7 +59,7 @@ After the client is created, configure it as follows:
 1. On the **Settings** tab, under **Capability config**, enable **Client authentication**.
 2. In the **Authentication flow** section, enable **Direct Access Grants** and **Service Account**.
 3. Go to the **Client Scopes** tab.
-   - Select the scope named **<client_name>-dedicated (nim-dedicated)**.
+   - Select the scope named **<CLIENT_NAME>-dedicated (nim-dedicated)**.
    - On the **Mappers** tab, click **Configure new Mapper** and choose **From predefined mappers**.
    - Search for **groups** and select **Add groups mapper**.
 
@@ -120,10 +120,10 @@ To copy the Keycloak secret:
 To set the Keycloak secret as an environment variable:
 
 1. Open an SSH connection to your NGINX Instance Manager host and log in.
-2. Run the following command, replacing `<secret>` with the secret value you copied:
+2. Run the following command, replacing `<SECRET>` with the secret value you copied:
 
     ```shell
-    export KEYCLOAK_SECRET=<secret>
+    export KEYCLOAK_SECRET=<SECRET>
     ```
 
 ### Configure OIDC Settings
@@ -136,41 +136,49 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
 
     ```shell
     # Either the FQDN or the IP address is suitable for these environment variables.
-    export KEYCLOAK_IP="<insert-keycloak-IP>"
-    export NIM_IP="<insert-NIM-IP>"
-    export KEYCLOAK_CLIENT_ID="<insert-keycloak-client-id>"
-    export KEYCLOAK_CLIENT_SECRET="<insert-kecloak-client-secret>"
+    export KEYCLOAK_IP="<KEYCLOAK_IP>"
+    export NIM_IP="<NIM_IP>"
+    export KEYCLOAK_CLIENT_ID="<KEYCLOAK_CLIENT_ID>"
+    export KEYCLOAK_CLIENT_SECRET="<KEYCLOAK_CLIENT_SECRET>"
 
     # Choose an appropriate Hash-Based Message Authentication Code (HMAC)
-    export HMAC_KEY="<insert-HMAC>"
+    export HMAC_KEY="<HMAC_KEY>"
 
-    export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
-    export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".token_endpoint")
-    export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<realm-name>/.well-known/openid-configuration" | jq -r ".jwks_uri")
+    export KEYCLOAK_AUTH_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<REALM_NAME>/.well-known/openid-configuration" | jq -r ".authorization_endpoint")
+    export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<REALM_NAME>/.well-known/openid-configuration" | jq -r ".token_endpoint")
+    export KEYCLOAK_KEYS_ENDPOINT=$(curl -k "https://$KEYCLOAK_IP:8443/auth/realms/<REALM_NAME>/.well-known/openid-configuration" | jq -r ".jwks_uri")
     ```
+
+    Replace the placeholders as follows:
+
+    - `<KEYCLOAK_IP>`: the IP address of your Keycloak server
+    - `<KEYCLOAK_CLIENT_ID>`: the client ID you created in Keycloak
+    - `<KEYCLOAK_CLIENT_SECRET>`: the client secret you copied from Keycloak
+    - `<HMAC_KEY>`: a randomly generated HMAC key
+    - `<REALM_NAME>`: the name of your Keycloak realm
 
   - **For Keycloak versions 18.x and later**:
 
     ```shell
     # Either the FQDN or the IP address is suitable for these environment variables.
-    export KEYCLOAK_IP="<insert-keycloak-IP>"
-    export NIM_IP="<insert-NIM-IP>"
-    export KEYCLOAK_CLIENT_ID="<insert-keycloak-client-id>"
-    export KEYCLOAK_CLIENT_SECRET="<insert-kecloak-client-secret>"
+    export KEYCLOAK_IP="<KEYCLOAK_IP>"
+    export NIM_IP="<NIM_IP>"
+    export KEYCLOAK_CLIENT_ID="<KEYCLOAK_CLIENT_ID>"
+    export KEYCLOAK_CLIENT_SECRET="<KEYCLOAK_CLIENT_SECRET>"
 
     # Choose an appropriate Hash-Based Message Authentication Code (HMAC)
-    export HMAC_KEY="<insert-HMAC>"
+    export HMAC_KEY="<HMAC_KEY>"
 
     export KEYCLOAK_AUTH_ENDPOINT=$(curl -k \
-      "https://$KEYCLOAK_IP:8443/realms/<realm-name>/.well-known/openid-configuration" | \
+      "https://$KEYCLOAK_IP:8443/realms/<REALM_NAME>/.well-known/openid-configuration" | \
       jq -r ".authorization_endpoint")
 
     export KEYCLOAK_TOKEN_ENDPOINT=$(curl -k \
-      "https://$KEYCLOAK_IP:8443/realms/<realm-name>/.well-known/openid-configuration" | \
+      "https://$KEYCLOAK_IP:8443/realms/<REALM_NAME>/.well-known/openid-configuration" | \
       jq -r ".token_endpoint")
 
     export KEYCLOAK_KEYS_ENDPOINT=$(curl -k \
-      "https://$KEYCLOAK_IP:8443/realms/<realm-name>/.well-known/openid-configuration" | \
+      "https://$KEYCLOAK_IP:8443/realms/<REALM_NAME>/.well-known/openid-configuration" | \
       jq -r ".jwks_uri")
     ```
 
@@ -287,4 +295,4 @@ sudo nginx -s reload
 
 ## Try It Out
 
-Open NGINX Instance Manager by going to `https://<your-nginx-instance-manager>/ui`. You will be redirected to the Keycloak login page. Log in with the credentials you created in Keycloak.
+Open NGINX Instance Manager by going to `https://<NIM_FQDN>/ui`. You will be redirected to the Keycloak login page. Log in with the credentials you created in Keycloak.

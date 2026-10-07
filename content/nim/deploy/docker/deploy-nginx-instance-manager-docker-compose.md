@@ -203,8 +203,10 @@ docker exec nim-nim-1 nim-backup
 If successful, you’ll see a message like:
 
 ```text
-Backup has been successfully created: /data/backup/nim-backup-<date>.tgz
+Backup has been successfully created: /data/backup/nim-backup-<DATE>.tgz
 ```
+
+Where `<DATE>` is the date the backup was created.
 
 To locate the backup file:
 
@@ -255,7 +257,7 @@ To restore a backup, follow these steps:
 2. Run the restore command:
 
     ```shell
-    docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<date>.tgz
+    docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<DATE>.tgz
     ```
 
 3. After the restore process finishes, disable maintenance mode.
@@ -293,9 +295,11 @@ In lightweight mode, `clickhouse-data` is not needed and should be removed from 
 Before you run `docker compose up -d`, make sure your NFS volumes are mounted:
 
 ```shell
-sudo mount -t nfs <<nfs-ip>>:/mnt/nfs_share/data /mnt/nfs_share/data
-sudo mount -t nfs <<nfs-ip>>:/mnt/nfs_share/clickhouse /mnt/nfs_share/clickhouse
+sudo mount -t nfs <NFS_IP>:/mnt/nfs_share/data /mnt/nfs_share/data
+sudo mount -t nfs <NFS_IP>:/mnt/nfs_share/clickhouse /mnt/nfs_share/clickhouse
 ```
+
+Replace `<NFS_IP>` with the IP address of your NFS server.
 
 Update the volumes section in your Compose file:
 
@@ -305,14 +309,14 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<<nfs-ip>>,rw"
+      o: "addr=<NFS_IP>,rw"
       device: ":/mnt/nfs_share/data"
 
   clickhouse-data:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<<nfs-ip>>,rw"
+      o: "addr=<NFS_IP>,rw"
       device: ":/mnt/nfs_share/clickhouse"
 ```
 

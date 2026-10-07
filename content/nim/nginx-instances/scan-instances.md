@@ -30,6 +30,8 @@ curl --request POST \
   --data '{"cidr": "192.0.2.0/24","hostDiscovery": "none","portRanges": ["80","443"]}'
 ```
 
+Replace `<ACCESS_TOKEN>` with your access token.
+
 If no host discovery options are provided, NGINX Instance Manager sends an ICMP echo request to each host on the network.
 
 ## Scan using the web interface {#scan-ui}

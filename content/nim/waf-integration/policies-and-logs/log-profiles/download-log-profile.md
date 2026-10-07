@@ -38,10 +38,10 @@ Before you begin, make sure you have:
 The NGINX Instance Manager REST API base URL uses the following format:
 
 ```text
-https://<NIM-FQDN>/api/[nim|platform]/<API_VERSION>
+https://<NIM_FQDN>/api/[nim|platform]/<API_VERSION>
 ```
 
-Replace `<NIM-FQDN>` with the fully qualified domain name of your NGINX Instance Manager host and `<API_VERSION>` with the target API version. All requests require authentication. For details on authentication methods, see the [API overview]({{< ref "/nim/fundamentals/api-overview/" >}}).
+Replace `<NIM_FQDN>` with the fully qualified domain name of your NGINX Instance Manager host and `<API_VERSION>` with the target API version. All requests require authentication. For details on authentication methods, see the [API overview]({{< ref "/nim/fundamentals/api-overview/" >}}).
 
 ---
 

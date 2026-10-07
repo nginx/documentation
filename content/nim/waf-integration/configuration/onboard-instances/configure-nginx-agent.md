@@ -48,6 +48,8 @@ Follow these steps to enable F5 WAF for NGINX in NGINX Agent.
    sudo sh ./install.sh --nginx-app-protect-mode precompiled-publication
    ```
 
+   Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
+
 1. Restart NGINX Agent:
 
    ```shell
