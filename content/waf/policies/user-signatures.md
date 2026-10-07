@@ -127,11 +127,13 @@ The format of the user-defined signature file is as follows:
 
 ```json
 {
-    "tag": "<tag-name>",
+    "tag": "<TAG_NAME>",
     "revisionDatetime": "2020-01-21T18:32:02Z",
     "signatures": []
 }
 ```
+
+Replace `<TAG_NAME>` with the name of your signature tag.
 
 Signatures can be uniquely identified with a combination of name and tag.
 

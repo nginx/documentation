@@ -40,11 +40,11 @@ In addition to accessing F5 WAF for NGINX documentation, you will be able to acc
 
 You will need `git` and `wget` in your connected environment.
 
-Run the following two commands: replace `<hugo-release>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.152.2):
+Run the following two commands: replace `<HUGO_RELEASE_URL>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.152.2):
 
 ```shell
 git clone git@github.com:nginx/documentation.git
-wget <hugo-release>
+wget <HUGO_RELEASE_URL>
 ```
 
 Move the repository folder and the tarball to your disconnected environment.
@@ -155,13 +155,13 @@ See the section for your operating system below:
 #### Oracle Linux / RHEL / Rocky Linux
 
 {{< call-out class="note" title="Note" >}}
-The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<version>` with your operating system major version: `8`, `9`, or `10`.
+The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<VERSION>` with your operating system major version: `8`, `9`, or `10`.
 {{< /call-out >}}
 
 1. Add the F5 WAF for NGINX repository:
 
    ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-<version>.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-<VERSION>.repo
    ```
 
 1. Install the `yum-utils` package if not already installed:
@@ -173,13 +173,13 @@ The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands
 1. Enable codeready-builder repository through subscription manager:
 
    ```shell
-   subscription-manager repos --enable codeready-builder-for-rhel-<version>-x86_64-rpms
+   subscription-manager repos --enable codeready-builder-for-rhel-<VERSION>-x86_64-rpms
    ```
 
 1. Download the `epel-release` dependency package if not already installed:
 
    ```shell
-   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-<version>.noarch.rpm
+   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-<VERSION>.noarch.rpm
    ```
 
 1. Create a directory for packages and download app-protect:
