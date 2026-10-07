@@ -52,10 +52,12 @@ In the same directory you created `simple-policy.json`, create a POST request fo
 
 ```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
-    -H "Authorization: Bearer <access token>" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
     -H "Content-Type: application/json" \
     -d @simple-policy.json
 ```
+
+Replace `<ACCESS_TOKEN>` with your access token.
 
 You should receive an API response similar to the following output, indicating the policy has been successfully created.
 
@@ -119,7 +121,7 @@ Send a POST request to create the bundle through the API:
 
 ```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
-    -H "Authorization: Bearer <access token>" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
     -H "Content-Type: application/json" \
     -d @security-policy-bundles.json
 ```
@@ -154,7 +156,7 @@ You can use the API to list the security bundles, verifying the new addition:
 
 ```shell
 curl --location 'https://127.0.0.1/api/platform/v1/security/policies/bundles' \
--H "Authorization: Bearer <access_token>"
+-H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ```json
@@ -196,23 +198,27 @@ It is one of two unique IDs we will use to download the bundle: it will be refer
 Use a GET request to download the security bundle using the policy and bundle IDs:
 
 ```shell
-curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/policies/<policy-UID>/bundles/<bundle-UID>" -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
+curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/policies/<POLICY_UID>/bundles/<BUNDLE_UID>" -H "Authorization: Bearer <ACCESS_TOKEN>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
+
+Replace `<POLICY_UID>` with the unique identifier (UID) of the policy and `<BUNDLE_UID>` with the unique identifier (UID) of the policy bundle.
 
 This GET request uses the policy and bundle IDs from the previous examples:
 
 ```shell
 curl -X GET -k 'https://127.0.0.1/api/platform/v1/security/policies/6af9f261-658b-4be1-b07a-cebd83e917a1/bundles/de08b324-99d8-4155-b2eb-fe687b21034e' \
-    -H "Authorization: Basic <auth token>" \
+    -H "Authorization: Basic <AUTH_TOKEN>" \
      | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
+
+Replace `<AUTH_TOKEN>` with your authentication token.
 
 ## Download the security log bundle
 
 Use a GET request to download the `secops_dashboard` security log bundle.  The security log bundle adjusts the format of the policy events to be compatible with NGINX Instance Manager:
 
 ```shell
-curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/logprofiles/secops_dashboard/{{< appprotect-compiler-version >}}/bundle" -H "Authorization: Bearer <access token>" | jq -r .compiledBundle | base64 -d > secops_dashboard.tgz
+curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/logprofiles/secops_dashboard/{{< appprotect-compiler-version >}}/bundle" -H "Authorization: Bearer <ACCESS_TOKEN>" | jq -r .compiledBundle | base64 -d > secops_dashboard.tgz
 ```
 
 ---
@@ -225,14 +231,20 @@ Here is an example of what to add:
 
 ```yaml
 volumes:
-- name: <volume_name>
+- name: <VOLUME_NAME>
 persistentVolumeClaim:
-    claimName: <claim_name>
+    claimName: <CLAIM_NAME>
 
 volumeMounts:
-- name: <volume_mount_name>
+- name: <VOLUME_MOUNT_NAME>
     mountPath: /etc/app_protect/bundles
 ```
+
+Replace the placeholders as follows:
+
+- `<VOLUME_NAME>`: the name of the volume
+- `<CLAIM_NAME>`: the name of the PersistentVolumeClaim
+- `<VOLUME_MOUNT_NAME>`: the name of the volume mount
 
 A full example of a deployment file with `volumes` and `volumeMounts` could look like the following:
 
@@ -267,7 +279,7 @@ spec:
       - name: nginx-bundle-mount
         emptydir: {}
       containers:
-      - image: <replace>
+      - image: <IMAGE_NAME>
         imagePullPolicy: IfNotPresent
         name: nginx-ingress
         ports:
@@ -318,6 +330,8 @@ spec:
           - -external-service=nginx-ingress
 ```
 
+Replace `<IMAGE_NAME>` with the NGINX Ingress Controller image you built.
+
 ---
 
 ## Upload the security log bundle
@@ -329,15 +343,17 @@ Upload the security log bundle binary file to the NGINX Ingress Controller pods.
 {{%tab name="Helm"%}}
 
 ```shell
-kubectl cp /your/local/path/secops_dashboard.tgz  <namespace>/<pod-name>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-ingress
+kubectl cp /your/local/path/secops_dashboard.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-ingress
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX Ingress Controller is installed and `<POD_NAME>` with the name of the pod.
 
 {{% /tab %}}
 
 {{%tab name="Manifests"%}}
 
 ```shell
-kubectl cp /your/local/path/secops_dashboard.tgz  <namespace>/<pod-name>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-plus-ingress
+kubectl cp /your/local/path/secops_dashboard.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-plus-ingress
 ```
 
 {{% /tab %}}
@@ -353,15 +369,17 @@ Upload the binary file to the NGINX Ingress Controller pods.
 {{%tab name="Helm"%}}
 
 ```shell
-kubectl cp /your/local/path/<bundle_name>.tgz  <namespace>/<pod-name>:etc/app_protect/bundles<bundle_name>.tgz -c nginx-ingress
+kubectl cp /your/local/path/<BUNDLE_NAME>.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles<BUNDLE_NAME>.tgz -c nginx-ingress
 ```
+
+Replace `<BUNDLE_NAME>` with the name of your bundle.
 
 {{% /tab %}}
 
 {{%tab name="Manifests"%}}
 
 ```shell
-kubectl cp /your/local/path/<bundle_name>.tgz  <namespace>/<pod-name>:etc/app_protect/bundles<bundle_name>.tgz -c nginx-plus-ingress
+kubectl cp /your/local/path/<BUNDLE_NAME>.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles<BUNDLE_NAME>.tgz -c nginx-plus-ingress
 ```
 
 {{% /tab %}}
@@ -380,16 +398,18 @@ The example below shows the required WAF policy, for the *apBundle* field you mu
 apiVersion: k8s.nginx.org/v1
 kind: Policy
 metadata:
-  name: <waf-policy-name>
+  name: <WAF_POLICY_NAME>
 spec:
   waf:
     enable: true
-    apBundle: "<bundle-name>.tgz"
+    apBundle: "<BUNDLE_NAME>.tgz"
     securityLogs:
     - enable: true
         apLogBundle: "secops_dashboard.tgz"
-        logDest: "<security-log-destination-URL>"
+        logDest: "<SECURITY_LOG_DESTINATION_URL>"
 ```
+
+Replace `<WAF_POLICY_NAME>` with the name of your WAF policy and `<SECURITY_LOG_DESTINATION_URL>` with the URL of your security log destination.
 
 ---
 
@@ -405,7 +425,7 @@ metadata:
 spec:
   host: webapp.example.com
   policies:
-  - name: <waf-policy-name>
+  - name: <WAF_POLICY_NAME>
   upstreams:
   - name: webapp
     service: webapp-svc

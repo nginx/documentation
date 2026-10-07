@@ -221,8 +221,10 @@ The steps you should follow depend on your Helm release name:
 Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
 
 ```shell
-kubectl describe deployments -n <namespace>
+kubectl describe deployments -n <NAMESPACE>
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX Ingress Controller is installed.
 
 Copy the key=value under `Selector`, such as:
 
@@ -259,10 +261,12 @@ Once the upgrade process has finished, use `kubectl describe` on the deployment 
 ```text
     Type    Reason             Age    From                   Message
 ----    ------             ----   ----                   -------
-Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<old_version> to 1
-Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<new_version> to 1
-Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set nginx-ingress-nginx-ingress-<old_version> to 0 from 1
+Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<OLD_VERSION> to 1
+Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set nginx-ingress-nginx-ingress-<NEW_VERSION> to 1
+Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set nginx-ingress-nginx-ingress-<OLD_VERSION> to 0 from 1
 ```
+
+Replace `<OLD_VERSION>` with the version you're upgrading from and `<NEW_VERSION>` with the version you're upgrading to.
 
 {{% /tab %}}
 
@@ -271,14 +275,16 @@ Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set
 Use `kubectl describe` on deployment/daemonset to get the `Selector` value:
 
 ```shell
-kubectl describe deployment/daemonset -n <namespace>
+kubectl describe deployment/daemonset -n <NAMESPACE>
 ```
 
 Copy the key=value under ```Selector```, such as:
 
 ```shell
-Selector: app=<helm_release_name>-nginx-ingress
+Selector: app=<RELEASE_NAME>-nginx-ingress
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 Check out the latest available tag using `git checkout v{{< nic-version >}}`
 
@@ -287,13 +293,13 @@ Go to `/kubernetes-ingress/charts/nginx-ingress`.
 Update the `selectorLabels: {}` field in the `values.yaml` file located at `/kubernetes-ingress/charts/nginx-ingress` with the copied `Selector` value.
 
 ```shell
-selectorLabels: {app: <helm_release_name>-nginx-ingress}
+selectorLabels: {app: <RELEASE_NAME>-nginx-ingress}
 ```
 
 Run `helm upgrade` with following arguments set:
 
 ```shell
---set serviceNameOverride="<helm_release_name>-nginx-ingress"
+--set serviceNameOverride="<RELEASE_NAME>-nginx-ingress"
 --set controller.name=""
 ```
 
@@ -308,9 +314,9 @@ Once the upgrade process has finished, use `kubectl describe` on the deployment 
 ```shell
 Type    Reason             Age    From                   Message
 ----    ------             ----   ----                   -------
-Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set test-release-nginx-ingress-<old_version> to 1
-Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set test-release-nginx-ingress-<new_version> to 1
-Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set test-release-nginx-ingress-<old_version> to 0 from 1
+Normal  ScalingReplicaSet  9m11s  deployment-controller  Scaled up replica set test-release-nginx-ingress-<OLD_VERSION> to 1
+Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set test-release-nginx-ingress-<NEW_VERSION> to 1
+Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set test-release-nginx-ingress-<OLD_VERSION> to 0 from 1
 ```
 
 {{% /tab %}}
@@ -334,15 +340,23 @@ In version 5.5, the default server block was removed from `main-template` and is
 2. Generate a diff between the version you are upgrading from and the version you are upgrading to. For `main-template` and `ingress-template`, use `version1`. For `virtualserver-template` and `transportserver-template`, use `version2`:
 
    ```shell
-   git diff v<current-version>..v<target-version> -- internal/configs/version1/<template-file> > upstream.patch
-   git diff v<current-version>..v<target-version> -- internal/configs/version2/<template-file> > upstream.patch
+   git diff v<CURRENT_VERSION>..v<TARGET_VERSION> -- internal/configs/version1/<TEMPLATE_FILE> > upstream.patch
+   git diff v<CURRENT_VERSION>..v<TARGET_VERSION> -- internal/configs/version2/<TEMPLATE_FILE> > upstream.patch
    ```
+
+   Replace the placeholders as follows:
+
+   - `<CURRENT_VERSION>`: the version you're upgrading from
+   - `<TARGET_VERSION>`: the version you're upgrading to
+   - `<TEMPLATE_FILE>`: the name of the template file
 
 3. Extract your custom template from the ConfigMap to a local file. The valid key names are `main-template`, `ingress-template`, `virtualserver-template`, and `transportserver-template`:
 
    ```shell
-   kubectl get configmap <name> -n nginx-ingress -o jsonpath='{.data.<template-key>}' > my-template.tmpl
+   kubectl get configmap <NAME> -n nginx-ingress -o jsonpath='{.data.<TEMPLATE_KEY>}' > my-template.tmpl
    ```
+
+   Replace `<NAME>` with the name of the resource and `<TEMPLATE_KEY>` with the key of the template in your ConfigMap.
 
 4. Apply the patch to your custom template:
 
@@ -352,4 +366,4 @@ In version 5.5, the default server block was removed from `main-template` and is
 
    If the patch fails to apply some changes, review the rejected changes in `my-template.tmpl.rej` and apply them by manually.
 
-5. Update the template key with the patched content. If you manage your ConfigMap directly, update the relevant key in your manifest and run `kubectl apply -f <your-configmap.yaml>`. If you use Helm, set the key under `controller.config.entries` in your values file and run `helm upgrade`.
+5. Update the template key with the patched content. If you manage your ConfigMap directly, update the relevant key in your manifest and run `kubectl apply -f <YOUR_CONFIGMAP.YAML>`. If you use Helm, set the key under `controller.config.entries` in your values file and run `helm upgrade`.

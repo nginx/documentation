@@ -19,10 +19,10 @@ Prerequisites:
 
 To access the dashboard:
 
-1. Use the `kubectl port-forward` command to forward connections to port 8080 on your local machine to port 8080 of an NGINX Plus Ingress Controller pod (replace `<nginx-plus-ingress-pod>` with the actual name of a pod):
+1. Use the `kubectl port-forward` command to forward connections to port 8080 on your local machine to port 8080 of an NGINX Plus Ingress Controller pod (replace `<NGINX_PLUS_INGRESS_POD>` with the actual name of a pod):
 
     ```shell
-    kubectl port-forward <nginx-plus-ingress-pod> 8080:8080 --namespace=nginx-ingress
+    kubectl port-forward <NGINX_PLUS_INGRESS_POD> 8080:8080 --namespace=nginx-ingress
     ```
 
 1. Open your browser at <http://127.0.0.1:8080/dashboard.html> to access the dashboard.

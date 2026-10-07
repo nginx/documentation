@@ -75,7 +75,7 @@ spec:
       pollInterval: "5m"
 ```
 
-Replace `<tenant>` with your NGINX One Console tenant hostname, `policyName` with the name of your published policy, and `policyNamespace` with the NGINX One Console namespace where the policy resides.
+Replace `<TENANT>` with your NGINX One Console tenant hostname, `policyName` with the name of your published policy, and `policyNamespace` with the NGINX One Console namespace where the policy resides.
 
 {{< call-out class="note" >}} The field name is `policyName` for both `apBundleSource` and `apLogBundleSource`. In `apBundleSource`, set it to the published WAF policy name. In `apLogBundleSource`, set it to the log profile name (for example, `secops_dashboard`). {{< /call-out >}}
 
@@ -172,7 +172,7 @@ waf:
   - enable: true
     apLogBundleSource:
       type: N1C
-      url: "https://<tenant>.console.ves.volterra.io"
+      url: "https://<TENANT>.console.ves.volterra.io"
       policyName: "secops_dashboard"
       policyNamespace: "default"
       secret: "n1c-credentials"
@@ -186,6 +186,8 @@ Verify log events are arriving at your syslog destination:
 ```shell
 kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 ```
+
+Replace `<SYSLOG_POD>` with the name of your syslog pod.
 
 ## NGINX Instance Manager
 

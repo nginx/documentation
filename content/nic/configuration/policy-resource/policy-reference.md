@@ -432,9 +432,11 @@ The following example policy rejects all requests that don't include a valid JWT
 jwt:
   realm: MyProductAPI
   token: $http_token
-  jwksURI: <uri_to_remote_server_or_idp>
+  jwksURI: <URI_TO_REMOTE_SERVER_OR_IDP>
   keyCache: 1h
 ```
+
+Replace `<URI_TO_REMOTE_SERVER_OR_IDP>` with the URI of your remote JWKS server or identity provider.
 
 {{< call-out class="note" >}}
 
@@ -500,8 +502,10 @@ metadata:
 apiVersion: v1
 type: nginx.org/ca
 data:
-  ca.crt: <base64encoded-certificate>
+  ca.crt: <BASE64ENCODED_CERTIFICATE>
 ```
+
+Replace `<BASE64ENCODED_CERTIFICATE>` with your base64-encoded certificate.
 
 A VirtualServer that references an IngressMTLS policy must:
 
@@ -558,9 +562,11 @@ You can use only one of these configuration options at a time.
    apiVersion: v1
    type: nginx.org/ca
    data:
-     ca.crt: <base64encoded-certificate>
-     ca.crl: <base64encoded-crl>
+     ca.crt: <BASE64ENCODED_CERTIFICATE>
+     ca.crl: <BASE64ENCODED_CRL>
    ```
+
+   Replace `<BASE64ENCODED_CRL>` with your base64-encoded certificate revocation list (CRL).
 
 2. Add the `crlFileName` field to your IngressMTLS policy spec with the name of the CRL file.
 
@@ -708,7 +714,7 @@ An example ExternalAuth policy for VirtualServer resources is available in the G
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``authURI`` | The URI of the external authentication server. NGINX sends an internal subrequest to this URI to verify the client. Must start with ``/``. For example, ``/auth`` or ``/oauth2/auth``. | ``string`` | Yes |
-|``authServiceName`` | The name of the Kubernetes service for the external authentication server. Can include an optional namespace prefix in the format ``<namespace>/<service>``. For example, ``basic-auth-svc`` or ``auth-namespace/auth-service``. If no namespace is specified, the namespace of the Policy resource is used. | ``string`` | Yes |
+|``authServiceName`` | The name of the Kubernetes service for the external authentication server. Can include an optional namespace prefix in the format ``<NAMESPACE>/<SERVICE>``. For example, ``basic-auth-svc`` or ``auth-namespace/auth-service``. If no namespace is specified, the namespace of the Policy resource is used. | ``string`` | Yes |
 |``authServicePorts`` | The ports of the Kubernetes service to which authentication requests are sent. If not specified, the first port from the service definition is used. | ``[]int`` | No |
 |``authSigninURI`` | The URI to redirect unauthenticated clients to for sign-in. Used when the external authentication server requires redirection, such as with OAuth2 Proxy. Must start with ``/``. For example, ``/oauth2/signin``. | ``string`` | No |
 |``authSnippets`` | Custom NGINX configuration snippets to add to the external authentication location block. For example, you can add extra headers or parameters for the ``auth_request`` module. The content must be valid NGINX configuration. Requires the [``-enable-snippets``]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument. | ``string`` | No |
@@ -716,8 +722,8 @@ An example ExternalAuth policy for VirtualServer resources is available in the G
 |``sslEnabled`` | Turns on HTTPS when proxying requests to the external authentication server. The default is ``false``. | ``bool`` | No |
 |``sslVerify`` | Turns on verification of the external authentication server's SSL certificate. The default is ``false``. | ``bool`` | No |
 |``sslVerifyDepth`` | Sets the verification depth in the external authentication server certificates chain. The default is ``1``. | ``int`` | No |
-|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<namespace>/<secret>``. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored under the key ``ca.crt``. | ``string`` | No |
-|``sniName`` | The server name used for SNI and certificate verification when connecting to the external authentication server over TLS. If not specified, defaults to ``<service-name>.<namespace>.svc`` derived from ``authServiceName``. | ``string`` | No |
+|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<NAMESPACE>/<SECRET>``. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored under the key ``ca.crt``. | ``string`` | No |
+|``sniName`` | The server name used for SNI and certificate verification when connecting to the external authentication server over TLS. If not specified, defaults to ``<SERVICE_NAME>.<NAMESPACE>.svc`` derived from ``authServiceName``. | ``string`` | No |
 
 {{% /table %}}
 
@@ -914,10 +920,10 @@ On a VirtualServer, if you apply both an `oidc` policy and an `oidcNative` polic
 | `issuer` | The Issuer Identifier URL of the OpenID Provider. Must use the `https` scheme and exactly match the value of `issuer` in the OpenID Provider metadata. | `string` | Yes | -- |
 | `clientID` | The client ID provided by your OpenID Connect provider. | `string` | Yes | -- |
 | `clientSecret` | The name of the Kubernetes secret that stores the client secret. Must be of type `nginx.org/oidc` with the secret stored under the key `client-secret` and must be in the same namespace as the Policy resource. Not required when PKCE is enabled with a public client. | `string` | No | -- |
-| `configURL` | The URL of the OpenID Provider Configuration Information (discovery endpoint). Must include a path and use the `http` or `https` scheme. If not set, defaults to `<issuer>/.well-known/openid-configuration`. | `string` | No | `<issuer>/.well-known/openid-configuration` |
+| `configURL` | The URL of the OpenID Provider Configuration Information (discovery endpoint). Must include a path and use the `http` or `https` scheme. If not set, defaults to `<ISSUER>/.well-known/openid-configuration`. | `string` | No | `<ISSUER>/.well-known/openid-configuration` |
 | `scope` | Space-separated list of OpenID Connect scopes. Must contain `openid`. Example: `"openid profile email"`. | `string` | No | `openid` |
-| `redirectURI` | Overrides the default redirect URI path used for the authorization callback. | `string` | No | `/oidc_callback_<providerName>` |
-| `cookieName` | Sets the name of the session cookie. Must contain only letters, digits, and underscores. | `string` | No | `NGX_OIDC_<providerName>` |
+| `redirectURI` | Overrides the default redirect URI path used for the authorization callback. | `string` | No | `/oidc_callback_<PROVIDER_NAME>` |
+| `cookieName` | Sets the name of the session cookie. Must contain only letters, digits, and underscores. | `string` | No | `NGX_OIDC_<PROVIDER_NAME>` |
 | `extraAuthArgs` | Additional query arguments appended to the authorization request URL. Example: `"display=page&prompt=login"`. | `string` | No | -- |
 | `pkce` | Explicitly turns PKCE on or off. By default, NGINX Ingress Controller turns on PKCE automatically based on OpenID Provider metadata. | `string (on/off)` | No | -- |
 | `logoutURI` | URI path for initiating session logout. Session logout is unavailable until this field is set. Use a path the attached route can serve, for example `/logout` for a policy on the `/` route, or `/tea/logout` for a policy on the `/tea` route. A path outside the attached route isn't matched by that route's location, so logout doesn't trigger. | `string` | No | -- |
@@ -925,7 +931,7 @@ On a VirtualServer, if you apply both an `oidc` policy and an `oidcNative` polic
 | `frontChannelLogoutURI` | URI path for OIDC front-channel logout. When set, the identity provider calls this URI in a hidden iframe during global logout, letting NGINX end the local session. | `string` | No | -- |
 | `logoutTokenHint` | Adds the `id_token_hint` argument to the provider's logout endpoint when redirecting the user during logout. Required by some providers. | `bool` | No | `false` |
 | `sessionTimeout` | Duration after which the session expires unless refreshed. Example: `"8h"`, `"30m"`. | `string` | No | `8h` |
-| `userInfoEnable` | Turns on downloading of the UserInfo data and makes UserInfo claims available through `$oidc_claim_<name>` variables. | `bool` | No | `false` |
+| `userInfoEnable` | Turns on downloading of the UserInfo data and makes UserInfo claims available through `$oidc_claim_<NAME>` variables. | `bool` | No | `false` |
 | `trustedCertSecret` | The name of the Kubernetes secret that stores the CA certificate for verifying the provider's TLS certificate. Must be of type `nginx.org/ca` with the certificate stored under key `ca.crt`. | `string` | No | -- |
 | `sslVerify` | Turns on verification of the OpenID Provider's TLS certificate. Set to false to skip verification (dev/test only). | `bool` | No | `true` |
 | `sslName` | Overrides the TLS SNI name and Host header used when connecting to the OpenID Provider. Must be a valid DNS name and can't include a port. When unset, the hostname of the endpoint being called is used, taken from the provider's discovery metadata. | `string` | No | -- |
@@ -1207,13 +1213,13 @@ waf:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``enable`` | Turns on F5 WAF for NGINX. | ``bool`` | Yes |
-|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. References an APPolicy CR by `[<namespace>/]<name>`. When you start the Ingress Controller with `-plm-storage-url`, PLM must have compiled the referenced APPolicy (status.bundle.state == ready). Mutually exclusive with `apBundle`. | `string` | No |
+|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. References an APPolicy CR by `[<NAMESPACE>/]<NAME>`. When you start the Ingress Controller with `-plm-storage-url`, PLM must have compiled the referenced APPolicy (status.bundle.state == ready). Mutually exclusive with `apBundle`. | `string` | No |
 |``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy`` and ``apBundleSource``. | ``string`` | No |
 |``apBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the WAF policy bundle. Mutually exclusive with ``apBundle`` and ``apPolicy``. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``securityLog.enable`` | **Deprecated:** Turns on the security log. | ``bool`` | No |
 |``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<IP_ADDRESS>; localhost; <FQDN>:<PORT>``, ``stderr``, ``<ABSOLUTE_PATH_TO_FILE>``. | ``string`` | No |
 |``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecuritylogs) | No |
 
 {{% /table %}}
@@ -1228,7 +1234,7 @@ waf:
 |``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. `apLogConf` references an APLogconf CR by `[<NAMESPACE>/]<NAME>`. When you start the Ingress Controller with `-plm-storage-url`, PLM must have compiled the referenced APLogConf (`status.bundle.state == ready`). Only works with `apPolicy`. | ``string`` | No |
 |``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. Mutually exclusive with ``apLogBundleSource``. | ``string`` | No |
 |``apLogBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. | [waf.apBundleSource](#wafapbundlesource) | No |
-|``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<IP_ADDRESS>; localhost; <FQDN>:<PORT>``, ``stderr``, ``<ABSOLUTE_PATH_TO_FILE>``. | ``string`` | No |
 
 {{% /table %}}
 
@@ -1271,8 +1277,8 @@ spec:
     enable: true
     apBundleSource:
       type: NIM
-      url: "https://<nim_host>"
-      name: "<policy_name>"
+      url: "https://<NIM_HOST>"
+      name: "<POLICY_NAME>"
       secret: "nim-credentials"
       enablePolling: true
       pollInterval: "5m"
@@ -1280,13 +1286,19 @@ spec:
     - enable: true
       apLogBundleSource:
         type: NIM
-        url: "https://<nim_host>"
-        name: "<log_profile_name>"
+        url: "https://<NIM_HOST>"
+        name: "<LOG_PROFILE_NAME>"
         secret: "nim-credentials"
         enablePolling: true
         pollInterval: "5m"
       logDest: "stderr"
 ```
+
+Replace the placeholders as follows:
+
+- `<NIM_HOST>`: the hostname of your NGINX Instance Manager
+- `<POLICY_NAME>`: the name of your policy
+- `<LOG_PROFILE_NAME>`: the name of your log profile
 
 for NGINX One Console:
 
@@ -1296,8 +1308,8 @@ spec:
     enable: true
     apBundleSource:
       type: N1C
-      url: "https://<tenant>.console.ves.volterra.io"
-      name: "<policy_name>"
+      url: "https://<TENANT>.console.ves.volterra.io"
+      name: "<POLICY_NAME>"
       namespace: "default"
       secret: "n1c-credentials"
       enablePolling: true
@@ -1306,7 +1318,7 @@ spec:
     - enable: true
       apLogBundleSource:
         type: N1C
-        url: "https://<tenant>.console.ves.volterra.io"
+        url: "https://<TENANT>.console.ves.volterra.io"
         name: "secops_dashboard"
         namespace: "default"
         secret: "n1c-credentials"
@@ -1314,6 +1326,8 @@ spec:
         pollInterval: "5m"
       logDest: "stderr"
 ```
+
+Replace `<TENANT>` with your NGINX One Console tenant hostname.
 
 For HTTPS:
 

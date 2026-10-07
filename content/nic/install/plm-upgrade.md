@@ -100,7 +100,7 @@ The default PLM install creates three Secrets that NGINX Ingress Controller refe
 - `plm-f5-waf-seaweedfs-ca-cert`: CA certificate for the HTTPS filer.
 - `plm-f5-waf-seaweedfs-client-cert`: client TLS certificate for mTLS.
 
-Record the Secret references in `<namespace>/<name>` form. When you run `helm upgrade`, pass all four values to NGINX Ingress Controller using `--set controller.appprotect.plmStorage.*` flags.
+Record the Secret references in `<NAMESPACE>/<NAME>` form. When you run `helm upgrade`, pass all four values to NGINX Ingress Controller using `--set controller.appprotect.plmStorage.*` flags.
 
 ## Apply the NGINX Ingress Controller CRDs
 
@@ -118,7 +118,7 @@ Follow this section if your existing NGINX Ingress Controller deployment routes 
 
 Upgrade the NGINX Ingress Controller release. `--reuse-values` preserves your existing configuration. The `--set` flags overlay PLM storage on top. `--skip-crds` prevents Helm from touching CRDs, because you applied the NGINX Ingress Controller CRDs in the previous step and PLM owns the App Protect CRDs.
 
-This example uses HTTPS PLM storage with mutual TLS. For HTTP storage, set `controller.appprotect.plmStorage.url` to `http://<host>:8333` and omit the `caSecret` and `clientSSLSecret` flags.
+This example uses HTTPS PLM storage with mutual TLS. For HTTP storage, set `controller.appprotect.plmStorage.url` to `http://<HOST>:8333` and omit the `caSecret` and `clientSSLSecret` flags.
 
 ```shell
 helm upgrade nic nginx-stable/nginx-ingress \
@@ -200,7 +200,7 @@ kubectl exec --namespace nginx-ingress $NIC_POD --container nginx-ingress -- \
   ls -l /etc/app_protect/bundles/
 ```
 
-Files named `fetched_<namespace>_<policy-name>_policy.tgz` and `fetched_<namespace>_<policy-name>_log_<index>.tgz` confirm that the bundles were fetched from PLM storage.
+Files named `fetched_<NAMESPACE>_<POLICY_NAME>_policy.tgz` and `fetched_<NAMESPACE>_<POLICY_NAME>_log_<INDEX>.tgz` confirm that the bundles were fetched from PLM storage.
 
 ## Section 2: Upgrade an Ingress-based deployment
 
@@ -230,6 +230,6 @@ Use the same procedure as [Section 1, step 4](#4-confirm-bundles-come-from-plm-s
 
 ## Troubleshooting
 
-- **Policy stays in `BundlePending` after the upgrade.** The referenced `APPolicy` or `APLogConf` isn't `ready` in PLM. Run `kubectl describe appolicy <name>` and inspect the PLM policy-controller logs.
+- **Policy stays in `BundlePending` after the upgrade.** The referenced `APPolicy` or `APLogConf` isn't `ready` in PLM. Run `kubectl describe appolicy <NAME>` and inspect the PLM policy-controller logs.
 - **NGINX Ingress Controller reports the referenced namespace isn't watched.** If the deployment sets `controller.watchNamespace`, include the namespace of every `APPolicy` and `APLogConf` resource. Also include the PLM namespace in `controller.watchSecretNamespace` so NGINX Ingress Controller can observe storage Secret rotation.
 - **Helm upgrade fails with a CRD conflict.** Confirm PLM is installed and its v1 CRDs are present, then run the upgrade with `--skip-crds`.

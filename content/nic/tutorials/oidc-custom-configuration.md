@@ -125,10 +125,10 @@ The `Volume` must be added the `spec.template.spec` section:
 
 ```yaml
 apiVersion: apps/v1
-kind: <Deployment/DaemonSet/StatefulSet>
+kind: <WORKLOAD_KIND>
 metadata:
-  name: <name>
-  namespace: <ic-namespace>
+  name: <NAME>
+  namespace: <NAMESPACE>
 spec:
   ...
   ...
@@ -141,7 +141,7 @@ spec:
       volumes:
       - name: oidc-volume
         configMap:
-          name: <config-map-name> # Must match the name of the ConfigMap
+          name: <CONFIG_MAP_NAME> # Must match the name of the ConfigMap
       containers:
         ...
         ...
@@ -152,13 +152,22 @@ spec:
           readOnly: true
 ```
 
+Replace the placeholders as follows:
+
+- `<WORKLOAD_KIND>`: `Deployment`, `DaemonSet`, or `StatefulSet`, depending on how you deployed NGINX Ingress Controller
+- `<NAME>`: the name of the resource
+- `<NAMESPACE>`: the Kubernetes namespace where NGINX Ingress Controller is installed
+- `<CONFIG_MAP_NAME>`: the name of your ConfigMap
+
 Once the `Volume` and `VolumeMount` has been added the manifest file, apply the changes to the Ingress Controller deployment.
 
 Confirm the `oidc.tmpl` file has been updated:
 
 ```shell
-kubectl exec -it -n <ic-namespace> <ingess-controller-pod> -- cat /oidc.tmpl
+kubectl exec -it -n <NAMESPACE> <INGRESS_CONTROLLER_POD> -- cat /oidc.tmpl
 ```
+
+Replace `<INGRESS_CONTROLLER_POD>` with the name of your NGINX Ingress Controller pod.
 
 ### Helm
 
@@ -172,27 +181,33 @@ The `VolumeMount`must be added the `spec.template.spec.containers` section.
 For Deployments:
 
 ```shell
-kubectl edit deployments <name-of-deployment> -n <ic-namespace>
+kubectl edit deployments <DEPLOYMENT_NAME> -n <NAMESPACE>
 ```
+
+Replace `<DEPLOYMENT_NAME>` with the name of your NGINX Ingress Controller Deployment.
 
 For DaemonSets:
 
 ```shell
-kubectl edit daemonset <name-of-daemonset> -n <ic-namespace>
+kubectl edit daemonset <DAEMONSET_NAME> -n <NAMESPACE>
 ```
+
+Replace `<DAEMONSET_NAME>` with the name of your NGINX Ingress Controller DaemonSet.
 
 For StatefulSets:
 
 ```shell
-kubectl edit statefulset <name-of-statefulset> -n <ic-namespace>
+kubectl edit statefulset <STATEFULSET_NAME> -n <NAMESPACE>
 ```
+
+Replace `<STATEFULSET_NAME>` with the name of your NGINX Ingress Controller StatefulSet.
 
 ```yaml
 apiVersion: apps/v1
-kind: <Deployment/DaemonSet/StatefulSet>
+kind: <WORKLOAD_KIND>
 metadata:
-  name: <name>
-  namespace: <ic-namespace>
+  name: <NAME>
+  namespace: <NAMESPACE>
 spec:
   ...
   ...
@@ -205,7 +220,7 @@ spec:
       volumes:
       - name: oidc-volume
         configMap:
-          name: <config-map-name> # Must match the name of the ConfigMap
+          name: <CONFIG_MAP_NAME> # Must match the name of the ConfigMap
       containers:
         ...
         ...
@@ -221,5 +236,5 @@ Once the Deployment/DaemonSet/StatefulSet has been edited, save the file and exi
 Confirm the `oidc.tmpl` file has been updated:
 
 ```shell
-kubectl exec -it -n <ic-namespace> <ingess-controller-pod> -- cat /oidc.tmpl
+kubectl exec -it -n <NAMESPACE> <INGRESS_CONTROLLER_POD> -- cat /oidc.tmpl
 ```
