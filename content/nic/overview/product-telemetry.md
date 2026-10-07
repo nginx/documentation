@@ -55,6 +55,7 @@ These are the data points collected and reported by NGINX Ingress Controller:
 - **IngressMTLSPolicies** Number of IngressMTLS policies.
 - **EgressMTLSPolicies** Number of EgressMTLS policies.
 - **OIDCPolicies** Number of OIDC policies.
+- **OIDCNativePolicies** Number of OIDCNative policies.
 - **WAFPolicies** Number of WAF policies.
 - **CachePolicies** Number of Cache policies.
 - **CORSPolicies** Number of CORS policies.

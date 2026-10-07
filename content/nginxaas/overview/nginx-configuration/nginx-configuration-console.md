@@ -5,10 +5,15 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /app-delivery/platform/nginx-configuration/nginx-configuration-console/
+f5-ref-path: /f5ads/platform/nginx-configuration/nginx-configuration-console/
 contentVars:
   product: NGINXaaS
 ---
+
+{{< renamed-notice >}}
 
 You can apply an NGINX configuration to your F5 ${product} deployment using the NGINXaaS Console.
 

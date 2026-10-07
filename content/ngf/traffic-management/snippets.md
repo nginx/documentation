@@ -21,7 +21,7 @@ Snippets should only be used by advanced NGINX users who need more control over 
 
 Users can configure Snippets through either the `SnippetsFilter` or `SnippetsPolicy` APIs.
 
-`SnippetsFilter` can be an [HTTPRouteFilter](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteFilter) or [GRPCRouteFilter](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.GRPCRouteFilter), that can be defined in an HTTPRoute/GRPCRoute rule and is intended to modify NGINX configuration specifically for that Route rule. `SnippetsFilter` is an `extensionRef` type filter, and must be in the same namespace as the Route it is referenced on.
+`SnippetsFilter` can be an [HTTPRouteFilter](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httproutefilter) or [GRPCRouteFilter](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#grpcroutefilter), that can be defined in an HTTPRoute/GRPCRoute rule and is intended to modify NGINX configuration specifically for that Route rule. `SnippetsFilter` is an `extensionRef` type filter, and must be in the same namespace as the Route it is referenced on.
 
 `SnippetsPolicy` is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can only be applied to a Gateway(s) in the same namespace as the `SnippetsPolicy`. `SnippetsPolicy` affects the Gateway and all Routes attached to it, and is meant to contrast the route-focused `SnippetsFilter`. 
 

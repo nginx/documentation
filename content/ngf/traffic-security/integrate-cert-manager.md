@@ -19,7 +19,7 @@ Securing client server communication is a crucial part of modern application arc
 
 Follow the steps in this guide to:
 
-- Configure HTTPS for your application using a [gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/).
+- Configure HTTPS for your application using a [gateway](https://gateway-api.sigs.k8s.io/reference/api-types/gateway/).
 - Use [Let’s Encrypt](https://letsencrypt.org) as the Certificate Authority (CA) issuing the TLS certificate.
 - Use [cert-manager](https://cert-manager.io) to automate the provisioning and management of the certificate.
 
