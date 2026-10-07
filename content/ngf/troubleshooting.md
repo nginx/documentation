@@ -72,8 +72,10 @@ LAST SEEN   TYPE      REASON              OBJECT                                
 Getting shell access to containers allows developers and operators to view the environment of a running container, see its logs or diagnose any problems. To get shell access to the NGINX container, use `kubectl exec`:
 
 ```shell
-kubectl exec -it -n <nginx-deployment-namespace> <nginx-deployment-name> -- /bin/sh
+kubectl exec -it -n <NGINX_DEPLOYMENT_NAMESPACE> <NGINX_DEPLOYMENT_NAME> -- /bin/sh
 ```
+
+Replace `<NGINX_DEPLOYMENT_NAMESPACE>` with the namespace of your NGINX Deployment and `<NGINX_DEPLOYMENT_NAME>` with the name of your NGINX Deployment.
 
 #### Logs
 
@@ -88,27 +90,31 @@ You can see logs for a crashed or killed container by adding the `-p` flag to th
    To see logs for the control plane container:
 
    ```shell
-   kubectl -n nginx-gateway logs <ngf-pod-name> -c nginx-gateway
+   kubectl -n nginx-gateway logs <NGF_POD_NAME> -c nginx-gateway
    ```
+
+   Replace `<NGF_POD_NAME>` with the name of your NGINX Gateway Fabric control plane Pod.
 
    To see logs for the data plane container:
 
    ```shell
-   kubectl -n <nginx-pod-namespace> logs <nginx-pod-name> -c nginx
+   kubectl -n <NGINX_POD_NAMESPACE> logs <NGINX_POD_NAME> -c nginx
    ```
+
+   Replace `<NGINX_POD_NAMESPACE>` with the namespace of your NGINX data plane Pod and `<NGINX_POD_NAME>` with the name of your NGINX data plane Pod.
 
 1. Error Logs
 
    For the _nginx-gateway_ container, you can `grep` the logs for the word `error`:
 
    ```shell
-   kubectl -n nginx-gateway logs <ngf-pod-name> -c nginx-gateway | grep error
+   kubectl -n nginx-gateway logs <NGF_POD_NAME> -c nginx-gateway | grep error
    ```
 
    For the _nginx_ container you can `grep` for various [error](https://nginx.org/en/docs/ngx_core_module.html#error_log) logs. For example, to search for all logs logged at the `emerg` level:
 
    ```shell
-   kubectl -n <nginx-pod-namespace> logs <nginx-pod-name> -c nginx | grep emerg
+   kubectl -n <NGINX_POD_NAMESPACE> logs <NGINX_POD_NAME> -c nginx | grep emerg
    ```
 
    For example, if a variable is too long, NGINX may display such an error message:
@@ -303,7 +309,7 @@ To debug why your reload has failed, start with verifying the syntax of your con
 To understand why the NGINX Gateway Fabric Pod has not started running or is not ready, check the state of the Pod to get detailed information about the current status and events happening in the Pod. To do this, use `kubectl describe`:
 
 ```shell
-kubectl describe pod <ngf-pod-name> -n nginx-gateway
+kubectl describe pod <NGF_POD_NAME> -n nginx-gateway
 ```
 
 The Pod description includes details about the image name, tags, current status, and environment variables. Verify that these details match your setup and cross-check with the events to ensure everything is functioning as expected. For example, the Pod below has the nginx-gateway container that is running and the events reflect the same.
@@ -355,7 +361,7 @@ Events:
 To understand why the NGINX Pod has not started running or is not ready, check the state of the Pod to get detailed information about the current status and events happening in the Pod. To do this, use `kubectl describe`:
 
 ```shell
-kubectl describe pod <nginx-pod-name> -n <nginx-pod-namespace>
+kubectl describe pod <NGINX_POD_NAME> -n <NGINX_POD_NAMESPACE>
 ```
 
 The Pod description includes details about the image name, tags, current status, and environment variables. Verify that these details match your setup and cross-check with the events to ensure everything is functioning as expected. For example, the Pod below has the nginx container that is running and the events reflect the same.

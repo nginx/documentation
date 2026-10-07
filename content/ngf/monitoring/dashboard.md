@@ -15,11 +15,13 @@ The dashboard is enabled by default for NGINX Gateway Fabric deployments that us
 
 ## Connect to the dashboard
 
-To access the dashboard, you will first need to forward connections to port 8765 on your local machine to port 8765 on the NGINX Plus pod (replace `<nginx-plus-pod>` with the actual name of the pod).
+To access the dashboard, you will first need to forward connections to port 8765 on your local machine to port 8765 on the NGINX Plus pod (replace `<NGINX_PLUS_POD>` with the actual name of the pod).
 
 ```shell
-kubectl port-forward <nginx-plus-pod> 8765:8765 -n <nginx-plus-pod-namespace>
+kubectl port-forward <NGINX_PLUS_POD> 8765:8765 -n <NGINX_PLUS_POD_NAMESPACE>
 ```
+
+Replace `<NGINX_PLUS_POD_NAMESPACE>` with the namespace of your NGINX Plus Pod.
 
 Afterwards, use a browser to access [http://127.0.0.1:8765/dashboard.html](http://127.0.0.1:8765/dashboard.html) to view the dashboard.
 

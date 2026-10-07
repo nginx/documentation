@@ -375,9 +375,11 @@ In this example, you need the port values for both frontend validation modes.
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_DEFAULT=<port number>
-GW_PER_PORT=<port number>
+GW_DEFAULT=<PORT_NUMBER>
+GW_PER_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Create HTTPRoutes
 

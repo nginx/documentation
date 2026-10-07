@@ -74,7 +74,7 @@ Warning: kubectl apply should be used on resource created by either kubectl crea
 
 {{% tab name="Helm" %}}
 
-{{< call-out class="important" title="Important" >}}If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm install` or `helm upgrade`.{{< /call-out >}}
+{{< call-out class="important" title="Important" >}}If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<SECRET_NAME>` when running `helm install` or `helm upgrade`.{{< /call-out >}}
 
 To upgrade the release with Helm, you can use the OCI registry, or download the chart and upgrade from the source.
 
@@ -235,8 +235,8 @@ make watch
 ```text
 Hugo is available and has a version greater than 133. Proceeding with build.
 hugo --bind 0.0.0.0 -p 1313 server --disableFastRender
-Watching for changes in /home/<your-user>/nginx-gateway-fabric/site/{content,layouts,static}
-Watching for config changes in /home/<your-user>/nginx-gateway-fabric/site/config/_default, /home/<your-user>/nginx-gateway-fabric/site/config/development, /home/<your-user>/nginx-gateway-fabric/site/go.mod
+Watching for changes in /home/<USERNAME>/nginx-gateway-fabric/site/{content,layouts,static}
+Watching for config changes in /home/<USERNAME>/nginx-gateway-fabric/site/config/_default, /home/<USERNAME>/nginx-gateway-fabric/site/config/development, /home/<USERNAME>/nginx-gateway-fabric/site/go.mod
 Start building sites …
 hugo v0.135.0-f30603c47f5205e30ef83c70419f57d7eb7175ab linux/amd64 BuildDate=2024-09-27T13:17:08Z VendorInfo=gohugoio
 
@@ -256,6 +256,8 @@ Environment: "development"
 Serving pages from disk
 Web Server is available
 ```
+
+Replace `<USERNAME>` with your username.
 
 You can then follow [this localhost link](http://localhost:1313/nginx-gateway-fabric/) for 1.x NGINX Gateway Fabric documentation.
 

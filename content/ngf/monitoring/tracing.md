@@ -66,7 +66,7 @@ To enable tracing, you must configure two resources:
 
 - `NginxProxy`: This resource contains global settings relating to the NGINX data plane. It is created and managed by the [cluster operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/), and is referenced in the `parametersRef` field of the GatewayClass. By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values.
 
-When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
+When installed using the Helm chart, the NginxProxy resource is named `<RELEASE_NAME>-proxy-config` and is created in the release Namespace.
 
   The `NginxProxy` resource contains configuration for the collector, and applies to all Gateways and routes under the GatewayClass. It does not enable tracing, but is a prerequisite to the next piece of configuration.
 
@@ -276,8 +276,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 Check that traffic can flow to the application.
 
@@ -353,7 +355,7 @@ The `message` field shows the policy is accepted. Run the next command multiple 
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
 ```
 
-Once complete, refresh the Jaeger dashboard. You should see a service entry called `ngf:default:cafe`, and a few traces. The default service name is `ngf:<gateway-namespace>:<gateway-name>`.
+Once complete, refresh the Jaeger dashboard. You should see a service entry called `ngf:default:cafe`, and a few traces. The default service name is `ngf:<GATEWAY_NAMESPACE>:<GATEWAY_NAME>`.
 
 {{<img src="/ngf/img/jaeger-trace-overview.png" alt="">}}
 

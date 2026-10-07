@@ -145,8 +145,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Create a user credentials secret and AuthenticationFilter
 

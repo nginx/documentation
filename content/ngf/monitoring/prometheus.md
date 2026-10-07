@@ -175,15 +175,17 @@ To change the default port for metrics:
 
    ```yaml
    - name: metrics
-     containerPort: <new-port>
+     containerPort: <NEW_PORT>
    ```
+
+   Replace `<NEW_PORT>` with the port you want to use for metrics.
 
 3. Modify the `prometheus.io/port` annotation in the Pod template to match the new port:
 
    ```yaml
    annotations:
        <...>
-       prometheus.io/port: "<new-port>"
+       prometheus.io/port: "<NEW_PORT>"
        <...>
    ```
 

@@ -167,7 +167,7 @@ Secrets must be in the same namespace as the `WAFPolicy`.
 
 ### HTTP source
 
-Set `validation.verifyChecksum: true` to have NGINX Gateway Fabric fetch a companion `<url>.sha256` file and compare its SHA-256 digest against the downloaded bundle. Any mismatch prevents the bundle from being deployed and sets `Programmed=False` with reason `IntegrityError`.
+Set `validation.verifyChecksum: true` to have NGINX Gateway Fabric fetch a companion `<URL>.sha256` file and compare its SHA-256 digest against the downloaded bundle. Any mismatch prevents the bundle from being deployed and sets `Programmed=False` with reason `IntegrityError`.
 
 Generate the companion file:
 

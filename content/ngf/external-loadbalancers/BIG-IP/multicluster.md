@@ -38,9 +38,11 @@ The shell commands in this guide read the following environment variables, so se
 ```shell
 export BIGIP_ADDRESS="192.0.2.10:443"
 export BIGIP_USERNAME="admin"
-export BIGIP_PASSWORD="<your-password>"
+export BIGIP_PASSWORD="<PASSWORD>"
 export VIRTUAL_SERVER_ADDRESS="192.0.2.100"
 ```
+
+Replace `<PASSWORD>` with your BIG-IP password.
 
 - `BIGIP_ADDRESS` is the BIG-IP management address, including the port. BIG-IP listens on 443 by default.
 - `BIGIP_USERNAME` and `BIGIP_PASSWORD` are your BIG-IP credentials.

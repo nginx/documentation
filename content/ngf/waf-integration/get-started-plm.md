@@ -348,8 +348,10 @@ Save the public IP address and port of the Gateway to shell variables:
 
 ```text
 GW_IP=192.0.2.1
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 **Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 
