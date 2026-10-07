@@ -50,13 +50,13 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
    - **AWS region**, for example, `us-east-2`
 
-   - **Issuer**, for example, `https://cognito-idp.<region>.amazonaws.com/<User Pool ID>`
+   - **Issuer**, for example, `https://cognito-idp.<REGION>.amazonaws.com/<USER_POOL_ID>`
 
 ### Get the OpenID Connect Discovery URL
 
 Check the OpenID Connect Discovery URL. By default, Amazon Cognito publishes the `.well-known/openid-configuration` document at the following address:
 
-`https://cognito-idp.<region>.amazonaws.com/<User Pool ID>/.well-known/openid-configuration`.
+`https://cognito-idp.<REGION>.amazonaws.com/<USER_POOL_ID>/.well-known/openid-configuration`.
 
 1. Run the following `curl` command in a terminal:
 
@@ -89,7 +89,7 @@ Check the OpenID Connect Discovery URL. By default, Amazon Cognito publishes the
    }
    ```
 
-2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Amazon Cognito is `https://cognito-idp.<region>.amazonaws.com/<User Pool ID>`.
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Amazon Cognito is `https://cognito-idp.<REGION>.amazonaws.com/<USER_POOL_ID>`.
 
 {{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
@@ -171,8 +171,8 @@ With Cognito configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as
 
         oidc_provider cognito {
             issuer            https://cognito-idp.us-east-2.amazonaws.com/us-east-2_abCdEfGhI;
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             logout_uri        /logout;
             post_logout_uri   https://demo.example.com/post_logout/;
             userinfo          on;
@@ -185,6 +185,8 @@ With Cognito configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -292,12 +294,12 @@ http {
 
     oidc_provider cognito {
         # Typically your Cognito issuer is something like:
-        # https://cognito-idp.<region>.amazonaws.com/<UserPoolID>
+        # https://cognito-idp.<REGION>.amazonaws.com/<USER_POOL_ID>
         issuer https://cognito-idp.us-east-2.amazonaws.com/us-east-2_abCdEfGhI;
 
         # Your Cognito "App client id" and "App client secret"
-        client_id <client_id>;
-        client_secret <client_secret>;
+        client_id <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;

@@ -27,10 +27,10 @@ Choose one of the following methods to get the NGINX Ingress Controller image:
 
 ### Clone the repository
 
-Clone the NGINX Ingress Controller repository using the command shown below, and replace `<version_number>` with the specific release you want to use.
+Clone the NGINX Ingress Controller repository using the command shown below, and replace `<VERSION_NUMBER>` with the specific release you want to use.
 
 ```shell
-git clone https://github.com/nginx/kubernetes-ingress.git --branch <version_number>
+git clone https://github.com/nginx/kubernetes-ingress.git --branch <VERSION_NUMBER>
 ```
 
 For example, if you want to use version {{< nic-version >}}, the command would be:
@@ -222,8 +222,10 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
         Resolve the DNS name into an IP address using `nslookup`:
 
         ```shell
-        nslookup <dns-name>
+        nslookup <DNS_NAME>
         ```
+
+        Replace `<DNS_NAME>` with the DNS name of the Service you want to look up.
 
     You can also find more details about the public IP in the status section of an ingress resource. For more details, refer to the [Reporting Resources Status doc]({{< ref "/nic/configuration/global-configuration/reporting-resources-status.md" >}}).
 

@@ -15,7 +15,7 @@ NGINX Gateway Fabric can dynamically update the control plane configuration with
 
 NginxGateway is deployed in the same namespace as the controller (Default: `nginx-gateway`). The resource's default name is based on your [installation method]({{< ref "/ngf/install/" >}}):
 
-- Helm: `<release-name>-config`
+- Helm: `<RELEASE_NAME>-config`
 - Manifests: `nginx-gateway-config`
 
 The control plane only watches this single instance of the custom resource.

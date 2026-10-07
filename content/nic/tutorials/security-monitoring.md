@@ -34,8 +34,10 @@ NGINX Ingress Controller images with F5 WAF for NGINX include NGINX Agent 2. See
     nginxAgent:
         enable: true
         instanceManager:
-            host: "<FQDN or IP address of NGINX Instance Manager>"
+            host: "<NIM_FQDN_OR_IP>"
     ```
+
+    Replace `<NIM_FQDN_OR_IP>` with the FQDN or IP address of NGINX Instance Manager.
 
 2. Follow the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
 
@@ -46,8 +48,10 @@ NGINX Ingress Controller images with F5 WAF for NGINX include NGINX Agent 2. See
     ```yaml
     args:
       - -agent=true
-      - -agent-instance-group=<NGINX Ingress Controller deployment name>
+      - -agent-instance-group=<DEPLOYMENT_NAME>
     ```
+
+    Replace `<DEPLOYMENT_NAME>` with the name of your NGINX Ingress Controller Deployment.
 
 2. Create a ConfigMap with an `nginx-agent.conf` file which must be mounted to `/etc/nginx-agent/nginx-agent.conf` in the NGINX Ingress Controller pod.
 
@@ -55,15 +59,15 @@ NGINX Ingress Controller images with F5 WAF for NGINX include NGINX Agent 2. See
     kind: ConfigMap
     apiVersion: v1
     metadata:
-      name: <configmap name>
-      namespace: <namespace where NGINX Ingress Controller will be installed>
+      name: <CONFIGMAP_NAME>
+      namespace: <NAMESPACE>
     data:
       nginx-agent.conf: |-
         log:
           level: error
           path: ""
         server:
-          host: "<FQDN or IP address of NGINX Instance Manager>"
+          host: "<NIM_FQDN_OR_IP>"
           grpcPort: 443
         tls:
           enable: true
@@ -85,6 +89,8 @@ NGINX Ingress Controller images with F5 WAF for NGINX include NGINX Agent 2. See
           syslog_ip: 127.0.0.1
           syslog_port: 1514
    ```
+
+   Replace `<CONFIGMAP_NAME>` with the name of your ConfigMap and `<NAMESPACE>` with the Kubernetes namespace where NGINX Ingress Controller is installed.
 
    See the [NGINX Agent Configuration Overview]({{< ref "/agent/configuration/configuration-overview.md" >}}) for more configuration options.
 
@@ -127,9 +133,11 @@ This guide assumes that you have an NGINX One Console account with access to cre
 
     ```shell
     kubectl create secret generic dataplane-key \
-      --from-literal=dataplane.key=<Your Dataplane Key> \
-      -n <namespace>
+      --from-literal=dataplane.key=<DATA_PLANE_KEY> \
+      -n <NAMESPACE>
     ```
+
+    Replace `<DATA_PLANE_KEY>` with your data plane key.
 
 - Use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). Images without the `-agent` suffix include NGINX Agent 2 and are not compatible with NGINX One Console. See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for the full list of available image variants.
 
@@ -142,10 +150,12 @@ This guide assumes that you have an NGINX One Console account with access to cre
     ```yaml
     nginxAgent:
       enable: true
-      dataplaneKeySecretName: "<data_plane_key_secret_name>"
+      dataplaneKeySecretName: "<DATA_PLANE_KEY_SECRET_NAME>"
       endpointHost: "agent.connect.nginx.com"
       endpointPort: 443
     ```
+
+    Replace `<DATA_PLANE_KEY_SECRET_NAME>` with the name of the Secret that contains your data plane key.
 
 2. Follow the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
@@ -164,8 +174,8 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
 
     ```shell
     kubectl create secret generic dataplane-key \
-      --from-literal=dataplane.key=<Your Dataplane Key> \
-      -n <namespace>
+      --from-literal=dataplane.key=<DATA_PLANE_KEY> \
+      -n <NAMESPACE>
     ```
 
 3. Create a ConfigMap with an `nginx-agent.conf` file:
@@ -175,7 +185,7 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
     apiVersion: v1
     metadata:
       name: nginx-agent-config
-      namespace: <namespace where NGINX Ingress Controller will be installed>
+      namespace: <NAMESPACE>
     data:
       nginx-agent.conf: |-
         log:
@@ -221,7 +231,7 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
        emptyDir: {}
      - name: dataplane-key
        secret:
-         secretName: "<data_plane_key_secret_name>"
+         secretName: "<DATA_PLANE_KEY_SECRET_NAME>"
      - name: agent-dynamic
        emptyDir: {}
    ```
@@ -273,8 +283,8 @@ If you have an existing deployment using NGINX Instance Manager (NGINX Agent 2) 
 
     ```shell
     kubectl create secret generic dataplane-key \
-      --from-literal=dataplane.key=<Your Dataplane Key> \
-      -n <namespace>
+      --from-literal=dataplane.key=<DATA_PLANE_KEY> \
+      -n <NAMESPACE>
     ```
 
 3. To continue the conversion to NGINX One Console, **update your deployment** to use NGINX Agent 3:
@@ -304,10 +314,12 @@ nginxAgent:
 Run the upgrade:
 
 ```shell
-helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} \
+helm upgrade <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} \
   -f values.yaml \
-  -n <namespace>
+  -n <NAMESPACE>
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 {{%/tab%}}
 
@@ -321,8 +333,10 @@ helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {
     ```yaml
     args:
       - -agent=true
-      # Remove: - -agent-instance-group=<name>
+      # Remove: - -agent-instance-group=<NAME>
     ```
+
+    Replace `<NAME>` with the name of the resource.
 
 3. Replace the `nginx-agent.conf` ConfigMap with the NGINX Agent 3 configuration shown in the [Using NGINX One Console - Using Manifests](#using-nginx-one-console) section.
 
@@ -336,10 +350,12 @@ helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {
    #   projected:
    #     sources:
    #       - secret:
-   #           name: <nim-tls-secret>
+   #           name: <NIM_TLS_SECRET>
    #       - secret:
-   #           name: <nim-ca-secret>
+   #           name: <NIM_CA_SECRET>
    ```
+
+   Replace `<NIM_TLS_SECRET>` with the name of the Secret that contains the NGINX Instance Manager TLS certificate and `<NIM_CA_SECRET>` with the name of the Secret that contains the NGINX Instance Manager CA certificate.
 
    Add the data plane key volume and mount:
 
@@ -357,8 +373,10 @@ helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {
 5. Apply the updated manifests:
 
     ```shell
-    kubectl apply -f <your-deployment-manifest>.yaml
+    kubectl apply -f <YOUR_DEPLOYMENT_MANIFEST>.yaml
     ```
+
+    Replace `<YOUR_DEPLOYMENT_MANIFEST>` with the path to your Deployment manifest.
 
 {{%/tab%}}
 
@@ -367,15 +385,17 @@ helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {
 4. **Verify the upgrade** by checking the agent version and connection:
 
     ```shell
-    kubectl exec -it -n <namespace> <pod_name> -- nginx-agent -v
+    kubectl exec -it -n <NAMESPACE> <POD_NAME> -- nginx-agent -v
     ```
+
+    Replace `<POD_NAME>` with the name of the pod.
 
     The output should show `nginx-agent version v3.x.x`. Check the NGINX One Console dashboard under **Manage > Instances** to confirm your instances appear.
 
 5. **Clean up** old NGINX Instance Manager TLS secrets if they are no longer needed:
 
     ```shell
-    kubectl delete secret <nim-tls-secret> <nim-ca-secret> -n <namespace>
+    kubectl delete secret <NIM_TLS_SECRET> <NIM_CA_SECRET> -n <NAMESPACE>
     ```
 
 {{< call-out class="note" >}} Modifying the APLogConf in the examples may result in the Security Monitoring integration not working, as NGINX Agent expects a specific log format.{{< /call-out >}}

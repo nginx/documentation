@@ -269,9 +269,11 @@ To generate the necessary certificates, follow these steps. You can modify these
 
     # apply any DNS or IP SANs as needed
     [alt_names]
-    DNS.1 = <NGINX-INSTANCE-MANAGER-FQDN>
-    IP.1 = <NGINX-INSTANCE-MANAGER-IP>
+    DNS.1 = <NIM_FQDN>
+    IP.1 = <NIM_IP>
     ```
+
+    Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<NIM_IP>` with the IP address of your NGINX Instance Manager host.
 
     {{< /details >}}
 
@@ -342,7 +344,7 @@ To generate the necessary certificates, follow these steps. You can modify these
     # specify the server grpc port to connect to
     server:
         # host of the control plane
-        host: <NGINX-INSTANCE-MANAGER-FQDN>
+        host: <NIM_FQDN>
         grpcPort: 443
         # provide servername overrides if using SNI
         metrics: "nginx-manager.example.com"
@@ -480,12 +482,14 @@ If NGINX Instance Manager uses a self-signed certificate, you must configure NGI
 
 ```nginx
 mgmt {
-    usage_report endpoint=<NGINX-INSTANCE-MANAGER-FQDN>;
+    usage_report endpoint=<NIM_FQDN>;
     ssl_verify on;
-    ssl_trusted_certificate <CA-CERT-FILE-FROM-NGINX-INSTANCE-MANAGER>;
+    ssl_trusted_certificate <CA_CERT_FILE>;
     ssl_name manager-server;
 }
 ```
+
+Replace `<CA_CERT_FILE>` with the path to the CA certificate file you exported from NGINX Instance Manager.
 
 Using self-signed certificates requires careful configuration to avoid connection issues or potential vulnerabilities.
 

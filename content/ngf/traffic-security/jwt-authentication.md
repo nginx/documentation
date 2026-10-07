@@ -158,8 +158,10 @@ Save the public IP address and port of the Gateway into shell variables:
 
 ```shell
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ---
 
@@ -325,8 +327,10 @@ This guide simulates that using curl's `--resolve` option.
 To test the authentication, you need a JWT signed with the private key that corresponds to the public key in your JWKS. You can use [jwt.io](https://jwt.io) or other JWT tools to generate one. Store it in a shell variable:
 
 ```shell
-JWT_TOKEN="<your-signed-jwt>"
+JWT_TOKEN="<SIGNED_JWT>"
 ```
+
+Replace `<SIGNED_JWT>` with your signed JWT.
 
 Access `/coffee` with a valid JWT:
 

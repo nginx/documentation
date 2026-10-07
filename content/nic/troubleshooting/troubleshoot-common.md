@@ -30,14 +30,14 @@ This section explains how to gather additional information for troubleshooting.
 The commands examples make the following assumptions:
 
 - That NGINX Ingress Controller is deployed in the namespace `nginx-ingress`.
-- `<nginx-ingress-pod>` is the name of one of the NGINX Ingress Controller pods.
+- `<NGINX_INGRESS_POD>` is the name of one of the NGINX Ingress Controller pods.
 
 ### Check NGINX Ingress Controller logs
 
 To check NGINX Ingress Controller logs, which include both information from NGINX Ingress Controller and NGINX's access and error logs, run the following command:
 
 ```shell
-kubectl logs <nginx-ingress-pod> -n nginx-ingress
+kubectl logs <NGINX_INGRESS_POD> -n nginx-ingress
 ```
 
 ### Check the generated configuration files
@@ -49,7 +49,7 @@ For each Ingress/VirtualServer resource, NGINX Ingress Controller generates a co
 You can view the content of the main configuration file by running:
 
 ```shell
-kubectl exec <nginx-ingress-pod> -n nginx-ingress -- cat /etc/nginx/nginx.conf
+kubectl exec <NGINX_INGRESS_POD> -n nginx-ingress -- cat /etc/nginx/nginx.conf
 ```
 
 Similarly, you can view the content of any generated configuration file in the `/etc/nginx/conf.d` folder.
@@ -57,7 +57,7 @@ Similarly, you can view the content of any generated configuration file in the `
 You can also print all NGINX configuration files together:
 
 ```shell
-kubectl exec <nginx-ingress-pod> -n nginx-ingress -- nginx -T
+kubectl exec <NGINX_INGRESS_POD> -n nginx-ingress -- nginx -T
 ```
 
 However, this command will fail if any of the configuration files is not valid.

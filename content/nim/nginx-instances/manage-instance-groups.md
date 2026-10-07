@@ -73,7 +73,7 @@ You can easily add instances to a default instance group that you specify. To do
 
 1. Open a secure shell (SSH) connection to the NGINX instance and log in.
 2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` for editing.
-3. Add a value for `instance_group: <group name>`, similar to the following example:
+3. Add a value for `instance_group: <GROUP_NAME>`, where `<GROUP_NAME>` is the name of the instance group, similar to the following example:
 
     Example:
 
@@ -125,10 +125,12 @@ To add an instance to an instance group when installing the NGINX Agent:
     curl https://<NIM_FQDN>/install/nginx-agent > install.sh
     ```
 
+    Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
+
 3. Install the NGINX Agent and specify the instance group by using the `--instance_group` flag:
 
     ```shell
-    sudo sh ./install.sh --instance-group <group name>
+    sudo sh ./install.sh --instance-group <GROUP_NAME>
     ```
 
     For example, the following command adds the instance to an instance group called `nginx-01`.
@@ -169,7 +171,7 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 
 1. Open a secure shell (SSH) connection to the NGINX instance and log in.
 2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` for editing.
-3. Locate and remove or comment out the `instance_group: <group name>` setting, similar to the following example:
+3. Locate and remove or comment out the `instance_group: <GROUP_NAME>` setting, similar to the following example:
 
     Example:
 

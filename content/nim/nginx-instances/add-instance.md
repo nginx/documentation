@@ -31,6 +31,8 @@ Make sure you have:
    curl https://<NIM_FQDN>/install/nginx-agent | sudo sh
    ```
 
+   Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
+
 6. On the same host, run the following command to start NGINX Agent:
 
    ```shell

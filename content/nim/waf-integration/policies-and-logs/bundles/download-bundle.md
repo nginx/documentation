@@ -21,7 +21,7 @@ To download a security policy bundle using the F5 NGINX Instance Manager web int
 3. On the **Security Policies** page, find the policy you want to download a bundle for.
 4. Select the **Actions** menu (…) and choose **Download Bundle**.
    - The **Download Bundle** option is available only when the **Compilation Status** is **Compiled**.
-5. When the download starts, a `.tgz` file named `<PolicyName>-security-policy-bundle.tgz` is saved to your system.
+5. When the download starts, a `.tgz` file named `<POLICY_NAME>-security-policy-bundle.tgz` is saved to your system.
 
 > **Note:** By default, **Download Bundle** retrieves the latest bundle revision of the selected policy.
 
@@ -40,17 +40,24 @@ You must have `"READ"` permission for the bundle to retrieve it.
 Example:
 
 ```shell
-curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid> \
-  -H "Authorization: Bearer <access token>"
+curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/{policy_uid}/bundles/{bundle_uid} \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace the placeholders as follows:
+
+- `<NIM_FQDN>`: the fully qualified domain name (FQDN) of your NGINX Instance Manager host
+- `{policy_uid}`: the unique identifier (UID) of the security policy
+- `{bundle_uid}`: the unique identifier (UID) of the security policy bundle
+- `<ACCESS_TOKEN>`: your access token
 
 The response includes a `content` field that contains the bundle in base64 format. To use it, decode the content and save it as a `.tgz` file.
 
 Example:
 
 ```shell
-curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
-  -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/policies/{policy_uid}/bundles/{bundle_uid}" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 
 {{< details summary="JSON response" open=true >}}
@@ -61,11 +68,11 @@ curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid>/b
     "created": "2023-10-04T23:19:58.502Z",
     "modified": "2023-10-04T23:19:58.502Z",
     "appProtectWAFVersion": "4.457.0",
-    "policyUID": "<policy-uid>",
+    "policyUID": "<POLICY_UID>",
     "attackSignatureVersionDateTime": "2023.08.10",
     "botSignatureVersionDateTime": "2023.08.09",
     "threatCampaignVersionDateTime": "2023.08.09",
-    "uid": "<bundle-uid>"
+    "uid": "<BUNDLE_UID>"
   },
   "content": "ZXZlbnRzIHt9Cmh0dHAgeyAgCiAgICBzZXJ2ZXIgeyAgCiAgICAgICAgbGlzdGVuIDgwOyAgCiAgICAgICAgc2VydmVyX25hbWUgXzsKCiAgICAgICAgcmV0dXJuIDIwMCAiSGVsbG8iOyAgCiAgICB9ICAKfQ==",
   "compilationStatus": {

@@ -37,13 +37,15 @@ Optionally, using --help will issue this help message.
 In a Kubernetes environment, you can invoke it using _kubectl_:
 
 ```shell
-kubectl -n <namespace> exec -it <podname> -c waf-nginx -- bash /opt/app_protect/bin/apreload
+kubectl -n <NAMESPACE> exec -it <POD_NAME> -c waf-nginx -- bash /opt/app_protect/bin/apreload
 ```
+
+Replace `<NAMESPACE>` with the namespace where F5 WAF for NGINX is deployed and `<POD_NAME>` with the name of your pod.
 
 The result can then be viewed in the `waf-config-mgr` container logs.
 
 ```shell
-kubectl -n <namespace> logs <podname> -c config-mgr
+kubectl -n <NAMESPACE> logs <POD_NAME> -c config-mgr
 sudo docker logs waf-config-mgr
 ```
 

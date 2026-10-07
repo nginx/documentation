@@ -44,6 +44,8 @@ The F5 NGINX Instance Manager Helm chart includes the `k8s-support-package.sh` s
     tar zxvf nms-<VERSION>.tgz
     ```
 
+    Replace `<VERSION>` with the version number.
+
 2. Run the Kubernetes support package script. For available options, refer to the [arguments](#arguments) section:
 
     ```bash
@@ -126,7 +128,7 @@ Application-related information for NGINX Instance Manager:
 
 ### pod-logs
 
-Logs of processes for NGINX Instance Manager, NGINX gateway, and ClickHouse. Files in this directory follow the naming convention: `pod_name-<timestamp>.logs`.
+Logs of processes for NGINX Instance Manager, NGINX gateway, and ClickHouse. Files in this directory follow the naming convention: `pod_name-<TIMESTAMP>.logs`, where `<TIMESTAMP>` is the time the package was created.
 
 ### pod-system-info
 
@@ -144,7 +146,7 @@ The script uses the `dqlite-backup` executable (located in `/etc/nms/scripts/` w
 - `dqlite/dpm`
 - `dqlite/integrations`
 
-If the `--modules` flag is specified, data is saved to `dqlite/<moduleName>`.
+If the `--modules` flag is specified, data is saved to `dqlite/<MODULE_NAME>`, where `<MODULE_NAME>` is the name of the module.
 
 ### timeseries
 

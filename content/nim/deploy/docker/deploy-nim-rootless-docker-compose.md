@@ -45,7 +45,7 @@ Before you begin, make sure you have the following:
 Create the admin password file in the same directory as `docker-compose-rootless.yaml`:
 
 ```shell
-echo "<password>" > admin_password.txt
+echo "<PASSWORD>" > admin_password.txt
 ```
 
 Log in to the F5 image registry with your JWT:
@@ -155,7 +155,7 @@ docker compose -f docker-compose-rootless.yaml down
 docker exec nim-nim-1 nim-backup
 ```
 
-This creates a backup at `/data/backup/nim-backup-<date>.tgz` inside the container. To find it on the host:
+This creates a backup at `/data/backup/nim-backup-<DATE>.tgz` inside the container. To find it on the host:
 
 ```shell
 docker inspect volume nim_nim-data | jq '.[0].Mountpoint'
@@ -168,7 +168,7 @@ sudo ls -l /var/lib/docker/volumes/nim_nim-data/_data/backup
 2. Run the restore command:
 
 ```shell
-   docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<date>.tgz
+   docker exec nim-nim-1 nim-restore /data/backup/nim-backup-<DATE>.tgz
 ```
 
 3. Set `NIM_MAINTENANCE: "false"` and restart the stack again.
@@ -194,15 +194,17 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<NFS_IP>,rw"
+      o: "addr=<NFS_SERVER_IP>,rw"
       device: ":/mnt/nfs_share/data"
   clickhouse-data:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=<NFS_IP>,rw"
+      o: "addr=<NFS_SERVER_IP>,rw"
       device: ":/mnt/nfs_share/clickhouse"
 ```
+
+Replace `<NFS_SERVER_IP>` with the IP address of your NFS server.
 
 ---
 
@@ -220,7 +222,7 @@ docker compose -f docker-compose-rootless.yaml ps -a
 {{<table>}}
 | Symptom | Fix |
 |---|---|
-| `admin_password.txt: no such file or directory` | Create the file: `echo "<password>" > admin_password.txt` |
+| `admin_password.txt: no such file or directory` | Create the file: `echo "<PASSWORD>" > admin_password.txt` |
 | `Error: Clickhouse TTL value must be an integer` | Set `NIM_METRICS_TTL`, `NIM_EVENTS_TTL`, or `NIM_SECURITY_TTL` to a plain integer, for example `"7"`. |
 | `Error: NIM_WATCHDOG_TIMEOUT value must be an integer` | Set it to a plain integer in seconds, for example `"60"`. |
 | `Error: ENABLE_METRICS value must be either true or false` | Correct the value in your compose file. |
@@ -332,6 +334,8 @@ Test proxy reachability from inside the container. A `200` or `400` response mea
 ```shell
 docker compose -f docker-compose-rootless.yaml exec nim curl -x http://<PROXY_HOST>:<PROXY_PORT> -sS -o /dev/null -w "%{http_code}" https://product.connect.nginx.com/api/nginx-usage/batch
 ```
+
+Where `<PROXY_PORT>` is the port of your forward proxy.
 
 If your proxy uses a corporate CA, mount the PEM certificates into `/usr/local/share/ca-certificates` with the `proxy-certs` volume. For testing only, set `PROXY_SSL_VERIFY=false`.
 

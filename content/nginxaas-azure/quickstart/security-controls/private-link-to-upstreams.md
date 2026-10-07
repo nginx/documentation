@@ -214,9 +214,11 @@ Then, reference it in your NGINX configuration's upstream servers. For example:
 
 ```nginx
 upstream {
-    server <private endpoint IP address>:8000;
+    server <PRIVATE_ENDPOINT_IP_ADDRESS>:8000;
 }
 ```
+
+Replace `<PRIVATE_ENDPOINT_IP_ADDRESS>` with the IP address of your private endpoint.
 
 {{< /details >}}
 

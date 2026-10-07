@@ -210,8 +210,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_TLS_PORT=<port number>
+GW_TLS_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 
@@ -447,7 +449,7 @@ Save the public IP address and port of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_TLS_PORT=<port number>
+GW_TLS_PORT=<PORT_NUMBER>
 ```
 
 {{< call-out "note" >}}

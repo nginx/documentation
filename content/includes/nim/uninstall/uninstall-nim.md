@@ -23,4 +23,4 @@ Follow the steps below to uninstall NGINX Instance Manager and ClickHouse.
    sudo apt-get remove -y clickhouse-server
    ```
 
-	If you want to remove the package and its configuration files, use `apt-get purge -y <package>` instead of `apt-get remove -y`.
+	If you want to remove the package and its configuration files, use `apt-get purge -y <PACKAGE>` instead of `apt-get remove -y`.

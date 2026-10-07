@@ -130,29 +130,38 @@ In the **/etc/keepalived** folder create a file named **keepalived.conf** with t
 
 ```nginx
 vrrp_script chk_nginx_service {
-    script "<path-to-health-check-script>"
+    script "<PATH/TO/HEALTH_CHECK_SCRIPT>"
     interval 3
     weight 50
 }
 vrrp_instance VI_1 {
     interface eth0
-    priority <priority>
+    priority <PRIORITY>
     virtual_router_id 51
     advert_int 1
-    unicast_src_ip <internal-ip-address-of-instance>
+    unicast_src_ip <INSTANCE_IP>
     unicast_peer {
-        <internal-ip-address-of-other-instance>
+        <OTHER_INSTANCE_IP>
     }
     authentication {
         auth_type PASS
-        auth_pass <password>
+        auth_pass <PASSWORD>
     }
     track_script {
         chk_nginx_service
     }
-    notify "<path-to-notify-script>"
+    notify "<PATH/TO/NOTIFY_SCRIPT>"
 }
 ```
+
+Replace the placeholders as follows:
+
+- `<PATH/TO/HEALTH_CHECK_SCRIPT>`: the path to your health check script
+- `<PRIORITY>`: the VRRP priority for this node
+- `<INSTANCE_IP>`: the internal IP address of this instance
+- `<OTHER_INSTANCE_IP>`: the internal IP address of the other instance
+- `<PASSWORD>`: the password shared by the keepalived nodes
+- `<PATH/TO/NOTIFY_SCRIPT>`: the path to your notify script
 
 You must change values for the following configuration keywords. As you do so, also remove the angle brackets enclosing the placeholder value:
 
@@ -177,15 +186,15 @@ You must change values for the following configuration keywords. As you do so, a
 <span id="ha-aws_nginx-ha-notify-script"></span>
 ### Creating nginx-ha-notify
 
-Modify the user‑defined variables section of the {{<nb>}}**nginx-ha-notify**{{</nb>}} script, replacing each `<value>` placeholder with the value specified in the list below:
+Modify the user‑defined variables section of the {{<nb>}}**nginx-ha-notify**{{</nb>}} script, replacing each `<VALUE>` placeholder with the value specified in the list below:
 
 ```none
-export AWS_ACCESS_KEY_ID=<value>
-export AWS_SECRET_ACCESS_KEY=<value>
-export AWS_DEFAULT_REGION=<value>
-HA_NODE_1=<value>
-HA_NODE_2=<value>
-ALLOCATION_ID=<value>
+export AWS_ACCESS_KEY_ID=<VALUE>
+export AWS_SECRET_ACCESS_KEY=<VALUE>
+export AWS_DEFAULT_REGION=<VALUE>
+HA_NODE_1=<VALUE>
+HA_NODE_2=<VALUE>
+ALLOCATION_ID=<VALUE>
 ```
 
 - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` – The credentials for accessing the AWS API. Set them only when an IAM instance profile isn’t used. Otherwise, delete the corresponding two lines.

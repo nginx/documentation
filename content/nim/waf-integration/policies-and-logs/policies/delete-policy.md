@@ -36,23 +36,27 @@ To delete a policy using the REST API:
 
    ```shell
    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies \
-     -H "Authorization: Bearer <access token>"
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
    ```
+
+   Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 1. Use the policy UID in a `DELETE` request:
 
 {{< table >}}
 | Method | Endpoint                                                   |
 |--------|------------------------------------------------------------|
-| DELETE | `/api/platform/v1/security/policies/{policy-uid}` |
+| DELETE | `/api/platform/v1/security/policies/{policy_uid}` |
 {{</ table >}}
 
 **Example:**
 
 ```shell
-curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid> \
-  -H "Authorization: Bearer <access token>"
+curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/policies/{policy_uid} \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace `{policy_uid}` with the unique identifier (UID) of the security policy.
 
 {{%/tab%}}
 

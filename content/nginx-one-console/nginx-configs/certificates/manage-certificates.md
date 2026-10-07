@@ -75,10 +75,12 @@ For exmaple, if you use ECDSA private keys in PEM format, the PEM headers should
 
 ```
 -----BEGIN EC PRIVATE KEY-----
-<BASE64 ENCODED KEY>
+<BASE64_ENCODED_KEY>
 -----END EC PRIVATE KEY-----
 
 ```
+
+Replace `<BASE64_ENCODED_KEY>` with your base64-encoded private key.
 
 If you use one of these keys, the US National Institute of Standards and Technology, in [Publication 800-57 Part 3 (PDF)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf), recommends a key size of at least
 2048 bits. It also has recommnedations for ECDSA.

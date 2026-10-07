@@ -37,8 +37,10 @@ Depending on the operating system distribution, it may be necessary to install t
 
 Change to the NGINX Agent source directory:
 ```shell
-cd <path_to_development_directory>/agent
+cd <PATH_TO_DEVELOPMENT_DIRECTORY>/agent
 ```
+
+Replace `<PATH_TO_DEVELOPMENT_DIRECTORY>` with the path to your development directory.
 
 Install Make:
 ```shell

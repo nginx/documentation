@@ -75,8 +75,10 @@ kubectl get deployment -n nginx-ingress nginx-ingress -o yaml | linkerd inject -
 If you want to inject into an existing `Helm` installation, you can run the following:
 
 ```shell
-kubectl get deployment -n <name_of_namespace> <name_of_helm_release> -o yaml | linkerd inject - | kubectl apply -f -
+kubectl get deployment -n <NAMESPACE> <RELEASE_NAME> -o yaml | linkerd inject - | kubectl apply -f -
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX Ingress Controller is installed and `<RELEASE_NAME>` with the name of your Helm release.
 
 In this example, the `helm` release named `kic01-nginx-ingress-controller` is injected into the `nginx-ingress` namespace:
 

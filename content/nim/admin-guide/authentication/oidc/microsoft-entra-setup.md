@@ -53,7 +53,7 @@ To register an application with Microsoft Entra:
 1. Provide the following details:
    - Enter a name for the application in the **Name** field, such as "NGINX Instance Manager".
    - Select **Account in this organizational directory only** from the list of account types.
-   - Under the **Redirect URI** section, choose **Web** and enter the redirect URI, for example, `https://<my-nginx-instance-manager>/_codexch`.
+   - Under the **Redirect URI** section, choose **Web** and enter the redirect URI, for example, `https://<NIM_FQDN>/_codexch`.
 
    {{< img src="/security/oidc/azure-register-app.png" alt="Azure: register an application." width="600" height="415" >}}
 

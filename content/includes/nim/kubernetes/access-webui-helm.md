@@ -22,7 +22,7 @@ You can access the NGINX Instance Manager web interface using the external IP ad
    apigw   ClusterIP   10.108.57.167   <none>        443/TCP   32s
    ```
 
-   Using the `CLUSTER-IP` value, go to `https://<CLUSTER-IP>:443/ui`.
+   Using the `CLUSTER-IP` value, go to `https://<CLUSTER_IP>:443/ui`.
 
    For example, `https://10.108.57.167/ui`.
 

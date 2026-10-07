@@ -129,14 +129,14 @@ Example API request:
 {
   "conf_path": "/etc/nginx/nginx.conf",
   "base_template": {
-    "object_id": "<ID of your template object>",
+    "object_id": "<TEMPLATE_OBJECT_ID>",
     "values": {
       "backend_url": "http://example.com:8080"
     }
   },
   "augments": [
     {
-      "object_id": "<ID of your template object>",
+      "object_id": "<TEMPLATE_OBJECT_ID>",
       "target_context": "http/server/location",
       "values": {
         "cors_allowed_origins": "https://app.example.com",
@@ -144,11 +144,11 @@ Example API request:
       }
     },
     {
-      "object_id": "<ID of your template object>",
+      "object_id": "<TEMPLATE_OBJECT_ID>",
       "target_context": "http/server"
     },
     {
-      "object_id": "<ID of your template object>",
+      "object_id": "<TEMPLATE_OBJECT_ID>",
       "target_context": "http",
       "values": {
         "listen_port": 80,
@@ -156,7 +156,7 @@ Example API request:
       },
       "child_augments": [
         {
-          "object_id": "<ID of your template object>",
+          "object_id": "<TEMPLATE_OBJECT_ID>",
           "target_context": "http/server/location",
           "values": {
             "path": "/admin",
@@ -164,7 +164,7 @@ Example API request:
           }
         },
         {
-          "object_id": "<ID of your template object>",
+          "object_id": "<TEMPLATE_OBJECT_ID>",
           "target_context": "http/server/location",
           "values": {
             "health_check_path": "/admin/health"
@@ -175,6 +175,8 @@ Example API request:
   ]
 }
 ```
+
+Replace `<TEMPLATE_OBJECT_ID>` with the object ID of your template.
 
 ### New config template contents
 
@@ -198,7 +200,7 @@ If the request succeeds, the response includes the following output and the rend
             {
                 "files": [
                     {
-                        "contents": "<base64_encoded_nginx_conf>",
+                        "contents": "<BASE64_ENCODED_NGINX_CONF>",
                         "mtime": "0001-01-01T00:00:00Z",
                         "name": "nginx.conf",
                         "size": 483
@@ -209,25 +211,25 @@ If the request succeeds, the response includes the following output and the rend
             {
                 "files": [
                     {
-                        "contents": "<base64_encoded_nginx_conf>",
+                        "contents": "<BASE64_ENCODED_NGINX_CONF>",
                         "mtime": "0001-01-01T00:00:00Z",
                         "name": "cors-headers.tmpl.4aaf36d4a643.conf",
                         "size": 159
                     },
                     {
-                        "contents": "<base64_encoded_nginx_conf>",
+                        "contents": "<BASE64_ENCODED_NGINX_CONF>",
                         "mtime": "0001-01-01T00:00:00Z",
                         "name": "health-check.tmpl.78346de4dae4.conf",
                         "size": 109
                     },
                     {
-                        "contents": "<base64_encoded_nginx_conf>",
+                        "contents": "<BASE64_ENCODED_NGINX_CONF>",
                         "mtime": "0001-01-01T00:00:00Z",
                         "name": "http-server.tmpl.81761e94d463.conf",
                         "size": 145
                     },
                     {
-                        "contents": "<base64_encoded_nginx_conf>",
+                        "contents": "<BASE64_ENCODED_NGINX_CONF>",
                         "mtime": "0001-01-01T00:00:00Z",
                         "name": "location-proxy.tmpl.66ebf3e1dfd9.conf",
                         "size": 121
@@ -240,6 +242,8 @@ If the request succeeds, the response includes the following output and the rend
     "errors": null
 }
 ```
+
+Where `<BASE64_ENCODED_NGINX_CONF>` is your base64-encoded NGINX configuration file.
 
 #### Rendered NGINX configuration
 

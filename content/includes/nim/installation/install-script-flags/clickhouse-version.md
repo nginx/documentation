@@ -5,4 +5,4 @@ f5-files:
 - content/nim/disconnected/offline-install-guide.md
 ---
 
-`-v <clickhouse-version>`: Install a specific version of ClickHouse. If not set, version `{{< clickhouse-version >}}` is installed by default.
+`-v <CLICKHOUSE_VERSION>`: Install a specific version of ClickHouse. If not set, version `{{< clickhouse-version >}}` is installed by default.

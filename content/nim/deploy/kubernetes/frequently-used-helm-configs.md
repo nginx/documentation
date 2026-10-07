@@ -54,7 +54,7 @@ For full instructions, see [Use external TLS certificates]({{< ref "/nim/deploy/
 
 You can review and adjust the deployment's default resource and storage settings by editing the `values.yaml` file in the Helm package you downloaded. Adjust the values to meet your data needs.
 
-Persistent volumes are on by default for the ClickHouse database server and the `core` and `dpm` services. To turn off persistent storage, set `<service>.persistence.enabled` to `false`.
+Persistent volumes are on by default for the ClickHouse database server and the `core` and `dpm` services. To turn off persistent storage, set `<SERVICE>.persistence.enabled` to `false`, where `<SERVICE>` is the service name, such as `core` or `dpm`.
 
 ---
 
@@ -64,7 +64,7 @@ To use NGINX Plus for the API Gateway, follow these steps:
 
 1. Build your own Docker image for the NGINX Plus API Gateway by providing your `nginx-repo.crt` and `nginx-repo.key`. Download the certificate and key from the [MyF5 website](https://my.f5.com) and add them to your build context.
 
-   Use the following example Dockerfile to build the image. In this example, we use `apigw:<version>` as the base image, which you obtained when you [downloaded the Helm package]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#download-helm-package" >}}).
+   Use the following example Dockerfile to build the image. In this example, we use `apigw:<VERSION>` as the base image, which you obtained when you [downloaded the Helm package]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#download-helm-package" >}}).
 
    **Example Dockerfile:**
 
