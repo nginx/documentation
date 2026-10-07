@@ -31,6 +31,8 @@ To review supported operating systems, read the [Releases]({{< ref "/nap-dos/rel
 
 In the same folder as your credential files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
 
+As written, the examples install the most recent version of F5 DoS for NGINX and NGINX Plus. To build a specific version instead, set the `DOS_VERSION` build argument, using the syntax shown in the comment at the top of the Dockerfile for your operating system. On Debian and Ubuntu, also set `NGINX_PLUS_VERSION`, because `apt` considers only the newest `nginx-plus` available and does not select an older one to satisfy the module's dependency. To review which NGINX Plus release each version requires, read the [Releases]({{< ref "/nap-dos/releases" >}}) topic.
+
 ### Alpine Linux
 
 {{< tabs name="alpine-instructions" >}}
@@ -148,6 +150,17 @@ To build an image, use the following command, replacing `<your-nginx-dos-image-n
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
+  -t <your-nginx-dos-image-name> .
+```
+
+To build a specific version instead, add the two build arguments. For example, on Debian 11:
+
+```shell
+sudo docker build --no-cache --platform linux/amd64 \
+  --secret id=nginx-crt,src=nginx-repo.crt \
+  --secret id=nginx-key,src=nginx-repo.key \
+  --build-arg DOS_VERSION="=37+4.9.6-1~bullseye" \
+  --build-arg NGINX_PLUS_VERSION="=37.0.*-1~bullseye" \
   -t <your-nginx-dos-image-name> .
 ```
 

@@ -2,7 +2,7 @@
 title: API reference
 weight: 100
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: FABRIC
 f5-docs: DOCS-1855
 ---
 ## Overview
@@ -27,7 +27,11 @@ Resource Types:
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.ClientSettingsPolicy">ClientSettingsPolicy</a>
 </li><li>
+<a href="#gateway.nginx.org/v1alpha1.ExternalLoadBalancer">ExternalLoadBalancer</a>
+</li><li>
 <a href="#gateway.nginx.org/v1alpha1.NginxGateway">NginxGateway</a>
+</li><li>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessor">PayloadProcessor</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.ProxySettingsPolicy">ProxySettingsPolicy</a>
 </li><li>
@@ -295,6 +299,123 @@ sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.ExternalLoadBalancer">ExternalLoadBalancer
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ExternalLoadBalancer" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>ExternalLoadBalancer configures an external load balancer that fronts a Gateway.
+It references a Gateway through TargetRefs. NGINX Gateway Fabric provisions the
+external load balancer integration for the Gateway&rsquo;s data plane Service.</p>
+<p>ExternalLoadBalancer maps one-to-one to a Gateway: a Gateway yields exactly one data plane
+Service, so it is fronted by exactly one ExternalLoadBalancer. When more than one
+ExternalLoadBalancer references the same Gateway, the oldest is accepted and the others are
+rejected with Accepted=False.</p>
+<p>A resource configures exactly one external load balancer backend. The gatewayLink backend
+integrates F5 BIG-IP through F5 CIS.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>ExternalLoadBalancer</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ExternalLoadBalancerSpec">
+ExternalLoadBalancerSpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the ExternalLoadBalancer.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>gatewayLink</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkConfig">
+GatewayLinkConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>GatewayLink configures F5 BIG-IP as the external load balancer using F5
+Container Ingress Services. It is the first supported backend. Additional
+backend types may be added as sibling fields in the future.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies the Gateways this external load balancer applies to.
+Each object must be in the same namespace as the ExternalLoadBalancer resource.
+Exactly one Gateway is supported for now.
+Support: Gateway.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ExternalLoadBalancerStatus">
+ExternalLoadBalancerStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status defines the state of the ExternalLoadBalancer.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.NginxGateway">NginxGateway
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.NginxGateway" title="Permanent link">¶</a>
 </h3>
@@ -382,6 +503,117 @@ NginxGatewayStatus
 </td>
 <td>
 <p>NginxGatewayStatus defines the state of the NginxGateway.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.PayloadProcessor">PayloadProcessor
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PayloadProcessor" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>PayloadProcessor is an Inherited Attached Policy. It enables declarative processing of HTTP
+request and response payload content by attaching to a Gateway or HTTPRoute.</p>
+<p>note: this CRD is based on the proposed &ldquo;PayloadProcessor&rdquo; policy from the Gateway API.
+Once the upstream API is finalized, migration to the official API will be considered.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>PayloadProcessor</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessorSpec">
+PayloadProcessorSpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the PayloadProcessor.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>targetRef</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRef identifies the Gateway or HTTPRoute this policy applies to.
+Objects must be in the same namespace as the policy.
+Follows the standard policy attachment pattern (GEP-713).</p>
+<p>Support: Gateway, HTTPRoute</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>processors</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessorEntry">
+[]PayloadProcessorEntry
+</a>
+</em>
+</td>
+<td>
+<p>Processors is an ordered list of processing steps to be applied to the request and response payloads.
+It is currently limited to a single processor (MaxItems=1); the list form is reserved for future
+multi-processor pipelines.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status defines the state of the PayloadProcessor.</p>
 </td>
 </tr>
 </tbody>
@@ -935,6 +1167,25 @@ This field is required when <code>LoadBalancingMethod</code> is set to <code>has
 </tr>
 <tr>
 <td>
+<code>useClusterIP</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>UseClusterIP configures NGINX to route to the Service ClusterIP and port instead of individual
+Pod IPs. When enabled, NGINX will target a single upstream server corresponding to the Service&rsquo;s
+ClusterIP, which is useful for service mesh compatibility and other Kubernetes
+controllers/operators that require traffic to traverse the Service VIP.
+This setting applies only when the target Service has a ClusterIP. For headless Services
+(ClusterIP: None) and ExternalName Services, normal endpoint resolution is used instead.
+This setting is also not applied to L4/stream upstreams.
+Defaults to false.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>targetRefs</code><br/>
 <em>
 <a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
@@ -973,8 +1224,8 @@ sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 <p>
 <p>WAFPolicy is an Inherited Attached Policy. It provides a way to configure F5 WAF for NGINX
 for Gateways and Routes by referencing compiled WAF policy bundles. Bundles can be fetched directly from an
-HTTP/HTTPS URL (type: HTTP), from an NGINX Instance Manager instance (type: NIM), or from an F5 NGINX One
-Console instance (type: N1C).</p>
+HTTP/HTTPS URL (type: HTTP), from an NGINX Instance Manager instance (type: NIM), from an F5 NGINX One
+Console instance (type: N1C), or from a Policy Lifecycle Manager&rsquo;s S3-compatible storage (type: PLM).</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -1057,7 +1308,8 @@ PolicySourceType
 <td>
 <p>Type identifies the source type for the policy bundle.
 HTTP fetches directly from a URL; NIM uses the NGINX Instance Manager bundles API;
-N1C uses the F5 NGINX One Console security policies API.</p>
+N1C uses the F5 NGINX One Console security policies API; PLM references an APPolicy
+CRD managed by the Policy Lifecycle Manager.</p>
 </td>
 </tr>
 <tr>
@@ -1070,7 +1322,25 @@ PolicySource
 </em>
 </td>
 <td>
-<p>PolicySource holds all policy bundle fetch configuration.</p>
+<em>(Optional)</em>
+<p>PolicySource holds all non-CRD bundle fetch configuration.
+Used for HTTP, NIM, and N1C policy types.
+Must not be set when type is PLM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>policyRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PolicyRef">
+PolicyRef
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PolicyRef holds all CRD-backed policy references.
+Used for the PLM policy type.</p>
 </td>
 </tr>
 <tr>
@@ -1101,6 +1371,96 @@ sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </td>
 <td>
 <p>Status defines the state of the WAFPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.APLogConfReference">APLogConfReference
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.APLogConfReference" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogRef">LogRef</a>)
+</p>
+<p>
+<p>APLogConfReference identifies an APLogConf resource managed by PLM.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>namespace</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Namespace is the namespace of the APLogConf resource.
+If not set, the namespace of the WAFPolicy is used.
+Cross-namespace references require a ReferenceGrant.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name is the name of the APLogConf resource.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.APPolicyReference">APPolicyReference
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.APPolicyReference" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PolicyRef">PolicyRef</a>)
+</p>
+<p>
+<p>APPolicyReference identifies an APPolicy resource managed by PLM.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>namespace</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Namespace is the namespace of the APPolicy resource.
+If not set, the namespace of the WAFPolicy is used.
+Cross-namespace references require a ReferenceGrant.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name is the name of the APPolicy resource.</p>
 </td>
 </tr>
 </tbody>
@@ -1283,6 +1643,57 @@ AuthType
 <td>
 <p>Controllers is a list of Gateway API controllers that processed the AuthenticationFilter
 and the status of the AuthenticationFilter with respect to each controller.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.Authorization">Authorization
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Authorization" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth</a>,
+<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">OIDCAuth</a>)
+</p>
+<p>
+<p>Authorization specifies a set of required claim rules
+that a token&rsquo;s claim must match to be authorized, given the require type defined.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>require</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.RequireType">
+RequireType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Require sets top level authorization requirement.
+When set to All, the requirements for all claims in a rule must be met.
+When set to Any, the requirements for any one claim in a rule must be met.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>rules</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Rule">
+[]Rule
+</a>
+</em>
+</td>
+<td>
+<p>Rules defines a list of claims and their specific authorization requirements.</p>
 </td>
 </tr>
 </tbody>
@@ -1475,6 +1886,100 @@ Mutually exclusive with expectedChecksum.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.Claim">Claim
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Claim" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.Rule">Rule</a>)
+</p>
+<p>
+<p>Claim describes the exact name/value pair of claims that must be matched.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>proxySetHeader</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ProxySetHeader sets both the name and variable for <code>proxy_set_header</code>
+Example: For claim name <code>sub</code> for JWT auth</p>
+<p>proxy_set_header X-JWT-Claim-Sub $jwt_claim_sub;</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name is the name of the claim within the token.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>match</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ClaimMatchType">
+ClaimMatchType
+</a>
+</em>
+</td>
+<td>
+<p>Match sets the match type for the claim.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>values</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>Values are the values within the claim.
+When more than one value is set, the claim must match any of these values.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ClaimMatchType">ClaimMatchType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ClaimMatchType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.Claim">Claim</a>)
+</p>
+<p>
+<p>ClaimMatchType defines how claim values are parsed.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Exact&#34;</p></td>
+<td><p>ClaimMatchTypeExact treats claim values as their exact value.</p>
+</td>
+</tr><tr><td><p>&#34;Regex&#34;</p></td>
+<td><p>ClaimMatchTypeRegex treats claim values as a regex value.</p>
+</td>
+</tr></tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.ClientBody">ClientBody
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ClientBody" title="Permanent link">¶</a>
 </h3>
@@ -1509,6 +2014,23 @@ If the size in a request exceeds the configured value,
 the 413 (Request Entity Too Large) error is returned to the client.
 Setting size to 0 disables checking of client request body size.
 Default: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size">https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bufferSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>BufferSize sets the buffer size for reading the client request body.
+If the request body is larger than the buffer, the whole body or only its part is written to a
+temporary file.
+Default: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size">https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size</a>.</p>
 </td>
 </tr>
 <tr>
@@ -1761,6 +2283,7 @@ Support: Gateway, HTTPRoute, GRPCRoute.</p>
 <p>
 (<em>Appears on: </em>
 <a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterStatus">AuthenticationFilterStatus</a>,
+<a href="#gateway.nginx.org/v1alpha1.ExternalLoadBalancerStatus">ExternalLoadBalancerStatus</a>,
 <a href="#gateway.nginx.org/v1alpha1.SnippetsFilterStatus">SnippetsFilterStatus</a>)
 </p>
 <p>
@@ -1806,7 +2329,7 @@ longer necessary.</p>
 </td>
 <td>
 <em>(Optional)</em>
-<p>Conditions describe the status of the SnippetsFilter.</p>
+<p>Conditions describe the status of the resource with respect to this controller.</p>
 </td>
 </tr>
 </tbody>
@@ -1872,6 +2395,658 @@ Duration can be specified in milliseconds (ms), seconds (s), minutes (m), hours 
 A value without a suffix is seconds.
 Examples: 120s, 50ms, 5m, 1h.</p>
 </p>
+<h3 id="gateway.nginx.org/v1alpha1.ExtProcessConfig">ExtProcessConfig
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ExtProcessConfig" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessorEntry">PayloadProcessorEntry</a>)
+</p>
+<p>
+<p>ExtProcessConfig defines the configuration for an ExtProcess processor that delegates to an external service.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>authTokenRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>AuthTokenRef is a reference to a Secret containing an authentication token for the external service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>backendRef</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#BackendObjectReference">
+sigs.k8s.io/gateway-api/apis/v1.BackendObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>BackendRef is a reference to the external service that will process the payloads.
+The referenced backend must be a core Service and must specify a port.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ExternalLoadBalancerConditionReason">ExternalLoadBalancerConditionReason
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ExternalLoadBalancerConditionReason" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>ExternalLoadBalancerConditionReason is a reason for an ExternalLoadBalancer condition type.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Accepted&#34;</p></td>
+<td><p>ExternalLoadBalancerConditionReasonAccepted is used with the Accepted condition type when
+the condition is true.</p>
+</td>
+</tr><tr><td><p>&#34;Conflicted&#34;</p></td>
+<td><p>ExternalLoadBalancerConditionReasonConflicted is used with the Accepted condition type when
+another ExternalLoadBalancer already references the same Gateway. A Gateway can be fronted by
+exactly one external load balancer, so the oldest is accepted and the others are Conflicted.</p>
+</td>
+</tr><tr><td><p>&#34;Invalid&#34;</p></td>
+<td><p>ExternalLoadBalancerConditionReasonInvalid is used with the Accepted condition type when
+the ExternalLoadBalancer is invalid.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ExternalLoadBalancerConditionType">ExternalLoadBalancerConditionType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ExternalLoadBalancerConditionType" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>ExternalLoadBalancerConditionType is a type of condition associated with ExternalLoadBalancer.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Accepted&#34;</p></td>
+<td><p>ExternalLoadBalancerConditionTypeAccepted indicates that the ExternalLoadBalancer is accepted.</p>
+<p>Possible reasons for this condition to be True:</p>
+<ul>
+<li>Accepted</li>
+</ul>
+<p>Possible reasons for this condition to be False:</p>
+<ul>
+<li>Invalid</li>
+<li>Conflicted.</li>
+</ul>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ExternalLoadBalancerSpec">ExternalLoadBalancerSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ExternalLoadBalancerSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ExternalLoadBalancer">ExternalLoadBalancer</a>)
+</p>
+<p>
+<p>ExternalLoadBalancerSpec defines the desired state of ExternalLoadBalancer.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>gatewayLink</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkConfig">
+GatewayLinkConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>GatewayLink configures F5 BIG-IP as the external load balancer using F5
+Container Ingress Services. It is the first supported backend. Additional
+backend types may be added as sibling fields in the future.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies the Gateways this external load balancer applies to.
+Each object must be in the same namespace as the ExternalLoadBalancer resource.
+Exactly one Gateway is supported for now.
+Support: Gateway.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ExternalLoadBalancerStatus">ExternalLoadBalancerStatus
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ExternalLoadBalancerStatus" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ExternalLoadBalancer">ExternalLoadBalancer</a>)
+</p>
+<p>
+<p>ExternalLoadBalancerStatus defines the state of ExternalLoadBalancer.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>controllers</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ControllerStatus">
+[]ControllerStatus
+</a>
+</em>
+</td>
+<td>
+<p>Controllers is a list of Gateway API controllers that processed the ExternalLoadBalancer
+and the status of the ExternalLoadBalancer with respect to each controller.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GatewayLinkConfig">GatewayLinkConfig
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GatewayLinkConfig" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ExternalLoadBalancerSpec">ExternalLoadBalancerSpec</a>)
+</p>
+<p>
+<p>GatewayLinkConfig defines the configuration for integrating with F5 BIG-IP
+as the external load balancer for NGINX Gateway Fabric using F5
+Container Ingress Services.
+IngressLink API Definition: <a href="https://github.com/F5Networks/k8s-bigip-ctlr/blob/master/docs/config_examples/customResourceDefinitions/customresourcedefinitions.yml">https://github.com/F5Networks/k8s-bigip-ctlr/blob/master/docs/config_examples/customResourceDefinitions/customresourcedefinitions.yml</a></p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>virtualServerAddress</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>VirtualServerAddress is the static IP address to configure on BIG-IP for the virtual server.
+This is mutually exclusive with IPAMLabel.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>virtualServerName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>VirtualServerName is a custom name for the BIG-IP virtual server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipamLabel</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPAMLabel is the label used by F5 IPAM Controller to allocate an IP address.
+The IPAM controller will assign an IP from the pool associated with this label.
+This is mutually exclusive with VirtualServerAddress.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>host</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Host is the hostname for the BIG-IP virtual server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>partition</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Partition is the BIG-IP partition where resources will be created.
+The partition must already exist on BIG-IP and cannot be &ldquo;Common&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bigipRouteDomain</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>BigIPRouteDomain is the route domain ID for the BIG-IP virtual server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tls</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkTLS">
+GatewayLinkTLS
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TLS defines the TLS configuration for the BIG-IP virtual server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>multiCluster</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkMultiCluster">
+GatewayLinkMultiCluster
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MultiCluster defines the multi-cluster configuration for load balancing traffic
+across NGINX instances in multiple clusters.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serviceAddress</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkServiceAddress">
+GatewayLinkServiceAddress
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ServiceAddress configures Layer 3 settings for the BIG-IP virtual server address.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>additionalIngressLinkSpec</code><br/>
+<em>
+k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1.JSON
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>AdditionalIngressLinkSpec is an escape hatch for IngressLink fields that are not yet
+modeled by GatewayLink. Its contents are merged verbatim into the generated IngressLink
+spec and are NOT validated by NGINX Gateway Fabric. Fields set here take lower precedence
+than the explicitly modeled GatewayLink fields above; NGINX Gateway Fabric always sets the
+IngressLink selector internally and it cannot be overridden through this field. Use with
+caution since contents bypass schema validation, defaulting, and CEL rules, and flow through to
+BIG-IP via F5 CIS.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>iRules</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IRules is a list of BIG-IP iRules to apply to the virtual server.
+Each iRule must be specified using the full path format /partition/irule_name,
+for example &ldquo;/Common/Proxy_Protocol_iRule&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>monitors</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkMonitor">
+[]GatewayLinkMonitor
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Monitors is a list of BIG-IP health monitors to associate with the virtual server pool.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GatewayLinkMonitor">GatewayLinkMonitor
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GatewayLinkMonitor" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkConfig">GatewayLinkConfig</a>)
+</p>
+<p>
+<p>GatewayLinkMonitor defines a BIG-IP health monitor reference.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name is the full path of the health monitor on BIG-IP (e.g., &ldquo;/Common/http&rdquo;).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>reference</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Reference specifies the source of the monitor. Currently only &ldquo;bigip&rdquo; is supported.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GatewayLinkMultiCluster">GatewayLinkMultiCluster
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GatewayLinkMultiCluster" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkConfig">GatewayLinkConfig</a>)
+</p>
+<p>
+<p>GatewayLinkMultiCluster defines the multi-cluster configuration for GatewayLink.
+When configured, CIS load balances traffic across NGINX instances
+in multiple clusters. This is set only on the cluster that runs CIS. The other
+clusters run NGINX with a matching Gateway and Service but not CIS,
+so they do not set multiCluster. CIS reaches those clusters over a kubeconfig.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>localClusterName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>LocalClusterName is the name of this cluster as configured in the CIS deployment
+via the &ndash;local-cluster-name flag. NGINX Gateway Fabric uses it as the cluster name
+for the local entry in the IngressLink&rsquo;s multiClusterServices, which points at this
+cluster&rsquo;s own Gateway Service. It must match the name CIS knows this cluster by,
+otherwise CIS cannot resolve the local service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>remoteClusters</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkRemoteCluster">
+[]GatewayLinkRemoteCluster
+</a>
+</em>
+</td>
+<td>
+<p>RemoteClusters is the list of remote clusters that also run NGINX Gateway Fabric.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GatewayLinkRemoteCluster">GatewayLinkRemoteCluster
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GatewayLinkRemoteCluster" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkMultiCluster">GatewayLinkMultiCluster</a>)
+</p>
+<p>
+<p>GatewayLinkRemoteCluster defines a remote cluster for multi-cluster load balancing.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>clusterName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ClusterName is one of the names of the remote clusters as configured in the CIS deployment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Namespace is the namespace of the NGINX service in the remote cluster.
+If not specified, defaults to the local Gateway&rsquo;s namespace.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>service</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Service is the name of the NGINX service in the remote cluster.
+If not specified, defaults to the local Gateway&rsquo;s service name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>weight</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Weight is the load balancing weight for this cluster&rsquo;s service.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GatewayLinkServiceAddress">GatewayLinkServiceAddress
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GatewayLinkServiceAddress" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkConfig">GatewayLinkConfig</a>)
+</p>
+<p>
+<p>GatewayLinkServiceAddress configures Layer 3 settings for the BIG-IP virtual server address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>icmpEcho</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ICMPEcho">
+ICMPEcho
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ICMPEcho controls whether the virtual server address responds to ICMP echo (ping).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>trafficGroup</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TrafficGroup is the BIG-IP traffic group that owns the virtual server address,
+in the full path format, for example &ldquo;/Common/traffic-group-test&rdquo;.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GatewayLinkTLS">GatewayLinkTLS
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GatewayLinkTLS" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkConfig">GatewayLinkConfig</a>)
+</p>
+<p>
+<p>GatewayLinkTLS defines the TLS configuration for the BIG-IP virtual server.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>reference</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.TLSReferenceType">
+TLSReferenceType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Reference specifies the source of the SSL profiles. &ldquo;bigip&rdquo; means the profiles already
+exist on BIG-IP. &ldquo;secret&rdquo; means they come from Kubernetes secrets of type kubernetes.io/tls.
+If not specified, defaults to &ldquo;bigip&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>clientSSLs</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ClientSSLs is a list of client SSL profiles that BIG-IP uses to terminate TLS from the client.
+When reference is &ldquo;bigip&rdquo;, each entry is the full path of a profile on BIG-IP in the form
+/partition/profile_name, for example /Common/clientssl. When reference is &ldquo;secret&rdquo;, each entry
+is the name of a Kubernetes secret of type kubernetes.io/tls that holds the certificate and key.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serverSSLs</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ServerSSLs is a list of server SSL profiles that BIG-IP uses to re-encrypt traffic to NGINX.
+When reference is &ldquo;bigip&rdquo;, each entry is the full path of a profile on BIG-IP in the form
+/partition/profile_name, for example /Common/serverssl. When reference is &ldquo;secret&rdquo;, each entry
+is the name of a Kubernetes secret of type kubernetes.io/tls that holds the certificate and key.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.HTTPBundleSource">HTTPBundleSource
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.HTTPBundleSource" title="Permanent link">¶</a>
 </h3>
@@ -1900,7 +3075,7 @@ string
 </td>
 <td>
 <p>URL is the full URL of the compiled policy bundle (.tgz),
-e.g. &ldquo;<a href="https://storage.example.com/bundles/policy.tgz&quot;">https://storage.example.com/bundles/policy.tgz&rdquo;</a>.</p>
+e.g. <code>https://storage.example.com/bundles/policy.tgz</code>.</p>
 </td>
 </tr>
 </tbody>
@@ -1919,6 +3094,34 @@ letters and underscores only.
 For a full list of NGINX variables,
 refer to: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables</a></p>
 </p>
+<h3 id="gateway.nginx.org/v1alpha1.ICMPEcho">ICMPEcho
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ICMPEcho" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkServiceAddress">GatewayLinkServiceAddress</a>)
+</p>
+<p>
+<p>ICMPEcho controls whether the BIG-IP virtual server address responds to ICMP echo.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;disable&#34;</p></td>
+<td><p>ICMPEchoDisable means the virtual server address never responds to ICMP echo.</p>
+</td>
+</tr><tr><td><p>&#34;enable&#34;</p></td>
+<td><p>ICMPEchoEnable means the virtual server address always responds to ICMP echo.</p>
+</td>
+</tr><tr><td><p>&#34;selective&#34;</p></td>
+<td><p>ICMPEchoSelective means BIG-IP responds to ICMP echo based on the state of the virtual server.</p>
+</td>
+</tr></tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.JWTAuth" title="Permanent link">¶</a>
 </h3>
@@ -1982,6 +3185,40 @@ JWTRemoteKeySource
 <em>(Optional)</em>
 <p>Remote specifies remote JWKS configuration.
 Required when Source == Remote.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>authorization</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Authorization">
+Authorization
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Authorization defines the authorization (authz) specification.
+Enables configuration of token claim validation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>leeway</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Leeway is the acceptable clock skew for exp &amp; nbf claims.
+If exp &amp; nbf claims are not defined, this directive takes no effect.
+Configures <code>auth_jwt_leeway</code> directive.
+<a href="https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_leeway">https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_leeway</a>
+Example: &ldquo;auth_jwt_leeway 60s&rdquo;.
+Default: 0s.</p>
 </td>
 </tr>
 <tr>
@@ -2212,6 +3449,7 @@ distributing requests evenly across all upstream servers.</p>
 (<em>Appears on: </em>
 <a href="#gateway.nginx.org/v1alpha1.BasicAuth">BasicAuth</a>,
 <a href="#gateway.nginx.org/v1alpha1.BundleAuth">BundleAuth</a>,
+<a href="#gateway.nginx.org/v1alpha1.ExtProcessConfig">ExtProcessConfig</a>,
 <a href="#gateway.nginx.org/v1alpha1.JWTFileKeySource">JWTFileKeySource</a>,
 <a href="#gateway.nginx.org/v1alpha1.JWTRemoteKeySource">JWTRemoteKeySource</a>,
 <a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>,
@@ -2276,6 +3514,41 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.LogRef">LogRef
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.LogRef" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFSecurityLog">WAFSecurityLog</a>)
+</p>
+<p>
+<p>LogRef holds all CRD-backed log profile references.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apLogConfRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.APLogConfReference">
+APLogConfReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>APLogConfRef references an APLogConf CRD compiled by PLM.
+Cross-namespace references require a ReferenceGrant.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.LogSource">LogSource
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.LogSource" title="Permanent link">¶</a>
 </h3>
@@ -2284,7 +3557,7 @@ string
 <a href="#gateway.nginx.org/v1alpha1.WAFSecurityLog">WAFSecurityLog</a>)
 </p>
 <p>
-<p>LogSource holds all configuration for fetching a WAF log profile bundle.
+<p>LogSource holds all non-CRD configuration for fetching a WAF log profile bundle.
 Exactly one of DefaultProfile, HTTPSource, NIMSource, or N1CSource must be set.</p>
 </p>
 <table class="table table-bordered table-striped">
@@ -2561,7 +3834,7 @@ string
 </td>
 <td>
 <p>URL is the base URL of the F5 NGINX One Console instance,
-e.g. &ldquo;https://&lt;tenant&gt;.console.ves.volterra.io&rdquo;.</p>
+e.g. <code>https://&lt;tenant&gt;.volterra.us</code>.</p>
 </td>
 </tr>
 <tr>
@@ -2628,7 +3901,7 @@ string
 </td>
 <td>
 <p>URL is the base URL of the F5 NGINX One Console instance,
-e.g. &ldquo;https://&lt;tenant&gt;.console.ves.volterra.io&rdquo;.</p>
+e.g. <code>https://&lt;tenant&gt;.volterra.us</code>.</p>
 </td>
 </tr>
 <tr>
@@ -2699,7 +3972,7 @@ string
 </td>
 <td>
 <p>URL is the base URL of the NGINX Instance Manager instance,
-e.g. &ldquo;<a href="https://nim.example.com&quot;">https://nim.example.com&rdquo;</a>.</p>
+e.g. <code>https://nim.example.com</code>.</p>
 </td>
 </tr>
 </tbody>
@@ -2742,7 +4015,7 @@ string
 </td>
 <td>
 <p>URL is the base URL of the NGINX Instance Manager instance,
-e.g. &ldquo;<a href="https://nim.example.com&quot;">https://nim.example.com&rdquo;</a>.</p>
+e.g. <code>https://nim.example.com</code>.</p>
 </td>
 </tr>
 </tbody>
@@ -2911,6 +4184,20 @@ Only available for NGINX Plus users.</p>
 <tbody>
 <tr>
 <td>
+<code>extraAuthArgs</code><br/>
+<em>
+map[string]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ExtraAuthArgs sets additional query arguments for the authentication request URL.
+Arguments are appended with &ldquo;&amp;&rdquo;. For example: &ldquo;prompt=consent&amp;audience=api&rdquo;.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args</a></p>
+</td>
+</tr>
+<tr>
+<td>
 <code>crlSecretRef</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
@@ -2951,20 +4238,6 @@ bool
 <p>PKCE enables Proof Key for Code Exchange (PKCE) for the authentication flow.
 If nil, NGINX automatically enables PKCE when the OpenID Provider requires it.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>extraAuthArgs</code><br/>
-<em>
-map[string]string
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>ExtraAuthArgs sets additional query arguments for the authentication request URL.
-Arguments are appended with &ldquo;&amp;&rdquo;. For example: &ldquo;prompt=consent&amp;audience=api&rdquo;.
-Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args</a></p>
 </td>
 </tr>
 <tr>
@@ -3010,37 +4283,22 @@ If a full URI is specified, it points to an external callback handler; no locati
 If not specified, defaults to /oidc<em>callback</em><filternamespace>_<filtername>.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#redirect_uri">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#redirect_uri</a>
 NGINX Default: /oidc_callback
-Example: /oidc_callback, <a href="https://cafe.example.com:8442/oidc_callback">https://cafe.example.com:8442/oidc_callback</a></p>
+Example: /oidc_callback, <code>https://cafe.example.com:8442/oidc_callback</code></p>
 </td>
 </tr>
 <tr>
 <td>
-<code>issuer</code><br/>
+<code>authorization</code><br/>
 <em>
-string
+<a href="#gateway.nginx.org/v1alpha1.Authorization">
+Authorization
+</a>
 </em>
 </td>
 <td>
-<p>Issuer is the URL of the OpenID Provider.
-Must exactly match the &ldquo;issuer&rdquo; value from the provider&rsquo;s
-.well-known/openid-configuration endpoint.
-Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#issuer">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#issuer</a>
-Examples:
-- Keycloak: &ldquo;<a href="https://keycloak.example.com/realms/my-realm&quot;">https://keycloak.example.com/realms/my-realm&rdquo;</a>
-- Okta: &ldquo;<a href="https://dev-123456.okta.com/oauth2/default&quot;">https://dev-123456.okta.com/oauth2/default&rdquo;</a>
-- Auth0: &ldquo;<a href="https://my-tenant.auth0.com/&quot;">https://my-tenant.auth0.com/&rdquo;</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>clientID</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<p>ClientID is the client identifier registered with the OpenID Provider.
-Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id</a></p>
+<em>(Optional)</em>
+<p>Authorization defines the authorization (authz) specification.
+Enables configuration of token claim validation.</p>
 </td>
 </tr>
 <tr>
@@ -3057,6 +4315,36 @@ LocalObjectReference
 Authentication Request: <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest</a>.
 The referenced Secret must contain an entry with the key &ldquo;client-secret&rdquo;.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>issuer</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Issuer is the URL of the OpenID Provider.
+Must exactly match the &ldquo;issuer&rdquo; value from the provider&rsquo;s
+.well-known/openid-configuration endpoint.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#issuer">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#issuer</a>
+Examples:
+- Keycloak: <code>https://keycloak.example.com/realms/my-realm</code>
+- Okta: <code>https://dev-123456.okta.com/oauth2/default</code>
+- Auth0: <code>https://my-tenant.auth0.com/</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>clientID</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ClientID is the client identifier registered with the OpenID Provider.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id</a></p>
 </td>
 </tr>
 <tr>
@@ -3125,7 +4413,7 @@ string
 <p>PostLogoutURI defines the URI to redirect to after logout.
 Must match the configuration on the provider&rsquo;s side.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#post_logout_uri">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#post_logout_uri</a>
-Example: /after_logout, <a href="https://example.com/after_logout">https://example.com/after_logout</a></p>
+Example: /after_logout, <code>https://example.com/after_logout</code></p>
 </td>
 </tr>
 <tr>
@@ -3210,6 +4498,140 @@ NGINX Default: 8h</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.PayloadProcessorEntry">PayloadProcessorEntry
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PayloadProcessorEntry" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessorSpec">PayloadProcessorSpec</a>)
+</p>
+<p>
+<p>PayloadProcessorEntry defines a single processing step in the pipeline.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>extProcess</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ExtProcessConfig">
+ExtProcessConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ExtProcess defines the configuration for an ExtProcess processor that delegates to an external service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ProcessorType">
+ProcessorType
+</a>
+</em>
+</td>
+<td>
+<p>Type specifies how the processor executes.
+ExtProcess calls an external service.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.PayloadProcessorSpec">PayloadProcessorSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PayloadProcessorSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessor">PayloadProcessor</a>)
+</p>
+<p>
+<p>PayloadProcessorSpec defines the desired state of a PayloadProcessor.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>targetRef</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRef identifies the Gateway or HTTPRoute this policy applies to.
+Objects must be in the same namespace as the policy.
+Follows the standard policy attachment pattern (GEP-713).</p>
+<p>Support: Gateway, HTTPRoute</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>processors</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessorEntry">
+[]PayloadProcessorEntry
+</a>
+</em>
+</td>
+<td>
+<p>Processors is an ordered list of processing steps to be applied to the request and response payloads.
+It is currently limited to a single processor (MaxItems=1); the list form is reserved for future
+multi-processor pipelines.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.PolicyRef">PolicyRef
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PolicyRef" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFPolicySpec">WAFPolicySpec</a>)
+</p>
+<p>
+<p>PolicyRef holds all CRD-backed policy references.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apPolicyRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.APPolicyReference">
+APPolicyReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>APPolicyRef references an APPolicy CRD compiled by PLM.
+Cross-namespace references require a ReferenceGrant.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.PolicySource">PolicySource
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PolicySource" title="Permanent link">¶</a>
 </h3>
@@ -3218,7 +4640,7 @@ NGINX Default: 8h</p>
 <a href="#gateway.nginx.org/v1alpha1.WAFPolicySpec">WAFPolicySpec</a>)
 </p>
 <p>
-<p>PolicySource holds all configuration for fetching a WAF policy bundle.</p>
+<p>PolicySource holds all non-CRD configuration for fetching a WAF policy bundle.</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -3401,6 +4823,34 @@ Authentication uses the APIToken scheme: the &ldquo;token&rdquo; key from the re
 </td>
 </tr><tr><td><p>&#34;NIM&#34;</p></td>
 <td><p>PolicySourceTypeNIM fetches a compiled bundle from the NGINX Instance Manager security policies API.</p>
+</td>
+</tr><tr><td><p>&#34;PLM&#34;</p></td>
+<td><p>PolicySourceTypePLM references an APPolicy CRD managed by the Policy Lifecycle Manager (PLM).
+Bundles are fetched from PLM&rsquo;s S3-compatible storage (SeaweedFS).
+Cluster-wide S3 connection parameters are configured via CLI flags (&ndash;plm-storage-*).</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ProcessorType">ProcessorType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ProcessorType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessorEntry">PayloadProcessorEntry</a>)
+</p>
+<p>
+<p>ProcessorType specifies how the processor executes.
+ExtProcess calls an external service.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;ExtProcess&#34;</p></td>
+<td><p>ProcessorTypeExtProcess delegates processing to an external service.</p>
 </td>
 </tr></tbody>
 </table>
@@ -3932,6 +5382,81 @@ and their combination.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.RequireType">RequireType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RequireType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.Authorization">Authorization</a>,
+<a href="#gateway.nginx.org/v1alpha1.Rule">Rule</a>)
+</p>
+<p>
+<p>RequireType defines how JWT Claims are validated.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;All&#34;</p></td>
+<td><p>RequireTypeAll authorizes claims that satisfy all requirements.</p>
+</td>
+</tr><tr><td><p>&#34;Any&#34;</p></td>
+<td><p>RequireTypeAny authorizes claims that satisfy any requirement.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.Rule">Rule
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Rule" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.Authorization">Authorization</a>)
+</p>
+<p>
+<p>Rule defines a list of claims, and authorization rules for those claims.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>require</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.RequireType">
+RequireType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Require sets the authorization mode for a specific claim within a rule.
+When set to All, a token&rsquo;s claim must match all values within that claim.
+When set to Any, a token&rsquo;s claim must match at least one value with that claim.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>claims</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Claim">
+[]Claim
+</a>
+</em>
+</td>
+<td>
+<p>Claims defines a list of claims required by users.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.SecurityLogDestination">SecurityLogDestination
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SecurityLogDestination" title="Permanent link">¶</a>
 </h3>
@@ -4095,7 +5620,9 @@ string
 <a href="#gateway.nginx.org/v1alpha1.ProxyBuffering">ProxyBuffering</a>,
 <a href="#gateway.nginx.org/v1alpha1.ProxyBuffers">ProxyBuffers</a>,
 <a href="#gateway.nginx.org/v1alpha1.RateLimitRule">RateLimitRule</a>,
-<a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>)
+<a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.CompressionBuffers">CompressionBuffers</a>,
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
 </p>
 <p>
 <p>Size is a string value representing a size. Size can be specified in bytes, kilobytes (k), megabytes (m),
@@ -4357,6 +5884,31 @@ Format: must have all &lsquo;&ldquo;&rsquo; escaped and must not contain any &ls
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.TLSReferenceType">TLSReferenceType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.TLSReferenceType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GatewayLinkTLS">GatewayLinkTLS</a>)
+</p>
+<p>
+<p>TLSReferenceType specifies where the BIG-IP SSL profiles come from.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;bigip&#34;</p></td>
+<td><p>TLSReferenceBigIP means the SSL profiles already exist on BIG-IP.</p>
+</td>
+</tr><tr><td><p>&#34;secret&#34;</p></td>
+<td><p>TLSReferenceSecret means the SSL profiles are sourced from Kubernetes secrets.</p>
+</td>
+</tr></tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.UpstreamKeepAlive" title="Permanent link">¶</a>
 </h3>
@@ -4387,7 +5939,7 @@ int32
 <p>Connections sets the maximum number of idle keep-alive connections to upstream servers that are preserved
 in the cache of each nginx worker process. When this number is exceeded, the least recently used
 connections are closed.
-The keepAlive directive for upstreams defaults to 16. To override this value, set the connections field.
+The keepAlive directive for upstreams defaults to 32. To override this value, set the connections field.
 To disable the keepAlive directive, set connections to 0.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</a></p>
 </td>
@@ -4522,6 +6074,25 @@ This field is required when <code>LoadBalancingMethod</code> is set to <code>has
 </tr>
 <tr>
 <td>
+<code>useClusterIP</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>UseClusterIP configures NGINX to route to the Service ClusterIP and port instead of individual
+Pod IPs. When enabled, NGINX will target a single upstream server corresponding to the Service&rsquo;s
+ClusterIP, which is useful for service mesh compatibility and other Kubernetes
+controllers/operators that require traffic to traverse the Service VIP.
+This setting applies only when the target Service has a ClusterIP. For headless Services
+(ClusterIP: None) and ExternalName Services, normal endpoint resolution is used instead.
+This setting is also not applied to L4/stream upstreams.
+Defaults to false.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>targetRefs</code><br/>
 <em>
 <a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
@@ -4584,7 +6155,8 @@ PolicySourceType
 <td>
 <p>Type identifies the source type for the policy bundle.
 HTTP fetches directly from a URL; NIM uses the NGINX Instance Manager bundles API;
-N1C uses the F5 NGINX One Console security policies API.</p>
+N1C uses the F5 NGINX One Console security policies API; PLM references an APPolicy
+CRD managed by the Policy Lifecycle Manager.</p>
 </td>
 </tr>
 <tr>
@@ -4597,7 +6169,25 @@ PolicySource
 </em>
 </td>
 <td>
-<p>PolicySource holds all policy bundle fetch configuration.</p>
+<em>(Optional)</em>
+<p>PolicySource holds all non-CRD bundle fetch configuration.
+Used for HTTP, NIM, and N1C policy types.
+Must not be set when type is PLM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>policyRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PolicyRef">
+PolicyRef
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PolicyRef holds all CRD-backed policy references.
+Used for the PLM policy type.</p>
 </td>
 </tr>
 <tr>
@@ -4625,7 +6215,7 @@ PolicySource
 </p>
 <p>
 <p>WAFSecurityLog defines security logging configuration for app_protect_security_log directives.
-Exactly one of logSource.defaultProfile, logSource.httpSource, logSource.nimSource, or logSource.n1cSource must be set.</p>
+Exactly one of logSource or logRef must be set.</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -4645,8 +6235,25 @@ LogSource
 </em>
 </td>
 <td>
-<p>LogSource configures the log profile bundle source for this log entry.
-Exactly one of url or defaultProfile must be set.</p>
+<em>(Optional)</em>
+<p>LogSource configures all non-CRD log profile bundle sources for this log entry.
+Used for defaultProfile, httpSource, nimSource, and n1cSource.
+Must not be set when logRef is used.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>logRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LogRef">
+LogRef
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LogRef configures all CRD-backed log profile references for this log entry.
+Used for PLM-backed APLogConf references.</p>
 </td>
 </tr>
 <tr>
@@ -4752,7 +6359,8 @@ IPFamilyType
 <td>
 <em>(Optional)</em>
 <p>IPFamily specifies the IP family to be used by the NGINX.
-Default is &ldquo;dual&rdquo;, meaning the server will use both IPv4 and IPv6.</p>
+If not set, NGF inspects the <code>default/kubernetes</code> Service&rsquo;s <code>ipFamilies</code> field at startup
+to obtain the IP family of the cluster and configure NGINX accordingly.</p>
 </td>
 </tr>
 <tr>
@@ -4841,6 +6449,26 @@ If not specified, or set to false, http2 will be enabled for all servers.</p>
 </tr>
 <tr>
 <td>
+<code>useClusterIP</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>UseClusterIP configures NGINX to route to the Service ClusterIP and port instead of individual
+Pod IPs. When enabled, NGINX will target a single upstream server corresponding to the Service&rsquo;s
+ClusterIP, which is useful for service mesh compatibility and other Kubernetes
+controllers/operators that require traffic to traverse the Service VIP.
+This setting applies only when the target Service has a ClusterIP. For headless Services
+(ClusterIP: None) and ExternalName Services, normal endpoint resolution is used instead.
+This setting is also not applied to L4/stream upstreams.
+A UseClusterIP value set in an UpstreamSettingsPolicy for a Service takes precedence over this setting.
+Defaults to false.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>disableSNIHostValidation</code><br/>
 <em>
 bool
@@ -4885,6 +6513,35 @@ Default is 1024.</p>
 </tr>
 <tr>
 <td>
+<code>workerProcesses</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WorkerProcesses configures the number of NGINX worker processes.
+The value must be an integer between 1 and 1024.
+When unset, NGINX uses &ldquo;auto&rdquo; (one worker per CPU core).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>workerRlimitNofile</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WorkerRlimitNofile changes the limit on the maximum number of open files (RLIMIT_NOFILE)
+for worker processes. Used to raise the limit without restarting the main process.
+When unset, NGINX inherits the limit from the operating system.
+NGINX directive: <a href="https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile">https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile</a></p>
+</td>
+</tr>
+<tr>
+<td>
 <code>dnsResolver</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.DNSResolver">
@@ -4923,6 +6580,22 @@ Default is &ldquo;off&rdquo;.</p>
 </tr>
 <tr>
 <td>
+<code>compression</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Compression">
+Compression
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Compression defines the configuration for HTTP response compression.
+When set, NGINX compresses responses for clients that support it,
+reducing bandwidth usage.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>waf</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.WAFSpec">
@@ -4933,6 +6606,42 @@ WAFSpec
 <td>
 <em>(Optional)</em>
 <p>WAF configures NGINX App Protect WAF functionality.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>zoneSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
+the upstream configuration between nginx worker processes. The more servers that an upstream has,
+the larger memory zone is required.
+Default: OSS: 512k, Plus: 1m.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableBaseHeaders</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.BaseHeaderName">
+[]BaseHeaderName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableBaseHeaders specifies which default X-* base headers should be omitted
+from being added to the base proxy_set_header directives in the NGINX configuration.
+This allows users to set these headers themselves without NGF overriding them.</p>
+<p>Supported values are limited to X-* base headers and &ldquo;<em>&rdquo;.
+A value of &ldquo;</em>&rdquo; disables all X-* base headers.</p>
 </td>
 </tr>
 </table>
@@ -5191,6 +6900,217 @@ bool
 </td>
 </tr>
 </tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.BaseHeaderName">BaseHeaderName
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.BaseHeaderName" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>BaseHeaderName is the name of a base X-* header that can be disabled
+from being added to the base proxy_set_header directives in the NGINX configuration.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;*&#34;</p></td>
+<td><p>AllXBaseHeaders disables all X-* base headers.</p>
+</td>
+</tr><tr><td><p>&#34;X-Forwarded-For&#34;</p></td>
+<td><p>HeaderXForwardedFor is the X-Forwarded-For header.</p>
+</td>
+</tr><tr><td><p>&#34;X-Forwarded-Host&#34;</p></td>
+<td><p>HeaderXForwardedHost is the X-Forwarded-Host header.</p>
+</td>
+</tr><tr><td><p>&#34;X-Forwarded-Port&#34;</p></td>
+<td><p>HeaderXForwardedPort is the X-Forwarded-Port header.</p>
+</td>
+</tr><tr><td><p>&#34;X-Forwarded-Proto&#34;</p></td>
+<td><p>HeaderXForwardedProto is the X-Forwarded-Proto header.</p>
+</td>
+</tr><tr><td><p>&#34;X-Real-IP&#34;</p></td>
+<td><p>HeaderXRealIP is the X-Real-IP header.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.Compression">Compression
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.Compression" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>Compression defines the configuration for HTTP response compression.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>gzip</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.GzipSettings">
+GzipSettings
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Gzip defines gzip module-specific compression settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>buffers</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.CompressionBuffers">
+CompressionBuffers
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Buffers sets the number and size of buffers used to compress a response.</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_buffers">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_buffers</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>level</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Level sets the compression level.
+Higher values provide better compression but use more CPU.</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_comp_level">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_comp_level</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>minLength</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MinLength sets the minimum length of a response that will be compressed.
+The length is determined from the &ldquo;Content-Length&rdquo; response header field.</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_min_length">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_min_length</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.CompressionType">
+CompressionType
+</a>
+</em>
+</td>
+<td>
+<p>Type specifies the compression algorithm to use.
+Currently only gzip is supported.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>mimeTypes</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MimeTypes specifies the MIME types to compress in addition to &ldquo;text/html&rdquo;.
+&ldquo;text/html&rdquo; is always compressed when compression is enabled.
+Wildcards like &ldquo;text/*&rdquo; are not supported by NGINX.
+Example: [&ldquo;application/json&rdquo;, &ldquo;text/css&rdquo;, &ldquo;application/javascript&rdquo;]</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_types">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_types</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.CompressionBuffers">CompressionBuffers
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.CompressionBuffers" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.Compression">Compression</a>)
+</p>
+<p>
+<p>CompressionBuffers defines the number and size of buffers used for compression.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>size</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<p>Size sets the size of each buffer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>number</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Number sets the number of buffers.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.CompressionType">CompressionType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.CompressionType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.Compression">Compression</a>)
+</p>
+<p>
+<p>CompressionType defines the type of compression algorithm.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;gzip&#34;</p></td>
+<td><p>GzipCompressionType specifies gzip compression.</p>
+</td>
+</tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ContainerSpec" title="Permanent link">¶</a>
@@ -5583,6 +7503,21 @@ AutoscalingSpec
 </tr>
 <tr>
 <td>
+<code>podDisruptionBudget</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.PodDisruptionBudgetSpec">
+PodDisruptionBudgetSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PodDisruptionBudget is the configuration for limiting the number of concurrent disruptions of a pod.
+A PodDisruptionBudget is created when this field is set.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>wafContainers</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.WAFContainerSpec">
@@ -5671,8 +7606,7 @@ ContainerSpec
 </p>
 <p>
 <p>ExternalTrafficPolicy describes how nodes distribute service traffic they
-receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
-and LoadBalancer IPs).</p>
+receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts and LoadBalancer IPs).</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -5690,6 +7624,161 @@ routing only to endpoints on the same node as the traffic was received on
 (dropping the traffic if there are no local endpoints).</p>
 </td>
 </tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.GzipHTTPVersion">GzipHTTPVersion
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.GzipHTTPVersion" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.GzipSettings">GzipSettings</a>)
+</p>
+<p>
+<p>GzipHTTPVersion defines the minimum HTTP version required for gzip compression.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;1.0&#34;</p></td>
+<td><p>GzipHTTPVersion10 sets the minimum HTTP version to 1.0.</p>
+</td>
+</tr><tr><td><p>&#34;1.1&#34;</p></td>
+<td><p>GzipHTTPVersion11 sets the minimum HTTP version to 1.1.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.GzipProxiedType">GzipProxiedType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.GzipProxiedType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.GzipSettings">GzipSettings</a>)
+</p>
+<p>
+<p>GzipProxiedType defines the conditions under which responses from proxied requests are compressed.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;any&#34;</p></td>
+<td><p>GzipProxiedAny enables compression for all proxied requests.</p>
+</td>
+</tr><tr><td><p>&#34;auth&#34;</p></td>
+<td><p>GzipProxiedAuth enables compression if a request header includes &ldquo;Authorization&rdquo;.</p>
+</td>
+</tr><tr><td><p>&#34;expired&#34;</p></td>
+<td><p>GzipProxiedExpired enables compression if a response header includes the &ldquo;Expires&rdquo; field.</p>
+</td>
+</tr><tr><td><p>&#34;no-cache&#34;</p></td>
+<td><p>GzipProxiedNoCache enables compression if a response header includes
+&ldquo;Cache-Control&rdquo; with the &ldquo;no-cache&rdquo; parameter.</p>
+</td>
+</tr><tr><td><p>&#34;no_etag&#34;</p></td>
+<td><p>GzipProxiedNoETag enables compression if a response header does not include &ldquo;ETag&rdquo;.</p>
+</td>
+</tr><tr><td><p>&#34;no_last_modified&#34;</p></td>
+<td><p>GzipProxiedNoLastModified enables compression if a response header does not include &ldquo;Last-Modified&rdquo;.</p>
+</td>
+</tr><tr><td><p>&#34;no-store&#34;</p></td>
+<td><p>GzipProxiedNoStore enables compression if a response header includes
+&ldquo;Cache-Control&rdquo; with the &ldquo;no-store&rdquo; parameter.</p>
+</td>
+</tr><tr><td><p>&#34;off&#34;</p></td>
+<td><p>GzipProxiedOff disables compression for all proxied requests.</p>
+</td>
+</tr><tr><td><p>&#34;private&#34;</p></td>
+<td><p>GzipProxiedPrivate enables compression if a response header includes
+&ldquo;Cache-Control&rdquo; with the &ldquo;private&rdquo; parameter.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.GzipSettings">GzipSettings
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.GzipSettings" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.Compression">Compression</a>)
+</p>
+<p>
+<p>GzipSettings defines gzip module-specific compression settings.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>vary</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Vary enables or disables inserting the &ldquo;Vary: Accept-Encoding&rdquo; response header
+when gzip compression is active.</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_vary">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_vary</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>httpVersion</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.GzipHTTPVersion">
+GzipHTTPVersion
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HTTPVersion sets the minimum HTTP version of a request required to compress a response.</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_http_version">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_http_version</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disable</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Disable specifies regular expressions to match User-Agent headers of requests
+that should not be gzip-compressed.</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_disable">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_disable</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>proxied</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.GzipProxiedType">
+[]GzipProxiedType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Proxied enables or disables gzip compression for proxied requests depending on the request and response.
+Accepted values are: &ldquo;off&rdquo;, &ldquo;expired&rdquo;, &ldquo;no-cache&rdquo;, &ldquo;no-store&rdquo;, &ldquo;private&rdquo;, &ldquo;no_last_modified&rdquo;,
+&ldquo;no_etag&rdquo;, &ldquo;auth&rdquo;, &ldquo;any&rdquo;.
+Multiple values can be specified.</p>
+<p>NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_proxied">https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_proxied</a></p>
+</td>
+</tr>
+</tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.HostPort">HostPort
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.HostPort" title="Permanent link">¶</a>
@@ -5970,6 +8059,8 @@ string
 <p>Format specifies the custom log format string.
 If not specified, NGINX default &lsquo;combined&rsquo; format is used.
 For now only path /dev/stdout can be used.
+Single quotes and line breaks are not allowed because the format is
+rendered inside a single-quoted NGINX log_format directive.
 See <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format">https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format</a></p>
 </td>
 </tr>
@@ -6020,6 +8111,31 @@ escaped as &lsquo;\n&rsquo;, &lsquo;\r&rsquo;, &lsquo;\t&rsquo;, &lsquo;\b&rsquo
 </td>
 </tr><tr><td><p>&#34;none&#34;</p></td>
 <td><p>NginxAccessLogEscapeNone disables escaping of characters.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxErrorLogFormat">NginxErrorLogFormat
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxErrorLogFormat" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxLogging">NginxLogging</a>)
+</p>
+<p>
+<p>NginxErrorLogFormat defines the output format for NGINX error logs.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;default&#34;</p></td>
+<td><p>NginxErrorLogFormatDefault uses NGINX&rsquo;s standard error log format.</p>
+</td>
+</tr><tr><td><p>&#34;json&#34;</p></td>
+<td><p>NginxErrorLogFormatJSON enables JSON-formatted error logs. Requires NGINX Plus.</p>
 </td>
 </tr></tbody>
 </table>
@@ -6099,6 +8215,25 @@ NginxErrorLogLevel
 debug, info, notice, warn, error, crit, alert, and emerg. Setting a certain log level will cause all messages
 of the specified and more severe log levels to be logged. For example, the log level &lsquo;error&rsquo; will cause error,
 crit, alert, and emerg messages to be logged. <a href="https://nginx.org/en/docs/ngx_core_module.html#error_log">https://nginx.org/en/docs/ngx_core_module.html#error_log</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>errorLogFormat</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxErrorLogFormat">
+NginxErrorLogFormat
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ErrorLogFormat controls the output format of the NGINX error_log directive.
+Set to &lsquo;json&rsquo; to enable JSON-formatted error logs for NGINX Plus only and
+cannot be combined with errorLevel: debug.
+When set to &lsquo;json&rsquo;, NGINX Gateway Fabric also emits a JSON-formatted access log
+if the user has not supplied a custom access log format.
+See <a href="https://nginx.org/en/docs/ngx_core_module.html#error_log">https://nginx.org/en/docs/ngx_core_module.html#error_log</a></p>
 </td>
 </tr>
 <tr>
@@ -6266,7 +8401,8 @@ IPFamilyType
 <td>
 <em>(Optional)</em>
 <p>IPFamily specifies the IP family to be used by the NGINX.
-Default is &ldquo;dual&rdquo;, meaning the server will use both IPv4 and IPv6.</p>
+If not set, NGF inspects the <code>default/kubernetes</code> Service&rsquo;s <code>ipFamilies</code> field at startup
+to obtain the IP family of the cluster and configure NGINX accordingly.</p>
 </td>
 </tr>
 <tr>
@@ -6355,6 +8491,26 @@ If not specified, or set to false, http2 will be enabled for all servers.</p>
 </tr>
 <tr>
 <td>
+<code>useClusterIP</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>UseClusterIP configures NGINX to route to the Service ClusterIP and port instead of individual
+Pod IPs. When enabled, NGINX will target a single upstream server corresponding to the Service&rsquo;s
+ClusterIP, which is useful for service mesh compatibility and other Kubernetes
+controllers/operators that require traffic to traverse the Service VIP.
+This setting applies only when the target Service has a ClusterIP. For headless Services
+(ClusterIP: None) and ExternalName Services, normal endpoint resolution is used instead.
+This setting is also not applied to L4/stream upstreams.
+A UseClusterIP value set in an UpstreamSettingsPolicy for a Service takes precedence over this setting.
+Defaults to false.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>disableSNIHostValidation</code><br/>
 <em>
 bool
@@ -6399,6 +8555,35 @@ Default is 1024.</p>
 </tr>
 <tr>
 <td>
+<code>workerProcesses</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WorkerProcesses configures the number of NGINX worker processes.
+The value must be an integer between 1 and 1024.
+When unset, NGINX uses &ldquo;auto&rdquo; (one worker per CPU core).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>workerRlimitNofile</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WorkerRlimitNofile changes the limit on the maximum number of open files (RLIMIT_NOFILE)
+for worker processes. Used to raise the limit without restarting the main process.
+When unset, NGINX inherits the limit from the operating system.
+NGINX directive: <a href="https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile">https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile</a></p>
+</td>
+</tr>
+<tr>
+<td>
 <code>dnsResolver</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.DNSResolver">
@@ -6437,6 +8622,22 @@ Default is &ldquo;off&rdquo;.</p>
 </tr>
 <tr>
 <td>
+<code>compression</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Compression">
+Compression
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Compression defines the configuration for HTTP response compression.
+When set, NGINX compresses responses for clients that support it,
+reducing bandwidth usage.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>waf</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.WAFSpec">
@@ -6447,6 +8648,42 @@ WAFSpec
 <td>
 <em>(Optional)</em>
 <p>WAF configures NGINX App Protect WAF functionality.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>zoneSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
+the upstream configuration between nginx worker processes. The more servers that an upstream has,
+the larger memory zone is required.
+Default: OSS: 512k, Plus: 1m.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableBaseHeaders</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.BaseHeaderName">
+[]BaseHeaderName
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableBaseHeaders specifies which default X-* base headers should be omitted
+from being added to the base proxy_set_header directives in the NGINX configuration.
+This allows users to set these headers themselves without NGF overriding them.</p>
+<p>Supported values are limited to X-* base headers and &ldquo;<em>&rdquo;.
+A value of &ldquo;</em>&rdquo; disables all X-* base headers.</p>
 </td>
 </tr>
 </tbody>
@@ -6623,6 +8860,71 @@ For JSONPatch patches, this should be a JSON array of patch operations.</p>
 <td><p>PatchTypeStrategicMerge uses strategic merge patch.</p>
 </td>
 </tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.PodDisruptionBudgetSpec">PodDisruptionBudgetSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.PodDisruptionBudgetSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec</a>)
+</p>
+<p>
+<p>PodDisruptionBudgetSpec is the configuration for PodDisruptionBudget,
+which limits the number of concurrent disruptions of a pod.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>minAvailable</code><br/>
+<em>
+k8s.io/apimachinery/pkg/util/intstr.IntOrString
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MinAvailable is the minimum number of pods that must be available after an eviction.
+Value can be an absolute number (e.g. 1) or a percentage of desired pods (e.g. 50%).
+Mutually exclusive with MaxUnavailable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>maxUnavailable</code><br/>
+<em>
+k8s.io/apimachinery/pkg/util/intstr.IntOrString
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MaxUnavailable is the maximum number of pods that can be unavailable after an eviction.
+Value can be an absolute number (e.g. 1) or a percentage of desired pods (e.g. 50%).
+Mutually exclusive with MinAvailable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>unhealthyPodEvictionPolicy</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#unhealthypodevictionpolicytype-v1-policy">
+Kubernetes policy/v1.UnhealthyPodEvictionPolicyType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>UnhealthyPodEvictionPolicy defines when unhealthy pods should be considered for eviction.
+Valid values are IfHealthyBudget and AlwaysAllow.
+Defaults to IfHealthyBudget if not set.</p>
+</td>
+</tr>
+</tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.PodSpec">PodSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.PodSpec" title="Permanent link">¶</a>
@@ -7065,8 +9367,7 @@ ExternalTrafficPolicy
 <td>
 <em>(Optional)</em>
 <p>ExternalTrafficPolicy describes how nodes distribute service traffic they
-receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
-and LoadBalancer IPs).</p>
+receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts and LoadBalancer IPs).</p>
 </td>
 </tr>
 <tr>
@@ -7227,7 +9528,7 @@ string
 <td>
 <em>(Optional)</em>
 <p>ServiceName is the &ldquo;service.name&rdquo; attribute of the OpenTelemetry resource.
-Default is &lsquo;ngf:<gateway-namespace>:<gateway-name>&rsquo;. If a value is provided by the user,
+Default is &lsquo;ngf:gateway-namespace:gateway-name&rsquo;. If a value is provided by the user,
 then the default becomes a prefix to that value.</p>
 </td>
 </tr>

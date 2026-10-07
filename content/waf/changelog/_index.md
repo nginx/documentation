@@ -13,6 +13,58 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.15
+
+Released _September 2nd, 2026_.
+
+### New features
+
+- Added support for Alpine 3.24
+- Added support for NGINX Plus R37.1
+
+### Important notes
+
+- Debian 11 is no longer supported
+
+### Resolved issues
+
+- 15220 - Fixed an issue where a redirect action configured with a wildcard was not applied as expected
+- Upgraded the Go compiler to 1.26.6
+
+### Packages
+
+{{< table >}}
+
+| Distribution name              | NGINX Open Source (5.15)                                                | NGINX Plus (5.15)                                                    | NGINX Plus (5.15)                                         |
+| ------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------- |
+| Alpine 3.22                    | _app-protect-module-oss-1.31.4+5.715.0-r1.apk_                         | _app-protect-module-plus-37.1.5.715.0-r1.apk_                       | _app-protect-37.1.5.715.0-r1.apk_                        |
+| Alpine 3.24                    | _app-protect-module-oss-1.31.4+5.715.0-r1.apk_                         | _app-protect-module-plus-37.1.5.715.0-r1.apk_                       | _app-protect-37.1.5.715.0-r1.apk_                        |
+| Amazon Linux 2023              | _app-protect-module-oss-1.31.4+5.715.0-1.amzn2023.ngx.x86_64.rpm_      | _app-protect-module-plus-37.1+5.715.0-1.amzn2023.ngx.x86_64.rpm_    | _app-protect-37.1+5.715.0-1.amzn2023.ngx.x86_64.rpm_     |
+| Debian 12                      | _app-protect-module-oss_1.31.4+5.715.0-1\~bookworm_amd64.deb_          | _app-protect-module-plus_37.1+5.715.0-1\~bookworm_amd64.deb_        | _app-protect_37.1+5.715.0-1\~bookworm_amd64.deb_         |
+| Debian 13                      | _app-protect-module-oss_1.31.4+5.715.0-1\~trixie_amd64.deb_            | _app-protect-module-plus_37.1+5.715.0-1\~trixie_amd64.deb_          | _app-protect_37.1+5.715.0-1\~trixie_amd64.deb_           |
+| Ubuntu 22.04                   | _app-protect-module-oss_1.31.4+5.715.0-1\~jammy_amd64.deb_             | _app-protect-module-plus_37.1+5.715.0-1\~jammy_amd64.deb_           | _app-protect_37.1+5.715.0-1\~jammy_amd64.deb_            |
+| Ubuntu 24.04                   | _app-protect-module-oss_1.31.4+5.715.0-1\~noble_amd64.deb_             | _app-protect-module-plus_37.1+5.715.0-1\~noble_amd64.deb_           | _app-protect_37.1+5.715.0-1\~noble_amd64.deb_            |
+| Ubuntu 26.04                   | _app-protect-module-oss_1.31.4+5.715.0-1\~resolute_amd64.deb_          | _app-protect-module-plus_37.1+5.715.0-1\~resolute_amd64.deb_        | _app-protect_37.1+5.715.0-1\~resolute_amd64.deb_         |
+| Oracle Linux 8                 | _app-protect-module-oss-1.31.4+5.715.0-1.el8.ngx.x86_64.rpm_           | _app-protect-module-plus-37.1+5.715.0-1.el8.ngx.x86_64.rpm_         | _app-protect-37.1+5.715.0-1.el8.ngx.x86_64.rpm_          |
+| RHEL 8 and Rocky Linux 8       | _app-protect-module-oss-1.31.4+5.715.0-1.el8.ngx.x86_64.rpm_           | _app-protect-module-plus-37.1+5.715.0-1.el8.ngx.x86_64.rpm_         | _app-protect-37.1+5.715.0-1.el8.ngx.x86_64.rpm_          |
+| RHEL 9 and Rocky Linux 9       | _app-protect-module-oss-1.31.4+5.715.0-1.el9.ngx.x86_64.rpm_           | _app-protect-module-plus-37.1+5.715.0-1.el9.ngx.x86_64.rpm_         | _app-protect-37.1+5.715.0-1.el9.ngx.x86_64.rpm_          |
+| RHEL 10 and Rocky Linux 10     | _app-protect-module-oss-1.31.4+5.715.0-1.el10.ngx.x86_64.rpm_          | _app-protect-module-plus-37.1+5.715.0-1.el10.ngx.x86_64.rpm_        | _app-protect-37.1+5.715.0-1.el10.ngx.x86_64.rpm_         |
+
+{{< /table >}}
+
+## F5 WAF for NGINX 5.14.1
+
+Released _September 2nd, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 15004 - Fixed an issue where a security violation could report an incorrect parameter value in its details
+- Upgraded the Go compiler to 1.26.6
+
 ## F5 WAF for NGINX 5.14
 
 Released _July 31st, 2026_.

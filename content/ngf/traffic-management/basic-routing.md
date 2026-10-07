@@ -39,7 +39,7 @@ graph TB
 
 Using this architecture, the **coffee** application is not accessible outside the cluster. We want to expose this application on the hostname "cafe.example.com" so that clients outside the cluster can access it.
 
-Install NGINX Gateway Fabric and create two Gateway API resources: a [gateway](https://gateway-api.sigs.k8s.io/reference/spec/#gateway) and an [HTTPRoute](https://gateway-api.sigs.k8s.io/reference/spec/#httproute).
+Install NGINX Gateway Fabric and create two Gateway API resources: a [gateway](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#gateway) and an [HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httproute).
 
 Using these resources we will configure a simple routing rule to match all HTTP traffic with the hostname "cafe.example.com" and route it to the **coffee** service.
 
@@ -200,7 +200,7 @@ The **coffee** service is omitted from the diagram above because the NGINX Pod r
 
 {{< call-out class="note" >}}In the diagrams above, all resources that are the responsibility of the cluster operator are shown in blue. The orange resources are the responsibility of the application developers.
 
-See the [roles and personas](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1) Gateway API document for more information on these roles.{{< /call-out >}}
+See the [roles and personas](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/) Gateway API document for more information on these roles.{{< /call-out >}}
 
 ---
 
@@ -266,10 +266,10 @@ In a production environment, you should have a DNS record for the external IP ad
 
 This Gateway is associated with NGINX Gateway Fabric through the **gatewayClassName** field. The default installation of NGINX Gateway Fabric creates a GatewayClass with the name **nginx**. NGINX Gateway Fabric will only configure Gateways with a **gatewayClassName** of **nginx** unless you change the name via the `--gatewayclass` [command-line flag]({{< ref "/ngf/reference/cli-help.md#controller" >}}).
 
-We specify a [listener](https://gateway-api.sigs.k8s.io/reference/spec/#listener) on the Gateway to open an entry point on the cluster. In this case, since the coffee application accepts HTTP requests, we create an HTTP listener, named **http**, that listens on port 80.
+We specify a [listener](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#listener) on the Gateway to open an entry point on the cluster. In this case, since the coffee application accepts HTTP requests, we create an HTTP listener, named **http**, that listens on port 80.
 
 By default, Gateways only allow routes (such as HTTPRoutes) to attach if they are in the same namespace as the Gateway. If you want to change this behavior, you can set
-the [**allowedRoutes**](https://gateway-api.sigs.k8s.io/reference/spec/#allowedroutes) field.
+the [**allowedRoutes**](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#allowedroutes) field.
 
 Next you will create the HTTPRoute by copying and pasting the following into your terminal:
 
@@ -295,11 +295,11 @@ spec:
 EOF
 ```
 
-To attach the **coffee** HTTPRoute to the **cafe** Gateway, we specify the Gateway name in the [**parentRefs**](https://gateway-api.sigs.k8s.io/reference/spec/#parentreference) field. The attachment will succeed if the hostnames and protocol in the HTTPRoute are allowed by at least one of the Gateway's listeners.
+To attach the **coffee** HTTPRoute to the **cafe** Gateway, we specify the Gateway name in the [**parentRefs**](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#parentreference) field. The attachment will succeed if the hostnames and protocol in the HTTPRoute are allowed by at least one of the Gateway's listeners.
 
-The [**hostnames**](https://gateway-api.sigs.k8s.io/reference/spec/#hostname) field allows you to list the hostnames that the HTTPRoute matches. In this case, incoming requests handled by the **http** listener with the HTTP host header "cafe.example.com" will match this HTTPRoute and will be routed according to the rules in the spec.
+The [**hostnames**](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#hostname) field allows you to list the hostnames that the HTTPRoute matches. In this case, incoming requests handled by the **http** listener with the HTTP host header "cafe.example.com" will match this HTTPRoute and will be routed according to the rules in the spec.
 
-The [**rules**](https://gateway-api.sigs.k8s.io/reference/spec/#httprouterule) field defines routing rules for the HTTPRoute. A rule is selected if the request satisfies one of the rule's **matches**. To forward traffic for all paths to the coffee service we specify a match with the PathPrefix "/" and target the coffee service using the **backendRef** field.
+The [**rules**](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httprouterule) field defines routing rules for the HTTPRoute. A rule is selected if the request satisfies one of the rule's **matches**. To forward traffic for all paths to the coffee service we specify a match with the PathPrefix "/" and target the coffee service using the **backendRef** field.
 
 ---
 
@@ -532,6 +532,6 @@ If your issue persists, [contact us](https://github.com/nginx/nginx-gateway-fabr
 
 To learn more about the Gateway API and the resources we created in this guide, check out the following resources:
 
-- [Gateway API Overview](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
+- [Gateway API Overview](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/)
 - [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/getting-started/simple-gateway/)
-- [HTTP Routing](https://gateway-api.sigs.k8s.io/guides/http-routing/)
+- [HTTP Routing](https://gateway-api.sigs.k8s.io/guides/user-guides/http-routing/)

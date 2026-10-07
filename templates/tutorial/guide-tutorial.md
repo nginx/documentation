@@ -55,7 +55,7 @@ Before writing, identify:
 - **Keep scope tight.** Aim for a maximum of seven primary steps per task section. If the tutorial requires more, split it into multiple task sections or multiple tutorials.
 - **Explain why, not just what.** Unlike how-to guides, tutorials should briefly explain why each significant step is taken. This is what turns a procedure into a learning experience.
 - **Make code samples complete and self-contained.** Every code sample must include all required import or using statements and inline comments that explain what the code does. Readers will copy and paste these samples — they must work without modification.
-- **Minimise links within the tutorial.** Keep readers on a single page. Provide links to background reading and next steps at the end of the tutorial, not inline.
+- **Minimize links within the tutorial.** Keep readers on a single page. Provide links to background reading and next steps at the end of the tutorial, not inline.
 
 ---
 

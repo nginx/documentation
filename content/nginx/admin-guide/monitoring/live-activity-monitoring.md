@@ -355,12 +355,12 @@ The requests are sent in the JSON format that allows you to connect the stats to
 
 The status information of any element can be accessed with a slash-separated URL. The URL may look as follows:
 
-[`https://demo.nginx.com/api/9/http/caches/http_cache?fields=expired,bypass`](https://demo.nginx.com/api/9/http/caches/http_cache?fields=expired,bypass)
+[`https://demo.nginx.com/api/10/http/caches/http_cache?fields=expired,bypass`](https://demo.nginx.com/api/10/http/caches/http_cache?fields=expired,bypass)
 
 where:
 
 - `/api` is the location you have configured in the NGINX configuration file for the API
-- `/9` is the API version, the current API version is `9`
+- `/10` is the API version, the current API version is `10`
 - `/http/caches/http_cache` is the path to the resource
 - `?fields=expired,bypass` is an optional argument that specifies which fields of the requested object will be output
 
@@ -369,7 +369,7 @@ The requested information is returned in the JSON data format.
 To get the list of all available rootpoints, send the `GET` request with the 'curl' command in terminal (in the example, JSON pretty print extension "json_pp" is used):
 
 ```shell
-curl -s 'https://demo.nginx.com/api/9/' | json_pp
+curl -s 'https://demo.nginx.com/api/10/' | json_pp
 ```
 
 The JSON data returned:
@@ -392,7 +392,7 @@ The JSON data returned:
 To get the statistics for a particular endpoint, for example, obtain general information about NGINX, send the following `GET` request:
 
 ```shell
-curl -s 'https://demo.nginx.com/api/9/nginx' | json_pp
+curl -s 'https://demo.nginx.com/api/10/nginx' | json_pp
 ```
 
 The JSON data returned:
@@ -413,15 +413,15 @@ The JSON data returned:
 You can specify which fields of the requested object will be output with the optional *fields* argument in the request line. For example, to display only NGINX Plus version and build, specify the command:
 
 ```shell
-curl -s 'https://demo.nginx.com/api/9/nginx?fields=version,build' | json_pp
+curl -s 'https://demo.nginx.com/api/10/nginx?fields=version,build' | json_pp
 ```
 
 The JSON data returned:
 
 ```json
 {
-   "version" : "1.29.8",
-   "build" : "nginx-plus-r37.0.0"
+   "version" : "1.31.3",
+   "build" : "nginx-plus-r37.1.0"
 }
 ```
 
@@ -446,13 +446,13 @@ You can reset the following types of statistics:
 For example, to reset the number of abnormally terminated and respawned child processes, you can perform the following command in the terminal via curl:
 
 ```shell
-curl -X DELETE -i 'http://192.168.1.23/api/9/processes'
+curl -X DELETE -i 'http://192.168.1.23/api/10/processes'
 ```
 
 To reset accepted and dropped client connections perform the following command:
 
 ```shell
-curl -X DELETE  -i 'http://192.168.1.23/api/9/connections'
+curl -X DELETE  -i 'http://192.168.1.23/api/10/connections'
 ```
 
 <span id="api_use"></span>
@@ -481,19 +481,19 @@ curl -X POST -d '{ \
    "slow_start": "10s", \
    "backup": true, \
    "down": true \
- }' -s 'http://192.168.1.23/api/9/http/upstreams/appservers/servers'
+ }' -s 'http://192.168.1.23/api/10/http/upstreams/appservers/servers'
 ```
 
 To remove a server from the upstream group:
 
 ```shell
-curl -X DELETE -s 'http://192.168.1.23/api/9/http/upstreams/appservers/servers/0'
+curl -X DELETE -s 'http://192.168.1.23/api/10/http/upstreams/appservers/servers/0'
 ```
 
 To set the `down` parameter for the first server in the group (with ID `0`):
 
 ```shell
-curl -X PATCH -d '{ "down": true }' -s 'http://192.168.1.23/api/9/http/upstreams/appservers/servers/0'
+curl -X PATCH -d '{ "down": true }' -s 'http://192.168.1.23/api/10/http/upstreams/appservers/servers/0'
 ```
 
 ## OpenAPI Specification {#swagger}
@@ -520,6 +520,7 @@ This table matches each OpenAPI YAML file version to the corresponding [NGINX Pl
 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
+|[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v10/nginx_api.yaml) for API version 10 | NGINX Plus Release [PLS37.1.0 LTS]({{< ref "/nginx/releases.md#r37.1.0" >}}) | [Deferred autorenewal](https://nginx.org/en/docs/ngx_mgmtmodule.html#license_pending_token) of JWT license tokens: the `PUT` method for adding a JWT license token, and the `pending_renewal` field were added to the [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data.|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Release [PLS37.0.0 LTS]({{< ref "/nginx/releases.md#r37.0" >}}) | The `response_time_hist` data for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [33]({{< ref "/nginx/releases.md#r33" >}}), [34]({{< ref "nginx/releases.md#r34" >}}), [35]({{< ref "nginx/releases.md#r35" >}}), [36]({{< ref "nginx/releases.md#r36" >}}) | The [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30]({{< ref "nginx/releases.md#r30" >}}), [31]({{< ref "nginx/releases.md#r31" >}}), [32]({{< ref "nginx/releases.md#r32" >}}) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added|
@@ -622,17 +623,17 @@ To access the Swagger UI page:
 
 NGINX provides live examples of JSON data and Swagger UI on a demo website.
 
-Live example of JSON data is available at: [`https://demo.nginx.com/api/9/`](https://demo.nginx.com/api/9/)
+Live example of JSON data is available at: [`https://demo.nginx.com/api/10/`](https://demo.nginx.com/api/10/)
 
 You can send an API command with curl or with a browser:
 
 ```shell
-curl -s 'https://demo.nginx.com/api/9/'
-curl -s 'https://demo.nginx.com/api/9/nginx?fields=version,build'
-curl -s 'https://demo.nginx.com/api/9/http/caches/http_cache'
-curl -s 'https://demo.nginx.com/api/9/http/upstreams/'
-curl -s 'https://demo.nginx.com/api/9/http/upstreams/demo-backend'
-curl -s 'https://demo.nginx.com/api/9/http/upstreams/demo-backend/servers/0'
+curl -s 'https://demo.nginx.com/api/10/'
+curl -s 'https://demo.nginx.com/api/10/nginx?fields=version,build'
+curl -s 'https://demo.nginx.com/api/10/http/caches/http_cache'
+curl -s 'https://demo.nginx.com/api/10/http/upstreams/'
+curl -s 'https://demo.nginx.com/api/10/http/upstreams/demo-backend'
+curl -s 'https://demo.nginx.com/api/10/http/upstreams/demo-backend/servers/0'
 ```
 
 The Swagger UI demo page is available at: <https://demo.nginx.com/swagger-ui/>

@@ -199,6 +199,36 @@ If you manually updated your JWT license after subscription renewal, you may see
 
 {{< /details >}}
 
+{{< details summary="Deferred license update" >}}
+
+### Deferred license update {#deferred-update-license}
+
+Some organizations may need to update their NGINX Plus license at a specific date and time to comply with corporate update policies. In these cases, the license update can be deferred and performed manually.
+
+The renewed JWT license token can be saved to a specified file without being applied immediately. It can later be copied as the `license.jwt` file specified by the [`license_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive, or applied via the NGINX Plus API by sending a `PUT` request to the `/api/10/license` endpoint.
+
+1. Configure the  [`license_pending_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_pending_token) with the path where the renewed license token will be saved. The path is relative to the path specified by the [`state_path`](https://nginx.org/en/docs/ngx_mgmt_module.html#state_path) directive.
+
+2. After the renewed license is saved, you can:
+
+   - Manually copy it to `/etc/nginx/license.jwt` or to the custom path specified by the [`license_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive.
+
+   - use the NGINX Plus API v.10 to apply the renewed and saved locally license token:
+
+
+   ```shell
+   curl --request PUT \
+        --header "Content-Type: application/jwt"    \
+        --data-binary @/path/to/pending-license.jwt \
+                      http://localhost:8080/api/10/license
+   ```
+
+{{< call-out class="note" title="Note for internet-connected environments" >}}
+If you manually updated your JWT license after subscription renewal, you may see this [error log message](#log-monitoring): `[notice] renewed license does not match the original one; using original license`. You don't need to take action. You can safely ignore this message. For details, see [K000159013](https://my.f5.com/manage/s/article/K000159013).
+{{< /call-out >}}
+
+{{< /details >}}
+
 ## Error log location and monitoring {#log-monitoring}
 
 {{< include "licensing-and-reporting/log-location-and-monitoring.md" >}}
