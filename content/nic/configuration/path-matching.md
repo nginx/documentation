@@ -149,6 +149,8 @@ With this configuration:
 
 When a VirtualServer route delegates to a VirtualServerRoute using the `route` or `routeSelector` field, the parent route's path acts as a constraint on subroute paths. For a `^~` parent path, each subroute must also use the `^~` modifier.
 
+Setting `spec.host` in the VirtualServerRoute is optional. The path constraint applies whether the VirtualServerRoute specifies a matching host or omits `spec.host` (hostless mode).
+
 ### VirtualServer with delegation
 
 ```yaml

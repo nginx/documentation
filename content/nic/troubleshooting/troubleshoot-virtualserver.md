@@ -7,16 +7,17 @@ f5-product: NGINX Ingress Controller
 f5-content-type: how-to
 ---
 
-This page describes how to troubleshoot VirtualServer and VirtualServer resource events.
+This page describes how to troubleshoot VirtualServer and VirtualServerRoute resource events.
 
 ## Inspecting VirtualServer and VirtualServerRoute resource events
 
-After creating or updating a VirtualServer resource, you can immediately check if the NGINX configuration for that resource was successfully by using `kubectl describe vs <resource-name>`:
+After you create or update a VirtualServer resource, run `kubectl describe vs <RESOURCE_NAME>` to check whether NGINX applied the configuration for that resource:
 
 ```shell
 kubectl describe vs cafe
 ```
-```shell
+
+```text
 Events:
   Type    Reason          Age   From                      Message
   ----    ------          ----  ----                      -------
@@ -30,13 +31,24 @@ Checking the events of a VirtualServerRoute is similar:
 ```shell
 kubectl describe vsr coffee
 ```
-```shell
+
+```text
 Events:
   Type     Reason                 Age   From                      Message
   ----     ------                 ----  ----                      -------
   Normal   AddedOrUpdated         1m    nginx-ingress-controller  Configuration for default/coffee was added or updated
 ```
 
+## Common troubleshooting scenarios
+
+### Host mismatch rejection
+
+If a VirtualServerRoute defines a `spec.host` that doesn't match the referencing VirtualServer, F5 NGINX Ingress Controller rejects the route attachment and logs a warning event on the resource.
+
+To fix a host mismatch, do one of the following:
+
+- Update `spec.host` in the VirtualServerRoute to match the VirtualServer `host` exactly.
+- Omit `spec.host` from the VirtualServerRoute (hostless mode) so any VirtualServer can reference it.
 ### Warning events
 
 If a `routeSelector` in a VirtualServer matches no VirtualServerRoutes, F5 NGINX Ingress Controller reports a warning. It emits a `Warning` event and sets the VirtualServer `State` to `Warning`. The warning doesn't block the configuration. NGINX Ingress Controller applies the rest of the VirtualServer, but no VirtualServerRoute serves the path of that route.

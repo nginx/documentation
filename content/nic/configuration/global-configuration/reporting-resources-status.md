@@ -91,7 +91,7 @@ The *ReferencedBy* field is reported for the VirtualServerRoute status only:
 
 |Field | Description | Type |
 | ---| ---| --- |
-| *ReferencedBy* | The VirtualServer that references this VirtualServerRoute. Format as ``namespace/name`` | *string* |
+| *ReferencedBy* | The VirtualServers that reference this VirtualServerRoute, as a comma-separated list of ``namespace/name`` values. More than one VirtualServer can reference a hostless VirtualServerRoute. | *string* |
 
 ### externalEndpoint
 
