@@ -141,6 +141,8 @@ For NGINX Plus with NGINX Agent version 3 installed from `nginx` user (rootless 
 docker pull private-registry.nginx.com/nginx-plus/rootless-agentv3:<version-tag>
 ```
 
+To run the unprivileged images on Kubernetes or OpenShift, see [Deploy unprivileged NGINX Plus on Kubernetes and OpenShift]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-unprivileged-kubernetes-openshift.md" >}}).
+
 For NGINX modules, run:<!-- Is this enough info?-->
 
 ```shell
