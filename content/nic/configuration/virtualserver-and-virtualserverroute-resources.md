@@ -267,7 +267,9 @@ See the [VirtualServerRoute specification](#virtualserverroute-specification) se
 
 The VirtualServerRoute resource defines a route for a VirtualServer. It can consist of one or multiple subroutes. The VirtualServerRoute is an alternative to [Mergeable Ingress types]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
 
-VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. The `routeSelector` approach allows you to add new VirtualServerRoute resources without modifying the VirtualServer configuration.
+VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. With `routeSelector`, you can add new VirtualServerRoute resources without changing the VirtualServer configuration.
+
+A VirtualServerRoute can set `host` to attach only to the VirtualServer with that host, or omit `host` (hostless mode). A hostless VirtualServerRoute uses the host of each VirtualServer that references it, by name with `route` or by label with `routeSelector`. Any VirtualServer in any namespace whose `routeSelector` matches the labels of a hostless VirtualServerRoute attaches that route. Use labels that only the intended VirtualServers select.
 
 {{<tabs name="vs-vsr-examples">}}
 
@@ -307,6 +309,74 @@ metadata:
   namespace: coffee-ns
 spec:
   host: cafe.example.com
+  upstreams:
+  - name: latte
+    service: latte-svc
+    port: 80
+  - name: espresso
+    service: espresso-svc
+    port: 80
+  subroutes:
+  - path: /coffee/latte
+    action:
+      pass: latte
+  - path: /coffee/espresso
+    action:
+      pass: espresso
+```
+
+{{%/tab%}}
+
+{{%tab name="Hostless route"%}}
+
+In this example, the VirtualServerRoute `shared-coffee` omits the `host` field (hostless mode). Multiple VirtualServers with different domains can reference the same route configuration.
+
+First VirtualServer:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe
+  namespace: cafe-ns
+spec:
+  host: cafe.example.com
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    route: coffee-ns/shared-coffee
+```
+
+Second VirtualServer:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe2
+  namespace: cafe2-ns
+spec:
+  host: cafe2.example.com
+  routes:
+  - path: /coffee
+    route: coffee-ns/shared-coffee
+```
+
+VirtualServerRoute (hostless):
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: shared-coffee
+  namespace: coffee-ns
+spec:
   upstreams:
   - name: latte
     service: latte-svc
@@ -385,14 +455,14 @@ spec:
 
 {{</tabs>}}
 
-Note that each subroute must have a `path` that starts with the same prefix (here `/coffee`), which is defined in the route of the VirtualServer. Additionally, the `host` in the VirtualServerRoute must be the same as the `host` of the VirtualServer.
+Each subroute path must start with the prefix defined in the VirtualServer route (for example, `/coffee`). If you set `host` in the VirtualServerRoute, it must match the VirtualServer `host` exactly. If you omit `host`, any VirtualServer can reference the VirtualServerRoute.
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. Must be the same as the ``host`` of the VirtualServer that references this resource. | ``string`` | Yes |
+|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com``, wrap the domain in double quotes. When set, it must match the ``host`` of the VirtualServer that references this resource. If you omit ``host`` (hostless mode), the VirtualServerRoute uses the host of each VirtualServer that references it. | ``string`` | No |
 |``upstreams`` | A list of upstreams. | [[]upstream](#upstream) | No |
 |``subroutes`` | A list of subroutes. | [[]subroute](#virtualserverroutesubroute) | No |
-|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string``_ | No |
+|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string`` | No |
 
 ### VirtualServerRoute.Subroute
 
@@ -1145,9 +1215,9 @@ Status:
   State:    Invalid
 ```
 
-NGINX Ingress Controller validates VirtualServerRoute resources in a similar way.
+NGINX Ingress Controller validates VirtualServerRoute resources in a similar way. For example, if a VirtualServerRoute defines a `host` that doesn't match the referencing VirtualServer, NGINX Ingress Controller rejects the route attachment.
 
-**Note**: If you make an existing resource invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX.
+If you make an existing resource invalid, NGINX Ingress Controller rejects it and removes the corresponding configuration from NGINX.
 
 ## Multiple regex routes in a VirtualServerRoute
 
