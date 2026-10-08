@@ -23,7 +23,7 @@ To download a security policy bundle using the F5 NGINX Instance Manager web int
    - The **Download Bundle** option is available only when the **Compilation Status** is **Compiled**.
 5. When the download starts, a `.tgz` file named `<POLICY_NAME>-security-policy-bundle.tgz` is saved to your system.
 
-> **Note:** By default, **Download Bundle** retrieves the latest bundle revision of the selected policy.
+> **Note:** By default, **Download Bundle** retrieves the policy's latest bundle revision using the newest WAF compiler version it has been compiled with.
 
 {{% /tab %}}
 
