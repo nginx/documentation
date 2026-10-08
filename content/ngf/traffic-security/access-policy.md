@@ -17,16 +17,13 @@ f5-audience: operator
 
 Use an AccessPolicy to define an IP address allowlist or denylist in F5 NGINX Gateway Fabric. An AccessPolicy holds a list of rules. Each rule names a client IP address or a CIDR range. The `action` field sets whether the rules form an allowlist or a denylist.
 
-AccessPolicy is an [inherited policy attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/). You can attach an AccessPolicy to a Gateway, an HTTPRoute, or a GRPCRoute in the same namespace as the policy. A cluster operator can attach a policy to a Gateway. An application developer can attach a policy to the routes for their application.
+AccessPolicy is an [inherited policy attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/). You can attach an AccessPolicy to a Gateway, an HTTPRoute, or a GRPCRoute in the same namespace as the policy.
 
 In this guide, you create an AccessPolicy for a Gateway and an AccessPolicy for an HTTPRoute. Then you check the status of each policy and its target. The guide also explains how NGINX combines the rules from the two policies.
 
 ## Before you begin
 
-Before you begin, make sure you have:
-
-- **NGINX Gateway Fabric**: [Install]({{< ref "/ngf/install/_index.md" >}}) NGINX Gateway Fabric. The Helm chart and the Kubernetes manifests include the AccessPolicy custom resource definition (CRD). They also include the permissions to watch AccessPolicies and update their status.
-- **kubectl**: The `kubectl` command-line tool, connected to your cluster.
+- [Install]({{< ref "/ngf/install/_index.md" >}}) NGINX Gateway Fabric.
 
 ## Deploy an example application
 
@@ -268,7 +265,8 @@ An AccessPolicy for a Gateway applies to every HTTPRoute and GRPCRoute attached 
 When a Gateway and a route both have AccessPolicies, NGINX Gateway Fabric combines them for that route:
 
 - **Deny rules add up**: NGINX blocks a request that matches any Gateway or route Deny rule. A route policy can't override a Gateway Deny rule. This holds even when a route Allow rule lists the same address.
-- **Route Allow rules replace Gateway Allow rules**: If the route has an Allow policy, NGINX passes only the addresses in the route Allow rules. If the route has only Deny policies, the Gateway Allow rules still apply.
+- **Route Allow rules narrow the Gateway Allow rules**: NGINX passes only the addresses that both the Gateway and route Allow rules include. A route Allow rule can't pass an address outside the Gateway Allow rules. If the route and Gateway Allow addresses don't overlap, NGINX blocks all requests to the route.
+- **Allow rules from one level apply unchanged**: If only the Gateway has an Allow policy, the Gateway Allow rules apply to the route. If only the route has an Allow policy, the route Allow rules apply.
 - **Deny rules come first**: NGINX checks every Deny rule before it checks the Allow rules.
 
 When several AccessPolicies with the same `action` target one resource, NGINX Gateway Fabric merges all of their rules.
@@ -298,7 +296,7 @@ NGINX compares the rules with the client IP address of each request. If a load b
 - `TargetRef` Kind and Name combination must be unique
 - `ipAddress` must be set when type is `IPAddress`
 
-**Cause**: The AccessPolicy CRD checks the policy when you apply it. The policy breaks one of the rules in [AccessPolicy fields](#accesspolicy-fields).
+**Cause**: The AccessPolicy custom resource definition (CRD) checks the policy when you apply it. The policy breaks one of the rules in [AccessPolicy fields](#accesspolicy-fields).
 
 **Fix**: Correct the field that the message names, and apply the AccessPolicy again. For example, to target a Gateway and a route, create two AccessPolicies.
 
