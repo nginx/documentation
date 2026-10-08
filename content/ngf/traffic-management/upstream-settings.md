@@ -436,6 +436,81 @@ upstream default_tea_80 {
 }
 ```
 
+### Size upstream zones automatically
+
+A fixed zone size must fit the largest number of endpoints an upstream can have. A large fixed size wastes memory on small upstreams. A small fixed size can make NGINX fail to reload with a `zone ... is too small` error when an upstream grows. To have NGINX Gateway Fabric size the zone of each upstream for you, set `zoneSize` to `auto`.
+
+Automatic sizing works for each upstream separately:
+
+- **Start**: Each upstream starts with a `64k` zone, for both NGINX Open Source and NGINX Plus.
+- **Grow**: NGINX can report that the zone of an upstream is too small or out of memory. Then NGINX Gateway Fabric doubles that zone and applies the configuration again. NGINX Gateway Fabric repeats this until the configuration applies or the zone reaches its maximum size. With NGINX Plus, out-of-memory errors from the NGINX Plus API also trigger growth.
+- **Shrink**: The number of endpoints can drop to 25% or less of the number that the zone was sized for. If it stays there for 2 minutes, NGINX Gateway Fabric halves the zone. The smallest zone size is `64k`.
+
+NGINX Gateway Fabric keeps the size it finds for each upstream. Later updates to the NGINX configuration reuse that size. Automatic sizing applies only where you set `zoneSize` to `auto`. Other upstreams keep their fixed zone size.
+
+If you created the `1m-zone-size` policy in the previous section, delete it first. Two policies that set `zoneSize` for the same Service conflict.
+
+```shell
+kubectl delete upstreamsettingspolicies.gateway.nginx.org 1m-zone-size
+```
+
+To turn on automatic sizing for the `coffee` and `tea` services, create the following `UpstreamSettingsPolicy`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: auto-zone-size
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: tea
+  - group: core
+    kind: Service
+    name: coffee
+  zoneSize: auto
+EOF
+```
+
+Inspect the NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+The `zone` directives in the `coffee` and `tea` upstreams show the starting size of `64k`:
+
+```text
+    zone default_coffee_80 64k;
+    zone default_tea_80 64k;
+```
+
+To turn on automatic sizing for all Services, set `zoneSize: auto` in the `NginxProxy` resource. The `zoneSizeMaxSize` field of the `NginxProxy` resource sets the largest size that an automatic zone can reach. The default is `512m`. The following `NginxProxy` resource sizes all zones automatically, up to `64m` each:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  zoneSize: auto
+  zoneSizeMaxSize: 64m
+EOF
+```
+
+An `UpstreamSettingsPolicy` that sets a fixed `zoneSize` still overrides the `NginxProxy` value for the Services it targets. For example, you can size all zones automatically and give one Service a fixed `2m` zone. For more about where to attach the `NginxProxy` resource, see [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}).
+
+A zone can reach `zoneSizeMaxSize` and still be too small. In that case, NGINX Gateway Fabric stops growing the zone and logs an error. To give the zone more room, increase `zoneSizeMaxSize`.
+
+Keep the following in mind when you set these fields:
+
+- `zoneSize` takes `auto`, or a number of up to four digits followed by `k`, `m`, or `g`, for example `512k`. The suffix is required.
+- `zoneSizeMaxSize` takes a number of up to four digits with an optional `k`, `m`, or `g` suffix. A value without a suffix is in bytes.
+- Automatic sizing applies to the upstreams of HTTPRoutes and GRPCRoutes. Layer 4 stream upstreams for TLSRoutes, TCPRoutes, and UDPRoutes keep their fixed zone size.
+
 ## Enable keepalive connections
 
 By default, the `keepalive` directive is omitted, which results in the default NGINX `keepalive` value being used. You can override this value or disable `keepAlive` entirely by configuring an UpstreamSettingsPolicy. To disable keepalive, set the connections field to 0.
