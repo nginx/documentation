@@ -410,6 +410,18 @@ Enter a comma-separated list of positive numbers in strictly ascending order, fo
 - If the value isn't valid, NGINX Ingress Controller logs a warning and uses the default buckets.
 - If `-enable-latency-metrics` isn't set, NGINX Ingress Controller logs a warning and ignores the argument.
 
+<a name="cmdoption-enable-topology-aware-routing"></a>
+
+### -enable-topology-aware-routing
+
+Turn on topology-aware routing. NGINX Ingress Controller then reads the topology hints on EndpointSlices when it selects upstream endpoints. It prefers endpoints on the same node or in the same zone as the NGINX Ingress Controller pod. Kubernetes writes these hints when a Service sets `spec.trafficDistribution` or the `service.kubernetes.io/topology-mode: Auto` annotation.
+
+NGINX Ingress Controller reads the zone from the `topology.kubernetes.io/zone` label of its node at startup. If the label changes, restart NGINX Ingress Controller.
+
+Default `false`.
+
+For more information, see [Set up topology-aware routing]({{< ref "/nic/configuration/topology-aware-routing.md" >}}).
+
 <a name="cmdoption-enable-app-protect"></a>
 
 ### -enable-app-protect
