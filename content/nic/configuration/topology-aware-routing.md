@@ -53,7 +53,6 @@ NGINX Ingress Controller filters endpoints only when every ready endpoint has a 
 
 For a VirtualServer upstream with a `subselector`, NGINX Ingress Controller first selects the pods that match the `subselector`. Then it applies the rules to the endpoints of those pods. For example, if the only matching pod runs in another zone, the upstream uses that pod.
 
----
 
 ## Before you begin
 
@@ -63,7 +62,6 @@ Before you begin, make sure you have:
 - **Zone labels on your nodes**: Same-zone routing needs the `topology.kubernetes.io/zone` label on each node. In most cloud clusters, Kubernetes sets this label for you.
 - **Permission to list nodes**: NGINX Ingress Controller reads the zone of its own node at startup. The ClusterRole in the Helm chart and in the manifests already grants `list` on nodes.
 
----
 
 ## Turn on topology-aware routing
 
@@ -100,7 +98,6 @@ Use the steps for your installation method.
 
     Replace `<MANIFEST_FILE>` with the path to your Deployment or DaemonSet manifest. Kubernetes then restarts the NGINX Ingress Controller pods with the argument.
 
----
 
 ## Set traffic distribution on a Service
 
@@ -132,7 +129,6 @@ Set `spec.trafficDistribution` on each Service that you want NGINX Ingress Contr
 
     The EndpointSlice controller adds hints to the endpoints of the Service. Then NGINX Ingress Controller updates the upstream servers for that Service.
 
----
 
 ## Verify the endpoints that NGINX Ingress Controller uses
 
@@ -174,7 +170,6 @@ Set `spec.trafficDistribution` on each Service that you want NGINX Ingress Contr
 
     The upstream for the Service lists only the endpoints on the node or in the zone of the pod.
 
----
 
 ## Spread NGINX Ingress Controller pods across zones
 
@@ -188,7 +183,6 @@ NGINX Ingress Controller uses endpoint readiness as the only health signal for t
 
 NGINX Ingress Controller reads the zone of its node once, at startup. If the `topology.kubernetes.io/zone` label of a node changes, restart the NGINX Ingress Controller pods on that node.
 
----
 
 ## Return to cluster-wide distribution
 
@@ -198,7 +192,6 @@ To make NGINX Ingress Controller send traffic to all ready endpoints again, use 
 - **Remove the field**: Remove `trafficDistribution` from the Service manifest, and apply the manifest again. NGINX Ingress Controller then uses all ready endpoints of that Service. kube-proxy also stops preferring nearby endpoints for traffic to the cluster IP.
 - **Use a second Service**: To keep the preference for kube-proxy traffic only, create a second Service without `trafficDistribution`. Then point your Ingress, VirtualServer, or TransportServer resources at the second Service.
 
----
 
 ## Troubleshooting
 
@@ -239,7 +232,6 @@ Node <NODE_NAME> not found for zone detection; same-zone routing using EndpointS
 
 After the fix, restart the NGINX Ingress Controller pod.
 
----
 
 ## References
 
