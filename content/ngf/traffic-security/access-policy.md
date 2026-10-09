@@ -185,6 +185,26 @@ Attach an AccessPolicy to a Gateway to set access rules for every route attached
         Type:                  AccessPolicyAffected
     ```
 
+1. Confirm the Gateway was assigned an IP address and reports a `Programmed=True` status:
+
+    ```shell
+    kubectl describe gateways.gateway.networking.k8s.io gateway
+    ```
+
+    ```text
+    Addresses:
+      Type:   IPAddress
+      Value:  10.96.20.187
+    ```
+
+    Save the IP address and port into shell variables:
+
+    ```shell
+    GW_IP=XXX.YYY.ZZZ.III
+    GW_PORT=<port number>
+    ```
+
+
 ## Create an AccessPolicy for a route
 
 Attach an AccessPolicy to an HTTPRoute or a GRPCRoute to set access rules for one application.
@@ -235,6 +255,40 @@ Attach an AccessPolicy to an HTTPRoute or a GRPCRoute to set access rules for on
 
     Look for the `AccessPolicyAffected` condition in the route status. The condition has the status `True` and the reason `PolicyAffected`.
 
+## Verify access control
+
+The following examples use the `X-Forwarded-For` header to simulate requests from specific client IP addresses. This requires `rewriteClientIP` to be configured on the NginxProxy resource. See [Client IP address behind a proxy](#client-ip-address-behind-a-proxy).
+
+Send a request with an IP address in the `gateway-denylist` range. NGINX blocks it before checking the allowlist:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP -H "X-Forwarded-For: 198.51.100.25" http://cafe.example.com:$GW_PORT/coffee
+```
+
+```text
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+```
+
+Send a request with an IP address in the `coffee-allowlist` range:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP -H "X-Forwarded-For: 192.0.2.10" http://cafe.example.com:$GW_PORT/coffee
+```
+
+```text
+Server address: 10.244.0.22:8080
+Server name: coffee-654ddf664b-6mwtb
+Date: 09/Oct/2026:12:00:00 +0000
+URI: /coffee
+Request ID: abc123def456ghi789jkl012
+```
+
 ## AccessPolicy fields
 
 An AccessPolicy has the following fields in its `spec`:
@@ -245,7 +299,7 @@ An AccessPolicy has the following fields in its `spec`:
   - `name`: A name that's unique in the policy. The name must be a lowercase DNS subdomain name of 1 to 63 characters, such as `office-network` or `rule.one`.
   - `source`: The request source for the rule. Set `type` to `IPAddress`, and set `ipAddress.address` to an IPv4 address, an IPv6 address, or a CIDR range. If you leave out `source`, the rule matches requests from any source.
 
-More than one AccessPolicy can target the same resource. NGINX Gateway Fabric merges these policies and doesn't mark any of them as `Conflicted`.
+Multiple AccessPolicies can target the same resource. When they share the same `action`, NGINX Gateway Fabric merges their rules — none are marked `Conflicted`. Deny rules are always additive. A route Allow policy whose addresses fall entirely outside the gateway Allow range is marked `Overridden`, because the gateway range takes precedence and none of its rules take effect.
 
 ## How NGINX applies the access rules
 
@@ -265,20 +319,11 @@ An AccessPolicy for a Gateway applies to every HTTPRoute and GRPCRoute attached 
 When a Gateway and a route both have AccessPolicies, NGINX Gateway Fabric combines them for that route:
 
 - **Deny rules add up**: NGINX blocks a request that matches any Gateway or route Deny rule. A route policy can't override a Gateway Deny rule. This holds even when a route Allow rule lists the same address.
-- **Route Allow rules narrow the Gateway Allow rules**: NGINX passes only the addresses that both the Gateway and route Allow rules include. A route Allow rule can't pass an address outside the Gateway Allow rules. If the route and Gateway Allow addresses don't overlap, NGINX blocks all requests to the route.
+- **Route Allow rules narrow the Gateway Allow rules**: NGINX passes only the addresses that both the Gateway and route Allow rules include. A route Allow rule can't pass an address outside the Gateway Allow rules. If some route Allow addresses fall within the Gateway Allow range and some don't, only the addresses in both ranges are programmed. If no route Allow addresses overlap with the Gateway Allow range, no allow directives are programmed for that route and all traffic to that route is blocked.
 - **Allow rules from one level apply unchanged**: If only the Gateway has an Allow policy, the Gateway Allow rules apply to the route. If only the route has an Allow policy, the route Allow rules apply.
 - **Deny rules come first**: NGINX checks every Deny rule before it checks the Allow rules.
 
-When several AccessPolicies with the same `action` target one resource, NGINX Gateway Fabric merges all of their rules.
-
-The following table shows the result for `cafe.example.com/coffee` after you create the two AccessPolicies in this guide. The `gateway-denylist` rules still apply to the `coffee` route.
-
-| Client IP address | Result | Reason |
-|---|---|---|
-| `198.51.100.25` | Blocked | Matches a `gateway-denylist` rule |
-| `192.0.2.10` | Passed | Matches a `coffee-allowlist` rule |
-| `2001:db8::10` | Passed | Matches a `coffee-allowlist` rule |
-| Any other address | Blocked | Matches no rule, and `coffee-allowlist` is an allowlist |
+When several AccessPolicies with the same `action` target one resource, NGINX Gateway Fabric merges the rules as best possible. Deny policies are always merged since their rules are additive across all levels. If a route Allow policy's addresses fall outside the gateway Allow range, NGINX Gateway Fabric marks that policy as `Overridden` because none of its rules take effect.
 
 ### Client IP address behind a proxy
 
@@ -286,19 +331,13 @@ NGINX compares the rules with the client IP address of each request. If a load b
 
 ## Troubleshooting
 
-### Kubernetes rejects the AccessPolicy
+### The route Allow policy blocks all traffic
 
-**Symptom**: `kubectl apply` returns an error, and Kubernetes doesn't create the AccessPolicy. The error includes one of these messages:
+**Symptom**: All requests to a route are blocked even though the route has an Allow policy.
 
-- `AccessRule` names must be unique
-- Cannot mix `Gateway` kind with `HTTPRoute` or `GRPCRoute` kinds in `targetRefs`
-- `TargetRef` Kind must be one of: `Gateway`, `HTTPRoute`, or `GRPCRoute`
-- `TargetRef` Kind and Name combination must be unique
-- `ipAddress` must be set when type is `IPAddress`
+**Cause**: The route Allow addresses don't overlap with the Gateway Allow range. When no addresses fall within both ranges, no allow directives are programmed for the route, so all traffic is blocked.
 
-**Cause**: The AccessPolicy custom resource definition (CRD) checks the policy when you apply it. The policy breaks one of the rules in [AccessPolicy fields](#accesspolicy-fields).
-
-**Fix**: Correct the field that the message names, and apply the AccessPolicy again. For example, to target a Gateway and a route, create two AccessPolicies.
+**Fix**: Check the Allow policy attached to the Gateway and confirm that the route Allow addresses fall within that range. If there is no Gateway Allow policy, the route Allow addresses apply without restriction.
 
 ### The AccessPolicy status is Invalid
 
