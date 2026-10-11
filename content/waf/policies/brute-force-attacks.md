@@ -60,7 +60,7 @@ For more information, see the [login-pages section]({{< ref "/waf/policies/param
 
 ## Mitigation actions
 
-Use these action values in your brute force configuration:
+Use these action values for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTheSameIp`, and `loginAttemptsFromTheSameDeviceId`:
 
 - `alarm` logs the brute force event and allows the request.
 - `alarm-and-client-side-integrity` serves a JavaScript challenge to verify that the client behaves like a browser.
@@ -69,16 +69,17 @@ Use these action values in your brute force configuration:
 ## Configure brute force challenges
 
 1. Define the login endpoint in `urls`.
-2. Add the same endpoint to `login-pages` and configure `accessValidation` so F5 WAF for NGINX can classify successful and failed logins.
-3. Decide whether the brute force settings apply to all login pages or only one page.
-4. Set thresholds for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTheSameIp`, or `loginAttemptsFromTheSameDeviceId`, depending on how you want to track failed login activity.
-5. Choose a mitigation action: `alarm`, `alarm-and-client-side-integrity`, or `alarm-and-captcha`.
-6. Tune the timing fields for detection, mitigation, and re-enable behavior.
-7. If needed, configure bypass behavior for the selected challenge type.
+2. Add the same endpoint to `login-pages`.
+3. Configure `accessValidation` so F5 WAF for NGINX can classify successful and failed logins.
+4. Decide whether the brute force settings apply to all login pages or only one page.
+5. Set thresholds for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTheSameIp`, or `loginAttemptsFromTheSameDeviceId`, depending on how you want to track failed login activity.
+6. Choose a mitigation action: `alarm`, `alarm-and-client-side-integrity`, or `alarm-and-captcha`.
+7. Tune the timing fields for detection, mitigation, and re-enable behavior.
+8. If needed, configure bypass behavior for the selected challenge type.
 
-## Client Side Integrity example
+## Client-side integrity example
 
-This example applies Client Side Integrity to all configured login pages.
+This example applies Client-side integrity to all configured login pages.
 
 ```json
 {
@@ -156,7 +157,7 @@ This example protects a specific login page with CAPTCHA.
 }
 ```
 
-Use the CAPTCHA example when you want to protect browser-based login flows with a human verification step instead of a JavaScript integrity challenge.
+Use the CAPTCHA example when you want to protect browser-based login flows with a human verification step instead of a Client-side integrity challenge.
 
 {{< call-out class="important" >}}
 
@@ -170,7 +171,7 @@ Use these examples when you want to track failed logins by device identifier ins
 
 Set `url` when the brute force configuration applies to one login page. Omit `url` only when `bruteForceProtectionForAllLoginPages` is set to `true`.
 
-### Client Side Integrity
+### Client-side integrity
 
 ```json
 {
