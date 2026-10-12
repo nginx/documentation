@@ -4,12 +4,14 @@ weight: 600
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC
+f5-keywords: "NGINX Gateway Fabric, auth_request module, authorization subrequest, ngx_http_auth_request_module"
 f5-description: How to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on HTTPRoute.
 f5-summary: >
   NGINX Gateway Fabric supports external authentication via the `ExternalAuth` filter on an HTTPRoute.
   Before proxying a request to the backend, NGINX performs an authorization subrequest to an external service.
   A 2xx response allows the request through, and any other status rejects it.
   This feature uses the NGINX [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html).
+f5-audience: operator
 ---
 
 This guide describes how to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on an HTTPRoute.

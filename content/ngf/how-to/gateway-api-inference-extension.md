@@ -1,17 +1,23 @@
 ---
 title: Gateway API Inference Extension
+description: "Use the Gateway API Inference Extension with NGINX Gateway Fabric to route traffic to self-hosted AI models."
 weight: 800
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
+f5-summary: >
+  Enable the Gateway API Inference Extension so NGINX Gateway Fabric can act as an Inference Gateway for self-hosted generative AI models on Kubernetes.
+  This guide covers CRD install, controller flags, and model-aware routing features such as serving priority and model rollouts.
+f5-keywords: "NGINX Gateway Fabric, Gateway API Inference Extension, InferencePool, AI, generative AI, model routing, Endpoint Picker"
+f5-audience: any
 ---
 
-Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension to optimize traffic routing to self-hosting Generative AI Models on Kubernetes. 
+Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension to optimize traffic routing to self-hosted Generative AI models on Kubernetes. 
 
 ## Overview
 
-The [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) is an official Kubernetes project that aims to provide optimized load-balancing for self-hosted Generative AI Models on Kubernetes. 
+The [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) is an official Kubernetes project that aims to provide optimized load-balancing for self-hosted generative AI models on Kubernetes. 
 The project's goal is to improve and standardize routing to inference workloads across the ecosystem. 
 
 Coupled with the provided llm-d Router, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions). An Inference Gateway adds AI-specific traffic management features, such as model-aware routing, serving priority for models, and model rollouts. 

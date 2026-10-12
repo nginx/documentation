@@ -1,10 +1,16 @@
 ---
 title: Proxy Settings Policy API
+description: "Use ProxySettingsPolicy to configure proxy buffering and timeouts between NGINX and backends."
 toc: true
 weight: 1400
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
+f5-summary: >
+  The ProxySettingsPolicy API configures connection behavior between NGINX Gateway Fabric and upstream applications.
+  Apply it to a Gateway, HTTPRoute, or GRPCRoute to control buffering, buffer sizes, and proxy timeouts.
+f5-keywords: "NGINX Gateway Fabric, ProxySettingsPolicy, proxy_buffering, proxy_read_timeout, proxy_connect_timeout, PolicyAttachment"
+f5-audience: any
 ---
 
 Learn how to use the `ProxySettingsPolicy` API.

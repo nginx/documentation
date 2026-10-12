@@ -1,10 +1,16 @@
 ---
 title: Troubleshooting
+description: "Diagnose common NGINX Gateway Fabric issues and apply suggested workarounds."
 toc: true
 weight: 600
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1419
+f5-summary: >
+  Use general troubleshooting techniques to diagnose problems when running NGINX Gateway Fabric.
+  This topic covers common failure modes and, where possible, suggested workarounds.
+f5-keywords: "NGINX Gateway Fabric, troubleshooting, debug, errors, logs, events, status"
+f5-audience: any
 ---
 
 This topic describes possible issues when using NGINX Gateway Fabric and general troubleshooting techniques. When possible, suggested workarounds are provided.

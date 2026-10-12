@@ -1,10 +1,16 @@
 ---
 title: Modify HTTP request and response headers
+description: "Add, set, or remove HTTP request and response headers with NGINX Gateway Fabric."
 weight: 500
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1849
+f5-summary: >
+  Modify request and response headers for applications fronted by NGINX Gateway Fabric.
+  Use header filters to pass metadata, remove sensitive values, or adjust client-visible responses.
+f5-keywords: "NGINX Gateway Fabric, headers, request headers, response headers, HTTPRoute filters"
+f5-audience: any
 ---
 
 Learn how to modify the request and response headers of your application using NGINX Gateway Fabric.

@@ -1,14 +1,17 @@
 ---
 title: Configure TLS routing with TLSRoute
+description: "Forward end-to-end TLS traffic through NGINX Gateway Fabric either TLS passthrough or terminate"
 weight: 600
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1850
+f5-keywords: "NGINX Gateway Fabric, TLSRoute, TLS passthrough, SNI, passthrough, end-to-end TLS, TLS terminate, terminate"
 f5-summary: >
    NGINX Gateway Fabric supports two TLS modes for TLSRoute: passthrough and terminate.
    In passthrough mode, the Gateway forwards encrypted traffic to the backend using SNI-based (Server Name Indication) routing, and the backend terminates TLS with its own certificate.
    In terminate mode, the Gateway holds the certificate and terminates TLS, then forwards plain TCP traffic to the backend.
+f5-audience: any
 ---
 
 Learn how to configure TLS routing with [TLSRoute](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#tlsroute) using NGINX Gateway Fabric.

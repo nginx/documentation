@@ -5,6 +5,11 @@ weight: 300
 toc: true
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
+f5-summary: >
+  NGINX Gateway Fabric uses a split-plane architecture with control plane, data plane, and certificate generator components.
+  This reference lists permissions and security settings for each component.
+f5-keywords: "NGINX Gateway Fabric, permissions, RBAC, security context, control plane, data plane, certificate generator"
+f5-audience: any
 ---
 
 ## Overview

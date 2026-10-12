@@ -5,10 +5,12 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-description:  How to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-keywords: "NGINX Gateway Fabric, OIDC, OpenID Connect, AuthenticationFilter, IdP, SSO, NGINX Plus, PKCE"
 f5-summary: >
    NGINX Gateway Fabric supports OIDC authentication via the AuthenticationFilter CRD, enabling delegation of user login to identity providers like Keycloak, Okta, or Auth0 using the Authorization Code Flow.
    The filter must be attached to an HTTPS listener and references Kubernetes Secrets for sensitive material including the client secret and optional CA certificate for verifying the IdP's TLS connection.
    Key optional features include session management, logout configuration, PKCE, custom redirect URIs, and Certificate Revocation List support, though the feature requires NGINX Plus and does not work with open-source NGINX.
+f5-audience: any
 ---
 
 This guide describes how to configure OpenID Connect (OIDC) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).

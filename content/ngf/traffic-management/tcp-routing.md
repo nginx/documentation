@@ -1,10 +1,16 @@
 ---
 title: TCPRoute
+description: "Configure a TCPRoute to forward TCP connections from a Gateway listener to backend services."
 weight: 1200
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
+f5-summary: >
+  Expose TCP applications by attaching a TCPRoute to a Gateway listener that defines the external port.
+  TCPRoute is a Gateway API experimental-channel resource and requires experimental features enabled in NGINX Gateway Fabric.
+f5-keywords: "NGINX Gateway Fabric, TCPRoute, TCP, Gateway API, experimental, stream, backend"
+f5-audience: any
 ---
 
 Learn how to configure a TCPRoute to establish a TCP connection between NGINX Gateway Fabric and the backend applications.

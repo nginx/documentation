@@ -1,10 +1,16 @@
 ---
 title: Build NGINX Gateway Fabric
+description: "Build custom NGINX Gateway Fabric and NGINX container images from source."
 weight: 500
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1431
+f5-summary: >
+  Manually build NGINX Gateway Fabric and NGINX images when you need custom images instead of published charts or manifests.
+  Most users should prefer Helm or Kubernetes manifests for installation.
+f5-keywords: "NGINX Gateway Fabric, build image, container image, Docker, custom build"
+f5-audience: any
 ---
 
 ## Overview

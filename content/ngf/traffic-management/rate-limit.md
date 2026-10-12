@@ -1,10 +1,16 @@
 ---
 title: Rate Limit Policy API
+description: "Use RateLimitPolicy to apply NGINX rate limiting to Gateways and routes."
 toc: true
 weight: 1500
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
+f5-summary: >
+  The RateLimitPolicy API configures NGINX rate limiting on provisioned NGINX instances.
+  Attach the inherited policy to a Gateway, HTTPRoute, or GRPCRoute to control request rates and related limit_req settings.
+f5-keywords: "NGINX Gateway Fabric, RateLimitPolicy, rate limit, limit_req, limit_req_zone, throttling"
+f5-audience: any
 ---
 
 Learn how to use the `RateLimitPolicy` API.
