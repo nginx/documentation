@@ -6,7 +6,7 @@ f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
 description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, an HTTP server, or Policy Lifecycle Management.
 f5-summary: >
-  Fetch compiled WAF bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or direct HTTP/HTTPS URLs.
+  Fetch compiled WAF bundles from F5 NGINX Instance Manager, F5 NGINX One Console, direct HTTP/HTTPS URLs, or Policy Lifecycle Management (PLM).
   Choose a source type that matches how your organization builds and distributes WAF policies.
 f5-keywords: "NGINX Gateway Fabric, WAF policy source, Instance Manager, NGINX One Console, HTTP bundle, WAFPolicy"
 f5-audience: operator
