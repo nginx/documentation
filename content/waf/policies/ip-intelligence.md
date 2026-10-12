@@ -89,11 +89,14 @@ First, create the required directory:
 sudo mkdir -p /var/IpRep
 ```
 
-Then set correct ownership of the directory:
+Then set the owner of the directory, and give group `101` read and write access:
 
 ```shell
-sudo chown -R 101:101 /var/IpRep
+sudo chown -R 100:101 /var/IpRep
+sudo chmod -R g+rwX /var/IpRep
 ```
+
+Starting with release 5.16.0, the `waf-enforcer` container runs as UID `100`. Group `101` access lets the `waf-ip-intelligence` container also read and write to the directory. For releases earlier than 5.16.0, use `sudo chown -R 101:101 /var/IpRep` instead.
 
 Modify the _original docker-compose.yml_ file to include the IP intelligence container, replacing image tags as appropriate:
 

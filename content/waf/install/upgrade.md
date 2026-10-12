@@ -34,6 +34,46 @@ You can upgrade packages within Docker containers the same way as in the [Virtua
 
 Otherwise, you can update the version of F5 WAF components you are using by changing the tag prefixed to the `image:` key in your _docker-compose_ files.
 
+### Update Docker deployments to 5.16.0
+
+Starting with release 5.16.0, the `waf-enforcer` and `waf-config-mgr` images run as user ID (UID) `100` instead of `101`. The group ID (GID) is still `101`. If you update from a release earlier than 5.16.0, change the owner of the shared host directories first. Do this before you start the new containers.
+
+1. Stop the F5 WAF for NGINX services:
+
+    ```shell
+    sudo docker compose down
+    ```
+
+1. Set the owner and group permissions of the shared directories:
+
+    ```shell
+    sudo chown -R 100:101 /opt/app_protect/bd_config /opt/app_protect/config
+    sudo chmod -R g+rwX /opt/app_protect/
+    ```
+
+1. In your _docker-compose.yml_ file, change the `waf-enforcer` and `waf-config-mgr` image tags to `5.16.0`.
+
+1. Pull the new images:
+
+    ```shell
+    docker pull private-registry.nginx.com/nap/waf-enforcer:5.16.0
+    docker pull private-registry.nginx.com/nap/waf-config-mgr:5.16.0
+    ```
+
+1. Start the services:
+
+    ```shell
+    sudo docker compose up -d
+    ```
+
+If you skip the ownership change, the update fails:
+
+- `waf-config-mgr` logs `chtimes ...: operation not permitted` or `config_set_cache.yaml: permission denied`.
+- `waf-enforcer` restarts continuously.
+- NGINX fails to start or reload.
+
+To fix the problem, run the commands in step 2, then restart the services.
+
 ## Kubernetes deployments
 
 In a Kubernetes deployment, your approach for upgrading F5 WAF for NGINX depends on your installation method.
