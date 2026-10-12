@@ -9,7 +9,7 @@ f5-summary: >
   Install F5 NGINX Gateway Fabric on OpenShift using OperatorHub and configure it with the NginxGatewayFabric custom resource.
   Use this path for OpenShift-managed clusters.
 f5-keywords: "NGINX Gateway Fabric, OpenShift, OperatorHub, NginxGatewayFabric, install"
-f5-audience: any
+f5-audience: operator
 ---
 
 ## Overview

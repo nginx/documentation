@@ -11,7 +11,7 @@ f5-summary: >
    cert-manager automates issuance and renewal of TLS certificates from public Certificate Authorities such as Let's Encrypt by responding to ACME challenges on your behalf.
    The Gateway API HTTP01 solver lets cert-manager use an NGINX Gateway Fabric Gateway as the challenge solver: cert-manager creates a temporary HTTPRoute, Let's Encrypt verifies domain ownership over HTTP, and the signed certificate is stored in a Secret referenced by the Gateway's HTTPS listener.
    Once issued, NGINX Gateway Fabric serves HTTPS using the keypair in the Secret, and cert-manager rotates the material in place before expiry without operator intervention.
-f5-audience: any
+f5-audience: operator
 ---
 
 Learn how to issue and manage certificates using Let's Encrypt and cert-manager.

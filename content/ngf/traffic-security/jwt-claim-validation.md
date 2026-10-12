@@ -10,7 +10,7 @@ f5-summary: >
   NGINX Gateway Fabric supports JWT claim validation via the AuthenticationFilter CRD, allowing you to enforce authorization rules based on the claims present in a JSON Web Token.
   Claim validation adds an authorization layer on top of JWT authentication, ensuring that only tokens containing specific claim values are granted access.
   JWT claim validation requires NGINX Plus and is not supported with open-source NGINX.
-f5-audience: any
+f5-audience: operator
 ---
 
 This guide describes how to configure JWT claim validation in F5 NGINX Gateway Fabric using the AuthenticationFilter custom resource definition (CRD).

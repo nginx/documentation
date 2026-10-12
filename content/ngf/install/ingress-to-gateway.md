@@ -9,7 +9,7 @@ f5-summary: >
   Move workloads from NGINX Ingress Controller to NGINX Gateway Fabric and the Gateway API model.
   Use this guide when adopting Gateway API resources in place of Ingress-based configuration.
 f5-keywords: "NGINX Gateway Fabric, migration, NGINX Ingress Controller, Gateway API, Ingress"
-f5-audience: any
+f5-audience: operator
 ---
 
 This document describes how to migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric.

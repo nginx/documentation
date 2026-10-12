@@ -11,7 +11,7 @@ f5-summary: >
    NGINX Gateway Fabric terminates HTTPS at the Gateway using a TLS certificate stored in a Kubernetes Secret that the HTTPS listener references through `certificateRefs`.
    cert-manager issues the certificate from a local self-signed CA and populates the Secret automatically, with a ReferenceGrant allowing the Gateway to read the Secret from a separate namespace.
    An HTTPRoute redirect filter on the HTTP listener sends plaintext requests to the HTTPS listener, so all client traffic is encrypted end-to-end.
-f5-audience: any
+f5-audience: operator
 ---
 
 Learn how to terminate HTTPS traffic using NGINX Gateway Fabric.

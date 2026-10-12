@@ -10,7 +10,7 @@ f5-summary: >
   Move an existing NGINX Gateway Fabric installation to a newer version.
   Follow the upgrade steps that match how you originally installed the product.
 f5-keywords: "NGINX Gateway Fabric, upgrade, version, Helm, manifests, release"
-f5-audience: any
+f5-audience: operator
 ---
 
 This document describes how to upgrade NGINX Gateway Fabric when a new version releases.

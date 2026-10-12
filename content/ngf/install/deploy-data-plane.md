@@ -10,7 +10,7 @@ f5-summary: >
   Provision data plane instances through a Gateway and adjust them with NGINX custom resources.
   Use this after installing the control plane when you are ready to serve traffic.
 f5-keywords: "NGINX Gateway Fabric, Gateway, data plane, NginxProxy, deploy instances"
-f5-audience: any
+f5-audience: operator
 ---
 
 ## Overview

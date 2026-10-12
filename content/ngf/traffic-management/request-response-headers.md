@@ -10,7 +10,7 @@ f5-summary: >
   Modify request and response headers for applications fronted by NGINX Gateway Fabric.
   Use header filters to pass metadata, remove sensitive values, or adjust client-visible responses.
 f5-keywords: "NGINX Gateway Fabric, headers, request headers, response headers, HTTPRoute filters"
-f5-audience: any
+f5-audience: developer
 ---
 
 Learn how to modify the request and response headers of your application using NGINX Gateway Fabric.

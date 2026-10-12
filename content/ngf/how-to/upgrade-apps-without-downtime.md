@@ -10,7 +10,7 @@ f5-summary: >
   Shift traffic safely while upgrading application versions so users experience no downtime.
   Use Gateway API routes with NGINX Gateway Fabric to control rollout of backend changes.
 f5-keywords: "NGINX Gateway Fabric, rolling update, zero downtime, application upgrade, HTTPRoute, blue green"
-f5-audience: any
+f5-audience: operator
 ---
 
 Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.

@@ -9,7 +9,7 @@ f5-description: Quick start guide for protecting traffic with F5 WAF for NGINX i
 f5-summary: >
   Deploy a sample application, compile a WAF policy, and apply it to a Gateway using NGINX Gateway Fabric.
   This walkthrough uses the HTTP source type to demonstrate the full flow from policy compilation to attack blocking.
-f5-audience: any
+f5-audience: operator
 aliases:
   - /nginx-gateway-fabric/waf-integration/get-started/
 ---

@@ -10,7 +10,7 @@ f5-summary: >
   The UpstreamSettingsPolicy API configures how NGINX connects to upstream applications referenced by HTTPRoute or GRPCRoute services.
   Apply this direct policy to services to set load-balancing methods, upstream zone size, and keepalive behavior.
 f5-keywords: "NGINX Gateway Fabric, UpstreamSettingsPolicy, upstream, keepalive, load balancing, zone size, PolicyAttachment, health check"
-f5-audience: any
+f5-audience: developer
 ---
 
 Learn how to use the `UpstreamSettingsPolicy` API.

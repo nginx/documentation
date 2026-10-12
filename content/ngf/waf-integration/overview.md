@@ -9,7 +9,7 @@ f5-summary: >
   F5 NGINX Gateway Fabric integrates with F5 WAF for NGINX for enterprise web application firewall protection.
   WAF policies are compiled externally and deployed to the data plane through the WAFPolicy custom resource.
 f5-keywords: "NGINX Gateway Fabric, F5 WAF for NGINX, WAFPolicy, overview, architecture, compiled policy"
-f5-audience: any
+f5-audience: operator
 ---
 
 F5 NGINX Gateway Fabric integrates with F5 WAF for NGINX to provide web application firewall protection. WAF policies are compiled externally and deployed to the data plane using the `WAFPolicy` custom resource.

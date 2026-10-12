@@ -10,7 +10,7 @@ f5-summary: >
   Configure the JWT required to download and run NGINX Plus with NGINX Gateway Fabric.
   From version 1.5.0, the JWT is needed both to pull the image and to run NGINX Plus.
 f5-keywords: "NGINX Gateway Fabric, NGINX Plus, JWT, install, F5 registry, image pull"
-f5-audience: any
+f5-audience: operator
 ---
 
 ## Overview

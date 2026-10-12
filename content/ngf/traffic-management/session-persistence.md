@@ -10,7 +10,7 @@ f5-summary: >
   Keep multi-request client sessions on the same backend Pod using ip_hash (NGINX OSS) or cookie-based session persistence (NGINX Plus).
   Configure persistence via UpstreamSettingsPolicy or sessionPersistence fields on HTTPRoute and GRPCRoute resources.
 f5-keywords: "NGINX Gateway Fabric, session persistence, sticky cookie, ip_hash, UpstreamSettingsPolicy, NGINX Plus"
-f5-audience: any
+f5-audience: operator
 ---
 
 Learn how to configure session persistence using NGINX Gateway Fabric.

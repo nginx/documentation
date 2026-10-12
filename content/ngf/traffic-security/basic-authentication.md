@@ -9,7 +9,7 @@ f5-summary: >
   Protect routes with username and password basic authentication using the AuthenticationFilter custom resource.
   Attach the filter so only authenticated requests reach your backends.
 f5-keywords: "NGINX Gateway Fabric, basic authentication, AuthenticationFilter, username password, HTTP basic auth"
-f5-audience: any
+f5-audience: operator
 ---
 
 

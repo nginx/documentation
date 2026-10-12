@@ -10,7 +10,7 @@ f5-summary: >
   Apply Kubernetes manifests to install NGINX Gateway Fabric with NGINX Plus and experimental Gateway API features.
   Requires NGINX Plus credentials and is suited to non-Helm deployments.
 f5-keywords: "NGINX Gateway Fabric, manifests, NGINX Plus, experimental, install"
-f5-audience: any
+f5-audience: operator
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Plus.

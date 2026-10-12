@@ -10,7 +10,7 @@ f5-summary: >
   Configure distributed tracing for HTTPRoutes so you can follow requests through NGINX Gateway Fabric.
   This guide uses the OpenTelemetry Collector and Jaeger to collect and process traces.
 f5-keywords: "NGINX Gateway Fabric, tracing, OpenTelemetry, Jaeger, HTTPRoute, distributed tracing"
-f5-audience: any
+f5-audience: operator
 ---
 
 This guide explains how to enable tracing on HTTPRoutes in NGINX Gateway Fabric using the OpenTelemetry Collector. Jaeger is used to process and collect the traces.

@@ -9,7 +9,7 @@ f5-summary: >
   Inspect WAFPolicy status with kubectl describe and interpret condition types and reasons.
   Use this page when policies fail to fetch, apply, or enforce as expected.
 f5-keywords: "NGINX Gateway Fabric, WAFPolicy, troubleshooting, status conditions, kubectl describe, WAF"
-f5-audience: any
+f5-audience: operator
 ---
 
 Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. This page documents all condition types, reasons, and common troubleshooting steps.

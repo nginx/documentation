@@ -10,7 +10,7 @@ f5-summary: >
   Open the NGINX Plus dashboard to view real-time metrics for NGINX data plane instances.
   Requires NGINX Plus as the data plane.
 f5-keywords: "NGINX Gateway Fabric, NGINX Plus dashboard, metrics, real-time, monitoring"
-f5-audience: any
+f5-audience: operator
 ---
 
 This topic describes how to view the NGINX Plus dashboard to see real-time metrics.

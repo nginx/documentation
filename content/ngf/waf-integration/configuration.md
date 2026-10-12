@@ -9,7 +9,7 @@ f5-summary: >
   Manage day-two WAF settings for F5 WAF for NGINX in NGINX Gateway Fabric, including security logging, automatic policy updates, TLS and authentication, bundle integrity, cookie seeds, and fetch failure handling.
   Use this after the quick start when you need operational controls.
 f5-keywords: "NGINX Gateway Fabric, F5 WAF for NGINX, WAF configuration, security logging, policy updates, cookie seed"
-f5-audience: any
+f5-audience: operator
 ---
 
 This page covers operational configuration for F5 WAF for NGINX in NGINX Gateway Fabric: security logging, automatic policy updates, TLS and authentication, bundle integrity verification, cookie seed management, fetch failure handling, and WAF container settings.

@@ -10,7 +10,7 @@ f5-summary: >
   Update NGINX Gateway Fabric control plane settings without reinstalling the product.
   Use this guide when you need to change controller behavior at runtime.
 f5-keywords: "NGINX Gateway Fabric, control plane, NginxGateway, configuration, dynamic update"
-f5-audience: any
+f5-audience: operator
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric control plane configuration.

@@ -10,7 +10,7 @@ f5-summary: >
   Configure HTTP redirects and path rewrites so clients reach the correct URLs.
   Use these filters when migrating paths or enforcing HTTPS and canonical hosts.
 f5-keywords: "NGINX Gateway Fabric, redirect, rewrite, HTTPRoute, URL, path"
-f5-audience: any
+f5-audience: developer
 ---
 
 Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.
