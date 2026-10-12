@@ -85,7 +85,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# non-root default user (UID 101)
+# non-root default user
 USER nginx
 ```
 
@@ -142,7 +142,7 @@ A full NGINX restart is not required.
 
 ## Using the compiler
 
-This section uses `version-tag` as a placeholder in its examples, following the previous section. Ensure that all input files are accessible to UID 101.
+This section uses `version-tag` as a placeholder in its examples, following the previous section. Make sure the non-root `nginx` user in the compiler container can read all input files.
 
 ### Compile a security policy
 

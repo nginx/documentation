@@ -131,7 +131,7 @@ services:
       waf-enforcer:
         condition: service_started
 
-   waf-ip-intelligence:
+  waf-ip-intelligence:
     container_name: waf-ip-intelligence
     image: waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
     volumes:
@@ -153,7 +153,7 @@ To enable IP intelligence on a Manifest-based Kubernetes deployment, you must ad
 
 ```yaml
         - name: waf-ip-intelligence
-          image: private-registry.nginx.com/napwaf-ip-intelligence:<VERSION_TAG>
+          image: private-registry.nginx.com/nap/waf-ip-intelligence:<VERSION_TAG>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
