@@ -4,7 +4,7 @@ description: "Mirror HTTP or gRPC traffic to additional backends with NGINX Gate
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1847
 f5-summary: >
   Send a copy of request traffic to a mirror backend for testing or analysis without affecting primary responses.

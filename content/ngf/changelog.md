@@ -4,7 +4,7 @@ description: "Review release notes and version history for NGINX Gateway Fabric.
 toc: true
 weight: 900
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1359
 f5-summary: >
   Find NGINX Gateway Fabric release notes and version history.

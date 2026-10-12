@@ -4,8 +4,7 @@ description: "Configure session persistence so related client requests reach the
 weight: 1100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs:
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Keep multi-request client sessions on the same backend Pod using ip_hash (NGINX OSS) or cookie-based session persistence (NGINX Plus).
   Configure persistence via UpstreamSettingsPolicy or sessionPersistence fields on HTTPRoute and GRPCRoute resources.

@@ -3,8 +3,8 @@ title: Install NGINX Gateway Fabric on OpenShift
 description: Deploy F5 NGINX Gateway Fabric on Red Hat OpenShift through OperatorHub and configure it using the NginxGatewayFabric custom resource.
 weight: 400
 toc: true
-f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-content-type: installation-guide
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Install F5 NGINX Gateway Fabric on OpenShift using OperatorHub and configure it with the NginxGatewayFabric custom resource.
   Use this path for OpenShift-managed clusters.

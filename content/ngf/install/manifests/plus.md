@@ -4,8 +4,8 @@ description: "Install NGINX Gateway Fabric with NGINX Plus using Kubernetes mani
 linkTitle: NGINX Plus
 weight: 200
 toc: true
-f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-content-type: installation-guide
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Apply Kubernetes manifests to install NGINX Gateway Fabric with the NGINX Plus data plane.
   Use this when you need Plus features and prefer manifests to Helm.

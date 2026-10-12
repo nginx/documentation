@@ -4,7 +4,7 @@ description: "Route external traffic to Kubernetes applications using NGINX Gate
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1426
 f5-summary: >
   Expose applications by attaching HTTPRoutes to a Gateway so external traffic reaches backend Services.

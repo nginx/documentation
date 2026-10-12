@@ -4,7 +4,7 @@ description: "Understand custom policies that expose NGINX data plane features b
 weight: 700
 toc: true
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1835
 f5-summary: >
   Custom policies let you configure NGINX features that are not available in the Gateway API itself.

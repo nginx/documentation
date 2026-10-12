@@ -4,7 +4,7 @@ description: "Use UpstreamSettingsPolicy to configure load balancing, zone size,
 weight: 1000
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1845
 f5-summary: >
   The UpstreamSettingsPolicy API configures how NGINX connects to upstream applications referenced by HTTPRoute or GRPCRoute services.

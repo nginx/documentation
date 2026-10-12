@@ -3,8 +3,8 @@ title: Install NGINX Gateway Fabric with NGINX Plus
 description: "Install NGINX Gateway Fabric with NGINX Plus using a JWT for image pull and runtime."
 weight: 300
 toc: true
-f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-content-type: installation-guide
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1853
 f5-summary: >
   Configure the JWT required to download and run NGINX Plus with NGINX Gateway Fabric.

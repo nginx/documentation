@@ -3,7 +3,7 @@ title: Advanced features with NGINX Plus
 description: "Learn advanced capabilities available when NGINX Gateway Fabric uses NGINX Plus as the data plane."
 weight: 300
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1837
 f5-summary: >
   NGINX Gateway Fabric can run NGINX Open Source or NGINX Plus as its data plane.

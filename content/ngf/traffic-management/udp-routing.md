@@ -4,8 +4,7 @@ description: "Configure a UDPRoute to forward UDP packets from a Gateway listene
 weight: 1300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-0000
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Expose UDP applications by attaching a UDPRoute to a Gateway listener that defines the external UDP port.
   UDPRoute is a Gateway API experimental-channel resource and requires experimental features enabled in NGINX Gateway Fabric.

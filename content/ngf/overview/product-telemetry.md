@@ -3,7 +3,7 @@ title: Product telemetry
 description: "Learn why, what, and how NGINX Gateway Fabric collects product telemetry."
 weight: 600
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1836
 f5-summary: >
   NGINX Gateway Fabric can collect product telemetry to improve the product.

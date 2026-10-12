@@ -5,7 +5,7 @@ linkTitle: Uninstall
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Remove NGINX Gateway Fabric installed via manifests, including custom resource definitions and Gateway API resources as needed.
   Follow this page for a clean teardown of YAML-based installs.

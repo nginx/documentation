@@ -3,6 +3,7 @@ title: "Traffic security"
 description: "Secure client and backend traffic with TLS, authentication, and related NGINX Gateway Fabric guides."
 url: /nginx-gateway-fabric/traffic-security
 weight: 500
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Harden traffic with mTLS, OIDC, JWT, basic auth, CORS, and certificate management for NGINX Gateway Fabric.
   Start here to choose the right security configuration for your gateways and routes.

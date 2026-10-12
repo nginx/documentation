@@ -4,7 +4,7 @@ description: "Deploy NGINX data plane instances by creating a Gateway and relate
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1854
 f5-summary: >
   Provision data plane instances through a Gateway and adjust them with NGINX custom resources.

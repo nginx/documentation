@@ -4,7 +4,7 @@ description: "Add, set, or remove HTTP request and response headers with NGINX G
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1849
 f5-summary: >
   Modify request and response headers for applications fronted by NGINX Gateway Fabric.

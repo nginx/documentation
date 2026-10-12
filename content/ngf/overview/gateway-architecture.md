@@ -4,7 +4,7 @@ description: "Learn the architecture and design principles of NGINX Gateway Fabr
 weight: 100
 toc: true
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1413
 f5-summary: >
   Understand how the NGINX Gateway Fabric control plane and NGINX data plane work together as a Gateway API implementation.

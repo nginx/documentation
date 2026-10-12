@@ -3,8 +3,8 @@ title: Configure WAF settings
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-description: Configure security logging, polling, TLS, authentication, cookie seed, bundle integrity, fail-open behavior, and WAF container settings for F5 WAF for NGINX.
+f5-product: F5 NGINX Gateway Fabric
+description: Configure security logging, polling, TLS, authentication, cookie seed, bundle integrity, fail-open behavior, and WAF container settings for F5 WAF for NGINX.
 f5-summary: >
   Manage day-two WAF settings for F5 WAF for NGINX in NGINX Gateway Fabric, including security logging, automatic policy updates, TLS and authentication, bundle integrity, cookie seeds, and fetch failure handling.
   Use this after the quick start when you need operational controls.

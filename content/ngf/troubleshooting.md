@@ -4,7 +4,7 @@ description: "Diagnose common NGINX Gateway Fabric issues and apply suggested wo
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1419
 f5-summary: >
   Use general troubleshooting techniques to diagnose problems when running NGINX Gateway Fabric.

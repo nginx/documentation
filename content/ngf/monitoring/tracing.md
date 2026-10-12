@@ -4,7 +4,7 @@ description: "Enable OpenTelemetry tracing on HTTPRoutes in NGINX Gateway Fabric
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1844
 f5-summary: >
   Configure distributed tracing for HTTPRoutes so you can follow requests through NGINX Gateway Fabric.

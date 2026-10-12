@@ -4,8 +4,8 @@ description: "Install NGINX Gateway Fabric with experimental features using mani
 linkTitle: NGINX Plus (experimental)
 weight: 400
 toc: true
-f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-content-type: installation-guide
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Apply Kubernetes manifests to install NGINX Gateway Fabric with NGINX Plus and experimental Gateway API features.
   Requires NGINX Plus credentials and is suited to non-Helm deployments.

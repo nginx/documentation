@@ -4,7 +4,7 @@ description: "Dynamically update global NGINX data plane configuration for NGINX
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1838
 f5-summary: >
   Change global data plane settings that apply across NGINX instances managed by NGINX Gateway Fabric.

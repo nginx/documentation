@@ -3,6 +3,7 @@ title: "Overview"
 description: "Learn core concepts for NGINX Gateway Fabric, including architecture and Gateway API support."
 weight: 100
 url: /nginx-gateway-fabric/overview
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Read conceptual topics for NGINX Gateway Fabric before you install or configure traffic.
   Coverage includes architecture, Gateway API compatibility, policies, validation, telemetry, and technical specifications.

@@ -22,7 +22,7 @@ f5-landing-page: true
 f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 # Contains an extended description of the product
 f5-summary: >
   NGINX Gateway Fabric is a Kubernetes Gateway API implementation that uses NGINX as the data plane.

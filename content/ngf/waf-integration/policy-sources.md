@@ -3,7 +3,7 @@ title: Configure policy sources
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, an HTTP server, or Policy Lifecycle Management.
 f5-summary: >
   Fetch compiled WAF bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or direct HTTP/HTTPS URLs.

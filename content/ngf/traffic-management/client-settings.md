@@ -4,7 +4,7 @@ description: "Use ClientSettingsPolicy to configure client-to-NGINX connection b
 toc: true
 weight: 900
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1846
 f5-summary: >
   The ClientSettingsPolicy API configures connection behavior between clients and NGINX.

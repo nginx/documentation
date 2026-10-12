@@ -3,8 +3,8 @@ title: Get started
 description: "Try NGINX Gateway Fabric on a kind cluster for a non-production quickstart."
 weight: 200
 toc: true
-f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-content-type: tutorial
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1834
 f5-summary: >
   Deploy NGINX Gateway Fabric on a local kind cluster and exercise a basic Gateway and HTTPRoute setup.

@@ -3,8 +3,7 @@ title: Configure upstream HTTP/2 through Service appProtocol
 toc: true
 weight: 1600
 f5-content-type: how-to
-f5-product: FABRIC
-f5-docs: DOCS-0000
+f5-product: F5 NGINX Gateway Fabric
 description: Configure NGINX Gateway Fabric to use HTTP/2 for upstream connections by setting appProtocol to kubernetes.io/h2c on a Kubernetes Service port.
 f5-keywords: NGINX Gateway Fabric, HTTP/2, upstream HTTP/2, appProtocol, kubernetes.io/h2c, proxy_http_version, h2c, upstream connections, Service appProtocol, Gateway API, HTTPRoute, GRPCRoute
 f5-summary: This guide describes how to configure NGINX Gateway Fabric to proxy requests to upstream services over HTTP/2 by setting appProtocol to kubernetes.io/h2c on a Kubernetes Service port. Using HTTP/2 for upstream connections enables multiplexing and reduces latency for services that support it. This guide is for operators and developers who have NGINX Gateway Fabric installed and are familiar with Kubernetes Services and the Gateway API.

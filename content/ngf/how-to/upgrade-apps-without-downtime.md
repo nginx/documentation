@@ -4,7 +4,7 @@ description: "Upgrade Kubernetes applications without downtime using NGINX Gatew
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1841
 f5-summary: >
   Shift traffic safely while upgrading application versions so users experience no downtime.

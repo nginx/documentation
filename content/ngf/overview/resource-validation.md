@@ -4,7 +4,7 @@ description: "Learn how NGINX Gateway Fabric validates Gateway API and product c
 weight: 500
 toc: true
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1414
 f5-summary: >
   NGINX Gateway Fabric validates Gateway API and NGINX Gateway Fabric Kubernetes resources before they affect the data plane.

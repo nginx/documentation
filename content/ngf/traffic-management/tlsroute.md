@@ -4,7 +4,7 @@ description: "Forward end-to-end TLS traffic through NGINX Gateway Fabric either
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1850
 f5-keywords: "NGINX Gateway Fabric, TLSRoute, TLS passthrough, SNI, passthrough, end-to-end TLS, TLS terminate, terminate"
 f5-summary: >

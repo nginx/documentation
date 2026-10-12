@@ -4,7 +4,7 @@ description: "How to configure JSON Web Token (JWT) claim validation in F5 NGINX
 weight: 650
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-keywords: "JWT, JSON Web Token, claim validation, authentication, authorization, NGINX Gateway Fabric"
 f5-summary: >
   NGINX Gateway Fabric supports JWT claim validation via the AuthenticationFilter CRD, allowing you to enforce authorization rules based on the claims present in a JSON Web Token.

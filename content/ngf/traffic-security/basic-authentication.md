@@ -4,7 +4,7 @@ description: "Configure HTTP basic authentication with the AuthenticationFilter 
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Protect routes with username and password basic authentication using the AuthenticationFilter custom resource.
   Attach the filter so only authenticated requests reach your backends.

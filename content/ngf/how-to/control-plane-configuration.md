@@ -3,7 +3,7 @@ title: Control plane configuration
 description: "Dynamically update the NGINX Gateway Fabric control plane configuration."
 weight: 400
 toc: true
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1839
 f5-content-type: how-to
 f5-summary: >

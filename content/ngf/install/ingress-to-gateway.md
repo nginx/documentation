@@ -4,7 +4,7 @@ description: "Migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric."
 weight: 800
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Move workloads from NGINX Ingress Controller to NGINX Gateway Fabric and the Gateway API model.
   Use this guide when adopting Gateway API resources in place of Ingress-based configuration.

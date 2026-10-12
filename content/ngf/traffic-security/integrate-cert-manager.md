@@ -4,7 +4,7 @@ description: "Issue and manage TLS certificates for NGINX Gateway Fabric using L
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1425
 f5-keywords: "NGINX Gateway Fabric, cert-manager, Let's Encrypt, TLS certificates, ACME, HTTPS"
 f5-summary: >

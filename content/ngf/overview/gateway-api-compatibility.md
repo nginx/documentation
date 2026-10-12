@@ -4,7 +4,7 @@ description: "See which Gateway API resources and features NGINX Gateway Fabric 
 weight: 200
 toc: true
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1412
 f5-summary: >
   Review Gateway API compatibility for NGINX Gateway Fabric, including supported resources and support levels.

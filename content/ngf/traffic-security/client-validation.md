@@ -4,8 +4,7 @@ description: "Configure mutual TLS so NGINX Gateway Fabric validates client cert
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-000
+f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
     Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabric using the Gateway's
     Listener HTTPS and Frontend TLS settings. The Listener HTTPS settings configure the certificate presented
