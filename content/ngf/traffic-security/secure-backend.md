@@ -1,14 +1,17 @@
 ---
 title: Securing backend traffic using mutual TLS
+description: "Encrypt traffic between NGINX Gateway Fabric and backend pods using mutual TLS."
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1423
+f5-keywords: "NGINX Gateway Fabric, backend mTLS, upstream TLS, BackendTLSPolicy, service mesh alternative"
 f5-summary: >
    NGINX Gateway Fabric can encrypt traffic from the Gateway to a backend application using mutual TLS, configured through BackendTLSPolicy together with the Gateway's backend TLS settings.
    BackendTLSPolicy validates the certificate the backend presents during the TLS handshake, and the Gateway's `tls.backend.clientCertificateRef` presents a client certificate that the backend can validate against its trusted CA.
    This guide uses cert-manager to issue both the gateway client certificate and the backend server certificate from a shared local self-signed CA, so each side can validate the other.
+f5-audience: operator
 ---
 
 Learn how to encrypt HTTP traffic between NGINX Gateway Fabric and your backend pods using mutual TLS between Gateway and Backend applications.

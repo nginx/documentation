@@ -10,6 +10,7 @@ f5-summary: >
   Deploy a large language model (LLM) behind NGINX Gateway Fabric, attach a PayloadProcessor policy
   that routes request and response payloads through an external Guardrails API, and verify that
   disallowed content is blocked before it reaches the model or the client.
+f5-audience: operator
 ---
 
 Learn how to use NGINX Gateway Fabric with F5 AI Guardrails to inspect large language model (LLM) traffic and block disallowed content before it reaches the model or the client.
