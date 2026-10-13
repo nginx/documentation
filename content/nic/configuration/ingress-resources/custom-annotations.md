@@ -72,7 +72,7 @@ Assuming that the Ingress Controller is using that customized template, it will 
 
 **Notes**:
 
-- You can customize the template to insert you custom annotations via [custom templates]({{< ref "/nic//configuration/global-configuration/custom-templates.md" >}}).
+- You can customize the template to insert you custom annotations via [custom templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}).
 - The Ingress Controller uses go templates to generate NGINX config. You can read more information about go templates [here](https://golang.org/pkg/text/template/).
 
 See the examples in the next section that use custom annotations to configure NGINX features.
