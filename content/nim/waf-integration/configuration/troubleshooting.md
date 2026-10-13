@@ -64,21 +64,21 @@ Replace `<VERSION>` with the version number.
 **Example:**
 
 ```shell
-sudo /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-5.777.0/bin/apcompile -h
 ```
 
 **Expected output:**
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile <OPTIONS>
+    /opt/nms-nap-compiler/app_protect-5.777.0/bin/apcompile <OPTIONS>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.715.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.777.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-5.777.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.777.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-5.777.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-5.777.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
 
 Where `<OPTIONS>` is the compiler options you want to use.
