@@ -8,13 +8,13 @@ f5-product: F5 WAF for NGINX
 
 This topic describes how to configure brute force attack prevention in F5 WAF for NGINX.
 
-Brute force attacks try many username and password combinations to gain access to a protected application. To detect these attacks, F5 WAF for NGINX tracks failed login attempts for configured login pages.
+Brute force attacks try many combinations of usernames and passwords to access a protected application. To detect these attacks, F5 WAF for NGINX tracks failed login attempts for configured login pages.
 
-When a threshold is reached, the policy can log the attack, challenge the client with Client-side integrity, or challenge the client with CAPTCHA.
+When a threshold is reached, the policy can log the attack, challenge the client with client-side integrity, or challenge the client with CAPTCHA.
 
 ## User-defined URLs
 
-To protect a login endpoint, first define it as a user-defined URL.
+To protect a login endpoint, define it as a user-defined URL.
 
 ```json
 "urls": [
@@ -60,7 +60,7 @@ For more information, see the [login-pages section]({{< ref "/waf/policies/param
 
 ## Mitigation actions
 
-Use these action values for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTheSameIp`, and `loginAttemptsFromTheSameDeviceId`:
+Use the following action values for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTheSameIp`, and `loginAttemptsFromTheSameDeviceId`:
 
 - `alarm` logs the brute force event and allows the request.
 - `alarm-and-client-side-integrity` serves a JavaScript challenge to verify that the client behaves like a browser.
@@ -79,7 +79,7 @@ Use these action values for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTh
 
 ## Client-side integrity example
 
-This example applies Client-side integrity to all configured login pages.
+The following example applies client-side integrity to all configured login pages.
 
 ```json
 {
@@ -119,7 +119,7 @@ In this example:
 
 ## CAPTCHA example
 
-This example protects a specific login page with CAPTCHA.
+The following example protects a specific login page with CAPTCHA.
 
 ```json
 {
@@ -157,17 +157,17 @@ This example protects a specific login page with CAPTCHA.
 }
 ```
 
-Use the CAPTCHA example when you want to protect browser-based login flows with a human verification step instead of a Client-side integrity challenge.
+If you want to protect browser-based login flows with human verification instead of a client-side integrity challenge, use the CAPTCHA example.
 
 {{< call-out class="important" >}}
 
-CAPTCHA actions have two requirements. A challenge pool must be available when your policy is compiled, otherwise the bundle contains no challenges. On a virtual server that serves plain HTTP, set `secureAttribute` to `never`, otherwise the browser discards the enforcer state cookie and the client can never pass the challenge. For more information, see [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
+CAPTCHA actions have two requirements. A challenge pool must be available when your policy is compiled, otherwise the bundle contains no challenges. On a virtual server that serves plain HTTP, set `secureAttribute` to `never`, otherwise the browser discards the enforcer state cookie and the client can never pass the challenge. For more information, refer to [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
 
 {{< /call-out >}}
 
 ## Device ID examples
 
-Use these examples when you want to track failed logins by device identifier instead of by username or source IP address.
+Use the following examples to track failed logins by device identifier instead of its username or source IP address.
 
 Set `url` when the brute force configuration applies to one login page. Omit `url` only when `bruteForceProtectionForAllLoginPages` is set to `true`.
 
