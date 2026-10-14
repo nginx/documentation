@@ -575,7 +575,7 @@ The control plane creates one PodDisruptionBudget for each NGINX Deployment it p
 
 {{< call-out class="note" >}} A data plane PodDisruptionBudget applies only when the data plane runs as a Deployment (`nginx.kind: deployment`). It has no effect on a DaemonSet data plane. {{< /call-out >}}
 
-Set the PodDisruptionBudget through the `spec.kubernetes.deployment.podDisruptionBudget` field. This field has no `enable` setting: the control plane creates the PodDisruptionBudget when the field is present. The field takes these settings:
+Set the PodDisruptionBudget through the `spec.kubernetes.deployment.podDisruptionBudget` field in the `NginxProxy` resource. Note: There is no `enable` field for this setting in the `NginxProxy` resource: the control plane creates the PodDisruptionBudget when the field is present. The field takes these settings:
 
 - `minAvailable`: the minimum number of pods that must stay available after an eviction. Use an absolute number such as `1`, or a percentage such as `50%`.
 - `maxUnavailable`: the maximum number of pods that can be unavailable after an eviction. Use an absolute number or a percentage.
