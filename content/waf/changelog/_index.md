@@ -13,6 +13,23 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.16.0
+
+Released _October 14th, 2026_.
+
+### New features
+
+- Added support for Device ID.
+- Added support for browser challenges, including client-side integrity (JavaScript challenge) and CAPTCHA.
+
+### Important notes
+
+- Starting with F5 WAF for NGINX 5.16.0, the `waf-enforcer` and `waf-config-mgr` Docker images are based on Ubuntu 26.04.
+
+### Resolved issues
+
+- Fixed bugs and security issues.
+
 ## F5 WAF for NGINX 5.15
 
 Released _September 2nd, 2026_.
@@ -51,6 +68,18 @@ Released _September 2nd, 2026_.
 | RHEL 10 and Rocky Linux 10     | _app-protect-module-oss-1.31.4+5.715.0-1.el10.ngx.x86_64.rpm_          | _app-protect-module-plus-37.1+5.715.0-1.el10.ngx.x86_64.rpm_        | _app-protect-37.1+5.715.0-1.el10.ngx.x86_64.rpm_         |
 
 {{< /table >}}
+
+## F5 WAF for NGINX 5.14.2
+
+Released _October 14th, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- Fixed bugs and security issues.
 
 ## F5 WAF for NGINX 5.14.1
 
