@@ -187,17 +187,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="alpine-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/alpine-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/alpine-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -205,17 +205,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="amazon-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/amazon-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/amazon-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -223,17 +223,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="debian-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/debian-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/debian-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -241,17 +241,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="oracle-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/oracle-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/oracle-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -259,17 +259,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="ubuntu-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -283,17 +283,17 @@ The steps are identical for RHEL 8, 9, and 10. In the Dockerfile below, set the 
 
 {{< tabs name="rhel-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/rhel-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/rhel-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -307,17 +307,17 @@ The steps are identical for Rocky Linux 8, 9, and 10. In the Dockerfile below, s
 
 {{< tabs name="rocky-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/rocky-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/rocky-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
