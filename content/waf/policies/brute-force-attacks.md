@@ -157,19 +157,22 @@ The following example protects a specific login page with CAPTCHA.
 }
 ```
 
-If you want to protect browser-based login flows with human verification instead of a client-side integrity challenge, use the CAPTCHA example.
+To protect browser login pages with human verification, use the CAPTCHA example in [section name]. This option replaces a client-side integrity challenge.
 
 {{< call-out class="important" >}}
 
-CAPTCHA actions have two requirements. A challenge pool must be available when your policy is compiled, otherwise the bundle contains no challenges. On a virtual server that serves plain HTTP, set `secureAttribute` to `never`, otherwise the browser discards the enforcer state cookie and the client can never pass the challenge. For more information, refer to [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
+CAPTCHA actions have two requirements:
+
+- Make a challenge pool available when you compile your policy. Otherwise, the bundle contains no challenges.
+- If your virtual server serves plain HTTP, set `secureAttribute` to `never`. If you don't, the browser discards the enforcer state cookie, and the client can't pass the challenge.
+
+For more information, see [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
 
 {{< /call-out >}}
 
 ## Device ID examples
 
-Use the following examples to track failed logins by device identifier instead of its username or source IP address.
-
-Set `url` when the brute force configuration applies to one login page. Omit `url` only when `bruteForceProtectionForAllLoginPages` is set to `true`.
+Use the following examples to track failed logins by device identifier instead of username or source IP address:
 
 ### Client-side integrity
 
@@ -226,6 +229,8 @@ Set `url` when the brute force configuration applies to one login page. Omit `ur
   }
 }
 ```
+
+When the brute-force configuration applies to one login page, set `url`. If `bruteForceProtectionForAllLoginPages` is set to `true`, omit `url`.
 
 ## More information
 
