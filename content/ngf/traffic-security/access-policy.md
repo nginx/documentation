@@ -307,8 +307,8 @@ NGINX Gateway Fabric turns each AccessPolicy into NGINX `allow` and `deny` direc
 
 The `action` field also sets what happens to a request that matches no rule:
 
-- `Allow`: NGINX blocks the request.
-- `Deny`: NGINX passes the request.
+- `Allow`: NGINX passes the request.
+- `Deny`: NGINX blocks the request.
 
 A rule without a `source` matches every client. In an `Allow` policy, this rule passes all requests. In a `Deny` policy, this rule blocks all requests.
 
