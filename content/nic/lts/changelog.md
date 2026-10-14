@@ -26,6 +26,14 @@ Since June 4, 2026, NGINX Ingress Controller follows a new release model: Long-T
 
 This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
 
+## 2026-lts-r9
+
+14 Oct 2026
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.0.7.1 LTS
+
 ## 2026-lts-r8
 
 16 Sept 2026

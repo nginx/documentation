@@ -248,7 +248,7 @@ Before installing, check if your operating system and architecture are supported
    
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -360,7 +360,7 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.31.6
+   Server: nginx/1.31.7
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -470,7 +470,7 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.31.6
+   Server: nginx/1.31.7
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -567,7 +567,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -686,7 +686,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -784,7 +784,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -864,7 +864,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -1027,9 +1027,9 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.31.6.tar.gz && \
-tar zxf nginx-1.31.6.tar.gz && \
-cd nginx-1.31.6
+wget https://nginx.org/download/nginx-1.31.7.tar.gz && \
+tar zxf nginx-1.31.7.tar.gz && \
+cd nginx-1.31.7
 ```
 
 To download and unpack source files for the latest _stable_ version, run:
