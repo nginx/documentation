@@ -71,7 +71,7 @@ Use the following action values for `loginAttemptsFromTheSameUser`, `loginAttemp
 1. Define the login endpoint in `urls`.
 2. Add the same endpoint to `login-pages`.
 3. Configure `accessValidation` so F5 WAF for NGINX can classify successful and failed logins.
-4. Decide whether the brute force settings apply to all login pages or only one page.
+4. With `bruteForceProtectionForAllLoginPages`, decide whether the brute force settings apply to all login pages or only one page.
 5. Set thresholds for `loginAttemptsFromTheSameUser`, `loginAttemptsFromTheSameIp`, or `loginAttemptsFromTheSameDeviceId`, depending on how you want to track failed login activity.
 6. Choose a mitigation action: `alarm`, `alarm-and-client-side-integrity`, or `alarm-and-captcha`.
 7. Tune the timing fields for detection, mitigation, and re-enable behavior.
