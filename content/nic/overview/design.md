@@ -86,7 +86,7 @@ The previous diagram depicts NGINX Ingress Controller using NGINX. NGINX Ingress
 
 - To configure NGINX Plus, NGINX Ingress Controller uses [configuration reloads](#reloading-nginx) and the [NGINX Plus API](http://nginx.org/en/docs/http/ngx_http_api_module.html#api). This allows NGINX Ingress Controller to dynamically change the upstream servers.
 - Instead of the stub status metrics, the extended metrics available from the NGINX Plus API are used.
-- In addition to TLS certs and keys, NGINX Ingress Controller writes JWKs from the secrets of the type `nginx.org/jwk`, and NGINX workers read them.
+- In addition to TLS certs and keys, NGINX Ingress Controller writes JWKs from secrets that contain a `jwk` key, and NGINX workers read them.
 
 ## The NGINX Ingress Controller process
 
@@ -241,7 +241,7 @@ Ultimately, NGINX Ingress Controller ensures the NGINX config on the filesystem 
 
 ##### LocalSecretStore
 
-[_LocalSecretStore_](https://github.com/nginx/kubernetes-ingress/blob/v1.11.0/internal/k8s/secrets/store.go#L32) (of the _SecretStore_ interface) holds the valid Secret resources and keeps the corresponding files on the filesystem in sync with them. Secrets are used to hold TLS certificates and keys (type `kubernetes.io/tls`), CAs (`nginx.org/ca`), JWKs (`nginx.org/jwk`), and client secrets for an OIDC provider (`nginx.org/oidc`).
+[_LocalSecretStore_](https://github.com/nginx/kubernetes-ingress/blob/v1.11.0/internal/k8s/secrets/store.go#L32) (of the _SecretStore_ interface) holds the valid Secret resources and keeps the corresponding files on the filesystem in sync with them. Secrets are used to hold TLS certificates and keys (`tls.crt` and `tls.key`), CAs (`ca.crt`), JWKs (`jwk`), and client secrets for an OIDC provider (`client-secret`).
 
 When _Controller_ processes a change to a configuration resource like Ingress, it creates an extended version of a resource that includes the dependencies (Such as Secrets) necessary to generate the NGINX configuration. _LocalSecretStore_ allows _Controller_ to reference the filesystem for a secret using the secret key (namespace/name).
 
