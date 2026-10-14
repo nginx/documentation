@@ -32,20 +32,20 @@ Identify which image you need using the [Technical specifications]({{< ref "/nic
 
 Next, pull the image from `private-registry.nginx.com`. 
 
-Replace `<version-tag>` with the specific version you need, for example, `{{< nic-lts-version >}}`.
+Replace `<VERSION_TAG>` with the specific version you need, for example, `{{< nic-lts-version >}}`.
 
 - For NGINX Plus Ingress Controller, run:
 
   ```shell
-  docker pull private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:<version-tag>
+  docker pull private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:<VERSION_TAG>
   ```
 
-You can use the Docker registry API to list the available image tags by running the following commands. Replace `<path-to-client.key>` with the location of your client key and `<path-to-client.cert>` with the location of your client certificate. 
+You can use the Docker registry API to list the available image tags by running the following commands. Replace `<PATH/TO/CLIENT.KEY>` with the location of your client key and `<PATH/TO/CLIENT.CERT>` with the location of your client certificate. 
 
 The `jq` command was used in these examples to make the JSON output easier to read.
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/list --key <PATH/TO/CLIENT.KEY> --cert <PATH/TO/CLIENT.CERT>
 ```
 
 ```json
@@ -64,16 +64,16 @@ After pulling the image, tag it and upload it to your private registry.
 1. Log in to your private registry:
 
    ```shell
-   docker login <my-docker-registry>
+   docker login <MY_DOCKER_REGISTRY>
    ```
 
-1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `{{< nic-lts-version >}}`:
+1. Tag and push the image. Replace `<MY_DOCKER_REGISTRY>` with your registry's path and `<VERSION_TAG>` with the version you're using, for example `{{< nic-lts-version >}}`:
 
    - For NGINX Ingress Controller LTS, run:
 
       ```shell
-      docker tag private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic/lts/nginx-plus-ingress:<version-tag>
-      docker push <my-docker-registry>/nginx-ic/lts/nginx-plus-ingress:<version-tag>
+      docker tag private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:<VERSION_TAG> <MY_DOCKER_REGISTRY>/nginx-ic/lts/nginx-plus-ingress:<VERSION_TAG>
+      docker push <MY_DOCKER_REGISTRY>/nginx-ic/lts/nginx-plus-ingress:<VERSION_TAG>
       ```
 
 ## Troubleshooting

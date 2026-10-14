@@ -1,10 +1,15 @@
 ---
 title: Session Persistence
+description: "Configure session persistence so related client requests reach the same backend pod."
 weight: 1100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs:
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Keep multi-request client sessions on the same backend Pod using ip_hash (NGINX OSS) or cookie-based session persistence (NGINX Plus).
+  Configure persistence via UpstreamSettingsPolicy or sessionPersistence fields on HTTPRoute and GRPCRoute resources.
+f5-keywords: "NGINX Gateway Fabric, session persistence, sticky cookie, ip_hash, UpstreamSettingsPolicy, NGINX Plus"
+f5-audience: operator
 ---
 
 Learn how to configure session persistence using NGINX Gateway Fabric.
@@ -213,8 +218,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 

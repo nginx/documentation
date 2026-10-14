@@ -25,9 +25,11 @@ Before connecting NGINX Ingress Controller to NGINX One Console, you need to cre
 
 ```shell
 kubectl create secret generic dataplane-key \
-  --from-literal=dataplane.key=<Your Dataplane Key> \
-  -n <namespace>
+  --from-literal=dataplane.key=<DATA_PLANE_KEY> \
+  -n <NAMESPACE>
 ```
+
+Replace `<DATA_PLANE_KEY>` with your data plane key and `<NAMESPACE>` with the Kubernetes namespace where the Secret or deployment lives.
 
 When you create a Kubernetes Secret, use the same namespace where NGINX Ingress Controller is running.
 If you use [`-watch-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-namespace-string" >}}) or [`watch-secret-namespace`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#watch-secret-namespace-string" >}}) arguments with NGINX Ingress Controller,
@@ -62,9 +64,11 @@ Upgrade or install NGINX Ingress Controller with the following command to config
     ```shell
     helm upgrade --install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} \
       --set nginxAgent.enable=true \
-      --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
+      --set nginxAgent.dataplaneKeySecretName=<DATA_PLANE_KEY_SECRET_NAME> \
       --set nginxAgent.endpointHost=agent.connect.nginx.com
     ```
+
+    Replace `<DATA_PLANE_KEY_SECRET_NAME>` with the name of the Kubernetes Secret that contains your data plane key.
 
 - For NGINX Plus: (This assumes you have pushed NGINX Ingress Controller image `nginx-plus-ingress` to your private registry `myregistry.example.com`)
 
@@ -73,7 +77,7 @@ Upgrade or install NGINX Ingress Controller with the following command to config
       --set controller.image.repository=myregistry.example.com/nginx-plus-ingress \
       --set controller.nginxplus=true \
       --set nginxAgent.enable=true \
-      --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
+      --set nginxAgent.dataplaneKeySecretName=<DATA_PLANE_KEY_SECRET_NAME> \
       --set nginxAgent.endpointHost=agent.connect.nginx.com
     ```
 
@@ -85,7 +89,7 @@ Upgrade or install NGINX Ingress Controller with the following command to config
       --set controller.nginxplus=true \
       --set controller.appprotect.enable=true \
       --set nginxAgent.enable=true \
-      --set nginxAgent.dataplaneKeySecretName=<data_plane_key_secret_name> \
+      --set nginxAgent.dataplaneKeySecretName=<DATA_PLANE_KEY_SECRET_NAME> \
       --set nginxAgent.endpointHost=agent.connect.nginx.com
     ```
 
@@ -117,7 +121,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: nginx-agent-config
-  namespace: <namespace>
+  namespace: <NAMESPACE>
 data:
   nginx-agent.conf: |-
     log:
@@ -160,7 +164,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: nginx-agent-config
-  namespace: <namespace>
+  namespace: <NAMESPACE>
 data:
   nginx-agent.conf: |-
     log:
@@ -224,7 +228,7 @@ volumes:
   emptyDir: {}
 - name: dataplane-key
   secret:
-    secretName: "<data_plane_key_secret_name>"
+    secretName: "<DATA_PLANE_KEY_SECRET_NAME>"
 - name: agent-dynamic
   emptyDir: {}
 ```
@@ -252,8 +256,10 @@ If you encounter issues connecting your instances to NGINX One Console, try the 
 Check the NGINX Agent version:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent -v
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- nginx-agent -v
 ```
+
+Replace `<NGINX_INGRESS_POD>` with the name of your NGINX Ingress Controller pod.
 
 Verify that the output shows `nginx-agent version v3.x.x`. If the agent version is v2, you are using an image that includes NGINX Agent 2 instead of NGINX Agent 3. Use an image variant with the `-agent` suffix (available starting with NGINX Ingress Controller 5.5.0):
 
@@ -264,7 +270,7 @@ Verify that the output shows `nginx-agent version v3.x.x`. If the agent version 
 Check the NGINX Agent configuration:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- cat /etc/nginx-agent/nginx-agent.conf
 ```
 
 If using F5 WAF for NGINX, verify that `logs-nap` is listed under `features` and `/etc/app_protect` is listed under `allowed_directories`.
@@ -272,7 +278,7 @@ If using F5 WAF for NGINX, verify that `logs-nap` is listed under `features` and
 Check NGINX Agent logs:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent
+kubectl exec -it -n <NAMESPACE> <NGINX_INGRESS_POD> -- nginx-agent
 ```
 
 Select the instance associated with your deployment of NGINX Ingress Controller. Under the **Details** tab, you'll see information associated with:

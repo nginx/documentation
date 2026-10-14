@@ -1,10 +1,16 @@
 ---
 title: Install NGINX Gateway Fabric with NGINX Plus
+description: "Install NGINX Gateway Fabric with NGINX Plus using a JWT for image pull and runtime."
 weight: 300
 toc: true
-f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-content-type: installation-guide
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1853
+f5-summary: >
+  Configure the JWT required to download and run NGINX Plus with NGINX Gateway Fabric.
+  From version 1.5.0, the JWT is needed both to pull the image and to run NGINX Plus.
+f5-keywords: "NGINX Gateway Fabric, NGINX Plus, JWT, install, F5 registry, image pull"
+f5-audience: operator
 ---
 
 ## Overview
@@ -179,10 +185,10 @@ Only **operational metrics** are reported — no **personally identifiable infor
 To pull an image for local use, use this command:
 
 ```shell
-docker login private-registry.nginx.com --username=<JWT Token> --password=none
+docker login private-registry.nginx.com --username=<JWT_TOKEN> --password=none
 ```
 
-Replace the contents of `<JWT Token>` with the contents of the JWT token itself.
+Replace the contents of `<JWT_TOKEN>` with the contents of the JWT token itself.
 
 You can then pull the image:
 

@@ -1,29 +1,31 @@
-// /nginxaas/aws/js/cost-calculator_aws.js
+// /f5ads/aws/js/cost-calculator_aws.js
 (() => {
   // ---- Region to tier mapping ----
   const regionsTiers = {
-    "us-east-1":      { label: "US East 1 (N. Virginia)",    tier: "Tier 1" },
-    "us-east-2":      { label: "US East 2 (Ohio)",           tier: "Tier 1" },
-    "us-west-1":      { label: "US West 1 (N. California)",  tier: "Tier 1" },
-    "us-west-2":      { label: "US West 2 (Oregon)",         tier: "Tier 1" },
-    "eu-central-1":   { label: "EU Central 1 (Frankfurt)",   tier: "Tier 3" },
-    "eu-north-1":     { label: "EU North 1 (Stockholm)",     tier: "Tier 1" },
-    "eu-west-1":      { label: "EU West 1 (Ireland)",        tier: "Tier 1" },
-    "eu-west-2":      { label: "EU West 2 (London)",         tier: "Tier 2" },
-    "eu-west-3":      { label: "EU West 3 (Paris)",          tier: "Tier 2" },
-    "ap-northeast-1": { label: "AP Northeast 1 (Tokyo)",     tier: "Tier 1" },
-    "ap-northeast-2": { label: "AP Northeast 2 (Seoul)",     tier: "Tier 1" },
-    "ap-south-1":     { label: "AP South 1 (Mumbai)",        tier: "Tier 1" },
-    "ap-south-2":     { label: "AP South 2 (Hyderabad)",     tier: "Tier 1" },
-    "ap-southeast-1": { label: "AP Southeast 1 (Singapore)", tier: "Tier 1" },
-    "ap-southeast-4": { label: "AP Southeast 4 (Melbourne)", tier: "Tier 1" },
+    "us-east-1":      { label: "US East 1",      tier: "Tier 1" },
+    "us-east-2":      { label: "US East 2",      tier: "Tier 1" },
+    "us-west-2":      { label: "US West 2",      tier: "Tier 1" },
+    "ap-south-1":     { label: "AP South 1",     tier: "Tier 1" },
+    "ap-south-2":     { label: "AP South 2",     tier: "Tier 1" },
+    "us-west-1":      { label: "US West 1",      tier: "Tier 2" },
+    "eu-central-1":   { label: "EU Central 1",   tier: "Tier 2" },
+    "eu-north-1":     { label: "EU North 1",     tier: "Tier 2" },
+    "eu-west-1":      { label: "EU West 1",      tier: "Tier 2" },
+    "eu-west-2":      { label: "EU West 2",      tier: "Tier 2" },
+    "eu-west-3":      { label: "EU West 3",      tier: "Tier 2" },
+    "ca-central-1":   { label: "CA Central 1",   tier: "Tier 2" },
+    "ca-west-1":      { label: "CA West 1",      tier: "Tier 2" },
+    "ap-northeast-1": { label: "AP Northeast 1", tier: "Tier 3" },
+    "ap-northeast-2": { label: "AP Northeast 2", tier: "Tier 3" },
+    "ap-southeast-1": { label: "AP Southeast 1", tier: "Tier 3" },
+    "ap-southeast-4": { label: "AP Southeast 4", tier: "Tier 3" },
   };
 
   // ---- Tier pricing ----
   const tierCosts = {
-    "Tier 1": { fixedHourly: 0.10,  ncuHourly: 0.008,  dataPerGb: 0.0096 },
-    "Tier 2": { fixedHourly: 0.133, ncuHourly: 0.0106, dataPerGb: 0.0127 },
-    "Tier 3": { fixedHourly: 0.166, ncuHourly: 0.0132, dataPerGb: 0.0159 },
+    "Tier 1": { fixedHourly: 0.020, ncuHourly: 0.010, dataPerDtu: 0.00001 },
+    "Tier 2": { fixedHourly: 0.023, ncuHourly: 0.012, dataPerDtu: 0.00001 },
+    "Tier 3": { fixedHourly: 0.026, ncuHourly: 0.013, dataPerDtu: 0.00001 },
   };
 
   const HOURS_PER_MONTH = 730;
@@ -34,7 +36,7 @@
     calculateCost: (region, values) => {
       const costs = tierCosts[regionsTiers[region].tier];
       const hoursPortion = HOURS_PER_MONTH * (costs.fixedHourly + (values.numNcus * costs.ncuHourly));
-      const dataPortion = values.dataProcessedGb * costs.dataPerGb;
+      const dataPortion = values.dataTransferDtu * costs.dataPerDtu;
       return hoursPortion + dataPortion;
     },
     currencyFormatter: (n, significantDigits) => {
@@ -46,17 +48,17 @@
     },
   };
 
-  // ---- Form state (defaults: 10 NCUs, 0 GB on load) ----
+  // ---- Form state (defaults: 10 NCUs, 0 DTUs on load) ----
   const calculatorValuesState = {
     numNcus: 10,
-    dataProcessedGb: 0,
+    dataTransferDtu: 0,
   };
 
   // ---- Element refs ----
   const costFormElements = {
     regionSelect: document.getElementById("regionSelect"),
     numNcus: document.getElementById("numNcus"),
-    dataProcessedGb: document.getElementById("dataProcessedGb"),
+    dataTransferDtu: document.getElementById("dataTransferDtu"),
   };
 
   const totalCostDetailElements = {
@@ -64,8 +66,8 @@
     hours: document.getElementById("cost-detail-hours"),
     fixedHourly: document.getElementById("cost-detail-fixed-hourly"),
     ncuHourly: document.getElementById("cost-detail-ncu-hourly"),
-    dataGb: document.getElementById("cost-detail-data-gb"),
-    dataPerGb: document.getElementById("cost-detail-data-pergb"),
+    dataDtu: document.getElementById("cost-detail-data-dtu"),
+    dataPerDtu: document.getElementById("cost-detail-data-perdtu"),
     total: document.getElementById("cost-detail-total"),
   };
 
@@ -86,7 +88,7 @@
       updateCost(values);
     });
 
-    ["numNcus", "dataProcessedGb"].forEach((elName) => {
+    ["numNcus", "dataTransferDtu"].forEach((elName) => {
       costFormElements[elName].addEventListener("change", (evt) => {
         values[elName] = Number(evt.target.value);
         updateCost(values);
@@ -102,7 +104,7 @@
   const initializeValues = (values = calculatorValuesState) => {
     costFormElements.regionSelect.value = currentRegion;
     costFormElements.numNcus.value = values.numNcus;
-    costFormElements.dataProcessedGb.value = values.dataProcessedGb;
+    costFormElements.dataTransferDtu.value = values.dataTransferDtu;
   };
 
   // ---- Updates ----
@@ -118,8 +120,8 @@
     totalCostDetailElements.ncus.textContent = formValues.numNcus;
     totalCostDetailElements.fixedHourly.textContent = utils.currencyFormatter(costs.fixedHourly, 3);
     totalCostDetailElements.ncuHourly.textContent = utils.currencyFormatter(costs.ncuHourly, 3);
-    totalCostDetailElements.dataGb.textContent = formValues.dataProcessedGb;
-    totalCostDetailElements.dataPerGb.textContent = utils.currencyFormatter(costs.dataPerGb, 3);
+    totalCostDetailElements.dataDtu.textContent = formValues.dataTransferDtu;
+    totalCostDetailElements.dataPerDtu.textContent = utils.currencyFormatter(costs.dataPerDtu, 3);
     totalCostDetailElements.total.textContent = utils.currencyFormatter(totalCost);
   };
 

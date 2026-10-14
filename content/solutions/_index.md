@@ -1,5 +1,6 @@
 ---
 title: Subscription licensing & solutions
+url: /solutions/
 f5-docs: DOCS-000
 toc: true
 weight: 1
@@ -22,8 +23,4 @@ f5-landing-page: true
   {{<card title="Instructional videos" titleUrl="about-subscription-licenses/instructional-videos/" icon="youtube" >}}
     Watch step-by-step videos on sending usage reports and installing or upgrading NGINX Plus.
   {{</ card >}}
-{{</card-section>}}         
-
-
-
-
+{{</card-section>}}

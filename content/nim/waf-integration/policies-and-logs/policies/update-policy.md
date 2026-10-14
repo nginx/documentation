@@ -46,10 +46,12 @@ To update a policy using the REST API, use `POST` with `isNewRevision=true`. Bot
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=true \
-  -H "Authorization: Bearer <access token>" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
   -H "Content-Type: application/json" \
   -d @update-xss-policy.json
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 **Example using PUT (creates a new policy revision, deprecated):**
 
@@ -59,14 +61,14 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=
 
    ```shell
    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies \
-     -H "Authorization: Bearer <access token>"
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
    ```
 
 1. Include the UID in your `PUT` request:
 
    ```shell
    curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/policies/{policy-uid} \
-     -H "Authorization: Bearer <access token>" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d @update-xss-policy.json
    ```

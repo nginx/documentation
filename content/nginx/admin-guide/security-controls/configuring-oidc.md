@@ -187,8 +187,8 @@ With your IdP configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
         oidc_provider my_idp {
             issuer        https://your-idp-domain/idp;
-            client_id     <client_id>;
-            client_secret <client_secret>;
+            client_id     <CLIENT_ID>;
+            client_secret <CLIENT_SECRET>;
 
             ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
         }
@@ -196,6 +196,8 @@ With your IdP configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -289,14 +291,14 @@ http {
 
     oidc_provider my_idp {
         # The 'issuer' typically matches your IdP's base URL
-        issuer https://<idp-server>/idp;
+        issuer https://<IDP_SERVER>/idp;
 
         # Provide a CA bundle for certificate validation
         ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
 
         # Replace with your actual IdP's client_id and secret
-        client_id <client_id>;
-        client_secret <client_secret>;
+        client_id <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri        /logout;
@@ -308,7 +310,7 @@ http {
 
         # If the .well-known endpoint cannot be derived automatically,
         # specify config_url:
-        # config_url https://<idp-server>/auth/realms/main/.well-known/openid-configuration;
+        # config_url https://<IDP_SERVER>/auth/realms/main/.well-known/openid-configuration;
     }
 
     server {
@@ -347,6 +349,8 @@ http {
     }
 }
 ```
+
+Replace `<IDP_SERVER>` with the address of your identity provider server.
 
 ### Testing {#testing}
 

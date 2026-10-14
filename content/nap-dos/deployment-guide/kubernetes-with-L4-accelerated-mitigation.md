@@ -241,13 +241,13 @@ Your folder should contain the following files:
 - _nginx.conf_
 - _Dockerfile_
 
-To build an image, use the following command, replacing `<your-nginx-dos-image-name>` as appropriate:
+To build an image, use the following command, replacing `<YOUR_NGINX_DOS_IMAGE_NAME>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
-  -t <your-nginx-dos-image-name> .
+  -t <YOUR_NGINX_DOS_IMAGE_NAME> .
 ```
 
 To build a specific version instead, add the two build arguments. For example, on Debian 11:
@@ -258,7 +258,7 @@ sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-key,src=nginx-repo.key \
   --build-arg DOS_VERSION="=37+4.9.6-1~bullseye" \
   --build-arg NGINX_PLUS_VERSION="=37.0.*-1~bullseye" \
-  -t <your-nginx-dos-image-name> .
+  -t <YOUR_NGINX_DOS_IMAGE_NAME> .
 ```
 
 ## Build the EBPF Manager Docker image
@@ -269,13 +269,13 @@ Your folder should contain the following files:
 - _nginx-repo.key_
 - _Dockerfile_
 
-To build an image, use the following command, replacing `<your-ebpf-manager-image-name>` as appropriate:
+To build an image, use the following command, replacing `<YOUR_EBPF_MANAGER_IMAGE_NAME>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
-  -t <your-ebpf-manager-image-name> .
+  -t <YOUR_EBPF_MANAGER_IMAGE_NAME> .
 ```
 
 If you pinned a version when building the NGINX Plus image, pass the same `DOS_VERSION` here:
@@ -285,7 +285,7 @@ sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
   --build-arg DOS_VERSION="=37+4.9.6-1~bullseye" \
-  -t <your-ebpf-manager-image-name> .
+  -t <YOUR_EBPF_MANAGER_IMAGE_NAME> .
 ```
 
 Once you have built the DOS and EBPF images, push them to your private image repository, which should be accessible to your Kubernetes cluster.
@@ -344,16 +344,18 @@ On manifest deployment environment variables need to be set for image repository
 From the folder containing the YAML files from the previous step (Suggested as `/manifests`), deploy F5 DOS for NGINX using `kubectl`:
 
 ```shell
-export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
-export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
-export EBPF_IMAGE_REPOSITORY=<your-ebpf-manager-image-name>
-export EBPF_IMAGE_TAG=<your-ebpf-manager-image-tag>
+export DOS_IMAGE_REPOSITORY=<YOUR_NGINX_DOS_IMAGE_NAME>
+export DOS_IMAGE_TAG=<YOUR_NGINX_DOS_IMAGE_TAG>
+export EBPF_IMAGE_REPOSITORY=<YOUR_EBPF_MANAGER_IMAGE_NAME>
+export EBPF_IMAGE_TAG=<YOUR_EBPF_MANAGER_IMAGE_TAG>
 kubectl apply -f manifests/dos-namespace.yaml
 kubectl apply -f manifests/dos-nginx-conf-configmap.yaml
 kubectl apply -f manifests/dos-log-default-configmap.yaml
 kubectl apply -f manifests/dos-deployment.yaml
 kubectl apply -f manifests/dos-service.yaml
 ```
+
+Replace `<YOUR_NGINX_DOS_IMAGE_TAG>` with the tag of your F5 DoS for NGINX image and `<YOUR_EBPF_MANAGER_IMAGE_TAG>` with the tag of your eBPF manager image.
 
 It will apply all the configuration defined in the files to your Kubernetes cluster.
 

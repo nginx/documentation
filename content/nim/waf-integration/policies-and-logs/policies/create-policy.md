@@ -104,10 +104,12 @@ To create a security policy using the REST API, send a `POST` request to the Sec
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies \
-  -H "Authorization: Bearer <access token>" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
   -H "Content-Type: application/json" \
   -d @ignore-xss-example.json
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 {{< details summary="JSON request" open=true >}}
 
@@ -135,13 +137,15 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies \
     "modified": "2022-04-12T23:19:58.502Z",
     "name": "ignore-cross-site-scripting",
     "revisionTimestamp": "2022-04-12T23:19:58.502Z",
-    "uid": "<policy-uid>"
+    "uid": "<POLICY_UID>"
   },
   "selfLink": {
     "rel": "/api/platform/v1/services/environments/prod"
   }
 }
 ```
+
+Where `<POLICY_UID>` is the unique identifier (UID) of the security policy.
 
 {{< /details >}}
 

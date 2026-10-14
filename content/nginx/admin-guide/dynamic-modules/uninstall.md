@@ -24,36 +24,36 @@ You may need to uninstall a dynamic module in NGINX Plus in several scenarios:
 
 ## Instructions
 
-To uninstall a dynamic module, run the appropriate command for your operating system in a terminal, replacing `<MODULE-NAME>` with the actual package name, for example, `nginx-plus-module-cookie-flag`.
+To uninstall a dynamic module, run the appropriate command for your operating system in a terminal, replacing `<MODULE_NAME>` with the actual package name, for example, `nginx-plus-module-cookie-flag`.
 
 -  For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
 
    ```shell
-   sudo yum remove <MODULE-NAME>
+   sudo yum remove <MODULE_NAME>
    ```
 
 -  For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 
    ```shell
-   sudo dnf remove <MODULE-NAME>
+   sudo dnf remove <MODULE_NAME>
    ```
 
 -  For Debian and Ubuntu:
 
    ```shell
-   sudo apt remove <MODULE-NAME>
+   sudo apt remove <MODULE_NAME>
    ```
 
 -  For SLES:
 
    ```shell
-   sudo zypper remove <MODULE-NAME>
+   sudo zypper remove <MODULE_NAME>
    ```
 
 -  For FreeBSD:
 
    ```shell
-   sudo pkg delete <MODULE-NAME>
+   sudo pkg delete <MODULE_NAME>
    ```
 
 ## Configuration

@@ -605,7 +605,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-cache policy app-protect-dos
     ```
 
-    Each `nginx-plus-module-appprotectdos` package is built for one NGINX Plus release and depends on a virtual package named `nginx-plus-r<release>`, which only that release of `nginx-plus` provides.
+    Each `nginx-plus-module-appprotectdos` package is built for one NGINX Plus release and depends on a virtual package named `nginx-plus-r<RELEASE>` (where `<RELEASE>` is the NGINX Plus release number), which only that release of `nginx-plus` provides.
 
     To find which NGINX Plus release a version requires, list the dependencies of each available module version:
 
@@ -2314,6 +2314,6 @@ The eBPF Manager comes with configurable command-line flags for ease of use and 
 * Interface Selection:
     * -i, --interface [interfaces...]: Specify one or more network interfaces for eBPF XDP program deployment. If omitted, it defaults to all non-virtual, active network devices.
 * gRPC UDS Ownership:
-  * -u, --user <user_name>: Set the user ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
-  * -g, --group <group_name>: Set the group ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
+  * -u, --user <USERNAME>: Set the user ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
+  * -g, --group <GROUP_NAME>: Set the group ownership for the gRPC Unix Domain Socket (UDS). Defaults to nginx.
 

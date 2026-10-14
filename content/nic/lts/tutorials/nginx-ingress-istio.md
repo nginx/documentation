@@ -36,8 +36,10 @@ istioctl install --set profile=minimal
 We need to ensure that Istio injects sidecar proxies into our namespace for testing. To do so, we need to tell Istio what namespaces to inject sidecars into. We can do that with the following command:
 
 ```shell
-kubectl label ns <namespace_specified> istio-injection=enabled
+kubectl label ns <NAMESPACE> istio-injection=enabled
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX Ingress Controller is installed.
 
 Before proceeding, and before installing NGINX Ingress Controller LTS you need to tell Istio that it will be injecting sidecars with the NGINX Ingress Controller LTS pods as they are deployed.
 
@@ -166,7 +168,7 @@ spec:
 ```
 
 With our new Host header control in v1.11, when VirtualServer is configured with `requestHeaders`, the value specified will be used and `proxy_set_header $host` will NOT be used.
-The value of `requestHeaders` should be: `<service.namespace.svc.cluster.local>`. Adjust the value for your specific environment.
+The value of `requestHeaders` should be: `<SERVICE_DNS_NAME>`. Adjust the value for your specific environment.
 
 When `use-cluster-ip` is set to `true`, NGINX forwards requests to the service IP. In our example above, that would be `tea-svc` and `coffee-svc`.
 

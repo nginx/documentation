@@ -13,13 +13,13 @@ f5-summary: >
 f5-audience: any
 ---
 
-F5 Application Delivery Service for Google Cloud deploys into your Google Cloud subscription. Your deployment resource is visible there and integrates with the Google Cloud ecosystem. F5 fully manages the underlying infrastructure, software maintenance, availability, and scaling. Billing runs hourly, and you can track it in the Google Cloud Cost Management Dashboard.
+F5 Application Delivery Service for Google Cloud is available through the Google Cloud Marketplace. You subscribe to the service through your Google Cloud account, and your subscription is visible in the Google Cloud Marketplace. F5 hosts all deployments and underlying resources in an F5-managed infrastructure, you manage and monitor your deployments through the F5 ADS Console. F5 fully manages the underlying infrastructure, software maintenance, availability, and scaling. Billing runs hourly, and you can track it in the Google Cloud Cost Management Console.
 
 ## Pricing plans
 
-F5 ADS for Google Cloud is available on an Enterprise plan, backed by a 99.95% uptime service-level agreement (SLA). Pricing has three components, based on resource usage.
+F5 ADS for Google Cloud is available on an Enterprise plan, backed by a 99.95% uptime service-level agreement (SLA). Pricing is based on three billing meters: Fixed, NCU and Data processed each priced according to the regional tier of your deployment.
 
-### Pricing components
+### Pricing by regional tier
 
 {{< table >}}
 

@@ -8,5 +8,7 @@ f5-files:
 Copy the downloaded JWT file to the **/etc/nginx/** directory and make sure it is named **license.jwt**:
 
 ```shell
-sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
+sudo cp <DOWNLOADED_FILE_NAME>.jwt /etc/nginx/license.jwt
 ```
+
+Replace `<DOWNLOADED_FILE_NAME>` with the downloaded filename without the `.jwt` extension.

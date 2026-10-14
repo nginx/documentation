@@ -1,10 +1,16 @@
 ---
 title: Configure Request Mirroring
+description: "Mirror HTTP or gRPC traffic to additional backends with NGINX Gateway Fabric."
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1847
+f5-summary: >
+  Send a copy of request traffic to a mirror backend for testing or analysis without affecting primary responses.
+  Use request mirroring when validating new versions or inspecting production-like traffic.
+f5-keywords: "NGINX Gateway Fabric, request mirroring, traffic mirror, HTTPRoute, GRPCRoute, shadow traffic"
+f5-audience: any
 ---
 
 Learn how to mirror your HTTP or gRPC traffic using NGINX Gateway Fabric.
@@ -165,8 +171,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 

@@ -184,7 +184,7 @@ services:
 
 	  waf-enforcer:
 	    container_name: waf-enforcer
-	    image: "private-registry.nginx.com/nap/waf-enforcer:<version-tag>"
+	    image: "private-registry.nginx.com/nap/waf-enforcer:<VERSION_TAG>"
 	    environment:
 	      - ENFORCER_PORT=4431
 	      - ENFORCER_SERVER_CERT=/etc/ssl/certs/app_protect_server.crt
@@ -199,7 +199,7 @@ services:
 
 	  waf-config-mgr:
 	    container_name: waf-config-mgr
-	    image: "private-registry.nginx.com/nap/waf-config-mgr:<version-tag>"
+	    image: "private-registry.nginx.com/nap/waf-config-mgr:<VERSION_TAG>"
 	    volumes:
 	      - app_protect_bd_config:/opt/app_protect/bd_config
 	      - app_protect_config:/opt/app_protect/config
@@ -219,3 +219,5 @@ services:
 	  app_protect_config:
 	  app_protect_etc_config:
 ```
+
+Replace `<VERSION_TAG>` with the image version tag.

@@ -73,7 +73,7 @@ The **order of the OpenTelemetry config files matters**: the last config in the 
 
 1. Run the Docker container: 
 
-Use the following command to run the NGINX Agent docker container. Replace the placeholder values (`YOUR_JWT_HERE`, `DPK`, `/path/to/my_config.yaml`, and `<version-tag>`) with the appropriate values for your environment: 
+Use the following command to run the NGINX Agent docker container. Replace the placeholder values (`YOUR_JWT_HERE`, `DPK`, `/path/to/my_config.yaml`, and `<VERSION_TAG>`) with the appropriate values for your environment: 
 
   ```bash
   sudo docker run \
@@ -86,7 +86,7 @@ Use the following command to run the NGINX Agent docker container. Replace the p
   --volume=/path/to/my_config.yaml:/etc/nginx-agent/my_config.yaml:ro \
   --restart=always \
   --runtime=runc \
-  -d private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
+  -d private-registry.nginx.com/nginx-plus/agentv3:<VERSION_TAG>
   ```
 
 {{%/tab%}}
@@ -111,12 +111,14 @@ service:
   pipelines:
     metrics/prometheus-example-pipeline:
       receivers:
-        - <nginxplus or nginx> # Use nginxplus for NGINX Plus or nginx for OSS
+        - <NGINXPLUS_OR_NGINX> # Use nginxplus for NGINX Plus or nginx for OSS
       processors:
         - resource/default
       exporters:
         - prometheus
 ```
+
+Replace `<NGINXPLUS_OR_NGINX>` with `nginxplus` for NGINX Plus or `nginx` for NGINX Open Source.
 
 #### Third-party OTel Collector
 
