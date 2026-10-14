@@ -1,10 +1,16 @@
 ---
 title: Scaling the control plane and data plane
+description: "Scale the NGINX Gateway Fabric control plane and data plane independently."
 weight: 700
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1840
+f5-summary: >
+  Scale control plane and data plane components separately to match availability and traffic needs.
+  Use this guide when sizing NGINX Gateway Fabric for production workloads.
+f5-keywords: "NGINX Gateway Fabric, scaling, control plane, data plane, high availability, replicas"
+f5-audience: operator
 ---
 
 This document describes how you can separately scale the NGINX Gateway Fabric control plane and data plane.
@@ -72,6 +78,8 @@ spec:
 See the `NginxProxy` section of the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the full specification.
 
 All of these fields are also available at installation time by setting them in the [helm values](https://github.com/nginx/nginx-gateway-fabric/blob/main/charts/nginx-gateway-fabric/values.yaml).
+
+{{< call-out class="note" >}} Running multiple replicas improves availability. To keep a minimum number of NGINX pods running during voluntary disruptions, configure a [PodDisruptionBudget for the data plane]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-a-poddisruptionbudget-for-the-data-plane" >}}). {{< /call-out >}}
 
 An alternate way to scale the data plane is by creating a new Gateway.  This is beneficial when you need distinct configurations, isolation, or separate policies. 
 

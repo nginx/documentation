@@ -1,10 +1,16 @@
 ---
 title: Access the NGINX Plus dashboard
+description: "Access the NGINX Plus dashboard for real-time NGINX Gateway Fabric metrics."
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1417
+f5-summary: >
+  Open the NGINX Plus dashboard to view real-time metrics for NGINX data plane instances.
+  Requires NGINX Plus as the data plane.
+f5-keywords: "NGINX Gateway Fabric, NGINX Plus dashboard, metrics, real-time, monitoring"
+f5-audience: operator
 ---
 
 This topic describes how to view the NGINX Plus dashboard to see real-time metrics.

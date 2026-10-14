@@ -74,7 +74,7 @@ This table describes each connection, starting with its type:
 |16|Signal| The _NGINX master_ controls the [lifecycle of _NGINX workers_](https://nginx.org/en/docs/control.html#reconfiguration) it creates workers with the new configuration and shutdowns workers with the old configuration.
 |17|File I/O| An _NGINX worker_ writes logs to its _stdout_ and _stderr_, which are collected by the container runtime.
 |18|UDP| An _NGINX worker_ sends the HTTP upstream server response latency logs via the Syslog protocol over the UNIX socket `/var/lib/nginx/nginx-syslog.sock` to _NGINX Ingress Controller_. In turn, _NGINX Ingress Controller_ analyzes and transforms the logs into Prometheus metrics.
-|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic//configuration/global-configuration/globalconfiguration-resource.md" >}}).
+|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}).
 |20|HTTP,HTTPS,TCP,UDP| An _NGINX worker_ sends traffic to and receives traffic from the _backends_.
 |21|HTTP| _Admin_ can connect to the [NGINX stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html#stub_status) using port 8080 via an _NGINX worker_. By default, NGINX only allows connections from `localhost`.
 
@@ -86,7 +86,7 @@ The previous diagram depicts NGINX Ingress Controller using NGINX. NGINX Ingress
 
 - To configure NGINX Plus, NGINX Ingress Controller uses [configuration reloads](#reloading-nginx) and the [NGINX Plus API](http://nginx.org/en/docs/http/ngx_http_api_module.html#api). This allows NGINX Ingress Controller to dynamically change the upstream servers.
 - Instead of the stub status metrics, the extended metrics available from the NGINX Plus API are used.
-- In addition to TLS certs and keys, NGINX Ingress Controller writes JWKs from the secrets of the type `nginx.org/jwk`, and NGINX workers read them.
+- In addition to TLS certs and keys, NGINX Ingress Controller writes JWKs from secrets that contain a `jwk` key, and NGINX workers read them.
 
 ## The NGINX Ingress Controller process
 
@@ -241,7 +241,7 @@ Ultimately, NGINX Ingress Controller ensures the NGINX config on the filesystem 
 
 ##### LocalSecretStore
 
-[_LocalSecretStore_](https://github.com/nginx/kubernetes-ingress/blob/v1.11.0/internal/k8s/secrets/store.go#L32) (of the _SecretStore_ interface) holds the valid Secret resources and keeps the corresponding files on the filesystem in sync with them. Secrets are used to hold TLS certificates and keys (type `kubernetes.io/tls`), CAs (`nginx.org/ca`), JWKs (`nginx.org/jwk`), and client secrets for an OIDC provider (`nginx.org/oidc`).
+[_LocalSecretStore_](https://github.com/nginx/kubernetes-ingress/blob/v1.11.0/internal/k8s/secrets/store.go#L32) (of the _SecretStore_ interface) holds the valid Secret resources and keeps the corresponding files on the filesystem in sync with them. Secrets are used to hold TLS certificates and keys (`tls.crt` and `tls.key`), CAs (`ca.crt`), JWKs (`jwk`), and client secrets for an OIDC provider (`client-secret`).
 
 When _Controller_ processes a change to a configuration resource like Ingress, it creates an extended version of a resource that includes the dependencies (Such as Secrets) necessary to generate the NGINX configuration. _LocalSecretStore_ allows _Controller_ to reference the filesystem for a secret using the secret key (namespace/name).
 

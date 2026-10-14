@@ -1,9 +1,15 @@
 ---
 title: API reference
+description: "API reference for NGINX Gateway Fabric custom resources under gateway.nginx.org."
 weight: 100
 f5-content-type: reference
-f5-product: FABRIC
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1855
+f5-summary: >
+  Browse generated API documentation for NGINX Gateway Fabric custom resource definitions.
+  Packages include gateway.nginx.org/v1alpha1 and gateway.nginx.org/v1alpha2.
+f5-keywords: "NGINX Gateway Fabric, API reference, CRD, gateway.nginx.org, v1alpha1, v1alpha2"
+f5-audience: any
 ---
 ## Overview
 NGINX Gateway API Reference
@@ -23,6 +29,8 @@ gateway.nginx.org API group.</p>
 </p>
 Resource Types:
 <ul><li>
+<a href="#gateway.nginx.org/v1alpha1.AccessPolicy">AccessPolicy</a>
+</li><li>
 <a href="#gateway.nginx.org/v1alpha1.AuthenticationFilter">AuthenticationFilter</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.ClientSettingsPolicy">ClientSettingsPolicy</a>
@@ -45,6 +53,137 @@ Resource Types:
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.WAFPolicy">WAFPolicy</a>
 </li></ul>
+<h3 id="gateway.nginx.org/v1alpha1.AccessPolicy">AccessPolicy
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AccessPolicy" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>AccessPolicy is an Inherited Attached Policy. It provides a way to configure IP-based allowlists
+and denylists for traffic flowing through NGINX Gateway Fabric.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>AccessPolicy</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessPolicySpec">
+AccessPolicySpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the AccessPolicy.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>action</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessPolicyActionType">
+AccessPolicyActionType
+</a>
+</em>
+</td>
+<td>
+<p>Action specifies the action to take when rules match.
+Allow permits traffic only if it matches at least one rule; all non-matching traffic is denied.
+Deny blocks traffic if it matches any rule; all non-matching traffic is allowed.
+When multiple AccessPolicies apply to the same target, Deny policies are evaluated first.
+If any Deny policy matches, the request is rejected.
+The Gateway-level Allow defines the permitted range. A Route-level Allow policy can only
+restrict access within that range, never extend beyond it. Deny policies are always merged across levels.
+Directives:
+- <a href="https://nginx.org/en/docs/http/ngx_http_access_module.html#allow">https://nginx.org/en/docs/http/ngx_http_access_module.html#allow</a>
+- <a href="https://nginx.org/en/docs/http/ngx_http_access_module.html#deny">https://nginx.org/en/docs/http/ngx_http_access_module.html#deny</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>rules</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRule">
+[]AccessRule
+</a>
+</em>
+</td>
+<td>
+<p>Rules defines the access control rules.
+For Allow policies, a request is allowed if it matches any rule (OR semantics).
+For Deny policies, a request is denied if it matches any rule (OR semantics).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.
+Objects must be in the same namespace as the policy.
+A single policy may not target both Gateway and Route kinds simultaneously.</p>
+<p>Support: Gateway, HTTPRoute, GRPCRoute</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status defines the state of the AccessPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilter">AuthenticationFilter
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthenticationFilter" title="Permanent link">¶</a>
 </h3>
@@ -1116,7 +1255,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -1182,6 +1321,20 @@ This setting applies only when the target Service has a ClusterIP. For headless 
 (ClusterIP: None) and ExternalName Services, normal endpoint resolution is used instead.
 This setting is also not applied to L4/stream upstreams.
 Defaults to false.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>healthCheck</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.HealthCheck">
+HealthCheck
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HealthCheck defines the health check settings for the upstream.</p>
 </td>
 </tr>
 <tr>
@@ -1461,6 +1614,455 @@ string
 </td>
 <td>
 <p>Name is the name of the APPolicy resource.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AccessPolicyActionType">AccessPolicyActionType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AccessPolicyActionType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AccessPolicySpec">AccessPolicySpec</a>)
+</p>
+<p>
+<p>AccessPolicyActionType identifies the action to take when rules match.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Allow&#34;</p></td>
+<td><p>AccessPolicyActionAllow allows traffic that matches any rule.</p>
+</td>
+</tr><tr><td><p>&#34;Deny&#34;</p></td>
+<td><p>AccessPolicyActionDeny denies traffic that matches any rule.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AccessPolicySpec">AccessPolicySpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AccessPolicySpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AccessPolicy">AccessPolicy</a>)
+</p>
+<p>
+<p>AccessPolicySpec defines the desired state of the AccessPolicy.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>action</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessPolicyActionType">
+AccessPolicyActionType
+</a>
+</em>
+</td>
+<td>
+<p>Action specifies the action to take when rules match.
+Allow permits traffic only if it matches at least one rule; all non-matching traffic is denied.
+Deny blocks traffic if it matches any rule; all non-matching traffic is allowed.
+When multiple AccessPolicies apply to the same target, Deny policies are evaluated first.
+If any Deny policy matches, the request is rejected.
+The Gateway-level Allow defines the permitted range. A Route-level Allow policy can only
+restrict access within that range, never extend beyond it. Deny policies are always merged across levels.
+Directives:
+- <a href="https://nginx.org/en/docs/http/ngx_http_access_module.html#allow">https://nginx.org/en/docs/http/ngx_http_access_module.html#allow</a>
+- <a href="https://nginx.org/en/docs/http/ngx_http_access_module.html#deny">https://nginx.org/en/docs/http/ngx_http_access_module.html#deny</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>rules</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRule">
+[]AccessRule
+</a>
+</em>
+</td>
+<td>
+<p>Rules defines the access control rules.
+For Allow policies, a request is allowed if it matches any rule (OR semantics).
+For Deny policies, a request is denied if it matches any rule (OR semantics).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.
+Objects must be in the same namespace as the policy.
+A single policy may not target both Gateway and Route kinds simultaneously.</p>
+<p>Support: Gateway, HTTPRoute, GRPCRoute</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AccessRule">AccessRule
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AccessRule" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AccessPolicySpec">AccessPolicySpec</a>)
+</p>
+<p>
+<p>AccessRule defines an access control rule.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>source</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRuleSource">
+AccessRuleSource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Source specifies the source of the request to match against.
+If omitted, the rule matches requests from any source.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name specifies the name for this rule.
+This follows the DNS Subdomain naming convention.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AccessRuleSource">AccessRuleSource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AccessRuleSource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRule">AccessRule</a>)
+</p>
+<p>
+<p>AccessRuleSource specifies the source of a request.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ipAddress</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRuleSourceIPAddress">
+AccessRuleSourceIPAddress
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPAddress specifies an IP address or CIDR range.
+Required when type is IPAddress; must not be set otherwise.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRuleSourceType">
+AccessRuleSourceType
+</a>
+</em>
+</td>
+<td>
+<p>Type identifies the source type.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AccessRuleSourceIPAddress">AccessRuleSourceIPAddress
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AccessRuleSourceIPAddress" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRuleSource">AccessRuleSource</a>)
+</p>
+<p>
+<p>AccessRuleSourceIPAddress specifies an IP address or CIDR range to match against.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>address</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AccessRuleSourceType">AccessRuleSourceType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AccessRuleSourceType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AccessRuleSource">AccessRuleSource</a>)
+</p>
+<p>
+<p>AccessRuleSourceType identifies a type of source for access control.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;IPAddress&#34;</p></td>
+<td><p>AccessRuleSourceTypeIP matches requests by client IP address.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ActiveHealthCheck">ActiveHealthCheck
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ActiveHealthCheck" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.HealthCheck">HealthCheck</a>)
+</p>
+<p>
+<p>ActiveHealthCheck defines the active health check settings for an upstream. This is an NGINX Plus-only feature.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check">https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check</a></p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>interval</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Interval sets the interval between two consecutive health checks.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>jitter</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Jitter sets the time within which each health check will be randomly delayed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>fails</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Fails sets the number of consecutive failed health checks of a particular server after which this
+server will be considered unhealthy. Unlike PassiveHealthCheck&rsquo;s MaxFails, a value of 0 has no meaning
+for active health checks (NGINX does not define a &ldquo;disable&rdquo; behavior for this parameter); active health
+checking is disabled entirely by omitting ActiveHealthCheck, so a minimum of 1 is enforced here.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>passes</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Passes sets the number of consecutive passed health checks of a particular server after which the
+server will be considered healthy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>path</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Path defines the URI used in health check requests, by default, &ldquo;/&rdquo;. Mutually exclusive with GRPC: the
+&ldquo;type=grpc&rdquo; parameter is not compatible with the &ldquo;uri&rdquo; parameter.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Port defines the port used when connecting to a server to perform a health check.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>match</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Match">
+Match
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Match defines the response criteria that must be satisfied for a health check to pass. If not set, the
+response must have a status code of 2xx or 3xx (NGINX&rsquo;s default). Mutually exclusive with GRPC.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match">https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>grpc</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GRPCHealthCheck">
+GRPCHealthCheck
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>GRPC configures the health check to use the gRPC health checking protocol. Mutually exclusive with
+Path and Match. Only valid for gRPC upstreams.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>mandatory</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Mandatory requires every newly added server to pass the configured health check(s) before NGINX Plus
+sends traffic to it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>persistent</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Persistent sets the initial &ldquo;up&rdquo; state for a server after a reload, if the server was considered
+healthy before the reload. Requires Mandatory to be set to true.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>keepAliveTime</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>KeepAliveTime enables keepalive connections for health checks and specifies the time during which
+requests can be processed through one keepalive connection.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ProxyTimeout">
+ProxyTimeout
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout sets the connect/read/send timeouts used for health check requests. If not set, fall back to
+NGINX&rsquo;s defaults.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>headers</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#HTTPHeader">
+[]sigs.k8s.io/gateway-api/apis/v1.HTTPHeader
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Headers are the request headers to send with health check requests. NGINX Plus always sets the Host,
+User-Agent, and Connection headers for health check requests, and these cannot be overridden.</p>
 </td>
 </tr>
 </tbody>
@@ -2379,11 +2981,13 @@ longer necessary.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ActiveHealthCheck">ActiveHealthCheck</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientBody">ClientBody</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAlive">ClientKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAliveTimeout">ClientKeepAliveTimeout</a>,
 <a href="#gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth</a>,
 <a href="#gateway.nginx.org/v1alpha1.OIDCSessionConfig">OIDCSessionConfig</a>,
+<a href="#gateway.nginx.org/v1alpha1.PassiveHealthCheck">PassiveHealthCheck</a>,
 <a href="#gateway.nginx.org/v1alpha1.ProxyTimeout">ProxyTimeout</a>,
 <a href="#gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver</a>,
@@ -2582,6 +3186,144 @@ and the status of the ExternalLoadBalancer with respect to each controller.</p>
 </td>
 </tr>
 </tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GRPCHealthCheck">GRPCHealthCheck
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GRPCHealthCheck" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ActiveHealthCheck">ActiveHealthCheck</a>)
+</p>
+<p>
+<p>GRPCHealthCheck configures a gRPC-specific active health check.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>service</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Service is the gRPC service to be monitored on the upstream server, corresponding to the &ldquo;service&rdquo;
+field of the gRPC Health Checking Protocol&rsquo;s HealthCheckRequest. If not set, the health of the overall
+server is monitored using the gRPC Health Checking Protocol.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.GRPCStatus">
+GRPCStatus
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Status is the gRPC status code expected in the response to the Check method, treated as healthy.
+Configure this field only if the gRPC service does not implement the gRPC Health Checking Protocol.
+Accepts either the numeric code (e.g. &ldquo;12&rdquo;) or its canonical name (e.g. &ldquo;UNIMPLEMENTED&rdquo;), matching the
+two forms accepted by NGINX&rsquo;s grpc_status parameter.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check">https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.GRPCStatus">GRPCStatus
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GRPCStatus" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.GRPCHealthCheck">GRPCHealthCheck</a>)
+</p>
+<p>
+<p>GRPCStatus is a gRPC status code, expressed as either its numeric code (&ldquo;12&rdquo;) or its canonical name
+(&ldquo;UNIMPLEMENTED&rdquo;). &ldquo;OK&rdquo;/&ldquo;0&rdquo; is intentionally omitted: it is already
+the default healthy response and NGINX&rsquo;s grpc_status parameter requires a non-zero code.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;ABORTED&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;ALREADY_EXISTS&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;CANCELLED&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;1&#34;</p></td>
+<td><p>Numeric equivalents (1-16), accepted as an alternative to the named constants above.</p>
+</td>
+</tr><tr><td><p>&#34;10&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;11&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;12&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;13&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;14&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;15&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;16&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;2&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;3&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;4&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;5&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;6&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;7&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;8&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;9&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;DATA_LOSS&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;DEADLINE_EXCEEDED&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;FAILED_PRECONDITION&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;INTERNAL&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;INVALID_ARGUMENT&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;NOT_FOUND&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;OUT_OF_RANGE&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;PERMISSION_DENIED&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;RESOURCE_EXHAUSTED&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;UNAUTHENTICATED&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;UNAVAILABLE&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;UNIMPLEMENTED&#34;</p></td>
+<td></td>
+</tr><tr><td><p>&#34;UNKNOWN&#34;</p></td>
+<td></td>
+</tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha1.GatewayLinkConfig">GatewayLinkConfig
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.GatewayLinkConfig" title="Permanent link">¶</a>
@@ -3094,6 +3836,57 @@ letters and underscores only.
 For a full list of NGINX variables,
 refer to: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables</a></p>
 </p>
+<h3 id="gateway.nginx.org/v1alpha1.HealthCheck">HealthCheck
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.HealthCheck" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>)
+</p>
+<p>
+<p>HealthCheck defines the passive and/or active health check settings for an upstream.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>passive</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PassiveHealthCheck">
+PassiveHealthCheck
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Passive defines the passive health check settings for the upstream. Passive health checks are supported
+by NGINX OSS and NGINX Plus.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>active</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ActiveHealthCheck">
+ActiveHealthCheck
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Active defines the active health check settings for the upstream. Active health checks are only
+supported by NGINX Plus. Setting this field while running NGINX OSS will cause the Policy to be
+rejected.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.ICMPEcho">ICMPEcho
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ICMPEcho" title="Permanent link">¶</a>
 </h3>
@@ -3762,6 +4555,45 @@ ControllerLogLevel
 <td>
 <em>(Optional)</em>
 <p>Level defines the logging level.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.Match">Match
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Match" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ActiveHealthCheck">ActiveHealthCheck</a>)
+</p>
+<p>
+<p>Match defines the criteria used to determine whether a response to a health check request is considered
+successful. This corresponds to an NGINX &ldquo;match&rdquo; block
+(<a href="https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match">https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match</a>), which can test the response status
+code, response headers, and response body.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Status defines the expected response status code(s) for a health check to pass. By default, the
+response must have a status code of 2xx or 3xx.
+Must be an optional &ldquo;!&rdquo; negation followed by one or more space-separated status codes or status code
+ranges (each 3 digits), matching the syntax of the &ldquo;status&rdquo; test in an NGINX match block.
+Examples: &ldquo;200&rdquo;, &ldquo;! 500&rdquo;, &ldquo;200 204&rdquo;, &ldquo;! 301 302&rdquo;, &ldquo;200-399&rdquo;, &ldquo;! 400-599&rdquo;, &ldquo;301-303 307&rdquo;.</p>
 </td>
 </tr>
 </tbody>
@@ -4498,6 +5330,58 @@ NGINX Default: 8h</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.PassiveHealthCheck">PassiveHealthCheck
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PassiveHealthCheck" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.HealthCheck">HealthCheck</a>)
+</p>
+<p>
+<p>PassiveHealthCheck defines the passive health check settings for an upstream server.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>maxFails</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MaxFails sets the number of consecutive unsuccessful attempts to communicate with a server that must
+happen during FailTimeout for the server to be considered unavailable. A value of 0 disables the
+accounting of attempts entirely.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>failTimeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>FailTimeout sets the time during which the specified number of unsuccessful attempts to communicate
+with a server must happen for the server to be considered unavailable. This is also the period of time
+the server will be considered unavailable.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.PayloadProcessorEntry">PayloadProcessorEntry
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PayloadProcessorEntry" title="Permanent link">¶</a>
 </h3>
@@ -5048,6 +5932,7 @@ Support: Gateway, HTTPRoute, GRPCRoute</p>
 </h3>
 <p>
 (<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ActiveHealthCheck">ActiveHealthCheck</a>,
 <a href="#gateway.nginx.org/v1alpha1.ProxySettingsPolicySpec">ProxySettingsPolicySpec</a>)
 </p>
 <p>
@@ -6023,7 +6908,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -6089,6 +6974,20 @@ This setting applies only when the target Service has a ClusterIP. For headless 
 (ClusterIP: None) and ExternalName Services, normal endpoint resolution is used instead.
 This setting is also not applied to L4/stream upstreams.
 Defaults to false.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>healthCheck</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.HealthCheck">
+HealthCheck
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HealthCheck defines the health check settings for the upstream.</p>
 </td>
 </tr>
 <tr>
@@ -6622,7 +7521,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -7414,6 +8313,20 @@ ContainerSpec
 </tr>
 <tr>
 <td>
+<code>serviceMonitor</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceMonitorSpec">
+ServiceMonitorSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Defines the configuration of the Service Monitor resource used for scraping metrics.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>wafContainers</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.WAFContainerSpec">
@@ -7518,6 +8431,20 @@ A PodDisruptionBudget is created when this field is set.</p>
 </tr>
 <tr>
 <td>
+<code>serviceMonitor</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceMonitorSpec">
+ServiceMonitorSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Defines the configuration of the Service Monitor resource used for scraping metrics.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>wafContainers</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.WAFContainerSpec">
@@ -7597,6 +8524,63 @@ ContainerSpec
 </td>
 </tr></tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha2.Endpoint">Endpoint
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.Endpoint" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceMonitorSpec">ServiceMonitorSpec</a>)
+</p>
+<p>
+<p>Endpoint is used to define which scrapable endpoint is serving Prometheus metrics.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Port is the name of the service this endpoint refers to.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>path</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Path is the HTTP path to scrape metrics from. If empty the prometheus default &ldquo;/metrics&rdquo; is used.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>interval</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>The interval at which metrics should be scraped. If not specified, the Prometheus global
+scrape interval is used</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.ExternalTrafficPolicy">ExternalTrafficPolicy
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ExternalTrafficPolicy" title="Permanent link">¶</a>
 </h3>
@@ -7606,7 +8590,8 @@ ContainerSpec
 </p>
 <p>
 <p>ExternalTrafficPolicy describes how nodes distribute service traffic they
-receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts and LoadBalancer IPs).</p>
+receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
+and LoadBalancer IPs).</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -8017,6 +9002,52 @@ bool
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha2.NamespaceSelector">NamespaceSelector
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NamespaceSelector" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ServiceMonitorSpec">ServiceMonitorSpec</a>)
+</p>
+<p>
+<p>Specification of the fields available for the NamespaceSelector field in the ServiceMonitor.
+Used to select which namespaces the Kubernetes endpoints objects are discovered from.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>any</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>A value of any=true will tell a Prometheus Operator to look for target resources across every
+namespace available.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>matchNames</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MatchNames is the list of namespaces names to select from.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.NginxAccessLog">NginxAccessLog
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLog" title="Permanent link">¶</a>
 </h3>
@@ -8058,7 +9089,7 @@ string
 <em>(Optional)</em>
 <p>Format specifies the custom log format string.
 If not specified, NGINX default &lsquo;combined&rsquo; format is used.
-For now only path /dev/stdout can be used.
+Default path /dev/stdout can be used or file/syslog destinations can be configured.
 Single quotes and line breaks are not allowed because the format is
 rendered inside a single-quoted NGINX log_format directive.
 See <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format">https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format</a></p>
@@ -8081,7 +9112,111 @@ If not specified, &lsquo;default&rsquo; escaping is used.
 See <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format">https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format</a></p>
 </td>
 </tr>
+<tr>
+<td>
+<code>destination</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogDestination">
+NginxAccessLogDestination
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Destination specifies where access logs are sent to.
+File path or syslog server destination can be configured.
+If destination is not specified, access logs are sent to /dev/stdout.</p>
+</td>
+</tr>
 </tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxAccessLogDestination">NginxAccessLogDestination
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLogDestination" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLog">NginxAccessLog</a>)
+</p>
+<p>
+<p>NginxAccessLogDestination defines the destination for access logs.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>file</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogFile">
+NginxAccessLogFile
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>File defines the file destination configuration for access logs.
+Only valid when type is set to &ldquo;file&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>syslog</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogSyslog">
+NginxAccessLogSyslog
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Syslog defines the syslog destination configuration for access logs.
+Only valid when type is set to &ldquo;syslog&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogDestinationType">
+NginxAccessLogDestinationType
+</a>
+</em>
+</td>
+<td>
+<p>Type identifies the type of access log destination.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxAccessLogDestinationType">NginxAccessLogDestinationType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLogDestinationType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogDestination">NginxAccessLogDestination</a>)
+</p>
+<p>
+<p>NginxAccessLogDestinationType defines the supported access log destination types.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;file&#34;</p></td>
+<td><p>NginxAccessLogDestinationTypeFile writes access logs to a specified file path.</p>
+</td>
+</tr><tr><td><p>&#34;syslog&#34;</p></td>
+<td><p>NginxAccessLogDestinationTypeSyslog writes access logs to a syslog server.</p>
+</td>
+</tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.NginxAccessLogEscapeType">NginxAccessLogEscapeType
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLogEscapeType" title="Permanent link">¶</a>
@@ -8113,6 +9248,68 @@ escaped as &lsquo;\n&rsquo;, &lsquo;\r&rsquo;, &lsquo;\t&rsquo;, &lsquo;\b&rsquo
 <td><p>NginxAccessLogEscapeNone disables escaping of characters.</p>
 </td>
 </tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxAccessLogFile">NginxAccessLogFile
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLogFile" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogDestination">NginxAccessLogDestination</a>)
+</p>
+<p>
+<p>NginxAccessLogFile defines the file destination configuration for access logs.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>path</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Path is the file path where access logs will be written.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxAccessLogSyslog">NginxAccessLogSyslog
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLogSyslog" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogDestination">NginxAccessLogDestination</a>)
+</p>
+<p>
+<p>NginxAccessLogSyslog defines the syslog destination configuration for access logs.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>server</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Server is the syslog server address in the format &ldquo;host:port&rdquo;.</p>
+</td>
+</tr>
+</tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.NginxErrorLogFormat">NginxErrorLogFormat
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxErrorLogFormat" title="Permanent link">¶</a>
@@ -8262,8 +9459,8 @@ NginxAccessLog
 </td>
 <td>
 <em>(Optional)</em>
-<p>AccessLog defines the access log settings, including format itself and disabling option.
-For now only path /dev/stdout can be used.</p>
+<p>File or syslog destinations can be configured.
+If not specified, the default path is /dev/stdout.</p>
 </td>
 </tr>
 </tbody>
@@ -8664,7 +9861,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -9323,6 +10520,82 @@ IP address in the X-Forwarded-For HTTP header.
 </td>
 </tr></tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha2.ServiceMonitorSpec">ServiceMonitorSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ServiceMonitorSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec</a>)
+</p>
+<p>
+<p>ServiceMonitorSpec defines the configuration for the ServiceMonitor resource.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>namespaceSelector</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NamespaceSelector">
+NamespaceSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NamespaceSelector is used to select which namespaces the Kubernetes endpoints
+objects are discovered from.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>selector</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#labelselector-v1-meta">
+Kubernetes meta/v1.LabelSelector
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Selector is used to select the Services to scrape by label. If not set, it selects this Gateway&rsquo;s
+metrics Service. NGF always adds the label gateway.nginx.org/metrics-service: &ldquo;true&rdquo; to the selector,
+so it only selects metrics Services and never a Gateway&rsquo;s traffic Service. Only matchLabels is used.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>endpoints</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Endpoint">
+[]Endpoint
+</a>
+</em>
+</td>
+<td>
+<p>Endpoints defines a scrapable endpoints serving Prometheus metrics.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>enable</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>Enable or disable the Service Monitor.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.ServiceSpec">ServiceSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ServiceSpec" title="Permanent link">¶</a>
 </h3>
@@ -9367,7 +10640,8 @@ ExternalTrafficPolicy
 <td>
 <em>(Optional)</em>
 <p>ExternalTrafficPolicy describes how nodes distribute service traffic they
-receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts and LoadBalancer IPs).</p>
+receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
+and LoadBalancer IPs).</p>
 </td>
 </tr>
 <tr>
@@ -9392,6 +10666,12 @@ string
 <td>
 <em>(Optional)</em>
 <p>LoadBalancerClass is the class of the load balancer implementation this Service belongs to.
+When set, the specified load balancer class will be used.
+When not set, any available load balancer class,
+such as an AWS Load Balancer, or MetalLB, will be used.
+To allow the NGINX Gateway Controller to manage the load balancer,
+set loadBalancerClass to the controller name configured
+in the <code>--gateway-ctlr-name</code> flag (default: <code>gateway.nginx.org/nginx-gateway-controller</code>).
 Requires service type to be LoadBalancer.</p>
 </td>
 </tr>
