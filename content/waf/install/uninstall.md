@@ -35,8 +35,10 @@ sudo docker compose stop
 For a single container configuration, use this command instead:
 
 ```shell
-sudo docker container stop <your-container-name>
+sudo docker container stop <YOUR_CONTAINER_NAME>
 ```
+
+Replace `<YOUR_CONTAINER_NAME>` with the name of your container.
 
 ## Kubernetes deployments
 
@@ -45,8 +47,10 @@ In an installation method involving Kubernetes, you'll need to remove the resour
 For Helm, run the following command:
 
 ```shell
-helm uninstall <release-name>
+helm uninstall <RELEASE_NAME>
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 For Manifests, locate the folder with your Manifest files:
 

@@ -1,10 +1,15 @@
 ---
 title: Rate Limit Policy API
+description: "Use RateLimitPolicy to apply NGINX rate limiting to Gateways and routes."
 toc: true
 weight: 1500
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-0000
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  The RateLimitPolicy API configures NGINX rate limiting on provisioned NGINX instances.
+  Attach the inherited policy to a Gateway, HTTPRoute, or GRPCRoute to control request rates and related limit_req settings.
+f5-keywords: "NGINX Gateway Fabric, RateLimitPolicy, rate limit, limit_req, limit_req_zone, throttling"
+f5-audience: any
 ---
 
 Learn how to use the `RateLimitPolicy` API.
@@ -92,8 +97,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 
@@ -525,8 +532,10 @@ for i in `seq 1 5`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://ca
 View the NGINX logs:
 
 ```shell
-kubectl logs <gateway-nginx-pod-name>
+kubectl logs <GATEWAY_NGINX_POD_NAME>
 ```
+
+Replace `<GATEWAY_NGINX_POD_NAME>` with the name of your NGINX Gateway Fabric data plane Pod.
 
 ```text
 127.0.0.1 - - [15/Jan/2026:20:44:57 +0000] "GET /coffee HTTP/1.1" 200 161 "-" "curl/8.7.1"
@@ -582,7 +591,7 @@ for i in `seq 1 5`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://ca
 Viewing the NGINX logs we can see the changes:
 
 ```shell
-kubectl logs <gateway-nginx-pod-name>
+kubectl logs <GATEWAY_NGINX_POD_NAME>
 ```
 
 ```text

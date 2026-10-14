@@ -1,9 +1,15 @@
 ---
 title: Configure basic authentication
+description: "Configure HTTP basic authentication with the AuthenticationFilter CRD in NGINX Gateway Fabric."
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Protect routes with username and password basic authentication using the AuthenticationFilter custom resource.
+  Attach the filter so only authenticated requests reach your backends.
+f5-keywords: "NGINX Gateway Fabric, basic authentication, AuthenticationFilter, username password, HTTP basic auth"
+f5-audience: operator
 ---
 
 
@@ -145,8 +151,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Create a user credentials secret and AuthenticationFilter
 

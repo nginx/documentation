@@ -55,29 +55,29 @@ This step is only required if you do not plan to use the prebuilt NGINX Open Sou
 2. Run the following AWS CLI command. It generates an auth token for your AWS ECR registry, then pipes it into the `docker login` command. This lets AWS ECR authenticate and authorize the upcoming Docker requests. For details about the command, see the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html).
 
    ```shell
-   aws ecr get-login-password --region <aws_region_code> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<aws_region_code>.amazonaws.com
+   aws ecr get-login-password --region <AWS_REGION_CODE> | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION_CODE>.amazonaws.com
    ```
-   - `<aws_region_code>` is the same region name you specified in Step 2 above.
-   - `<aws_account_id>` is your AWS account number. For instructions on retrieving the ID, see the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
+   - `<AWS_REGION_CODE>` is the same region name you specified in Step 2 above.
+   - `<AWS_ACCOUNT_ID>` is your AWS account number. For instructions on retrieving the ID, see the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
 
 3. Run the following command to apply the tag `edge` to your NGINX Ingress Controller image:
 
    ```shell
-   docker tag <registry/image>:edge <aws_account_id>.dkr.ecr.<aws-region-code>.amazonaws.com/<ecr_repo>:edge
+   docker tag <REGISTRY/IMAGE>:edge <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION_CODE>.amazonaws.com/<ECR_REPO>:edge
    ```
-   - `<registry/image>` is the repo name you set with the `PREFIX` parameter to the `make container` command (see [Prerequisites](#prereqs)). In this guide it is `nginx/nginx-plus-ingress`.
-   - `<ecr_repo>` is the AWS ECR repository you created in Step 1 above. In this guide it is called `nginx-plus-ic`.
+   - `<REGISTRY/IMAGE>` is the repo name you set with the `PREFIX` parameter to the `make container` command (see [Prerequisites](#prereqs)). In this guide it is `nginx/nginx-plus-ingress`.
+   - `<ECR_REPO>` is the AWS ECR repository you created in Step 1 above. In this guide it is called `nginx-plus-ic`.
 
    The final command is:
 
    ```shell
-   docker tag nginx/nginx-plus-ingress:edge <aws_account_id>.dkr.ecr.<aws_region_code>.amazonaws.com/nginx-plus-ic:edge
+   docker tag nginx/nginx-plus-ingress:edge <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION_CODE>.amazonaws.com/nginx-plus-ic:edge
    ```
 
 5. Push the NGINX Plus Ingress Controller image to AWS ECR:
 
    ```shell
-   docker push <aws_account_id>.dkr.ecr.<aws_region_code>.amazonaws.com/<ecr_repo>:edge
+   docker push <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION_CODE>.amazonaws.com/<ECR_REPO>:edge
    ```
 
 <span id="ingress-controller"></span>
@@ -136,8 +136,10 @@ Apply the manifest `deployments/service/loadbalancer-aws-elb.yaml` to create a `
 2. Resolve the DNS name into an IP address using `nslookup`:
 
    ```shell
-   nslookup <dns-name>
+   nslookup <DNS_NAME>
    ```
+
+   Replace `<DNS_NAME>` with the DNS name of the NGINX Ingress Controller load balancer.
 
 3. Follow the [instructions](https://github.com/nginx/kubernetes-ingress/tree/main/examples/ingress-resources/complete-example) to deploy the Cafe demo app into the EKS cluster. It will be load balanced by NGINX Ingress Controller.
    * In Step 1 of deploying the demo app, save the public IP address into the `IC_IP` shell variable. Set `IC_HTTPS_PORT` to 443.
@@ -150,10 +152,10 @@ Apply the manifest `deployments/service/loadbalancer-aws-elb.yaml` to create a `
       ```shell
       kubectl get pods -n nginx-ingress
       ```
-   2. Display the logs from NGINX Ingress Controller. Replace `<pod_name>` with the name from the previous step. If the logged IP address matches the one you used to access the demo app, then the PROXY Protocol is enabled.
+   2. Display the logs from NGINX Ingress Controller. Replace `<POD_NAME>` with the name from the previous step. If the logged IP address matches the one you used to access the demo app, then the PROXY Protocol is enabled.
 
       ```shell
-      kubectl logs <pod_name> -n nginx-ingress
+      kubectl logs <POD_NAME> -n nginx-ingress
       ```
 
 

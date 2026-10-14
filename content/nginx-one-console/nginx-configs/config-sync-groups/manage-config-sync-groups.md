@@ -114,8 +114,10 @@ You can add existing NGINX instances that are already registered with NGINX One 
 
    ``` text
    labels:
-      config-sync-group: <config_sync_group>
+      config-sync-group: <CONFIG_SYNC_GROUP>
    ```
+
+   Replace `<CONFIG_SYNC_GROUP>` with the name of your config sync group.
 
 4. Restart NGINX Agent:
 
@@ -131,7 +133,7 @@ You can add existing NGINX instances that are already registered with NGINX One 
 3. At the end of the file, add a new line beginning with `instance_group:`, followed by the Config Sync Group name.
 
    ``` text
-   instance_group: <config_sync_group>
+   instance_group: <CONFIG_SYNC_GROUP>
    ```
 
 4. Restart NGINX Agent:
@@ -187,7 +189,7 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
    - From the **OS Type** list, choose the appropriate operating system for your Docker image.
    - After selecting the OS, run the provided command to pull the Docker image.
 
-   **Note**: Subject to availability, you can modify the `agentv3:<version-tag>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agentv3:r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}).
+   **Note**: Subject to availability, you can modify the `agentv3:<VERSION_TAG>` to match the specific NGINX Plus version, OS type, and OS version you need. For example, you might use `agentv3:r32-ubi-9`. For more details on version tags and how to pull an image, see [Deploying NGINX and NGINX Plus on Docker]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-docker.md#pull-the-image" >}}).
 
 
 10. Run the provided command, which includes the data plane key, in your NGINX instance terminal to start the Docker container.
@@ -220,8 +222,10 @@ If you need to move an NGINX instance to a different Config Sync Group, follow t
 
    ``` text
    labels:
-      config-sync-group: <new_config_sync_group>
+      config-sync-group: <NEW_CONFIG_SYNC_GROUP>
    ```
+
+   Replace `<NEW_CONFIG_SYNC_GROUP>` with the name of the config sync group you want to move the instance to.
 
 4. Restart NGINX Agent by running the following command:
 
@@ -238,7 +242,7 @@ If you need to move an NGINX instance to a different Config Sync Group, follow t
 3. Locate the line that begins with `instance_group:` and change it to the name of the new Config Sync Group.
 
    ``` text
-   instance_group: <new_config_sync_group>
+   instance_group: <NEW_CONFIG_SYNC_GROUP>
    ```
 
 4. Restart NGINX Agent by running the following command:
@@ -268,7 +272,7 @@ If you need to remove an NGINX instance from a Config Sync Group without adding 
 
    ```text
    labels:
-      # config-sync-group: <new_config_sync_group>
+      # config-sync-group: <NEW_CONFIG_SYNC_GROUP>
    ```
 
 4. Restart NGINX Agent:
@@ -285,7 +289,7 @@ If you need to remove an NGINX instance from a Config Sync Group without adding 
 3. Locate the line that begins with `instance_group:` and either remove it or comment it out by adding a `#` at the beginning of the line.
 
    ```text
-   # instance_group: <config_sync_group>
+   # instance_group: <CONFIG_SYNC_GROUP>
    ```
 
 4. Restart NGINX Agent:

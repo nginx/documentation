@@ -1,6 +1,8 @@
 ---
 # The title is the product name
 title: F5 NGINX Gateway Fabric
+# The description is a brief paragraph containing an overview of the product
+description: "Implement the Kubernetes Gateway API with NGINX Gateway Fabric using NGINX as the data plane."
 # The URL is the base of the deployed path, becoming "docs.nginx.com/<url>/<other-pages>"
 url: /nginx-gateway-fabric/
 # The cascade directive applies its nested parameters down the page tree until overwritten
@@ -20,7 +22,16 @@ f5-landing-page: true
 f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
+# Contains an extended description of the product
+f5-summary: >
+  NGINX Gateway Fabric is a Kubernetes Gateway API implementation that uses NGINX as the data plane.
+  Use it to configure HTTP, gRPC, TCP, and UDP load balancing, reverse proxying, and API gateway features for applications on Kubernetes.
+  This landing page links to get started, install, traffic management, security, monitoring, and reference documentation.
+# Contains product metadata keywords that can be used for search results and AI metadata gathering
+f5-keywords: "NGINX Gateway Fabric, NGF, Gateway API, Kubernetes, load balancer, reverse proxy, API gateway"
+# The target audience for of this page
+f5-audience: any
 ---
 
 ## About
@@ -66,6 +77,6 @@ For more information, see the [Gateway architecture]({{< ref "/ngf/overview/gate
     Create simple rules for directing network traffic with HTTPRoute resources.
   {{</card>}}
   {{<card title="Secure traffic using Let's Encrypt" titleUrl="/nginx-gateway-fabric/traffic-security/integrate-cert-manager">}}
-    Implement HTTPS with Let's Encrypt to secure client-server communication. 
+    Implement HTTPS with Let's Encrypt to secure client-server communication.
   {{</card>}}
 {{</card-section>}}

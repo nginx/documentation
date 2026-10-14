@@ -1,10 +1,16 @@
 ---
 title: Upgrade applications without downtime
+description: "Upgrade Kubernetes applications without downtime using NGINX Gateway Fabric routing."
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1841
+f5-summary: >
+  Shift traffic safely while upgrading application versions so users experience no downtime.
+  Use Gateway API routes with NGINX Gateway Fabric to control rollout of backend changes.
+f5-keywords: "NGINX Gateway Fabric, rolling update, zero downtime, application upgrade, HTTPRoute, blue green"
+f5-audience: operator
 ---
 
 Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.

@@ -94,8 +94,10 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 3. Create a backup of the key file in a secure location. If you lose the key, the certificate becomes unusable.
 
    ```shell
-   root# cp ~/private-key.pem <SECURE-DIR>/private-key.pem.backup
+   root# cp ~/private-key.pem <SECURE_DIR>/private-key.pem.backup
    ```
+
+   Replace `<SECURE_DIR>` with the directory where you store your SSL certificate and private key.
 
 4. Generate the certificate. Include the <span style="white-space: nowrap;">`-new`</span> and <span style="white-space: nowrap;">`-x509`</span> parameters to make a new self‑signed certificate. Optionally include the <span style="white-space: nowrap;">`-days`</span> parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
 
@@ -485,8 +487,8 @@ server {
 
     server_name example.com;
 
-    ssl_certificate     /etc/nginx/ssl/<certificate-name>;
-    ssl_certificate_key /etc/nginx/ssl/<private-key>;
+    ssl_certificate     /etc/nginx/ssl/<CERTIFICATE_NAME>;
+    ssl_certificate_key /etc/nginx/ssl/<PRIVATE_KEY>;
     ssl_session_cache   shared:SSL:1m;
     ssl_prefer_server_ciphers on;
 
@@ -511,6 +513,8 @@ server {
 }
 
 ```
+
+Replace `<CERTIFICATE_NAME>` with the filename of your SSL certificate and `<PRIVATE_KEY>` with the filename of your private key.
 
 <span id="enhanced"></span>
 ## Configuring Enhanced Load Balancing with NGINX Plus
@@ -762,7 +766,7 @@ Also include the `zone` directive in the `upstream` block to create a shared mem
 
 ```nginx
 # In the 'http' block
-resolver <IP-address-of-DNS-server>;
+resolver <DNS_SERVER_IP>;
 
 upstream jboss {
     zone jboss 64k;
@@ -770,13 +774,15 @@ upstream jboss {
 }
 ```
 
+Replace `<DNS_SERVER_IP>` with the IP address of your DNS server.
+
 Directive and parameter documentation: [resolve](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve), [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver), [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)
 
 [NGINX Plus Release 9](https://www.nginx.com/blog/nginx-plus-r9-released/#dns-srv) and later can also use the additional information in DNS `SRV` records, such as the port number. Include the `service` parameter to the `server` directive, along with the `resolve` parameter:
 
 ```nginx
 # In the 'http' block
-resolver <IP-address-of-DNS-server>;
+resolver <DNS_SERVER_IP>;
 
 upstream jboss {
     zone jboss 64k;
@@ -845,8 +851,8 @@ server {
 
     # Required for live activity monitoring of HTTPS traffic
     status_zone jboss;
-    ssl_certificate            /etc/nginx/ssl/<certificate-name>;
-    ssl_certificate_key        /etc/nginx/ssl/<private-key>;
+    ssl_certificate            /etc/nginx/ssl/<CERTIFICATE_NAME>;
+    ssl_certificate_key        /etc/nginx/ssl/<PRIVATE_KEY>;
     ssl_session_cache          shared:SSL:1m;
     ssl_prefer_server_ciphers  on;
 

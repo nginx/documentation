@@ -152,7 +152,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
 
 1. {{< include "nginx-plus/install/install-ca-certificates-dependency-dnf.md" >}}
 
-1. Add the NGINX Plus repository by downloading **nginx-plus-<version>.repo** file that matches your OS major version to **/etc/yum.repos.d**.
+1. Add the NGINX Plus repository by downloading **nginx-plus-<VERSION>.repo** file that matches your OS major version to **/etc/yum.repos.d**.
 
    - For **RHEL-based 8.1+**, download the [plus-8.repo](https://cs.nginx.com/static/files/plus-8.repo) file:
 
@@ -172,7 +172,7 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
      sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-10.repo
      ```
 
-1. **Modify your NGINX Plus repository configuration to pin to the desired LTS track**. To change your update channel, edit the `/etc/yum.repos.d/plus-<version>.repo` file and update the `baseurl` to the [appropriate value](#repo-options) for your target version.
+1. **Modify your NGINX Plus repository configuration to pin to the desired LTS track**. To change your update channel, edit the `/etc/yum.repos.d/plus-<VERSION>.repo` file and update the `baseurl` to the [appropriate value](#repo-options) for your target version.
    <br/>
    <br/>
    For **RHEL-based 8.1+**

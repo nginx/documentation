@@ -1,10 +1,16 @@
 ---
 title: Data plane configuration
+description: "Dynamically update global NGINX data plane configuration for NGINX Gateway Fabric."
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1838
+f5-summary: >
+  Change global data plane settings that apply across NGINX instances managed by NGINX Gateway Fabric.
+  Use this when you need product-wide NGINX configuration beyond per-route policies.
+f5-keywords: "NGINX Gateway Fabric, data plane, NginxProxy, global configuration, NGINX settings"
+f5-audience: operator
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric global data plane configuration.
@@ -180,7 +186,7 @@ telemetry:
 
 By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values. You can also [manually create and attach](#manually-creating-nginxProxies) specific `NginxProxy` resources to target different Gateways.
 
-When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
+When installed using the Helm chart, the NginxProxy resource is named `<RELEASE_NAME>-proxy-config` and is created in the release Namespace.
 
 **For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
@@ -213,8 +219,10 @@ For a full list of configuration options that can be set, see the `NginxProxy sp
 To attach the `ngf-proxy-config` NginxProxy to a Gateway:
 
 ```shell
-kubectl edit gateway <gateway-name>
+kubectl edit gateway <GATEWAY_NAME>
 ```
+
+Replace `<GATEWAY_NAME>` with the name of your Gateway.
 
 This will open your default editor, allowing you to add the following to the `spec`:
 
@@ -231,7 +239,7 @@ infrastructure:
 After updating, you can check the status of the Gateway to see if the configuration is valid:
 
 ```shell
-kubectl describe gateway <gateway-name>
+kubectl describe gateway <GATEWAY_NAME>
 ```
 
 ```text
@@ -458,6 +466,41 @@ EOF
 Layer 4 (TCPRoute/UDPRoute) stream upstreams are unaffected by this setting, since it does not apply to L4 traffic.
 
 If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy` fields, it can be set on the GatewayClass to apply globally, or on a Gateway to override the GatewayClass value. See the [Merging Semantics](#merging-semantics) section for details, and the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the full list of options.
+
+---
+
+## Configure the global upstream zone size
+
+NGINX keeps the configuration and runtime state of each upstream in a shared memory zone. The more servers (backend Pods) an upstream has, the larger the zone it needs. By default, NGINX Gateway Fabric gives each upstream a fixed default zone size. To change that size for all HTTP and gRPC upstreams, set the `zoneSize` field of the `NginxProxy` resource.
+
+The following command creates an `NginxProxy` resource that sets `zoneSize` to `1m`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  zoneSize: 1m
+EOF
+```
+
+Enter the size as a number of up to four digits followed by `k`, `m`, or `g`. For example, `512k`, `1m`, or `2m`.
+
+To set a different size for one Service, use the `zoneSize` field of an `UpstreamSettingsPolicy`. For the steps, see [Configure upstream zone size]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-upstream-zone-size" >}}). When both are set for the same Service, the `UpstreamSettingsPolicy` value takes precedence. For example, give a Service with many more backend Pods than the others a larger zone.
+
+To confirm the new size, inspect the running NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+The `zone` directive of each HTTP upstream shows `1m`, unless an `UpstreamSettingsPolicy` sets another size for that Service.
+
+Layer 4 stream upstreams for TLSRoute, TCPRoute, and UDPRoute don't use this setting. They keep their default zone size.
+
+You can set `zoneSize` on the GatewayClass to apply it to all Gateways. To override that value for one Gateway, set it on the Gateway. See the [Merging Semantics](#merging-semantics) section for details. The `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) lists the default zone sizes and the full list of options.
 
 ---
 

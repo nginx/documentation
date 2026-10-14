@@ -12,9 +12,9 @@ Here’s an example of a usage report:
 
 ```json
 {
-    "version": "<nginx_version>",
-    "uuid": "<nginx_uuid>",
-    "nap": "<active/inactive>", // F5 WAF for NGINX status
+    "version": "<NGINX_VERSION>",
+    "uuid": "<NGINX_UUID>",
+    "nap": "<ACTIVE/INACTIVE>", // F5 WAF for NGINX status
     "http": {
         "client": {
             "received": 0, // bytes received

@@ -6,12 +6,12 @@ f5-files:
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-terraform.md
 ---
 
-If the diagnostic setting destination details included a storage account, logs show up in the storage container "insights-logs-nginxlogs" with the following format: `resourceID=/<NGINXaaS-resourceID>/y=<YYYY>/m=<MM>/d=<DD>/h=<HH>/PT1H.json`
+If the diagnostic setting destination details included a storage account, logs show up in the storage container "insights-logs-nginxlogs" with the following format: `resourceID=/<NGINXAAS_RESOURCE_ID>/y=<YYYY>/m=<MM>/d=<DD>/h=<HH>/PT1H.json`
 
 {{<table>}}
 | **Attribute**               | **Description** |
 |-----------------------------|-----------------|
-| `<NGINXaaS-resourceID>`     | The resourceID of the NGINXaaS deployment in upper case.|
+| `<NGINXAAS_RESOURCE_ID>`     | The resourceID of the NGINXaaS deployment in upper case.|
 | `<YYYY>`                    | The four-digit year when the log batch was generated.|
 | `<MM>`                      | The two-digit month when the log batch was generated.|
 | `<DD>`                      | The two-digit day when the log batch was generated.|

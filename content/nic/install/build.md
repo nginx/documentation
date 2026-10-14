@@ -31,16 +31,16 @@ You can download the precompiled binary file or build NGINX Ingress Controller i
 
 Get your system ready for building and pushing the NGINX Ingress Controller image.
 
-1. Sign in to your private registry. Replace `<my-docker-registry>` with the path to your own private registry.
+1. Sign in to your private registry. Replace `<MY_DOCKER_REGISTRY>` with the path to your own private registry.
 
     ```shell
-    docker login <my-docker-registry>
+    docker login <MY_DOCKER_REGISTRY>
     ```
 
-2. Clone the NGINX Ingress Controller GitHub repository. Replace `<version_number>` with the version of NGINX Ingress Controller you want.
+2. Clone the NGINX Ingress Controller GitHub repository. Replace `<VERSION_NUMBER>` with the version of NGINX Ingress Controller you want.
 
     ```shell
-    git clone https://github.com/nginx/kubernetes-ingress.git --branch <version_number>
+    git clone https://github.com/nginx/kubernetes-ingress.git --branch <VERSION_NUMBER>
     cd kubernetes-ingress
     ```
 
@@ -59,18 +59,18 @@ After setting up your environment, follow these steps to build the NGINX Ingress
 
 ### For NGINX
 
-Build the image. Replace `<my-docker-registry>` with your private registry's path.
+Build the image. Replace `<MY_DOCKER_REGISTRY>` with your private registry's path.
 
 - For a Debian-based image:
 
     ```shell
-    make debian-image PREFIX=<my-docker-registry>/nginx-ingress TARGET=download
+    make debian-image PREFIX=<MY_DOCKER_REGISTRY>/nginx-ingress TARGET=download
     ```
 
 - For an Alpine-based image:
 
     ```shell
-    make alpine-image PREFIX=<my-docker-registry>/nginx-ingress TARGET=download
+    make alpine-image PREFIX=<MY_DOCKER_REGISTRY>/nginx-ingress TARGET=download
     ```
 
 **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_](#makefile-details). This version number is used for tracking and deployment purposes.
@@ -89,10 +89,10 @@ You should see:
 nginx-repo.crt  nginx-repo.key
 ```
 
-Build the image. Replace `<my-docker-registry>` with your private registry's path.
+Build the image. Replace `<MY_DOCKER_REGISTRY>` with your private registry's path.
 
 ```shell
-make debian-image-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
+make debian-image-plus PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress TARGET=download
 ```
 
 **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_](#makefile-details). This version number is used for tracking and deployment purposes.
@@ -105,18 +105,18 @@ Once you've successfully built the NGINX or NGINX Plus Ingress Controller image,
 
 ### For NGINX
 
-Upload the NGINX image. If you're using a custom tag, append `TAG=your-tag` to the command. Replace `<my-docker-registry>` with your private registry's path.
+Upload the NGINX image. If you're using a custom tag, append `TAG=your-tag` to the command. Replace `<MY_DOCKER_REGISTRY>` with your private registry's path.
 
 ```shell
-make push PREFIX=<my-docker-registry>/nginx-ingress
+make push PREFIX=<MY_DOCKER_REGISTRY>/nginx-ingress
 ```
 
 ### For NGINX Plus
 
-Upload the NGINX Plus image. Like with the NGINX image, if you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
+Upload the NGINX Plus image. Like with the NGINX image, if you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<MY_DOCKER_REGISTRY>` with your private registry's path.
 
 ```shell
-make push PREFIX=<my-docker-registry>/nginx-plus-ingress
+make push PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress
 ```
 
 ## Makefile details {#makefile-details}

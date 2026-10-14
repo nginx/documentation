@@ -51,8 +51,10 @@ To convert a policy, first create a temporary folder and copy your XML file to i
 
 ```shell
 mkdir tmp/convert
-cp <path-to-your-xml-policy-file> tmp/convert/
+cp <PATH/TO/XML_POLICY_FILE> tmp/convert/
 ```
+
+Replace `<PATH/TO/XML_POLICY_FILE>` with the path to your XML policy file.
 
 Run the compiler Docker image with the temporary folder as a mounted volume, and execute the policy converter script:
 
@@ -66,12 +68,14 @@ Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 docker run -it --rm \
   -v $(pwd):/tmp/convert \
   --entrypoint="/opt/app_protect/bin/convert-policy" \
-  waf-compiler-<version-tag>:custom
+  waf-compiler-<VERSION_TAG>:custom
   -i /tmp/convert/policy.xml \
   -o /tmp/convert/policy.json \
   --full-export \
   | jq
 ```
+
+Replace `<VERSION_TAG>` with the image version tag.
 
 ```json
 {
@@ -153,7 +157,7 @@ total 848
 docker run -it --rm \
   -v "$(pwd)":/tmp/convert \
   --entrypoint="/opt/app_protect/bin/convert-policy" \
-  waf-compiler-<version-tag>:custom \
+  waf-compiler-<VERSION_TAG>:custom \
   -i /tmp/convert/policy.xml \
   -o /tmp/convert/policy.json \
   --full-export
@@ -165,7 +169,7 @@ docker run -it --rm \
 docker run -it --rm \
   -v "$(pwd)":/tmp/convert \
   --entrypoint="/opt/app_protect/bin/convert-policy" \
-  waf-compiler-<version-tag>:custom \
+  waf-compiler-<VERSION_TAG>:custom \
   -i /tmp/convert/policy.xml \
   -o /tmp/convert/policy.json \
   --keep-full-configuration
@@ -177,7 +181,7 @@ docker run -it --rm \
 docker run -it --rm \
   -v "$(pwd)":/tmp/convert \
   --entrypoint="/opt/app_protect/bin/convert-policy" \
-  waf-compiler-<version-tag>:custom \
+  waf-compiler-<VERSION_TAG>:custom \
   -i /tmp/convert/policy.xml \
   -o /tmp/convert/policy.json \
   --include-all-signatures
@@ -232,7 +236,7 @@ docker run \
   -v "$(pwd):$(pwd)" \
   -w "$(pwd)" \
   --entrypoint /opt/app_protect/bin/convert-signatures \
-  waf-compiler-<version-tag>:custom \
+  waf-compiler-<VERSION_TAG>:custom \
   -i /path/to/signatures.xml \
   -o /path/to/signatures.json \
 | jq
@@ -368,7 +372,7 @@ docker run \
   -v "$(pwd):$(pwd)" \
   -w "$(pwd)" \
   --entrypoint /opt/app_protect/bin/convert-signatures \
-  waf-compiler-<version-tag>:custom \
+  waf-compiler-<VERSION_TAG>:custom \
   -i /path/to/signatures.xml \
   -o /path/to/signatures.json \
   --tag "MyTag"
@@ -388,7 +392,7 @@ These are the command line options available: if the script is run without the r
 
 ```shell
 USAGE:
-    /opt/app_protect/bin/get-signatures <arguments>
+    /opt/app_protect/bin/get-signatures <ARGUMENTS>
 
   Required arguments:
     --outfile|o='/path/to/report-file.json'
@@ -402,6 +406,8 @@ USAGE:
 
 Optionally, using --help will issue this help message.
 ```
+
+Replace `<ARGUMENTS>` with the `get-signatures` arguments you want to use.
 
 This command example generates a signature report with all signature details:
 

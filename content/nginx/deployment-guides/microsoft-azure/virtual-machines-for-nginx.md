@@ -127,12 +127,12 @@ On the page that opens (**ngx-plus-1** in this example), note the VM's public IP
 Run this command to confirm an SSH connection to the VM:
 
 ```shell
-ssh -i <private-key-file> <username>@<public-IP-address>
+ssh -i <PRIVATE_KEY_FILE> <USERNAME>@<PUBLIC_IP>
 ```
 
-- `<private-key-file>` contains the private key paired with the public key you entered in the _SSH public key_ field during _Create a Microsoft Azure virtual Machine_
-- `<username>` is the name you entered in the **Username** field during _Create a Microsoft Azure virtual Machine_. In this example, it is _nginx_azure_.
-- `<public-IP-address>` is the address you found during the previous step.
+- `<PRIVATE_KEY_FILE>` contains the private key paired with the public key you entered in the _SSH public key_ field during _Create a Microsoft Azure virtual Machine_
+- `<USERNAME>` is the name you entered in the **Username** field during _Create a Microsoft Azure virtual Machine_. In this example, it is _nginx_azure_.
+- `<PUBLIC_IP>` is the address you found during the previous step.
 
 ## Install NGINX Open Source or NGINX Plus
 

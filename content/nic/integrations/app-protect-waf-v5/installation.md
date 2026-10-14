@@ -21,28 +21,30 @@ This document explains how to build a F5 NGINX Ingress Controller image with F5 
 
 Get your system ready for building and pushing the NGINX Ingress Controller image with F5 WAF for NGINX v5.
 
-1. Sign in to your private registry. Replace `<my-docker-registry>` with the path to your own private registry.
+1. Sign in to your private registry. Replace `<MY_DOCKER_REGISTRY>` with the path to your own private registry.
 
     ```shell
-    docker login <my-docker-registry>
+    docker login <MY_DOCKER_REGISTRY>
     ```
 
 1. Pull the WAF Config Manager image:
 
     ```shell
-    docker pull private-registry.nginx.com/nap/waf-config-mgr:<image-tag>
+    docker pull private-registry.nginx.com/nap/waf-config-mgr:<IMAGE_TAG>
     ```
+
+    Replace `<IMAGE_TAG>` with the tag of the image.
 
 1. Pull the WAF Enforcer Docker image
 
     ```shell
-    docker pull private-registry.nginx.com/nap/waf-enforcer:<image-tag>
+    docker pull private-registry.nginx.com/nap/waf-enforcer:<IMAGE_TAG>
     ```
 
 1. Pull the WAF IP Intelligence image (if you plan to use the WAF IP Intelligence module with your WAF v5 policies):
 
     ```shell
-    docker pull private-registry.nginx.com/nap/waf-ip-intelligence:<image-tag>
+    docker pull private-registry.nginx.com/nap/waf-ip-intelligence:<IMAGE_TAG>
     ```
 
 1. Clone the NGINX Ingress Controller repository:
@@ -68,16 +70,16 @@ Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX v5.
     nginx-repo.crt  nginx-repo.key
     ```
 
-2. Build the image. Replace `<makefile target>` with your chosen build option and `<my-docker-registry>` with your private registry's path. Refer to the [Makefile targets](#makefile-targets) table below for the list of build options.
+2. Build the image. Replace `<MAKEFILE_TARGET>` with your chosen build option and `<MY_DOCKER_REGISTRY>` with your private registry's path. Refer to the [Makefile targets](#makefile-targets) table below for the list of build options.
 
     ```shell
-    make <makefile target> PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
+    make <MAKEFILE_TARGET> PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress TARGET=download
     ```
 
    For example, to build a Debian-based image with NGINX Plus and F5 WAF for NGINX v5, run:
 
     ```shell
-    make debian-image-nap-v5-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
+    make debian-image-nap-v5-plus PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress TARGET=download
     ```
 
    **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
@@ -108,20 +110,22 @@ To do so, place the `*.crt` file in the build folder and uncomment the lines fol
 
 Once you've successfully pulled the WAF v5 manager and enforcer images and built the NGINX Ingress Controller image with F5 WAF for NGINX v5, the next step is to upload them to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
 
-To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
+To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<MY_DOCKER_REGISTRY>` with your private registry's path.
 
 ```shell
-make push PREFIX=<my-docker-registry>/nginx-plus-ingress
+make push PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress
 ```
 
 To upload the WAF config manager and enforcer images run the following commands:
 
 ```shell
-docker push <my-docker-registry>/waf-config-mgr:<your-tag>
+docker push <MY_DOCKER_REGISTRY>/waf-config-mgr:<YOUR_TAG>
 ```
 
+Replace `<YOUR_TAG>` with the tag you want to use for the image.
+
 ```shell
-docker push <my-docker-registry>/waf-enforcer:<your-tag>
+docker push <MY_DOCKER_REGISTRY>/waf-enforcer:<YOUR_TAG>
 ```
 
 {{< include "/nic/installation/create-custom-resources.md" >}}
@@ -141,21 +145,25 @@ Below are examples of a `PersistentVolume` and `PersistentVolumeClaim` that you 
 ```yaml
 ...
 volumes:
-- name: <volume_name>
+- name: <VOLUME_NAME>
 persistentVolumeClaim:
-    claimName: <claim_name>
+    claimName: <CLAIM_NAME>
 ...
 ```
+
+Replace `<VOLUME_NAME>` with the name of the volume and `<CLAIM_NAME>` with the name of the PersistentVolumeClaim.
 
 Add volume mounts to the `containers` section:
 
 ```yaml
 ...
 volumeMounts:
-- name: <volume_mount_name>
+- name: <VOLUME_MOUNT_NAME>
   mountPath: /etc/app_protect/bundles
 ...
 ```
+
+Replace `<VOLUME_MOUNT_NAME>` with the name of the volume mount.
 
 ### Enabling WAF v5
 
@@ -192,7 +200,7 @@ controller:
    volumes:
    - name: app-protect-bundles
      persistentVolumeClaim:
-        claimName: <my_claim_name>
+        claimName: <CLAIM_NAME>
 ...
 ```
 
@@ -313,9 +321,9 @@ Add a `volumes` section to deployment template spec:
 ```yaml
 ...
 volumes:
-- name: <volume_name>
+- name: <VOLUME_NAME>
 persistentVolumeClaim:
-    claimName: <claim_name>
+    claimName: <CLAIM_NAME>
 ...
 ```
 
@@ -324,7 +332,7 @@ Add volume mounts to the `containers` section:
 ```yaml
 ...
 volumeMounts:
-- name: <volume_mount_name>
+- name: <VOLUME_MOUNT_NAME>
     mountPath: /etc/app_protect/bundles
 ...
 ```
@@ -336,7 +344,7 @@ Add `waf-config-mgr` image to the `containers` section:
 ```yaml
 ...
 - name: waf-config-mgr
-  image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+  image: private-registry.nginx.com/nap/waf-config-mgr:<VERSION_TAG>
   imagePullPolicy: IfNotPresent
   securityContext:
     allowPrivilegeEscalation: false
@@ -353,12 +361,14 @@ Add `waf-config-mgr` image to the `containers` section:
 ...
 ```
 
+Replace `<VERSION_TAG>` with the version tag of the image.
+
 Add `waf-enforcer` image to the `containers` section:
 
 ```yaml
 ...
 - name: waf-enforcer
-  image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+  image: private-registry.nginx.com/nap/waf-enforcer:<VERSION_TAG>
   imagePullPolicy: IfNotPresent
   env:
     - name: ENFORCER_PORT
@@ -377,7 +387,7 @@ Add `volumeMounts` as below:
 
 ```yaml
 ...
-- image: <my_docker_registry>:<version_tag>
+- image: <MY_DOCKER_REGISTRY>:<VERSION_TAG>
   imagePullPolicy: IfNotPresent
   name: nginx-plus-ingress
   volumeMounts:
@@ -396,7 +406,7 @@ Add `readOnlyRootFilesystem` to the NIC container and set valut to `true` as bel
 
 ```yaml
 ...
-- image: <my_docker_registry>:<version_tag>
+- image: <MY_DOCKER_REGISTRY>:<VERSION_TAG>
   imagePullPolicy: IfNotPresent
   name: nginx-plus-ingress
   ...
@@ -435,7 +445,7 @@ Add `readOnlyRootFilesystem` to the `waf-config-mgr` container and set value to 
 ```yaml
 ...
 - name: waf-config-mgr
-  image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+  image: private-registry.nginx.com/nap/waf-config-mgr:<VERSION_TAG>
   imagePullPolicy: IfNotPresent
   ...
   securityContext:
@@ -449,7 +459,7 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 ```yaml
 ...
 - name: waf-enforcer
-  image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+  image: private-registry.nginx.com/nap/waf-enforcer:<VERSION_TAG>
   imagePullPolicy: IfNotPresent
   ...
   securityContext:

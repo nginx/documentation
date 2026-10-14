@@ -146,4 +146,4 @@ Be aware of the following constraints when using F5 ADS for AWS:
 
 ## What's next
 
-To get started, [create a deployment]({{< ref "/f5ads/aws/deploy/create-deployment/deploy-console.md" >}}).
+To get started, check the [F5 ADS for AWS prerequisites]({{< ref "/f5ads/aws/deploy/prerequisites.md" >}}).

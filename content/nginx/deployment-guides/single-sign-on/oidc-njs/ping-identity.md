@@ -138,12 +138,12 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-urls"></span>
 3. Get the URLs for the authorization endpoint, token endpoint, and JSON Web Key (JWK) file from the Ping Identity configuration. Run the following `curl` command in a terminal, piping the output to the indicated `python` command to output the entire configuration in an easily readable format. We've abridged the output to show only the relevant fields.
 
-   The <span style="white-space: nowrap;">`<Ping-Identity-Client-ID>`</span> variable is the value in the **CLIENT ID** field that you noted in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets).
+   The <span style="white-space: nowrap;">`<PING_IDENTITY_CLIENT_ID>`</span> variable is the value in the **CLIENT ID** field that you noted in [Step 12 of _Configuring PingFederate or PingOne for Enterprise_](#ping-client-id-secrets).
 
    **Note:** This `curl` command is appropriate for Ping One for Enterprise. For PingFederate, you might need to replace `sso.connect.pingidentity.com` with the IP address of your local PingFederate server.
 
    ```shell
-   $ curl sso.connect.pingidentity.com/<Ping-Identity-Client-ID>/.well-known/openid-configuration | python -m json.tool
+   $ curl sso.connect.pingidentity.com/<PING_IDENTITY_CLIENT_ID>/.well-known/openid-configuration | python -m json.tool
    ...
    {
        "authorization_endpoint": "https://sso.connect.pingidentity.com/sso/as/authorization.oauth2",

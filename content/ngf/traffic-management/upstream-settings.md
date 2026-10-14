@@ -1,10 +1,16 @@
 ---
 title: Upstream Settings Policy API
+description: "Use UpstreamSettingsPolicy to configure load balancing, zone size, and keepalives between NGINX and upstreams."
 weight: 1000
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1845
+f5-summary: >
+  The UpstreamSettingsPolicy API configures how NGINX connects to upstream applications referenced by HTTPRoute or GRPCRoute services.
+  Apply this direct policy to services to set load-balancing methods, upstream zone size, and keepalive behavior.
+f5-keywords: "NGINX Gateway Fabric, UpstreamSettingsPolicy, upstream, keepalive, load balancing, zone size, PolicyAttachment, health check"
+f5-audience: developer
 ---
 
 Learn how to use the `UpstreamSettingsPolicy` API.
@@ -184,8 +190,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
@@ -382,6 +390,8 @@ EOF
 ```
 
 This `UpstreamSettingsPolicy` targets both the `coffee` and `tea` services we created in the setup by specifying both services in the `targetRefs` field. It limits the upstream zone size of the `coffee` and `tea` services to 1 megabyte.
+
+For the Services it targets, the `zoneSize` of an `UpstreamSettingsPolicy` overrides the global `zoneSize` of the `NginxProxy` resource. To set one size for all Services instead, see [Configure the global upstream zone size]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-the-global-upstream-zone-size" >}}).
 
 Verify that the `UpstreamSettingsPolicy` is Accepted:
 
@@ -819,10 +829,10 @@ You should see a `location` with the `health_check` directive and its `match` bl
 server {
     location @hc-default_tea_80 {
         internal;
+        proxy_pass http://default_tea_80;
         proxy_connect_timeout 2s;
         proxy_read_timeout 2s;
         proxy_send_timeout 2s;
-        proxy_pass http://default_tea_80;
         health_check interval=10s jitter=3s fails=3 passes=2 uri=/healthz mandatory persistent keepalive_time=60s match=default_tea_80_match;
     }
 }

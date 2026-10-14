@@ -11,7 +11,7 @@ f5-product: NGINX Agent
 
 **1. Container running but Agent is not connected to NGINX One Console?**
 - Check Agent logs ```bash
-        docker logs <container-id-or-name>
+        docker logs <CONTAINER_ID_OR_NAME>
         ```
 - If you are using NGINX Plus, a valid license will need to be passed into the container run command. 
 - Ensure that the values sent with the container run command are correct.

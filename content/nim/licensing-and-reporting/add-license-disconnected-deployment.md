@@ -61,6 +61,8 @@ To add a license and submit the initial usage report in a disconnected environme
       -s initial
     ```
 
+    Replace `<PASSWORD>` with your password.
+
     This command adds the license, downloads the initial usage report (`report.zip`), submits the report to F5 for acknowledgment, and uploads the acknowledgment back to NGINX Instance Manager.
 
 {{< include "nim/disconnected/license-usage-offline-script.md" >}}
@@ -94,6 +96,8 @@ Run these `curl` commands on a system that can connect to NGINX Instance Manager
       }
     }'
     ```
+
+    Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
 
 1. **Poll the license status on NGINX Instance Manager**:
 

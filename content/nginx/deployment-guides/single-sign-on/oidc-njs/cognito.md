@@ -134,10 +134,10 @@ Configure NGINX Plus as the OpenID Connect relying party:
    <span id="nginx-plus-variables"></span>
 3. In your preferred text editor, open **/etc/nginx/conf.d/frontend.conf**. Change the second parameter of each of the following [set](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directives to the specified value.
 
-   The `<My-Cognito-Domain-Name>` variable is the full value in the **Domain prefix** field in [Step 13 of _Configuring Amazon Cognito_](#cognito-domain-name). In this guide it is {{<nb>}}**https://my-nginx-plus.auth.us-east-2.amazoncognito.com**{{</nb>}}.
+   The `<MY_COGNITO_DOMAIN_NAME>` variable is the full value in the **Domain prefix** field in [Step 13 of _Configuring Amazon Cognito_](#cognito-domain-name). In this guide it is {{<nb>}}**https://my-nginx-plus.auth.us-east-2.amazoncognito.com**{{</nb>}}.
 
-   - `set $oidc_authz_endpoint` – `<My-Cognito-Domain-Name>/oauth2/authorize`
-   - `set $oidc_token_endpoint` – `<My-Cognito-Domain-Name>/oauth2/token`
+   - `set $oidc_authz_endpoint` – `<MY_COGNITO_DOMAIN_NAME>/oauth2/authorize`
+   - `set $oidc_token_endpoint` – `<MY_COGNITO_DOMAIN_NAME>/oauth2/token`
    - `set $oidc_client` – Value in the {{<nb>}}**App client id**{{</nb>}} field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `2or4cs8bjo1lkbq6143tqp6ist`)
    - `set $oidc_client_secret` – Value in the {{<nb>}}**App client secret**{{</nb>}} field from [Step 11 of _Configuring Amazon Cognito_](#cognito-app-client-id-secret) (in this guide, `1k63m3nrcnu...`)
    - `set $oidc_hmac_key` – A unique, long, and secure phrase
@@ -148,7 +148,7 @@ Configure NGINX Plus as the OpenID Connect relying party:
 
    where
 
-   - _region_ is the same AWS region name as in the <span style="white-space: nowrap;">`<My-Cognito-Domain-Name>`</span> variable used in [Step 3](#nginx-plus-variables)
+   - _region_ is the same AWS region name as in the <span style="white-space: nowrap;">`<MY_COGNITO_DOMAIN_NAME>`</span> variable used in [Step 3](#nginx-plus-variables)
    - _User-Pool-ID_ is the value in the **Pool Id** field in [Step 8 of _Configuring Amazon Cognito_](#cognito-pool-id)
 
    In this guide, the URL is

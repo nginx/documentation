@@ -1,10 +1,16 @@
 ---
 title: Monitoring with Prometheus and Grafana
+description: "Monitor NGINX Gateway Fabric with Prometheus and Grafana, including available metrics."
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1418
+f5-summary: >
+  Install and configure Prometheus and Grafana to scrape and visualize NGINX Gateway Fabric metrics.
+  This guide also lists which metrics are available for alerting and dashboards.
+f5-keywords: "NGINX Gateway Fabric, Prometheus, Grafana, metrics, scrape, monitoring"
+f5-audience: operator
 ---
 
 This document describes how to monitor NGINX Gateway Fabric using Prometheus and Grafana. It explains installation and configuration, as well as what metrics are available.
@@ -228,15 +234,17 @@ To change the default port for metrics:
 
    ```yaml
    - name: metrics
-     containerPort: <new-port>
+     containerPort: <NEW_PORT>
    ```
+
+   Replace `<NEW_PORT>` with the port you want to use for metrics.
 
 3. Modify the `prometheus.io/port` annotation in the Pod template to match the new port:
 
    ```yaml
    annotations:
        <...>
-       prometheus.io/port: "<new-port>"
+       prometheus.io/port: "<NEW_PORT>"
        <...>
    ```
 

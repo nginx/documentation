@@ -52,7 +52,7 @@ kubectl create secret docker-registry regcred \
 Use Helm to install NGINX Ingress Controller LTS with NGINX Plus:
 
 ```shell
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress-lts \
+helm install <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress-lts \
   --version {{< nic-lts-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress \
   --set controller.image.tag={{< nic-lts-version >}} \
@@ -60,6 +60,8 @@ helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress-lts \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 ## Download your JSON web token 
 
@@ -115,7 +117,7 @@ You have two options for installing the Helm chart: directly from the F5 registr
 To install NGINX Ingress Controller LTS using the F5 registry, run this command with your release name:
 
 ```
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress-lts \
+helm install <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress-lts \
   --version {{< nic-lts-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress \
   --set controller.image.tag={{< nic-lts-version >}} \
@@ -172,7 +174,7 @@ cd nginx-ingress
 Finally, install the chart with your release name with `helm install`:
 
 ```shell
-helm install <my-release> . --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress --set controller.nginxplus=true
+helm install <RELEASE_NAME> . --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress --set controller.nginxplus=true
 ```
 
 {{< details summary="Example output" >}}

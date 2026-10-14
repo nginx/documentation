@@ -1,13 +1,19 @@
 ---
 title: Application routes using HTTP matching conditions
+description: "Route applications with HTTP matching conditions such as paths, methods, headers, and query parameters."
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1422
+f5-summary: >
+  Deploy multiple applications and HTTPRoutes that match on path, method, header, and query conditions.
+  Use advanced matching when simple host and path routing is not enough.
+f5-keywords: "NGINX Gateway Fabric, HTTPRoute, matching, path, header, method, query parameter, routing"
+f5-audience: operator
 ---
 
-Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters
+Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters.
 
 ## Overview
 
@@ -121,8 +127,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 

@@ -25,7 +25,7 @@ In this section, you’ll update the file so F5 WAF for NGINX can integrate with
 
    To give F5 WAF for NGINX access to the policy and log profile bundles written by NGINX Instance Manager, make the following changes:
 
-   - Add the line `user: 101:<group-id>` to each service. The group ID should match the NGINX Agent group on your system. You can find the group ID by running:
+   - Add the line `user: 101:<GROUP_ID>` to each service. The group ID should match the NGINX Agent group on your system. You can find the group ID by running:
 
         ```shell
         cat /etc/group

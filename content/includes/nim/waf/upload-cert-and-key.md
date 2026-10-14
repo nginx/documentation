@@ -33,8 +33,10 @@ Follow these steps to get and upload the certificate and key:
 1. Upload the file to NGINX Instance Manager using the REST API:
 
    ```shell
-   curl -X POST 'https://<NIM_FQDN>/api/platform/v1/certs'    --header "Authorization: Bearer <access token>"    --header "Content-Type: application/json"    -d @nginx-repo-certs.json
+   curl -X POST 'https://<NIM_FQDN>/api/platform/v1/certs'    --header "Authorization: Bearer <ACCESS_TOKEN>"    --header "Content-Type: application/json"    -d @nginx-repo-certs.json
    ```
+
+   Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 1. If successful, you’ll see a response similar to this:
 
@@ -45,18 +47,18 @@ Follow these steps to get and upload the certificate and key:
      "certAssignmentDetails": [],
      "certMetadata": [
        {
-         "authorityKeyIdentifier": "<fingerprint>",
-         "commonName": "<subscription name>",
+         "authorityKeyIdentifier": "<FINGERPRINT>",
+         "commonName": "<SUBSCRIPTION_NAME>",
          "expired": false,
          "expiry": 59789838,
          "issuer": "C=US, ST=Washington, L=Seattle, Inc., O=F5 Networks\\, OU=Certificate Authority, CN=F5 PRD Issuing Certificate Authority TEEM V1",
          "publicKeyType": "RSA (2048 bit)",
-         "serialNumber": "<serial number>",
+         "serialNumber": "<SERIAL_NUMBER>",
          "signatureAlgorithm": "SHA256-RSA",
-         "subject": "CN=<subscription name>",
+         "subject": "CN=<SUBSCRIPTION_NAME>",
          "subjectAlternativeName": "",
-         "subjectKeyIdentifier": "<fingerprint>",
-         "thumbprint": "<thumbprint>",
+         "subjectKeyIdentifier": "<FINGERPRINT>",
+         "thumbprint": "<THUMBPRINT>",
          "thumbprintAlgorithm": "SHA256-RSA",
          "validFrom": "2021-12-21T16:57:55Z",
          "validTo": "2024-12-20T00:00:00Z",
@@ -73,9 +75,16 @@ Follow these steps to get and upload the certificate and key:
      "created": "2023-01-27T23:42:41.587760092Z",
      "modified": "2023-01-27T23:42:41.587760092Z",
      "name": "nginx-repo",
-     "serialNumber": "<serial number>",
+     "serialNumber": "<SERIAL_NUMBER>",
      "uid": "d08d9f54-58dd-447a-a71d-6fa5aa0d880c",
      "validFrom": "2021-12-21T16:57:55Z",
      "validTo": "2024-12-20T00:00:00Z"
    }
    ```
+
+   Where:
+
+   - `<FINGERPRINT>`: the certificate fingerprint
+   - `<SUBSCRIPTION_NAME>`: your subscription name
+   - `<SERIAL_NUMBER>`: the certificate serial number
+   - `<THUMBPRINT>`: the certificate thumbprint
