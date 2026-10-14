@@ -41,7 +41,7 @@ This release delivers practical improvements for Kubernetes routing, secret supp
 - Traffic Distribution / Topology Aware Routing - opt-in support for Kubernetes trafficDistribution to keep traffic in-availability-zone, improving latency and cost on a best-effort basis.
 - Helm v4 support - deployment and packaging modernisation for current tooling.
 - Least_time Load Balancing Moves to OSS
-
+- Security fixes
 ### {{% icon rocket %}} Features
 
 - [10746](https://github.com/nginx/kubernetes-ingress/pull/10746) Add support for least_time load balancing method in nginx oss
