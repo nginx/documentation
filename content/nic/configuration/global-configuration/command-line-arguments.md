@@ -397,7 +397,7 @@ Requires [-enable-prometheus-metrics](#cmdoption-enable-prometheus-metrics).
 
 <a name="cmdoption-latency-metrics-buckets"></a>
 
-### -latency-metrics-buckets `<STRING>`
+### -latency-metrics-buckets <STRING>
 
 Sets the histogram buckets, in milliseconds, for the `upstream_server_response_latency_ms` metric.
 Requires [-enable-latency-metrics](#cmdoption-enable-latency-metrics).
