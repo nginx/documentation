@@ -33,6 +33,62 @@ This integration covers security event visibility only. NGINX Instance Manager c
 - NGINX Gateway Fabric running F5 WAF for NGINX with NGINX Agent v3, connected to NGINX Instance Manager. See [Connect NGINX Gateway Fabric to NGINX Instance Manager]({{< ref "/nim/connect-kubernetes/connect-ngf.md" >}}).
 - Security Monitoring turned on in NGINX Instance Manager
 
+## Configure NGINX Instance Manager
+
+Before NGINX Gateway Fabric can send security events to NGINX Instance Manager, configure NGINX Instance Manager to receive them.
+
+### Enable the OpenTelemetry collector
+
+NGINX Instance Manager uses an embedded OpenTelemetry (OTel) collector to receive security events from NGINX Gateway Fabric over gRPC.
+
+1. Open `/etc/nms/nms.conf` and set `collector_config.enable` to `true`:
+
+   ```yaml
+   collector_config:
+     enable: true
+   ```
+
+2. Create the OTel collector configuration file at `/etc/nms/otel-collector-config.yaml`:
+
+   ```yaml
+   receivers:
+     otlp:
+       protocols:
+         grpc:
+           endpoint: "0.0.0.0:4317"
+         http:
+           endpoint: "0.0.0.0:4318"
+
+   processors:
+     batch:
+       send_batch_size: 500
+       timeout: 2s
+     secevt: {}
+
+   exporters:
+     debug:
+       verbosity: normal
+
+   service:
+     pipelines:
+       logs:
+         receivers: [otlp]
+         processors: [batch, secevt]
+         exporters: [debug]
+   ```
+
+3. Restart the NGINX Instance Manager service to apply the changes:
+
+   ```shell
+   sudo systemctl restart nms
+   ```
+
+### Verify network access
+
+Confirm NGINX Instance Manager is reachable from the Kubernetes cluster on port `4317` (gRPC). NGINX Gateway Fabric sends security events to this port.
+
+---
+
 ## Set up event export from NGINX Gateway Fabric
 
 NGINX Gateway Fabric generates and exports security events. NGINX Instance Manager doesn't pull or request them. Configure the export on the NGINX Gateway Fabric side.
