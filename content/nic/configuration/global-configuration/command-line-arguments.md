@@ -395,6 +395,33 @@ Format: `<NAMESPACE>/<NAME>`
 Enable collection of latency metrics for upstreams.
 Requires [-enable-prometheus-metrics](#cmdoption-enable-prometheus-metrics).
 
+<a name="cmdoption-latency-metrics-buckets"></a>
+
+### -latency-metrics-buckets <STRING>
+
+Sets the histogram buckets, in milliseconds, for the `upstream_server_response_latency_ms` metric.
+Requires [-enable-latency-metrics](#cmdoption-enable-latency-metrics).
+
+Each bucket adds a time series for every combination of upstream, server, and response code. Use fewer buckets to lower the number of time series that Prometheus stores.
+
+Enter a comma-separated list of positive numbers in strictly ascending order, for example `5,10,25,50,100,250,500,1000`.
+
+- If you don't set the argument, NGINX Ingress Controller uses the default buckets: `1,2,3,4,5,10,20,30,40,50,100,200,300,400,500,1000,2000,3000,4000,5000,10000,20000,30000,40000,50000`.
+- If the value isn't valid, NGINX Ingress Controller logs a warning and uses the default buckets.
+- If `-enable-latency-metrics` isn't set, NGINX Ingress Controller logs a warning and ignores the argument.
+
+<a name="cmdoption-enable-topology-aware-routing"></a>
+
+### -enable-topology-aware-routing
+
+Turn on topology-aware routing. NGINX Ingress Controller then reads the topology hints on EndpointSlices when it selects upstream endpoints. It prefers endpoints on the same node or in the same zone as the NGINX Ingress Controller pod. Kubernetes writes these hints when a Service sets `spec.trafficDistribution` or the `service.kubernetes.io/topology-mode: Auto` annotation.
+
+NGINX Ingress Controller reads the zone from the `topology.kubernetes.io/zone` label of its node at startup. If the label changes, restart NGINX Ingress Controller.
+
+Default `false`.
+
+For more information, see [Set up topology-aware routing]({{< ref "/nic/configuration/topology-aware-routing.md" >}}).
+
 <a name="cmdoption-enable-app-protect"></a>
 
 ### -enable-app-protect

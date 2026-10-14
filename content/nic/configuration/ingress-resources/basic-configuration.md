@@ -16,7 +16,7 @@ Here is a breakdown of what this Ingress resource definition means:
 - The `metadata.name` field defines the name of the resource `cafe‑ingress`.
 - The `spec.tls` field sets up SSL/TLS termination:
   - The `hosts` field applies the certificate and key to the `cafe.example.com` host.
-  - The `secretName` references a secret resource by its name, `cafe‑secret`. The secret must belong to the same namespace as the Ingress, of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that hold the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls>). If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the hosts to which the secret is applied.
+  - The `secretName` references a secret resource by its name, `cafe‑secret`. The secret must belong to the same namespace as the Ingress. The secret must contain keys named `tls.crt` and `tls.key` for the certificate and private key. For details, see the [Kubernetes Ingress TLS documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). Use a `kubernetes.io/tls` secret, or a standard `Opaque` secret with the same keys. If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the hosts to which the secret is applied.
 - The `spec.rules` field defines a host with the domain name `cafe.example.com`.
 - The `paths` field defines two path‑based rules:
   - The rule with the path `/tea` instructs NGINX to distribute the requests with the `/tea` URI among the pods of the *tea* service, which is deployed with the name `tea‑svc` in the cluster.
