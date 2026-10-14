@@ -30,6 +30,18 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 14 Oct 2026
 
+This release delivers practical improvements for Kubernetes routing, secret support, topology-aware routing, broader HTTP/2 support, and simpler multi-tenant configuration.
+
+- Host parameter now optional on VirtualServerRoute - stop duplicating the hostname in every route resource; simpler multi-tenant delegation and fewer breakages when hostnames change.
+- HTTP/2 to upstream support - NIC now speaks HTTP/2 to backends, not just to clients, closing a long-standing protocol gap.
+- Per-Ingress/VirtualServer HTTP/2 - Configure HTTP/2 at the listener level as opposed to a global ConfigMap.
+- Broader secret format support - accepts Opaque, reducing friction with external secret managers and cert pipelines.
+- NKP Partner Catalog operator certification - Nutanix certified-operator status widens the supported-platform story for the partner ecosystem.
+- Configure X-Forwarded-* directives via ConfigMap - available for both Ingress and VirtualServer; NIC no longer overwrites inbound forwarding headers.
+- Traffic Distribution / Topology Aware Routing - opt-in support for Kubernetes trafficDistribution to keep traffic in-availability-zone, improving latency and cost on a best-effort basis.
+- Helm v4 support - deployment and packaging modernisation for current tooling.
+- Least_time Load Balancing Moves to OSS
+- Security fixes
 ### {{% icon rocket %}} Features
 
 - [10746](https://github.com/nginx/kubernetes-ingress/pull/10746) Add support for least_time load balancing method in nginx oss
@@ -67,6 +79,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon arrow-up %}} Dependencies
 
+- Update NGINX Plus to 37.2.0.1 and OSS to 1.31.7
 - [10785](https://github.com/nginx/kubernetes-ingress/pull/10785), [10727](https://github.com/nginx/kubernetes-ingress/pull/10727), [11074](https://github.com/nginx/kubernetes-ingress/pull/11074), [10819](https://github.com/nginx/kubernetes-ingress/pull/10819), [10833](https://github.com/nginx/kubernetes-ingress/pull/10833), [10844](https://github.com/nginx/kubernetes-ingress/pull/10844), [10376](https://github.com/nginx/kubernetes-ingress/pull/10376), [10853](https://github.com/nginx/kubernetes-ingress/pull/10853), [10958](https://github.com/nginx/kubernetes-ingress/pull/10958), [10930](https://github.com/nginx/kubernetes-ingress/pull/10930), [10967](https://github.com/nginx/kubernetes-ingress/pull/10967), [11007](https://github.com/nginx/kubernetes-ingress/pull/11007), [11021](https://github.com/nginx/kubernetes-ingress/pull/11021), [11020](https://github.com/nginx/kubernetes-ingress/pull/11020), [11056](https://github.com/nginx/kubernetes-ingress/pull/11056), [11086](https://github.com/nginx/kubernetes-ingress/pull/11086), [11099](https://github.com/nginx/kubernetes-ingress/pull/11099) & [11089](https://github.com/nginx/kubernetes-ingress/pull/11089) Bump Go dependencies
 - [10914](https://github.com/nginx/kubernetes-ingress/pull/10914), [11084](https://github.com/nginx/kubernetes-ingress/pull/11084), [11075](https://github.com/nginx/kubernetes-ingress/pull/11075), [10916](https://github.com/nginx/kubernetes-ingress/pull/10916), [10695](https://github.com/nginx/kubernetes-ingress/pull/10695), [10767](https://github.com/nginx/kubernetes-ingress/pull/10767), [10726](https://github.com/nginx/kubernetes-ingress/pull/10726), [10871](https://github.com/nginx/kubernetes-ingress/pull/10871), [10931](https://github.com/nginx/kubernetes-ingress/pull/10931), [10915](https://github.com/nginx/kubernetes-ingress/pull/10915), [10901](https://github.com/nginx/kubernetes-ingress/pull/10901), [10908](https://github.com/nginx/kubernetes-ingress/pull/10908), [10882](https://github.com/nginx/kubernetes-ingress/pull/10882), [11002](https://github.com/nginx/kubernetes-ingress/pull/11002), [11005](https://github.com/nginx/kubernetes-ingress/pull/11005), [11055](https://github.com/nginx/kubernetes-ingress/pull/11055), [11068](https://github.com/nginx/kubernetes-ingress/pull/11068), [11097](https://github.com/nginx/kubernetes-ingress/pull/11097) & [11085](https://github.com/nginx/kubernetes-ingress/pull/11085) Bump Docker dependencies
 - [10982](https://github.com/nginx/kubernetes-ingress/pull/10982) Update module github.com/mikefarah/yq/v4 to v4.54.1 (main)
@@ -76,6 +89,45 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 - For NGINX, use the 5.7.0 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.7.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.7.0 images from the F5 Container registry or build your own image from the 5.7.0 source code.
 - For Helm, use version 2.8.0 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.37.
+
+## 5.6.3
+
+16 Sep 2026
+
+### {{% icon download %}} Update
+
+- Update NGINX Plus to 37.1.1.2 and OSS to 1.31.6
+- For NGINX, use the 5.6.3 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.6.3 images from the F5 Container registry or build your own image from the 5.6.3 source code.
+- For Helm, use version 2.7.3 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.37.
+
+## 5.6.2
+
+15 Sep 2026
+
+### {{% icon bug %}} Fixes
+
+- [10827](https://github.com/nginx/kubernetes-ingress/pull/10827) Reset updateallconfigsonbatch after batch mode ends
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.1.1.1 and OSS to 1.31.5
+- [10787](https://github.com/nginx/kubernetes-ingress/pull/10787), [10808](https://github.com/nginx/kubernetes-ingress/pull/10808), [10820](https://github.com/nginx/kubernetes-ingress/pull/10820), [10762](https://github.com/nginx/kubernetes-ingress/pull/10762), [10845](https://github.com/nginx/kubernetes-ingress/pull/10845), [10835](https://github.com/nginx/kubernetes-ingress/pull/10835) & [10756](https://github.com/nginx/kubernetes-ingress/pull/10756) Bump Go dependencies
+- [10786](https://github.com/nginx/kubernetes-ingress/pull/10786), [10750](https://github.com/nginx/kubernetes-ingress/pull/10750), [10752](https://github.com/nginx/kubernetes-ingress/pull/10752), [10768](https://github.com/nginx/kubernetes-ingress/pull/10768), [10854](https://github.com/nginx/kubernetes-ingress/pull/10854), [10834](https://github.com/nginx/kubernetes-ingress/pull/10834) & [10761](https://github.com/nginx/kubernetes-ingress/pull/10761) Bump Docker dependencies
+
+### {{% icon download %}} Update
+
+- For NGINX, use the 5.6.2 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.2), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.6.2 images from the F5 Container registry or build your own image from the 5.6.2 source code.
+- For Helm, use version 2.7.2 of the chart.
 
 ### {{% icon life-buoy %}} Supported platforms
 
