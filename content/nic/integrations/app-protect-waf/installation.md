@@ -22,10 +22,10 @@ If you'd rather not build your own NGINX Ingress Controller image, see the [pre-
 
 Get your system ready for building and pushing the NGINX Ingress Controller image with F5 WAF for NGINX.
 
-1. Sign in to your private registry. Replace `<my-docker-registry>` with the path to your own private registry.
+1. Sign in to your private registry. Replace `<MY_DOCKER_REGISTRY>` with the path to your own private registry.
 
     ```shell
-    docker login <my-docker-registry>
+    docker login <MY_DOCKER_REGISTRY>
     ```
 
 1. Clone the NGINX Ingress Controller repository:
@@ -51,16 +51,16 @@ Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX.
     nginx-repo.crt  nginx-repo.key
     ```
 
-2. Build the image. Replace `<makefile target>` with your chosen build option and `<my-docker-registry>` with your private registry's path. Refer to the [Makefile targets](#makefile-targets) table below for the list of build options.
+2. Build the image. Replace `<MAKEFILE_TARGET>` with your chosen build option and `<MY_DOCKER_REGISTRY>` with your private registry's path. Refer to the [Makefile targets](#makefile-targets) table below for the list of build options.
 
     ```shell
-    make <makefile target> PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
+    make <MAKEFILE_TARGET> PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress TARGET=download
     ```
 
     For example, to build a Debian-based image with NGINX Plus and F5 DoS for NGINX, run:
 
     ```shell
-    make debian-image-dos-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
+    make debian-image-dos-plus PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress TARGET=download
     ```
 
      **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
@@ -82,10 +82,10 @@ Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX.
 
 Once you've successfully built the NGINX Ingress Controller image with F5 WAF for NGINX, the next step is to upload it to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
 
-To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
+To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<MY_DOCKER_REGISTRY>` with your private registry's path.
 
 ```shell
-make push PREFIX=<my-docker-registry>/nginx-plus-ingress
+make push PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress
 ```
 
 ## Set up role-based access control (RBAC) {#set-up-rbac}
@@ -153,21 +153,25 @@ Add a `volumes` section to deployment template spec:
 ```yaml
 ...
 volumes:
-- name: <volume_name>
+- name: <VOLUME_NAME>
 persistentVolumeClaim:
-    claimName: <claim_name>
+    claimName: <CLAIM_NAME>
 ...
 ```
+
+Replace `<VOLUME_NAME>` with the name of the volume and `<CLAIM_NAME>` with the name of the PersistentVolumeClaim.
 
 Add volume mounts to the `containers` section:
 
 ```yaml
 ...
 volumeMounts:
-- name: <volume_mount_name>
+- name: <VOLUME_MOUNT_NAME>
     mountPath: /etc/nginx/waf/bundles
 ...
 ```
+
+Replace `<VOLUME_MOUNT_NAME>` with the name of the volume mount.
 
 {{< call-out class="note" >}}
 **StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. F5 WAF for NGINX v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.

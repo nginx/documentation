@@ -5,8 +5,13 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/billing/overview/
 f5-content-type: concept
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
+canonical: /app-delivery/google/billing/overview/
+f5-ref-path: /f5ads/google/billing/overview/
 ---
+
+{{< renamed-notice >}} 
 
 F5 NGINXaaS for Google Cloud is deployed into your Google Cloud subscription, where your deployment resource is visible and integrated with Google Cloud’s ecosystem. The underlying infrastructure, software maintenance, availability, and scaling are fully managed by F5, abstracting operational complexities. Billing occurs hourly and is tracked in the Google Cloud Cost Management Dashboard.
 

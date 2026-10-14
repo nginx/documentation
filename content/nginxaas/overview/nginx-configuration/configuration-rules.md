@@ -4,10 +4,15 @@ weight: 50
 toc: true
 url: /nginxaas/overview/nginx-configuration/configuration-rules/
 f5-content-type: reference
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /app-delivery/platform/nginx-configuration/configuration-rules/
+f5-ref-path: /f5ads/platform/nginx-configuration/configuration-rules/
 contentVars:
   product: NGINXaaS
 ---
+
+{{< renamed-notice >}}
 
 This document provides details about using NGINX configuration files with your
 F5 ${product} deployment, restrictions, and available directives.

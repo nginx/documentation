@@ -150,7 +150,7 @@ To enable IP intelligence on a Manifest-based Kubernetes deployment, you must ad
 
 ```yaml
         - name: waf-ip-intelligence
-          image: private-registry.nginx.com/napwaf-ip-intelligence:<version-tag>
+          image: private-registry.nginx.com/napwaf-ip-intelligence:<VERSION_TAG>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -158,6 +158,8 @@ To enable IP intelligence on a Manifest-based Kubernetes deployment, you must ad
             - name: var-iprep
               mountPath: /var/IpRep
 ```
+
+Replace `<VERSION_TAG>` with the image version tag.
 
 A full example could look as follows:
 
@@ -180,7 +182,7 @@ spec:
         - name: regcred
       containers:
         - name: nginx
-          image: <your-private-registry>/waf:<your-tag>
+          image: <YOUR_PRIVATE_REGISTRY>/waf:<YOUR_TAG>
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: app-protect-bd-config
@@ -188,7 +190,7 @@ spec:
             - name: app-protect-config
               mountPath: /opt/app_protect/config
         - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+          image: private-registry.nginx.com/nap/waf-enforcer:<VERSION_TAG>
           imagePullPolicy: IfNotPresent
           env:
             - name: ENFORCER_PORT
@@ -199,7 +201,7 @@ spec:
             - name: var-iprep
               mountPath: /var/IpRep
         - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+          image: private-registry.nginx.com/nap/waf-config-mgr:<VERSION_TAG>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -214,7 +216,7 @@ spec:
             - name: app-protect-bundles
               mountPath: /etc/app_protect/bundles
         - name: waf-ip-intelligence
-          image: private-registry.nginx.com/nap/waf-ip-intelligence:<version-tag>
+          image: private-registry.nginx.com/nap/waf-ip-intelligence:<VERSION_TAG>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -232,6 +234,8 @@ spec:
           persistentVolumeClaim:
             claimName: nap5-bundles-pvc
 ```
+
+Replace `<YOUR_PRIVATE_REGISTRY>` with the path to your private registry and `<YOUR_TAG>` with the tag of your image.
 
 Once complete, you can now [Configure policies for IP intelligence](#configure-policies-for-ip-intelligence).
 

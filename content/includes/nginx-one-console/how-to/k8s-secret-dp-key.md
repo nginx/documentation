@@ -14,7 +14,9 @@ To create a Kubernetes secret, you'll need:
 
    ```shell
    kubectl create secret generic dataplane-key \
-     --from-literal=dataplane.key=<Your Dataplane Key> \
+     --from-literal=dataplane.key=<DATA_PLANE_KEY> \
      -n nginx-gateway
    ```
+
+   Replace `<DATA_PLANE_KEY>` with your data plane key.
 

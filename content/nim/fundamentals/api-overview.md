@@ -69,10 +69,10 @@ If your organization is using OIDC, you will be prompted to log in with your Ide
 
 {{< call-out class="note" >}}The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team.{{< /call-out >}}
 
-Once you have a JWT, set it up as a "Bearer" <access token> using the "Authorization" request header field, as shown in the example below.
+Once you have a JWT, set it up as a "Bearer" <ACCESS_TOKEN> using the "Authorization" request header field, as shown in the example below.
 
 ```shell
-curl -X GET "https://<NIM_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Bearer <access token>"
+curl -X GET "https://<NIM_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 {{< include "security/jwt-password-note.md" >}}
@@ -127,7 +127,7 @@ Top-level NGINX Instance Manager API endpoints support fetching information abou
 
 Each major version of the NGINX Instance Manager API is backward-compatible with previous releases of the same version. Any backward-incompatible changes result in a new major version.
 
-The version is represented in the `<version>` part of the API URI.
+The version is represented in the `<API_VERSION>` part of the API URI.
 
 For example, to use a v2 API, send requests to:
 

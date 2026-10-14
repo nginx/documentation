@@ -68,7 +68,7 @@ In Okta, register a new application for NGINX Plus as the OIDC client to obtain 
 
 Check the OpenID Connect Discovery URL. By default, Okta publishes the `.well-known/openid-configuration` document at the following address:
 
-`https://<okta-domain>/oauth2/default/.well-known/openid-configuration`.
+`https://<OKTA_DOMAIN>/oauth2/default/.well-known/openid-configuration`.
 
 1. Run the following `curl` command in a terminal:
 
@@ -101,7 +101,7 @@ Check the OpenID Connect Discovery URL. By default, Okta publishes the `.well-kn
    }
    ```
 
-2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Okta is `https://<okta-domain>/oauth2/default`.
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Okta is `https://<OKTA_DOMAIN>/oauth2/default`.
 
 {{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
@@ -216,8 +216,8 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
 
         oidc_provider okta {
             issuer            https://dev-123456.okta.com/oauth2/default;
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             logout_uri        /logout;
             post_logout_uri   https://demo.example.com/post_logout/;
             logout_token_hint on;
@@ -232,6 +232,8 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -341,10 +343,10 @@ http {
         issuer https://dev-123456.okta.com/oauth2/default;
 
         # Your Okta "Client ID" from the application settings
-        client_id <your_client_id>;
+        client_id <CLIENT_ID>;
 
         # Your Okta "Client Secret" from the application settings
-        client_secret <your_client_secret>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;

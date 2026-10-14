@@ -64,6 +64,8 @@ In order to see additional addresses or extra information about the `Status` of 
 ```shell
 kubectl describe virtualserver <NAME>
 ```
+
+Replace `<NAME>` with the name of the resource.
 ```text
 ...
 Status:

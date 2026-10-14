@@ -3,14 +3,14 @@ title: ListenerSet API
 toc: true
 weight: 1500
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-0000
+f5-product: F5 NGINX Gateway Fabric
 f5-keywords: "NGINX Gateway Fabric, Gateway API, ListenerSet, ListenerSets, Kubernetes, Gateways"
-f5-description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
+description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
 f5-summary: >
     NGINX Gateway Fabric supports the ListenerSet Gateway API resource, which allows users to specify additional listeners for a Gateway.
     This reinforces Gateway API defined roles and personas by allowing application developers to configure their attachment points on a 
     Gateway without modifying the Gateway directly.
+f5-audience: developer
 ---
 
 Learn how to use the `ListenerSet` API to specify additional listeners for a Gateway
@@ -138,8 +138,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 

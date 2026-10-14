@@ -49,6 +49,8 @@ To create a support package:
     tar -xvf support-pkg-<TIMESTAMP>.tar.gz
     ```
 
+    Replace `<TIMESTAMP>` with the time the package was created.
+
 ### Arguments
 
 The following table lists the arguments you can use with the support package script.

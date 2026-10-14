@@ -1,10 +1,16 @@
 ---
 title: Data plane configuration
+description: "Dynamically update global NGINX data plane configuration for NGINX Gateway Fabric."
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1838
+f5-summary: >
+  Change global data plane settings that apply across NGINX instances managed by NGINX Gateway Fabric.
+  Use this when you need product-wide NGINX configuration beyond per-route policies.
+f5-keywords: "NGINX Gateway Fabric, data plane, NginxProxy, global configuration, NGINX settings"
+f5-audience: operator
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric global data plane configuration.
@@ -180,7 +186,7 @@ telemetry:
 
 By default, an `NginxProxy` resource is created in the same namespace where NGINX Gateway Fabric is installed, attached to the GatewayClass. You can set configuration options in the `nginx` Helm value section, and the resource will be created and attached using the set values. You can also [manually create and attach](#manually-creating-nginxProxies) specific `NginxProxy` resources to target different Gateways.
 
-When installed using the Helm chart, the NginxProxy resource is named `<release-name>-proxy-config` and is created in the release Namespace.
+When installed using the Helm chart, the NginxProxy resource is named `<RELEASE_NAME>-proxy-config` and is created in the release Namespace.
 
 **For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
@@ -213,8 +219,10 @@ For a full list of configuration options that can be set, see the `NginxProxy sp
 To attach the `ngf-proxy-config` NginxProxy to a Gateway:
 
 ```shell
-kubectl edit gateway <gateway-name>
+kubectl edit gateway <GATEWAY_NAME>
 ```
+
+Replace `<GATEWAY_NAME>` with the name of your Gateway.
 
 This will open your default editor, allowing you to add the following to the `spec`:
 
@@ -231,7 +239,7 @@ infrastructure:
 After updating, you can check the status of the Gateway to see if the configuration is valid:
 
 ```shell
-kubectl describe gateway <gateway-name>
+kubectl describe gateway <GATEWAY_NAME>
 ```
 
 ```text

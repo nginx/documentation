@@ -3,8 +3,13 @@ title: Configure WAF settings
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-description: Configure security logging, polling, TLS, authentication, cookie seed, bundle integrity, fail-open behavior, and WAF container settings for F5 WAF for NGINX.
+f5-product: F5 NGINX Gateway Fabric
+description: Configure security logging, polling, TLS, authentication, cookie seed, bundle integrity, fail-open behavior, and WAF container settings for F5 WAF for NGINX.
+f5-summary: >
+  Manage day-two WAF settings for F5 WAF for NGINX in NGINX Gateway Fabric, including security logging, automatic policy updates, TLS and authentication, bundle integrity, cookie seeds, and fetch failure handling.
+  Use this after the quick start when you need operational controls.
+f5-keywords: "NGINX Gateway Fabric, F5 WAF for NGINX, WAF configuration, security logging, policy updates, cookie seed"
+f5-audience: operator
 ---
 
 This page covers operational configuration for F5 WAF for NGINX in NGINX Gateway Fabric: security logging, automatic policy updates, TLS and authentication, bundle integrity verification, cookie seed management, fetch failure handling, and WAF container settings.
@@ -167,7 +172,7 @@ Secrets must be in the same namespace as the `WAFPolicy`.
 
 ### HTTP source
 
-Set `validation.verifyChecksum: true` to have NGINX Gateway Fabric fetch a companion `<url>.sha256` file and compare its SHA-256 digest against the downloaded bundle. Any mismatch prevents the bundle from being deployed and sets `Programmed=False` with reason `IntegrityError`.
+Set `validation.verifyChecksum: true` to have NGINX Gateway Fabric fetch a companion `<URL>.sha256` file and compare its SHA-256 digest against the downloaded bundle. Any mismatch prevents the bundle from being deployed and sets `Programmed=False` with reason `IntegrityError`.
 
 Generate the companion file:
 

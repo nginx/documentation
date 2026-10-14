@@ -83,19 +83,23 @@ To configure a forward proxy:
     ```yaml
     proxy_config:
         proxy_enable: true
-        proxy_host: <proxy-ip>
-        proxy_port: <proxy-port>
+        proxy_host: <PROXY_IP>
+        proxy_port: <PROXY_PORT>
         proxy_protocol: [http|https]
         proxy_auth_required: [true|false]
         proxy_ssl_verify: [true|false]
     ```
 
+    Replace `<PROXY_IP>` with the IP address of your forward proxy and `<PROXY_PORT>` with the port of your forward proxy.
+
    - If the proxy requires authentication, set `proxy_auth_required` to `true`, and add the following fields:
 
         ```yaml
-           proxy_username: "<username>"
-           proxy_password: "<password>"
+           proxy_username: "<USERNAME>"
+           proxy_password: "<PASSWORD>"
         ```
+
+        Replace `<USERNAME>` with your username and `<PASSWORD>` with your password.
 
    - Set `proxy_protocol` to either `http` or `https`, depending on your proxy type.
    - If not explicitly set, `proxy_ssl_verify` **defaults to `true`**, meaning the proxy must have a valid certificate from a trusted Certificate Authority (CA). Note: This setting applies only when `proxy_protocol` is `https`.
@@ -119,10 +123,10 @@ In a Kubernetes deployment, configure a forward proxy by modifying the `nms-conf
 To edit the ConfigMap, run:
 
 ```shell
-kubectl edit cm nms-conf -n <namespace>
+kubectl edit cm nms-conf -n <NAMESPACE>
 ```
 
-- Replace `<namespace>` with the namespace where NGINX Instance Manager is installed.
+- Replace `<NAMESPACE>` with the namespace where NGINX Instance Manager is installed.
 - Update the `proxy_config` section to match your proxy settings. See the [examples under "Configure the forward proxy"](#configure-the-forward-proxy).
 
 ### Docker Compose
@@ -138,7 +142,7 @@ If you’re deploying NGINX Instance Manager with Docker Compose, update the `do
     ```yaml
     services:
       nim:
-      image: private-registry.nginx.com/nms/nim-standalone-compose:<version>
+      image: private-registry.nginx.com/nms/nim-standalone-compose:<VERSION>
       depends_on:
         clickhouse:
           condition: service_healthy
@@ -150,26 +154,28 @@ If you’re deploying NGINX Instance Manager with Docker Compose, update the `do
         - clickhouse
       environment:
         - PROXY_ENABLE=true
-        - PROXY_HOST=<proxy-ip>
-        - PROXY_PORT=<proxy-port>
+        - PROXY_HOST=<PROXY_IP>
+        - PROXY_PORT=<PROXY_PORT>
         - PROXY_PROTOCOL=[http|https]
         - PROXY_AUTH_REQUIRED=[true|false]
         - PROXY_SSL_VERIFY=[true|false]
      volumes:
         - nim-data:/data
         - proxy-certs:/usr/local/share/ca-certificates
-        - ./<proxy-ca-cert-file>:/usr/local/share/ca-certificates/<proxy-ca-cert-file>
+        - ./<PROXY_CA_CERT_FILE>:/usr/local/share/ca-certificates/<PROXY_CA_CERT_FILE>
     ```
+
+    Replace `<VERSION>` with the version number.
 
     - If the proxy requires authentication, set `PROXY_AUTH_REQUIRED` to `true`, and add the following fields:
 
 
         ```yaml
-            - PROXY_AUTH_USERNAME=<username>
-            - PROXY_PASSWORD=<password>
+            - PROXY_AUTH_USERNAME=<USERNAME>
+            - PROXY_PASSWORD=<PASSWORD>
         ```
 
-    - Replace `<proxy-ca-cert-file>` with the filename of the proxy CA certificate.
+    - Replace `<PROXY_CA_CERT_FILE>` with the filename of the proxy CA certificate.
     - Set `PROXY_PROTOCOL` to either `http` or `https`, depending on your proxy type.
     - If not explicitly set, **`PROXY_SSL_VERIFY` defaults to `true`**, meaning the proxy must have a valid certificate issued by a trusted Certificate Authority (CA). Note: This setting applies only when `PROXY_PROTOCOL` is `https`.
 

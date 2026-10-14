@@ -4,7 +4,7 @@ description: Configure an ExternalLoadBalancer so F5 BIG-IP acts as the external
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: F5 NGINX Gateway Fabric
 f5-audience: operator
 f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, BIG-IP, GatewayLink, IPAM, PROXY protocol, rewriteClientIP, iRule
 f5-summary: Use an ExternalLoadBalancer custom resource to place an F5 BIG-IP virtual server in front of an NGINX Gateway Fabric Gateway in a single cluster. The F5 IPAM Controller allocates the virtual server address, and an iRule adds a PROXY protocol header so NGINX sees the original client address.
@@ -47,9 +47,11 @@ The shell commands in this guide read the following environment variables, so se
 ```shell
 export BIGIP_ADDRESS="192.0.2.10:443"
 export BIGIP_USERNAME="admin"
-export BIGIP_PASSWORD="<your-password>"
+export BIGIP_PASSWORD="<PASSWORD>"
 export IPAM_ADDRESS_RANGE="192.0.2.100-192.0.2.110"
 ```
+
+Replace `<PASSWORD>` with your BIG-IP password.
 
 - `BIGIP_ADDRESS` is the BIG-IP management address, including the port. BIG-IP listens on 443 by default.
 - `BIGIP_USERNAME` and `BIGIP_PASSWORD` are your BIG-IP credentials.

@@ -35,9 +35,11 @@ The installation process closely follows the [NGINX Plus installation procedure]
 3.  Ensure you have the **nginx-repo.crt** and **nginx-repo.key** files from [MyF5 Customer Portal](https://account.f5.com/myf5) in the **/etc/ssl/nginx/** directory. These files are required for accessing the NGINX Plus repository.
 
     ```shell
-    sudo cp <downloaded-file-name>.crt /etc/ssl/nginx/nginx-repo.crt && \
-    sudo cp <downloaded-file-name>.key /etc/ssl/nginx/nginx-repo.key
+    sudo cp <DOWNLOADED_FILE_NAME>.crt /etc/ssl/nginx/nginx-repo.crt && \
+    sudo cp <DOWNLOADED_FILE_NAME>.key /etc/ssl/nginx/nginx-repo.key
     ```
+
+    In each command, replace `<DOWNLOADED_FILE_NAME>` with the corresponding downloaded filename without its `.crt` or `.key` extension.
 
     For Alpine, the **nginx-repo.crt** to **/etc/apk/cert.pem** and **nginx-repo.key** files should be added to **/etc/apk/cert.key**. Ensure these files contain only the specific key and certificate as Alpine Linux does not support mixing client certificates for multiple repositories.
 

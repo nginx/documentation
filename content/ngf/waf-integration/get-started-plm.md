@@ -3,9 +3,8 @@ title: Get started with F5 WAF for NGINX (PLM)
 weight: 199
 toc: true
 f5-content-type: tutorial
-f5-docs: DOCS-000
 f5-product: F5 NGINX Gateway Fabric
-f5-description: Tutorial for setting up F5 WAF for NGINX with a PLM-based policy workflow in F5 NGINX Gateway Fabric.
+description: Tutorial for setting up F5 WAF for NGINX with a PLM-based policy workflow in F5 NGINX Gateway Fabric.
 f5-keywords: "F5 NGINX Gateway Fabric, F5 WAF for NGINX, policy lifecycle manager, tutorial, step by step, beginner"
 f5-summary: >
   Set up and validate a policy lifecycle workflow for F5 WAF for NGINX in F5 NGINX Gateway Fabric.
@@ -348,8 +347,10 @@ Save the public IP address and port of the Gateway to shell variables:
 
 ```text
 GW_IP=192.0.2.1
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 **Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 

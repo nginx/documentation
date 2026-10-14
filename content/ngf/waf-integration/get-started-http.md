@@ -3,11 +3,13 @@ title: Get started with F5 WAF for NGINX (HTTP)
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-description: Quick start guide for protecting traffic with F5 WAF for NGINX in NGINX Gateway Fabric.
+f5-product: F5 NGINX Gateway Fabric
+f5-keywords: "NGINX Gateway Fabric, F5 WAF for NGINX, HTTP, tutorial, step by step, beginner, get started"
+description: Quick start guide for protecting traffic with F5 WAF for NGINX in NGINX Gateway Fabric.
 f5-summary: >
   Deploy a sample application, compile a WAF policy, and apply it to a Gateway using NGINX Gateway Fabric.
   This walkthrough uses the HTTP source type to demonstrate the full flow from policy compilation to attack blocking.
+f5-audience: operator
 aliases:
   - /nginx-gateway-fabric/waf-integration/get-started/
 ---
@@ -22,7 +24,7 @@ For an overview of WAF concepts and architecture, see [F5 WAF for NGINX overview
 
 - [Install]({{< ref "/ngf/install/helm.md" >}}) NGINX Gateway Fabric using the **NGINX Plus with WAF** tab. This sets the WAF-enabled NGINX Plus image and enables WAF globally.
 - Have a valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and is not included with the NGINX Plus license.
-- Have NGINX Gateway Fabric configured with an `imagePullSecret` for the NGINX private container registry (`private-registry.nginx.com`), either through Helm values or deployment manifests. When a Gateway is deployed, NGINX Gateway Fabric automatically creates the registry secret in the Gateway's namespace with the naming convention `<gateway-name>-nginx-<image-pull-secret-name>. The bundle server Deployment in this guide references the same secret for pulling the F5 WAF compiler image, be sure to update the secret name to match your environment.
+- Have NGINX Gateway Fabric configured with an `imagePullSecret` for the NGINX private container registry (`private-registry.nginx.com`), either through Helm values or deployment manifests. When a Gateway is deployed, NGINX Gateway Fabric automatically creates the registry secret in the Gateway's namespace with the naming convention `<GATEWAY_NAME>-nginx-<IMAGE_PULL_SECRET_NAME>. The bundle server Deployment in this guide references the same secret for pulling the F5 WAF compiler image, be sure to update the secret name to match your environment.
 
 ---
 
@@ -343,7 +345,7 @@ spec:
 EOF
 ```
 
-{{< call-out class="note" >}} If you deployed the resources in a different namespace, replace `default` in the bundle server URL with your namespace: `http://bundle-server.<namespace>.svc.cluster.local/attack-signatures-blocking.tgz`. {{< /call-out >}}
+{{< call-out class="note" >}} If you deployed the resources in a different namespace, replace `default` in the bundle server URL with your namespace: `http://bundle-server.<NAMESPACE>.svc.cluster.local/attack-signatures-blocking.tgz`. {{< /call-out >}}
 
 ---
 
@@ -367,10 +369,12 @@ gateway-nginx-7f9b8d6c4d-xxxxx  3/3     Running   0          2m
 If a container is not starting, check its logs:
 
 ```shell
-kubectl logs <pod-name> -c nginx
-kubectl logs <pod-name> -c waf-enforcer
-kubectl logs <pod-name> -c waf-config-mgr
+kubectl logs <POD_NAME> -c nginx
+kubectl logs <POD_NAME> -c waf-enforcer
+kubectl logs <POD_NAME> -c waf-config-mgr
 ```
+
+Replace `<POD_NAME>` with the name of your NGINX data plane Pod.
 
 ### Check WAFPolicy status
 
@@ -422,8 +426,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 **Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 
@@ -469,7 +475,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 ...
 ```
 
-{{< call-out class="note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
+{{< call-out class="note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <NGINX_POD_NAME> -c waf-enforcer`. {{< /call-out >}}
 
 ---
 

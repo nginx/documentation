@@ -23,7 +23,7 @@ If you prefer not to enable automatic updates, you can manually update the attac
 1. Choose your Linux distribution path on the [NGINX repository](https://pkgs.nginx.com/app-protect-security-updates):
    - **Ubuntu:** `/ubuntu/pool/nginx-plus/a/`
    - **Debian:** `/debian/pool/nginx-plus/a/`
-   - **RHEL:** `/centos/<8 or 9>/x86_64/RPMS/`
+   - **RHEL:** `/centos/<RHEL_VERSION>/x86_64/RPMS/`, where `<RHEL_VERSION>` is `8` or `9`, depending on your RHEL version
 
 1. Download the `.deb` or `.rpm` packages from [pkgs.nginx.com](https://pkgs.nginx.com) using your F5 WAF for NGINX certificate and key.
 
@@ -32,8 +32,15 @@ If you prefer not to enable automatic updates, you can manually update the attac
      - `.deb` package format:
 
        ```text
-       https://pkgs.nginx.com/app-protect-security-updates/<ubuntu or debian>/pool/nginx-plus/a/app-protect-attack-signatures/app-protect-attack-signatures_<Revision Timestamp in YYYY.MM.DD>-<version>~<OS Family>_amd64.deb
+       https://pkgs.nginx.com/app-protect-security-updates/<UBUNTU_OR_DEBIAN>/pool/nginx-plus/a/app-protect-attack-signatures/app-protect-attack-signatures_<REVISION_TIMESTAMP>-<VERSION>~<OS_FAMILY>_amd64.deb
        ```
+
+       Replace the placeholders as follows:
+
+       - `<UBUNTU_OR_DEBIAN>`: `ubuntu` or `debian`, depending on your operating system
+       - `<REVISION_TIMESTAMP>`: the revision timestamp of the update package, in `YYYY.MM.DD` format
+       - `<VERSION>`: the version of the update package
+       - `<OS_FAMILY>`: your operating system family
 
      - Example:
 
@@ -47,7 +54,7 @@ If you prefer not to enable automatic updates, you can manually update the attac
      - `.rpm` package format:
 
        ```text
-       https://pkgs.nginx.com/app-protect-security-updates/centos/<8 or 9>/x86_64/RPMS/app-protect-attack-signatures-<Revision Timestamp in YYYY.MM.DD>-<version>.el<8 or 9>.ngx.x86_64.rpm
+       https://pkgs.nginx.com/app-protect-security-updates/centos/<RHEL_VERSION>/x86_64/RPMS/app-protect-attack-signatures-<REVISION_TIMESTAMP>-<VERSION>.el<RHEL_VERSION>.ngx.x86_64.rpm
        ```
 
      - Example:
@@ -64,7 +71,7 @@ If you prefer not to enable automatic updates, you can manually update the attac
      - `.deb` package format:
 
        ```text
-       https://pkgs.nginx.com/app-protect-security-updates/<ubuntu or debian>/pool/nginx-plus/a/app-protect-bot-signatures/app-protect-bot-signatures_<Revision Timestamp in YYYY.MM.DD>-<version>~<OS Family>_amd64.deb
+       https://pkgs.nginx.com/app-protect-security-updates/<UBUNTU_OR_DEBIAN>/pool/nginx-plus/a/app-protect-bot-signatures/app-protect-bot-signatures_<REVISION_TIMESTAMP>-<VERSION>~<OS_FAMILY>_amd64.deb
        ```
 
      - Example:
@@ -79,7 +86,7 @@ If you prefer not to enable automatic updates, you can manually update the attac
      - `.rpm` package format:
 
        ```text
-       https://pkgs.nginx.com/app-protect-security-updates/centos/<8 or 9>/x86_64/RPMS/app-protect-bot-signatures-<Revision Timestamp in YYYY.MM.DD>-<version>.el<8 or 9>.ngx.x86_64.rpm
+       https://pkgs.nginx.com/app-protect-security-updates/centos/<RHEL_VERSION>/x86_64/RPMS/app-protect-bot-signatures-<REVISION_TIMESTAMP>-<VERSION>.el<RHEL_VERSION>.ngx.x86_64.rpm
        ```
 
      - Example:
@@ -96,7 +103,7 @@ If you prefer not to enable automatic updates, you can manually update the attac
      - `.deb` package format:
 
        ```text
-       https://pkgs.nginx.com/app-protect-security-updates/<ubuntu or debian>/pool/nginx-plus/a/app-protect-threat-campaigns/app-protect-threat-campaigns_<Revision Timestamp in YYYY.MM.DD>-<version>~<OS Family>_amd64.deb
+       https://pkgs.nginx.com/app-protect-security-updates/<UBUNTU_OR_DEBIAN>/pool/nginx-plus/a/app-protect-threat-campaigns/app-protect-threat-campaigns_<REVISION_TIMESTAMP>-<VERSION>~<OS_FAMILY>_amd64.deb
        ```
 
      - Example:
@@ -111,7 +118,7 @@ If you prefer not to enable automatic updates, you can manually update the attac
      - `.rpm` package format:
 
        ```text
-       https://pkgs.nginx.com/app-protect-security-updates/centos/<8 or 9>/x86_64/RPMS/app-protect-threat-campaigns-<Revision Timestamp in YYYY.MM.DD>-<version>.el<8 or 9>.ngx.x86_64.rpm
+       https://pkgs.nginx.com/app-protect-security-updates/centos/<RHEL_VERSION>/x86_64/RPMS/app-protect-threat-campaigns-<REVISION_TIMESTAMP>-<VERSION>.el<RHEL_VERSION>.ngx.x86_64.rpm
        ```
 
      - Example:
@@ -143,7 +150,7 @@ Use the NGINX Instance Manager REST API to upload the `.tgz` files.
 
 ```shell
 curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/attack-signatures' \
-  --header "Authorization: Bearer <access token>" \
+  --header "Authorization: Bearer <ACCESS_TOKEN>" \
   --form 'revisionTimestamp="2022.11.16"' \
   --form 'filename=@"/attack-signatures.tgz"'
 ```
@@ -152,7 +159,7 @@ curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/attack-signatures' \
 
 ```shell
 curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/bot-signatures' \
-  --header "Authorization: Bearer <access token>" \
+  --header "Authorization: Bearer <ACCESS_TOKEN>" \
   --form 'revisionTimestamp="2025.07.09"' \
   --form 'filename=@"/bot-signatures.tgz"'
 ```
@@ -161,7 +168,7 @@ curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/bot-signatures' \
 
 ```shell
 curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/threat-campaigns' \
-  --header "Authorization: Bearer <access token>" \
+  --header "Authorization: Bearer <ACCESS_TOKEN>" \
   --form 'revisionTimestamp="2022.11.15"' \
   --form 'filename=@"/threat-campaigns.tgz"'
 ```

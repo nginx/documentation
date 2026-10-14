@@ -11,6 +11,8 @@ Create a directory and copy your certificate and key to this directory:
 
 ```shell
 mkdir -p /etc/docker/certs.d/private-registry.nginx.com
-cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
-cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
+cp <PATH/TO/NGINX_REPO.CRT> /etc/docker/certs.d/private-registry.nginx.com/client.cert
+cp <PATH/TO/NGINX_REPO.KEY> /etc/docker/certs.d/private-registry.nginx.com/client.key
 ```
+
+Replace `<PATH/TO/NGINX_REPO.CRT>` with the path to your `nginx-repo.crt` client certificate and `<PATH/TO/NGINX_REPO.KEY>` with the path to your `nginx-repo.key` client key.

@@ -53,12 +53,20 @@ The logging configuration file is located in: `/etc/app_protect/bd/logger.cfg` a
 To add a module for logging:
 
 ```none
-#       MODULE = <module_name>;
-#       LOG_LEVEL = <log level 1> | <log level 2> | ... | <log level n>;
-#       FILE = <file number> (recommended 2 always);
+#       MODULE = <MODULE_NAME>;
+#       LOG_LEVEL = <LOG_LEVEL_1> | <LOG_LEVEL_2> | ... | <LOG_LEVEL_N>;
+#       FILE = <FILE_NUMBER> (recommended 2 always);
 #
 #       Use # to comment out lines.
 ```
+
+Replace the placeholders as follows:
+
+- `<MODULE_NAME>`: the name of the module to debug
+- `<LOG_LEVEL_1>`: the first log level
+- `<LOG_LEVEL_2>`: the second log level
+- `<LOG_LEVEL_N>`: the last log level
+- `<FILE_NUMBER>`: the log file number
 
 For example:
 

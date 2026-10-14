@@ -34,21 +34,29 @@ Diagnostic settings for the NGINXaaS deployment resource can be managed using th
 
 To add diagnostic settings to export NGINX logs to a storage account for an NGINXaaS deployment, the following command can be used:
 ```shell
- az monitor diagnostic-settings create --resource <nginxaas_resource_id> --logs "[{category:NginxLogs,enabled:true,retention-policy:{enabled:false,days:0}}]" --name <diagnostic_setting_name> --storage-account <storage_account_name>
+ az monitor diagnostic-settings create --resource <NGINXAAS_RESOURCE_ID> --logs "[{category:NginxLogs,enabled:true,retention-policy:{enabled:false,days:0}}]" --name <DIAGNOSTIC_SETTING_NAME> --storage-account <STORAGE_ACCOUNT_NAME>
 ```
+
+Replace the placeholders as follows:
+
+- `<NGINXAAS_RESOURCE_ID>`: the resource ID of your NGINXaaS deployment
+- `<DIAGNOSTIC_SETTING_NAME>`: the name of the diagnostic setting
+- `<STORAGE_ACCOUNT_NAME>`: the name of your storage account
 
 {{< call-out class="note" >}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
 {{< /call-out >}}
 
 To use a logs analytics workspace as the export destination, use the following command:
 ```shell
- az monitor diagnostic-settings create --resource <nginxaas_resource_id> --logs "[{category:NginxLogs,enabled:true,retention-policy:{enabled:false,days:0}}]" --name <diagnostic_setting_name> --workspace <logs_analytics_workspace_name>
+ az monitor diagnostic-settings create --resource <NGINXAAS_RESOURCE_ID> --logs "[{category:NginxLogs,enabled:true,retention-policy:{enabled:false,days:0}}]" --name <DIAGNOSTIC_SETTING_NAME> --workspace <LOGS_ANALYTICS_WORKSPACE_NAME>
 
 ```
 
+Replace `<LOGS_ANALYTICS_WORKSPACE_NAME>` with the name of your Log Analytics workspace.
+
 To view the supported log categories for an NGINXaaS resource, use the following command:
 ```shell
-az monitor diagnostic-settings list --resource <nginxaas_resource_id>
+az monitor diagnostic-settings list --resource <NGINXAAS_RESOURCE_ID>
 ```
 
 As NGINXaaS logs are stored in your storage, you can define the retention policy most appropriate for your needs.

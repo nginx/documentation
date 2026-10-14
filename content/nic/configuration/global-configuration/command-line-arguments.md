@@ -30,7 +30,7 @@ Secret with a TLS certificate and key for TLS termination of the default server.
 - If `/etc/nginx/secrets/default` doesn't exist, NGINX Ingress Controller will configure NGINX to reject TLS connections to the default server.
 - If a secret is set, but NGINX Ingress Controller is not able to fetch it from Kubernetes API, or it is not set and NGINX Ingress Controller fails to read the file "/etc/nginx/secrets/default", NGINX Ingress Controller will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 When `-allow-empty-ingress-host` is enabled, this secret also provides TLS for Ingress resources without a `host`.
 
@@ -43,7 +43,7 @@ A Secret with a TLS certificate and key for TLS termination of every Ingress/Vir
 - If the argument is not set, for such Ingress/VirtualServer hosts NGINX will break any attempt to establish a TLS connection
 - If the argument is set, but NGINX Ingress Controller is not able to fetch the Secret from Kubernetes API, NGINX Ingress Controller will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-enable-custom-resources"></a>
 
@@ -132,7 +132,7 @@ For Ingress resources only: Requires [-report-ingress-status](#cmdoption-report-
 
 A GlobalConfiguration resource for global configuration of NGINX Ingress Controller.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
@@ -204,7 +204,7 @@ Path to the main NGINX configuration template.
 
 A ConfigMap resource for customizing NGINX configuration. If a ConfigMap is set, but NGINX Ingress Controller is not able to fetch it from Kubernetes API, NGINX Ingress Controller will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-nginx-debug"></a>
 
@@ -212,7 +212,7 @@ Format: `<namespace>/<name>`
 
 The Management ConfigMap resource is used for customizing the NGINX mgmt block. If using NGINX Plus, a Management ConfigMap must be set. If NGINX Ingress Controller is not able to fetch it from Kubernetes API, NGINX Ingress Controller will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-nginx-debug"></a>
 
@@ -386,7 +386,7 @@ A Secret with a TLS certificate and key for TLS termination of the Service Insig
 - If the argument is not set, the Service Insight endpoint will not use a TLS connection.
 - If the argument is set, but NGINX Ingress Controller is not able to fetch the Secret from Kubernetes API, NGINX Ingress Controller will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-enable-latency-metrics"></a>
 
@@ -394,6 +394,33 @@ Format: `<namespace>/<name>`
 
 Enable collection of latency metrics for upstreams.
 Requires [-enable-prometheus-metrics](#cmdoption-enable-prometheus-metrics).
+
+<a name="cmdoption-latency-metrics-buckets"></a>
+
+### -latency-metrics-buckets <STRING>
+
+Sets the histogram buckets, in milliseconds, for the `upstream_server_response_latency_ms` metric.
+Requires [-enable-latency-metrics](#cmdoption-enable-latency-metrics).
+
+Each bucket adds a time series for every combination of upstream, server, and response code. Use fewer buckets to lower the number of time series that Prometheus stores.
+
+Enter a comma-separated list of positive numbers in strictly ascending order, for example `5,10,25,50,100,250,500,1000`.
+
+- If you don't set the argument, NGINX Ingress Controller uses the default buckets: `1,2,3,4,5,10,20,30,40,50,100,200,300,400,500,1000,2000,3000,4000,5000,10000,20000,30000,40000,50000`.
+- If the value isn't valid, NGINX Ingress Controller logs a warning and uses the default buckets.
+- If `-enable-latency-metrics` isn't set, NGINX Ingress Controller logs a warning and ignores the argument.
+
+<a name="cmdoption-enable-topology-aware-routing"></a>
+
+### -enable-topology-aware-routing
+
+Turn on topology-aware routing. NGINX Ingress Controller then reads the topology hints on EndpointSlices when it selects upstream endpoints. It prefers endpoints on the same node or in the same zone as the NGINX Ingress Controller pod. Kubernetes writes these hints when a Service sets `spec.trafficDistribution` or the `service.kubernetes.io/topology-mode: Auto` annotation.
+
+NGINX Ingress Controller reads the zone from the `topology.kubernetes.io/zone` label of its node at startup. If the label changes, restart NGINX Ingress Controller.
+
+Default `false`.
+
+For more information, see [Set up topology-aware routing]({{< ref "/nic/configuration/topology-aware-routing.md" >}}).
 
 <a name="cmdoption-enable-app-protect"></a>
 
@@ -491,7 +518,7 @@ SeaweedFS S3 endpoint from which NGINX Ingress Controller fetches the policy and
 
 A Secret containing the SeaweedFS admin secret in the `seaweedfs_admin_secret` key.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-plm-storage-ca-secret"></a>
 
@@ -499,7 +526,7 @@ Format: `<namespace>/<name>`
 
 An optional Secret containing `ca.crt` for SeaweedFS TLS verification.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-plm-storage-client-ssl-secret"></a>
 
@@ -507,7 +534,7 @@ Format: `<namespace>/<name>`
 
 An optional Secret containing `tls.crt` and `tls.key` for SeaweedFS mTLS.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-plm-storage-insecure-skip-verify"></a>
 

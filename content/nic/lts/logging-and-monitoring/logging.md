@@ -15,8 +15,10 @@ All logs are sent to the standard output and error of the NGINX Ingress Controll
 For example:
 
 ```shell
-kubectl logs <nginx-ingress-pod> -n nginx-ingress
+kubectl logs <NGINX_INGRESS_POD> -n nginx-ingress
 ```
+
+Where `<NGINX_INGRESS_POD>` is the name of your NGINX Ingress Controller pod.
 
 ## NGINX Ingress Controller LTS Process Logs
 

@@ -29,7 +29,7 @@ Secret with a TLS certificate and key for TLS termination of the default server.
 - If `/etc/nginx/secrets/default` doesn't exist, NGINX Ingress Controller LTS will configure NGINX to reject TLS connections to the default server.
 - If a secret is set, but NGINX Ingress Controller LTS is not able to fetch it from Kubernetes API, or it is not set and NGINX Ingress Controller LTS fails to read the file "/etc/nginx/secrets/default", NGINX Ingress Controller LTS will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-wildcard-tls-secret"></a>
 
@@ -40,7 +40,7 @@ A Secret with a TLS certificate and key for TLS termination of every Ingress/Vir
 - If the argument is not set, for such Ingress/VirtualServer hosts NGINX will break any attempt to establish a TLS connection
 - If the argument is set, but NGINX Ingress Controller LTS is not able to fetch the Secret from Kubernetes API, NGINX Ingress Controller LTS will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-enable-custom-resources"></a>
 
@@ -121,7 +121,7 @@ For Ingress resources only: Requires [-report-ingress-status](#cmdoption-report-
 
 A GlobalConfiguration resource for global configuration of NGINX Ingress Controller LTS.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
@@ -182,7 +182,7 @@ Path to the main NGINX configuration template.
 
 A ConfigMap resource for customizing NGINX configuration. If a ConfigMap is set, but NGINX Ingress Controller LTS is not able to fetch it from Kubernetes API, NGINX Ingress Controller LTS will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-nginx-debug"></a>
 
@@ -190,7 +190,7 @@ Format: `<namespace>/<name>`
 
 The Management ConfigMap resource is used for customizing the NGINX mgmt block. If using NGINX Plus, a Management ConfigMap must be set. If NGINX Ingress Controller LTS is not able to fetch it from Kubernetes API, NGINX Ingress Controller LTS will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-nginx-debug"></a>
 
@@ -362,7 +362,7 @@ A Secret with a TLS certificate and key for TLS termination of the Service Insig
 - If the argument is not set, the Service Insight endpoint will not use a TLS connection.
 - If the argument is set, but NGINX Ingress Controller LTS is not able to fetch the Secret from Kubernetes API, NGINX Ingress Controller LTS will fail to start.
 
-Format: `<namespace>/<name>`
+Format: `<NAMESPACE>/<NAME>`
 
 <a name="cmdoption-spire-agent-address"></a>
 

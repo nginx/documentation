@@ -6,13 +6,18 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/quickstart/pqc/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
+canonical: /app-delivery/google/quickstart/pqc/
+f5-ref-path: /f5ads/google/quickstart/pqc/
 f5-keywords: "NGINXaaS for Google Cloud, PQC, post-quantum cryptography, ML-KEM, ML-DSA, TLS 1.3, hybrid mode, quantum-safe"
 f5-summary: >
   Learn how to enable post-quantum cryptography in F5 NGINXaaS for Google Cloud using hybrid ML-KEM key exchange or ML-DSA certificates.
   This guide covers both modes, key format requirements, and optional NGINX configuration for hardening.
 f5-audience: operator
 ---
+
+{{< renamed-notice >}}
 
 Post-quantum cryptography (PQC) protects TLS connections against future quantum computers. A quantum computer powerful enough to break current public-key algorithms like RSA and Elliptic Curve Cryptography (ECC) could decrypt traffic captured today. Security teams call this threat harvest now, decrypt later. F5 NGINXaaS for Google Cloud addresses this with two modes:
 

@@ -113,13 +113,15 @@ Additionally, complete the following steps:
 1. Send a `POST` request to the Microsoft Entra token endpoint:
 
     ```shell
-    https://login.microsoftonline.com/<your-azure-tenant-id>/oauth2/v2.0/token
+    https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token
     ```
+
+    Replace `{tenant_id}` with your Microsoft Entra tenant ID.
 
 2. Include the following in your request body:
     - `client_id`: The client ID of the application you created.
     - `client_secret`: The client secret for the application.
-    - `scope`: The application scope (for example, `api://<client-id>/.default`).
+    - `scope`: The application scope (for example, `api://<CLIENT_ID>/.default`).
     - `grant_type`: Use `client_credentials`.
 
 3. The response will contain an access token. Decoding the token should give you a result similar to:
@@ -165,7 +167,7 @@ Additionally, complete the following steps:
 To access the NGINX Instance Manager API using the access token, send the token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
 
 ```shell
-curl -v -k --header "Authorization: Bearer <access-token>" https://<nim-ip>/api/platform/v1/userinfo
+curl -v -k --header "Authorization: Bearer <ACCESS_TOKEN>" https://<NIM_IP>/api/platform/v1/userinfo
 ```
 
-Replace `<access-token>` with the token you obtained from Microsoft Entra and `<nim-ip>` with the IP address of your NGINX Instance Manager server.
+Replace `<ACCESS_TOKEN>` with the token you obtained from Microsoft Entra and `<NIM_IP>` with the IP address of your NGINX Instance Manager server.

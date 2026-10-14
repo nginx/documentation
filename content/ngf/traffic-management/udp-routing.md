@@ -1,10 +1,15 @@
 ---
 title: UDPRoute
+description: "Configure a UDPRoute to forward UDP packets from a Gateway listener to backend services."
 weight: 1300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-0000
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Expose UDP applications by attaching a UDPRoute to a Gateway listener that defines the external UDP port.
+  UDPRoute is a Gateway API experimental-channel resource and requires experimental features enabled in NGINX Gateway Fabric.
+f5-keywords: "NGINX Gateway Fabric, UDPRoute, UDP, Gateway API, experimental, stream, backend"
+f5-audience: any
 ---
 
 Learn how to configure a UDPRoute to handle a UDP connection between NGINX Gateway Fabric and the backend applications. 
@@ -153,8 +158,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 

@@ -168,8 +168,8 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
 
         oidc_provider auth0 {
             issuer            https://yourTenantId.us.auth0.com/;
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             logout_uri        /logout;
             post_logout_uri   https://demo.example.com/post_logout/;
             logout_token_hint on;
@@ -183,6 +183,8 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -290,8 +292,8 @@ http {
         issuer https://yourTenantId.us.auth0.com/;
 
         # Replace with your actual Client ID and Secret from Auth0
-        client_id <client_id>;
-        client_secret <client_secret>;
+        client_id <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;

@@ -127,8 +127,10 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect relyi
         --auth_jwt_key request \
         --client_id Nhotzxx...IERmUi \
         --client_secret 6ZHd0j_r...UtDZ5bkdu \
-        https://<example>.us.auth0.com/.well-known/openid-configuration
+        https://<AUTH0_TENANT>.us.auth0.com/.well-known/openid-configuration
     ```
+
+    Replace `<AUTH0_TENANT>` with your Auth0 tenant name.
 
 1. In the `frontend.conf` file, update the **my_backend** upstream with the address of the application that you want to add OIDC authorization to.
 

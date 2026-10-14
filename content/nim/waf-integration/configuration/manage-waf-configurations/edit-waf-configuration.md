@@ -95,8 +95,10 @@ You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NG
 
     ```shell
     curl -X GET https://{{NMS_FQDN}}/api/platform/v1/systems/{systemUID}/instances \
-     -H "Authorization: Bearer <access token>"
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
     ```
+
+    Where `<ACCESS_TOKEN>` is your access token.
 
 2. Add the F5 WAF for NGINX configuration to your NGINX config file (`nginx.conf` or another file in a valid `config_dirs` path):
 
@@ -127,11 +129,11 @@ You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NG
     base64 -i /etc/nginx/nginx.conf
     ```
 
-4. Send a `POST` request to deploy the configuration. Replace `<base64-encoded-content>` with your encoded config.
+4. Send a `POST` request to deploy the configuration. Replace `<BASE64_ENCODED_CONTENT>` with your encoded config.
 
     ```shell
     curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config \
-    -H "Authorization: Bearer <access token>" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
     --header "Content-Type: application/json" \
     -d '{
     "configFiles": {
@@ -139,7 +141,7 @@ You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NG
       "files": [
         {
           "name": "nginx.conf",
-          "contents": "<base64-encoded-content>"
+          "contents": "<BASE64_ENCODED_CONTENT>"
         }
       ]
     },

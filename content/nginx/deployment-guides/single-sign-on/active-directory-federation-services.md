@@ -71,9 +71,9 @@ After creating the application group, you need to configure the logout URLs to s
     - Use PowerShell to configure a **LogoutUri** for the AD FS client (there is no GUI option for this). For example, run:
       
       ```powershell
-      Set-AdfsClient -TargetClientId <client-id> -LogoutUri https://demo.example.com/front_logout/
+      Set-AdfsClient -TargetClientId <CLIENT_ID> -LogoutUri https://demo.example.com/front_logout/
       ```
-      Replace `<client-id>` with the Client Identifier from [Step 5](#adfs-setup-id) above (the AD FS Application ID) and substitute the domain name of your NGINX Plus instance for `demo.example.com`.
+      Replace `<CLIENT_ID>` with the Client Identifier from [Step 5](#adfs-setup-id) above (the AD FS Application ID) and substitute the domain name of your NGINX Plus instance for `demo.example.com`.
       
       This registers a front-channel logout URL (`LogoutUri`) for the client in AD FS. When a user signs out of this or any other application in AD FS, the AD FS server sends a GET request to this URL (typically via a hidden iframe) with the user's session ID (`sid`) as a query parameter, instructing NGINX Plus to clear the user's session. According to the OpenID Connect front-channel logout specification, the identity provider is supposed to send both an issuer (`iss`) and a session ID; AD FS provides only the `sid` parameter, but the NGINX Plus OIDC module supports both the fully compliant `iss+sid` and the `sid`-only variants and will clear the session in either case.
 
@@ -197,8 +197,8 @@ With AD FS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
 
         oidc_provider adfs {
             issuer                  https://adfs.example.com/adfs;
-            client_id               <client_id>;
-            client_secret           <client_secret>;
+            client_id               <CLIENT_ID>;
+            client_secret           <CLIENT_SECRET>;
             logout_uri              /logout;
             post_logout_uri         https://demo.example.com/post_logout/;
             frontchannel_logout_uri /front_logout;
@@ -213,6 +213,8 @@ With AD FS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
         # ...
     }
     ```
+
+    Replace `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -328,8 +330,8 @@ http {
         issuer https://adfs.example.com/adfs;
 
         # Replace with your actual AD FS Client ID and Secret
-        client_id     <client_id>;
-        client_secret <client_secret>;
+        client_id     <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;

@@ -23,7 +23,9 @@ F5 WAF for NGINX v5 can be enabled for VirtualServer, VirtualServerRoute, and In
 
 {{< call-out class="note" >}}
 
-Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
+Some policies use NGINX subrequests: `APIKey`, `ExternalAuth`, `JWT` with `jwksURI`, `OIDC`, and `OIDCNative`. NGINX Ingress Controller turns off F5 WAF for NGINX in the internal locations that serve these subrequests. As a result, you can apply these policies and F5 WAF for NGINX to the same route. F5 WAF for NGINX continues to inspect client requests to the route.
+
+A `Cache` policy with `cacheBackgroundUpdate` also uses subrequests. These subrequests may not work as expected when F5 WAF for NGINX applies to the same route.
 
 {{< /call-out >}}
 
@@ -45,12 +47,14 @@ This example shows how a policy is configured by referencing a generated WAF Pol
 apiVersion: k8s.nginx.org/v1
 kind: Policy
 metadata:
-  name: <policy_name>
+  name: <POLICY_NAME>
 spec:
   waf:
     enable: true
-    apBundle: "<policy_bundle_name>.tgz"
+    apBundle: "<POLICY_BUNDLE_NAME>.tgz"
 ```
+
+Replace `<POLICY_NAME>` with the name of your policy and `<POLICY_BUNDLE_NAME>` with the name of your policy bundle.
 
 This example shows the same policy as above but with a log bundle used for security log configuration:
 
@@ -58,16 +62,18 @@ This example shows the same policy as above but with a log bundle used for secur
 apiVersion: k8s.nginx.org/v1
 kind: Policy
 metadata:
-  name: <policy_name>
+  name: <POLICY_NAME>
 spec:
   waf:
     enable: true
-    apBundle: "<policy_bundle_name>.tgz"
+    apBundle: "<POLICY_BUNDLE_NAME>.tgz"
     securityLogs:
     - enable: true
-      apLogBundle: "<log_bundle_name>.tgz"
+      apLogBundle: "<LOG_BUNDLE_NAME>.tgz"
       logDest: "syslog:server=syslog-svc.default:514"
 ```
+
+Replace `<LOG_BUNDLE_NAME>` with the name of your log bundle.
 
 ---
 
@@ -90,8 +96,10 @@ This example shows how to deploy NGINX Ingress Controller with NGINX Plus and F5
 3. Save the HTTP port of NGINX Ingress Controller into a shell variable:
 
    ```shell
-    IC_HTTP_PORT=<port number>
+    IC_HTTP_PORT=<PORT_NUMBER>
    ```
+
+   Replace `<PORT_NUMBER>` with the port number to use.
 
 ### Deploy a web application
 
@@ -159,6 +167,8 @@ To access the application, curl the coffee and the tea services. Use the `--reso
   ```shell
   kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
   ```
+
+  Replace `<SYSLOG_POD>` with the name of your syslog pod.
 
 ## Example VirtualServer configuration
 

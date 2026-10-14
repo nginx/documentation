@@ -19,16 +19,16 @@ This document explains how to build an image for F5 NGINX Ingress Controller wit
 
 Get your system ready for building and pushing the NGINX Ingress Controller image with F5 DoS for NGINX.
 
-1. Sign in to your private registry. Replace `<my-docker-registry>` with the path to your own private registry.
+1. Sign in to your private registry. Replace `<MY_DOCKER_REGISTRY>` with the path to your own private registry.
 
     ```shell
-    docker login <my-docker-registry>
+    docker login <MY_DOCKER_REGISTRY>
     ```
 
-2. Clone the NGINX Ingress Controller GitHub repository. Replace `<version_number>` with the version of NGINX Ingress Controller you want.
+2. Clone the NGINX Ingress Controller GitHub repository. Replace `<VERSION_NUMBER>` with the version of NGINX Ingress Controller you want.
 
     ```shell
-    git clone https://github.com/nginx/kubernetes-ingress.git --branch <version_number>
+    git clone https://github.com/nginx/kubernetes-ingress.git --branch <VERSION_NUMBER>
     cd kubernetes-ingress
     ```
 
@@ -55,16 +55,16 @@ Follow these steps to build the NGINX Controller Image with F5 DoS for NGINX.
     nginx-repo.crt  nginx-repo.key
     ```
 
-2. Build the image. Replace `<makefile target>` with your chosen build option and `<my-docker-registry>` with your private registry's path. Refer to the [Makefile targets](#makefile-targets) table below for the list of build options.
+2. Build the image. Replace `<MAKEFILE_TARGET>` with your chosen build option and `<MY_DOCKER_REGISTRY>` with your private registry's path. Refer to the [Makefile targets](#makefile-targets) table below for the list of build options.
 
     ```shell
-    make <makefile target> PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
+    make <MAKEFILE_TARGET> PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress TARGET=download
     ```
 
     For example, to build a Debian-based image with NGINX Plus and F5 DoS for NGINX, run:
 
     ```shell
-    make debian-image-dos-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
+    make debian-image-dos-plus PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress TARGET=download
     ```
 
      **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
@@ -86,10 +86,10 @@ Follow these steps to build the NGINX Controller Image with F5 DoS for NGINX.
 
 Once you've successfully built the NGINX Ingress Controller image with F5 DoS for NGINX, the next step is to upload it to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
 
-To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
+To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<MY_DOCKER_REGISTRY>` with your private registry's path.
 
 ```shell
-make push PREFIX=<my-docker-registry>/nginx-plus-ingress
+make push PREFIX=<MY_DOCKER_REGISTRY>/nginx-plus-ingress
 ```
 
 ## Set up role-based access control (RBAC) {#set-up-rbac}
