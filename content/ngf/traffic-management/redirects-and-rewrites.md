@@ -1,10 +1,16 @@
 ---
 title: HTTP redirects and rewrites
+description: "Redirect or rewrite HTTP traffic using NGINX Gateway Fabric routes and filters."
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1424
+f5-summary: >
+  Configure HTTP redirects and path rewrites so clients reach the correct URLs.
+  Use these filters when migrating paths or enforcing HTTPS and canonical hosts.
+f5-keywords: "NGINX Gateway Fabric, redirect, rewrite, HTTPRoute, URL, path"
+f5-audience: developer
 ---
 
 Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.

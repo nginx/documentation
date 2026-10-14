@@ -1,10 +1,16 @@
 ---
 title: Scaling the control plane and data plane
+description: "Scale the NGINX Gateway Fabric control plane and data plane independently."
 weight: 700
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1840
+f5-summary: >
+  Scale control plane and data plane components separately to match availability and traffic needs.
+  Use this guide when sizing NGINX Gateway Fabric for production workloads.
+f5-keywords: "NGINX Gateway Fabric, scaling, control plane, data plane, high availability, replicas"
+f5-audience: operator
 ---
 
 This document describes how you can separately scale the NGINX Gateway Fabric control plane and data plane.
