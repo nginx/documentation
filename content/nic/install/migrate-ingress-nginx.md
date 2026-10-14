@@ -520,7 +520,7 @@ The following table outlines annotation conversions for enabling TLS and gRPC pr
 {{< /table >}}
 
 {{< call-out class="important" >}}
-GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}})).
+gRPC services require HTTP/2. To turn on HTTP/2, set the [_nginx.org/http2_ annotation]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#listeners" >}}) or the [_http2_ ConfigMap key]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}}). For gRPC without TLS on the default HTTP listener, you must also set the _http2_ ConfigMap key.
 {{< /call-out >}}
 
 ### Global configuration with ConfigMaps
