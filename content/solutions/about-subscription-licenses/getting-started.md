@@ -34,6 +34,8 @@ For flowcharts that show how these requirements work in practice, see [NGINX Plu
 
 Starting NGINX Plus requires a valid, unexpired license. If the license has expired, NGINX Plus can still start during the 90-day grace period.
 
+After startup, you can check your license status in the [error log](#log-monitoring). Ensure that the error log is configured at the notice level or a more verbose level.
+
 ### Processing traffic
 
 Processing traffic requires:  

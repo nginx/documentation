@@ -179,7 +179,9 @@ With your IdP configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
      By default, NGINX Plus creates the metadata URL by appending the `/.well-known/openid-configuration` part to the Issuer URL. If your Issuer is different, you can explicitly specify the metadata document with the [`config_url`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url) directive.
 
-    - A valid system CA bundle with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) so that NGINX Plus could validate the IdP TLS certificates:
+    - A valid system CA bundle with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) so that NGINX Plus could validate the IdP TLS certificates.
+
+    - If OIDC sessions are synchronized between NGINX Plus cluster nodes, you can use the [`session_sync_leeway`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#session_sync_leeway) directive to fix synchronization delays. When a request contains a session cookie but the corresponding session has not yet appeared in the local key-value zone, NGINX Plus waits for the specified period of time between `0` and `5s` - use the smallest value suitable for your environment.
 
     ```nginx
     http {
@@ -191,6 +193,9 @@ With your IdP configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
             client_secret <CLIENT_SECRET>;
 
             ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
+
+            # Allow time for sessions to synchronize between cluster nodes
+            session_sync_leeway 1s;
         }
 
         # ...
@@ -299,6 +304,9 @@ http {
         # Replace with your actual IdP's client_id and secret
         client_id <CLIENT_ID>;
         client_secret <CLIENT_SECRET>;
+
+        # Allow time for sessions to synchronize between cluster nodes
+        session_sync_leeway 1s;
 
         # RP‑initiated logout
         logout_uri        /logout;
