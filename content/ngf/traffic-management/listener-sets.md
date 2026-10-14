@@ -3,14 +3,14 @@ title: ListenerSet API
 toc: true
 weight: 1500
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-0000
+f5-product: F5 NGINX Gateway Fabric
 f5-keywords: "NGINX Gateway Fabric, Gateway API, ListenerSet, ListenerSets, Kubernetes, Gateways"
-f5-description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
+description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
 f5-summary: >
     NGINX Gateway Fabric supports the ListenerSet Gateway API resource, which allows users to specify additional listeners for a Gateway.
     This reinforces Gateway API defined roles and personas by allowing application developers to configure their attachment points on a 
     Gateway without modifying the Gateway directly.
+f5-audience: developer
 ---
 
 Learn how to use the `ListenerSet` API to specify additional listeners for a Gateway
@@ -138,14 +138,16 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 ## Configure a ListenerSet
 
-For those that are familiar with the Gateway resource, ListenerSet `spec.listeners` is a direct copy of the Gateway's `spec.listeners`. For more information, view the [API Reference](https://gateway-api.sigs.k8s.io/reference/spec/#listenerset).
+For those that are familiar with the Gateway resource, ListenerSet `spec.listeners` is a direct copy of the Gateway's `spec.listeners`. For more information, view the [API Reference](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#listenerset).
 
 Create a ListenerSet:
 
@@ -363,7 +365,7 @@ To set up HTTPS Termination, TLS passthrough, or TLSRoute Terminate mode on a li
 
 To learn more about the `ListenerSet` Gateway API, see the following resources:
 
-- [ListenerSet Gateway API Description](https://gateway-api.sigs.k8s.io/api-types/listenerset/)
-- [ListenerSet Gateway API Guide](https://gateway-api.sigs.k8s.io/guides/listener-set/)
-- [ListenerSet API Reference](https://gateway-api.sigs.k8s.io/reference/spec/#listenerset)
+- [ListenerSet Gateway API Description](https://gateway-api.sigs.k8s.io/reference/api-types/listenerset/)
+- [ListenerSet Gateway API Guide](https://gateway-api.sigs.k8s.io/guides/user-guides/listener-set/)
+- [ListenerSet API Reference](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#listenerset)
 - [ListenerSet GEP](https://gateway-api.sigs.k8s.io/geps/gep-1713/)

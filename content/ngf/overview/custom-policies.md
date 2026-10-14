@@ -1,10 +1,16 @@
 ---
 title: Custom policies
+description: "Understand custom policies that expose NGINX data plane features beyond the Gateway API."
 weight: 700
 toc: true
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1835
+f5-summary: >
+  Custom policies let you configure NGINX features that are not available in the Gateway API itself.
+  Learn how policy attachments work and when to use first-class NGINX Gateway Fabric CRDs.
+f5-keywords: "NGINX Gateway Fabric, custom policies, PolicyAttachment, CRD, extensions"
+f5-audience: any
 ---
 
 This topic explains the custom policies for NGINX Gateway Fabric CRDs (Custom Resource Definitions), which allow users to configure NGINX data plane features that are unavailable in the Gateway API.
@@ -122,7 +128,7 @@ If a policy conflicts with a configured policy, NGINX Gateway Fabric will set th
 
 ## Policy Status
 
-NGINX Gateway Fabric sets the [PolicyStatus](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.PolicyStatus) on all policies.
+NGINX Gateway Fabric sets the [PolicyStatus](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#policystatus) on all policies.
 
 `PolicyStatus` fields:
 

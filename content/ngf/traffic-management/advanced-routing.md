@@ -1,13 +1,19 @@
 ---
 title: Application routes using HTTP matching conditions
+description: "Route applications with HTTP matching conditions such as paths, methods, headers, and query parameters."
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1422
+f5-summary: >
+  Deploy multiple applications and HTTPRoutes that match on path, method, header, and query conditions.
+  Use advanced matching when simple host and path routing is not enough.
+f5-keywords: "NGINX Gateway Fabric, HTTPRoute, matching, path, header, method, query parameter, routing"
+f5-audience: operator
 ---
 
-Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters
+Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters.
 
 ## Overview
 
@@ -71,7 +77,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 
 ### Deploy the Gateway API Resources for the Coffee applications
 
-The [gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/) resource is typically deployed by the [cluster operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/#roles-and-personas_1). To deploy the gateway:
+The [gateway](https://gateway-api.sigs.k8s.io/reference/api-types/gateway/) resource is typically deployed by the [cluster operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/). To deploy the gateway:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -121,8 +127,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 
@@ -130,7 +138,7 @@ In a production environment, you should have a DNS record for the external IP ad
 
 {{< /call-out >}}
 
-The [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) is typically deployed by the [application developer](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/#roles-and-personas_1). To deploy the `coffee` HTTPRoute:
+The [HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/) is typically deployed by the [application developer](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/). To deploy the `coffee` HTTPRoute:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -514,6 +522,6 @@ If you have any issues while sending traffic, try the following to debug your co
 
 To learn more about the Gateway API and the resources we created in this guide, check out the following Kubernetes documentation resources:
 
-- [Gateway API Overview](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
-- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/simple-gateway/)
-- [HTTP Routing](https://gateway-api.sigs.k8s.io/guides/http-routing/)
+- [Gateway API Overview](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/)
+- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/getting-started/simple-gateway/)
+- [HTTP Routing](https://gateway-api.sigs.k8s.io/guides/user-guides/http-routing/)

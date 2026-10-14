@@ -24,7 +24,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 ### Create a OneLogin OIDC Application
 
-1. Log in to your OneLogin admin console, for example, `https://<subdomain>.onelogin.com`.
+1. Log in to your OneLogin admin console, for example, `https://<SUBDOMAIN>.onelogin.com`.
 
 2. In the navigation bar, select **Applications**.
 
@@ -52,7 +52,7 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
    - Copy the **Issuer** URL, or OpenID Connect Discovery URL. You will need it later when configuring NGINX Plus. For OneLogin, the Issuer ID generally structured as:
 
-        `https://<subdomain>.onelogin.com/oidc/2`
+        `https://<SUBDOMAIN>.onelogin.com/oidc/2`
 
         See [Provider Configuration](https://developers.onelogin.com/openid-connect/api/provider-config) for details.
 
@@ -60,17 +60,17 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 Check the OpenID Connect Discovery URL. By default, OneLogin publishes the `.well-known/openid-configuration` document at the following address:
 
-`https://<subdomain>.onelogin.com/oidc/2/.well-known/openid-configuration`.
+`https://<SUBDOMAIN>.onelogin.com/oidc/2/.well-known/openid-configuration`.
 
 1. Run the following `curl` command in a terminal:
 
    ```shell
-   curl https://<subdomain>.onelogin.com/oidc/2/.well-known/openid-configuration | jq
+   curl https://<SUBDOMAIN>.onelogin.com/oidc/2/.well-known/openid-configuration | jq
    ```
 
    Where:
 
-   - the `<subdomain>.onelogin.com` is your OneLogin subdomain
+   - the `<SUBDOMAIN>.onelogin.com` is your OneLogin subdomain
 
    - the `/oidc/2` is the OneLogin OIDC endpoint version
 
@@ -83,17 +83,17 @@ Check the OpenID Connect Discovery URL. By default, OneLogin publishes the `.wel
    ```json
    {
        ...
-       "issuer": "https://<subdomain>.onelogin.com/oidc/2",
-       "authorization_endpoint": "https://<subdomain>.onelogin.com/oidc/2/auth",
-       "token_endpoint": "https://<subdomain>.onelogin.com/oidc/2/token",
-       "jwks_uri": "https://<subdomain>.onelogin.com/oidc/2/certs",
-       "userinfo_endpoint": "https://<subdomain>.onelogin.com/oidc/2/me",
-       "end_session_endpoint": "https://<subdomain>.onelogin.com/oidc/2/logout",
+       "issuer": "https://<SUBDOMAIN>.onelogin.com/oidc/2",
+       "authorization_endpoint": "https://<SUBDOMAIN>.onelogin.com/oidc/2/auth",
+       "token_endpoint": "https://<SUBDOMAIN>.onelogin.com/oidc/2/token",
+       "jwks_uri": "https://<SUBDOMAIN>.onelogin.com/oidc/2/certs",
+       "userinfo_endpoint": "https://<SUBDOMAIN>.onelogin.com/oidc/2/me",
+       "end_session_endpoint": "https://<SUBDOMAIN>.onelogin.com/oidc/2/logout",
        ...
    }
    ```
 
-2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for OneLogin is `https://<subdomain>.onelogin.com/oidc/2`.
+2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for OneLogin is `https://<SUBDOMAIN>.onelogin.com/oidc/2`.
 
 {{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
@@ -158,7 +158,7 @@ With Onelogin configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
         The `issuer` is typically your OneLogin OIDC URL:
 
-        `https://<subdomain>.onelogin.com/oidc/2`.
+        `https://<SUBDOMAIN>.onelogin.com/oidc/2`.
 
     - The **logout_uri** is URI that a user visits to start an RP‑initiated logout flow.
 
@@ -180,9 +180,9 @@ With Onelogin configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
         resolver 10.0.0.1 ipv4=on valid=300s;
 
         oidc_provider onelogin {
-            issuer            https://<subdomain>.onelogin.com/oidc/2;
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            issuer            https://<SUBDOMAIN>.onelogin.com/oidc/2;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             logout_uri        /logout;
             post_logout_uri   https://demo.example.com/post_logout/;
             logout_token_hint on;
@@ -196,6 +196,8 @@ With Onelogin configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
         # ...
     }
     ```
+
+    Replace `<CLIENT_ID>` with the client ID of your application and `<CLIENT_SECRET>` with the client secret of your application.
 
 7.  Make sure you have configured a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) that corresponds to `demo.example.com`, and there is a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) that [points](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to your application (see [Step 10](#oidc_app)) at `http://127.0.0.1:8080` that is going to be OIDC-protected:
 
@@ -300,12 +302,12 @@ http {
 
     oidc_provider onelogin {
         # The 'issuer' is typically your OneLogin OIDC base URL
-        # e.g. https://<subdomain>.onelogin.com/oidc/2
-        issuer https://<subdomain>.onelogin.com/oidc/2;
+        # e.g. https://<SUBDOMAIN>.onelogin.com/oidc/2
+        issuer https://<SUBDOMAIN>.onelogin.com/oidc/2;
 
         # Replace with your actual OneLogin Client ID and Secret
-        client_id <client_id>;
-        client_secret <client_secret>;
+        client_id <CLIENT_ID>;
+        client_secret <CLIENT_SECRET>;
 
         # RP‑initiated logout
         logout_uri /logout;

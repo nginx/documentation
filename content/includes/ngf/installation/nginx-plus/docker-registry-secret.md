@@ -17,10 +17,10 @@ kubectl create namespace nginx-gateway
 Create a Kubernetes `docker-registry` secret type using the contents of the JWT as the username and `none` for password (as the password is not used).  The name of the docker server is `private-registry.nginx.com`.
 
 ```shell
-kubectl create secret docker-registry nginx-plus-registry-secret --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none -n nginx-gateway
+kubectl create secret docker-registry nginx-plus-registry-secret --docker-server=private-registry.nginx.com --docker-username=<JWT_TOKEN> --docker-password=none -n nginx-gateway
 ```
 
-It is important that the `--docker-username=<JWT Token>` contains the contents of the token and is not pointing to the token itself. 
+It is important that the `--docker-username=<JWT_TOKEN>` contains the contents of the token and is not pointing to the token itself. 
 
 When you copy the contents of the JWT, ensure there are no additional characters such as extra whitespaces. 
 

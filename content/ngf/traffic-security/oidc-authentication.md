@@ -3,12 +3,14 @@ title: Configure OpenID Connect (OIDC) authentication
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-description:  How to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-product: F5 NGINX Gateway Fabric
+description:  How to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-keywords: "NGINX Gateway Fabric, OIDC, OpenID Connect, AuthenticationFilter, IdP, SSO, NGINX Plus, PKCE"
 f5-summary: >
    NGINX Gateway Fabric supports OIDC authentication via the AuthenticationFilter CRD, enabling delegation of user login to identity providers like Keycloak, Okta, or Auth0 using the Authorization Code Flow.
    The filter must be attached to an HTTPS listener and references Kubernetes Secrets for sensitive material including the client secret and optional CA certificate for verifying the IdP's TLS connection.
    Key optional features include session management, logout configuration, PKCE, custom redirect URIs, and Certificate Revocation List support, though the feature requires NGINX Plus and does not work with open-source NGINX.
+f5-audience: operator
 ---
 
 This guide describes how to configure OpenID Connect (OIDC) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
@@ -57,7 +59,7 @@ If you already have an IdP set up with a realm, a client, and a user, skip to [S
 Deploy Keycloak to your cluster. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange. The `keycloak-tls-cert` Secret was created by cert-manager in the previous step and is mounted into the Keycloak container below.
 
 {{< call-out class="note" >}}
-The `redirectUris` field must include the exact hostname and port that the NGINX Gateway is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. For example, `https://cafe.example.com:9443/*`. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. Our default callback location is set to `/oidc_callback_<namespace>_<filtername>`
+The `redirectUris` field must include the exact hostname and port that the NGINX Gateway is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. For example, `https://cafe.example.com:9443/*`. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. Our default callback location is set to `/oidc_callback_<NAMESPACE>_<FILTER_NAME>`
 {{< /call-out >}}
 
 ```yaml
@@ -243,7 +245,7 @@ spec:
     spec:
       containers:
       - name: coffee
-        image: nginxdemos/nginx-hello
+        image: nginxdemos/nginx-hello:plain-text
         ports:
         - containerPort: 8080
 ---
@@ -276,7 +278,7 @@ spec:
     spec:
       containers:
       - name: tea
-        image: nginxdemos/nginx-hello
+        image: nginxdemos/nginx-hello:plain-text
         ports:
         - containerPort: 8080
 ---
@@ -606,7 +608,7 @@ spec:
 
 ### Custom redirect URI
 
-By default, NGINX Gateway Fabric registers the OIDC callback at `/oidc_callback_<namespace>_<filtername>`. Use `redirectURI` to set a different path. If you provide a path-only value, NGINX creates a location block to handle the callback. If you provide a full URL, it is treated as an external handler and no location block is created. Register the same value in your IdP as an allowed redirect URI.
+By default, NGINX Gateway Fabric registers the OIDC callback at `/oidc_callback_<NAMESPACE>_<FILTER_NAME>`. Use `redirectURI` to set a different path. If you provide a path-only value, NGINX creates a location block to handle the callback. If you provide a full URL, it is treated as an external handler and no location block is created. Register the same value in your IdP as an allowed redirect URI.
 
 ```yaml
 spec:
@@ -617,7 +619,7 @@ spec:
 
 ### Custom IdP metadata URL
 
-By default, NGINX fetches IdP metadata from `<issuer>/.well-known/openid-configuration`. Use `configURL` if your IdP exposes metadata at a different path.
+By default, NGINX fetches IdP metadata from `<ISSUER>/.well-known/openid-configuration`. Use `configURL` if your IdP exposes metadata at a different path.
 
 ```yaml
 spec:
@@ -643,15 +645,37 @@ spec:
 ## Troubleshooting
 
 ### AuthenticationFilter is not accepted
+
 - Confirm the filter's `type` is `OIDC` and the `oidc` block is present.
 - Check that the Secrets referenced by `clientSecretRef`, `caCertificateRefs`, and `crlSecretRef` exist in the same namespace as the filter and contain the expected keys (`client-secret`, `ca.crt`, `ca.crl`).
+- Reference at most one Secret in `caCertificateRefs`. If you list more than one, NGINX Gateway Fabric rejects the filter.
+- Make sure `clientID`, `session.cookieName`, the `client-secret` value in the referenced Secret, and each `extraAuthArgs` value contain none of these characters:
+
+  - A dollar sign (`$`)
+  - An unescaped double quote (`"`)
+  - A trailing unescaped backslash (`\`)
+  - A line break (newline or carriage return)
+
+  NGINX Gateway Fabric rejects a value that contains one of them. The filter reports `Accepted=False` with `Reason=Invalid`, and the message names the field, such as `spec.oidc.clientID`. For the `client-secret` value, the message begins with `the referenced Secret value is invalid:`.
+- Give each `extraAuthArgs` key only letters, numbers, hyphens, underscores, or dots.
+- Check the format of the URL and duration fields. NGINX Gateway Fabric rejects the filter when one of these values is malformed:
+
+  - `issuer` and `configURL` must be HTTPS URLs.
+  - `redirectURI` must be an HTTPS URL or a path that starts with `/`.
+  - `logout.uri` and `logout.frontChannelLogoutURI` must be paths that start with `/`.
+  - `logout.postLogoutURI` must be an HTTP or HTTPS URL or a path that starts with `/`.
+  - `session.timeout` must be a valid NGINX duration, such as `1h` or `30m`.
+
+  A path-only `redirectURI` or `logout.postLogoutURI` can't include query parameters. As with the character rules, the filter reports `Accepted=False` with `Reason=Invalid`, and the message names the field.
 
 ### HTTPRoute is not accepted or reports `ResolvedRefs=False`
+
 - Verify the `extensionRef` in the HTTPRoute matches the `AuthenticationFilter` name and namespace exactly.
 - Confirm the route's `parentRefs` points to an HTTPS listener. OIDC filters are rejected on non-HTTPS listeners.
 
 ### Browser is stuck in a redirect loop
-- Confirm the `redirectURI` registered in the IdP exactly matches the path NGINX is using (default: `/oidc_callback_<namespace>_<filtername>`).
+
+- Confirm the `redirectURI` registered in the IdP exactly matches the path NGINX is using (default: `/oidc_callback_<NAMESPACE>_<FILTER_NAME>`).
 - Ensure the Gateway's TLS certificate is valid for the hostname the browser is using.
 
 ## Further reading

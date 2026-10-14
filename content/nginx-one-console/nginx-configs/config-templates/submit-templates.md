@@ -10,6 +10,10 @@ weight: 200
 
 This guide explains how to submit templates to render and deploy NGINX configurations, and how to manage existing submissions using the Templates API.
 
+{{< call-out "tip" >}}
+You can also submit and copy templates using a guided UI, instead of building API requests by hand. Use the **Submit** and **Make a Copy** row actions on the Templates list. See [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}}).
+{{< /call-out >}}
+
 Before submitting templates, you need to import them into NGINX One Console.
 
 - See the [Import Templates Guide]({{< ref "import-templates.md" >}}) for instructions on creating and importing templates.
@@ -26,6 +30,28 @@ Template submission allows you to compose templates that generate a complete NGI
 1. **Submit** - Submit the composed request to render the NGINX configuration and create a staged config
 
 To review the rendered configuration before committing, use [preview mode](#preview-mode-preview_onlytrue) with `preview_only=true`. See [Save rendered config as staged config]({{< ref "save-as-staged-config.md" >}}) for the preview-first workflow.
+
+## Permissions and API groups
+
+You can control write permissions for template submissions through API group assignments in custom roles.
+
+The following table lists the API groups available for template submissions.
+
+{{<table>}}
+| API group name | Access level | Permissions |
+|---|---|---|
+| `f5xc-nginx-one-custom-templates-submissions-manage` | Write | View, create, change, and delete template submissions. |
+| `f5xc-nginx-one-custom-templates-submissions-owner` | Write | Create new submissions, and view or change existing submissions. |
+| `f5xc-nginx-one-custom-templates-submissions-contributor` | Write | View or change existing submissions only. Cannot create new submissions. |
+{{</table>}}
+
+Assign `f5xc-nginx-one-custom-templates-submissions-manage` to users who need full permissions to manage, create, and delete submissions.
+
+Assign `f5xc-nginx-one-custom-templates-submissions-owner` to users who need full write permissions to create new submissions and change existing ones.
+
+Assign `f5xc-nginx-one-custom-templates-submissions-contributor` to restrict users so they can only view or change existing submissions.
+
+For more information about creating custom roles, see [Set up custom roles with API groups]({{< ref "/nginx-one-console/rbac/rbac-api.md" >}}).
 
 ## Template discovery
 
@@ -371,7 +397,7 @@ Here's an example of what you need to include with the API request:
       {
         "files": [
           {
-            "contents": "<base64_encoded_nginx_conf>",
+            "contents": "<BASE64_ENCODED_NGINX_CONF>",
             "mtime": "0001-01-01T00:00:00Z",
             "name": "nginx.conf",
             "size": 371
@@ -382,13 +408,13 @@ Here's an example of what you need to include with the API request:
       {
         "files": [
           {
-            "contents": "<base64_encoded_nginx_conf>",
+            "contents": "<BASE64_ENCODED_NGINX_CONF>",
             "mtime": "0001-01-01T00:00:00Z",
             "name": "cors-headers.tmpl.4aaf36d4a643.conf",
             "size": 159
           },
           {
-            "contents": "<base64_encoded_nginx_conf>",
+            "contents": "<BASE64_ENCODED_NGINX_CONF>",
             "mtime": "0001-01-01T00:00:00Z",
             "name": "health-check.tmpl.78346de4dae4.conf",
             "size": 109
@@ -401,6 +427,8 @@ Here's an example of what you need to include with the API request:
   "errors": null
 }
 ```
+
+Where `<BASE64_ENCODED_NGINX_CONF>` is your base64-encoded NGINX configuration file.
 
 #### Response with parse errors (200 OK)
 
@@ -420,7 +448,7 @@ Parse errors indicate the rendered configuration has NGINX syntax issues, often 
       {
         "files": [
           {
-            "contents": "<base64_encoded_nginx_conf>",
+            "contents": "<BASE64_ENCODED_NGINX_CONF>",
             "mtime": "0001-01-01T00:00:00Z",
             "name": "nginx.conf",
             "size": 371
@@ -701,4 +729,6 @@ When composing template submissions, arrange your augments array to match the re
 
 - [Template Authoring Guide]({{< ref "author-templates.md" >}})
 - [Add Service-Specific Locations]({{< ref "add-multiple-services.md" >}})
+- [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}})
 - [Save rendered config as staged config]({{< ref "save-as-staged-config.md" >}})
+- [Set up custom roles with API groups]({{< ref "/nginx-one-console/rbac/rbac-api.md" >}})

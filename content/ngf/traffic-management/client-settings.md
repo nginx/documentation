@@ -1,10 +1,16 @@
 ---
 title: Client Settings Policy API
+description: "Use ClientSettingsPolicy to configure client-to-NGINX connection behavior such as body size and keepalive."
 toc: true
 weight: 900
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1846
+f5-summary: >
+  The ClientSettingsPolicy API configures connection behavior between clients and NGINX.
+  Apply the policy to a Gateway, HTTPRoute, or GRPCRoute to set client body size, timeouts, and keepalive directives.
+f5-keywords: "NGINX Gateway Fabric, ClientSettingsPolicy, client_max_body_size, keepalive, client timeout, PolicyAttachment"
+f5-audience: any
 ---
 
 Learn how to use the `ClientSettingsPolicy` API.
@@ -87,8 +93,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 

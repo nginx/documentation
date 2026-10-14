@@ -117,7 +117,7 @@ If you do, and things break, don't say we didn't warn you.
 {{< /call-out >}}
 ```
 
-The first parameter determines the type of call-out, which defines the colour given to it.
+The first parameter determines the type of call-out, which defines the color given to it.
 
 Supported types:
 

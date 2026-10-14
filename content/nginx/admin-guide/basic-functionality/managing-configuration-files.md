@@ -31,8 +31,10 @@ Sample output:
 --error-log-path=/var/log/nginx/error.log
 --http-log-path=/var/log/nginx/access.log
 --pid-path=/var/run/nginx.pid
---...<more parameters>
+--...<MORE_PARAMETERS>
 ```
+
+Here, `<MORE_PARAMETERS>` represents additional build-time `configure` arguments omitted from the sample output.
 
 ## Directives
 

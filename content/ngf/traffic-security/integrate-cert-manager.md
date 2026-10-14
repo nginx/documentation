@@ -1,14 +1,17 @@
 ---
 title: Secure traffic using Let's Encrypt and cert-manager
+description: "Issue and manage TLS certificates for NGINX Gateway Fabric using Let's Encrypt and cert-manager."
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1425
+f5-keywords: "NGINX Gateway Fabric, cert-manager, Let's Encrypt, TLS certificates, ACME, HTTPS"
 f5-summary: >
    cert-manager automates issuance and renewal of TLS certificates from public Certificate Authorities such as Let's Encrypt by responding to ACME challenges on your behalf.
    The Gateway API HTTP01 solver lets cert-manager use an NGINX Gateway Fabric Gateway as the challenge solver: cert-manager creates a temporary HTTPRoute, Let's Encrypt verifies domain ownership over HTTP, and the signed certificate is stored in a Secret referenced by the Gateway's HTTPS listener.
    Once issued, NGINX Gateway Fabric serves HTTPS using the keypair in the Secret, and cert-manager rotates the material in place before expiry without operator intervention.
+f5-audience: operator
 ---
 
 Learn how to issue and manage certificates using Let's Encrypt and cert-manager.
@@ -19,7 +22,7 @@ Securing client server communication is a crucial part of modern application arc
 
 Follow the steps in this guide to:
 
-- Configure HTTPS for your application using a [gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/).
+- Configure HTTPS for your application using a [gateway](https://gateway-api.sigs.k8s.io/reference/api-types/gateway/).
 - Use [Let’s Encrypt](https://letsencrypt.org) as the Certificate Authority (CA) issuing the TLS certificate.
 - Use [cert-manager](https://cert-manager.io) to automate the provisioning and management of the certificate.
 
@@ -64,7 +67,7 @@ At a high level, the process looks like this:
 
 ### Create a ClusterIssuer
 
-Next we need to create a [ClusterIssuer](https://cert-manager.io/docs/concepts/issuer/), a Kubernetes resource that represents the certificate authority (CA) that will generate the signed certificates by honouring certificate signing requests.
+Next we need to create a [ClusterIssuer](https://cert-manager.io/docs/concepts/issuer/), a Kubernetes resource that represents the certificate authority (CA) that will generate the signed certificates by honoring certificate signing requests.
 
 We are using the ACME Issuer type, and Let's Encrypt as the CA server. In order for Let's Encypt to verify that we own the domain a certificate is being requested for, we must complete "challenges". This is to ensure clients are unable to request certificates for domains they do not own. We will configure the issuer to use a HTTP01 challenge, and our gateway resource that we will create in the next step as the solver. To read more about HTTP01 challenges, see the [cert-manager documentation](https://cert-manager.io/docs/configuration/acme/http01/). Use the following YAML definition to create the resource, but please note the `email` field must be updated to your own email address.
 
@@ -144,6 +147,7 @@ cafe-secret   kubernetes.io/tls   2      20s
 ```
 
 ---
+
 - Multiple `certificateRefs` apply to the listener's `hostname` and are not automatically selected based on the hostnames of attached HTTPRoute resources. Use separate HTTPS listeners for different domains that require different certificates.
 
 ### Deploy our application and HTTPRoute
@@ -275,7 +279,7 @@ Request ID: e64c54a2ac253375ac085d48980f000a
   - The temporary HTTPRoute created by cert-manager routes the traffic between cert-manager and the Let's Encrypt server through NGINX Gateway Fabric. If the challenge is not successful, it may be useful to inspect the NGINX logs to see the ACME challenge requests. You should see something like the following:
 
     ```shell
-    kubectl logs <nginx-pod-name> -n <nginx-pod-namespace>
+    kubectl logs <NGINX_POD_NAME> -n <NGINX_POD_NAMESPACE>
     <...>
     52.208.162.19 - - [15/Aug/2023:13:18:12 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "cert-manager-challenges/v1.12.0 (linux/amd64) cert-manager/bd192c4f76dd883f9ee908035b894ffb49002384"
     52.208.162.19 - - [15/Aug/2023:13:18:14 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "cert-manager-challenges/v1.12.0 (linux/amd64) cert-manager/bd192c4f76dd883f9ee908035b894ffb49002384"
@@ -287,6 +291,8 @@ Request ID: e64c54a2ac253375ac085d48980f000a
     35.166.192.222 - - [15/Aug/2023:13:18:22 +0000] "GET /.well-known/acme-challenge/bXQn27Lenax2AJKmOOS523T-MWOKeFhL0bvrouNkUc4 HTTP/1.1" 200 87 "-" "Mozilla/5.0 (compatible; Let's Encrypt validation server; +https://www.letsencrypt.org)"
     <...>
     ```
+
+    Replace `<NGINX_POD_NAME>` with the name of your NGINX data plane Pod and `<NGINX_POD_NAMESPACE>` with the namespace of your NGINX data plane Pod.
 
 {{< include "ngf/sni-https.md" >}}
 

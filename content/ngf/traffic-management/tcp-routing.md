@@ -1,10 +1,15 @@
 ---
 title: TCPRoute
+description: "Configure a TCPRoute to forward TCP connections from a Gateway listener to backend services."
 weight: 1200
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-0000
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Expose TCP applications by attaching a TCPRoute to a Gateway listener that defines the external port.
+  TCPRoute is a Gateway API experimental-channel resource and requires experimental features enabled in NGINX Gateway Fabric.
+f5-keywords: "NGINX Gateway Fabric, TCPRoute, TCP, Gateway API, experimental, stream, backend"
+f5-audience: any
 ---
 
 Learn how to configure a TCPRoute to establish a TCP connection between NGINX Gateway Fabric and the backend applications.
@@ -165,9 +170,11 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT_1=<Listener-1 Port number>
-GW_PORT_2=<Listener-2 Port number>
+GW_PORT_1=<LISTENER_1_PORT>
+GW_PORT_2=<LISTENER_2_PORT>
 ```
+
+Replace `<LISTENER_1_PORT>` with the port number of the first listener and `<LISTENER_2_PORT>` with the port number of the second listener.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
@@ -290,5 +297,5 @@ Requests sent to port `${GW_PORT_1}` (listener `coffee`) are served by the coffe
 
 ## Further Readings
 
-- [TCPRoute](https://gateway-api.sigs.k8s.io/reference/spec/#tcproute)
-- [Gateway API TCP routing](https://gateway-api.sigs.k8s.io/guides/tcp/)
+- [TCPRoute](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#tcproute)
+- [Gateway API TCP routing](https://gateway-api.sigs.k8s.io/guides/user-guides/tcp/)

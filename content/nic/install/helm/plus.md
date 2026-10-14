@@ -52,7 +52,7 @@ kubectl create secret docker-registry regcred \
 Use Helm to install NGINX Ingress Controller with NGINX Plus:
 
 ```shell
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
+helm install <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress \
   --version {{< nic-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
   --set controller.image.tag={{< nic-version >}} \
@@ -60,6 +60,8 @@ helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 {{< call-out class="warning" >}}
 
@@ -72,7 +74,7 @@ If you'd like to test the latest changes in NGINX Ingress Controller before a ne
 You can install the `edge` version by specifying the `--version` flag with the value `0.0.0-edge`:
 
 ```shell
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
+helm install <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress \
   --version 0.0.0-edge \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
   --set controller.image.tag={{< nic-version >}} \
@@ -135,7 +137,7 @@ You have two options for installing the Helm chart: directly from the F5 registr
 To install NGINX Ingress Controller using the F5 registry, run this command with your release name:
 
 ```
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
+helm install <RELEASE_NAME> oci://ghcr.io/nginx/charts/nginx-ingress \
   --version {{< nic-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
   --set controller.image.tag={{< nic-version >}} \
@@ -192,7 +194,7 @@ cd nginx-ingress
 Finally, install the chart with your release name with `helm install`:
 
 ```shell
-helm install <my-release> . --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.nginxplus=true
+helm install <RELEASE_NAME> . --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.nginxplus=true
 ```
 
 {{< details summary="Example output" >}}

@@ -1,9 +1,15 @@
 ---
 title: Migrate from NGINX Ingress Controller to NGINX Gateway Fabric
+description: "Migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric."
 weight: 800
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Move workloads from NGINX Ingress Controller to NGINX Gateway Fabric and the Gateway API model.
+  Use this guide when adopting Gateway API resources in place of Ingress-based configuration.
+f5-keywords: "NGINX Gateway Fabric, migration, NGINX Ingress Controller, Gateway API, Ingress"
+f5-audience: operator
 ---
 
 This document describes how to migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric.
@@ -14,10 +20,10 @@ If you're already using NGINX Ingress Controller and want to migrate to NGINX Ga
 
 The [Gateway API](https://gateway-api.sigs.k8s.io/) is the next-generation Kubernetes networking API that builds on the limitations of Ingress. Compared to Ingress, Gateway API provides:
 
-- **Role-oriented resources**: Distinct resources for infrastructure providers, cluster operators, and application developers, enabling [separation of concerns](https://gateway-api.sigs.k8s.io/concepts/security-model/#role-oriented-resources).
-- **More expressive routing**: Support for [advanced traffic management](https://gateway-api.sigs.k8s.io/concepts/api-overview/#routes) such as path-based and header-based routing, traffic splitting, and TLS configuration.
+- **Role-oriented resources**: Distinct resources for infrastructure providers, cluster operators, and application developers, enabling [separation of concerns](https://gateway-api.sigs.k8s.io/docs/concepts/security/).
+- **More expressive routing**: Support for [advanced traffic management](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/) such as path-based and header-based routing, traffic splitting, and TLS configuration.
 - **Standardization and portability**: A Kubernetes [community standard](https://gateway-api.sigs.k8s.io/) supported by multiple vendors, ensuring consistent behavior across implementations.
-- **Extensibility**: Built on Kubernetes [CRD extensibility](https://gateway-api.sigs.k8s.io/guides/migrating-from-ingress/?h=extensibility#approach-to-extensibility) to support new capabilities without breaking the core API.
+- **Extensibility**: Built on Kubernetes [CRD extensibility](https://gateway-api.sigs.k8s.io/guides/getting-started/migrating-from-ingress/?h=extensibility#approach-to-extensibility) to support new capabilities without breaking the core API.
 
 Migrating to Gateway API with NGINX Gateway Fabric helps future-proof your Kubernetes networking stack, provide a standardized API across implementations, and unlock advanced traffic management features.
 
@@ -36,8 +42,10 @@ To convert your existing NGINX Ingress resources to Gateway API resources, first
 Then run the conversion command for the NGINX provider:
    
 ```shell
-ingress2gateway print --providers=nginx --input-file=<your-ingress-file> > gateway-api-resources.yaml
+ingress2gateway print --providers=nginx --input-file=<PATH/TO/INGRESS_FILE> > gateway-api-resources.yaml
 ```
+
+Replace `<PATH/TO/INGRESS_FILE>` with the path to your Ingress manifest.
 
 This tool will analyze your Ingress resources from the input file and output the equivalent Gateway API resources to a file named `gateway-api-resources.yaml`.
 

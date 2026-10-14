@@ -45,8 +45,8 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | waf.enabled           | Web application firewall enabled |          | count | Current status of Web Application Firewall on the deployment.  | deployment      |
 | ports.used            | Ports used                 |          | count | The number of listen ports used by the deployment during the aggregation interval. | deployment      |
 | system.listener_backlog.max | Max listener backlog    | listen_addr, file_desc | count | The fullness (expressed as a fraction) of the fullest backlog queue. | deployment |
-| system.listener_backlog.queue_limit | Listener backlog queue limit | listen_address, file_desc | count | The capacity of a specific backlog queue, labelled by listen address. | deployment |
-| system.listener_backlog.length | Listener backlog length | listen_address, file_desc | count | The number of items in a specific backlog queue, labelled by listen address. | deployment |
+| system.listener_backlog.queue_limit | Listener backlog queue limit | listen_address, file_desc | count | The capacity of a specific backlog queue, labeled by listen address. | deployment |
+| system.listener_backlog.length | Listener backlog length | listen_address, file_desc | count | The number of items in a specific backlog queue, labeled by listen address. | deployment |
 
 {{< /table >}}
 

@@ -47,9 +47,11 @@ Follow these steps to download the certificate and private key for NGINX Instanc
 3. Move and rename the `.crt` and `.key` files:
 
    ```shell
-   sudo mv <nginx-mgmt-suite-trial.crt> /etc/ssl/nginx/nginx-repo.crt
-   sudo mv <nginx-mgmt-suite-trial.key> /etc/ssl/nginx/nginx-repo.key
+   sudo mv <NGINX_REPO.CRT> /etc/ssl/nginx/nginx-repo.crt
+   sudo mv <NGINX_REPO.KEY> /etc/ssl/nginx/nginx-repo.key
    ```
+
+   Replace `<NGINX_REPO.CRT>` with the path to the certificate file from your NGINX Instance Manager trial download and `<NGINX_REPO.KEY>` with the path to the private key file from your NGINX Instance Manager trial download.
 
    The downloaded filenames may vary depending on your subscription type. Modify the commands above accordingly to match the actual filenames.
 

@@ -1,10 +1,16 @@
 ---
 title: Upstream Settings Policy API
+description: "Use UpstreamSettingsPolicy to configure load balancing, zone size, and keepalives between NGINX and upstreams."
 weight: 1000
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1845
+f5-summary: >
+  The UpstreamSettingsPolicy API configures how NGINX connects to upstream applications referenced by HTTPRoute or GRPCRoute services.
+  Apply this direct policy to services to set load-balancing methods, upstream zone size, and keepalive behavior.
+f5-keywords: "NGINX Gateway Fabric, UpstreamSettingsPolicy, upstream, keepalive, load balancing, zone size, PolicyAttachment, health check"
+f5-audience: developer
 ---
 
 Learn how to use the `UpstreamSettingsPolicy` API.
@@ -183,8 +189,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 

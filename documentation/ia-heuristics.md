@@ -43,7 +43,7 @@ The structure should streamline the user experience for navigating and reading i
 
 ## Communicative
 
-- Is the structure effective in recognising the user's state?
+- Is the structure effective in recognizing the user's state?
 - Are the structure and information consistent?
 - How does the structure support the information being shared?
 

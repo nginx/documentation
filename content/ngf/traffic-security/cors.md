@@ -1,9 +1,15 @@
 ---
 title: Configure Cross-Origin Request Sharing (CORS)
+description: "Configure Cross-Origin Resource Sharing (CORS) with HTTPCORSFilter in NGINX Gateway Fabric."
 weight: 700
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Allow or restrict browser cross-origin requests to your APIs using the HTTPCORSFilter.
+  Use this guide when web clients on other origins need controlled access to your services.
+f5-keywords: "NGINX Gateway Fabric, CORS, HTTPCORSFilter, cross-origin, browser, HTTPRoute"
+f5-audience: operator
 ---
 
 
@@ -102,8 +108,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Deploy a HTTPRoute with the HTTPCORSFilter
 
@@ -226,5 +234,5 @@ Response:
 ## Further reading
 
 - [Example deployment files for HTTPCORSFilter](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cors-filter)
-- [Gateway API Specification](https://gateway-api.sigs.k8s.io/reference/spec/#httpcorsfilter)
-- [Gateway API CORS](https://gateway-api.sigs.k8s.io/guides/http-cors/)
+- [Gateway API Specification](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httpcorsfilter)
+- [Gateway API CORS](https://gateway-api.sigs.k8s.io/guides/user-guides/http-cors/)

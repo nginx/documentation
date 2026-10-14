@@ -34,8 +34,10 @@ restorecon -Rv /etc/security_policies
 If you want to send logs to a custom, unreserved port, you can use `semanage` to add the desired port to the syslogd_port_t type:
 
 ```shell
-semanage port -a -t syslogd_port_t -p tcp <your-port>
+semanage port -a -t syslogd_port_t -p tcp <PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port you want to allow.
 
 Review the syslog ports by entering the following command:
 
@@ -47,7 +49,7 @@ For more information related to syslog, see the [Security logs]({{< ref "/waf/lo
 
 ## Review audits
 
-F5 WAF for NGINX files and processes are labelled with the `nap-compiler_t` and `nap-engine_t` contexts. NGINX Plus is labelled with `httpd_t`.
+F5 WAF for NGINX files and processes are labeled with the `nap-compiler_t` and `nap-engine_t` contexts. NGINX Plus is labeled with `httpd_t`.
 
 If SELinux denies access to something, you can search audit denials using one of the above contexts.
 

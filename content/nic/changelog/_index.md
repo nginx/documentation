@@ -26,6 +26,61 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.7.0
+
+14 Oct 2026
+
+### {{% icon rocket %}} Features
+
+- [10746](https://github.com/nginx/kubernetes-ingress/pull/10746) Add support for least_time load balancing method in nginx oss
+- [10848](https://github.com/nginx/kubernetes-ingress/pull/10848) Add resource block to ipintelligence helm
+- [10843](https://github.com/nginx/kubernetes-ingress/pull/10843) Implement setting otel_trace_context nginx directive via configmap
+- [10905](https://github.com/nginx/kubernetes-ingress/pull/10905) Enable http2 for upstream proxying
+- [10816](https://github.com/nginx/kubernetes-ingress/pull/10816) Add opaque secret support
+- [10925](https://github.com/nginx/kubernetes-ingress/pull/10925) Decouple host property in virtualserverroute
+- [10947](https://github.com/nginx/kubernetes-ingress/pull/10947) Add use-forwarded-headers to ingress via configmap
+- [10949](https://github.com/nginx/kubernetes-ingress/pull/10949) Add use-forwarded-headers support to virtualserver via configmap
+- [10994](https://github.com/nginx/kubernetes-ingress/pull/10994) Added commonlabels to helm chart
+- [10282](https://github.com/nginx/kubernetes-ingress/pull/10282) Add -latency-metrics-buckets flag to configure upstream latency histogram buckets
+- [11015](https://github.com/nginx/kubernetes-ingress/pull/11015) Allow cert-manager http-01 challenges through tls redirect and authentication
+- [10989](https://github.com/nginx/kubernetes-ingress/pull/10989) Add ingress and virtualserver options to toggle http/2 per server block
+- [11016](https://github.com/nginx/kubernetes-ingress/pull/11016) Support topology hints traffic distribution
+
+### {{% icon bug %}} Fixes
+
+- [10745](https://github.com/nginx/kubernetes-ingress/pull/10745) Remove deleted file from list of files to update in release docs workflow
+- [10793](https://github.com/nginx/kubernetes-ingress/pull/10793) Fix: path quoting on v1 ingress
+- [10813](https://github.com/nginx/kubernetes-ingress/pull/10813) Reset updateallconfigsonbatch after batch mode ends
+- [10824](https://github.com/nginx/kubernetes-ingress/pull/10824) Sort selector-matched virtualserverroutes deterministically
+- [10825](https://github.com/nginx/kubernetes-ingress/pull/10825) Fix double-increment of splitclientsindex for vs route-level splits
+- [10830](https://github.com/nginx/kubernetes-ingress/pull/10830) Match virtualserverroutes by namespace and name for split_clients offset
+- [10897](https://github.com/nginx/kubernetes-ingress/pull/10897) Cors origin port validation redo 9861
+- [9836](https://github.com/nginx/kubernetes-ingress/pull/9836) Fix keepalive annotation in master/minion ingress
+- [10503](https://github.com/nginx/kubernetes-ingress/pull/10503) Fix external pr workflow to update existing do not merge prs
+- [10956](https://github.com/nginx/kubernetes-ingress/pull/10956) Fix: synchronize namespaced informer registries
+- [10588](https://github.com/nginx/kubernetes-ingress/pull/10588) Fix: prevent f5 waf interfering with subrequests
+- [9751](https://github.com/nginx/kubernetes-ingress/pull/9751) Fix(api): make jwt/oidc trustedcertsecret omit-empty so zero value is dropped
+- [10929](https://github.com/nginx/kubernetes-ingress/pull/10929) Fix(external auth): carrying the response code from the /oauth2/signin subrequest breaks oauth2 flow- #10879
+- [10992](https://github.com/nginx/kubernetes-ingress/pull/10992) Remove redundant optional marker
+- [10998](https://github.com/nginx/kubernetes-ingress/pull/10998) Omit empty nodeport from controller service
+- [11042](https://github.com/nginx/kubernetes-ingress/pull/11042) Apply client-max-body-size correctly on virtualserver routes with matches, splits and auth policies
+
+### {{% icon arrow-up %}} Dependencies
+
+- [10785](https://github.com/nginx/kubernetes-ingress/pull/10785), [10727](https://github.com/nginx/kubernetes-ingress/pull/10727), [11074](https://github.com/nginx/kubernetes-ingress/pull/11074), [10819](https://github.com/nginx/kubernetes-ingress/pull/10819), [10833](https://github.com/nginx/kubernetes-ingress/pull/10833), [10844](https://github.com/nginx/kubernetes-ingress/pull/10844), [10376](https://github.com/nginx/kubernetes-ingress/pull/10376), [10853](https://github.com/nginx/kubernetes-ingress/pull/10853), [10958](https://github.com/nginx/kubernetes-ingress/pull/10958), [10930](https://github.com/nginx/kubernetes-ingress/pull/10930), [10967](https://github.com/nginx/kubernetes-ingress/pull/10967), [11007](https://github.com/nginx/kubernetes-ingress/pull/11007), [11021](https://github.com/nginx/kubernetes-ingress/pull/11021), [11020](https://github.com/nginx/kubernetes-ingress/pull/11020), [11056](https://github.com/nginx/kubernetes-ingress/pull/11056), [11086](https://github.com/nginx/kubernetes-ingress/pull/11086), [11099](https://github.com/nginx/kubernetes-ingress/pull/11099) & [11089](https://github.com/nginx/kubernetes-ingress/pull/11089) Bump Go dependencies
+- [10914](https://github.com/nginx/kubernetes-ingress/pull/10914), [11084](https://github.com/nginx/kubernetes-ingress/pull/11084), [11075](https://github.com/nginx/kubernetes-ingress/pull/11075), [10916](https://github.com/nginx/kubernetes-ingress/pull/10916), [10695](https://github.com/nginx/kubernetes-ingress/pull/10695), [10767](https://github.com/nginx/kubernetes-ingress/pull/10767), [10726](https://github.com/nginx/kubernetes-ingress/pull/10726), [10871](https://github.com/nginx/kubernetes-ingress/pull/10871), [10931](https://github.com/nginx/kubernetes-ingress/pull/10931), [10915](https://github.com/nginx/kubernetes-ingress/pull/10915), [10901](https://github.com/nginx/kubernetes-ingress/pull/10901), [10908](https://github.com/nginx/kubernetes-ingress/pull/10908), [10882](https://github.com/nginx/kubernetes-ingress/pull/10882), [11002](https://github.com/nginx/kubernetes-ingress/pull/11002), [11005](https://github.com/nginx/kubernetes-ingress/pull/11005), [11055](https://github.com/nginx/kubernetes-ingress/pull/11055), [11068](https://github.com/nginx/kubernetes-ingress/pull/11068), [11097](https://github.com/nginx/kubernetes-ingress/pull/11097) & [11085](https://github.com/nginx/kubernetes-ingress/pull/11085) Bump Docker dependencies
+- [10982](https://github.com/nginx/kubernetes-ingress/pull/10982) Update module github.com/mikefarah/yq/v4 to v4.54.1 (main)
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.7.0 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.7.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.7.0 images from the F5 Container registry or build your own image from the 5.7.0 source code.
+- For Helm, use version 2.8.0 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.37.
+
 ## 5.6.1
 
 04 Sep 2026
@@ -234,7 +289,7 @@ Major highlights include:
 - [9728](https://github.com/nginx/kubernetes-ingress/pull/9728) Support empty host ingress
 - [9862](https://github.com/nginx/kubernetes-ingress/pull/9862) Add support for proxy_redirect in ingress
 - [9740](https://github.com/nginx/kubernetes-ingress/pull/9740) Add nginx agent 3.x waf support
-- [9778](https://github.com/nginx/kubernetes-ingress/pull/9778) Add path normalisation
+- [9778](https://github.com/nginx/kubernetes-ingress/pull/9778) Add path normalization
 
 ### {{% icon bug %}} Fixes
 
@@ -359,7 +414,7 @@ Release 5.4.0 focuses on making migrations from `ingress-nginx` easier by provid
 - [8656](https://github.com/nginx/kubernetes-ingress/pull/8656) Add nginx.org/ssl-redirect annotation support
 - [8711](https://github.com/nginx/kubernetes-ingress/pull/8711) Add nginx.org/http-redirect-code annotation and configmap support
 - [8720](https://github.com/nginx/kubernetes-ingress/pull/8720) Add `nginx.org/app-root` annotation support
-- [8861](https://github.com/nginx/kubernetes-ingress/pull/8861) Initialise the $service variable early in the server block
+- [8861](https://github.com/nginx/kubernetes-ingress/pull/8861) Initialize the $service variable early in the server block
 - [8168](https://github.com/nginx/kubernetes-ingress/pull/8168) Add custom time format to json and text logging
 - [8936](https://github.com/nginx/kubernetes-ingress/pull/8936) Add routeselector labels to virtualserver and virtualserverroutes
 - [8972](https://github.com/nginx/kubernetes-ingress/pull/8972) Add `proxy-next-upstream` directives to ingress annotations

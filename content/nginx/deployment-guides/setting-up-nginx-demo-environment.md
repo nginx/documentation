@@ -215,13 +215,13 @@ Repeat these instructions on each instance. Alternatively, you can configure one
    ```nginx
    # in the 'http' context
    upstream app1 {
-       server <internal IP address of NGINX Open Source instance serving App 1>;
+       server <NGINX_OSS_APP_1_IP>;
        # 'server' directives for additional App 1 servers, if using
        zone app1 64k;
    }
 
    upstream app2 {
-       server <internal IP address of NGINX Open Source instance serving App 2>;
+       server <NGINX_OSS_APP_2_IP>;
        # 'server' directives for additional App 2 servers, if using
        zone app2 64k;
    }
@@ -261,6 +261,8 @@ Repeat these instructions on each instance. Alternatively, you can configure one
        }
    }
    ```
+
+   Replace `<NGINX_OSS_APP_1_IP>` with the internal IP address of the NGINX Open Source instance serving App 1 and `<NGINX_OSS_APP_2_IP>` with the internal IP address of the NGINX Open Source instance serving App 2.
 
     Directive documentation: [api](https://nginx.org/en/docs/http/ngx_http_api_module.html#api), [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return), [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root), [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) (upstream),[server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) (virtual), [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name), [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream), [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)
 

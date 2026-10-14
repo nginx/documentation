@@ -1,10 +1,16 @@
 ---
 title: Upgrade applications without downtime
+description: "Upgrade Kubernetes applications without downtime using NGINX Gateway Fabric routing."
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1841
+f5-summary: >
+  Shift traffic safely while upgrading application versions so users experience no downtime.
+  Use Gateway API routes with NGINX Gateway Fabric to control rollout of backend changes.
+f5-keywords: "NGINX Gateway Fabric, rolling update, zero downtime, application upgrade, HTTPRoute, blue green"
+f5-audience: operator
 ---
 
 Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.
@@ -52,7 +58,7 @@ As long as you have more than one endpoint ready, clients won't experience downt
 
 - You have deployed your application as a [deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - The pods of the deployment belong to a [service](https://kubernetes.io/docs/concepts/services-networking/service/) so that Kubernetes creates an [endpoint](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoints-v1/) for each pod.
-- You have exposed the application to the clients via an [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) resource that references that service.
+- You have exposed the application to the clients via an [HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/) resource that references that service.
 
 For example, an application can be exposed using a routing rule like below:
 

@@ -1,17 +1,23 @@
 ---
 title: HTTP redirects and rewrites
+description: "Redirect or rewrite HTTP traffic using NGINX Gateway Fabric routes and filters."
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1424
+f5-summary: >
+  Configure HTTP redirects and path rewrites so clients reach the correct URLs.
+  Use these filters when migrating paths or enforcing HTTPS and canonical hosts.
+f5-keywords: "NGINX Gateway Fabric, redirect, rewrite, HTTPRoute, URL, path"
+f5-audience: developer
 ---
 
 Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.
 
 ## Overview
 
-[HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) filters can be used to configure HTTP redirects or rewrites. Redirects return HTTP 3XX responses to a client, instructing it to retrieve a different resource. Rewrites modify components of a client request (such as hostname and/or path) before proxying it upstream.
+[HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/) filters can be used to configure HTTP redirects or rewrites. Redirects return HTTP 3XX responses to a client, instructing it to retrieve a different resource. Rewrites modify components of a client request (such as hostname and/or path) before proxying it upstream.
 
 In this guide, we will set up the coffee application to demonstrate path URL rewriting, and the tea and soda applications to showcase path-based request redirection. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
@@ -27,7 +33,7 @@ We will configure a common gateway for the `URLRewrite` and `RequestRedirect` fi
 
 ### Deploy the Gateway resource for the applications
 
-The [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/) resource is typically deployed by the [Cluster Operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/#roles-and-personas_1). This Gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames. To deploy the Gateway:
+The [Gateway](https://gateway-api.sigs.k8s.io/reference/api-types/gateway/) resource is typically deployed by the [Cluster Operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/). This Gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames. To deploy the Gateway:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -76,8 +82,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 
@@ -524,4 +532,4 @@ Location: http://cafe.example.com:8080/flavors?test=v1
 
 To learn more about redirects and rewrites using the Gateway API, see the following resource:
 
-- [Gateway API Redirects and Rewrites](https://gateway-api.sigs.k8s.io/guides/http-redirect-rewrite/)
+- [Gateway API Redirects and Rewrites](https://gateway-api.sigs.k8s.io/guides/user-guides/http-redirect-rewrite/)

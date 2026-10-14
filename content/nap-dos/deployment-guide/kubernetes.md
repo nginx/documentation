@@ -144,13 +144,13 @@ Your folder should contain the following files:
 - _nginx.conf_
 - _Dockerfile_
 
-To build an image, use the following command, replacing `<your-nginx-dos-image-name>` as appropriate:
+To build an image, use the following command, replacing `<YOUR_NGINX_DOS_IMAGE_NAME>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
-  -t <your-nginx-dos-image-name> .
+  -t <YOUR_NGINX_DOS_IMAGE_NAME> .
 ```
 
 To build a specific version instead, add the two build arguments. For example, on Debian 11:
@@ -161,14 +161,14 @@ sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-key,src=nginx-repo.key \
   --build-arg DOS_VERSION="=37+4.9.6-1~bullseye" \
   --build-arg NGINX_PLUS_VERSION="=37.0.*-1~bullseye" \
-  -t <your-nginx-dos-image-name> .
+  -t <YOUR_NGINX_DOS_IMAGE_NAME> .
 ```
 
 Once you have built the image, push it to your private image repository, which must be accessible to your Kubernetes cluster.
 
 ## Use Manifests to install F5 DOS for NGINX
 
-The `<JWT Token>` argument must be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
+The `<JWT_TOKEN>` argument must be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
 ### Create Manifest files
 
@@ -219,8 +219,8 @@ Set environment variable `DOS_IMAGE_TAG` with your actual nginx-dos image tag.
 From the folder containing the YAML files from the previous step (Suggested as `/manifests`), deploy F5 DOS for NGINX using `kubectl`:
 
 ```shell
-export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
-export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
+export DOS_IMAGE_REPOSITORY=<YOUR_NGINX_DOS_IMAGE_NAME>
+export DOS_IMAGE_TAG=<YOUR_NGINX_DOS_IMAGE_TAG>
 kubectl apply -f manifests/dos-namespace.yaml
 kubectl create secret generic license-token --from-file=license.jwt=license.jwt --type=nginx.com/license --namespace app-protect-dos
 kubectl apply -f dos-manifest/dos-log-default-configmap.yaml
@@ -228,6 +228,8 @@ kubectl apply -f dos-manifest/dos-nginx-conf-configmap.yaml
 kubectl apply -f manifests/dos-deployment.yaml
 kubectl apply -f manifests/dos-service.yaml
 ```
+
+Replace `<YOUR_NGINX_DOS_IMAGE_TAG>` with the tag of your F5 DoS for NGINX image.
 
 It will apply all the configuration defined in the files to your Kubernetes cluster.
 

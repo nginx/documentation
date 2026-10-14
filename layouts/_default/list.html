@@ -1,0 +1,75 @@
+{{ define "main" }}
+
+<main class="content" role="main" data-testid="content">
+    <div data-cms-edit="content" class="text-content list-page">
+        <div class="breadcrumb-layout" data-grid="wide">
+        {{ if not .IsHome }}
+            {{ if not (in .Params.display_breadcrumb "false" ) }}
+            {{ partial "breadcrumb" .}}
+            {{ end }}
+        {{ end }}
+        </div>
+        <div class="list-header-container">
+          {{ $logo := .Params.logo | default "NGINX-product-icon.svg"}}
+          {{ with printf "images/icons/%s" $logo }}
+          <img src="{{. | absURL}}">
+          {{ end }}
+
+          <div class="list-header-title">
+            <h1>{{ .Title }}</h1>
+            {{ if index .Params "f5-subtitle" }}
+              <p>{{ index .Params "f5-subtitle" | markdownify }}</p>
+            {{ end }}
+          </div>
+        </div>
+
+        {{ partial "banner" . }}
+
+        {{ $hasCustomContent := index .Params "f5-landing-page" | default false }}
+
+        {{/* Local override: section pages normally skip .Content entirely unless
+             f5-landing-page is set, which hides page-level notices such as
+             renamed-notice. Render .Content for renamed pages (identified by
+             f5-product-former) so the notice shows above the section cards.
+             Guarded against double-rendering when f5-landing-page is also set. */}}
+        {{ if and (index .Params "f5-product-former") (not $hasCustomContent) }}
+        {{ .Content }}
+        {{ end }}
+
+        {{ if $hasCustomContent }}
+        {{ .Content }}
+
+        <!-- Default index page content -->
+        {{ else }}
+
+    <h2> In this section </h2>
+    <div class="card-section">
+        <div class="card-section-content card-grid" data-testid="header-search-dropdown">
+        {{ range .Pages.ByWeight }}
+            <a href="{{ .Permalink }}" alt="{{ .Title }}" class="card" data-grid="first-two-thirds">
+            <div class="card-container">
+                <div class="card-header">
+                    <h2 class="card-title">{{ .Title }}</h2>
+                </div>
+                <div class="card-content">{{ .Description }}</div>
+            </div>
+            </a>
+        {{ end }}
+        </div>
+    </div>
+
+        {{ end }}
+
+        <hr>
+        {{ if .Page.Lastmod }}
+        <div class="last-modified">
+        {{ partial "page-meta-links" . }}
+        </div>
+        {{ end }}
+
+    </div>
+
+</main>
+
+
+{{ end }}

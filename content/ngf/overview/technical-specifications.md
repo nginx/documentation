@@ -4,8 +4,13 @@ description: NGINX Gateway Fabric technical specifications.
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1842
+f5-summary: >
+  See supported Kubernetes, Gateway API, NGINX, and related component versions for NGINX Gateway Fabric.
+  Use the matrix when planning upgrades or new deployments.
+f5-keywords: "NGINX Gateway Fabric, technical specifications, versions, Kubernetes, Gateway API, compatibility matrix"
+f5-audience: any
 ---
 
 This page describes the technical specifications for NGINX Gateway Fabric.
@@ -18,8 +23,8 @@ The following table lists the software versions NGINX Gateway Fabric supports. O
 
 | NGINX Gateway Fabric | Gateway API | Kubernetes | NGINX OSS | NGINX Plus | NGINX Agent | F5 WAF for NGINX |
 |----------------------|-------------|------------|-----------|------------|-------------|------------------|
-| Edge                 | 1.6.1       | 1.32+      | 1.31.4    | R37.1      | v3.11.4     | 5.15.0           |
-| 2.7.0                | 1.6.1       | 1.32+      | 1.31.4    | R37.1      | v3.11.4     | 5.15.0           |
+| Edge                 | 1.6.2       | 1.32+      | 1.31.6    | R37.1      | v3.12.0     | 5.15.0           |
+| 2.7.2                | 1.6.1       | 1.32+      | 1.31.6    | R37.1      | v3.12.0     | 5.15.0           |
 | 2.6.8                | 1.5.1       | 1.31+      | 1.31.3    | R37.0      | v3.11.2     | 5.13.2           |
 | 2.5.1                | 1.5.1       | 1.31+      | 1.29.7    | R36        | v3.8.0      | ---              |
 | 2.4.2                | 1.4.1       | 1.25+      | 1.29.5    | R36        | v3.7.1      | ---              |

@@ -41,14 +41,18 @@ In a Kubernetes deployment, your approach for upgrading F5 WAF for NGINX depends
 For Helm, first `pull` the chart:
 
 ```shell
-helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <release-name> --untar
+helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <RELEASE_VERSION> --untar
 ```
+
+Replace `<RELEASE_VERSION>` with the Helm chart release version.
 
 Then use the `upgrade` argument with the release name.
 
 ```shell
-helm upgrade <release-name> .
+helm upgrade <RELEASE_NAME> .
 ```
+
+Replace `<RELEASE_NAME>` with the name of your Helm release.
 
 For Manifests you can update the tagged `image:` in your [created Manifest files]({{< ref "/waf/install/kubernetes.md#create-manifest-files" >}}).
 

@@ -1,21 +1,24 @@
 ---
 title: Securing backend traffic using mutual TLS
+description: "Encrypt traffic between NGINX Gateway Fabric and backend pods using mutual TLS."
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1423
+f5-keywords: "NGINX Gateway Fabric, backend mTLS, upstream TLS, BackendTLSPolicy, service mesh alternative"
 f5-summary: >
    NGINX Gateway Fabric can encrypt traffic from the Gateway to a backend application using mutual TLS, configured through BackendTLSPolicy together with the Gateway's backend TLS settings.
    BackendTLSPolicy validates the certificate the backend presents during the TLS handshake, and the Gateway's `tls.backend.clientCertificateRef` presents a client certificate that the backend can validate against its trusted CA.
    This guide uses cert-manager to issue both the gateway client certificate and the backend server certificate from a shared local self-signed CA, so each side can validate the other.
+f5-audience: operator
 ---
 
 Learn how to encrypt HTTP traffic between NGINX Gateway Fabric and your backend pods using mutual TLS between Gateway and Backend applications.
 
 ## Overview
 
-In this guide, you configure the TLS connection from the Gateway to a secure application using [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/) together with the Gateway’s backend TLS settings. The examples show how to validate the backend’s certificate and present a client certificate, so that traffic between the Gateway and the application is protected with mutual TLS.
+In this guide, you configure the TLS connection from the Gateway to a secure application using [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/reference/api-types/policy/backendtlspolicy/) together with the Gateway’s backend TLS settings. The examples show how to validate the backend’s certificate and present a client certificate, so that traffic between the Gateway and the application is protected with mutual TLS.
 
 The intended use case is when a service or backend owner manages their own HTTPS configuration and certificates, and NGINX Gateway Fabric needs to know how to connect securely to this backend over HTTPS while also proving its own identity with a client certificate. This ensures that all traffic between the Gateway and the application is secured.
 
@@ -270,8 +273,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
@@ -470,6 +475,6 @@ kubectl logs "$POD_NAME"
 
 To learn more about configuring backend TLS termination using the Gateway API, see the following resources:
 
-- [Backend TLS Policy](https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/)
+- [Backend TLS Policy](https://gateway-api.sigs.k8s.io/reference/api-types/policy/backendtlspolicy/)
 - [Backend TLS Policy GEP](https://gateway-api.sigs.k8s.io/geps/gep-1897/)
-- [Gateway Backend TLS](https://gateway-api.sigs.k8s.io/reference/spec/#gatewaybackendtls)
+- [Gateway Backend TLS](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#gatewaybackendtls)

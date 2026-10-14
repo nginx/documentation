@@ -17,7 +17,7 @@ If you are an F5 employee, see the following additional guidance on [Maintainers
 
 One way to contribute to the project is by [creating an issue](https://github.com/nginx/documentation/issues/new/choose).
 
-The two most common are enhancements and bug reports. When using the issue templates, they will be automatically labelled.
+The two most common are enhancements and bug reports. When using the issue templates, they will be automatically labeled.
 
 - An enhancement is an improvement of some kind, such as a new document or additional detail for a product feature
 - A bug report draws attention to an issue in documentation, such as an incorrect command or outdated information

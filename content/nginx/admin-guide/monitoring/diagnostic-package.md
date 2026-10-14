@@ -77,7 +77,7 @@ To create NGINX Diagnostic Package:
    sudo ./nginx-supportpkg.sh
    ```
 
-   The created package will be located in the same directory as the current script. It is a `.tar.gz` archive named according to the file name pattern: `support-pkg-<timestamp>.tar.gz`.
+   The created package will be located in the same directory as the current script. It is a `.tar.gz` archive named according to the file name pattern: `support-pkg-<TIMESTAMP>.tar.gz`.
 
 4. After the package has been created, it is recommended to extract and review its contents. Use the `tar` command to extract the archive:
 

@@ -5,12 +5,15 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/support/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
-contentVars:
-   product: NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /app-delivery/support/
+f5-ref-path: /f5ads/support/
 ---
 
-To contact support about F5 ${product}:
+{{< renamed-notice >}}
+
+To contact support about F5 NGINXaaS:
 
 1. Go to the [MyF5 portal](https://my.f5.com) and log in with your F5 account.
 

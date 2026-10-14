@@ -3,13 +3,14 @@ title: Configure external authentication
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
-f5-description: How to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on HTTPRoute.
+f5-product: F5 NGINX Gateway Fabric
+f5-keywords: "NGINX Gateway Fabric, auth_request module, authorization subrequest, ngx_http_auth_request_module"
+description: How to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on HTTPRoute.
 f5-summary: >
-  NGINX Gateway Fabric supports external authentication via the `ExternalAuth` filter on an HTTPRoute.
-  Before proxying a request to the backend, NGINX performs an authorization subrequest to an external service.
-  A 2xx response allows the request through, and any other status rejects it.
-  This feature uses the NGINX [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html).
+  Configure external authentication for an HTTPRoute with the ExternalAuth filter.
+  NGINX sends a subrequest to an authentication service before it proxies each request, and the service's response decides whether the request goes through.
+  This feature uses the NGINX ngx_http_auth_request_module.
+f5-audience: operator
 ---
 
 This guide describes how to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on an HTTPRoute.
@@ -164,8 +165,10 @@ Save the public IP address and port of the Gateway into shell variables:
 
 ```shell
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Deploy the external authentication server
 
@@ -411,4 +414,4 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT
 ## Further reading
 
 - [NGINX HTTP auth request module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)
-- [Gateway API HTTPExternalAuthFilter specification](https://gateway-api.sigs.k8s.io/reference/spec/#httpexternalauthfilter)
+- [Gateway API HTTPExternalAuthFilter specification](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httpexternalauthfilter)

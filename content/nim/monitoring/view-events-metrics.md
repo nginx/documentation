@@ -37,8 +37,10 @@ The examples in this guide demonstrate using a "bearer" token for authentication
 To query the Events API, send a GET request similar to the following example to the Events endpoint:
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 {{< details summary="Example response" >}}
 
@@ -131,7 +133,7 @@ Events can be queried with an exclusive time interval by passing either a `start
 Passing a `startTime` query parameter to an Events API request will return only the events that occurred after the provided timestamp:
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=2022-03-19T08:00:00.000000000Z" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=2022-03-19T08:00:00.000000000Z" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 The `startTime` parameter can use the keyword `now` to signify the timestamp at the time of the request.
@@ -141,13 +143,13 @@ Timestamps relative to `now` can be passed by subtracting a period of time from 
 For example:
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=now-3h" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=now-3h" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 Alternatively, the UUID of an event can be passed as a `startTime`. In this case, the events that occurred after the given event will be returned:
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=c77b71b5-3afa-497a-8e1c-fdc11d676796" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=c77b71b5-3afa-497a-8e1c-fdc11d676796" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ##### End Time
@@ -155,7 +157,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime
 The `endTime` query parameter cannot be passed without a `startTime`. Together they form an exclusive time interval, where the `startTime` is inclusive and `endTime` is non-inclusive. It can be formatted in the same three ways as `startTime`.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=2022-03-19T08:00:00Z&endTime=2022-03-19T12:00:00Z" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime=2022-03-19T08:00:00Z&endTime=2022-03-19T12:00:00Z" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ### Filtering
@@ -171,7 +173,7 @@ Where a `<DIMENSION>` is one of the event's dimensions
 Predicates can be combined into logical expressions using `OR`, `AND`, `(` and `)`. Wildcards (`*`) are supported for matching values.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?filter=category IN ('agent','nms') AND level='debug' AND count > 100" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?filter=category IN ('agent','nms') AND level='debug' AND count > 100" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ### Sorting
@@ -181,7 +183,7 @@ Events can be sorted based on any of their dimensions with the `orderBy` query p
 `orderBy` dimensions are separated by commas and can optionally given an order.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?orderBy=timestamp DESC,id" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?orderBy=timestamp DESC,id" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 The order of the dimensions can be either ascending (ASC) or descending (DESC). By default, that is when the order is omitted, dimensions are sorted in ascending order.
@@ -197,7 +199,7 @@ There are several query parameters related to pagination in the API. By default,
 The `page` query parameter returns the events for the given page number. By default the first page is returned.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?page=3" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?page=3" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 #### Page Size
@@ -205,7 +207,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?page=3" -
 `pageSize` determines how many events are returned per page, up to a maximum of 100. Setting `pageSize` to zero disables pagination.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?pageSize=3" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?pageSize=3" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 #### Page Token
@@ -215,7 +217,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?pageSize=
 If `pageToken` is omitted, a token is automatically generated and returned in the response's metadata. Subsequent requests can then use that token to ensure consistency.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?pageToken=1573653786" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?pageToken=1573653786" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ### Aggregations
@@ -225,7 +227,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?pageToken
 Passing the `includeTotal` query parameter with a value of `true` will return the total number of events of the response. The count of events will be in the response's metadata.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?includeTotal=true" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?includeTotal=true" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ### Query a Single Event
@@ -233,7 +235,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?includeTo
 Querying for a unique event requires only the event's UUID.
 
 ```shell
-curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events/7cb91de6-49ae-4ddc-a8b3-3255e00b9346" -H "Authorization: Bearer <access token>"
+curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events/7cb91de6-49ae-4ddc-a8b3-3255e00b9346" -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 {{< details summary="Example response" >}}

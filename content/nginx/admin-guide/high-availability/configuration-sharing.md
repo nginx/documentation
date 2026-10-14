@@ -188,7 +188,7 @@ Back up the configuration before testing.
 
 - Synchronize configuration and reload F5 NGINX Plus on the peers – `nginx-sync.sh`
 - Display usage information – `nginx-sync.sh -h`
-- Compare configuration between the primary and a peer – `nginx-sync.sh -c <peer-node>`
+- Compare configuration between the primary and a peer – `nginx-sync.sh -c <PEER_NODE>`
 - Compare configuration on the primary to all peers – `nginx-sync.sh -C`
 
 
@@ -220,7 +220,7 @@ You can preconfigure several machines to operate as primary, but must ensure tha
 
 If a peer node fails, it no longer receives configuration updates. The `nginx-sync.sh` script returns an error but continues to distribute the configuration to the remaining peers.
 
-When the node recovers, its configuration is out of date. You can display the configuration differences by running `nginx-sync.sh -c <recovered-peer-node> -d`:
+When the node recovers, its configuration is out of date. You can display the configuration differences by running `nginx-sync.sh -c <RECOVERED_PEER_NODE> -d`:
 
 ```shell
 nginx-sync.sh -c node2.example.com -d

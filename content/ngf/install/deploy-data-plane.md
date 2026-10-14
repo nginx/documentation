@@ -1,17 +1,23 @@
 ---
 title: Deploy a Gateway for data plane instances
+description: "Deploy NGINX data plane instances by creating a Gateway and related custom resources."
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 f5-docs: DOCS-1854
+f5-summary: >
+  Provision data plane instances through a Gateway and adjust them with NGINX custom resources.
+  Use this after installing the control plane when you are ready to serve traffic.
+f5-keywords: "NGINX Gateway Fabric, Gateway, data plane, NginxProxy, deploy instances"
+f5-audience: operator
 ---
 
 ## Overview
 
 This document describes how to use a Gateway to deploy the NGINX data plane, and how to modify it using an NGINX custom resource.
 
-[A Gateway](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
+[A Gateway](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
 
 When a Gateway is attached to a GatewayClass associated with NGINX Gateway Fabric, it creates a Service and an NGINX deployment in the same namespace as the Gateway. This forms the NGINX data plane, handling requests.
 

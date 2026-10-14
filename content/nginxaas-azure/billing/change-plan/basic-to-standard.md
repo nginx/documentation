@@ -30,10 +30,12 @@ To export an ARM template for an existing deployment:
 
 ```shell
 az deployment group create \
-    --subscription=<deployment subscription ID> \
-    --resource-group=<resource group name> \
+    --subscription=<SUBSCRIPTION_ID> \
+    --resource-group=<RESOURCE_GROUP> \
     --template-file=</path/to/template.json>
 ```
+
+Replace `<SUBSCRIPTION_ID>` with your Azure subscription ID and `<RESOURCE_GROUP>` with the name of your Azure resource group.
 
 ## Further reading
 

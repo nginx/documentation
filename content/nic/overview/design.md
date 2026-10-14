@@ -16,7 +16,7 @@ The intended audience for this information is primarily the two following groups
 
 We assume that the reader is familiar with core Kubernetes concepts, such as Pods, Deployments, Services, and Endpoints. For an understanding of how NGINX itself works, you can read the ["Inside NGINX: How We Designed for Performance & Scale"](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/) blog post.
 
-For conciseness in diagrams, NGINX Ingress Controller is often labelled "IC" on this page.
+For conciseness in diagrams, NGINX Ingress Controller is often labeled "IC" on this page.
 
 ## NGINX Ingress Controller at a high level
 
@@ -74,7 +74,7 @@ This table describes each connection, starting with its type:
 |16|Signal| The _NGINX master_ controls the [lifecycle of _NGINX workers_](https://nginx.org/en/docs/control.html#reconfiguration) it creates workers with the new configuration and shutdowns workers with the old configuration.
 |17|File I/O| An _NGINX worker_ writes logs to its _stdout_ and _stderr_, which are collected by the container runtime.
 |18|UDP| An _NGINX worker_ sends the HTTP upstream server response latency logs via the Syslog protocol over the UNIX socket `/var/lib/nginx/nginx-syslog.sock` to _NGINX Ingress Controller_. In turn, _NGINX Ingress Controller_ analyzes and transforms the logs into Prometheus metrics.
-|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic//configuration/global-configuration/globalconfiguration-resource.md" >}}).
+|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}).
 |20|HTTP,HTTPS,TCP,UDP| An _NGINX worker_ sends traffic to and receives traffic from the _backends_.
 |21|HTTP| _Admin_ can connect to the [NGINX stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html#stub_status) using port 8080 via an _NGINX worker_. By default, NGINX only allows connections from `localhost`.
 

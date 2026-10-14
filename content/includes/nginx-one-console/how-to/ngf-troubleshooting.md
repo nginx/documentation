@@ -10,17 +10,19 @@ If you encounter issues connecting your instances to NGINX One Console, try the 
 Check the NGINX Agent version:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent -v
+kubectl exec -it -n <NAMESPACE> <NGINX_POD_NAME> -- nginx-agent -v
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX is deployed and `<NGINX_POD_NAME>` with the name of your NGINX Pod.
 
 Check the NGINX Agent configuration:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_pod_name> -- cat /etc/nginx-agent/nginx-agent.conf
+kubectl exec -it -n <NAMESPACE> <NGINX_POD_NAME> -- cat /etc/nginx-agent/nginx-agent.conf
 ```
 
 Check NGINX Agent logs:
 
 ```shell
-kubectl exec -it -n <namespace> <nginx_pod_name> -- nginx-agent
+kubectl exec -it -n <NAMESPACE> <NGINX_POD_NAME> -- nginx-agent
 ```

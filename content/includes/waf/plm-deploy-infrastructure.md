@@ -93,7 +93,7 @@ The PLM chart does not generate certificates. You must create the five Secrets l
 If you're enabling TLS on an existing installation, the storage backend restarts and objects written before the switch can become orphaned. See the [APPolicy shows `invalid` with `unexpected EOF` after enabling TLS](#troubleshoot-the-deployment) entry in the troubleshooting section. A fresh installation with TLS enabled from the start doesn't have this issue.
 {{< /call-out >}}
 
-Create the Secrets from your CA and certificate files before installing. The chart expects Secret names in the form `<release>-f5-waf-seaweedfs-<component>` — for the `plm` release name used in this tutorial, those are:
+Create the Secrets from your CA and certificate files before installing. The chart expects Secret names in the form `<RELEASE>-f5-waf-seaweedfs-<COMPONENT>` — for the `plm` release name used in this tutorial, those are:
 
 ```shell
 kubectl create secret generic plm-f5-waf-seaweedfs-ca-cert \

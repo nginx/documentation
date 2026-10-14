@@ -3,8 +3,13 @@ title: Configure policy sources
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
 description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, an HTTP server, or Policy Lifecycle Management.
+f5-summary: >
+  Fetch compiled WAF bundles from F5 NGINX Instance Manager, F5 NGINX One Console, direct HTTP/HTTPS URLs, or Policy Lifecycle Management (PLM).
+  Choose a source type that matches how your organization builds and distributes WAF policies.
+f5-keywords: "NGINX Gateway Fabric, WAF policy source, Instance Manager, NGINX One Console, HTTP bundle, WAFPolicy"
+f5-audience: operator
 ---
 
 NGINX Gateway Fabric supports four policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, direct HTTP/HTTPS URLs, and Policy Lifecycle Management (PLM). For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}). For a walkthrough using PLM, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
@@ -131,7 +136,7 @@ EOF
 
 This policy overrides the gateway-level policy for the `customers` route only. Any other routes attached to the gateway continue to use the gateway-level `ngfBlocking` policy.
 
-If two `WAFPolicy` resources compile to the same logical policy name, NGINX Gateway Fabric rejects the configuration. See [Duplicate policy name error]({{< ref "/ngf/waf-integration/troubleshooting.md#duplicate-policy-name-error" >}}).
+`WAFPolicy` resources that reference the same upstream bundle are deduplicated automatically. Rejection applies only to distinct policy or log-profile bundles that embed the same logical name. See [Duplicate policy name error]({{< ref "/ngf/waf-integration/troubleshooting.md#duplicate-policy-name-error" >}}). When multiple `WAFPolicy` resources share an upstream bundle — the same source URL with the same `policyName` or `policyUID` for NGINX Instance Manager, or the same `policyObjectID` or `policyVersionID` for NGINX One Console — they must use consistent `polling` settings. Otherwise, all but one are marked `Conflicted`. See [WAFPolicy marked Conflicted for mismatched polling settings]({{< ref "/ngf/waf-integration/troubleshooting.md#wafpolicy-marked-conflicted-for-mismatched-polling-settings" >}}).
 
 ---
 
@@ -180,7 +185,7 @@ spec:
     name: gateway
   policySource:
     n1cSource:
-      url: https://<tenant>.console.ves.volterra.io
+      url: https://<TENANT>.console.ves.volterra.io
       namespace: default
       policyObjectID: pol_12345_WTHGmDEX9qnbVjQ
       policyVersionID: pv_Tm__12345oWmJgwxiKlHAg
@@ -194,7 +199,7 @@ spec:
         server: syslog-svc.default.svc.cluster.local:514
     logSource:
       n1cSource:
-        url: https://<tenant>.console.ves.volterra.io
+        url: https://<TENANT>.console.ves.volterra.io
         namespace: default
         profileObjectID: "lp_8s8uZxLpThWwEGF7LTn_rA"
       auth:
@@ -203,7 +208,7 @@ spec:
 EOF
 ```
 
-Replace `<tenant>` with your NGINX One Console tenant hostname. The `namespace` field refers to the NGINX One Console namespace where the policy resides.
+Replace `<TENANT>` with your NGINX One Console tenant hostname. The `namespace` field refers to the NGINX One Console namespace where the policy resides.
 
 {{< call-out class="tip" title="Tip: Pin a policy version" >}} To pin a specific policy version, set `policyVersionID`. A pinned version always resolves to the same compiled bundle. Turn off polling to avoid unnecessary network requests. If you use only `policyName` or `policyObjectID` without a version pin, NGINX Gateway Fabric fetches the latest compiled bundle on each reconciliation or poll cycle. {{< /call-out >}}
 
@@ -233,7 +238,7 @@ NGINX Instance Manager and NGINX One Console don't show which F5 WAF policies ar
 
 This is intentional. NGINX Gateway Fabric pulls compiled bundles from the management plane and deploys them directly in Kubernetes using native manifests, not through NGINX Instance Manager or NGINX One Console. This design lets you create and compile policies, then make them available to NGINX Gateway Fabric through the API, without a console-managed deployment step.
 
-F5 plans to add policy association visibility for NGINX Instance Manager and NGINX One Console in a future release. In the meantime, use `kubectl describe wafpolicy <name>` to check deployment status.
+F5 plans to add policy association visibility for NGINX Instance Manager and NGINX One Console in a future release. In the meantime, use `kubectl describe wafpolicy <NAME>` to check deployment status.
 
 ---
 
@@ -282,7 +287,7 @@ spec:
     logSource:
       nimSource:
         url: https://nim.example.com
-        profileName: "secops_dashboard_ngf_otel"
+        profileName: "secops_dashboard_f5_ngf"
       auth:
         secretRef:
           name: nim-credentials
@@ -326,7 +331,7 @@ spec:
   type: N1C
   policySource:
     n1cSource:
-      url: https://<tenant>.console.ves.volterra.io
+      url: https://<TENANT>.console.ves.volterra.io
       namespace: default
       policyName: "ngfExample"
     auth:
@@ -339,7 +344,7 @@ spec:
         server: localhost:1514
     logSource:
       n1cSource:
-        url: https://<tenant>.console.ves.volterra.io
+        url: https://<TENANT>.console.ves.volterra.io
         namespace: default
         profileName: "secops_dashboard"
       auth:

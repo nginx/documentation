@@ -42,8 +42,8 @@ When you work with such archives, consider the following:
 
 {{< call-out class="tip" >}}
 
-Before you unpack an archive, run the `tar -tvzf <archive-name>.tar.gz` command. It displays the files and directories in that archive, without overwriting anything.
-You'll then know where files are written when you extract an archive with a command like `tar -xvzf <archive-name>.tar.gz`.
+Before you unpack an archive, run the `tar -tvzf <ARCHIVE_NAME>.tar.gz` command. It displays the files and directories in that archive, without overwriting anything.
+You'll then know where files are written when you extract an archive with a command like `tar -xvzf <ARCHIVE_NAME>.tar.gz`.
 
 {{< /call-out >}}
 

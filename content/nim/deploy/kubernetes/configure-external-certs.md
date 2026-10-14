@@ -42,11 +42,11 @@ NGINX Instance Manager uses mutual TLS (mTLS) for internal service-to-service co
 
 **Default flow (chart-generated)**
 
-When you don't set any `externalCerts` values, the chart generates a single Kubernetes Secret named `<release>-internal-certs`. This Secret contains the CA certificate, CA private key, and every service's server and client certificate pair. All pods mount this one Secret. Use this approach for development and evaluation only.
+When you don't set any `externalCerts` values, the chart generates a single Kubernetes Secret named `<RELEASE_NAME>-internal-certs`, where `<RELEASE_NAME>` is the name of your Helm release. This Secret contains the CA certificate, CA private key, and every service's server and client certificate pair. All pods mount this one Secret. Use this approach for development and evaluation only.
 
 **BYOC flow (external certificates)**
 
-When you set one or more `externalCerts.<service>.enabled` values to `true`, the chart switches to per-service Secrets. The chart only generates Secrets for services where `enabled` is `false`. For services where `enabled` is `true`, you must create the Secret in the cluster before running `helm install` or `helm upgrade`.
+When you set one or more `externalCerts.<SERVICE>.enabled` values to `true` (where `<SERVICE>` is the service name, such as `core` or `dpm`), the chart switches to per-service Secrets. The chart only generates Secrets for services where `enabled` is `false`. For services where `enabled` is `true`, you must create the Secret in the cluster before running `helm install` or `helm upgrade`.
 
 {{< call-out class="important" >}}
 When any `externalCerts.*.enabled` value is `true`, the chart no longer creates the monolithic `nms-internal-certs` Secret. All workloads mount per-service Secrets instead.
@@ -74,6 +74,8 @@ The following table lists every Secret used by NGINX Instance Manager, its defau
 | apigw HTTPS | user-defined (for example, `nim-apigw-tls`) | `kubernetes.io/tls` | `tls.crt`, `tls.key` |
 {{</table >}}
 
+In the table, `<NAMESPACE>` is the Kubernetes namespace where NGINX Instance Manager is installed.
+
 {{< call-out class="important" >}}
 The `integrations` Secret must also contain `dpm-client.pem`, `dpm-client.key`, `core-client.pem`, and `core-client.key`. The integrations service calls both `dpm` and `core` over mTLS.
 {{< /call-out >}}
@@ -87,15 +89,15 @@ All certificates must be signed by the same CA. The following table lists the mi
 {{<table>}}
 | Certificate | CN | SANs (DNS) | SANs (IP) | Key usage |
 |-------------|----|-----------|-----------|-----------|
-| `core-server` | `core.<namespace>` | `core`, `core.<ns>.svc`, `core.<ns>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
+| `core-server` | `core.<NAMESPACE>` | `core`, `core.<NAMESPACE>.svc`, `core.<NAMESPACE>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
 | `core-client` | `core-client` | `core-api-service`, `core-grpc-service` | — | `clientAuth` |
-| `dpm-server` | `dpm.<namespace>` | `dpm`, `dpm.<ns>.svc`, `dpm.<ns>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
+| `dpm-server` | `dpm.<NAMESPACE>` | `dpm`, `dpm.<NAMESPACE>.svc`, `dpm.<NAMESPACE>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
 | `dpm-client` | `dpm-client` | `dpm-api-service`, `dpm-grpc-service` | — | `clientAuth` |
-| `ingestion-server` | `ingestion.<namespace>` | `ingestion`, `ingestion.<ns>.svc`, `ingestion.<ns>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
+| `ingestion-server` | `ingestion.<NAMESPACE>` | `ingestion`, `ingestion.<NAMESPACE>.svc`, `ingestion.<NAMESPACE>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
 | `ingestion-client` | `ingestion-client` | `ingestion-api-service`, `ingestion-grpc-service` | — | `clientAuth` |
-| `integrations-server` | `integrations.<namespace>` | `integrations`, `integrations.<ns>.svc`, `integrations.<ns>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
+| `integrations-server` | `integrations.<NAMESPACE>` | `integrations`, `integrations.<NAMESPACE>.svc`, `integrations.<NAMESPACE>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
 | `integrations-client` | `integrations-client` | `integrations-api-service`, `integrations-grpc-service` | — | `clientAuth` |
-| `secmon-server` | `secmon.<namespace>` | `secmon`, `secmon.<ns>.svc`, `secmon.<ns>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
+| `secmon-server` | `secmon.<NAMESPACE>` | `secmon`, `secmon.<NAMESPACE>.svc`, `secmon.<NAMESPACE>.svc.cluster.local` | `0.0.0.0`, `127.0.0.1` | `serverAuth`, `clientAuth` |
 | `secmon-client` | `secmon-client` | `secmon-api-service`, `secmon-grpc-service` | — | `clientAuth` |
 | `apigw-client` | `apigw-client` | `apigw-api-service`, `apigw-grpc-service` | — | `clientAuth` |
 | apigw HTTPS | Your domain (for example, `nim.example.com`) | Your public domain(s) | Optional | `serverAuth` |
@@ -159,15 +161,17 @@ Use this procedure when you want a trusted TLS certificate for the external HTTP
    ```shell
    helm upgrade --install nms ./nim-chart \
      --namespace nms --create-namespace \
-     --set adminPasswordHash=<bcrypt-hash> \
+     --set adminPasswordHash=<BCRYPT_HASH> \
      --set apigw.tlsSecret=nim-apigw-tls \
      --set apigw.serverName=nim.example.com
    ```
 
+   Replace `<BCRYPT_HASH>` with the bcrypt hash of your admin password.
+
    Or, set the values in `values.yaml`:
 
    ```yaml
-   adminPasswordHash: "<bcrypt-hash>"
+   adminPasswordHash: "<BCRYPT_HASH>"
    apigw:
      tlsSecret: "nim-apigw-tls"
      serverName: "nim.example.com"
@@ -330,7 +334,7 @@ kubectl create secret tls nim-apigw-tls \
 ```shell
 helm upgrade --install nms ./nim-chart \
   --namespace nms \
-  --set adminPasswordHash=<bcrypt-hash> \
+  --set adminPasswordHash=<BCRYPT_HASH> \
   --set externalCerts.ca.enabled=true \
   --set externalCerts.core.enabled=true \
   --set externalCerts.dpm.enabled=true \
@@ -345,7 +349,7 @@ helm upgrade --install nms ./nim-chart \
 Or, set the values in `values.yaml`:
 
 ```yaml
-adminPasswordHash: "<bcrypt-hash>"
+adminPasswordHash: "<BCRYPT_HASH>"
 apigw:
   tlsSecret: "nim-apigw-tls"
   serverName: "nim.example.com"
@@ -498,8 +502,10 @@ All certificate scenarios (default, BYOC, and mixed) are fully supported on Open
 
 ```shell
 kubectl get secrets -n nms
-kubectl describe secret <secret-name> -n nms
+kubectl describe secret <SECRET_NAME> -n nms
 ```
+
+Replace `<SECRET_NAME>` with the name of the Kubernetes Secret you want to inspect.
 
 ### Certificate verification fails
 

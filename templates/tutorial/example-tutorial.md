@@ -110,7 +110,7 @@ Heat the kettle water to between 90°C and 96°C (194°F to 205°F). Water below
 
 2. Start the timer.
 
-3. Pour 30 grams of water slowly and evenly over the grounds in a small circular motion, starting from the centre and moving outward. This first pour is called the bloom.
+3. Pour 30 grams of water slowly and evenly over the grounds in a small circular motion, starting from the center and moving outward. This first pour is called the bloom.
 
     The grounds will bubble and expand as trapped carbon dioxide — produced during roasting and released during brewing — escapes. The bloom indicates the beans are fresh. If there is no bubbling, the beans are likely stale.
 
@@ -152,7 +152,7 @@ Evaluating the cup immediately after brewing helps you identify one specific adj
 In this tutorial, you:
 
 - Calibrated a burr grinder to a medium-coarse setting by examining the ground particle size and adjusting the dial by feel.
-- Prepared a pour-over brewer by seating and rinsing the filter, and levelling the coffee bed to ensure even water flow.
+- Prepared a pour-over brewer by seating and rinsing the filter, and leveling the coffee bed to ensure even water flow.
 - Executed a bloom pour to release carbon dioxide, then completed the brew using staged pours to control extraction time.
 - Evaluated the finished cup against a set of observable characteristics and identified one grind adjustment for the next brew.
 

@@ -303,12 +303,14 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
    ```nginx
    upstream upstream_app_pool {
-       server <internal IP address of nginx-plus-app-1>;
-       server <internal IP address of nginx-plus-app-2>;
+       server <NGINX_PLUS_APP_1_IP>;
+       server <NGINX_PLUS_APP_2_IP>;
        zone upstream-apps 64k;
        sticky cookie GCPPersist expires=300;
    }
    ```
+
+   Replace `<NGINX_PLUS_APP_1_IP>` with the internal IP address of `nginx-plus-app-1` and `<NGINX_PLUS_APP_2_IP>` with the internal IP address of `nginx-plus-app-2`.
 
    Directive documentation: [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [`sticky cookie`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream), [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)
 
@@ -346,8 +348,10 @@ Both the configuration and content files are available at the [NGINX GitHub repo
     - Access the **index.html** page either in a browser or by running this `curl` command.
 
       ```shell
-      curl http://<external-IP-address>
+      curl http://<EXTERNAL_IP>
       ```
+
+      Replace `<EXTERNAL_IP>` with the external IP address of your instance.
 
     - Access its NGINX Plus live activity monitoring dashboard in a browser, at:
 
@@ -560,8 +564,8 @@ Both the configuration and content files are available at the [NGINX GitHub repo
 
    ```nginx
    upstream upstream_app_pool {
-       server <internal IP address of nginx-plus-app-1-vm>;
-       server <internal IP address of nginx-plus-app-2-vm>;
+       server <NGINX_PLUS_APP_1_IP>;
+       server <NGINX_PLUS_APP_2_IP>;
        zone upstream-apps 64k;
        sticky cookie GCPPersist expires=300;
    }
@@ -603,8 +607,10 @@ Both the configuration and content files are available at the [NGINX GitHub repo
    - Access the **index.html** page either in a browser or by running this `curl` command.
 
       ```shell
-     curl http://<external-IP-address-of-NGINX-Plus-server>
+     curl http://<NGINX_PLUS_EXTERNAL_IP>
      ```
+
+      Replace `<NGINX_PLUS_EXTERNAL_IP>` with the external IP address of your NGINX Plus server.
 
    - Access the NGINX Plus live activity monitoring dashboard in a browser, at:
 
@@ -894,8 +900,10 @@ Update the NGINX Plus configuration on the two LB instances ({{<nb>}}**nginx-pl
 5. Verify that NGINX Plus is load balancing traffic among the four application instance groups. Do this by running this command on a separate client machine:
 
    ```shell
-   while true; do curl -s <LB-external-IP-address> | grep Server: ;done
+   while true; do curl -s <LB_EXTERNAL_IP> | grep Server: ;done
    ```
+
+   Replace `<LB_EXTERNAL_IP>` with the external IP address of the load balancer.
 
    If load balancing is working properly, the unique **Server** field from the index page for each application instance appears in turn.
 
@@ -967,8 +975,10 @@ Verify that GCE network load balancer is properly routing traffic to both NGINX�
 Working on a separate client machine, run this command, using the static IP address you set in the previous section for GCE network load balancer:
 
 ```shell
-while true; do curl -s <GCE-Network-LB-external-static-IP-address> | grep Server: ;done
+while true; do curl -s <GCE_LB_EXTERNAL_IP> | grep Server: ;done
 ```
+
+Replace `<GCE_LB_EXTERNAL_IP>` with the external static IP address of your GCE network load balancer.
 
 Alternatively, you can use a web browser to access this URL:
 

@@ -5,10 +5,13 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/access-management/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: F5 NGINXaaS for Google Cloud
+canonical: /app-delivery/google/deploy/access-management/
+f5-ref-path: /f5ads/google/deploy/access-management/
 ---
 
-
+{{< renamed-notice >}}
 
 F5 NGINXaaS for Google Cloud (NGINXaaS) uses Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, with WIF configured, your NGINXaaS deployment can perform the following integrations:
 
@@ -32,7 +35,7 @@ To learn more, see [Google's Workload Identity Federation documentation](https:/
 1. Create a workload identity pool. See [Google's documentation on configuring Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#create-pool-provider) for a step-by-step guide.
 1. Create an OIDC workload identity pool provider. See [Google's documentation on creating a workload identity pool provider](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#create-pool-provider) for a step-by-step guide. Set up the provider settings as follows:
     - `Issuer URL` must be `https://accounts.google.com`.
-    - `Allowed audiences` must contain the full canonical resource name of the workload identity pool provider, for example, `https://iam.googleapis.com/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`. If `Allowed audiences` is empty, the full canonical resource name of the workload identity pool provider will be included by default.
+    - `Allowed audiences` must contain the full canonical resource name of the workload identity pool provider, for example, `https://iam.googleapis.com/projects/<PROJECT_NUMBER>/locations/<LOCATION>/workloadIdentityPools/<POOL_ID>/providers/<PROVIDER_ID>`. If `Allowed audiences` is empty, the full canonical resource name of the workload identity pool provider will be included by default.
     - Add the following **attribute mapping**: `google.subject=assertion.sub`.
     - Add the following **attribute condition**: `assertion.sub=='$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID'`, where `$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID` is the unique ID of your NGINXaaS deployment's service account. This ID can be found in the `F5 NGINXaaS Service Account Unique ID` field under the **Cloud Info** section in the **Details** tab of your deployment.
 
@@ -108,7 +111,7 @@ In the NGINXaaS Console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
-1. Enter your provider name, for example, `projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`, under **Workload Identity Pool Provider Name**.
+1. Enter your provider name, for example, `projects/<PROJECT_NUMBER>/locations/<LOCATION>/workloadIdentityPools/<POOL_ID>/providers/<PROVIDER_ID>`, under **Workload Identity Pool Provider Name**.
 1. Select **Update**.
 
 ## What's next

@@ -74,20 +74,20 @@ The image may contain a particular version of NGINX Plus or contain a bundle of 
 For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the command:
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-plus/<nginxplus-image-type>/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
+curl https://private-registry.nginx.com/v2/nginx-plus/<NGINXPLUS_IMAGE_TYPE>/tags/list --key <NGINX_REPO.KEY> --cert <NGINX_REPO.CRT> | jq
 ```
 
 where:
-- the `<nginxplus-image-type>` is the location of images in NGINX Plus private registry:
+- the `<NGINXPLUS_IMAGE_TYPE>` is the location of images in NGINX Plus private registry:
   - `base` is NGINX Plus only
   - `rootless-base` is NGINX Plus run from `nginx` user
   - `agent` is NGINX Plus along with NGINX Agent in a single image
   - `rootless-agent` is NGINX Plus with NGINX Agent both run from `nginx` user
   - `modules` is NGINX Plus dynamic modules <!-- As described in internal issue SE-3 -->
 
-- the `<nginx-repo.key>` is a local path to your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
+- the `<NGINX_REPO.KEY>` is a local path to your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
 
-- the `<nginx-repo.crt>` is a local path to your client certificate from MyF5, for example,`/etc/ssl/nginx/nginx-repo-x12345.crt`
+- the `<NGINX_REPO.CRT>` is a local path to your client certificate from MyF5, for example,`/etc/ssl/nginx/nginx-repo-x12345.crt`
 
 - the `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
 
@@ -103,48 +103,48 @@ where:
 
 Next, pull the image you need from `private-registry.nginx.com`.
 
-To pull an image, replace `<version-tag>` with the specific NGINX Plus version or the NGINX Plus version and OS version you need.
+To pull an image, replace `<VERSION_TAG>` with the specific NGINX Plus version or the NGINX Plus version and OS version you need.
 
 For NGINX Plus, run:
 
 ```shell
-docker pull private-registry.nginx.com/nginx-plus/base:<version-tag>
+docker pull private-registry.nginx.com/nginx-plus/base:<VERSION_TAG>
 ```
 
 For NGINX Plus with NGINX Agent version 2, run:
 
 ```shell
-docker pull private-registry.nginx.com/nginx-plus/agent:<version-tag>
+docker pull private-registry.nginx.com/nginx-plus/agent:<VERSION_TAG>
 ```
 
 For NGINX Plus with NGINX Agent version 3, run:
 
 ```shell
-docker pull private-registry.nginx.com/nginx-plus/agentv3:<version-tag>
+docker pull private-registry.nginx.com/nginx-plus/agentv3:<VERSION_TAG>
 ```
 
 For NGINX Plus installed from `nginx` user (rootless installation), run:
 
 ```shell
-docker pull private-registry.nginx.com/nginx-plus/rootless-base:<version-tag>
+docker pull private-registry.nginx.com/nginx-plus/rootless-base:<VERSION_TAG>
 ```
 
 For NGINX Plus with NGINX Agent version 2 installed from `nginx` user (rootless installation), run:
 
 ```shell
-docker pull private-registry.nginx.com/nginx-plus/rootless-agent:<version-tag>
+docker pull private-registry.nginx.com/nginx-plus/rootless-agent:<VERSION_TAG>
 ```
 
 For NGINX Plus with NGINX Agent version 3 installed from `nginx` user (rootless installation), run:
 
 ```shell
-docker pull private-registry.nginx.com/nginx-plus/rootless-agentv3:<version-tag>
+docker pull private-registry.nginx.com/nginx-plus/rootless-agentv3:<VERSION_TAG>
 ```
 
 For NGINX modules, run:<!-- Is this enough info?-->
 
 ```shell
-docker pull private-registry.nginx.com/nginx-plus/modules:<version-tag>
+docker pull private-registry.nginx.com/nginx-plus/modules:<VERSION_TAG>
 ```
 
 {{< include "security/jwt-password-note.md" >}}
@@ -158,17 +158,17 @@ After pulling the image, tag it and upload it to your private registry.
 Log in to your private registry:
 
 ```shell
-docker login <my-docker-registry>
+docker login <MY_DOCKER_REGISTRY>
 ```
 
-Tag and push the image. Replace `<my-docker-registry>` with your registry’s path and `<version-tag>` with the your NGINX Plus version and/or OS version:
+Tag and push the image. Replace `<MY_DOCKER_REGISTRY>` with your registry’s path and `<VERSION_TAG>` with the your NGINX Plus version and/or OS version:
 
 ```shell
-docker tag private-registry.nginx.com/nginx-plus/base:<version-tag> <my-docker-registry>/nginx-plus/base:<version-tag>
+docker tag private-registry.nginx.com/nginx-plus/base:<VERSION_TAG> <MY_DOCKER_REGISTRY>/nginx-plus/base:<VERSION_TAG>
 ```
 
 ```shell
-docker push <my-docker-registry>/nginx-plus/base:<version-tag>
+docker push <MY_DOCKER_REGISTRY>/nginx-plus/base:<VERSION_TAG>
 ```
 
 ### Run the NGINX Plus container
@@ -185,6 +185,8 @@ sudo docker run \
 --runtime=runc \
 -d <YOUR_REGISTRY>/nginx-plus/base:<VERSION_TAG>
 ```
+
+Replace `<YOUR_REGISTRY>` with the path to your private registry.
 
 To start the Docker container with NGINX Plus and NGINX Agent,
 you will need to additionally pass the NGINX One data plane key as the `NGINX_AGENT_SERVER_TOKEN` environment variable. For more information, see [Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}):

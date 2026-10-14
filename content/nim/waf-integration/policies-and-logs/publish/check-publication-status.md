@@ -32,8 +32,10 @@ Example:
 
 ```shell
 curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/deployments/associations/ignore-xss" \
-  -H "Authorization: Bearer <access token>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host and `<ACCESS_TOKEN>` with your access token.
 
 In the response, check the `lastDeploymentDetails` field under `instance` or `instanceGroup.instances` for deployment results.
 
@@ -49,7 +51,7 @@ Example:
 
 ```shell
 curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/deployments/logprofiles/associations/default-log" \
-  -H "Authorization: Bearer <access token>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 The response includes a `lastDeploymentDetails` field for each instance or instance group.
@@ -62,14 +64,16 @@ To view deployment status for a specific instance, provide the system UID and in
 
 | Method | Endpoint                                                         |
 |--------|------------------------------------------------------------------|
-| GET    | `/api/platform/v1/systems/{system-uid}/instances/{instance-uid}` |
+| GET    | `/api/platform/v1/systems/{system_uid}/instances/{instance_uid}` |
 
 Example:
 
 ```shell
-curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/<system-uid>/instances/<instance-uid>" \
-  -H "Authorization: Bearer <access token>"
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/{system_uid}/instances/{instance_uid}" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace `{system_uid}` with the unique identifier (UID) of the system and `{instance_uid}` with the unique identifier (UID) of the instance.
 
 In the response, the `lastDeploymentDetails` field shows deployment status, timestamps, and any related error messages.
 
@@ -82,13 +86,15 @@ You can use this ID to check the final result of the publication.
 
 | Method | Endpoint                                                         |
 |--------|------------------------------------------------------------------|
-| GET    | `/api/platform/v1/systems/instances/deployments/{deployment-id}` |
+| GET    | `/api/platform/v1/systems/instances/deployments/{deployment_id}` |
 
 Example:
 
 ```shell
-curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/instances/deployments/<deployment-id>" \
-  -H "Authorization: Bearer <access token>"
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/instances/deployments/{deployment_id}" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+Replace `{deployment_id}` with the ID of the deployment.
 
 The response includes detailed deployment information, including success or failure status and any compiler error messages.
