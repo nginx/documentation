@@ -27,9 +27,9 @@ Snippets should only be used by advanced NGINX users who need more control over 
 
 Users can configure Snippets through either the `SnippetsFilter` or `SnippetsPolicy` APIs.
 
-`SnippetsFilter` can be an [HTTPRouteFilter](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httproutefilter) or [GRPCRouteFilter](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#grpcroutefilter), that can be defined in an HTTPRoute/GRPCRoute rule and is intended to modify NGINX configuration specifically for that Route rule. `SnippetsFilter` is an `extensionRef` type filter, and must be in the same namespace as the Route it is referenced on.
+`SnippetsFilter` can be an [HTTPRouteFilter](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httproutefilter) or [GRPCRouteFilter](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#grpcroutefilter). You define it in an HTTPRoute or GRPCRoute rule to change NGINX configuration for that Route rule. `SnippetsFilter` is an `extensionRef` type filter and must be in the same namespace as the Route it references. `SnippetsFilter` supports the following contexts: `main`, `http`, `http.server`, and `http.server.location`.
 
-`SnippetsPolicy` is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can only be applied to a Gateway(s) in the same namespace as the `SnippetsPolicy`. `SnippetsPolicy` affects the Gateway and all Routes attached to it, and is meant to contrast the route-focused `SnippetsFilter`. 
+`SnippetsPolicy` is a [Direct PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that you can apply only to Gateways in the same namespace. `SnippetsPolicy` affects the Gateway and all Routes attached to it. This contrasts with the route-focused `SnippetsFilter`. `SnippetsPolicy` supports the following contexts: `main`, `http`, `http.server`, `http.server.location`, `stream`, and `stream.server`. The `stream` and `stream.server` contexts let you inject configuration for Gateway-managed TCP and UDP traffic.
 
 ## Disadvantages of Snippets
 
@@ -64,7 +64,8 @@ There are endless ways to use `SnippetsFilters` to modify NGINX configuration, a
 
 `SnippetsPolicies` share many of the same best practices as `SnippetsFilters` but with a couple of adjustments:
 
-1. `SnippetsPolicy` access should be limited to Cluster operators. Additionally, since `SnippetsPolicies` use the `targetRefs` field to specify which resources to target, this means there is no need for an Application developer to reference it on a Route like the `SnippetsFilter` does. 
+1. `SnippetsPolicy` access should be limited to Cluster operators. Additionally, since `SnippetsPolicies` use the `targetRefs` field to specify which resources to target, this means there is no need for an Application developer to reference it on a Route like the `SnippetsFilter` does.
+1. When using the `stream` or `stream.server` contexts, verify that the Snippet directives are valid for the NGINX stream module. HTTP directives aren't valid in stream contexts and will cause reload failures.
 
 ## Setup
 
@@ -123,7 +124,6 @@ GW_PORT=<PORT_NUMBER>
 Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /call-out >}}
-
 
 Create HTTPRoutes for the coffee and tea applications:
 
@@ -483,11 +483,74 @@ Request ID: dfb42090e331b6ae31ed894b9b35d38d
 
 This shows the `SnippetsPolicy` affecting all of the Gateway, in contrast to the `SnippetsFilter` that only affects the coffee HTTPRoute.
 
+## Use stream contexts with SnippetsPolicy
+
+`SnippetsPolicy` supports the `stream` and `stream.server` contexts for injecting NGINX configuration into stream blocks. Use these contexts to customize TCP and UDP traffic handling for Gateway-managed listeners.
+
+The `stream` context injects directives into the top-level stream block. The `stream.server` context injects directives into each stream server block.
+
+{{< call-out class="note" >}} The `stream` and `stream.server` contexts are only available in `SnippetsPolicy`. `SnippetsFilter` doesn't support stream contexts because it's scoped to HTTP and gRPC routes. {{< /call-out >}}
+
+### Create a SnippetsPolicy with stream contexts
+
+Create a `SnippetsPolicy` named `stream-snippets` that uses the `stream` and `stream.server` contexts:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: SnippetsPolicy
+metadata:
+  name: stream-snippets
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: gateway
+  snippets:
+    - context: stream
+      value: log_format stream_fmt '$remote_addr [$time_local] $protocol';
+    - context: stream.server
+      value: proxy_timeout 10s;
+EOF
+```
+
+This `SnippetsPolicy` does the following:
+
+- Adds a custom log format in the `stream` context using the [`log_format`](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#log_format) directive.
+- Sets a proxy timeout of 10 seconds in each `stream.server` block using the [`proxy_timeout`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_timeout) directive.
+
+Verify that the `SnippetsPolicy` is Accepted:
+
+```shell
+kubectl describe snippetspolicies.gateway.nginx.org stream-snippets
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2026-01-17T00:50:58Z
+      Message:               The Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
 ## Conclusion
 
-Snippets are a powerful tool to modifying NGINX configuration unavailable in first-class policies. This example showed a few small simple Snippets, but Snippets can contain any valid NGINX configuration, allowing users to fully customize configuration generated by NGINX Gateway Fabric and shape their NGINX configuration to fit their needs. 
+Snippets are a powerful tool for changing NGINX configuration that isn't available through first-class policies. These examples showed a few small Snippets, but Snippets can contain any valid NGINX configuration. This lets you fully customize the configuration that NGINX Gateway Fabric generates, including both HTTP and stream contexts.
 
-However, as Snippets grow in complexity, because NGINX Gateway Fabric does not provide validation, the risk of generating invalid configuration due to conflicts in existing configuration grows and debugging can be challenging. This is one reason to try to keep Snippet configuration minimal, and to transition to using newly supported first-class polices and APIs if they provide the same NGINX configuration.
+As Snippets grow in complexity, the risk of generating invalid configuration increases because NGINX Gateway Fabric doesn't validate Snippet content. Debugging can also become challenging. Keep Snippet configuration minimal and transition to first-class policies and APIs when they provide the same NGINX configuration.
 
 ## Troubleshooting
 
