@@ -28,6 +28,7 @@ Released _October 14th, 2026_.
 
 ### Resolved issues
 
+- 15874 - Fixed an issue loading gRPC policies after an enforcer restart
 - Fixed bugs and security issues.
 
 ## F5 WAF for NGINX 5.15
