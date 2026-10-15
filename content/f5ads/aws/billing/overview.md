@@ -40,7 +40,39 @@ An NGINX Capacity Unit (NCU) quantifies the capacity for a deployment. F5 ADS me
 
 ## Data Transfer Unit (DTU)
 
-A Data Transfer Unit (DTU) is the unit used to measure data transfer for billing purposes.
+A Data Transfer Unit (DTU) is the unit used to measure data transfer for billing purposes. The number of DTUs consumed per gigabyte (GB) of data transferred depends on the traffic destination type and the AWS region where your deployment runs.
+
+Traffic destination types:
+
+- **To internet** – traffic leaving AWS to the public internet
+- **Cross-region** – traffic between AWS regions
+- **Cross-AZ** – traffic between Availability Zones within the same region
+
+### DTU rates by region
+
+{{< table >}}
+
+| AWS Region | Region name | To internet (DTU/GB) | Cross-region (DTU/GB) | Cross-AZ (DTU/GB) |
+|---|---|---|---|---|
+| ap-northeast-1 | Asia Pacific (Tokyo) | 13 | 11 | 3 |
+| ap-northeast-2 | Asia Pacific (Seoul) | 15 | 10 | 3 |
+| ap-south-1 | Asia Pacific (Mumbai) | 13 | 11 | 3 |
+| ap-south-2 | Asia Pacific (Hyderabad) | 13 | 11 | 3 |
+| ap-southeast-1 | Asia Pacific (Singapore) | 14 | 11 | 3 |
+| ap-southeast-4 | Asia Pacific (Melbourne) | 13 | 12 | 3 |
+| ca-central-1 | Canada (Central) | 11 | 4 | 3 |
+| ca-west-1 | Canada West (Calgary) | 11 | 9 | 3 |
+| eu-central-1 | Europe (Frankfurt) | 11 | 4 | 3 |
+| eu-north-1 | Europe (Stockholm) | 11 | 4 | 3 |
+| eu-west-1 | Europe (Ireland) | 11 | 4 | 3 |
+| eu-west-2 | Europe (London) | 11 | 4 | 3 |
+| eu-west-3 | Europe (Paris) | 11 | 4 | 3 |
+| us-east-1 | US East (Virginia) | 11 | 4 | 3 |
+| us-east-2 | US East (Ohio) | 11 | 4 | 3 |
+| us-west-1 | US West (N. California) | 11 | 4 | 3 |
+| us-west-2 | US West (Oregon) | 11 | 4 | 3 |
+
+{{< /table >}}
 
 ## Billing examples
 
