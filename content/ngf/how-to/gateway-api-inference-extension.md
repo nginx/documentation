@@ -103,7 +103,7 @@ kubectl get certificate epp-cert
 The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim) model server does not use GPUs and is ideal for test/development environments. To deploy the vLLM simulator, run the following command:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v{{< version-inference-extension >}}/config/manifests/vllm/sim-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/llm-d/llm-d-router/refs/tags/v1.0.0/config/manifests/vllm/sim-deployment.yaml
 ```
 
 ## Deploy the InferencePool and llm-d router
@@ -285,7 +285,7 @@ Uninstall the InferencePool and model server resources:
 
 ```shell
 helm uninstall vllm-qwen3-32b
-kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v{{< version-inference-extension >}}/config/manifests/vllm/sim-deployment.yaml
+kubectl delete -f https://raw.githubusercontent.com/llm-d/llm-d-router/refs/tags/v1.0.0/config/manifests/vllm/sim-deployment.yaml
 ```
 
 Uninstall the Gateway API Inference Extension CRDs:
