@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-420
 description: Implement numerous additional `set_*` directives to extend the NGINX core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module, with the Set-Misc dynamic module supported by NGINX, Inc.
 title: Set-Misc
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 The Set-Misc dynamic module extends the NGINX core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) by implementing numerous additional `set_*` directives. 

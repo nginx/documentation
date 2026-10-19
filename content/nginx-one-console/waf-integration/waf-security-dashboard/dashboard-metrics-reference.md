@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-378
 f5-content-type: reference
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Security dashboard reference
 description: "Tabs, global controls, and widget-to-dimension mapping for the F5 WAF for NGINX security monitoring dashboard."
 weight: 400

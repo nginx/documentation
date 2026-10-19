@@ -1,6 +1,6 @@
 ---
+f5-docs: DOCS-252
 f5-files:
-- content/waf/install/docker.md
 - content/waf/install/kubernetes.md
 ---
 

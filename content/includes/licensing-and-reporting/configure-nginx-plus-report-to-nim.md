@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-77
 f5-product:
 - F5 NGINX Instance Manager
 f5-files:

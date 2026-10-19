@@ -1,10 +1,12 @@
 ---
-f5-product: NGINX Ingress Controller
+f5-docs: DOCS-186
+f5-product: F5 NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
 - content/nic/integrations/app-protect-waf-v5/installation.md
 - content/nic/integrations/app-protect-waf/installation.md
+- content/nic/lts/install/manifests.md
 ---
 
 For additional context on managing containers using Kubernetes Deployments, refer to the official Kubernetes [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) documentation.

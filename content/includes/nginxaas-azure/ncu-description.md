@@ -1,5 +1,6 @@
 ---
-f5-product: NGINXaaS for Azure
+f5-docs: DOCS-161
+f5-product: F5 NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/billing/overview.md
 - content/nginxaas-azure/quickstart/scaling.md

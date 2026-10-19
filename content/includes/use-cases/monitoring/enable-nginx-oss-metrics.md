@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-234
 f5-product: Miscellaneous
 f5-files:
 - content/nginx-one-console/getting-started.md

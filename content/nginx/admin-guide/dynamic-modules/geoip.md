@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-405
 description: Capture information from the client IP address in variables, using the
   MaxMind GeoIP databases, with the GeoIP dynamic module supported by NGINX, Inc.
 title: GeoIP
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 The GeoIP dynamic module captures information from the client IP address in variables using the MaxMind GeoLite databases.

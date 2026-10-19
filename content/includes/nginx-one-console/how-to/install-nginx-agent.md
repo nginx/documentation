@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX One Console
+f5-docs: DOCS-127
+f5-product: F5 NGINX One Console
 f5-files:
 - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
 ---

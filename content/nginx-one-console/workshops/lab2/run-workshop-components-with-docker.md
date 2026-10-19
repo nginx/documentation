@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-386
 title: "Lab 2: Run workshop components with Docker"
 weight: 200
 toc: true
 f5-content-type: tutorial
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 ## Introduction

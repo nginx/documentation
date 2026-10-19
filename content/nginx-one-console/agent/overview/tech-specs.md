@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-302
 title: Technical Specifications
 toc: false
 weight: 200
 f5-content-type: reference
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 NGINX Agent is designed to operate efficiently on any system that meets the standard

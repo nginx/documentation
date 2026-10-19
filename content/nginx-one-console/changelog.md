@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-310
 title: Changelog
 toc: true
 weight: 99999
 f5-content-type: reference
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 nollms: true
 ---
 

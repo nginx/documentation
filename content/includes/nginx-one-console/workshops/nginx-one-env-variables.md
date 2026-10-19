@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX One Console
+f5-docs: DOCS-133
+f5-product: F5 NGINX One Console
 f5-files:
 - content/nginx-one-console/workshops/lab3/explore-nginx-one-console-features.md
 - content/nginx-one-console/workshops/lab4/config-sync-groups.md

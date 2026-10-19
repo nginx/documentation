@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-381
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Troubleshoot security monitoring on the local data plane
 description: "Check the local NGINX Agent and OpenTelemetry Collector configuration when F5 WAF for NGINX security events do not appear in NGINX One Console."
 weight: 450

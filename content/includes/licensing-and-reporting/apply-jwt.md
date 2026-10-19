@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-76
 f5-product: Solutions
 f5-files:
 - content/solutions/about-subscription-licenses/getting-started.md

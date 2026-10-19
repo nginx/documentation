@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX One Console
+f5-docs: DOCS-236
+f5-product: F5 NGINX One Console
 f5-files:
 - content/includes/use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md
 - content/nginx-one-console/getting-started.md

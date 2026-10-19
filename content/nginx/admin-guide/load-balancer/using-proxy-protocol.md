@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-448
 description: ''
 title: Accepting the PROXY Protocol
 toc: true
 weight: 800
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This article explains how to configure NGINX and F5 NGINX Plus to accept the PROXY protocol, rewrite the IP address of a load balancer or proxy to the one received in the PROXY protocol header, configure simple logging of a client’s IP address, and enable the PROXY protocol between NGINX and a TCP upstream server.

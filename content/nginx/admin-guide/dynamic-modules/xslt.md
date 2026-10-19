@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-423
 description: Modify XML code in response bodies using one or more XSLT stylesheets,
   with the XSLT dynamic module, supported by NGINX, Inc.
 title: XSLT
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 With the XSLT dynamic module, you can modify XML code in response bodies using one or more XSLT stylesheets.

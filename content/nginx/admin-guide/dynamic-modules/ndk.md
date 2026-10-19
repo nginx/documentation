@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-411
 description: ''
 title: NGINX Developer Kit
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 The NGINX Developer Kit (NDK) module makes it easier for module developers to develop NGINX modules.

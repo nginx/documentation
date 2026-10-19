@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-178
 title: Advanced configuration with Annotations
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGINX Ingress Controller
+f5-product: F5 NGINX Ingress Controller
 ---
 
 This topic explains how to enable advanced features in F5 NGINX Ingress Controller with Annotations.

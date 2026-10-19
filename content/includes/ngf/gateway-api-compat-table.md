@@ -1,5 +1,9 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-90
+f5-product: F5 NGINX Gateway Fabric
+f5-files:
+- content/ngf/overview/gateway-api-compatibility.md
+- content/ngf/overview/technical-specifications.md
 ---
 
 {{< call-out class="important" >}}

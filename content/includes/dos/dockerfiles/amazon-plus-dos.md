@@ -1,9 +1,9 @@
 ---
-f5-product: F5 DOS for NGINX
+f5-docs: DOCS-30
+f5-product: F5 DoS for NGINX
 f5-files:
-- content/nap-dos/deployment-guide/learn-about-deployment.md
-- content/nap-dos/deployment-guide/kubernetes.md
 - content/nap-dos/deployment-guide/kubernetes-with-L4-accelerated-mitigation.md
+- content/nap-dos/deployment-guide/kubernetes.md
 ---
 
 ```dockerfile

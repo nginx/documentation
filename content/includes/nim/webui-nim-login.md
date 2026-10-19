@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-229
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/nginx-instances/manage-instance-groups.md
 - content/nim/waf-integration/configuration/manage-waf-configurations/edit-waf-configuration.md

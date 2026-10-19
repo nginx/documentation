@@ -1,8 +1,11 @@
 ---
+f5-docs: DOCS-377
 title: F5 WAF for NGINX security monitoring
 description: Monitor F5 WAF for NGINX security events in NGINX One Console.
 weight: 425
 url: /nginx-one-console/waf-integration/waf-security-dashboard
+f5-product:
+- F5 NGINX One Console
 ---
 
 Use the security monitoring module in NGINX One Console to collect, visualize, and query security events from F5 WAF for NGINX running on NGINX Plus instances. Review attacks, violations, and triggered signatures to assess threats and fine-tune your policies.

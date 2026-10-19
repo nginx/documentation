@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-366
 title: "Review log profiles"
 weight: 655
 toc: false
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 f5-summary: Review WAF log profiles in NGINX One Console to inspect configuration details, deployment status, and bundle compilation state, and manage profiles via Actions to edit, copy, deploy, download JSON, manage bundles, or delete.
 ---
 

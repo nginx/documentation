@@ -1,10 +1,9 @@
 ---
+f5-docs: DOCS-80
 f5-product: Miscellaneous
 f5-files:
 - content/includes/use-cases/credential-download-instructions.md
 - content/waf/configure/compiler.md
-- content/waf/install/docker.md
-- content/waf/install/kubernetes.md
 ---
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).

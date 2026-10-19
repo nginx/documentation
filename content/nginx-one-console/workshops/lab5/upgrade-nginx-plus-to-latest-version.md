@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-389
 title: "Lab 5: Upgrade NGINX Plus to the latest version"
 weight: 500
 toc: true
 f5-content-type: tutorial
 f5-product:
-- NGINX One Console
-- NGINX Plus
+- F5 NGINX One Console
+- F5 NGINX Plus
 ---
 
 ## Introduction

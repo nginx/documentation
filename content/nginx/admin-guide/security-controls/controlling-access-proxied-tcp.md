@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-465
 description: Protect your upstream TCP application servers by limiting connections
   or bandwidth, based on client IP address or other variables.
 title: Restricting Access to Proxied TCP Resources
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This chapter provides scenarios for restricting access to a database or media server that communicates over TCP. Access can be limited by IP address, the number of simultaneous connections, or bandwidth.

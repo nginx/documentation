@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-341
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: View template submissions
 description: "View and manage template submissions for a config template in NGINX One Console."
 toc: true

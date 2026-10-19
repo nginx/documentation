@@ -1,5 +1,10 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-114
+f5-product: F5 NGINX Gateway Fabric
+f5-files:
+- content/ngf/traffic-management/https-termination.md
+- content/ngf/traffic-security/client-validation.md
+- content/ngf/traffic-security/integrate-cert-manager.md
 ---
 
 ## HTTPS Traffic without SNI (Server Name Indication)

@@ -1,8 +1,9 @@
 ---
+f5-docs: DOCS-508
 description: Learn how to use OpenID Connect (OIDC) Provider Servers and Services
   to enable single sign-on for applications proxied by F5 NGINX Plus.
 title: Legacy njs-based Single Sign-On Solutions
 weight: 990
 url: /nginx/deployment-guides/single-signon/oidc-njs/
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---

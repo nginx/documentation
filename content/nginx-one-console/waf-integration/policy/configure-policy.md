@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-370
 # We use sentence case and present imperative tone
 title: "Add and configure a policy"
 # Weights are assigned in increments of 100: determines sorting order
@@ -9,7 +10,7 @@ toc: false
 f5-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 This document describes how to configure a F5 WAF for NGINX security policy in the F5 NGINX One Console. 

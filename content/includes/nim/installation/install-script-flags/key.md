@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-207
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/deploy/vm-bare-metal/install.md
 - content/nim/disconnected/offline-install-guide.md

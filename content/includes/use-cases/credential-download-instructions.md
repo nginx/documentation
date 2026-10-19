@@ -1,8 +1,10 @@
 ---
+f5-docs: DOCS-232
 f5-product: Miscellaneous
 f5-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md
 - content/nic/install/images/registry-download.md
+- content/nic/lts/install/images/registry-download.md
 ---
 
 In order to obtain a container image, you will need the JSON Web Token file or SSL certificate and private key files provided with your NGINX Plus subscription. 

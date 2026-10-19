@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-226
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/waf-integration/configuration/_index.md
 - content/nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md

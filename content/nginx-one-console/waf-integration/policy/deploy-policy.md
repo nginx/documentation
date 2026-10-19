@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-372
 # We use sentence case and present imperative tone
 title: "Deploy policy"
 # Weights are assigned in increments of 100: determines sorting order
@@ -9,7 +10,7 @@ toc: false
 f5-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 After you've set up a policy, it won't do anything, until you deploy it to one or more instances and Config Sync Groups.

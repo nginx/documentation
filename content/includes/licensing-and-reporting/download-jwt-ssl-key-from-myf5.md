@@ -1,8 +1,7 @@
 ---
+f5-docs: DOCS-83
 f5-files:
-- content/waf/install/docker.md
 - content/waf/install/kubernetes.md
-- content/waf/install/kubernetes-plm.md
 - content/waf/install/virtual-environment.md
 ---
 

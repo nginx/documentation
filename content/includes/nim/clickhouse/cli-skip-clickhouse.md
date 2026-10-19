@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-194
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/includes/nim/installation/install-script-flags/skip-clickhouse.md
 ---

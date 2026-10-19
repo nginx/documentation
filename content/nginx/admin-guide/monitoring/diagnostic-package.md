@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-453
 description: This page describes how to trigger the automatic collection of data required
   to troubleshoot issues in a NGINX or F5 NGINX Plus deployment.
 title: NGINX Diagnostic Package
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

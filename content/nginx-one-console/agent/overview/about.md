@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-301
 title: About
 weight: 100
 toc: true
 f5-content-type: concept
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 {{< call-out class="note" title="F5 NGINX Agent v3.0 is available now" >}}

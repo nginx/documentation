@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-373
 title: "Add gRPC protection to a policy"
 description: "Upload .proto files through the API so a WAF policy's grpc-profiles entry can validate gRPC messages."
 weight: 450
 toc: true
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 f5-keywords: "gRPC, protobuf, proto files, WAF policy, file references"
 f5-summary: >
   This page explains how to upload the .proto files a grpc-profiles entry references, using the NGINX One Console API.

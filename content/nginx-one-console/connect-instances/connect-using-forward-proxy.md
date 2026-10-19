@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-314
 title: Prepare - Set up an explicit forward proxy
 toc: true
 weight: 250
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 NGINX Agent can be configured to connect to NGINX One using an explicit forward

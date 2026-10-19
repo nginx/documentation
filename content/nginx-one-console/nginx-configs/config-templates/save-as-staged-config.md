@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-337
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Save rendered config as staged config
 toc: true
 weight: 300

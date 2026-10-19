@@ -1,8 +1,9 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-113
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
-- content/ngf/traffic-security/oidc-authenication.md
-- content/ngf/traffic-security/jwt-authenication.md
+- content/ngf/traffic-security/jwt-authentication.md
+- content/ngf/traffic-security/oidc-authentication.md
 ---
 
 The following steps use `cert-manager` to issue a local Certificate Authority (CA) and sign certificates for both Keycloak and NGINX. `cert-manager` creates the required Kubernetes Secrets directly so no manual secret creation is needed for TLS.

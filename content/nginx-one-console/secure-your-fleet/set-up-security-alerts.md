@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-360
 title: "Set up security alerts"
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 With this page, you'll learn how to set up alerts in F5 Distributed Cloud. Once configured, you'll see the CVEs and insecure configurations associated with your NGINX fleet. These instructions are intended for those responsible for keeping their NGINX infrastructure and application traffic secure. It assumes you know how to:

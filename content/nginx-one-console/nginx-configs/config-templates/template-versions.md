@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-342
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: View template versions
 description: "View and manage the version history of a config template on the Versions tab in NGINX One Console."
 toc: true

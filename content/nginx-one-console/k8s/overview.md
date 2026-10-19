@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-324
 # We use sentence case and present imperative tone
 title: "Integrate Kubernetes control planes"
 # Weights are assigned in increments of 100: determines sorting order
@@ -9,7 +10,7 @@ toc: false
 f5-content-type: concept
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 You can now include Kubernetes systems through the [control plane](https://www.f5.com/glossary/control-plane). In related documentation, you can learn how to:

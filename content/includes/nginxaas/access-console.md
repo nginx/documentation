@@ -1,10 +1,12 @@
 ---
-f5-product: F5 NGINXaaS
+f5-docs: DOCS-165
+f5-product: F5 Application Delivery Service
 f5-files:
+- content/nginxaas/google/deploy/create-deployment/deploy-console.md
+- content/nginxaas/overview/app-protect/disable-waf.md
+- content/nginxaas/overview/app-protect/enable-waf.md
 - content/nginxaas/overview/manage-users-organizations.md
 - content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
-- content/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md
-- content/nginxaas/google/deploy/create-deployment/deploy-console.md
 
 ---
 

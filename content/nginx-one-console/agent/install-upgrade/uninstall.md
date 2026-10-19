@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-298
 title: Uninstall NGINX Agent
 toc: false
 weight: 500
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 ## Overview

@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-340
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: View template details
 description: "View metadata, submissions and version history for a config template on the Template Detail page in NGINX One Console."
 toc: true

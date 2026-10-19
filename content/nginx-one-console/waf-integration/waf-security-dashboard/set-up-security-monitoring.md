@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-383
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Set up security monitoring
 description: "Forward F5 WAF for NGINX security events to the NGINX One Console security monitoring dashboard."
 weight: 300

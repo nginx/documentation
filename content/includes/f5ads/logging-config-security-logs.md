@@ -1,7 +1,9 @@
 ---
+f5-docs: DOCS-66
 f5-product: F5 Application Delivery Service
 f5-files:
 - content/f5ads/aws/monitoring/enable-nginx-logs.md
+- content/f5ads/google/monitoring/enable-nginx-logs.md
 ---
 
 You can enable security logs by adding **app_protect_security_log** directives to your NGINX configuration to specify the location of the logs and logging formats. The log path should always be configured under **/var/log/app_protect**.

@@ -1,5 +1,11 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-107
+f5-product: F5 NGINX Gateway Fabric
+f5-files:
+- content/ngf/install/manifests/open-source-experimental.md
+- content/ngf/install/manifests/open-source.md
+- content/ngf/install/manifests/plus-experimental.md
+- content/ngf/install/manifests/plus.md
 ---
 
 To confirm that NGINX Gateway Fabric is running, check the pods in the `nginx-gateway` namespace:

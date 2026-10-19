@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Plus
+f5-docs: DOCS-155
+f5-product: F5 NGINX Plus
 f5-files:
 - content/nginx/technical-specs.md
 ---

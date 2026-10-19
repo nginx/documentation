@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX One Console
+f5-docs: DOCS-120
+f5-product: F5 NGINX One Console
 f5-files:
 - content/glossary/_index.md
 - content/nginx-one-console/glossary.md

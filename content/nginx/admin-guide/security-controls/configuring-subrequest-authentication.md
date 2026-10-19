@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-462
 description: Authenticate clients during request processing by making a subrequest
   to an external authentication service, such as LDAP or OAuth.
 title: Authentication Based on Subrequest Result
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

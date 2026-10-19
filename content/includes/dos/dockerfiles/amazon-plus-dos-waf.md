@@ -1,5 +1,6 @@
 ---
-f5-product: F5 DOS for NGINX
+f5-docs: DOCS-29
+f5-product: F5 DoS for NGINX
 f5-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 ---

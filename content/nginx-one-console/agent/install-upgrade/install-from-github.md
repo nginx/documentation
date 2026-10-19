@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-295
 title: Install from GitHub package files
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 {{< call-out class="note" >}}

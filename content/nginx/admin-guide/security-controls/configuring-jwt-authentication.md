@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-460
 description: This article explains how to control authentication of your web resources
   using JWT authentication.
 title: Setting up JWT Authentication
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

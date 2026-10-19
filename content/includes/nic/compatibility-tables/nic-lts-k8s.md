@@ -1,8 +1,9 @@
 ---
-f5-product: NGINX Ingress Controller
+f5-docs: DOCS-175
+f5-product: F5 NGINX Ingress Controller
 f5-files:
-- content/nic/changelog/_index.md
-- content/nic/technical-specifications.md
+- content/nic/lts/changelog.md
+- content/nic/lts/technical-specifications.md
 ---
 
 NGINX Ingress Controller supports the following versions of [NGINX Plus]({{< ref "/nginx/" >}}) and [Kubernetes](https://kubernetes.io/):

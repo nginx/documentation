@@ -1,5 +1,6 @@
 ---
-f5-product: F5 DOS for NGINX
+f5-docs: DOCS-49
+f5-product: F5 DoS for NGINX
 f5-files:
 - content/nap-dos/deployment-guide/kubernetes.md
 ---

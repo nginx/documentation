@@ -1,9 +1,9 @@
 ---
+f5-docs: DOCS-68
 f5-product: F5 Application Delivery Service
 f5-files:
 - content/f5ads/platform/nginx-configuration/nginx-configuration-console.md
-- content/f5ads/aws/deploy/nginx-configuration/nginx-configuration-console.md
-- content/f5ads/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md
+- content/f5ads/platform/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---
 
 1. On the left menu, select **Configurations**.

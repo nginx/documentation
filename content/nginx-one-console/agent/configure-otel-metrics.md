@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-291
 title: Export NGINX instance metrics
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 ## Overview

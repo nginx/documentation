@@ -1,5 +1,6 @@
 ---
-f5-product: F5 NGINXaaS
+f5-docs: DOCS-169
+f5-product: F5 Application Delivery Service
 f5-files:
 - content/nginxaas/google/monitoring/enable-nginx-logs.md
 ---

@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-447
 description: This chapter describes how to configure different types of health checks
   for UDP servers in a load‑balanced upstream server group.
 title: UDP Health Checks
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 NGINX Plus can continually test your upstream servers that handle UDP network traffic (DNS, RADIUS, syslog), avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.

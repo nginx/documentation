@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-463
 description: Control access or forward traffic to different upstream servers based
   on the client's geographical location, using the GeoIP2 dynamic module.
 title: Restricting Access by Geographical Location
 toc: true
 weight: 800
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

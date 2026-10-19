@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-99
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/ngf/traffic-management/session-persistence.md
 - content/ngf/traffic-security/external-authentication.md

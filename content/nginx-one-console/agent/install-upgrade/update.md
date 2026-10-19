@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-299
 title: Upgrade NGINX Agent
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 ## Overview

@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-356
 title: "Learn about Role-based access control"
 weight: 400
 toc: true
 f5-content-type: reference
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 {{< include "security/rbac-intro.md" >}}

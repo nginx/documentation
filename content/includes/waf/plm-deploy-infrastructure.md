@@ -1,7 +1,10 @@
 ---
+f5-docs: DOCS-275
 f5-product: F5 WAF for NGINX
 f5-files:
 - content/ngf/waf-integration/get-started-plm.md
+- content/nic/install/plm-installation.md
+- content/nic/install/plm-upgrade.md
 ---
 
 The Policy Lifecycle Manager (PLM) backend runs as a Kubernetes operator. It watches WAF custom resources and compiles WAF policies into bundles. The Policy Controller delegates compilation to a separate compiler service over gRPC. The resulting bundles are stored in an embedded SeaweedFS S3-compatible object store.

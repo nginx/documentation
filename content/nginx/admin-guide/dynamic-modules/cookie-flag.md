@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-401
 description: Set `HttpOnly`, `SameSite`, and `secure` flags on cookies in `Set-Cookie`
   upstream response headers with the **Cookie-Flag** dynamic module, community-authored
   and supported by NGINX, Inc.
@@ -6,7 +7,7 @@ title: Cookie-Flag
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 {{< call-out class="note" >}} The `nginx-plus-module-cookie-flag` package is no longer available in the NGINX Plus repository.{{< /call-out >}}

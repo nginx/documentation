@@ -1,5 +1,6 @@
 ---
-f5-product: NGINXaaS for Azure
+f5-docs: DOCS-157
+f5-product: F5 NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-portal.md

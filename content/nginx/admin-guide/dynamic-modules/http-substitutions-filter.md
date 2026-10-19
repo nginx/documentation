@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-408
 description: Replace text in response bodies, using regular expressions and fixed
   strings, with the HTTP Substitutions Filter dynamic module supported by NGINX, Inc.
 title: HTTP Substitutions Filter
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 The HTTP Substitutions Filter dynamic module replaces text in response bodies, using regular expressions and fixed strings.

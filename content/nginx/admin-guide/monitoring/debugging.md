@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-452
 description: Troubleshoot problems and track down bugs in an NGINX or F5 NGINX Plus
   deployment, with the debugging binary, debug logging, and core dumps.
 title: Debugging NGINX
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 ## Introduction

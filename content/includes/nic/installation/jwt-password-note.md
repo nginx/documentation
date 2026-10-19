@@ -1,8 +1,11 @@
 ---
-f5-product: NGINX Ingress Controller
+f5-docs: DOCS-184
+f5-product: F5 NGINX Ingress Controller
 f5-files:
 - content/nic/install/images/add-image-to-cluster.md
 - content/nic/install/license-secret.md
+- content/nic/lts/install/images/add-image-to-cluster.md
+- content/nic/lts/install/license-secret.md
 ---
 
 {{< call-out class="note" >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:

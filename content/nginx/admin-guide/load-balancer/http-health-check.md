@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-443
 description: Monitor the health of HTTP servers in an upstream group by sending periodic
   health checks, including customizable active health checks in F5 NGINX Plus.
 title: HTTP Health Checks
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

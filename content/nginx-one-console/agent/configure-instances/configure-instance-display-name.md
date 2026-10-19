@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-289
   title: Assign a display name to an instance
   description: "Set a custom display name for an NGINX instance in NGINX One Console using the NGINX Agent display-name
   label."
@@ -12,6 +13,7 @@
     display-name label in NGINX Agent. Use it to identify and filter instances
     in NGINX One Console instead of relying on hostname alone.
   f5-audience: operator
+f5-product: F5 NGINX Agent
 ---
 
 ## Overview

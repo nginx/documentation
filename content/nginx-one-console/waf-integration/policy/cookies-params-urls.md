@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-371
 title: "Add cookies, parameters and URLs"
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 ## Add cookies

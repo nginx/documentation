@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-402
 description: Load modules dynamically into F5 NGINX Plus at runtime to add specialized
   functionality, including features authored by third parties.
 title: Dynamic Modules
 toc: true
 weight: 10
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 ## Overview

@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX One Console
+f5-docs: DOCS-134
+f5-product: F5 NGINX One Console
 f5-files:
 - content/nginx-one-console/workshops/lab2/run-workshop-components-with-docker.md
 - content/nginx-one-console/workshops/lab3/explore-nginx-one-console-features.md

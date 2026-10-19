@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-494
 description: Load balance Wildfly (JBoss) application servers with NGINX Open Source
   or the advanced features in F5 NGINX Plus, following our step-by-step setup instructions.
 title: Load Balancing Wildfly and JBoss Application Servers with NGINX Open Source
@@ -6,7 +7,7 @@ title: Load Balancing Wildfly and JBoss Application Servers with NGINX Open Sour
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Wildfly (JBoss) application servers. It provides complete instructions for configuring NGINX Open Source or NGINX Plus as required.

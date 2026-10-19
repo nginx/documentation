@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-306
 description: ''
 f5-content-type: redoc
 doctypes:
@@ -10,5 +11,5 @@ title: API reference guide
 toc: false
 weight: null
 f5-api-reference: "./nginx-one-console/api/one.json"
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---

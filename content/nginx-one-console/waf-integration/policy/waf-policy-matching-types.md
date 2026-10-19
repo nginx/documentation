@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-376
 title: "Matching types: Explicit vs Wildcard"
 weight: 700
 toc: true
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 In F5 WAF for NGINX (formerly known as NGINX App Protect WAF), matching can be defined in two ways:

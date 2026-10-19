@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-493
 title: Load Balancing Oracle WebLogic Server with NGINX Open Source and NGINX Plus
 description: Load balance Oracle WebLogic Servers with NGINX Open Source and the advanced
   features in F5 NGINX Plus, following our step-by-step setup instructions.
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Oracle WebLogic Server application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Oracle WebLogic Server.

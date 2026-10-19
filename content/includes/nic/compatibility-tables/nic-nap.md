@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Ingress Controller
+f5-docs: DOCS-176
+f5-product: F5 NGINX Ingress Controller
 f5-files:
 - content/nic/changelog/_index.md
 - content/nic/install/waf-helm.md

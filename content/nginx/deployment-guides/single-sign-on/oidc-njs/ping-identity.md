@@ -1,8 +1,9 @@
 ---
+f5-docs: DOCS-515
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Ping Identity as the identity provider (IdP).
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 title: Single Sign-On with Ping Identity and njs
 toc: false
 weight: 100

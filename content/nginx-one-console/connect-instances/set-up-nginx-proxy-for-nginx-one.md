@@ -1,7 +1,8 @@
 ---
+f5-docs: DOCS-316
 description: ''
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Prepare - Set up NGINX as a proxy
 toc: true
 weight: 200

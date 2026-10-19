@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-95
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---

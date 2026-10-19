@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-473
 description: Compress server responses, or decompress them for clients that don't
   support compression, to improve delivery speed and reduce overhead on the server.
 title: Compression and Decompression
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This section describes how to configure compression or decompression of responses, as well as sending compressed files.

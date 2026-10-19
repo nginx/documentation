@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-363
 title: "Configure log profiles"
 weight: 650
 toc: true
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 f5-summary: Configure F5 WAF for NGINX security log profiles in NGINX One Console, controlling request filtering (all/illegal/blocked), log format (default/Splunk/ArcSight/custom), size limits, and deployment to NGINX instances via compiled .tgz bundles.
 ---
 

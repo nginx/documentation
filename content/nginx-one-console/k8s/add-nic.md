@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-323
 title: Connect NGINX Ingress Controller
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 This document explains how to connect F5 NGINX Ingress Controller to F5 NGINX One Console using NGINX Agent.

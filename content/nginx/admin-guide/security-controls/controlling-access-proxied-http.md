@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-464
 description: Protect your upstream web and application servers by limiting connections,
   rate of requests, or bandwidth, based on client IP address or other variables.
 title: Limiting Access to Proxied HTTP Resources
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This article explains how to set the maximum number of requests for a connection, or the maximum rate of downloading content from the server.

@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Agent
+f5-docs: DOCS-23
+f5-product: F5 NGINX Agent
 f5-files:
 - content/agent/installation-upgrade/upgrade.md
 - content/nginx-one-console/agent/install-upgrade/update.md
