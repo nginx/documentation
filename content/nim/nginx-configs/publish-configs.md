@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-822
 title: Publish NGINX configs
 toc: true
 weight: 2

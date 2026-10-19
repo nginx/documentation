@@ -2,7 +2,6 @@
 title: Container support and troubleshooting
 toc: true
 weight: 200
-f5-docs: DOCS-909
 f5-content-type: reference
 f5-product: NGINX Agent
 ---

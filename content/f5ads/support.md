@@ -5,7 +5,6 @@ weight: 9999
 toc: false
 f5-product: F5 Application Delivery Service
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-keywords: "F5 ADS, support, MyF5, help, contact support, create a case, support ticket"
 f5-summary: >
   Learn how to open a support case for F5 Application Delivery Service through the MyF5 portal.

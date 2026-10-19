@@ -4,7 +4,6 @@ toc: true
 weight: 600
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1180
 ---
 
 The Service Insight feature is available only for F5 NGINX Plus. The F5 NGINX Ingress Controller exposes an endpoint which provides host statistics for services exposed using the VirtualServer (VS) and TransportServer (TS) resources.

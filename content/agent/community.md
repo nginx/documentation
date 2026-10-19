@@ -2,7 +2,6 @@
 title: Community and contribution
 toc: true
 weight: 600
-f5-docs: DOCS-1884
 f5-product: NGINX Agent
 f5-content-type: reference
 ---

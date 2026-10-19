@@ -4,7 +4,6 @@ toc: true
 weight: 600
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-794
 description: "Configure TLS certificates and mutual TLS in F5 NGINX Instance Manager to secure client connections and inter-service network traffic."
 f5-summary: >
   Secure client connections to F5 NGINX Instance Manager and internal service-to-service traffic using TLS.

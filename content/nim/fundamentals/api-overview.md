@@ -1,6 +1,5 @@
 ---
 description: ''
-f5-docs: DOCS-798
 title: 'Overview: NGINX Instance Manager REST API'
 toc: true
 weight: 400

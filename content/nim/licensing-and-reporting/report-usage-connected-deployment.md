@@ -3,7 +3,6 @@ title: Report usage data to F5 (connected)
 description: "Configure NGINX Plus to report usage data to F5 NGINX Instance Manager, and submit the report to F5 for verification in a connected (internet-accessible) environment."
 weight: 20
 toc: true
-f5-docs: DOCS-1650
 f5-personas:
 - devops
 - netops

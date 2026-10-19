@@ -2,7 +2,6 @@
 title: Use the njs Scripting language
 weight: 400
 toc: true
-f5-docs: DOCS-874
 url: /nginxaas-azure/quickstart/njs-support/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure

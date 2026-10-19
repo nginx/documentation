@@ -2,7 +2,6 @@
 title: About
 weight: 100
 toc: true
-f5-docs: DOCS-1091
 f5-content-type: how-to
 f5-product: NGINX Agent
 ---

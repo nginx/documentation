@@ -1,7 +1,6 @@
 ---
 description: Monitor the health of HTTP servers in an upstream group by sending periodic
   health checks, including customizable active health checks in F5 NGINX Plus.
-f5-docs: DOCS-417
 title: HTTP Health Checks
 toc: true
 weight: 300

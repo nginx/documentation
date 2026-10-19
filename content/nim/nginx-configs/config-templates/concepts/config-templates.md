@@ -3,7 +3,6 @@ title: About NGINX config templates
 description: "Learn how F5 NGINX Instance Manager uses Go templating and JSON schemas to create an abstraction layer for standardizing NGINX configurations across instances."
 weight: 100
 toc: true
-f5-docs: DOCS-1502
 f5-personas:
 - devops
 - netops

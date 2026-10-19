@@ -3,7 +3,6 @@ title: Technical Specifications
 toc: false
 weight: 200
 f5-content-type: reference
-f5-docs: DOCS-1871
 f5-product: NGINX Agent
 ---
 

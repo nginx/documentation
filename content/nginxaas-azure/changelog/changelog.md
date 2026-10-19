@@ -3,7 +3,6 @@ title: "2026"
 weight: 100
 toc: true
 f5-content-type: reference
-f5-docs: "DOCS-870"
 f5-product: NGINXaaS for Azure
 url: /nginxaas-azure/changelog/
 ---

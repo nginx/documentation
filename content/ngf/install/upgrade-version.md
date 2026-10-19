@@ -5,7 +5,6 @@ weight: 700
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1852
 f5-summary: >
   Move an existing NGINX Gateway Fabric installation to a newer version.
   Follow the upgrade steps that match how you originally installed the product.

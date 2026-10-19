@@ -3,7 +3,6 @@ title: Log in to the Console and manage account access
 description: "Learn about F5 Application Delivery Service login methods, how to reset your password, and how to grant Entra admin consent for social login."
 weight: 300
 toc: true
-f5-docs: DOCS-000
 f5-product: F5 Application Delivery Service
 f5-content-type: how-to
 f5-keywords: "login,authentication"

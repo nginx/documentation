@@ -1,6 +1,5 @@
 ---
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-product: NGINX One Console
 title: Save rendered config as staged config
 toc: true

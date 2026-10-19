@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1651
 title: Deploy using Helm
 toc: true
 weight: 100

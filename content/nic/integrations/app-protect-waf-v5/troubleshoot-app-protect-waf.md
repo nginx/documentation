@@ -4,7 +4,6 @@ weight: 400
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1864
 ---
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller and the F5 WAF for NGINX module version 5.

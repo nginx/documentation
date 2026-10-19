@@ -3,7 +3,6 @@ title: Upgrade NGINX Agent
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-docs: DOCS-1875
 f5-product: NGINX Agent
 ---
 

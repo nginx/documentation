@@ -1,7 +1,6 @@
 ---
 description: Replace text in response bodies, using regular expressions and fixed
   strings, with the HTTP Substitutions Filter dynamic module supported by NGINX, Inc.
-f5-docs: DOCS-389
 title: HTTP Substitutions Filter
 toc: true
 weight: 100

@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1068
 f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/fundamentals/tech-specs.md

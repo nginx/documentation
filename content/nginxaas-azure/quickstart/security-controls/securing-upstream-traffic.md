@@ -2,7 +2,6 @@
 title: Securing upstream traffic
 weight: 300
 toc: true
-f5-docs: DOCS-1475
 url: /nginxaas-azure/quickstart/security-controls/securing-upstream-traffic/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure

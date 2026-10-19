@@ -6,7 +6,6 @@ noindex: true
 headless: true
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1445
 ---
 
 {{< call-out class="important" >}}

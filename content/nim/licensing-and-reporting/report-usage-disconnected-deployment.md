@@ -3,7 +3,6 @@ title: Report usage data to F5 (disconnected)
 description: "Prepare and submit usage reports from F5 NGINX Instance Manager to F5 in a disconnected (offline) environment using the provided bash script or REST API."
 weight: 300
 toc: true
-f5-docs: DOCS-1658
 f5-personas:
 - devops
 - netops

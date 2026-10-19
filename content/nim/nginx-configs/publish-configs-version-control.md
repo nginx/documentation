@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1348
 title: Publish NGINX configs with version control
 toc: true
 weight: 3

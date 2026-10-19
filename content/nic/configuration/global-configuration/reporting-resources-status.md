@@ -4,7 +4,6 @@ toc: true
 weight: 600
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-589
 ---
 
 This page describes how to view the status of resources managed by F5 NGINX Ingress Controller.
