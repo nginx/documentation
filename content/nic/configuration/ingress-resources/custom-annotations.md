@@ -4,7 +4,6 @@ toc: true
 weight: 300
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-595
 ---
 
 This topic explains how you can use custom annotations with F5 NGINX Ingress Controller.

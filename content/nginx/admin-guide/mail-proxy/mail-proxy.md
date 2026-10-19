@@ -1,7 +1,6 @@
 ---
 description: Simplify your email service and improve its performance with NGINX or
   F5 NGINX Plus as a proxy for the IMAP, POP3, and SMTP protocols
-f5-docs: DOCS-423
 title: Configure NGINX as a Mail Proxy Server
 toc: true
 weight: 100

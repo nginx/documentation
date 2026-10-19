@@ -3,7 +3,6 @@ title: Overview and Main Components
 description: Learn about F5 NGINX Amplify and its main components.
 weight: 10
 toc: true
-f5-docs: DOCS-976
 f5-product: AMPLIF
 ---
 

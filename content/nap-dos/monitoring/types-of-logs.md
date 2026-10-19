@@ -1,6 +1,5 @@
 ---
 description: Learn about the F5 DoS for NGINX Logs Overview.
-f5-docs: DOCS-671
 title: Logs Overview
 toc: true
 weight: 130

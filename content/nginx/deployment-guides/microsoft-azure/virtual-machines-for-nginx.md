@@ -4,7 +4,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Plus
-f5-docs: DOCS-458
 ---
 
 This topic describes how to create Microsoft Azure virtual machines (VMs) to run NGINX Open Source or NGINX Plus.

@@ -5,7 +5,6 @@ toc: true
 weight: 300
 f5-content-type: reference
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1842
 f5-summary: >
   See supported Kubernetes, Gateway API, NGINX, and related component versions for NGINX Gateway Fabric.
   Use the matrix when planning upgrades or new deployments.

@@ -5,7 +5,6 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1417
 f5-summary: >
   Open the NGINX Plus dashboard to view real-time metrics for NGINX data plane instances.
   Requires NGINX Plus as the data plane.

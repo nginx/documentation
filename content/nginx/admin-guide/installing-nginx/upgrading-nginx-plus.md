@@ -6,7 +6,6 @@ toc: true
 weight: 150
 nd-content-type: how-to
 f5-product: F5 NGINX Plus
-f5-docs: DOCS-000
 ---
 
 This article explains how to upgrade existing NGINX Plus installation and dynamic modules.

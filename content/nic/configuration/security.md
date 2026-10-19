@@ -4,7 +4,6 @@ toc: true
 weight: 300
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-597
 ---
 
 F5 NGINX Ingress Controller follows Kubernetes best practices: this page outlines configuration specific to NGINX Ingress Controller you may require, including links to examples in the [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples).

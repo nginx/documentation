@@ -2,7 +2,6 @@
 title: Identity and access management
 weight: 600
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

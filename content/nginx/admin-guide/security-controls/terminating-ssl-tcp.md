@@ -1,7 +1,6 @@
 ---
 description: Terminate SSL/TLS-encrypted traffic from clients, relieving your upstream
   TCP servers of the computational load.
-f5-docs: DOCS-438
 title: SSL Termination for TCP Upstream Servers
 toc: true
 weight: 200

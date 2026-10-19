@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1666
 f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md

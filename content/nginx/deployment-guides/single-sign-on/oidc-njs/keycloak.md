@@ -1,7 +1,6 @@
 ---
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Keycloak as the identity provider (IdP).
-f5-docs: DOCS-465
 f5-content-type: how-to
 title: Single Sign-On with Keycloak and njs
 toc: false

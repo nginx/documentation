@@ -3,7 +3,6 @@ title: Configuring NGINX Amplify Agent
 description: Learn how to configure F5 NGINX Amplify Agent.
 weight: 300
 toc: true
-f5-docs: DOCS-967
 f5-product: AMPLIF
 ---
 

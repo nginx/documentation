@@ -2,7 +2,6 @@
 title: Host and Listener collisions
 toc: true
 weight: 800
-f5-docs: DOCS-590
 f5-product: NGINX Ingress Controller
 f5-content-type: reference
 ---

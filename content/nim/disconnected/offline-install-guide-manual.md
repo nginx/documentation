@@ -5,7 +5,6 @@ toc: true
 noindex: true
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-000
 description: "Manually install or upgrade F5 NGINX Instance Manager in a disconnected environment by downloading packages on a connected host and transferring them offline."
 f5-summary: >
   Install or upgrade F5 NGINX Instance Manager in an environment without internet access by manually downloading and transferring packages.

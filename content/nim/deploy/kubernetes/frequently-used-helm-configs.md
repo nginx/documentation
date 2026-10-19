@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1275
 title: Frequently used Helm configurations
 toc: true
 weight: 400

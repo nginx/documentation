@@ -1,6 +1,5 @@
 ---
 description: Deploy NGINX and F5 NGINX Plus as the Docker container.
-f5-docs: DOCS-409
 title: Deploying NGINX and NGINX Plus with Docker
 toc: true
 weight: 600

@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-000
 f5-product: Miscellaneous
 f5-files:
 - content/nginx-one-console/rbac/overview.md

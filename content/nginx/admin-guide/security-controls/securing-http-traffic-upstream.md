@@ -1,7 +1,6 @@
 ---
 description: Secure HTTP traffic between NGINX or F5 NGINX Plus and upstream servers,
   using SSL/TLS encryption.
-f5-docs: DOCS-435
 title: Securing HTTP Traffic to Upstream Servers
 toc: true
 weight: 900

@@ -4,7 +4,6 @@ description: Learn how F5 NGINX Amplify Agent collects data.
 weight: 200
 toc: true
 noindex: true
-f5-docs: DOCS-964
 f5-product: AMPLIF
 ---
 

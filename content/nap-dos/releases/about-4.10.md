@@ -4,7 +4,6 @@ description: "Release notes for F5 DoS for NGINX 4.10, including support for NGI
 f5-keywords: "F5 DoS for NGINX, release notes, 4.10, NGINX Plus R37.1"
 toc: true
 weight: 20
-f5-docs: DOCS-1783
 f5-content-type: reference
 f5-product: F5 DOS for NGINX
 f5-summary: >

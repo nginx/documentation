@@ -5,7 +5,6 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1423
 f5-keywords: "NGINX Gateway Fabric, backend mTLS, upstream TLS, BackendTLSPolicy, service mesh alternative"
 f5-summary: >
    NGINX Gateway Fabric can encrypt traffic from the Gateway to a backend application using mutual TLS, configured through BackendTLSPolicy together with the Gateway's backend TLS settings.

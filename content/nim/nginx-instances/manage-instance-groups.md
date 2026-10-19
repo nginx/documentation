@@ -2,7 +2,6 @@
 description: Learn how to use F5 NGINX Instance Manager to create
   instance groups, which you can use to manage multiple NGINX instances as a single
   entity.
-f5-docs: DOCS-935
 title: Create and manage instance groups
 toc: true
 weight: 600
