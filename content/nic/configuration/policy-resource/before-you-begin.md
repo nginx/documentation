@@ -4,7 +4,6 @@ weight: 100
 toc: false
 f5-content-type: concept
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-596
 f5-description: Overview of the Policy resource and how it works together with VirtualServer, VirtualServerRoute, and Ingress resources.
 f5-summary: >
   The Policy resource lets you define reusable configuration, such as access control, rate limiting, authentication, and WAF, for NGINX Ingress Controller.

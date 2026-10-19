@@ -1,6 +1,5 @@
 ---
 description: HTTP traffic tunneling via the HTTP CONNECT method, enabling centralized egress control through a trusted NGINX Plus server.
-f5-docs: DOCS-441
 title: HTTP CONNECT forward proxy
 toc: true
 weight: 600

@@ -1,6 +1,5 @@
 ---
 description: ''
-f5-docs: DOCS-392
 title: NGINX Developer Kit
 toc: true
 weight: 100

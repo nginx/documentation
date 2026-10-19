@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-592
 title: Advanced configuration with Snippets
 toc: true
 weight: 400

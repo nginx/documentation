@@ -3,7 +3,6 @@ title: Deploy using the Console
 description: "Create, configure, and connect an F5 Application Delivery Service for AWS deployment using the F5 ADS Console."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, create deployment, F5 ADS Console, NCU, service frontend, PrivateLink, VPC peering"
@@ -100,7 +99,7 @@ F5 ADS doesn't currently support cross-region PrivateLink connections. You can o
 {{< /call-out >}}
 
 1. After your deployment is created, open its Details tab and find the **PrivateLink Endpoint Service Name** under **Cloud Settings** > **Service Frontend**, for example `com.amazonaws.vpce.us-east-1.vpce-svc-0c0d939ca9a7ce020`.
-1. Create an interface VPC endpoint that targets this Service Name. For step-by-step instructions, see AWS's [Connect to an endpoint service as the service consumer](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html#connect-to-endpoint-service) documentation. When prompted for **Service name**, enter the PrivateLink Endpoint Service Name from the previous step.
+1. Create an interface VPC endpoint that targets this Service Name. For step-by-step instructions, see [Connect to a Private Endpoint deployment using the AWS CLI]({{< ref "/f5ads/aws/deploy/create-deployment/connect-privatelink-cli.md" >}}).
 1. Note the new interface endpoint's **VPC Endpoint Id**, for example `vpce-0123456789abcdef0`, shown in the AWS VPC console **Endpoints** list.
 1. Ensure your deployment's **PrivateLink Connection Allow List** includes the AWS account ID or VPC endpoint ID to accept the PrivateLink connection.
    - To add an entry to the allow list, go to your deployment's Details tab, select **Edit**, and add the VPC endpoint ID or AWS account ID to the allow list.
@@ -118,17 +117,16 @@ Removing an entry disconnects that PrivateLink connection from the deployment.
 To let your F5 ADS deployment reach applications in your upstream network, create a VPC peering connection between your upstream VPC and the deployment's VPC:
 
 {{< call-out class="caution" >}}
-F5 ADS doesn't currently support cross-region VPC peering connections. A peering connection from any region other than the deployment's region will be rejected.
-{{< /call-out >}}
+Request the peering connection from the same region as your deployment. F5 ADS rejects peering connections from any other region.{{< /call-out >}}
 
 1. Open your deployment's Details tab and note its **AWS Account ID** and **VPC ID**.
-1. From your upstream AWS account, create a VPC peering connection request targeting the deployment's AWS Account ID and VPC ID. For step-by-step instructions, see AWS's [Create a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) documentation.
+1. From your upstream AWS account, create a VPC peering connection request targeting the deployment's AWS Account ID and VPC ID. For step-by-step instructions, see [Connect upstream applications using the AWS CLI]({{< ref "/f5ads/aws/deploy/create-deployment/connect-upstream-cli.md" >}}).
 1. Note the resulting **VPC Peering Connection ID**, for example `pcx-0123456789abcdef0`, shown in the AWS VPC console **Peering Connections** list.
 1. On your deployment's Details tab, select **Edit**, go to **Cloud Details** > **Upstream Network**, select **+ Add Entry**, and add the VPC Peering Connection ID.
 1. Select **Save Changes** to allow F5 ADS to accept the peering connection request.
 1. You must update your upstream VPC's route tables, network ACLs, and security groups to allow traffic to and from the deployment's VPC CIDRs.
    - Open your deployment's Details tab and note its **IPv4 CIDR** and **IPv6 CIDR** (if you plan to use IPv6).
-   - See AWS's [Update your route tables for a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) and [Configure security group rules for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-security-group-rules.html) documentation.
+   - See the AWS [Update your route tables for a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) and [Configure security group rules for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-security-group-rules.html) documentation.
 
 {{< call-out class="caution" title="CIDR overlap" >}}
 Your upstream VPC CIDRs must not overlap with the deployment's VPC CIDRs, or the CIDRs of other peered upstream VPCs. If CIDRs overlap, VPC peering will fail. See [Upstream network]({{< ref "/f5ads/aws/overview.md#upstream-network" >}}) for more information.

@@ -1,7 +1,6 @@
 ---
 description: License information for open source components included in the NGINX
   Plus software.
-f5-docs: DOCS-471
 title: Open Source Components
 toc: true
 weight: 500

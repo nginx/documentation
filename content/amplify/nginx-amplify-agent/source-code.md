@@ -4,7 +4,6 @@ description: Learn where to find F5 NGINX Amplify Agent's source code.
 weight: 700
 toc: true
 noindex: true
-f5-docs: DOCS-965
 f5-product: AMPLIF
 ---
 

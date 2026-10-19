@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1075
 f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md
@@ -12,7 +11,7 @@ NGINX Instance Manager supports the following NGINX Open Source and NGINX Plus v
 
 | NGINX Instance Manager | NGINX OSS   | NGINX Plus |
 | ---------------------- | ----------- | ---------- |
-| 2.18.0 and later       | 1.18–1.31.6 | R31–R37    |
+| 2.18.0 and later       | 1.18–1.31.7 | R31–R37    |
 | 2.16.0–2.17.x          | 1.18–1.25.1 | R31–R32    |
 | 2.7.0–2.15.x           | 1.18–1.25.1 | R21–R30    |
 | 2.0.0–2.6.0            | 1.18–1.21.6 | R21–R27    |

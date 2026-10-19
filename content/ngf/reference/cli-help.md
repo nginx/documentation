@@ -5,7 +5,6 @@ weight: 100
 toc: true
 f5-content-type: reference
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1843
 f5-summary: >
   Look up flags and commands available on the NGINX Gateway Fabric control plane executable.
   Use this when configuring container args or troubleshooting startup options.

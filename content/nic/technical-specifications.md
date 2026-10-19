@@ -4,7 +4,6 @@ toc: true
 weight: 200
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-617
 ---
 
 This page describes technical specifications for F5 NGINX Ingress Controller, such as its version compatibility with Kubernetes and other NGINX software.

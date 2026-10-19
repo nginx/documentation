@@ -4,7 +4,6 @@ description: "Release notes for F5 DoS for NGINX 4.9, including new platform sup
 keywords: "F5 DoS for NGINX, release notes, 4.9, Debian 13, RHEL 10, Rocky Linux 10, NGINX Plus R37.0"
 toc: true
 weight: 30
-f5-docs: DOCS-1783
 f5-content-type: reference
 f5-product: F5 DOS for NGINX
 f5-summary: >

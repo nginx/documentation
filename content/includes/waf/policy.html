@@ -34,6 +34,13 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>accessProfileReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><code>applicationLanguage</code></td>
 <td>No</td>
 <td>string</td>
@@ -71,24 +78,31 @@
 <li>windows-874</li>
 </ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/blocking-settings">blocking-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>This section defines policy block/alarm behaviors.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/bot-defense">bot-defense</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>This section defines the properties of the bot defense feature.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/browser-definitions">browser-definitions</a></td>
 <td>Yes</td>
 <td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>browserDefinitionReference</code></td>
+<td>No</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -100,16 +114,30 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>bruteForceAttackPreventionReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><code>caseInsensitive</code></td>
 <td>No</td>
 <td>boolean</td>
 <td>Specifies whether the security policy treats microservice URLs, file types, URLs, and parameters as case sensitive or not. When this setting is enabled, the system stores these security policy elements in lowercase in the security policy configuration.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/character-sets">character-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>characterSetReference</code></td>
+<td>No</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -118,6 +146,20 @@
 <td>Yes</td>
 <td>object</td>
 <td>The maximum length of a cookie header name and value that the system processes. The system calculates and enforces a cookie header length based on the sum of the length of the cookie header name and value.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>cookieReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>cookieSettingsReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -148,6 +190,20 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>csrfProtectionReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>csrfUrlReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/data-guard">data-guard</a></td>
 <td>Yes</td>
 <td>object</td>
@@ -155,17 +211,31 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>dataGuardReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><code>description</code></td>
 <td>No</td>
 <td>string</td>
 <td>Specifies the description of the policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/disallowed-geolocations">disallowed-geolocations</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>Specifies a list of countries that may not access the web application.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>disallowedGeolocationReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -190,6 +260,20 @@
 <td>Yes</td>
 <td>object</td>
 <td>This section contains all enforcer settings.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enforcerSettingsReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>filetypeReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -221,9 +305,23 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>generalReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/graphql-profiles">graphql-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>graphqlProfileReference</code></td>
+<td>No</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -235,23 +333,51 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>grpcProfileReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/header-settings">header-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>The maximum length of an HTTP header name and value that the system processes. The system calculates and enforces the HTTP header length based on the sum of the length of the HTTP header name and value.</td>
 <td></td>
 </tr>
+<tr class="odd">
+<td><code>headerReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr class="even">
+<td><code>headerSettingsReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/headers">headers</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines Header entities for your policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/host-names">host-names</a></td>
 <td>Yes</td>
 <td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>hostNameReference</code></td>
+<td>No</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -263,45 +389,101 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>idlFileReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/ip-address-lists">ip-address-lists</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>An IP address list is a list of IP addresses that you want the system to treat in a specific way for a security policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/ip-intelligence">ip-intelligence</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
+<tr class="even">
+<td><code>ipAddressListReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr class="odd">
+<td><code>ipIntelligenceReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/json-profiles">json-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/json-validation-files">json-validation-files</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
+<tr class="even">
+<td><code>jsonProfileReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr class="odd">
+<td><code>jsonValidationFileReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/login-enforcement">login-enforcement</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/login-pages">login-pages</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>A login page is a URL in a web application that requests must pass through to get to the authenticated URLs. Use login pages, for example, to prevent forceful browsing of restricted parts of the web application, by defining access permissions for users. Login pages also allow session tracking of user sessions.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>loginEnforcementReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>loginPageReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>methodReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -333,6 +515,20 @@
 <td></td>
 </tr>
 <tr class="odd">
+<td><code>overrideRuleReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>parameterReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/parameters">parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
@@ -354,10 +550,24 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>responsePageReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/sensitive-parameters">sensitive-parameters</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines sensitive parameters. The contents of these parameters are not visible in logs nor in the user interfaces. Instead of actual values a string of asterisks is shown for these parameters. Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request. A parameter name of "password" is always defined as sensitive by default.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>sensitiveParameterReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -368,65 +578,121 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><code>serverTechnologyReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/signature-requirements">signature-requirements</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/signature-sets">signature-sets</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>Defines behavior when signatures found within a signature-set are detected in a request. Settings are cumulative, so if a signature is found in any set with block enabled, that signature will have block enabled.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/signature-settings">signature-settings</a></td>
 <td>Yes</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
+<tr class="even">
+<td><code>signatureReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr class="odd">
+<td><code>signatureRequirementReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>signatureSetReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>signatureSettingReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/signatures">signatures</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the properties of a signature on the policy.</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/template">template</a></td>
 <td>Yes</td>
 <td>object</td>
 <td>Specifies the template to populate the default attributes of a new policy.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#policy/threat-campaigns">threat-campaigns</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>This section defines the enforcement state for the threat campaigns in the security policy.</td>
 <td></td>
 </tr>
+<tr class="odd">
+<td><code>threatCampaignReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr class="even">
+<td><code>urlReference</code></td>
+<td>No</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td><a href="#policy/urls">urls</a></td>
 <td>Yes</td>
 <td>array of objects</td>
 <td>In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>wafEngineVersion</code></td>
 <td>No</td>
 <td>string</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#policy/xml-profiles">xml-profiles</a></td>
 <td>Yes</td>
 <td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>xmlProfileReference</code></td>
+<td>No</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -817,6 +1083,18 @@
 <td></td>
 </tr>
 <tr class="even">
+<td><a href="#policy/brute-force-attack-preventions/clientSideIntegrityBypassCriteria">clientSideIntegrityBypassCriteria</a></td>
+<td>object</td>
+<td>Specifies configuration for Client Side Integrity Bypass Mitigation.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/brute-force-attack-preventions/detectionCriteria">detectionCriteria</a></td>
+<td>object</td>
+<td>Specifies configuration for detecting distributed brute force attacks.</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="#policy/brute-force-attack-preventions/loginAttemptsFromTheSameIp">loginAttemptsFromTheSameIp</a></td>
 <td>object</td>
 <td>Specifies configuration for detecting brute force attacks from IP Address.</td>
@@ -827,6 +1105,24 @@
 <td>object</td>
 <td>Specifies configuration for detecting brute force attacks for Username.</td>
 <td></td>
+</tr>
+<tr class="even">
+<td><code>measurementPeriod</code></td>
+<td>integer minimum: 60 maximum: 90000</td>
+<td>Defines detection period (measured in seconds) for distributed brute force attacks.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>preventionDuration</code></td>
+<td><ul>
+<li>integer minimum: 60 maximum: 90000</li>
+<li>string</li>
+</ul></td>
+<td>Defines prevention period (measured in seconds) for distributed brute force attacks.</td>
+<td><ul>
+<li>Integer values</li>
+<li>"unlimited"</li>
+</ul></td>
 </tr>
 <tr class="even">
 <td><code>reEnableLoginAfter</code></td>
@@ -844,6 +1140,106 @@
 <td><a href="#policy/urls">url</a></td>
 <td>object</td>
 <td>Reference to the URL used in login URL configuration (policy/login-pages). This login URL is protected by Brute Force Protection feature.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/brute-force-attack-preventions/clientSideIntegrityBypassCriteria">clientSideIntegrityBypassCriteria</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>action</code></p></td>
+<td><p>string</p></td>
+<td><p>Specifies action that is applied when defined threshold is reached.</p>
+<blockquote>
+<ul>
+<li><strong>alarm-and-captcha</strong>: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>alarm-and-captcha</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>When enabled, the system counts successful challenges with failed logins from IP Address / Device ID / Username. Legitimate users who have disabled JavaScripting on their browsers for security reasons will fail a client side integrity challenge.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>threshold</code></td>
+<td>integer minimum: 1 maximum: 100</td>
+<td>After configured threshold (number of successful challenges with failed logins from IP Address / Device ID / Username) defined action will be applied for the next login attempt</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy/brute-force-attack-preventions/detectionCriteria">detectionCriteria</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>action</code></p></td>
+<td><p>string</p></td>
+<td><p>Specifies action that is applied when one of the defined thresholds (credentialsStuffingMatchesReached, failedLoginAttemptsRateReached) is reached.</p>
+<blockquote>
+<ul>
+<li><strong>alarm</strong>: The system will log the login attempt.</li>
+<li><strong>alarm-and-captcha</strong>: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.</li>
+<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
+<li><strong>alarm-and-client-side-integrity-captcha</strong>: The system sends a Client Side Integrity challenge upon the first failed login attempt from a source and a CAPTCHA challenge upon second and all subsequent failed login attempts. A login attempt is logged if client successfully passes the challenge. This enforcement action should be chosen if CAPTCHA is considered intrusive. Benign users who mistype their password will likely get only the Client Side Integrity challenge, while an attacker will eventually get the CAPTCHA challenge.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>alarm</li>
+<li>alarm-and-captcha</li>
+<li>alarm-and-client-side-integrity</li>
+<li>alarm-and-client-side-integrity-captcha</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>credentialsStuffingMatchesReached</code></td>
+<td>integer minimum: 1 maximum: 10000</td>
+<td>After configured threshold (number of detected login attempts that match known leaked credentials library) defined action will be applied for the next login attempt.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>detectDistributedBruteForceAttack</code></td>
+<td>boolean</td>
+<td>When enabled, the system detects distributed brute force attacks.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>failedLoginAttemptsRateReached</code></td>
+<td>integer minimum: 1 maximum: 10000</td>
+<td>After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.</td>
 <td></td>
 </tr>
 </tbody>
@@ -882,6 +1278,8 @@
 <td><ul>
 <li>alarm</li>
 <li>alarm-and-blocking-page</li>
+<li>alarm-and-captcha</li>
+<li>alarm-and-client-side-integrity</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -928,6 +1326,8 @@
 </blockquote></td>
 <td><ul>
 <li>alarm</li>
+<li>alarm-and-captcha</li>
+<li>alarm-and-client-side-integrity</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -3628,9 +4028,13 @@
 <li><strong>extend-policy</strong>: The override policy inherits the containing policy settings, allowing only the required settings to be overridden.</li>
 <li><strong>replace-policy</strong>: The override policy must be a valid declarative policy that includes a name, template and all necessary settings.</li>
 <li><strong>violation</strong>: The request is blocked and a the VIOL_RULE is logged based on the provided violation settings.</li>
+<li><strong>client-side-integrity</strong>: The request is challenged using the existing Client-Side Integrity flow. The matching URL must be eligible for Client-Side Integrity qualification; responses that are not HTML cannot be qualified automatically.</li>
+<li><strong>client-side-integrity-captcha</strong>: The request is challenged using Client-Side Integrity first, then a CAPTCHA after a valid Client-Side Integrity replay. The matching URL must be eligible for Client-Side Integrity qualification; responses that are not HTML cannot be qualified automatically.</li>
 </ul>
 </blockquote></td>
 <td><ul>
+<li>client-side-integrity</li>
+<li>client-side-integrity-captcha</li>
 <li>extend-policy</li>
 <li>replace-policy</li>
 <li>violation</li>
@@ -4883,9 +5287,7 @@
 <td><code>stagingCertificationDatetime</code></td>
 <td>string</td>
 <td></td>
-<td><ul>
-<li></li>
-</ul></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -5197,9 +5599,7 @@
 <td><code>stagingCertificationDatetime</code></td>
 <td>string</td>
 <td></td>
-<td><ul>
-<li></li>
-</ul></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -5330,7 +5730,7 @@
 <tr class="odd">
 <td><code>allowRenderingInFramesOnlyFrom</code></td>
 <td>string</td>
-<td>Specifies that the browser may load the frame or iframe from a specified domain. Type the protocol and domain in URL format for example, <a href="http://www.example.com">http://www.example.com</a>. Do not enter a sub-URL, such as <a href="http://www.example.com/index">http://www.example.com/index</a>.</td>
+<td>Specifies that the browser may load the frame or iframe from a specified domain. Type the protocol and domain in URL format for example, <a href="http://www.mywebsite.com">http://www.mywebsite.com</a>. Do not enter a sub-URL, such as <a href="http://www.mywebsite.com/index">http://www.mywebsite.com/index</a>.</td>
 <td></td>
 </tr>
 <tr class="even">

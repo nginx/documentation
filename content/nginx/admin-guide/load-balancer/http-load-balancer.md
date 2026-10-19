@@ -1,7 +1,6 @@
 ---
 description: Load balance HTTP traffic across web or application server groups, with
   several algorithms and advanced features like slow-start and session persistence.
-f5-docs: DOCS-418
 title: HTTP Load Balancing
 toc: true
 weight: 100

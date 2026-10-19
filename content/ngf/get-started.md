@@ -5,7 +5,6 @@ weight: 200
 toc: true
 f5-content-type: tutorial
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1834
 f5-summary: >
   Deploy NGINX Gateway Fabric on a local kind cluster and exercise a basic Gateway and HTTPRoute setup.
   This quickstart is intended for evaluation and learning, not production environments.

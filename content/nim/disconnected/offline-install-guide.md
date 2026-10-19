@@ -4,7 +4,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-803
 description: "Use the install-nim-bundle.sh script to install or upgrade F5 NGINX Instance Manager in a disconnected (offline) environment."
 f5-summary: >
   Install or upgrade F5 NGINX Instance Manager in a disconnected environment using the install-nim-bundle.sh script.

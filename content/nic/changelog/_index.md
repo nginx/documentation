@@ -5,7 +5,6 @@ weight: 10200
 f5-landing-page: true
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-616
 cascade:
   nollms: true
 ---
@@ -41,7 +40,10 @@ This release delivers practical improvements for Kubernetes routing, secret supp
 - Traffic Distribution / Topology Aware Routing - opt-in support for Kubernetes trafficDistribution to keep traffic in-availability-zone, improving latency and cost on a best-effort basis.
 - Helm v4 support - deployment and packaging modernisation for current tooling.
 - Least_time Load Balancing Moves to OSS
-- Security fixes
+- Security fix: multiple cluster-admin controlled ConfigMap values were written into the NGINX configuration without proper validation or sanitization that could lead to injection vulnerabilities. These have been fixed. [CVE-2026-55723](https://my.f5.com/manage/s/article/K000161837)
+- Security fix: when using external auth, previously carefully crafted X-Forwarded headers allowed authentication bypass. [CVE-2026-94197](https://my.f5.com/manage/s/article/K000162611)
+- Security fix: when using external auth, rendering the log in page during a login flow mishandled the response code as permission to view protected resources [CVE-2026-104939](https://my.f5.com/manage/s/article/K000162617)
+
 ### {{% icon rocket %}} Features
 
 - [10746](https://github.com/nginx/kubernetes-ingress/pull/10746) Add support for least_time load balancing method in nginx oss

@@ -4,7 +4,6 @@ toc: true
 weight: 100
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-613
 ---
 
 This document gives an overview of logging provided by F5 NGINX Ingress Controller.

@@ -1,6 +1,5 @@
 ---
 description: Learn how to use F5 NGINX Instance Manager to set up and manage F5 WAF for NGINX security policies.
-f5-docs: DOCS-992
 title: "How WAF policy management works"
 toc: true
 weight: 100

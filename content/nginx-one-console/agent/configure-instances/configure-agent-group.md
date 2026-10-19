@@ -3,7 +3,6 @@ title: Add users to nginx-agent group
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-docs: DOCS-1881
 f5-product: NGINX Agent
 ---
 

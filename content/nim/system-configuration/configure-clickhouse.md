@@ -1,6 +1,5 @@
 ---
 description: ''
-f5-docs: DOCS-998
 title: Configure ClickHouse
 toc: true
 weight: 100

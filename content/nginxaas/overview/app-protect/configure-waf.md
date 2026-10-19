@@ -3,7 +3,6 @@ title: Configure F5 WAF for NGINX
 description: "Configure F5 WAF for NGINX security features by editing the NGINX configuration file."
 weight: 110
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/overview/app-protect/configure-waf/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service

@@ -2,7 +2,6 @@
 title: Directives and Policy
 toc: true
 weight: 120
-f5-docs: DOCS-667
 f5-content-type: reference
 f5-product: F5 DOS for NGINX
 ---

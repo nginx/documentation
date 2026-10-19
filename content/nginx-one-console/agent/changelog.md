@@ -4,7 +4,6 @@ toc: false
 url: /nginx-one-console/agent/changelog
 weight: 1200
 f5-content-type: redirect
-f5-docs: DOCS-1868
 f5-product: NGINX Agent
 ---
 

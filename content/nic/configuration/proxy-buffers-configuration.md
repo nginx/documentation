@@ -2,7 +2,6 @@
 title: Proxy Buffer Configuration Auto-Adjustment
 toc: true
 weight: 850
-f5-docs: DOCS-590
 f5-product: NGINX Ingress Controller
 f5-content-type: how-to
 ---

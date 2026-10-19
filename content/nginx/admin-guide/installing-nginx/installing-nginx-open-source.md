@@ -5,7 +5,6 @@ toc: true
 weight: 200
 f5-content-type: how-to
 f5-product: NGINX Plus
-f5-docs: DOCS-410
 ---
 
 This article explains how to install NGINX Open Source on various operating systems, including an overview of existing NGINX Open Source versions, installation types and methods, modules included in the default package and dynamic modules packages, and the basics of compiling NGINX from the source code.
@@ -248,7 +247,7 @@ Before installing, check if your operating system and architecture are supported
    
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -360,7 +359,7 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.31.6
+   Server: nginx/1.31.7
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -470,7 +469,7 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.31.6
+   Server: nginx/1.31.7
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -567,7 +566,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -686,7 +685,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -784,7 +783,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -864,7 +863,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -1027,9 +1026,9 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.31.6.tar.gz && \
-tar zxf nginx-1.31.6.tar.gz && \
-cd nginx-1.31.6
+wget https://nginx.org/download/nginx-1.31.7.tar.gz && \
+tar zxf nginx-1.31.7.tar.gz && \
+cd nginx-1.31.7
 ```
 
 To download and unpack source files for the latest _stable_ version, run:
