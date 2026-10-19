@@ -21,11 +21,9 @@ Starting with version 2.20.0, NGINX Instance Manager supports **lightweight mode
 
 - Lightweight mode requires NGINX Agent v2.41.1 or later.
 
-
 {{< call-out class="note" title="Chart renamed with new versioning from NGINX Instance Manager 2.20.0" >}}
 Starting with version 2.20.0, the Helm chart was renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`. Chart versioning was also reset; `v2.0.0` is the first release under the new name. Be sure to update your chart references if you’re using version `2.20.0` or later.
 {{< /call-out >}}
-
 
 ---
 
@@ -34,6 +32,7 @@ Starting with version 2.20.0, the Helm chart was renamed from `nginx-stable/nms-
 To deploy NGINX Instance Manager using a Helm chart, you need:
 
 {{<table>}}
+
 | Requirements                                 | Notes                                                                                                                                                                                                                  |
 |----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Docker 20.10 or later (linux/amd64)          | [Docker documentation](https://docs.docker.com/get-docker/)                                                                                                                                                            |
@@ -42,7 +41,7 @@ To deploy NGINX Instance Manager using a Helm chart, you need:
 | Helm 3.10.0 or later                         | [Helm installation guide](https://helm.sh/docs/intro/install/)                                                                                                                                                         |
 | OpenSSL 1.1.1 or later                       | [OpenSSL source](https://www.openssl.org/source/)                                                                                                                                                                      |
 | `tar` 1.20 or later                          | The `tar` tool is usually installed by default. Check with `tar --version`.                                                                                                                                            |
-| `values.yaml` file with `nmsClickhouse.mode` | Optional. Defaults to `internal`. Set to `external` or `disabled` to use an external ClickHouse instance or enable lightweight mode. In `external` mode, set `nim.externalClickhouse.address` to your ClickHouse host. |
+| `values.yaml` file with `nmsClickhouse.mode` | Optional. Defaults to `internal`. Set to `external` for an existing ClickHouse server or `disabled` for lightweight mode. In `external` mode, set `externalClickhouse.address` to the host and native protocol port. |
 | NGINX subscription JWT                       | Required to authenticate with `private-registry.nginx.com` to pull the image. Download your JWT from [MyF5](https://my.f5.com/manage/s/) under **My Products & Plans > Subscriptions**.                                |
 {{</table >}}
 
@@ -130,14 +129,14 @@ Set `nmsClickhouse.mode` to control ClickHouse deployment:
 | Mode       | Description                                                                                |
 |------------|--------------------------------------------------------------------------------------------|
 | `internal` | Deploys ClickHouse in the cluster (default).                                               |
-| `external` | Connects to an external ClickHouse instance and requires `nim.externalClickhouse.address`. |
+| `external` | Connects to an external ClickHouse instance and requires `externalClickhouse.address`. |
 | `disabled` | Disables ClickHouse and enables lightweight mode (no metrics).                             |
 
 {{< call-out class="note" title="See also" >}}
-See the [Helm chart configuration settings](
-https://docs.nginx.com/nginx-instance-manager/deploy/kubernetes/helm-config-settings/
-) guide for a complete list of chart parameters.
+See [Configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) for parameters, defaults, and version-specific limitations.
 {{< /call-out >}}
+
+For a direct installation of `nginx-stable/nim`, put these settings at the root of `values.yaml`. Don't add a `nim:` wrapper.
 
 ```yaml
 # When openshift.enabled is set, the chart deploys to OpenShift.
@@ -221,10 +220,12 @@ For external ClickHouse:
 
 ```shell
 --set nmsClickhouse.mode=external \
---set nim.externalClickhouse.address=<CLICKHOUSE_HOST>:<PORT>
+--set externalClickhouse.address=<CLICKHOUSE_HOST>:<PORT>
 ```
 
-**Validate the deployment**
+For chart 2.3.1, set credentials under `externalClickhouse.auth`. See the [external ClickHouse example]({{< ref "/nim/deploy/kubernetes/frequently-used-helm-configs.md#use-your-own-clickhouse-installation" >}}).
+
+### Validate the deployment
 
 After installation, run the following command to confirm the deployment was successful:
 
@@ -233,7 +234,6 @@ helm status nim -n nim
 ```
 
 You should see `STATUS: deployed` in the output.
-
 
 To find the right NGINX Instance Manager chart version, see the following table:
 
@@ -275,7 +275,6 @@ helm upgrade nim nginx-stable/nim \
 - Replace `<YOUR_PASSWORD>` with your preferred admin password.
 - Replace `<YOUR_VALUES_FILE>` with the path to your customized values.yaml file.
 - Replace `<CHART_VERSION>` with the version you want to install (for example, `2.1.0`).
-
 
 {{< call-out class="important" title="Save the password!" >}}
 Only the encrypted version of the admin password is stored in Kubernetes. If you lose it, it can’t be recovered or reset.
@@ -400,7 +399,6 @@ utility:
 
 Replace `<VERSION>` with the version number.
 
-
 2. Save and close the `values.yaml` file.
 
 ---
@@ -413,7 +411,6 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 2. Replace `<YOUR_PASSWORD>` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
    {{< call-out class="important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
-
 
 ```shell
 helm install -n nms-hybrid \
@@ -565,7 +562,6 @@ For instructions on creating a support package to share with NGINX Customer Supp
 OpenShift restricts containers from running as root by default.
 
 To enable OpenShift support in the NGINX Instance Manager Helm chart, set the following value:
-
 
 ```yaml
 openshift:

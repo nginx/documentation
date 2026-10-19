@@ -17,22 +17,36 @@ f5-summary: >
 
 This guide provides frequently used configurations for F5 NGINX Instance Manager. To apply any of these configurations, modify the `values.yaml` file accordingly.
 
-Refer to the [configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) guide for a complete list of configurable parameters and default values used by NGINX Instance Manager and its modules when installing from a Helm chart.
+Refer to [Configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) for chart parameters, defaults, and version-specific limitations.
 
 ---
 
 ## Use your own ClickHouse installation
 
-NGINX Instance Manager requires a [ClickHouse](https://clickhouse.com) database server for storing metrics data. ClickHouse is an open-source, column-based, high-performance analytics database that allows real-time queries on large amounts of data.
+NGINX Instance Manager uses [ClickHouse](https://clickhouse.com) to store metrics. Lightweight mode doesn't use ClickHouse and doesn't collect metrics.
 
 By default, the Helm chart installs ClickHouse, which is enabled in the `values.yaml` file by setting `nmsClickhouse.mode` to `internal`.
 
-To use your own ClickHouse installation, follow these steps:
+For chart 2.3.1, use these settings to connect to your own ClickHouse server:
 
-1. Set `nmsClickhouse.mode` to `external`.
-2. Add values for `externalClickhouse.address`, `.user`, and `.password` that match your ClickHouse installation.
+```yaml
+nmsClickhouse:
+  mode: external
+externalClickhouse:
+  address: "<CLICKHOUSE_HOST>:<PORT>"
+  auth:
+    username: "<CLICKHOUSE_USER>"
+    existingSecret: "<CLICKHOUSE_PASSWORD_SECRET>"
+    existingSecretKey: "<PASSWORD_KEY>"
+```
 
-   {{< call-out class="note" >}}The `externalClickhouse` field is required when `nmsClickhouse.mode` is disabled.{{< /call-out >}}
+Replace `<CLICKHOUSE_HOST>` and `<PORT>` with the server address and native protocol port. Replace `<CLICKHOUSE_USER>` with your ClickHouse username.
+
+Create the password Secret in the deployment namespace before installation. Replace `<CLICKHOUSE_PASSWORD_SECRET>` with its name and `<PASSWORD_KEY>` with the key that contains the password.
+
+Alternatively, set `externalClickhouse.auth.password` and leave both existing-Secret settings empty. The older `externalClickhouse.user` and `externalClickhouse.password` paths don't apply to chart 2.3.1.
+
+`externalClickhouse.address` is required only when `nmsClickhouse.mode` is `external`. It isn't required when the mode is `disabled`.
 
 ---
 
@@ -54,7 +68,9 @@ For full instructions, see [Use external TLS certificates]({{< ref "/nim/deploy/
 
 You can review and adjust the deployment's default resource and storage settings by editing the `values.yaml` file in the Helm package you downloaded. Adjust the values to meet your data needs.
 
-Persistent volumes are on by default for the ClickHouse database server and the `core` and `dpm` services. To turn off persistent storage, set `<SERVICE>.persistence.enabled` to `false`, where `<SERVICE>` is the service name, such as `core` or `dpm`.
+Persistent storage is on by default for internal ClickHouse and the `core`, `dpm`, and `integrations` services. Set `<SERVICE>.persistence.enabled` to `false` to turn it off. Replace `<SERVICE>` with `nmsClickhouse`, `core`, `dpm`, or `integrations`.
+
+See the [storage examples]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md#nim-dqlite-storage-configuration" >}}) for service-specific claim sizes. Include the complete claim array when you override it.
 
 ---
 

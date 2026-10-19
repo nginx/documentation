@@ -27,7 +27,21 @@ We recommend allowing **twice as many worker connections as the number of NGINX 
 
 To align with the worker connection count, you should also adjust the maximum number of file descriptors (`worker_rlimit_nofile`) that worker processes can open. Since `rlimit_nofile` is a system setting, ensure your Linux user limits allow the required number of file descriptors.
 
-### Update worker connections and file descriptors
+### Update worker settings with Helm
+
+For a Helm deployment, set the worker limits under `apigw` in your values file:
+
+```yaml
+apigw:
+  nginxWorkerConnections: 2000
+  nginxWorkerRlimitNofile: 4096
+```
+
+These settings default to `1024` and `4096`, respectively. Set the limits to match your agent count and available file descriptors.
+
+Apply the file with the [Helm upgrade command]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#upgrade-nginx-instance-manager" >}}). See [Configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md#api-gateway" >}}) for details.
+
+### Update worker connections and file descriptors on a host {#update-worker-connections-and-file-descriptors}
 
 1. Open the NGINX configuration file on the NGINX Instance Manager host:
 
@@ -52,6 +66,7 @@ To align with the worker connection count, you should also adjust the maximum nu
     ```
 
 For more information, refer to the official NGINX documentation:
+
 - [worker_connections](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)
 - [worker_rlimit_nofile](http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile)
 
