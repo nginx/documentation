@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-444
 description: Load balance HTTP traffic across web or application server groups, with
   several algorithms and advanced features like slow-start and session persistence.
 title: HTTP Load Balancing
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 ## Overview {#overview}

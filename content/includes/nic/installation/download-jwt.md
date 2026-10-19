@@ -1,7 +1,9 @@
 ---
-f5-product: NGINX Ingress Controller
+f5-docs: DOCS-183
+f5-product: F5 NGINX Ingress Controller
 f5-files:
 - content/nic/install/license-secret.md
+- content/nic/lts/install/license-secret.md
 ---
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).

@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-373
 title: "Add gRPC protection to a policy"
-description: "Upload .proto files through the API so a WAF policy's grpc-profiles entry can validate gRPC messages."
+description: |
+  This page explains how to upload the .proto files a grpc-profiles entry references, using the NGINX One Console API. You need this because policy JSON only references IDL files by URI, and the actual file content must be uploaded separately. gRPC protection is currently supported through the API only.
 weight: 450
 toc: true
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 f5-keywords: "gRPC, protobuf, proto files, WAF policy, file references"
-f5-summary: >
-  This page explains how to upload the .proto files a grpc-profiles entry references, using the NGINX One Console API.
-  You need this because policy JSON only references IDL files by URI, and the actual file content must be uploaded separately.
-  gRPC protection is currently supported through the API only.
-f5-audience: developer
 ---
 
 F5 WAF for NGINX can protect gRPC APIs by validating messages against their Interface Definition Language (IDL) files (`.proto`). This is configured through the `grpc-profiles` property of a WAF policy.

@@ -1,5 +1,7 @@
 ---
+f5-docs: DOCS-84
 f5-files:
+- content/nginx/releases.md
 - content/solutions/about-subscription-licenses/getting-started.md
 - content/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md
 ---

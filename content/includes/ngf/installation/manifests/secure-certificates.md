@@ -1,5 +1,11 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-106
+f5-product: F5 NGINX Gateway Fabric
+f5-files:
+- content/ngf/install/manifests/open-source-experimental.md
+- content/ngf/install/manifests/open-source.md
+- content/ngf/install/manifests/plus-experimental.md
+- content/ngf/install/manifests/plus.md
 ---
 
 {{< call-out class="note" >}} These steps use a self-signed issuer, which should not be used in production environments. For production environments, you should use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}

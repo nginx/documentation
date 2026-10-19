@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-349
 title: View and edit an NGINX instance
 weight: 200
 toc: true
 f5-content-type: tutorial
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 <!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 

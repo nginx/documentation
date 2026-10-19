@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-342
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: View template versions
-description: "View and manage the version history of a config template on the Versions tab in NGINX One Console."
+description: |
+  Use the Versions tab on the Template Detail page to view and manage the version history for a config template in NGINX One Console. Each row shows the version number, last modified date, description, and how many submissions reference that version. This guide covers how to go to the Versions tab, read the data grid, and delete a version.
 toc: true
 weight: 120
 f5-keywords: "template versions, config templates, NGINX One Console, version history, draft, final, template state, delete version, templateVersionObjectID, version data grid"
-f5-summary: >
-  Use the Versions tab on the Template Detail page to view and manage the version history for a config template in NGINX One Console.
-  Each row shows the version number, last modified date, description, and how many submissions reference that version.
-  This guide covers how to go to the Versions tab, read the data grid, and delete a version.
-f5-audience: operator
 ---
 
 ## Overview

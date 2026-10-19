@@ -1,8 +1,12 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-97
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/ngf/install/helm.md
-- content/ngf/install/manifests.md
+- content/ngf/install/manifests/open-source-experimental.md
+- content/ngf/install/manifests/open-source.md
+- content/ngf/install/manifests/plus-experimental.md
+- content/ngf/install/manifests/plus.md
 ---
 
 When NGINX Gateway Fabric is installed, it provisions a ClusterIP Service used only for internal communication between the control plane and data planes. 

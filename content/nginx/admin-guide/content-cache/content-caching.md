@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-397
 description: Cache both static and dynamic content from your proxied web and application
   servers, to speed delivery to clients and reduce the load on the servers.
 title: NGINX Content Caching
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

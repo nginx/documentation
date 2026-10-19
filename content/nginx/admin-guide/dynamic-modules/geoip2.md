@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-406
 description: Capture information from the client IP address in variables, using the [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases, with the GeoIP2 dynamic module supported by NGINX, Inc.
 title: GeoIP2
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases provide contextual data for a comprehensive profile of IP addresses, including geolocation data (region, state, city, postal code) and extra data (ISP, domain, connection type). Basing on these data, F5 NGINX Plus will be able to perform different user differentiation strategies, for example, provide different type of content depending on a country.

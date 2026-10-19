@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-98
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/ngf/install/helm.md
 - content/ngf/install/upgrade-version.md

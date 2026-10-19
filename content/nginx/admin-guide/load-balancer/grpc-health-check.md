@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-442
 description: Monitor the health of gRPC servers in an upstream group by sending periodic
   health checks.
 title: gRPC Health Checks
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

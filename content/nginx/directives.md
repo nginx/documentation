@@ -1,8 +1,9 @@
 ---
+f5-docs: DOCS-519
 title: NGINX Directives Index
 url: /nginx/directives
 weight: 700
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 f5-content-type: redirect
 ---
 

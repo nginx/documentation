@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-409
 description: Crop, resize, rotate, and perform other transformations on GIF, JPEG,
   and PNG images, with the Image-Filter dynamic module supported by NGINX, Inc.
 title: Image-Filter
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 The Image-Filter dynamic module enables you to crop, resize, rotate, and apply various transformations to GIF, JPEG, and PNG images.
 

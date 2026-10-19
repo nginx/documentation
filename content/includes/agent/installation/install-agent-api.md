@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Agent
+f5-docs: DOCS-1
+f5-product: F5 NGINX Agent
 f5-files:
 - content/nim/security-monitoring/set-up-app-protect-instances.md
 - content/nim/waf-integration/configuration/onboard-instances/install-nginx-agent.md

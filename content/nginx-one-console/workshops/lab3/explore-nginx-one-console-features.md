@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-387
 title: "Lab 3: Explore NGINX One Console features"
 weight: 300
 toc: true
 f5-content-type: tutorial
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 ## Introduction

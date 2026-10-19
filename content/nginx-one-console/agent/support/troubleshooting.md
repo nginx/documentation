@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-304
 title: Troubleshooting
 toc: true
 weight: 700
 f5-content-type: reference
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 ## F5 NGINX Agent Troubleshooting 

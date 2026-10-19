@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-273
 f5-product: F5 WAF for NGINX
 f5-files:
 - content/ngf/waf-integration/get-started-plm.md

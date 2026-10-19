@@ -1,7 +1,9 @@
 ---
+f5-docs: DOCS-67
 f5-product: F5 Application Delivery Service
 f5-files:
 - content/f5ads/aws/monitoring/metrics-catalog.md
+- content/f5ads/google/monitoring/metrics-catalog.md
 ---
 
 ## Metrics

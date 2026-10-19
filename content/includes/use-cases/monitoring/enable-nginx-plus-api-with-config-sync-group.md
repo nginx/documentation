@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX One Console
+f5-docs: DOCS-235
+f5-product: F5 NGINX One Console
 f5-files:
 - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md
 - content/nginx-one-console/workshops/lab5/upgrade-nginx-plus-to-latest-version.md

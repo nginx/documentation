@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-290
 title: Configure SELinux
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 ## Overview

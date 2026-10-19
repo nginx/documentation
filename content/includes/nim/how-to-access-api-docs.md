@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-202
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/admin-guide/rbac/manage-resource-groups.md
 - content/nim/fundamentals/api-overview.md

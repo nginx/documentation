@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-481
 description: Create a highly available active-passive deployment of F5 NGINX Plus
   on AWS with a solution combining keepalived and the AWS Elastic IP address feature.
 title: Active-Passive HA for NGINX Plus on AWS Using Elastic IP Addresses
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This guide explains how to create a high availability (HA) active‑passive deployment of F5 NGINX Plus in the [Amazon Web Services](https://aws.amazon.com/) (AWS) cloud. It combines the `keepalived`‑based solution for high availability (provided by NGINX for on‑premises HA deployments) with the AWS Elastic IP address feature.

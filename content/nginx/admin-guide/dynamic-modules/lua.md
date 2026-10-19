@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-410
 description: ''
 title: Lua
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.

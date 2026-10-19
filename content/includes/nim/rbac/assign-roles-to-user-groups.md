@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-215
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/admin-guide/rbac/assign-roles.md
 - content/nim/security-monitoring/give-access-to-security-monitoring-dashboards.md

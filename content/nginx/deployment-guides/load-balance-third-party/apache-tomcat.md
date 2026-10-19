@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-489
 description: Load balance Apache Tomcat application servers with NGINX Open Source
   or the advanced features in F5 NGINX Plus, following our step-by-step setup instructions.
 title: Load Balancing Apache Tomcat Servers with NGINX Open Source and NGINX Plus
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Apache Tomcat<sup>TM</sup> application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Tomcat.

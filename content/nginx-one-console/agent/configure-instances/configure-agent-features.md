@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-287
 title: Review and configure features
 weight: 350
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 ## Overview

@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-390
 description: "Documentation for NGINX Open Source and F5 NGINX Plus."
 title: F5 NGINX Plus
 weight: 100
@@ -8,7 +9,7 @@ f5-landing-page: true
 cascade:
   logo: NGINX-Plus-product-icon.svg
 f5-content-type: landing-page
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 Request your [free 30‑day trial](https://www.nginx.com/free-trial-request) today.
 

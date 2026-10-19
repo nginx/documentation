@@ -1,8 +1,8 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-220
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/security-monitoring/troubleshooting.md
-- content/nim/troubleshooting.md
 ---
 
 If you need more help, see the following topics:

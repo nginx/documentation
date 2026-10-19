@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-438
 title: Installing NGINX Plus
 description: Install F5 NGINX Plus with step-by-step instructions for
   the base package and dynamic modules on all supported distributions.
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This guide provides step-by-step instructions for installing NGINX Plus from an official repository on different operating systems. It also covers installing and enabling dynamic modules, as well as enabling NGINX Plus in rootless or offline environments.

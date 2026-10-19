@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-412
 description: Integrate [JavaScript-like](https://nginx.org/en/docs/njs/) code into
   the NGINX event-processing model for HTTP or TDP/UDP, with the NGINX njs module,
   supported by NGINX, Inc.
@@ -6,7 +7,7 @@ title: njs Scripting Language
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 njs is an NGINX module that extends the server's functionality through JavaScript scripting, enabling the creation of custom server-side logic and [more](https://nginx.org/en/docs/njs/#usecases).

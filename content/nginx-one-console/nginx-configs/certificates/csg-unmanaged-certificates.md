@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-327
 f5-content-type: concept
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Unmanaged certificates in Config Sync Groups
 toc: true
 weight: 200

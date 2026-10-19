@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-434
 description: Install F5 NGINX Plus on the Google Cloud Platform, to provide sophisticated
   Layer 7 load balancing for your apps running on Google Compute Engine.
 title: Install NGINX Plus on the Google Cloud Platform
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), the high‑performance application delivery platform, load balancer, and web server, is available on the Google Cloud Platform as a virtual machine (VM) image. The VM image contains the latest version of NGINX Plus, optimized for use with the Google Cloud Platform Compute Engine.

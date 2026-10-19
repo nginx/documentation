@@ -1,7 +1,9 @@
 ---
+f5-docs: DOCS-64
 f5-product: F5 Application Delivery Service
 f5-files:
 - content/f5ads/aws/monitoring/enable-nginx-logs.md
+- content/f5ads/google/monitoring/enable-nginx-logs.md
 ---
 
 NGINX access logs are disabled by default. You can enable access logs by adding **access_log** directives to your NGINX configuration to specify the location of the logs and formats. The log path should always be configured to be inside **/var/log/nginx**.

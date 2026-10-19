@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-426
 description: Enable high availability of F5 NGINX Plus instances in on-premises deployments,
   with active-active pairs and multiple passive instances.
 title: Configuring Active-Active High Availability and Additional Passive Nodes with
@@ -6,7 +7,7 @@ title: Configuring Active-Active High Availability and Additional Passive Nodes 
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

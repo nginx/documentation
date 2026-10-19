@@ -1,17 +1,13 @@
 ---
-  title: Assign a display name to an instance
-  description: "Set a custom display name for an NGINX instance in NGINX One Console using the NGINX Agent display-name
-  label."
-  toc: true
-  weight: 500
-  f5-content-type: how-to
-  f5-product: NGINX Agent
-  f5-keywords: "display name, instance name, nginx agent label, nginx one console"
-  f5-summary: >
-    Assign a custom display name to an NGINX instance by setting the reserved
-    display-name label in NGINX Agent. Use it to identify and filter instances
-    in NGINX One Console instead of relying on hostname alone.
-  f5-audience: operator
+f5-docs: DOCS-289
+title: Assign a display name to an instance
+description: |
+  Assign a custom display name to an NGINX instance by setting the reserved display-name label in NGINX Agent. Use it to identify and filter instances in NGINX One Console instead of relying on hostname alone.
+toc: true
+weight: 500
+f5-content-type: how-to
+f5-product: F5 NGINX Agent
+f5-keywords: "display name, instance name, nginx agent label, nginx one console"
 ---
 
 ## Overview

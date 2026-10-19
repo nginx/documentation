@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-358
 title: "Review default roles"
 weight: 500
 toc: true
 f5-content-type: reference
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 ## Default roles

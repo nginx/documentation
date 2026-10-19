@@ -1,9 +1,9 @@
 ---
-f5-product: F5 NGINXaaS
+f5-docs: DOCS-173
+f5-product: F5 Application Delivery Service
 f5-files:
 - content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
-- content/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md
-- content/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md
+- content/nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---
 
 1. On the left menu, select **Configurations**.

@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-378
 f5-content-type: reference
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Security dashboard reference
-description: "Tabs, global controls, and widget-to-dimension mapping for the F5 WAF for NGINX security monitoring dashboard."
+description: |
+  Use this reference to look up how the security monitoring dashboard is organized and which underlying dimension each widget reads from. This article covers the dashboard tabs, the global filter and time controls, and the mapping from widget to API dimension. Each widget has an in-product tooltip explaining what its values mean; this article focuses on what is not in those tooltips.
 weight: 400
 toc: true
 f5-keywords: "security dashboard, tabs, global filters, widgets, dimensions, F5 WAF for NGINX"
-f5-summary: >
-  Use this reference to look up how the security monitoring dashboard is organized and which underlying dimension each widget reads from.
-  This article covers the dashboard tabs, the global filter and time controls, and the mapping from widget to API dimension.
-  Each widget has an in-product tooltip explaining what its values mean; this article focuses on what is not in those tooltips.
-f5-audience: operator
 ---
 
 ## Overview

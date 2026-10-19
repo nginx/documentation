@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-280
 f5-product: F5 WAF for NGINX
 f5-files:
 - content/nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md

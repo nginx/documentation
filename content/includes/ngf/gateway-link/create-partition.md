@@ -1,8 +1,9 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-91
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
-- content/ngf/external-loadbalancers/gateway-link/quickstart.md
-- content/ngf/external-loadbalancers/gateway-link/multicluster.md
+- content/ngf/external-loadbalancers/BIG-IP/multicluster.md
+- content/ngf/external-loadbalancers/BIG-IP/quickstart.md
 ---
 
 Create a partition named `k8s` for F5 Container Ingress Services to own:

@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX One Console
+f5-docs: DOCS-130
+f5-product: F5 NGINX One Console
 f5-files:
 - content/nginx-one-console/k8s/add-ngf-helm.md
 - content/nginx-one-console/k8s/add-ngf-manifests.md

@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-268
 f5-product: F5 WAF for NGINX
 f5-files:
 - content/waf/install/docker.md

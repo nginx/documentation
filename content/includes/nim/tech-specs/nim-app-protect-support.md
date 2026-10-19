@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-221
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/fundamentals/tech-specs.md
 - content/nim/releases/release-notes.md

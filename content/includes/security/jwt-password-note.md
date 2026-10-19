@@ -1,8 +1,10 @@
 ---
+f5-docs: DOCS-230
 f5-product: Miscellaneous
 f5-files:
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md
+- content/nginx/admin-guide/installing-nginx/installing-nginx-plus-unprivileged-kubernetes-openshift.md
 - content/nim/fundamentals/api-overview.md
 ---
 

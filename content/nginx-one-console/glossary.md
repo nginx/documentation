@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-319
 title: Glossary
 toc: true
 weight: 1000
 f5-content-type: reference
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.

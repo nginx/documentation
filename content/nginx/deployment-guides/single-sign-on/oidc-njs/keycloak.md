@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-512
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Keycloak as the identity provider (IdP).
 f5-content-type: how-to
 title: Single Sign-On with Keycloak and njs
 toc: false
 weight: 100
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 {{< call-out class="note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).

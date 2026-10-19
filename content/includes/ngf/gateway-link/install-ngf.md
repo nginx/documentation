@@ -1,8 +1,9 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-93
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
-- content/ngf/external-loadbalancers/gateway-link/quickstart.md
-- content/ngf/external-loadbalancers/gateway-link/multicluster.md
+- content/ngf/external-loadbalancers/BIG-IP/multicluster.md
+- content/ngf/external-loadbalancers/BIG-IP/quickstart.md
 ---
 
 [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with external load balancer support enabled.

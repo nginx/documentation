@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-416
 description: Deploy and administer applications written in Node.js, Python, and Ruby
   with the Passenger Open Source dynamic module from Phusion, supported by NGINX,
   Inc.
@@ -6,7 +7,7 @@ title: Phusion Passenger Open Source
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 The Passenger Open Source dynamic module from Phusion enables deployment and administration of applications written in Node.js, Python, and Ruby.

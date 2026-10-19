@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Ingress Controller
+f5-docs: DOCS-181
+f5-product: F5 NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md

@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-112
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/ngf/how-to/gateway-api-inference-extension.md
 - content/ngf/install/helm.md

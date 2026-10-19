@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-466
 description: Control access to your site or apps from specific client IP addresses,
   using dynamic denylists built with the F5 NGINX Plus key-value store and API.
 title: Dynamic Denylisting of IP Addresses
 toc: true
 weight: 1100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 This section describes how to create a denylist or allowlist of specific client IP addresses, which denies or allows them access to your site, and how to dynamically maintain the list of addresses.

@@ -1,5 +1,19 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-89
+f5-product: F5 NGINX Gateway Fabric
+f5-files:
+- content/ngf/external-loadbalancers/BIG-IP/multicluster.md
+- content/ngf/how-to/gateway-api-inference-extension.md
+- content/ngf/install/manifests/open-source-experimental.md
+- content/ngf/install/manifests/open-source.md
+- content/ngf/install/manifests/plus-experimental.md
+- content/ngf/install/manifests/plus.md
+- content/ngf/traffic-management/https-termination.md
+- content/ngf/traffic-management/tlsroute.md
+- content/ngf/traffic-security/integrate-cert-manager.md
+- content/ngf/traffic-security/jwt-authentication.md
+- content/ngf/traffic-security/oidc-authentication.md
+- content/ngf/traffic-security/secure-backend.md
 ---
 
 Install cert-manager onto the cluster using Helm with Gateway API features enabled.

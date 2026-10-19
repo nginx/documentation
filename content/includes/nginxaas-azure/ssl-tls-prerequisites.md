@@ -1,5 +1,6 @@
 ---
-f5-product: NGINXaaS for Azure
+f5-docs: DOCS-162
+f5-product: F5 NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md
 - content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md

@@ -1,13 +1,11 @@
 ---
+f5-docs: DOCS-317
 title: Switch an instance to a new namespace
-description: 'Move an NGINX instance from one namespace to another in NGINX One Console.'
-f5-audience: admin
+description: |
+  This guide explains how to move an existing NGINX instance from one namespace to another in NGINX One Console. You might do this when you reorganize your infrastructure or move an instance to a different team.
 f5-content-type: how-to
 f5-keywords: "namespace, switch namespace, data plane key, NGINX Agent, NGINX One Console"
-f5-product: NGINX One Console
-f5-summary: >
-  This guide explains how to move an existing NGINX instance from one namespace to another in NGINX One Console.
-  You might do this when you reorganize your infrastructure or move an instance to a different team.
+f5-product: F5 NGINX One Console
 toc: true
 weight: 350
 ---

@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-284
 title: Community and contribution
 toc: true
 weight: 600
 f5-content-type: reference
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 Discover the various ways you can participate in the F5 NGINX Agent project:

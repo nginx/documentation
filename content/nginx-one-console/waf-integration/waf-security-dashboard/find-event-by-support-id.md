@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-380
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Find a security event by Support ID
-description: "Look up an F5 WAF for NGINX security event in NGINX One Console using its Support ID."
+description: |
+  Use the Support ID Details page in NGINX One Console to look up a single F5 WAF for NGINX security event by its Support ID. This is the fastest way to drill from a customer report, an upstream log line, or an alert into the full WAF event record. This guide covers what a Support ID is, where to find one, and how to use the lookup page.
 weight: 500
 toc: true
 f5-keywords: "support ID, security event, F5 WAF for NGINX, security dashboard, event lookup, Support ID Details, getSecurityEvent, listSecurityEvents, WAF block, rejection page, triage, 90-day retention"
-f5-summary: >
-  Use the Support ID Details page in NGINX One Console to look up a single F5 WAF for NGINX security event by its Support ID.
-  This is the fastest way to drill from a customer report, an upstream log line, or an alert into the full WAF event record.
-  This guide covers what a Support ID is, where to find one, and how to use the lookup page.
-f5-audience: operator
 ---
 
 ## Overview

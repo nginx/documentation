@@ -1,5 +1,6 @@
 ---
-f5-product: NGINX Instance Manager
+f5-docs: DOCS-203
+f5-product: F5 NGINX Instance Manager
 f5-files:
 - content/nim/licensing-and-reporting/add-license-disconnected-deployment.md
 - content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md

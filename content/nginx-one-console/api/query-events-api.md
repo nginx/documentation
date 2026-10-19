@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-309
 f5-content-type: reference
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Query security events through the API
-description: "List F5 WAF for NGINX security events and run analytics queries through the NGINX One Console API."
+description: |
+  Use the NGINX One Console API to list F5 WAF for NGINX security events and run analytics queries against the same data store the security dashboard uses. This article lists the available operations and points to the API reference for request and response details. The same filter fields and group-by dimensions used by the dashboard apply to every operation here.
 weight: 200
 toc: true
 f5-keywords: "security events API, analytics API, F5 WAF for NGINX, app-protect, NGINX One Console API"
-f5-summary: >
-  Use the NGINX One Console API to list F5 WAF for NGINX security events and run analytics queries against the same data store the security dashboard uses.
-  This article lists the available operations and points to the API reference for request and response details.
-  The same filter fields and group-by dimensions used by the dashboard apply to every operation here.
-f5-audience: developer
 ---
 
 ## Overview

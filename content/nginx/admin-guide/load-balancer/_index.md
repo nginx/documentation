@@ -1,8 +1,11 @@
 ---
+f5-docs: DOCS-440
 description: Documentation explaining how to configure NGINX and F5 NGINX Plus as
   a load balancer for HTTP, TCP, UDP, and other protocols.
 title: Load Balancer
 url: /nginx/admin-guide/load-balancer/
 weight: 300
+f5-product:
+- F5 NGINX Plus
 ---
 

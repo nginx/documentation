@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-369
 title: "Add signature sets and exceptions"
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 This document describes how you can configure signature sets and signature exceptions in F5 WAF for NGINX policies. When you add a policy, NGINX One Console provides options to customize attack signatures to better protect your applications.

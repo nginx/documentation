@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-281
 title: F5 NGINX One Console
 f5-subtitle: Optimize, secure, and scale your modern apps
 url: /nginx-one-console/
@@ -6,7 +7,7 @@ f5-landing-page: true
 cascade:
   logo: "NGINX-One-product-icon.svg"
 f5-content-type: landing-page
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 ## About

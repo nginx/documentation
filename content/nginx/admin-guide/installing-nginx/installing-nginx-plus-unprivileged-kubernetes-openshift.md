@@ -1,17 +1,14 @@
 ---
+f5-docs: DOCS-437
 title: Deploy unprivileged NGINX Plus on Kubernetes and OpenShift
 canonical: TODO
-description: "Run F5 NGINX Plus as an unprivileged, non-root pod on Kubernetes or OpenShift, and optionally connect it to NGINX Instance Manager or NGINX One Console."
+description: |
+  This guide shows how to run NGINX Plus as an unprivileged pod on Kubernetes or Red Hat OpenShift. It covers getting or building a non-root image, deploying it with example manifests, and connecting NGINX Agent to NGINX Instance Manager or NGINX One Console. It also explains how to run with the UID that OpenShift assigns or with a fixed UID.
 toc: true
 weight: 650
 f5-product: F5 NGINX Plus
 f5-content-type: how-to
 f5-keywords: "NGINX Plus, Kubernetes, OpenShift, non-root, unprivileged, rootless, UID, GID, SCC, NGINX Agent, NGINX Instance Manager, NGINX One Console, docker-image-builder"
-f5-summary: >
-  This guide shows how to run NGINX Plus as an unprivileged pod on Kubernetes or Red Hat OpenShift.
-  It covers getting or building a non-root image, deploying it with example manifests, and connecting NGINX Agent to NGINX Instance Manager or NGINX One Console.
-  It also explains how to run with the UID that OpenShift assigns or with a fixed UID.
-f5-audience: operator
 ---
 
 ## Overview

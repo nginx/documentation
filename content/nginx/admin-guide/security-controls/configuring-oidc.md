@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-461
 description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using an Identity Provider (IdP).
 type:
 - task
 title: Single Sign-On with OpenID Connect and Identity Providers
 toc: true
 weight: 550
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 f5-content-type: how-to
 ---
 

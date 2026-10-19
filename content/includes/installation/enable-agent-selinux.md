@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-72
 f5-product:
 - F5 NGINX Instance Manager
 - F5 NGINX One Console

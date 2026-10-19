@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-459
 description: Control access using HTTP Basic authentication, and optionally in combination
   with IP address-based access control.
 title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 <span id="intro"></span>

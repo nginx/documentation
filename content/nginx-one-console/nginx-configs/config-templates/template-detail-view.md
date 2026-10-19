@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-340
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: View template details
-description: "View metadata, submissions and version history for a config template on the Template Detail page in NGINX One Console."
+description: |
+  Use the Template Detail page in NGINX One Console to view metadata, submissions and version history for a config template. The Details tab shows the template's type, state, object IDs, and all submissions created with it. The Versions tab lists every version with submission counts and timestamps. This guide covers how to go to the Template Detail page, read each tab, and use the related API operation.
 toc: true
 weight: 110
 f5-keywords: "template details, config templates, NGINX One Console, template metadata, template submissions, template versions, Object ID, template state, F5 default template, tmpl, tmplv"
-f5-summary: >
-  Use the Template Detail page in NGINX One Console to view metadata, submissions and version history for a config template.
-  The Details tab shows the template's type, state, object IDs, and all submissions created with it. The Versions tab lists every version with submission counts and timestamps.
-  This guide covers how to go to the Template Detail page, read each tab, and use the related API operation.
-f5-audience: operator
 ---
 
 ## Overview

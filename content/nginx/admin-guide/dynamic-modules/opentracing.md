@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-415
 description: Instrument NGINX with OpenTracing-compliant requests for a range of distributed
   tracing services, such as Zipkin, Jaeger and Datadog. Note that the opentracing
   module provides the framework for recording traces; you will also need to install
@@ -8,7 +9,7 @@ title: OpenTracing
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 {{< call-out class="note" >}} The `nginx-plus-module-opentracing` package is no longer available in the NGINX Plus repository.{{< /call-out >}}

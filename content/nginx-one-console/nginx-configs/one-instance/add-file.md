@@ -1,6 +1,7 @@
 ---
+f5-docs: DOCS-348
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Add a file to an instance
 toc: true
 weight: 300

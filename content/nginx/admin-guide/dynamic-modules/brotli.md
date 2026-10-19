@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-400
 description: Learn how to use the Brotli module with F5 NGINX Plus
 title: Brotli
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 ## Overview

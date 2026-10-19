@@ -1,8 +1,8 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-109
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/ngf/install/helm.md
-- content/ngf/install/manifests.md
 - content/ngf/install/nginx-plus.md
 ---
 

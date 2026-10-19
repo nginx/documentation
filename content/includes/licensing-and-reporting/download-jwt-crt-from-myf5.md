@@ -1,7 +1,11 @@
 ---
+f5-docs: DOCS-81
 f5-product: Miscellaneous
 f5-files:
+- content/nap-dos/deployment-guide/kubernetes-with-L4-accelerated-mitigation.md
+- content/nap-dos/deployment-guide/kubernetes.md
 - content/nap-dos/deployment-guide/learn-about-deployment.md
+- content/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 ---
 

@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-321
 title: Connect NGINX Gateway Fabric with Helm
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 This document explains how to connect F5 NGINX Gateway Fabric to F5 NGINX One Console with Helm.

@@ -1,17 +1,13 @@
 ---
+f5-docs: DOCS-338
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Submit and copy templates from the Templates list
-description: "Use the Submit and Make a Copy row actions on the Templates list to submit or copy config templates without API calls."
+description: |
+  Use the Submit and Make a Copy row actions on the Templates list to work with config templates. These actions offer a guided UI, instead of the Templates API. Select Submit to open the Submit Template panel. Select a base template, enter parameter values, add optional augment templates, select a target, and preview the configuration. Select Make a Copy to create a new draft template from the latest version of an existing template.
 toc: true
 weight: 150
 f5-keywords: "templates list, config templates, NGINX One Console, submit template, Submit Template panel, make a copy, copy a template, template submission, base template, augment template"
-f5-summary: >
-  Use the Submit and Make a Copy row actions on the Templates list to work with config templates.
-  These actions offer a guided UI, instead of the Templates API.
-  Select Submit to open the Submit Template panel. Select a base template, enter parameter values, add optional augment templates, select a target, and preview the configuration.
-  Select Make a Copy to create a new draft template from the latest version of an existing template.
-f5-audience: operator
 ---
 
 ## Overview

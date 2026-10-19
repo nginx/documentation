@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-297
 title: Install from NGINX Plus repo
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 {{< call-out class="note" >}}

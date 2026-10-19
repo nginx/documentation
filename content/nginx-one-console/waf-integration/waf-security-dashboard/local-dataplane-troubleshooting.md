@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-381
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Troubleshoot security monitoring on the local data plane
-description: "Check the local NGINX Agent and OpenTelemetry Collector configuration when F5 WAF for NGINX security events do not appear in NGINX One Console."
+description: |
+  Use this guide when F5 WAF for NGINX security events do not appear in the NGINX One Console security dashboard even after you complete the setup flow. It walks through the local data plane checks for invalid log profiles, missing OpenTelemetry log pipelines, and debug logging. These checks help confirm whether NGINX Agent is receiving, parsing, and forwarding security events correctly.
 weight: 450
 toc: true
 f5-keywords: "security monitoring, troubleshooting, local data plane, nginx-agent, opentelemetry collector, secops_dashboard, WAF events"
-f5-summary: >
-  Use this guide when F5 WAF for NGINX security events do not appear in the NGINX One Console security dashboard even after you complete the setup flow.
-  It walks through the local data plane checks for invalid log profiles, missing OpenTelemetry log pipelines, and debug logging.
-  These checks help confirm whether NGINX Agent is receiving, parsing, and forwarding security events correctly.
-f5-audience: operator
 ---
 
 ## Overview

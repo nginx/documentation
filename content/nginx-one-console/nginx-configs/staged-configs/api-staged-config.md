@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-352
 # We use sentence case and present imperative tone
 title: Use the API to manage your Staged Configurations
 # Weights are assigned in increments of 100: determines sorting order
@@ -8,7 +9,7 @@ toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 f5-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 You can use F5 NGINX One Console API to manage your Staged Configurations. With our API, you can:

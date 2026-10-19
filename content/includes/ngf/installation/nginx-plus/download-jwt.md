@@ -1,11 +1,13 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-110
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/ngf/install/helm.md
-- content/ngf/install/manifests/plus.md
 - content/ngf/install/manifests/plus-experimental.md
+- content/ngf/install/manifests/plus.md
 - content/ngf/install/nginx-plus.md
 - content/ngf/waf-integration/get-started-plm.md
+- content/nim/connect-kubernetes/connect-ngf.md
 ---
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).

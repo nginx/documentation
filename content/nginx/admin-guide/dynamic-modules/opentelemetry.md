@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-414
 description: Analyze your software performance by instrumenting, generating, collecting,
   and exporting telemetry data.
 title: OpenTelemetry
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 [OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.

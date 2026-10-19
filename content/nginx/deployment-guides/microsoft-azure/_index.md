@@ -1,8 +1,11 @@
 ---
+f5-docs: DOCS-495
 description: Deployment guides for making F5 NGINX Plus highly available in the Microsoft
   Azure cloud environment.
 title: Microsoft Azure
 url: /nginx/deployment-guides/microsoft-azure/
 weight: 100
+f5-product:
+- F5 NGINX Plus
 ---
 

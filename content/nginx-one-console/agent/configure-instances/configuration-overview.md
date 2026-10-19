@@ -1,9 +1,10 @@
 ---
+f5-docs: DOCS-286
 title: Configuration overview
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGINX Agent
+f5-product: F5 NGINX Agent
 ---
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.

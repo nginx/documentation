@@ -1,9 +1,9 @@
 ---
-f5-product: F5 NGINXaaS
+f5-docs: DOCS-166
+f5-product: F5 Application Delivery Service
 f5-files:
-- content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
 - content/nginxaas/google/deploy/create-deployment/deploy-console.md
-- content/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md
+- content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
 ---
 
 In the F5 ADS Console,

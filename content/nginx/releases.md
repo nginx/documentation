@@ -1,11 +1,12 @@
 ---
+f5-docs: DOCS-522
 description: Release information for F5 NGINX Plus, a complete application delivery
   platform, including new features and a list of supported platforms.
 title: Releases
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 nollms: true
 ---
 

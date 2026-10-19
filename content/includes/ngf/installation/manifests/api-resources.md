@@ -1,5 +1,9 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-104
+f5-product: F5 NGINX Gateway Fabric
+f5-files:
+- content/ngf/install/manifests/open-source.md
+- content/ngf/install/manifests/plus.md
 ---
 
 {{< call-out class="note" >}} 

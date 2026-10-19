@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-177
 title: ConfigMap resources
 weight: 300
 toc: true

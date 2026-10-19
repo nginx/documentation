@@ -1,10 +1,11 @@
 ---
+f5-docs: DOCS-422
 description: This section describes how to uninstall an F5 NGINX Plus dynamic module.
 title: Uninstalling a dynamic module
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINX Plus
+f5-product: F5 NGINX Plus
 ---
 
 You may need to uninstall a dynamic module in NGINX Plus in several scenarios:

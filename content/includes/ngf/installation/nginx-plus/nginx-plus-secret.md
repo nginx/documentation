@@ -1,9 +1,10 @@
 ---
-f5-product: NGINX Gateway Fabric
+f5-docs: DOCS-111
+f5-product: F5 NGINX Gateway Fabric
 f5-files:
 - content/ngf/install/helm.md
-- content/ngf/install/manifests.md
 - content/ngf/install/nginx-plus.md
+- content/nim/connect-kubernetes/connect-ngf.md
 ---
 
 Place the JWT in a file called `license.jwt`. Create a Kubernetes Secret using the contents of the JWT file.

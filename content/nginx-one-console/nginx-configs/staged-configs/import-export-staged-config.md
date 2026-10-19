@@ -1,4 +1,5 @@
 ---
+f5-docs: DOCS-354
 # We use sentence case and present imperative tone
 title: Import and export a Staged Configuration
 # Weights are assigned in increments of 100: determines sorting order
@@ -9,7 +10,7 @@ toc: true
 f5-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 ---
 
 ## Overview

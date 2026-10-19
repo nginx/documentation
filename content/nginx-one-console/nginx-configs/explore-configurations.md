@@ -1,14 +1,11 @@
 ---
+f5-docs: DOCS-343
 title: Explore configurations with Config Explorer
-description: "Use Config Explorer to browse and search your NGINX configurations as an interactive node graph."
-f5-product: NGINX One Console
+description: |
+  Use Config Explorer to visualize and navigate any NGINX configuration as an interactive node graph in NGINX One Console. Config Explorer lets you browse directive contexts, inspect properties and inline documentation, and search across all directives. Config Explorer is available for Staged Configurations, Instances, and Config Sync Groups.
+f5-product: F5 NGINX One Console
 f5-content-type: howto
 f5-keywords: "Config Explorer, NGINX One Console, staged configurations, instances, config sync groups, node graph"
-f5-summary: >
-  Use Config Explorer to visualize and navigate any NGINX configuration as an interactive node graph in NGINX One Console.
-  Config Explorer lets you browse directive contexts, inspect properties and inline documentation, and search across all directives.
-  Config Explorer is available for Staged Configurations, Instances, and Config Sync Groups.
-f5-audience: any
 toc: true
 weight: 450
 ---

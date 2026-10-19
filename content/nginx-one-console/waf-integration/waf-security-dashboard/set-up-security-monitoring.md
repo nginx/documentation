@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-383
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: Set up security monitoring
-description: "Forward F5 WAF for NGINX security events to the NGINX One Console security monitoring dashboard."
+description: |
+  Forward F5 WAF for NGINX security events from an NGINX Plus instance to the NGINX One Console security monitoring dashboard. You deploy the `secops_dashboard` log profile through the console, add the WAF directives to your NGINX configuration, and verify events flow into the dashboard. Repeat these steps for each data plane you want to monitor.
 weight: 300
 toc: true
 f5-keywords: "F5 WAF for NGINX, security monitoring, security dashboard, default log profile, security events"
-f5-summary: >
-  Forward F5 WAF for NGINX security events from an NGINX Plus instance to the NGINX One Console security monitoring dashboard.
-  You deploy the `secops_dashboard` log profile through the console, add the WAF directives to your NGINX configuration, and verify events flow into the dashboard.
-  Repeat these steps for each data plane you want to monitor.
-f5-audience: operator
 ---
 
 ## Overview

@@ -1,16 +1,13 @@
 ---
+f5-docs: DOCS-341
 f5-content-type: how-to
-f5-product: NGINX One Console
+f5-product: F5 NGINX One Console
 title: View template submissions
-description: "View and manage template submissions for a config template in NGINX One Console."
+description: |
+  Use the Submissions section on the Template Detail page to view and manage all submissions created for a config template in NGINX One Console. Each submission row shows which templates and targets were involved, when the submission was created, and when it was last updated. This guide covers how to go to the Submissions section, read the data grid, delete a submission, and use the related API operations.
 toc: true
 weight: 130
 f5-keywords: "template submissions, config templates, NGINX One Console, submission management, template detail, delete submission, Submit Templates API, submissionObjectID, staged config"
-f5-summary: >
-  Use the Submissions section on the Template Detail page to view and manage all submissions created for a config template in NGINX One Console.
-  Each submission row shows which templates and targets were involved, when the submission was created, and when it was last updated.
-  This guide covers how to go to the Submissions section, read the data grid, delete a submission, and use the related API operations.
-f5-audience: operator
 ---
 
 ## Overview
