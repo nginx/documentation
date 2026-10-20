@@ -1,6 +1,7 @@
 ---
 f5-files:
-- content/f5ads/google/deploy/create-deployment/deploy-terraform.md
+  - content/f5ads/google/deploy/create-deployment/deploy-terraform.md
+  - content/f5ads/google/deploy/nginx-configuration/nginx-configuration-terraform.md
 f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
@@ -10,5 +11,5 @@ f5-product: F5 Application Delivery Service for Google Cloud
 - [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install).
 
 {{< call-out class="important" >}}
-The `F5Networks/f5ads` provider is in alpha (`0.1.0-alpha.1`). Pin this exact version in your `required_providers` block, since breaking changes can occur between alpha releases.
+The `F5Networks/f5ads` provider is in alpha (`0.1.0-alpha.6`). Pin this exact version in your `required_providers` block, since breaking changes can occur between alpha releases.
 {{< /call-out >}}
