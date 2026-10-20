@@ -20,16 +20,6 @@ The GeoIP dynamic module captures information from the client IP address in vari
 
 3. Install the GeoIP module package `nginx-plus-module-geoip` from the official NGINX Plus repository.
 
-   For Amazon Linux 2, CentOS, Oracle Linux, and RHEL:
-
-   ```shell
-   sudo yum update && \
-   sudo yum install nginx-plus-module-geoip
-   ```
-
-   {{< call-out class="note" >}} Only 7.x version of CentOS, Oracle Linux, and RHEL is supported. {{< /call-out >}}
-
-
    For Debian and Ubuntu:
 
    ```shell
@@ -37,7 +27,7 @@ The GeoIP dynamic module captures information from the client IP address in vari
    sudo apt install nginx-plus-module-geoip
    ```
 
-   For SLES:
+   For SLES 15:
 
    ```shell
    sudo zypper refresh && \
