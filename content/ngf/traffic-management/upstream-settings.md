@@ -444,6 +444,14 @@ upstream default_tea_80 {
 }
 ```
 
+### Size upstream zones automatically
+
+To have NGINX Gateway Fabric size the zone of each upstream for you, set `zoneSize` to `auto`. Set it in an `UpstreamSettingsPolicy` for specific Services, or in the `NginxProxy` resource for all Services.
+
+With `auto`, each upstream zone starts at `64k`. When NGINX reports that a zone is too small or out of memory, NGINX Gateway Fabric doubles the zone and applies the configuration again. The `zoneSizeMaxSize` field of the `NginxProxy` resource sets the largest size a zone can reach. The default is `512m`. When the number of endpoints stays at 25% or less of what a zone fits for 2 minutes, NGINX Gateway Fabric halves the zone. The smallest zone size is `64k`.
+
+Automatic sizing applies only to the upstreams of HTTPRoutes and GRPCRoutes.
+
 ## Enable keepalive connections
 
 By default, the `keepalive` directive is omitted, which results in the default NGINX `keepalive` value being used. You can override this value or disable `keepAlive` entirely by configuring an UpstreamSettingsPolicy. To disable keepalive, set the connections field to 0.
