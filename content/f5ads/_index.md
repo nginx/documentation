@@ -37,7 +37,7 @@ Access the [F5 ADS Console](https://console.nginxaas.net/) directly to manage or
   {{<card title="Manage users and organizations" titleUrl="/app-delivery/platform/manage-users-organizations/" icon="users">}}
     Create organizations and manage user access to your F5 ADS resources
   {{</card>}}
-  {{<card title="Programmatic authentication" titleUrl="/app-delivery/platform/client-credentials/" icon="key">}}
+  {{<card title="Automate access with client credentials" titleUrl="/app-delivery/platform/client-credentials/" icon="key">}}
     Set up OAuth2 client credentials for automation and CI/CD pipelines
   {{</card>}}
   {{<card title="F5 ADS for AWS" titleUrl="/app-delivery/aws/deploy/create-deployment/deploy-console/" icon="zap">}}
