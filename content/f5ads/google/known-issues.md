@@ -1,5 +1,6 @@
 ---
 title: "Known issues"
+description: "List of known issues in the latest release of F5 Application Delivery Service for Google Cloud."
 weight: 1100
 toc: true
 f5-docs: DOCS-000

@@ -1,5 +1,6 @@
 ---
 title: Usage dashboard
+description: "View and filter hourly resource consumption and cost metrics for your F5 Application Delivery Service for Google Cloud deployments."
 weight: 300
 toc: true
 f5-content-type: concept

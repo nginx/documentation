@@ -1,5 +1,6 @@
 ---
 title: Add certificates using the Console
+description: "Add, update, and delete SSL/TLS certificates for F5 Application Delivery Service for Google Cloud using the F5 ADS Console."
 weight: 100
 toc: true
 f5-docs: DOCS-000

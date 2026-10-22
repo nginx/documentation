@@ -1,5 +1,6 @@
 ---
 title: "Changelog"
+description: "Latest updates, new features, and resolved bugs for F5 Application Delivery Service platform features shared across cloud providers."
 weight: 1000
 toc: true
 f5-docs: DOCS-000
