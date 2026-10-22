@@ -4,7 +4,6 @@ weight: 200
 toc: true
 type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-578
 ---
 
 This document explains how to use F5 NGINX Ingress Controller to configure F5 WAF for NGINX.

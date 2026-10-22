@@ -5,7 +5,6 @@ description: Learn how to use Azure Resource Manager (ARM) JSON and Bicep templa
   to manage NGINXaaS for Azure.
 toc: true
 f5-content-type: how-to
-f5-docs: DOCS-1097
 f5-product: NGINXaaS for Azure
 url: /nginxaas-azure/client-tools/templates/
 ---

@@ -1,7 +1,6 @@
 ---
 description: Dynamically reconfigure the servers in an F5 NGINX Plus upstream group
   using the NGINX Plus API, without reloading configuration or restarting processes.
-f5-docs: DOCS-415
 title: Dynamic Configuration of Upstreams with the NGINX Plus API
 toc: true
 weight: 700

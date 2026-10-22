@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1457
 title: Troubleshooting Policy resources
 toc: true
 weight: 300

@@ -3,7 +3,6 @@ title: Prepare - Set up an explicit forward proxy
 toc: true
 weight: 250
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-product: NGINX One Console
 ---
 

@@ -4,7 +4,6 @@ toc: true
 weight: 200
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-615
 ---
 
 This document explains how to get access to the stub status in NGINX and the dashboard in NGINX Plus.

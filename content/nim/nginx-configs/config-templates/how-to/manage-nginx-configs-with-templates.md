@@ -3,7 +3,6 @@ title: Manage NGINX configs with templates
 description: "Create and deploy NGINX config templates in F5 NGINX Instance Manager to predefine and standardize configurations across your NGINX instances."
 weight: 200
 toc: true
-f5-docs: DOCS-1506
 f5-personas:
 - devops
 - netops

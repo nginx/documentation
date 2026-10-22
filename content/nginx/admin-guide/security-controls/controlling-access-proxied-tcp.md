@@ -1,7 +1,6 @@
 ---
 description: Protect your upstream TCP application servers by limiting connections
   or bandwidth, based on client IP address or other variables.
-f5-docs: DOCS-433
 title: Restricting Access to Proxied TCP Resources
 toc: true
 weight: 700

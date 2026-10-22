@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1271
 title: Manage resource groups
 toc: true
 weight: 300

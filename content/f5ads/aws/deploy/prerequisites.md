@@ -3,7 +3,6 @@ title: Prerequisites
 description: "Subscribe to F5 Application Delivery Service for AWS in the AWS Marketplace and link the subscription to an F5 ADS organization."
 weight: 100
 toc: false
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, prerequisites, AWS Marketplace, subscribe, subscription, F5 ADS Console, account"

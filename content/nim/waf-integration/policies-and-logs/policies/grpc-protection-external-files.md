@@ -3,7 +3,6 @@ title: Create a gRPC security policy with external files
 description: Upload .proto files with an F5 WAF for NGINX policy in F5 NGINX Instance Manager so the policy can protect your gRPC services.
 toc: true
 weight: 800
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 NGINX Instance Manager
 f5-keywords: "gRPC, proto, IDL, file references, WAF policy, REST API"

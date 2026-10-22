@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1031
 f5-product: NGINX Agent
 f5-files:
 - content/nim/security-monitoring/set-up-app-protect-instances.md

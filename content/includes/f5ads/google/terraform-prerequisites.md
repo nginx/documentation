@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-000
 f5-files:
 - content/f5ads/google/deploy/create-deployment/deploy-terraform.md
 f5-product: F5 Application Delivery Service for Google Cloud

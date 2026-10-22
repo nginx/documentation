@@ -1,6 +1,5 @@
 ---
 title: Security bundles
-f5-docs: 
 weight: 200
 url: /nginx-instance-manager/waf-integration/policies-and-logs/bundles/
 f5-product: NGINX Instance Manager

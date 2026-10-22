@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1131
 title: Optimize NGINX proxy gateway for large data planes
 toc: true
 weight: 400

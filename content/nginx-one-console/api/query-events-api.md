@@ -1,6 +1,5 @@
 ---
 f5-content-type: reference
-f5-docs: DOCS-000
 f5-product: NGINX One Console
 title: Query security events through the API
 description: "List F5 WAF for NGINX security events and run analytics queries through the NGINX One Console API."

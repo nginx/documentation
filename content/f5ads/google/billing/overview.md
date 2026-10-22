@@ -3,7 +3,6 @@ title: Billing overview
 description: "How F5 Application Delivery Service for Google Cloud is priced and billed through Google Cloud Marketplace."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, billing, pricing, NCU, Google Cloud Marketplace, free trial"
@@ -62,7 +61,7 @@ Total cost for 3 hours: $0.30 + $0.88 + $1.92 = **$3.10**
 
 ## Review billing data
 
-F5 ADS for Google Cloud reports billing data per deployment. You can access it through the Google Cloud Cost Management Dashboard. Usage metrics and costs update hourly, so you can monitor and optimize resource allocation.
+F5 ADS for Google Cloud reports billing data per deployment. You can access it through the Google Cloud Cost Management Dashboard. Usage metrics and costs update hourly, so you can monitor and optimize resource allocation. For a detailed breakdown of usage by deployment and region, see the [Usage dashboard]({{< ref "/f5ads/platform/usage-dashboard.md" >}}).
 
 ## Cancel your subscription
 

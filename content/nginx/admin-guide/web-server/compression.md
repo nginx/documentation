@@ -1,7 +1,6 @@
 ---
 description: Compress server responses, or decompress them for clients that don't
   support compression, to improve delivery speed and reduce overhead on the server.
-f5-docs: DOCS-440
 title: Compression and Decompression
 toc: true
 weight: 400

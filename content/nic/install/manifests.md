@@ -4,7 +4,6 @@ toc: true
 weight: 500
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-603
 ---
 
 This guide explains how to use Manifests to install F5 NGINX Ingress Controller, then create both common and custom resources and set up role-based access control.

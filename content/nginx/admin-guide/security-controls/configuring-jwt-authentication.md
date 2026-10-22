@@ -1,7 +1,6 @@
 ---
 description: This article explains how to control authentication of your web resources
   using JWT authentication.
-f5-docs: DOCS-429
 title: Setting up JWT Authentication
 toc: true
 weight: 500

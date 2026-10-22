@@ -4,7 +4,6 @@ toc: true
 weight: 1000
 f5-content-type: reference
 f5-product: NGINX One Console
-f5-docs: DOCS-1396
 ---
 
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.

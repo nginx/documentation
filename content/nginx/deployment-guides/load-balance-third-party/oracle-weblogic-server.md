@@ -6,7 +6,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Plus
-f5-docs: DOCS-455
 ---
 
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Oracle WebLogic Server application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Oracle WebLogic Server.

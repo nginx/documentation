@@ -3,7 +3,6 @@ title: Metrics catalog
 description: "Reference catalog of NGINX metrics exported by F5 NGINXaaS for Google Cloud deployments."
 weight: 400
 toc: false
-f5-docs: DOCS-000
 url: /nginxaas/google/monitoring/metrics-catalog/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud

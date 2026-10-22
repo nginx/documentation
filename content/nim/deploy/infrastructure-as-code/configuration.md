@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1248
 title: Install with Ansible
 toc: true
 weight: 200

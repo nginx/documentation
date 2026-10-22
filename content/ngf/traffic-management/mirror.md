@@ -5,7 +5,6 @@ toc: true
 weight: 700
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1847
 f5-summary: >
   Send a copy of request traffic to a mirror backend for testing or analysis without affecting primary responses.
   Use request mirroring when validating new versions or inspecting production-like traffic.

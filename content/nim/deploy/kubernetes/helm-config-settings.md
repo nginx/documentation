@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1112
 title: Configurable Helm settings
 toc: true
 weight: 300

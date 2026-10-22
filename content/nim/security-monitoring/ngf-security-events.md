@@ -4,7 +4,6 @@ weight: 150
 toc: true
 f5-content-type: concept
 f5-product: NGINX Instance Manager
-f5-docs: 
 description: "View F5 WAF security events from NGINX Gateway Fabric deployments in F5 NGINX Instance Manager's Security Dashboard."
 f5-summary: >
   View F5 WAF security events from NGINX Gateway Fabric deployments in F5 NGINX Instance Manager's Security Dashboard.
