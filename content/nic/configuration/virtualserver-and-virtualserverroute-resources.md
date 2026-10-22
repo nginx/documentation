@@ -191,6 +191,13 @@ enable: true
 |``recordTTL`` | TTL for the DNS record. This defaults to 0 if not defined. See [the ExternalDNS TTL documentation for provider-specific defaults](https://kubernetes-sigs.github.io/external-dns/v0.14.2/ttl/#providers) | ``int64`` | No |
 |``recordType`` | The record Type that should be created, e.g. "A", "AAAA", "CNAME". This is automatically computed based on the external endpoints if not defined. | ``string`` | No |
 
+NGINX Ingress Controller writes `DNSEndpoint` resources to the API group that you select. The ExternalDNS version you run determines which group to use:
+
+- ExternalDNS v0.20.x and earlier reads either group. Its `--crd-source-apiversion` argument selects the group.
+- ExternalDNS v0.21.0 and later reads only `externaldns.k8s.io/v1alpha1`.
+
+To use ExternalDNS v0.21.0 or later, set `controller.externalDNSGroupVersion` (or `-external-dns-group-version`) to `externaldns.k8s.io/v1alpha1`. Install the upstream custom resource definition (CRD) for `DNSEndpoint` separately, because NGINX Ingress Controller doesn't ship it. To move existing records, see [Migrate ExternalDNS DNSEndpoint resources to externaldns.k8s.io]({{< ref "/nic/install/upgrade.md#migrate-externaldns-dnsendpoint-resources-to-externaldnsk8sio" >}}).
+
 ### VirtualServer.ExternalDNS.ProviderSpecific
 
 The providerSpecific field of the externalDNS block allows the specification of provider specific properties which is a list of key value pairs of configurations which are specific to individual DNS providers. Example:
