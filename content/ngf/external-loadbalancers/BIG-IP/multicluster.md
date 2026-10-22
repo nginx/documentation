@@ -4,7 +4,7 @@ description: Configure an ExternalLoadBalancer so F5 BIG-IP acts as the external
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: F5 NGINX Gateway Fabric
 f5-audience: operator
 f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, BIG-IP, GatewayLink, TLS termination, iRule, health monitor, multi-cluster
 f5-summary: Use an ExternalLoadBalancer resource to make F5 BIG-IP the external load balancer for NGINX Gateway Fabric Gateways in two clusters. BIG-IP terminates client TLS, re-encrypts toward NGINX, runs health monitors and iRules, and distributes traffic between the clusters.
@@ -38,9 +38,11 @@ The shell commands in this guide read the following environment variables, so se
 ```shell
 export BIGIP_ADDRESS="192.0.2.10:443"
 export BIGIP_USERNAME="admin"
-export BIGIP_PASSWORD="<your-password>"
+export BIGIP_PASSWORD="<PASSWORD>"
 export VIRTUAL_SERVER_ADDRESS="192.0.2.100"
 ```
+
+Replace `<PASSWORD>` with your BIG-IP password.
 
 - `BIGIP_ADDRESS` is the BIG-IP management address, including the port. BIG-IP listens on 443 by default.
 - `BIGIP_USERNAME` and `BIGIP_PASSWORD` are your BIG-IP credentials.

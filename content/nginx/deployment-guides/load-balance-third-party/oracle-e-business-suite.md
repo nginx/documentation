@@ -1,7 +1,6 @@
 ---
 description: Load balance Oracle E-Business Suite applications with the advanced features
   in F5 NGINX Plus, following our step-by-step setup instructions.
-f5-docs: DOCS-454
 title: Load Balancing Oracle E-Business Suite with NGINX Plus
 toc: true
 weight: 100

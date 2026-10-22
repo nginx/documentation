@@ -5,7 +5,6 @@ weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-1657
 f5-summary: >
   Download a JWT license from MyF5 and apply it to F5 NGINX Instance Manager in a disconnected (offline) environment to unlock all features.
   In a disconnected environment, the license is applied manually and usage reports are submitted to F5 separately from a system with internet access.
@@ -61,6 +60,8 @@ To add a license and submit the initial usage report in a disconnected environme
       -s initial
     ```
 
+    Replace `<PASSWORD>` with your password.
+
     This command adds the license, downloads the initial usage report (`report.zip`), submits the report to F5 for acknowledgment, and uploads the acknowledgment back to NGINX Instance Manager.
 
 {{< include "nim/disconnected/license-usage-offline-script.md" >}}
@@ -94,6 +95,8 @@ Run these `curl` commands on a system that can connect to NGINX Instance Manager
       }
     }'
     ```
+
+    Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
 
 1. **Poll the license status on NGINX Instance Manager**:
 

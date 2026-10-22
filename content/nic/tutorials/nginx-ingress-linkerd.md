@@ -4,7 +4,6 @@ toc: true
 weight: 1800
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1450
 ---
 
 This document explains how to integrate NGINX Ingress Controller with Linkerd using Linkerd's sidecar proxy. Linkerd works with both NGINX Ingress Controller open source and NGINX Ingress Controller using NGINX Plus.
@@ -75,8 +74,10 @@ kubectl get deployment -n nginx-ingress nginx-ingress -o yaml | linkerd inject -
 If you want to inject into an existing `Helm` installation, you can run the following:
 
 ```shell
-kubectl get deployment -n <name_of_namespace> <name_of_helm_release> -o yaml | linkerd inject - | kubectl apply -f -
+kubectl get deployment -n <NAMESPACE> <RELEASE_NAME> -o yaml | linkerd inject - | kubectl apply -f -
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX Ingress Controller is installed and `<RELEASE_NAME>` with the name of your Helm release.
 
 In this example, the `helm` release named `kic01-nginx-ingress-controller` is injected into the `nginx-ingress` namespace:
 

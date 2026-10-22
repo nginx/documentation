@@ -3,7 +3,6 @@ title: Inventory
 description: Learn about the Inventory page of the User Interface.
 weight: 30
 toc: false
-f5-docs: DOCS-983
 f5-product: AMPLIF
 ---
 

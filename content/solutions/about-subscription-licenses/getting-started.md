@@ -5,7 +5,6 @@ weight: 200
 f5-content-type: how-to
 f5-product: Solutions
 f5-resource: https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
-f5-docs: DOCS-1780
 ---
 
 NGINX Plus R33 and later require a valid JSON Web Token (JWT) license.  
@@ -33,6 +32,8 @@ For flowcharts that show how these requirements work in practice, see [NGINX Plu
 ### Starting NGINX Plus
 
 Starting NGINX Plus requires a valid, unexpired license. If the license has expired, NGINX Plus can still start during the 90-day grace period.
+
+After startup, you can check your license status in the [error log](#log-monitoring). Ensure that the error log is configured at the notice level or a more verbose level.
 
 ### Processing traffic
 

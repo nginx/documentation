@@ -3,12 +3,14 @@ title: Configure OpenID Connect (OIDC) authentication
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-description:  How to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-product: F5 NGINX Gateway Fabric
+description:  How to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-keywords: "NGINX Gateway Fabric, OIDC, OpenID Connect, AuthenticationFilter, IdP, SSO, NGINX Plus, PKCE"
 f5-summary: >
    NGINX Gateway Fabric supports OIDC authentication via the AuthenticationFilter CRD, enabling delegation of user login to identity providers like Keycloak, Okta, or Auth0 using the Authorization Code Flow.
    The filter must be attached to an HTTPS listener and references Kubernetes Secrets for sensitive material including the client secret and optional CA certificate for verifying the IdP's TLS connection.
    Key optional features include session management, logout configuration, PKCE, custom redirect URIs, and Certificate Revocation List support, though the feature requires NGINX Plus and does not work with open-source NGINX.
+f5-audience: operator
 ---
 
 This guide describes how to configure OpenID Connect (OIDC) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
@@ -57,7 +59,7 @@ If you already have an IdP set up with a realm, a client, and a user, skip to [S
 Deploy Keycloak to your cluster. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange. The `keycloak-tls-cert` Secret was created by cert-manager in the previous step and is mounted into the Keycloak container below.
 
 {{< call-out class="note" >}}
-The `redirectUris` field must include the exact hostname and port that the NGINX Gateway is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. For example, `https://cafe.example.com:9443/*`. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. Our default callback location is set to `/oidc_callback_<namespace>_<filtername>`
+The `redirectUris` field must include the exact hostname and port that the NGINX Gateway is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. For example, `https://cafe.example.com:9443/*`. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. Our default callback location is set to `/oidc_callback_<NAMESPACE>_<FILTER_NAME>`
 {{< /call-out >}}
 
 ```yaml
@@ -606,7 +608,7 @@ spec:
 
 ### Custom redirect URI
 
-By default, NGINX Gateway Fabric registers the OIDC callback at `/oidc_callback_<namespace>_<filtername>`. Use `redirectURI` to set a different path. If you provide a path-only value, NGINX creates a location block to handle the callback. If you provide a full URL, it is treated as an external handler and no location block is created. Register the same value in your IdP as an allowed redirect URI.
+By default, NGINX Gateway Fabric registers the OIDC callback at `/oidc_callback_<NAMESPACE>_<FILTER_NAME>`. Use `redirectURI` to set a different path. If you provide a path-only value, NGINX creates a location block to handle the callback. If you provide a full URL, it is treated as an external handler and no location block is created. Register the same value in your IdP as an allowed redirect URI.
 
 ```yaml
 spec:
@@ -617,7 +619,7 @@ spec:
 
 ### Custom IdP metadata URL
 
-By default, NGINX fetches IdP metadata from `<issuer>/.well-known/openid-configuration`. Use `configURL` if your IdP exposes metadata at a different path.
+By default, NGINX fetches IdP metadata from `<ISSUER>/.well-known/openid-configuration`. Use `configURL` if your IdP exposes metadata at a different path.
 
 ```yaml
 spec:
@@ -673,7 +675,7 @@ spec:
 
 ### Browser is stuck in a redirect loop
 
-- Confirm the `redirectURI` registered in the IdP exactly matches the path NGINX is using (default: `/oidc_callback_<namespace>_<filtername>`).
+- Confirm the `redirectURI` registered in the IdP exactly matches the path NGINX is using (default: `/oidc_callback_<NAMESPACE>_<FILTER_NAME>`).
 - Ensure the Gateway's TLS certificate is valid for the hostname the browser is using.
 
 ## Further reading

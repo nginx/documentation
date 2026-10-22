@@ -1,5 +1,12 @@
 ---
 title: "Manifests"
+description: "Install or uninstall NGINX Gateway Fabric using Kubernetes manifests."
 url: /nginx-gateway-fabric/install/manifests
 weight: 200
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Use static Kubernetes manifests as an alternative to Helm for installing NGINX Gateway Fabric.
+  Choose Open Source or Plus variants, including experimental feature sets.
+f5-keywords: "NGINX Gateway Fabric, manifests, YAML, kubectl, install"
+f5-audience: any
 ---

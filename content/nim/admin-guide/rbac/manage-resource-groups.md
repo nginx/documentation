@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1271
 title: Manage resource groups
 toc: true
 weight: 300
@@ -172,6 +171,8 @@ To remove a resource from a resource group via the REST API, send an HTTP `DELET
 ```shell
 DELETE https://<NIM_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}/resources/{resourceUid}?moduleName=Instance Manager
 ```
+
+Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
 
 ---
 

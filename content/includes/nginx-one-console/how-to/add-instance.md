@@ -20,8 +20,10 @@ NGINX One Console takes the option you use, and adds the data plane key to a com
 Connect to the host where your NGINX instance is running. Run the provided command to [install NGINX Agent]({{< ref "/nginx-one-console/getting-started#install-nginx-agent" >}}) dependencies and packages on that host.
 
 ```bash
-curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="<data_plane_key>" sh -s -- -y
+curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="<DATA_PLANE_KEY>" sh -s -- -y
 ```
+
+Replace `<DATA_PLANE_KEY>` with your data plane key.
 
 Once the process is complete, you can configure that instance in your NGINX One Console.
 

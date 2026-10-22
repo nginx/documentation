@@ -1,10 +1,15 @@
 ---
 title: Custom policies
+description: "Understand custom policies that expose NGINX data plane features beyond the Gateway API."
 weight: 700
 toc: true
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1835
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Custom policies let you configure NGINX features that are not available in the Gateway API itself.
+  Learn how policy attachments work and when to use first-class NGINX Gateway Fabric CRDs.
+f5-keywords: "NGINX Gateway Fabric, custom policies, PolicyAttachment, CRD, extensions"
+f5-audience: any
 ---
 
 This topic explains the custom policies for NGINX Gateway Fabric CRDs (Custom Resource Definitions), which allow users to configure NGINX data plane features that are unavailable in the Gateway API.
@@ -16,6 +21,7 @@ The following table summarizes NGINX Gateway Fabric custom policies:
 
 | Policy                                                                                       | Description                                                       | Attachment Type | Supported Target Object(s)    | Supports Multiple Target Refs | Mergeable | API Version |
 |----------------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------|-------------------------------|-------------------------------|-----------|-------------|
+| [AccessPolicy]({{< ref "/ngf/traffic-security/access-policy.md" >}})                  | Define IP address allowlists and denylists                        | Inherited       | Gateway, HTTPRoute, GRPCRoute | Yes                           | Yes       | v1alpha1    |
 | [ClientSettingsPolicy]({{< ref "/ngf/traffic-management/client-settings.md" >}})      | Configure connection behavior between client and NGINX            | Inherited       | Gateway, HTTPRoute, GRPCRoute | No                            | Yes       | v1alpha1    |
 | [ObservabilityPolicy]({{< ref "/ngf/monitoring/tracing.md" >}})                       | Define settings related to tracing, metrics, or logging           | Direct          | HTTPRoute, GRPCRoute          | Yes                           | No        | v1alpha2    |
 | [ProxySettingsPolicy]({{< ref "/ngf/traffic-management/proxy-settings.md" >}})        | Configure connection behavior between NGINX and upstream backends | Inherited       | Gateway, HTTPRoute, GRPCRoute | Yes                           | Yes       | v1alpha1    |

@@ -4,7 +4,6 @@ weight: 900
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1858
 ---
 
 This topic describes how to use F5 NGINX Ingress Controller to apply and update a Policy for access control. You can use access control policies with [VirtualServer custom resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) or with [Ingress resources]({{< ref "/nic/configuration/ingress-resources/basic-configuration.md" >}}) using the `nginx.org/policies` annotation.
@@ -20,19 +19,23 @@ For ease of use in shell commands, set the following shell variables:
 1. The public IP address for your NGINX Ingress Controller instance.
 
 ```shell
-IC_IP=<ip-address>
+IC_IP=<IP_ADDRESS>
 ```
+
+Replace `<IP_ADDRESS>` with the IP address of your NGINX Ingress Controller.
 
 2. The HTTP port of the same instance.
 
 ```shell
-IC_HTTP_PORT=<port number>
+IC_HTTP_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number to use.
 
 3. The HTTPS port of the same instance (used for the [Ingress resource example](#use-access-control-with-ingress-resources)).
 
 ```shell
-IC_HTTPS_PORT=<port number>
+IC_HTTPS_PORT=<PORT_NUMBER>
 ```
 
 ---

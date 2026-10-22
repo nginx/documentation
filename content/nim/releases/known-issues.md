@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-937
 type: reference
 title: Known issues
 toc: true
@@ -131,8 +130,10 @@ How to re-enable mTLS for NGINX Agent and internal service connections:
     4. Apply the Helm upgrade.
 
         ```shell
-        helm upgrade <release-name> <chart-path> -f values.yaml
+        helm upgrade <RELEASE_NAME> <CHART_PATH> -f values.yaml
         ```
+
+        Replace `<RELEASE_NAME>` with the name of your Helm release and `<CHART_PATH>` with the path to the NGINX Instance Manager Helm chart.
 
 ---
 
@@ -591,8 +592,10 @@ An issue has been identified in which metric data is aggregated across all dimen
 When querying the Metrics API, you can exclude the data for an aggregated dimension by specifying the dimension name in the `filterBy` query parameter.
 
 ```none
-filterBy=<dimension-name>!= ''
+filterBy=<DIMENSION_NAME>!= ''
 ```
+
+Replace `<DIMENSION_NAME>` with the name of the dimension you want to filter by.
 
 ---
 

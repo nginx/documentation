@@ -6,7 +6,6 @@ noindex: true
 headless: true
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1445
 ---
 
 {{< call-out class="important" >}}
@@ -270,7 +269,7 @@ Default: `http://apigw.nms.svc.cluster.local/api/platform/v1/k8s-usage`.
 ### -nms-basic-auth-secret `<string>`
 
 Secret for basic authentication to the NGINX Instance Manager API. The secret must be in `kubernetes.io/basic-auth` format using base64 encoding.
-Format: `<namespace>/<name>`.
+Format: `<NAMESPACE>/<NAME>`.
 
 ---
 

@@ -1,11 +1,16 @@
 ---
 title: Use Manifests to install NGINX Gateway Fabric with NGINX Open Source
+description: "Install NGINX Gateway Fabric with NGINX Open Source using Kubernetes manifests."
 linkTitle: NGINX Open Source
 weight: 100
 toc: true
-f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1429
+f5-content-type: installation-guide
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Apply Kubernetes manifests to install NGINX Gateway Fabric with the NGINX Open Source data plane.
+  Use this when you prefer declarative YAML over Helm.
+f5-keywords: "NGINX Gateway Fabric, manifests, NGINX Open Source, install, YAML"
+f5-audience: operator
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Open Source.

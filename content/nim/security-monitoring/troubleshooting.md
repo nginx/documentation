@@ -4,7 +4,6 @@ weight: 500
 toc: true
 f5-content-type: reference
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-1226
 description: "Troubleshoot Security Monitoring issues in F5 NGINX Instance Manager when security violation events are not received or dashboards are not populated."
 f5-summary: >
   Diagnose and resolve common Security Monitoring issues in F5 NGINX Instance Manager.
@@ -27,9 +26,11 @@ F5 WAF for NGINX supports logging to multiple destinations. You can send logs to
    app_protect_policy_file "/etc/app_protect/conf/NginxDefaultPolicy.json";
    app_protect_security_log_enable on;
    app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
-   app_protect_security_log "/etc/app_protect/conf/log_sm.json" <Path to store log file>;
+   app_protect_security_log "/etc/app_protect/conf/log_sm.json" <PATH_TO_STORE_LOG_FILE>;
    # Example: app_protect_security_log "/etc/app_protect/conf/log_sm.json" /var/log/app_protect/security.log;
    ```
+
+   Replace `<PATH_TO_STORE_LOG_FILE>` with the path where you want the Security Monitoring log file to be written.
 
 2. **For an instance with Security Monitoring and F5 NGINX Instance Manager:**
 
@@ -37,7 +38,7 @@ F5 WAF for NGINX supports logging to multiple destinations. You can send logs to
    app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";
    app_protect_security_log_enable on;
    app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1:514;
-   app_protect_security_log "/etc/nms/secops_dashboard.tgz" <Path to store log file>;
+   app_protect_security_log "/etc/nms/secops_dashboard.tgz" <PATH_TO_STORE_LOG_FILE>;
    # Example: app_protect_security_log "/etc/nms/secops_dashboard.tgz" /var/log/app_protect/security.log;
    ```
 
@@ -51,19 +52,21 @@ If NGINX Instance Manager doesn't receive security events from a NGINX Gateway F
 
 ### Resolution
 
-Check the following on NGINX Instance Manager, in order:
+First, make sure you've completed all NIM-side setup steps described in [Configure NGINX Instance Manager]({{< ref "/nim/security-monitoring/ngf-security-events.md#configure-nginx-instance-manager" >}}), including enabling the OpenTelemetry collector and creating the collector configuration file.
+
+Then check the following on NGINX Instance Manager, in order:
 
 1. Confirm the embedded OpenTelemetry collector is turned on. In `nms.conf`, verify `collector_config.enable` is set to `true`:
 
    ```yaml
-      collector_config:
-         enable: true
+   collector_config:
+     enable: true
    ```
 
    If you change this setting, restart the service:
 
    ```shell
-      sudo systemctl restart nms
+   sudo systemctl restart nms
    ```
 
 2. Confirm NGINX Instance Manager is reachable from the Kubernetes cluster on port `4317` (gRPC).

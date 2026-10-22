@@ -2,7 +2,6 @@
 title: F5 DoS for NGINX Arbitrator 1.2.0
 toc: true
 weight: 61
-f5-docs: DOCS-1782
 f5-content-type: reference
 f5-product: F5 DOS for NGINX
 ---

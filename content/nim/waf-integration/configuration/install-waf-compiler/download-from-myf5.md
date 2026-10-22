@@ -30,21 +30,23 @@ If your F5 NGINX Instance Manager host doesn’t have access to the public NGINX
    - **Debian or Ubuntu**
 
      ```shell
-     sudo apt-get install -f /path/to/nms-nap-compiler-<version>_focal_amd64.deb
+     sudo apt-get install -f /path/to/nms-nap-compiler-<VERSION>_focal_amd64.deb
      ```
+
+     Replace `<VERSION>` with the version number.
 
      To install multiple compiler versions on the same system, use:
 
      ```shell
      sudo apt-get install -f \
-       /path/to/nms-nap-compiler-<version>_focal_amd64.deb \
+       /path/to/nms-nap-compiler-<VERSION>_focal_amd64.deb \
        -o Dpkg::Options::="--force-overwrite"
      ```
 
    - **RHEL, CentOS, or Oracle Linux**
 
      ```shell
-     sudo yum install -f /path/to/nms-nap-compiler-<version>_el8.ngx.x86_64.rpm
+     sudo yum install -f /path/to/nms-nap-compiler-<VERSION>_el8.ngx.x86_64.rpm
      ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}

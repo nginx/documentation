@@ -1,10 +1,15 @@
 ---
 title: Monitoring with Prometheus and Grafana
+description: "Monitor NGINX Gateway Fabric with Prometheus and Grafana, including available metrics."
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1418
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Install and configure Prometheus and Grafana to scrape and visualize NGINX Gateway Fabric metrics.
+  This guide also lists which metrics are available for alerting and dashboards.
+f5-keywords: "NGINX Gateway Fabric, Prometheus, Grafana, metrics, scrape, monitoring"
+f5-audience: operator
 ---
 
 This document describes how to monitor NGINX Gateway Fabric using Prometheus and Grafana. It explains installation and configuration, as well as what metrics are available.
@@ -68,6 +73,59 @@ In the Grafana UI menu, go to `Connections` then `Data sources`. Add your Promet
 Download the following sample dashboard and Import as a new Dashboard in the Grafana UI.
 
 - {{< download "ngf/grafana-dashboard.json" "ngf-grafana-dashboard.json" >}}
+
+### Configure the ServiceMonitor
+
+NGINX Gateway Fabric supports creating Prometheus ServiceMonitor resources for scraping metrics. Before enabling this feature, make sure:
+
+- The [Prometheus Operator](https://prometheus-operator.dev/docs/getting-started/installation/) is installed in your cluster.
+- The Service Monitor CRD is installed.
+- Your Prometheus instance is configured to select ServiceMonitors created by NGINX Gateway Fabric.
+
+Run the following command to install the ServiceMonitor CRD:
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+```
+
+NGINX Gateway Fabric creates two kinds of ServiceMonitors:
+- Control plane - configured through the Helm chart.
+- Data plane - provisioned by the control plane whenever a new Gateway resource is created.
+
+#### Control plane ServiceMonitor
+
+Enable the control plane ServiceMonitor by setting the following in your helm `values.yaml`:
+
+```yaml
+nginxGateway:
+   metrics:
+      serviceMonitor:
+         enable: true
+```
+
+#### Data plane ServiceMonitor
+
+Enable the data plane ServiceMonitor in one of two ways:
+- Set the following in your Helm `values.yaml` (this is applied to all Gateways):
+
+```yaml
+nginx:
+   serviceMonitor:
+      enable: true
+```
+
+- Configure it on the `NginxProxy` resource:
+
+```yaml
+serviceMonitor:
+  enable: true
+  endpoints:
+    - port: metrics
+```
+
+{{< call-out class="note" >}} If the ServiceMonitor CRD is installed after installing NGINX Gateway Fabric, you may need to restart the control plane for it to detect the CRD and create the data plane ServiceMonitor. {{< /call-out >}}
+
+Once configured, Prometheus will discover and scrape these ServiceMonitors, and the collected metrics can be visualised in Grafana.
 
 ## Available metrics in NGINX Gateway Fabric
 
@@ -175,15 +233,17 @@ To change the default port for metrics:
 
    ```yaml
    - name: metrics
-     containerPort: <new-port>
+     containerPort: <NEW_PORT>
    ```
+
+   Replace `<NEW_PORT>` with the port you want to use for metrics.
 
 3. Modify the `prometheus.io/port` annotation in the Pod template to match the new port:
 
    ```yaml
    annotations:
        <...>
-       prometheus.io/port: "<new-port>"
+       prometheus.io/port: "<NEW_PORT>"
        <...>
    ```
 

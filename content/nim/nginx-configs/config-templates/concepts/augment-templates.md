@@ -3,7 +3,6 @@ title: Augment templates
 description: "Customize NGINX configurations in F5 NGINX Instance Manager beyond the base template using augment templates to add settings for specific instances or groups."
 weight: 120
 toc: true
-f5-docs: DOCS-1656
 f5-personas:
 - devops
 - netops

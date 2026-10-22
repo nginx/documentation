@@ -4,7 +4,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-795
 description: "Configure Microsoft Entra (Azure AD) as the OIDC identity provider for F5 NGINX Instance Manager to enable Single Sign-On and centralized user management."
 f5-summary: >
   Configure Microsoft Entra as the identity provider for F5 NGINX Instance Manager using OpenID Connect.
@@ -53,7 +52,7 @@ To register an application with Microsoft Entra:
 1. Provide the following details:
    - Enter a name for the application in the **Name** field, such as "NGINX Instance Manager".
    - Select **Account in this organizational directory only** from the list of account types.
-   - Under the **Redirect URI** section, choose **Web** and enter the redirect URI, for example, `https://<my-nginx-instance-manager>/_codexch`.
+   - Under the **Redirect URI** section, choose **Web** and enter the redirect URI, for example, `https://<NIM_FQDN>/_codexch`.
 
    {{< img src="/security/oidc/azure-register-app.png" alt="Azure: register an application." width="600" height="415" >}}
 

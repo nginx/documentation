@@ -3,7 +3,6 @@ title: Community and contributing
 weight: 10000
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1447
 ---
 
 There are a few ways to get involved with the F5 NGINX Ingress Controller community and contribute to the project.

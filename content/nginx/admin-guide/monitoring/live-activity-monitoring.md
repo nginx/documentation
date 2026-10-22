@@ -2,7 +2,6 @@
 description: Track the performance of F5 NGINX Plus and your apps in real time, on
   the built-in live activity monitoring dashboard or by feeding the JSON to other
   tools.
-f5-docs: DOCS-425
 title: Live Activity Monitoring
 toc: true
 weight: 100

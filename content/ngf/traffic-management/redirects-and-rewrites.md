@@ -1,10 +1,15 @@
 ---
 title: HTTP redirects and rewrites
+description: "Redirect or rewrite HTTP traffic using NGINX Gateway Fabric routes and filters."
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1424
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Configure HTTP redirects and path rewrites so clients reach the correct URLs.
+  Use these filters when migrating paths or enforcing HTTPS and canonical hosts.
+f5-keywords: "NGINX Gateway Fabric, redirect, rewrite, HTTPRoute, URL, path"
+f5-audience: developer
 ---
 
 Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.
@@ -76,8 +81,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 

@@ -1,6 +1,5 @@
 ---
 description: ''
-f5-docs: DOCS-1398
 f5-content-type: redoc
 doctypes:
   - reference

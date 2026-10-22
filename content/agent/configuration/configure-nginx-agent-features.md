@@ -2,7 +2,6 @@
 title: Features configuration
 weight: 150
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: NGINX Agent
 ---

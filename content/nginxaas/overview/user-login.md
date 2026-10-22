@@ -2,7 +2,6 @@
 title: User login
 weight: 350
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/overview/user-login/
 f5-product: F5 Application Delivery Service
 f5-product-former: F5 NGINXaaS

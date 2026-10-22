@@ -4,7 +4,6 @@ weight: 1500
 toc: true
 f5-content-type: reference
 f5-product: F5 WAF for NGINX
-f5-docs: DOCS-000
 ---
 
 IP address lists are a feature that let you organize allowed and forbidden IP addresses into reusable lists with common attributes.

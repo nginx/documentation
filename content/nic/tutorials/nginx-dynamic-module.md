@@ -4,7 +4,6 @@ toc: true
 weight: 1800
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1231
 ---
 
 This document describes how to use NGINX Ingress Controller with NGINX dynamic modules.
@@ -111,7 +110,9 @@ data:
 NGINX Ingress Controller will load the `ngx_http_headers_more` module, which can then be verified by running `nginx -T` in the NGINX Ingress Controller pod:
 
 ```shell
-kubectl exec -it -n nginx-ingress <nginx_ingress_pod> -- nginx -T
+kubectl exec -it -n nginx-ingress <NGINX_INGRESS_POD> -- nginx -T
 ```
+
+Replace `<NGINX_INGRESS_POD>` with the name of your NGINX Ingress Controller pod.
 
 You should see the module in the `nginx -T` output, indicating it is now loaded in NGINX Ingress Controller.

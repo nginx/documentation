@@ -1,7 +1,6 @@
 ---
 description: Control access using HTTP Basic authentication, and optionally in combination
   with IP address-based access control.
-f5-docs: DOCS-428
 title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300
@@ -50,6 +49,8 @@ To create username-password pairs, use a password file creation utility, for exa
     user2:<HASHED_PASSWORD>
     user3:<HASHED_PASSWORD>
     ```
+
+    Replace `<HASHED_PASSWORD>` with the hashed password.
 
 <span id="config"></span>
 ## Configuring NGINX and NGINX Plus for HTTP Basic Authentication

@@ -1,7 +1,6 @@
 ---
 description: Secure TCP traffic between NGINX or F5 F5 NGINX Plus and upstream servers,
   using SSL/TLS encryption.
-f5-docs: DOCS-436
 title: Securing TCP Traffic to Upstream Servers
 toc: true
 weight: 1000

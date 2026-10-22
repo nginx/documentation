@@ -3,7 +3,6 @@ title: Add certificates from Secret Manager
 description: "Fetch SSL/TLS certificates for F5 Application Delivery Service for Google Cloud directly from Google Cloud Secret Manager."
 weight: 75
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

@@ -1,7 +1,6 @@
 ---
 description: Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/)
   for applications proxied by F5 NGINX Plus.
-f5-docs: DOCS-467
 f5-content-type: tutorial
 title: Single Sign-On with OneLogin and njs
 toc: false
@@ -96,8 +95,10 @@ Take the steps in this section to set up NGINX Plus as the OpenID Connect Clien
         --auth_jwt_key request \
         --client_id 168d5600-9224-... \
         --client_secret c9210a67d09e85... \
-        https://<domain>.onelogin.com/oidc/2/.well-known/openid-configuration
+        https://<DOMAIN>.onelogin.com/oidc/2/.well-known/openid-configuration
     ```
+
+    Replace `<DOMAIN>` with your OneLogin subdomain.
 
 2. In the `frontend.conf` file, update the **my_backend** upstream with the address of the application that you want to add OIDC authorization to.
 

@@ -5,7 +5,6 @@ toc: true
 weight: 300
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
-f5-docs: DOCS-1646
 ---
 
 ## Overview
@@ -33,7 +32,7 @@ This method applies to NGINX Plus Release 34 and later. In earlier versions, NGI
 ### Prerequisites
 
 1. Configure the IdP. For example, you can [register a Microsoft Entra Web application]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id/#entra-setup" >}}) as the IdP.
-1. A domain name pointing to your NGINXaaS deployment, for example, `demo.example.com`. This will be referred to as `<nginxaas_deployment_fqdn>` throughout this guide.
+1. A domain name pointing to your NGINXaaS deployment, for example, `demo.example.com`. This will be referred to as `<NGINXAAS_DEPLOYMENT_FQDN>` throughout this guide.
 
 With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
 
@@ -57,12 +56,12 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
         keyval_zone zone=my_store:8M state=/opt/oidc_sessions.json timeout=1h sync;
 
         oidc_provider entra {
-            issuer            https://login.microsoftonline.com/<tenant_id>/v2.0;
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            issuer            https://login.microsoftonline.com/<TENANT_ID>/v2.0;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             session_store      my_store;
             logout_uri        /logout;
-            post_logout_uri   https://<nginxaas_deployment_fqdn>/post_logout/;
+            post_logout_uri   https://<NGINXAAS_DEPLOYMENT_FQDN>/post_logout/;
             logout_token_hint on;
             userinfo          on;
         }
@@ -71,10 +70,10 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
     ```
 
     Where:
-    - `<tenant_id>` is your Microsoft Entra Tenant ID
-    - `<client_id>` is your Application (client) ID from Entra ID
-    - `<client_secret>` is your client secret from Entra ID
-    - `<nginxaas_deployment_fqdn>` is your NGINXaaS deployment FQDN
+    - `<TENANT_ID>` is your Microsoft Entra Tenant ID
+    - `<CLIENT_ID>` is your Application (client) ID from Entra ID
+    - `<CLIENT_SECRET>` is your client secret from Entra ID
+    - `<NGINXAAS_DEPLOYMENT_FQDN>` is your NGINXaaS deployment FQDN
 
     {{< call-out class="note" >}} The `state=/opt/oidc_sessions.json` parameter enables persistence of OIDC session data across NGINX restarts. The state file path must be placed in a directory accessible to the NGINX worker processes, following [NGINX Filesystem Restrictions]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
 
@@ -83,7 +82,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
     ```nginx
     server {
         listen 443 ssl;
-        server_name <nginxaas_deployment_fqdn>;
+        server_name <NGINXAAS_DEPLOYMENT_FQDN>;
 
         ssl_certificate /etc/ssl/certs/fullchain.pem;
         ssl_certificate_key /etc/ssl/private/key.pem;
@@ -142,17 +141,17 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
         # Define OIDC provider (Microsoft Entra ID example)
         oidc_provider entra {
             # The issuer is typically something like:
-            # https://login.microsoftonline.com/<tenant_id>/v2.0
-            issuer            https://login.microsoftonline.com/<tenant_id>/v2.0;
+            # https://login.microsoftonline.com/<TENANT_ID>/v2.0
+            issuer            https://login.microsoftonline.com/<TENANT_ID>/v2.0;
 
             # Replace with your actual Entra client_id and client_secret
-            client_id         <client_id>;
-            client_secret     <client_secret>;
+            client_id         <CLIENT_ID>;
+            client_secret     <CLIENT_SECRET>;
             session_store      my_store;
 
             # RP‑initiated logout
             logout_uri        /logout;
-            post_logout_uri   https://<nginxaas_deployment_fqdn>/post_logout/;
+            post_logout_uri   https://<NGINXAAS_DEPLOYMENT_FQDN>/post_logout/;
             logout_token_hint on;
 
             # Fetch userinfo claims
@@ -161,7 +160,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
 
         server {
             listen 443 ssl;
-            server_name <nginxaas_deployment_fqdn>;
+            server_name <NGINXAAS_DEPLOYMENT_FQDN>;
 
             ssl_certificate /etc/ssl/certs/fullchain.pem;
             ssl_certificate_key /etc/ssl/private/key.pem;
@@ -216,7 +215,7 @@ For more detailed steps on this OIDC configuration, please refer to:
 
 ### Testing
 
-1. Open `https://<nginxaas_deployment_fqdn>/` in a browser. You will be automatically redirected to your IdP sign-in page.
+1. Open `https://<NGINXAAS_DEPLOYMENT_FQDN>/` in a browser. You will be automatically redirected to your IdP sign-in page.
 
 1. Enter valid IdP credentials. Upon successful sign-in, you will be redirected back to NGINXaaS and see your protected application. Using the example configuration, you will see a message displaying the authenticated user's information in the browser:
 
@@ -226,7 +225,7 @@ For more detailed steps on this OIDC configuration, please refer to:
     Entra ID sub: [subject_id]
     ```
 
-1. To test logout, navigate to `https://<nginxaas_deployment_fqdn>/logout`. NGINXaaS initiates an RP-initiated logout, and your IdP ends the session and redirects back to the post-logout page.
+1. To test logout, navigate to `https://<NGINXAAS_DEPLOYMENT_FQDN>/logout`. NGINXaaS initiates an RP-initiated logout, and your IdP ends the session and redirects back to the post-logout page.
 
 
 
@@ -370,7 +369,7 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
 
 3. Upload the NGINX configurations. See [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/" >}}) for more details.
 
-4. In a web browser, open `https://<nginxaas_deployment_fqdn>/<protected_uri>`. The browser will be redirected to the IdP server. After a successful login using the credentials of a user who has the authorization, the protected URI can be accessed. For example, using the `nginx.conf` in this guide, open `https://<nginxaas_deployment_fqdn>/` and complete the authentication. The browser will show:
+4. In a web browser, open `https://<NGINXAAS_DEPLOYMENT_FQDN>/<PROTECTED_URI>`. The browser will be redirected to the IdP server. After a successful login using the credentials of a user who has the authorization, the protected URI can be accessed. For example, using the `nginx.conf` in this guide, open `https://<NGINXAAS_DEPLOYMENT_FQDN>/` and complete the authentication. The browser will show:
 
     ```text
     This is a site protected by OIDC!
@@ -378,14 +377,13 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
 
 ## Limitations of Native OIDC vs NJS
 
-The Native OIDC implementation has the following limitations compared to the NJS-based implementation:
+The Native OIDC implementation has the following limitation compared to the NJS-based implementation:
 
-- Proof Key for Code Exchange (PKCE) Support
-- Front-Channel Logout
-- Back-Channel Logout
+- **Back-Channel Logout**: Back-channel logout is not currently supported in the Native OIDC module.
 
-These features will be added in future releases.
-
+{{< call-out class="note" >}}
+Starting with NGINX Plus Release 36 (R36), the Native OIDC module supports Proof Key for Code Exchange ([PKCE](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce)) and [Front-Channel Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#frontchannel_logout_uri) (`frontchannel_logout_uri`).
+{{< /call-out >}}
 
 ## Troubleshooting
 
@@ -403,6 +401,6 @@ These features will be added in future releases.
 
 - [Single Sign-On with Microsoft Entra ID]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id.md" >}})
 
-- [Single Sign-On with OpenID Connect and Identity Providers]({{< ref "nginx/admin-guide/security-controls/configuring-oidc.md" >}})
+- [Single Sign-On with OpenID Connect and Identity Providers]({{< ref "/nginx/admin-guide/security-controls/configuring-oidc.md" >}})
 
 - [Terraform snippets for sample Native OIDC](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/configurations/native-oidc)

@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1248
 title: Install with Ansible
 toc: true
 weight: 200
@@ -69,8 +68,10 @@ The Ansible role for NGINX Instance Manager simplifies the installation process 
 5. Run the playbook:
 
     ```shell
-    ansible-playbook -i <path-to-your-hostfile> nms-playbook.yml
+    ansible-playbook -i <PATH/TO/HOSTFILE> nms-playbook.yml
     ```
+
+    Replace `<PATH/TO/HOSTFILE>` with the path to your Ansible inventory (host) file.
 
 {{< call-out class="note" >}} For a comprehensive list of configuration options, view the [default `main.yaml` file](https://github.com/nginxinc/ansible-role-nginx-management-suite/blob/main/defaults/main.yml) on GitHub. {{< /call-out>}}
 

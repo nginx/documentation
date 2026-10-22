@@ -60,11 +60,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.715.0
+   sudo apt-get download nms-nap-compiler-v5.777.0
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.715.0 \
+     nms-nap-compiler-v5.777.0 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -108,11 +108,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.715.0
+   sudo apt-get download nms-nap-compiler-v5.777.0
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.715.0 \
+     nms-nap-compiler-v5.777.0 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -157,7 +157,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.715.0
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.777.0
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 
@@ -192,7 +192,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.715.0
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.777.0
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 
@@ -257,7 +257,9 @@ Host the Docker image on either a local or remote registry that your Kubernetes 
 Edit the `integrations` Kubernetes deployment resource to reference to the new Docker image hosted in your registry. 
 
 ```shell
-  kubectl edit deploy -n <namespace> integrations 
+  kubectl edit deploy -n <NAMESPACE> integrations 
 ```
+
+Replace `<NAMESPACE>` with the Kubernetes namespace where NGINX Instance Manager is installed.
 
 Once the `integrations` deployment's pod initializes with the latest image, NIM will have both compilers installed and will be able to compile policies on NGINX instances containing either version of F5 WAF for NGINX.

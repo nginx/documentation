@@ -9,7 +9,6 @@ toc: true
 f5-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
 f5-product: F5 WAF for NGINX
-f5-docs: DOCS-1596
 ---
 
 This document describes the user-defined signatures feature of F5 WAF for NGINX.
@@ -127,15 +126,17 @@ The format of the user-defined signature file is as follows:
 
 ```json
 {
-    "tag": "<tag-name>",
+    "tag": "<TAG_NAME>",
     "revisionDatetime": "2020-01-21T18:32:02Z",
     "signatures": []
 }
 ```
 
+Replace `<TAG_NAME>` with the name of your signature tag.
+
 Signatures can be uniquely identified with a combination of name and tag.
 
-The _\<tag-name\>_ value is a placeholder for the tag name, which is assigned to all signatures in the file or group. The `revisionDatetime` value specifies the date or version of the signature file.
+The `<TAG_NAME>` value is a placeholder for the tag name, which is assigned to all signatures in the file or group. The `revisionDatetime` value specifies the date or version of the signature file.
 
 Tags are useful for organizing user-defined signatures in a bundle, such as grouping signatures by author, shared purpose or set of applications they will be used to protect. They also create namespaces that avoid name conflicts with other user-defined signatures. 
 

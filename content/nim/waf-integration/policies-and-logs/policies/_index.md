@@ -1,6 +1,5 @@
 ---
 title: Security policies
-f5-docs: 
 weight: 100
 url: /nginx-instance-manager/waf-integration/policies-and-logs/policies/
 f5-product: NGINX Instance Manager

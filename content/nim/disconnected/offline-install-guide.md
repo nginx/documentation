@@ -4,7 +4,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-803
 description: "Use the install-nim-bundle.sh script to install or upgrade F5 NGINX Instance Manager in a disconnected (offline) environment."
 f5-summary: >
   Install or upgrade F5 NGINX Instance Manager in a disconnected environment using the install-nim-bundle.sh script.
@@ -90,6 +89,8 @@ Run the script in `offline` mode to download NGINX Instance Manager, NGINX Open 
   -v <CLICKHOUSE_VERSION>
   ```
 
+  Replace `<PATH/TO/NGINX_REPO.CRT>` with the path to your NGINX repository certificate (`nginx-repo.crt`) and `<PATH/TO/NGINX_REPO.KEY>` with the path to your NGINX repository private key (`nginx-repo.key`).
+
 ---
 
 ## Install NGINX Instance Manager
@@ -121,7 +122,7 @@ To find the latest dependencies for a specific package version:
 ### Required flags for installing in offline mode
 
 - `-m offline`: Required to run the script in offline mode. When used with `-i`, the script installs NGINX Instance Manager and its dependencies from the specified tarball.
-- `-i <path/to/tarball.tar.gz>`: Path to the tarball created during the packaging step.
+- `-i <PATH/TO/TARBALL.TAR.GZ>`: Path to the tarball created during the packaging step.
 - {{< include "nim/installation/install-script-flags/cert.md" >}}
 - {{< include "nim/installation/install-script-flags/key.md" >}}
 - `-d <DISTRIBUTION>`: Target Linux distribution (must match what was used during packaging).
@@ -148,8 +149,10 @@ To find the latest dependencies for a specific package version:
 3. **Save the admin password**. After installation completes, the script takes a few minutes to generate a password. At the end of the process, you'll see:
 
     ```shell
-    Regenerated Admin password: <encrypted password>
+    Regenerated Admin password: <GENERATED_PASSWORD>
     ```
+
+    `<GENERATED_PASSWORD>` represents the generated admin password, which the script displays in plain text.
 
     Save that password. You'll need it when you sign in to NGINX Instance Manager.
 

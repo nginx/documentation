@@ -6,7 +6,6 @@ toc: true
 weight: 150
 nd-content-type: how-to
 f5-product: F5 NGINX Plus
-f5-docs: DOCS-000
 ---
 
 This article explains how to upgrade existing NGINX Plus installation and dynamic modules.
@@ -119,13 +118,15 @@ Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JW
    - For **Linux**:
 
      ```shell
-     sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
+     sudo cp <DOWNLOADED_FILE_NAME>.jwt /etc/nginx/license.jwt
      ```
+
+     Replace `<DOWNLOADED_FILE_NAME>` with the downloaded filename without the `.jwt` extension.
 
    - For **FreeBSD**:
 
      ```shell
-     sudo cp <downloaded-file-name>.jwt /usr/local/etc/nginx/license.jwt
+     sudo cp <DOWNLOADED_FILE_NAME>.jwt /usr/local/etc/nginx/license.jwt
      ```
 
 4. Perform an upgrade.

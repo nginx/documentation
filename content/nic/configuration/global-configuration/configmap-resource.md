@@ -4,7 +4,6 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-586
 ---
 
 When using F5 NGINX Ingress Controller, you can customize or fine tune NGINX behavior using ConfigMap resources. Examples include setting the number of worker processes or customizing the access log format.
@@ -128,13 +127,14 @@ Only enable disable-forwarded-headers if:
 |*add-header* | Adds one or more response headers with the [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive in the `http` context. Use the format *Header-Name: value[:always]* and separate entries with commas. Example: `X-Frame-Options: DENY` or  `X-Frame-Options: DENY: always`.  | N/A |
 |*add-header-inherit* | Controls how [add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) applies inherited response headers. Allowed values are *on*, *off*, and *merge*. | N/A |
 |*disable-forwarded-headers* | Disables automatic injection of standard `X-Forwarded-*` headers (`X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Port`, and `X-Forwarded-Proto`), allowing custom header management. Requires `-enable-snippets` CLI flag to be enabled.| *false* |
+|*use-forwarded-headers* | Preserves the client's incoming `X-Forwarded-Host`, `X-Forwarded-Port`, and `X-Forwarded-Proto` headers and passes them to backend services. Without it, NGINX Ingress Controller overwrites these headers with values from its own connection. Use this when running behind an external load balancer or content delivery network that already sets these headers. This setting does not affect `X-Forwarded-For`, which is always passed through with the client's address appended. Mutually exclusive with `disable-forwarded-headers`. | *false* |
 
 ### Auth and SSL/TLS
 
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
-|*redirect-to-https* | Sets a redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `http-redirect-code` key. | *False* |
-|*ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `http-redirect-code` key. | *True* |
+|*redirect-to-https* | Sets a redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `http-redirect-code` key. Paths for active cert-manager HTTP-01 challenges skip this redirect. See [HTTP-01 challenges with cert-manager]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#http-01-challenges-with-cert-manager" >}}). | *False* |
+|*ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `http-redirect-code` key. Paths for active cert-manager HTTP-01 challenges skip this redirect. See [HTTP-01 challenges with cert-manager]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#http-01-challenges-with-cert-manager" >}}). | *True* |
 |*http-redirect-code* | Sets the HTTP redirect code for HTTPS redirects. Supported codes: 301, 302, 307, 308. | *301* |
 |*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. Not applicable to VS/VSR. | *False* |
 |*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. Not applicable to VS/VSR | *2592000* (1 month) |
@@ -149,7 +149,7 @@ Only enable disable-forwarded-headers if:
 
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
-|*http2* | Enables HTTP/2 in servers with SSL enabled. | *False* |  |
+|*http2* | Turns on HTTP/2 for all servers. With TLS, clients negotiate HTTP/2. Without TLS, servers accept unencrypted HTTP/2 (h2c). To override the key for one resource, set the `nginx.org/http2` Ingress annotation or the `http2` VirtualServer field. | *False* |  |
 |*proxy-protocol* | Enables PROXY Protocol for incoming connections. | *False* | [Proxy Protocol](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/shared-examples/proxy-protocol). |
 
 ### Backend services (Upstreams)
@@ -232,6 +232,7 @@ For more information on zonesizes, see [here](https://github.com/nginxinc/nginx-
 |*otel-exporter-header-name* | The name of a custom HTTP header to add to telemetry export request. `otel-exporter-endpoint` and `otel-exporter-header-value` required. | N/A | *"X-custom-header"* |
 |*otel-exporter-header-value* | The value of a custom HTTP header to add to telemetry export request. `otel-exporter-endpoint` and `otel-exporter-header-name` required. | N/A | *"custom-value"* |
 |*otel-service-name* | Sets the `service.name` attribute of the OTel resource. `otel-exporter-endpoint` required. | N/A | *"nginx-ingress-controller:nginx"* |
+|*otel-trace-context* | Sets the [`otel_trace_context`](https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context) directive in NGINX configuration. `otel-exporter-endpoint` required. Possible values are `extract`, `inject`, `propagate`, `ignore`. | N/A | *"inject"* |
 | *otel-trace-in-http* | Enables [OpenTelemetry](https://opentelemetry.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Set this to *"false"* to enable OpenTelemetry for individual routes with snippets. `otel-exporter-endpoint` required. | *"false"* | *"true"* |
 |*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. See the [docs]({{< ref "/nic/logging-and-monitoring/opentracing.md" >}}) for more information. | *False* |  |
 |*opentracing-tracer* | Removed in v5.0.0.  Sets the path to the vendor tracer binary plugin. | N/A |  |

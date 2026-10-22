@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1031
 f5-product: NGINX Agent
 f5-files:
 - content/nim/security-monitoring/set-up-app-protect-instances.md
@@ -20,6 +19,8 @@ If your NGINX Instance Manager host doesn't use valid TLS certificates, you can 
   curl https://<NIM_FQDN>/install/nginx-agent | sudo sh
   ```
 
+  Replace `<NIM_FQDN>` with the fully qualified domain name (FQDN) of your NGINX Instance Manager host.
+
 - **Insecure:**
 
   ```bash
@@ -31,8 +32,10 @@ To add the instance to a specific instance group during installation, use the `-
 ```shell
 curl https://<NIM_FQDN>/install/nginx-agent -o install.sh
 chmod u+x install.sh
-sudo ./install.sh --instance-group <instance group>
+sudo ./install.sh --instance-group <INSTANCE_GROUP>
 ```
+
+Replace `<INSTANCE_GROUP>` with the name of your instance group.
 
 By default, the install script uses a secure connection to download packages. If it can’t establish one, it falls back to an insecure connection and logs this message:
 
@@ -69,7 +72,7 @@ To add your instance to a group during installation, use the `--instance-group` 
 ```shell
 wget https://<NIM_FQDN>/install/nginx-agent -O install.sh
 chmod u+x install.sh
-sudo ./install.sh --instance-group <instance group>
+sudo ./install.sh --instance-group <INSTANCE_GROUP>
 ```
 
 {{%/tab%}}

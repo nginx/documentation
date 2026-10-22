@@ -5,7 +5,6 @@ toc: true
 weight: 200
 f5-content-type: how-to
 f5-product: NGINX Plus
-f5-docs: DOCS-410
 ---
 
 This article explains how to install NGINX Open Source on various operating systems, including an overview of existing NGINX Open Source versions, installation types and methods, modules included in the default package and dynamic modules packages, and the basics of compiling NGINX from the source code.
@@ -248,7 +247,7 @@ Before installing, check if your operating system and architecture are supported
    
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -259,7 +258,7 @@ Before installing, check if your operating system and architecture are supported
 9. If needed, install one or more [dynamic module packages](#repository-contents):
 
    ```shell
-   sudo dnf install nginx-module-<name>
+   sudo dnf install nginx-module-<NAME>
    ```
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
@@ -360,7 +359,7 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.31.6
+   Server: nginx/1.31.7
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -371,7 +370,7 @@ Before installing, check if your operating system and architecture are supported
 9. If needed, install one or more [dynamic module packages](#repository-contents):
 
    ```shell
-   sudo apt install nginx-module-<name>
+   sudo apt install nginx-module-<NAME>
    ```
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
@@ -470,7 +469,7 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.31.6
+   Server: nginx/1.31.7
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -481,7 +480,7 @@ Before installing, check if your operating system and architecture are supported
 9. If needed, install one or more [dynamic module packages](#repository-contents):
 
    ```shell
-   sudo apt install nginx-module-<name>
+   sudo apt install nginx-module-<NAME>
    ```
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
@@ -567,7 +566,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -578,7 +577,7 @@ Before installing, check if your operating system and architecture are supported
 8. If needed, install one or more [dynamic module packages](#repository-contents):
 
    ```shell
-   sudo zypper install nginx-module-<name>
+   sudo zypper install nginx-module-<NAME>
    ```
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib64/nginx/modules` directory.
@@ -686,7 +685,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -697,8 +696,10 @@ Before installing, check if your operating system and architecture are supported
 9. If needed, install one or more [dynamic module packages](#repository-contents). The `@nginx` tag should also be specified:
 
     ```shell
-    sudo apk add nginx-module-<name1>@nginx nginx-module-<name2>@nginx
+    sudo apk add nginx-module-<NAME1>@nginx nginx-module-<NAME2>@nginx
     ```
+
+    Replace `<NAME1>` with the name of the first dynamic module and `<NAME2>` with the name of the second dynamic module.
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
 
@@ -782,7 +783,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -793,7 +794,7 @@ Before installing, check if your operating system and architecture are supported
 8. If needed, install one or more [dynamic module packages](#repository-contents):
 
    ```shell
-   sudo yum install nginx-module-<name>
+   sudo yum install nginx-module-<NAME>
    ```
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib64/nginx/modules` directory.
@@ -862,7 +863,7 @@ Before installing, check if your operating system and architecture are supported
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.31.6
+    Server: nginx/1.31.7
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -873,7 +874,7 @@ Before installing, check if your operating system and architecture are supported
 6. If needed, install one or more [dynamic module packages](#repository-contents):
 
    ```shell
-   sudo dnf install nginx-module-<name>
+   sudo dnf install nginx-module-<NAME>
    ```
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib64/nginx/modules` directory.
@@ -1025,9 +1026,9 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.31.6.tar.gz && \
-tar zxf nginx-1.31.6.tar.gz && \
-cd nginx-1.31.6
+wget https://nginx.org/download/nginx-1.31.7.tar.gz && \
+tar zxf nginx-1.31.7.tar.gz && \
+cd nginx-1.31.7
 ```
 
 To download and unpack source files for the latest _stable_ version, run:
@@ -1110,13 +1111,13 @@ With the `configure` script you can redefine the method for event‑based pollin
 
 NGINX consists of a set of function‑specific _modules_, which are specified with `configure` script along with other build options.
 
-Some modules are built by default – they do not have to be specified with the `configure` script. Default modules can however be explicitly excluded from the NGINX binary with the`--without-<MODULE-NAME>`option on the `configure` script.
+Some modules are built by default – they do not have to be specified with the `configure` script. Default modules can however be explicitly excluded from the NGINX binary with the`--without-<MODULE_NAME>`option on the `configure` script.
 
 Modules not included by default, as well as third‑party modules, must be explicitly specified in the `configure` script together with other build options. Such modules can be linked to NGINX binary either _statically_ (they are then loaded each time NGINX starts) or _dynamically_ (they are loaded only if associated directives are included in the NGINX configuration file.
 
 #### Modules built by default
 
-If you do not need a module that is built by default, you can disable it by naming it with the <span style="white-space: nowrap;">`--without-<MODULE-NAME>`</span> option on the `configure` script, as in this example which disables the [Empty GIF](https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html) module (should be typed as a single line):
+If you do not need a module that is built by default, you can disable it by naming it with the <span style="white-space: nowrap;">`--without-<MODULE_NAME>`</span> option on the `configure` script, as in this example which disables the [Empty GIF](https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html) module (should be typed as a single line):
 
 ```shell
 ./configure

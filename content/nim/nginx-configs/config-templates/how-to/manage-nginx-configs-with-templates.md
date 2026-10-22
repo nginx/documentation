@@ -3,7 +3,6 @@ title: Manage NGINX configs with templates
 description: "Create and deploy NGINX config templates in F5 NGINX Instance Manager to predefine and standardize configurations across your NGINX instances."
 weight: 200
 toc: true
-f5-docs: DOCS-1506
 f5-personas:
 - devops
 - netops
@@ -31,20 +30,28 @@ When importing a config template from an archive, ensure your `.tar.gz` file mat
 #### Required archive structure
 
 ``` text
-<archive-name>.tar.gz
+<ARCHIVE_NAME>.tar.gz
 │
-├── <template-name>/
-│   ├── <template-files>.tmpl
-│   ├── <validation-files>.json
+├── <TEMPLATE_NAME>/
+│   ├── <TEMPLATE_FILES>.tmpl
+│   ├── <VALIDATION_FILES>.json
 │   └── meta.json
 │
-├── <another-template-name>/
-│   ├── <template-files>.tmpl
-│   ├── <validation-files>.json
+├── <ANOTHER_TEMPLATE_NAME>/
+│   ├── <TEMPLATE_FILES>.tmpl
+│   ├── <VALIDATION_FILES>.json
 │   └── meta.json
 │
 └── ...
 ```
+
+Replace the placeholders as follows:
+
+- `<ARCHIVE_NAME>`: the name of your template archive
+- `<TEMPLATE_NAME>`: the name of a template directory
+- `<TEMPLATE_FILES>`: the name of a template (`.tmpl`) file
+- `<VALIDATION_FILES>`: the name of a validation (`.json`) file
+- `<ANOTHER_TEMPLATE_NAME>`: the name of an additional template directory
 
 #### Example meta.json file
 

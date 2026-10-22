@@ -3,7 +3,6 @@ title: Billing overview
 description: "How F5 Application Delivery Service for AWS is priced and billed through AWS Marketplace."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, billing, pricing, NCU, AWS Marketplace"
@@ -40,7 +39,10 @@ An NGINX Capacity Unit (NCU) quantifies the capacity for a deployment. F5 ADS me
 
 ## Data Transfer Unit (DTU)
 
-A Data Transfer Unit (DTU) is the unit used to measure data transfer for billing purposes.
+For 1 MB of data transferred, DTU rates vary by transfer type and region:
+
+- **Same region** – 3 DTUs, flat across all regions.
+- **To internet** – 11–18 DTUs, varies by region.
 
 ## Billing examples
 
@@ -66,7 +68,7 @@ Total cost for 3 hours: $0.060 + $1.10 + $2.00 = **$3.16**
 
 ## Review billing data
 
-F5 ADS for AWS reports billing data per deployment. You can access it through the AWS Cost Management Console. Usage metrics and costs update hourly, so you can monitor and optimize resource allocation.
+F5 ADS for AWS reports billing data per deployment. You can access it through the AWS Cost Management Console. Usage metrics and costs update hourly, so you can monitor and optimize resource allocation. For a detailed breakdown of usage by deployment and region, see the [Usage dashboard]({{< ref "/f5ads/platform/usage-dashboard.md" >}}).
 
 ## Cancel your subscription
 

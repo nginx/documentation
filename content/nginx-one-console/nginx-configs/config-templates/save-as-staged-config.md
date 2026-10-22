@@ -1,6 +1,5 @@
 ---
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-product: NGINX One Console
 title: Save rendered config as staged config
 toc: true
@@ -151,7 +150,7 @@ Use the [Submit Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#
         "files": [
           {
             "name": "nginx.conf",
-            "contents": "<base64_encoded_content>",
+            "contents": "<BASE64_ENCODED_CONTENT>",
             "mtime": "0001-01-01T00:00:00Z",
             "size": 371
           }
@@ -162,13 +161,13 @@ Use the [Submit Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#
         "files": [
           {
             "name": "cors-headers.tmpl.4aaf36d4a643.conf",
-            "contents": "<base64_encoded_content>",
+            "contents": "<BASE64_ENCODED_CONTENT>",
             "mtime": "0001-01-01T00:00:00Z",
             "size": 159
           },
           {
             "name": "health-check.tmpl.78346de4dae4.conf",
-            "contents": "<base64_encoded_content>",
+            "contents": "<BASE64_ENCODED_CONTENT>",
             "mtime": "0001-01-01T00:00:00Z",
             "size": 109
           }
@@ -179,6 +178,8 @@ Use the [Submit Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#
   "errors": null
 }
 ```
+
+Where `<BASE64_ENCODED_CONTENT>` is your base64-encoded file content.
 
 Review the rendered configuration. If you see parse errors in the `errors` array, refer to [Template Limitations]({{< ref "author-templates.md#template-limitations" >}}) for guidance.
 
@@ -213,7 +214,7 @@ Take the entire `config` object from the preview response and wrap it with a `na
         "files": [
           {
             "name": "nginx.conf",
-            "contents": "<base64_encoded_content>",
+            "contents": "<BASE64_ENCODED_CONTENT>",
             "mtime": "0001-01-01T00:00:00Z",
             "size": 371
           }
@@ -224,13 +225,13 @@ Take the entire `config` object from the preview response and wrap it with a `na
         "files": [
           {
             "name": "cors-headers.tmpl.4aaf36d4a643.conf",
-            "contents": "<base64_encoded_content>",
+            "contents": "<BASE64_ENCODED_CONTENT>",
             "mtime": "0001-01-01T00:00:00Z",
             "size": 159
           },
           {
             "name": "health-check.tmpl.78346de4dae4.conf",
-            "contents": "<base64_encoded_content>",
+            "contents": "<BASE64_ENCODED_CONTENT>",
             "mtime": "0001-01-01T00:00:00Z",
             "size": 109
           }

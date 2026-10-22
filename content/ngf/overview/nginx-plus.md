@@ -1,9 +1,14 @@
 ---
 title: Advanced features with NGINX Plus
+description: "Learn advanced capabilities available when NGINX Gateway Fabric uses NGINX Plus as the data plane."
 weight: 300
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1837
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  NGINX Gateway Fabric can run NGINX Open Source or NGINX Plus as its data plane.
+  NGINX Plus adds commercial features beyond the open source option.
+f5-keywords: "NGINX Gateway Fabric, NGINX Plus, advanced features, commercial, data plane"
+f5-audience: any
 ---
 
 NGINX Gateway Fabric can use NGINX Open Source or NGINX Plus as its data plane. [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the closed source, commercial version of NGINX. Using NGINX Plus as the data plane offers additional benefits compared to the open source version.
@@ -13,8 +18,8 @@ NGINX Gateway Fabric can use NGINX Open Source or NGINX Plus as its data plane. 
 - **Robust metrics**: A plethora of [additional Prometheus metrics]({{< ref "/ngf/monitoring/prometheus.md" >}}) are available.
 - **Live activity monitoring**: The [NGINX Plus dashboard]({{< ref "/ngf/monitoring/dashboard.md" >}}) shows real-time metrics and information about your server infrastructure.
 - **Dynamic upstream configuration**: NGINX Plus can dynamically reconfigure upstream servers when applications in Kubernetes scale up and down, preventing the need for an NGINX reload.
-- **Session persistence**: NGINX Plus provides support for cookie-based session persistence, allowing client requests to be consistently routed to the same upstream pod.
 - **Load balancing methods**: NGINX Plus provides additional latency-aware load balancing methods `random two least_time=header` and `random two least_time=last_byte` that route traffic to the server with the least average response time among two randomly selected servers.
+- **Active health checks**: NGINX Plus can [actively probe upstream servers]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-an-active-health-check-nginx-plus" >}}) on a schedule, separate from client traffic, and stop sending requests to servers that fail the check.
 - **JWT and OIDC Authentication**: [JSON Web Token (JWT)]({{< ref "/ngf/traffic-security/jwt-authentication.md" >}}) and [OpenID Connect (OIDC)]({{< ref "/ngf/traffic-security/oidc-authentication.md" >}}) authentication support for access control and auth delegation.
 - **Web Application Firewall**: NGINX Plus enables integration with [F5 WAF for NGINX]({{< ref "/ngf/waf-integration/overview.md" >}}) (separate add-on subscription), providing enterprise-grade protection against web exploits, injection attacks, and other OWASP Top 10 threats. WAF policies are applied at the Gateway or Route level using the `WAFPolicy` custom resource.
 - **Support**: With an NGINX Plus license, you can take advantage of full [support](https://my.f5.com/manage/s/article/K000140156/) from NGINX, Inc.

@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-818
 title: Create a support package
 toc: true
 weight: 200
@@ -48,6 +47,8 @@ To create a support package:
     ```shell
     tar -xvf support-pkg-<TIMESTAMP>.tar.gz
     ```
+
+    Replace `<TIMESTAMP>` with the time the package was created.
 
 ### Arguments
 

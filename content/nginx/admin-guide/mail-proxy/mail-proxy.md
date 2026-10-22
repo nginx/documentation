@@ -1,7 +1,6 @@
 ---
 description: Simplify your email service and improve its performance with NGINX or
   F5 NGINX Plus as a proxy for the IMAP, POP3, and SMTP protocols
-f5-docs: DOCS-423
 title: Configure NGINX as a Mail Proxy Server
 toc: true
 weight: 100
@@ -108,17 +107,21 @@ If authentication is successful, the authentication server will choose an upstre
 ```shell
 HTTP/1.0 200 OK
 Auth-Status: OK
-Auth-Server: <host> # the server name or IP address of the upstream server that will used for mail processing
-Auth-Port: <port> # the port of the upstream server
+Auth-Server: <HOST> # the server name or IP address of the upstream server that will used for mail processing
+Auth-Port: <PORT> # the port of the upstream server
 ```
+
+Where `<HOST>` is the server name or IP address of the upstream server and `<PORT>` is the port of the upstream server.
 
 If authentication fails, the authentication server will return an error message. In this case, the response from the server will contain the following lines:
 
 ```shell
 HTTP/1.0 200 OK
-Auth-Status: <message> # an error message to be returned to the client, for example “Invalid login or password”
-Auth-Wait: <number> # the number of remaining authentication attempts until the connection is closed
+Auth-Status: <MESSAGE> # an error message to be returned to the client, for example “Invalid login or password”
+Auth-Wait: <NUMBER> # the number of remaining authentication attempts until the connection is closed
 ```
+
+Where `<MESSAGE>` is the error message to return to the client and `<NUMBER>` is the number of remaining authentication attempts.
 
 Note that in both cases the response will contain _HTTP/1.0 200 OK_ which might be confusing.
 

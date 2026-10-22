@@ -4,7 +4,6 @@ toc: true
 weight: 200
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1861
 ---
 
 This document describes how to build a local F5 WAF for NGINX v5 Docker image with NGINX Plus Ingress
@@ -152,8 +151,7 @@ kubectl create secret \
 
 kubectl create secret \
     generic license-token \
-    --from-file=license.jwt=./nginx-repo.jwt \
-    --type=nginx.com/license
+    --from-file=license.jwt=./nginx-repo.jwt
 ```
 
 Install the required CRDs for NGINX Ingress Controller:
@@ -198,11 +196,11 @@ Copy the file into the `nginx-ingress` container within the pod:
 
 ```shell
 kubectl cp ./compiled_policy.tgz \
-    <pod name>:/etc/app_protect/bundles/compiled_policy.tgz \
+    <POD_NAME>:/etc/app_protect/bundles/compiled_policy.tgz \
     -c nginx-ingress
 ```
 
-Replace `<pod name>` with the actual name of the pod, for example:
+Replace `<POD_NAME>` with the actual name of the pod, for example:
 
 ```shell
 kubectl cp ./compiled_policy.tgz \
@@ -215,7 +213,7 @@ Confirm that the policy file is in the pod. The following command should list `c
 ```shell
 kubectl exec --stdin --tty \
     -c nginx-ingress \
-    <pod name> \
+    <POD_NAME> \
     -- ls -la /etc/app_protect/bundles
 ```
 
@@ -308,8 +306,10 @@ Save them in the following environment variables:
 
 ```shell
 IC_IP=XXX.YYY.ZZZ.III
-IC_HTTP_PORT=<port number>
+IC_HTTP_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number to use.
 
 ### Validate that the WAF works
 

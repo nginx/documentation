@@ -4,7 +4,6 @@ toc: true
 weight: 600
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-589
 ---
 
 This page describes how to view the status of resources managed by F5 NGINX Ingress Controller.
@@ -65,6 +64,9 @@ In order to see additional addresses or extra information about the `Status` of 
 ```shell
 kubectl describe virtualserver <NAME>
 ```
+
+Replace `<NAME>` with the name of the resource.
+
 ```text
 ...
 Status:
@@ -91,7 +93,7 @@ The *ReferencedBy* field is reported for the VirtualServerRoute status only:
 
 |Field | Description | Type |
 | ---| ---| --- |
-| *ReferencedBy* | The VirtualServer that references this VirtualServerRoute. Format as ``namespace/name`` | *string* |
+| *ReferencedBy* | The VirtualServers that reference this VirtualServerRoute, as a comma-separated list of ``namespace/name`` values. More than one VirtualServer can reference a hostless VirtualServerRoute. | *string* |
 
 ### externalEndpoint
 

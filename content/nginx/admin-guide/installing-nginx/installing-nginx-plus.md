@@ -6,7 +6,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Plus
-f5-docs: DOCS-414
 ---
 
 This guide provides step-by-step instructions for installing NGINX Plus from an official repository on different operating systems. It also covers installing and enabling dynamic modules, as well as enabling NGINX Plus in rootless or offline environments.
@@ -594,13 +593,13 @@ NGINX-certified community dynamic modules are popular third‑party modules dist
 
 [NGINX‑authored](#nginx-authored-dynamic-modules) and [NGINX‑certified community](#nginx-certified-community-dynamic-modules) dynamic modules can be installed as packaged binaries directly from the official `nginx-plus` repository.
 
-To install a binary package, run the command in a terminal that corresponds to your operating system, replacing `<MODULE-NAME>` with the actual binary package name, for example, `nginx-plus-module-njs`.
+To install a binary package, run the command in a terminal that corresponds to your operating system, replacing `<MODULE_NAME>` with the actual binary package name, for example, `nginx-plus-module-njs`.
 
 - For RHEL, Amazon Linux 2, CentOS, Oracle Linux:
 
   ```shell
   sudo yum update && \
-  sudo yum install <MODULE-NAME>
+  sudo yum install <MODULE_NAME>
   ```
 
   The resulting  `.so` file will be installed to: `/usr/lib64/nginx/modules/`
@@ -609,7 +608,7 @@ To install a binary package, run the command in a terminal that corresponds to y
 
   ```shell
   sudo dnf update && \
-  sudo dnf install <MODULE-NAME>
+  sudo dnf install <MODULE_NAME>
   ```
 
   The resulting  `.so` file will be installed to: `/usr/lib64/nginx/modules/`
@@ -618,7 +617,7 @@ To install a binary package, run the command in a terminal that corresponds to y
 
   ```shell
   sudo apt update && \
-  sudo apt install <MODULE-NAME>
+  sudo apt install <MODULE_NAME>
   ```
 
   The resulting  `.so` file will be installed to: `/usr/lib/nginx/modules`
@@ -627,7 +626,7 @@ To install a binary package, run the command in a terminal that corresponds to y
 
   ```shell
   sudo pkg update && \
-  sudo pkg install <MODULE-NAME>
+  sudo pkg install <MODULE_NAME>
   ```
 
   The resulting  `.so` file will be installed to: `/usr/local/etc/nginx/modules`
@@ -636,7 +635,7 @@ To install a binary package, run the command in a terminal that corresponds to y
 
   ```shell
   sudo zypper refresh && \
-  sudo zypper install <MODULE-NAME>
+  sudo zypper install <MODULE_NAME>
   ```
 
   The resulting  `.so` file will be installed to: `/usr/lib64/nginx/modules/`
@@ -645,7 +644,7 @@ To install a binary package, run the command in a terminal that corresponds to y
 
   ```shell
   sudo apk update && \
-  sudo apk add <MODULE-NAME>
+  sudo apk add <MODULE_NAME>
   ```
 
   The resulting  `.so` file will be installed to: `/usr/lib/nginx/modules`
@@ -676,8 +675,8 @@ To enable a dynamic module:
    If there are several dynamic modules, specify each module with a separate `load_module` directive:
 
    ```nginx
-   load_module modules/<MODULE-NAME-1>.so;
-   load_module modules/<MODULE-NAME-2>.so;
+   load_module modules/<MODULE_NAME_1>.so;
+   load_module modules/<MODULE_NAME_2>.so;
 
    http {
        #...
@@ -687,6 +686,8 @@ To enable a dynamic module:
        #...
    }
    ```
+
+   Replace `<MODULE_NAME_1>` with the name of the first dynamic module and `<MODULE_NAME_2>` with the name of the second dynamic module.
 
 1. Save the changes.
 
@@ -753,7 +754,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    Expected output of the command:
 
    ```shell
-   nginx version: nginx/1.31.3 (nginx-plus-r37.1.1)
+   nginx version: nginx/1.31.6 (nginx-plus-r37.2.0)
    ```
 
 1. Prepare the build environment.
@@ -786,10 +787,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
 
    - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.31.3:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.31.6:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.31.3.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.31.6.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -805,10 +806,12 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    First, establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.31.3/ && \
-   ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES> && \
+   cd nginx-1.31.6/ && \
+   ./configure --with-compat --add-dynamic-module=../<MODULE_SOURCES> && \
    make modules
    ```
+
+   Replace `<MODULE_SOURCES>` with the path to the dynamic module sources.
 
    The **.so** file generated by the build process is placed in the **objs** subdirectory:
 
@@ -825,7 +828,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.31.3.so
+   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.31.6.so
    ```
 
 1. Transfer the resulting `.so` file from your build environment to the production environment.
@@ -837,7 +840,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    - `/usr/local/etc/nginx/modules` for FreeBSD
 
    ```shell
-   sudo cp ngx_http_hello_world_module_1.31.3.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.31.3.so
+   sudo cp ngx_http_hello_world_module_1.31.6.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.31.6.so
    ```
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
@@ -871,7 +874,6 @@ Comparing to a standard installation of NGINX Plus, an unprivileged installation
 The script can be run on the following operating systems:
 
 - RedHat, CentOS
-- Amazon Linux 2
 - Amazon Linux 2023
 - Debian, Ubuntu
 - Alpine Linux
@@ -897,10 +899,10 @@ To perform an unprivileged installation of NGINX Plus:
    chmod +x ngxunprivinst.sh
    ```
 
-1. Download NGINX Plus and its module packages for your operating system. The `<cert_file>` and `<key_file>` are your NGINX Plus certificate and a private key required to access the NGINX Plus repo:
+1. Download NGINX Plus and its module packages for your operating system. The `<CERT_FILE>` and `<KEY_FILE>` are your NGINX Plus certificate and a private key required to access the NGINX Plus repo:
 
    ```shell
-   ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file>
+   ./ngxunprivinst.sh fetch -c <CERT_FILE> -k <KEY_FILE>
    ```
 
    If you need to install a particular version of NGINX Plus:
@@ -908,31 +910,35 @@ To perform an unprivileged installation of NGINX Plus:
    - first, list all available NGINX Plus versions from the repository:
 
        ```shell
-       ./ngxunprivinst.sh list -c <cert_file> -k <key_file>
+       ./ngxunprivinst.sh list -c <CERT_FILE> -k <KEY_FILE>
        ```
 
    - then specify a particular NGINX Plus version with the `-v` parameter:
 
        ```shell
-       ./ngxunprivinst.sh fetch -c <cert_file> -k <key_file> -v <version>
+       ./ngxunprivinst.sh fetch -c <CERT_FILE> -k <KEY_FILE> -v <VERSION>
        ```
 
-1. Extract the downloaded packages to the program prefix `<path>` specified by the `-p` parameter and specify the **license.jwt** `<license_file>` with the `-j` parameter. The optional `-y` parameter allows overwriting an existing installation:
+       Replace `<VERSION>` with the version of the NGINX Plus API.
+
+1. Extract the downloaded packages to the program prefix `<INSTALL_PATH>` specified by the `-p` parameter and specify the **license.jwt** `<LICENSE_FILE>` with the `-j` parameter. The optional `-y` parameter allows overwriting an existing installation:
 
    ```shell
-   ./ngxunprivinst.sh install [-y] -p <path> -j <license_file> <file1.rpm> <file2.rpm>
+   ./ngxunprivinst.sh install [-y] -p <INSTALL_PATH> -j <LICENSE_FILE> <FILE1.RPM> <FILE2.RPM>
    ```
+
+   Replace `<FILE1.RPM>` with the name of the first downloaded RPM package and `<FILE2.RPM>` with the name of the second downloaded RPM package.
 
 1. When the installation procedure is finished, run NGINX Plus. The `-p` parameter sets a path to the directory that keeps nginx files. The `-c` parameter sets a path to an alternative NGINX configuration file. Please note NGINX Plus must listen on ports above `1024`:
 
    ```shell
-   <path>/usr/sbin/nginx -p <path>/etc/nginx -c <path>/etc/nginx/conf.d
+   <INSTALL_PATH>/usr/sbin/nginx -p <INSTALL_PATH>/etc/nginx -c <INSTALL_PATH>/etc/nginx/conf.d
    ```
 
-With this script, you can also upgrade an existing unprivileged installation of NGINX Plus in the provided `<path>`. The optional `-y` parameter performs a forced upgrade without any confirmation:
+With this script, you can also upgrade an existing unprivileged installation of NGINX Plus in the provided `<INSTALL_PATH>`. The optional `-y` parameter performs a forced upgrade without any confirmation:
 
 ```shell
-./ngxunprivinst.sh upgrade [-y] -p <path> <file1.rpm> <file2.rpm>
+./ngxunprivinst.sh upgrade [-y] -p <INSTALL_PATH> <FILE1.RPM> <FILE2.RPM>
 ```
 
 ## NGINX Plus offline installation {#offline_install}
@@ -962,25 +968,31 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
     - **For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux**:
 
          ```shell
-         sudo rpm -ihv <rpm_package_name>
+         sudo rpm -ihv <RPM_PACKAGE_NAME>
          ```
+
+         Replace `<RPM_PACKAGE_NAME>` with the name of the RPM package.
 
     - **For Debian, Ubuntu**:
 
          ```shell
-         sudo dpkg -i <deb_package_name>
+         sudo dpkg -i <DEB_PACKAGE_NAME>
          ```
+
+         Replace `<DEB_PACKAGE_NAME>` with the name of the DEB package.
 
     - **For Alpine**:
 
          ```shell
-         apk add <apk_package_name>
+         apk add <APK_PACKAGE_NAME>
          ```
+
+         Replace `<APK_PACKAGE_NAME>` with the name of the APK package.
 
     - **For SLES**:
 
          ```shell
-         rpm -ivh <rpm_package_name>
+         rpm -ivh <RPM_PACKAGE_NAME>
          ```
 
 1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}

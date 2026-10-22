@@ -3,7 +3,6 @@ title: Usage and cost estimator
 description: "Estimate the monthly cost of a F5 Application Delivery Service for AWS deployment based on region, NCUs, and data transfer."
 weight: 200
 toc: true
-f5-docs: DOCS-000
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for AWS
 ---

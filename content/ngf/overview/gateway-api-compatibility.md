@@ -1,10 +1,15 @@
 ---
 title: Gateway API compatibility
+description: "See which Gateway API resources and features NGINX Gateway Fabric supports."
 weight: 200
 toc: true
 f5-content-type: reference
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1412
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Review Gateway API compatibility for NGINX Gateway Fabric, including supported resources and support levels.
+  Use this page to confirm whether a Gateway API feature is available before you design your configuration.
+f5-keywords: "NGINX Gateway Fabric, Gateway API, compatibility, supported resources, conformance"
+f5-audience: any
 ---
 
 This page describes which Gateway API resources NGINX Gateway Fabric supports and to which level.
@@ -176,7 +181,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
   - `hostnames`: Supported.
   - `rules`
     - `matches`
-      - `path`: Partially supported. Only `PathPrefix` and `Exact` types.
+      - `path`: Supported. `Exact`, `PathPrefix`, and `RegularExpression` types.
       - `headers`: Supported.
       - `queryParams`: Supported.
       - `method`: Supported.

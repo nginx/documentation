@@ -4,7 +4,6 @@ toc: true
 weight: 150
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1454
 ---
 
 This document describes how to add an F5 NGINX Plus Ingress Controller image from the F5 Docker registry into your Kubernetes cluster using a JWT token.
@@ -36,8 +35,10 @@ helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingres
 You can also use the certificate and key from the MyF5 portal and the Docker registry API to list the available image tags for the repositories, for example:
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <PATH/TO/CLIENT.KEY> --cert <PATH/TO/CLIENT.CERT>
 ```
+
+Replace `<PATH/TO/CLIENT.KEY>` with the path to your NGINX client private key (`nginx-repo.key`) and `<PATH/TO/CLIENT.CERT>` with the path to your NGINX client certificate (`nginx-repo.crt`).
 
 ```json
 {
@@ -52,7 +53,7 @@ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list
 ```
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <PATH/TO/CLIENT.KEY> --cert <PATH/TO/CLIENT.CERT>
 ```
 
 ```json
@@ -67,7 +68,7 @@ curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/
 ```
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <PATH/TO/CLIENT.KEY> --cert <PATH/TO/CLIENT.CERT>
 ```
 
 ```json
@@ -161,10 +162,10 @@ The `imagePullSecrets` and `containers.image` lines represent the Kubernetes sec
 If you need to download an image for local use (Such as to push to a different container registry), use this command:
 
 ```shell
-docker login private-registry.nginx.com --username=<output_of_jwt_token> --password=none
+docker login private-registry.nginx.com --username=<OUTPUT_OF_JWT_TOKEN> --password=none
 ```
 
-Replace the contents of `<output_of_jwt_token>` with the contents of the JWT token itself.
+Replace the contents of `<OUTPUT_OF_JWT_TOKEN>` with the contents of the JWT token itself.
 Once you have successfully pulled the image, you can then tag it as needed.
 
 {{< include "/nic/installation/jwt-password-note.md" >}}

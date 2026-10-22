@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-821
 title: Manage SSL certificates
 toc: true
 weight: 650
@@ -89,11 +88,11 @@ curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_wi
     "name": "pem_cert_with_ca",
     "certPEMDetails": {
       "type": "PEM",
-      "privateKey": "-----BEGIN PRIVATE KEY-----<base64-encoded blob>-----END PRIVATE KEY-----",
-      "publicCert": "-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----",
+      "privateKey": "-----BEGIN PRIVATE KEY-----<BASE64_ENCODED_BLOB>-----END PRIVATE KEY-----",
+      "publicCert": "-----BEGIN CERTIFICATE-----<BASE64_ENCODED_BLOB>-----END CERTIFICATE-----",
       "password": "",
       "caCerts": [
-        "-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----"
+        "-----BEGIN CERTIFICATE-----<BASE64_ENCODED_BLOB>-----END CERTIFICATE-----"
       ]
     },
     "instanceRefs": [
@@ -101,6 +100,8 @@ curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_wi
     ]
   }'
   ```
+
+Replace `<BASE64_ENCODED_BLOB>` with your base64-encoded certificate or private key content.
 
 ---
 
@@ -140,11 +141,11 @@ curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_wi
     "name": "pem_cert_with_ca",
     "certPEMDetails": {
       "type": "PEM",
-      "privateKey": "-----BEGIN PRIVATE KEY-----<base64-encoded blob>-----END PRIVATE KEY-----",
-      "publicCert": "-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----",
+      "privateKey": "-----BEGIN PRIVATE KEY-----<BASE64_ENCODED_BLOB>-----END PRIVATE KEY-----",
+      "publicCert": "-----BEGIN CERTIFICATE-----<BASE64_ENCODED_BLOB>-----END CERTIFICATE-----",
       "password": "",
       "caCerts": [
-        "-----BEGIN CERTIFICATE-----<base64-encoded blob>-----END CERTIFICATE-----"
+        "-----BEGIN CERTIFICATE-----<BASE64_ENCODED_BLOB>-----END CERTIFICATE-----"
       ]
     },
     "instanceRefs": []

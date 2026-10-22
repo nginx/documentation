@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-805
 title: Technical specifications
 toc: true
 weight: 20
@@ -40,6 +39,7 @@ The following table shows end-of-support (EoS) dates for recent versions.
 
 | NGINX Instance Manager | End of Support (EoS) |
 |------------------------|----------------------|
+| 2.24.x                 | October 13, 2028    |
 | 2.23.x                 | September 1, 2028    |
 | 2.22.x                 | April 27, 2028       |
 | 2.21.x                 | November 07, 2027    |

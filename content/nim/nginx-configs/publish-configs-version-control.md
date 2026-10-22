@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1348
 title: Publish NGINX configs with version control
 toc: true
 weight: 3
@@ -132,11 +131,13 @@ publish_config_to_instance() {
 		"externalIdType": "git"
 	}')
 
-	echo "${payload}" | curl -k -H 'Content-Type: application/json' -H "Authorization: Bearer <access token>" --data-binary @- -X POST "https://$ctrl_ip/api/platform/v1/systems/$system_uid/instances/$nginx_uid/config"
+	echo "${payload}" | curl -k -H 'Content-Type: application/json' -H "Authorization: Bearer <ACCESS_TOKEN>" --data-binary @- -X POST "https://$ctrl_ip/api/platform/v1/systems/$system_uid/instances/$nginx_uid/config"
 }
 
 publish_config_to_instance "$@"
 ```
+
+Replace `<ACCESS_TOKEN>` with your access token.
 
 ---
 

@@ -3,7 +3,6 @@ title: "Changelog"
 description: "Latest updates, new features, and resolved bugs in F5 Application Delivery Service for Google Cloud."
 weight: 1000
 toc: true
-f5-docs: DOCS-000
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
 nollms: true

@@ -110,7 +110,9 @@ data:
 NGINX Ingress Controller LTS will load the `ngx_http_headers_more` module, which can then be verified by running `nginx -T` in the NGINX Ingress Controller LTS pod:
 
 ```shell
-kubectl exec -it -n nginx-ingress <nginx_ingress_pod> -- nginx -T
+kubectl exec -it -n nginx-ingress <NGINX_INGRESS_POD> -- nginx -T
 ```
+
+Replace `<NGINX_INGRESS_POD>` with the name of your NGINX Ingress Controller pod.
 
 You should see the module in the `nginx -T` output, indicating it is now loaded in NGINX Ingress Controller LTS.

@@ -4,7 +4,6 @@ toc: true
 weight: 700
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-599
 ---
 
 This document is reference material for the VirtualServer and VirtualServerRoute resources used by F5 NGINX Ingress Controller.
@@ -66,6 +65,7 @@ spec:
 |``listener`` | Sets a custom HTTP and/or HTTPS listener. Valid fields are `listener.http` and `listener.https`. Each field must reference the name of a valid listener defined in a GlobalConfiguration resource | [listener](#virtualserverlistener) | No |
 |``tls`` | The TLS termination configuration. | [tls](#virtualservertls) | No |
 |``gunzip`` | Enables or disables [decompression]({{< ref "/nginx/admin-guide/web-server/compression.md" >}}) of gzipped responses for clients. Allowed values “on”/“off”, “true”/“false” or “yes”/“no”. If the ``gunzip`` value is not set, it defaults to ``off``.   | ``boolean`` | No |
+|``http2`` | Turns HTTP/2 on or off for the VirtualServer. The field overrides the [``http2``]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}}) ConfigMap key. If you don't set the field, the VirtualServer uses the ConfigMap value. If HTTP/2 is off, HTTP/2 requests for the host get a ``421 Misdirected Request`` response, and HTTP/1.1 isn't affected. Without TLS, unencrypted HTTP/2 (h2c) on the default HTTP listener also needs the ``http2`` ConfigMap key. | ``boolean`` | No |
 |``externalDNS`` | The externalDNS configuration for a VirtualServer. | [externalDNS](#virtualserverexternaldns) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServer. | ``string`` | No |
 |``policies`` | A list of policies. | [[]policy](#virtualserverpolicy) | No |
@@ -88,7 +88,7 @@ redirect:
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the VirtualServer. The secret must be of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that contain the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the host of the VirtualServer. If the secret is not specified but [wildcard TLS secret]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-wildcard-tls-secret" >}}) is configured, NGINX will use the wildcard secret for TLS termination. | ``string`` | No |
+|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the VirtualServer. The secret must contain keys named `tls.crt` and `tls.key` for the certificate and private key. For details, see the [Kubernetes Ingress TLS documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). Use a `kubernetes.io/tls` secret, or a standard `Opaque` secret with the same keys. If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the host of the VirtualServer. If the secret is not specified but [wildcard TLS secret]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-wildcard-tls-secret" >}}) is configured, NGINX will use the wildcard secret for TLS termination. | ``string`` | No |
 |``redirect`` | The redirect configuration of the TLS for a VirtualServer. | [tls.redirect](#virtualservertlsredirect) | No | ### VirtualServer.TLS.Redirect |
 |``cert-manager`` | The cert-manager configuration of the TLS for a VirtualServer. | [tls.cert-manager](#virtualservertlscertmanager) | No | ### VirtualServer.TLS.CertManager |
 
@@ -107,6 +107,8 @@ basedOn: scheme
 |``enable`` | Enables a TLS redirect for a VirtualServer. The default is ``False``. | ``boolean`` | No |
 |``code`` | The status code of a redirect. The allowed values are: ``301`` , ``302`` , ``307`` , ``308``.  The default is ``301``. | ``int`` | No |
 |``basedOn`` | The attribute of a request that NGINX will evaluate to send a redirect. The allowed values are ``scheme`` (the scheme of the request) or ``x-forwarded-proto`` (the ``X-Forwarded-Proto`` header of the request). The default is ``scheme``. | ``string`` | No | ### VirtualServer.Policy |
+
+The redirect doesn't apply to active cert-manager HTTP-01 challenges. For details, see [HTTP-01 challenges with cert-manager](#http-01-challenges-with-cert-manager).
 
 ### VirtualServer.TLS.CertManager
 
@@ -128,6 +130,33 @@ cert-manager:
 |``renew-before`` |  this annotation allows you to configure spec.renewBefore field for the Certificate to be generated. Must be specified using a [Go time.Duration](https://pkg.go.dev/time#ParseDuration) string format, which does not allow the d (days) suffix. You must specify these values using s, m, and h suffixes instead. | ``string`` | No |
 |``usages`` |  This field allows you to configure spec.usages field for the Certificate to be generated. Pass a string with comma-separated values i.e. ``key agreement,digital signature, server auth``. An exhaustive list of supported key usages can be found in the [the cert-manager api documentation](https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.KeyUsage). | ``string`` | No |
 |``issue-temp-cert`` | When ``true``, ask cert-manager for a [temporary self-signed certificate](https://cert-manager.io/docs/usage/certificate/#temporary-certificates-while-issuing) pending the issuance of the Certificate. This allows HTTPS-only servers to use ACME HTTP01 challenges when the TLS secret does not exist yet. | ``boolean`` | No |
+
+#### HTTP-01 challenges with cert-manager
+
+An Automatic Certificate Management Environment (ACME) issuer in cert-manager can use the HTTP-01 solver. With this solver, the ACME server must reach `http://<HOST>/.well-known/acme-challenge/<TOKEN>` over plain HTTP. NGINX Ingress Controller detects active challenge locations and exempts them from the TLS redirect and from authentication policies. You don't need extra configuration. Setting `redirect.enable: true` doesn't require `issue-temp-cert`.
+
+NGINX Ingress Controller treats a location as a challenge location only when all of these conditions are true:
+
+- The location comes from the solver Ingress that cert-manager creates. This requires the [`-enable-cert-manager`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-cert-manager" >}}) argument.
+- The solver Ingress is in the same namespace as the VirtualServer.
+- The path starts with `/.well-known/acme-challenge/`.
+- The name of the backend Service starts with `cm-acme-http-solver-`.
+
+A path alone never qualifies. For example, a VirtualServerRoute route with a `/.well-known/acme-challenge/` path isn't a challenge location.
+
+While a challenge is active for a host, NGINX Ingress Controller changes the configuration in these ways:
+
+- Plain HTTP requests to any path under `/.well-known/acme-challenge/` on the host skip the `tls.redirect` redirect.
+- The challenge location skips basic auth, JWT, API key, external auth, and OpenID Connect policies.
+- Access control, WAF, and rate-limiting policies in the VirtualServer `spec.policies` still apply to the challenge location.
+- Policies on routes and subroutes don't apply, because the challenge location isn't part of a VirtualServer route.
+- The challenge location is an exact-match location. NGINX selects it before any regular expression route, such as `~ ^/`.
+
+A VirtualServer or VirtualServerRoute can already have an exact-match route for the token path. In that case, NGINX Ingress Controller keeps that route and doesn't generate the challenge location. It also reports a warning on the VirtualServer.
+
+When no challenge is active, the generated NGINX configuration doesn't change.
+
+{{< call-out class="note" title="Note" >}}While a challenge is active, every path under `/.well-known/acme-challenge/` on the host skips the redirect, not only the token path. Other paths under that prefix still require credentials. But clients can send those credentials over plain HTTP until the challenge ends, typically after seconds to minutes. {{< /call-out >}}
 
 ### VirtualServer.Listener
 
@@ -231,11 +260,15 @@ See the [VirtualServerRoute specification](#virtualserverroute-specification) se
 |``matchLabels`` | A map of key-value pairs. Each key-value pair in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. | ``map[string]string`` | Yes |
 |``matchExpressions`` | A list of label selector requirements. The requirements are ANDed. For more information on label selector requirements, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements). | N/A | No |
 
+{{< call-out class="note" >}} If a `routeSelector` matches no VirtualServerRoutes, NGINX Ingress Controller emits a `Warning` event and sets the VirtualServer `State` to `Warning`. For causes and fixes, see [Warning events]({{< ref "/nic/troubleshooting/troubleshoot-virtualserver.md#warning-events" >}}). {{< /call-out >}}
+
 ## VirtualServerRoute specification
 
 The VirtualServerRoute resource defines a route for a VirtualServer. It can consist of one or multiple subroutes. The VirtualServerRoute is an alternative to [Mergeable Ingress types]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
 
-VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. The `routeSelector` approach allows you to add new VirtualServerRoute resources without modifying the VirtualServer configuration.
+VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. With `routeSelector`, you can add new VirtualServerRoute resources without changing the VirtualServer configuration.
+
+A VirtualServerRoute can set `host` to attach only to the VirtualServer with that host, or omit `host` (hostless mode). A hostless VirtualServerRoute uses the host of each VirtualServer that references it, by name with `route` or by label with `routeSelector`. Any VirtualServer in any namespace whose `routeSelector` matches the labels of a hostless VirtualServerRoute attaches that route. Use labels that only the intended VirtualServers select.
 
 {{<tabs name="vs-vsr-examples">}}
 
@@ -275,6 +308,74 @@ metadata:
   namespace: coffee-ns
 spec:
   host: cafe.example.com
+  upstreams:
+  - name: latte
+    service: latte-svc
+    port: 80
+  - name: espresso
+    service: espresso-svc
+    port: 80
+  subroutes:
+  - path: /coffee/latte
+    action:
+      pass: latte
+  - path: /coffee/espresso
+    action:
+      pass: espresso
+```
+
+{{%/tab%}}
+
+{{%tab name="Hostless route"%}}
+
+In this example, the VirtualServerRoute `shared-coffee` omits the `host` field (hostless mode). Multiple VirtualServers with different domains can reference the same route configuration.
+
+First VirtualServer:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe
+  namespace: cafe-ns
+spec:
+  host: cafe.example.com
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    route: coffee-ns/shared-coffee
+```
+
+Second VirtualServer:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe2
+  namespace: cafe2-ns
+spec:
+  host: cafe2.example.com
+  routes:
+  - path: /coffee
+    route: coffee-ns/shared-coffee
+```
+
+VirtualServerRoute (hostless):
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: shared-coffee
+  namespace: coffee-ns
+spec:
   upstreams:
   - name: latte
     service: latte-svc
@@ -353,14 +454,14 @@ spec:
 
 {{</tabs>}}
 
-Note that each subroute must have a `path` that starts with the same prefix (here `/coffee`), which is defined in the route of the VirtualServer. Additionally, the `host` in the VirtualServerRoute must be the same as the `host` of the VirtualServer.
+Each subroute path must start with the prefix defined in the VirtualServer route (for example, `/coffee`). If you set `host` in the VirtualServerRoute, it must match the VirtualServer `host` exactly. If you omit `host`, any VirtualServer can reference the VirtualServerRoute.
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. Must be the same as the ``host`` of the VirtualServer that references this resource. | ``string`` | Yes |
+|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com``, wrap the domain in double quotes. When set, it must match the ``host`` of the VirtualServer that references this resource. If you omit ``host`` (hostless mode), the VirtualServerRoute uses the host of each VirtualServer that references it. | ``string`` | No |
 |``upstreams`` | A list of upstreams. | [[]upstream](#upstream) | No |
 |``subroutes`` | A list of subroutes. | [[]subroute](#virtualserverroutesubroute) | No |
-|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string``_ | No |
+|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string`` | No |
 
 ### VirtualServerRoute.Subroute
 
@@ -425,7 +526,7 @@ tls:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``name`` | The name of the upstream. Must be a valid DNS label as defined in RFC 1035. For example, ``hello`` and ``upstream-123`` are valid. The name must be unique among all upstreams of the resource. | ``string`` | Yes |
-|``service`` | The name of a [service](https://kubernetes.io/docs/concepts/services-networking/service/). If the Service belongs to a different namespace than the VirtualServer or VirtualServerRoute, you need to include the namespace. For example, ``tea-namespace/tea``. If the service doesn't exist, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. For NGINX Plus only, services of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname) are also supported in the same namespace (check the [prerequisites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/externalname-services#prerequisites) ). | ``string`` | Yes |
+|``service`` | The name of a [service](https://kubernetes.io/docs/concepts/services-networking/service/). If the Service belongs to a different namespace than the VirtualServer or VirtualServerRoute, you need to include the namespace. For example, ``tea-namespace/tea``. If the service doesn't exist, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. For NGINX Plus only, services of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname) are also supported in the same namespace (check the [prerequisites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/externalname-services#prerequisites) ). NGINX Ingress Controller can prefer endpoints on its own node or in its own zone. To use this behavior, turn on topology-aware routing and set ``spec.trafficDistribution`` on the Service. For more information, see [Set up topology-aware routing]({{< ref "/nic/configuration/topology-aware-routing.md" >}}). | ``string`` | Yes |
 |``subselector`` | Selects the pods within the service using label keys and values. By default, all pods of the service are selected. Note: the specified labels are expected to be present in the pods when they are created. If the pod labels are updated, NGINX Ingress Controller will not see that change until the number of the pods is changed. | ``map[string]string`` | No |
 |``use-cluster-ip`` | Enables using the Cluster IP and port of the service instead of the default behavior of using the IP and port of the pods. When this field is enabled, the fields that configure NGINX behavior related to multiple upstream servers (like ``lb-method`` and ``next-upstream``) will have no effect, as NGINX Ingress Controller will configure NGINX with only one upstream server that will match the service Cluster IP. | ``boolean`` | No |
 |``port`` | The port of the service. If the service doesn't define that port, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. The port must fall into the range ``1..65535``. | ``uint16`` | Yes |
@@ -451,7 +552,8 @@ tls:
 |``buffer-size`` | Sets the size of the buffer used for reading the first part of a response received from the upstream server. See the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) directive. The default is set in the ``proxy-buffer-size`` ConfigMap key. | ``string`` | No |
 |``busy-buffers-size`` | Sets the size of the buffer used for reading a response from the upstream server when the response is larger than the ``buffer-size``. See the [proxy_busy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) directive. The default is set in the ``proxy-busy-buffers-size`` ConfigMap key. | ``string`` | No |
 |``ntlm`` | Allows proxying requests with NTLM Authentication. See the [ntlm](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive. In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers using the ``keepalive`` field. Note: this feature is supported only in NGINX Plus.| ``boolean`` | No |
-|``type`` |The type of the upstream. Supported values are ``http`` and ``grpc``. The default is ``http``. For gRPC, it is necessary to enable HTTP/2 in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}}) and configure TLS termination in the VirtualServer. | ``string`` | No |
+|``type`` |The type of the upstream. Supported values are ``http`` and ``grpc``. The default is ``http``. For gRPC, turn on HTTP/2 with the [VirtualServer ``http2`` field](#virtualserver-specification) or the ``http2`` key in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}}). For gRPC without TLS (h2c) on the default HTTP listener, you must also set the ``http2`` ConfigMap key. | ``string`` | No |
+|``proxy-http-version`` | The HTTP protocol version for connections to the upstream servers. Sets the [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) directive. Supported values are ``1.0``, ``1.1``, and ``2``. If this field is not set and the backend Service port defines ``appProtocol: kubernetes.io/h2c``, NGINX Ingress Controller uses HTTP/2 (``2``) automatically. An explicit value takes precedence over the value inferred from ``appProtocol``. When this field is unset and no ``appProtocol`` matches, NGINX uses its default. The setting is ignored for upstreams with ``type: grpc``, which always use HTTP/2. | ``string`` | No |
 |``backup`` | The name of the backup service of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname). This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods. | ``string`` | No |
 |``backupPort`` | The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range ``1..65535``. | ``uint16`` | No |
 
@@ -1112,9 +1214,9 @@ Status:
   State:    Invalid
 ```
 
-NGINX Ingress Controller validates VirtualServerRoute resources in a similar way.
+NGINX Ingress Controller validates VirtualServerRoute resources in a similar way. For example, if a VirtualServerRoute defines a `host` that doesn't match the referencing VirtualServer, NGINX Ingress Controller rejects the route attachment.
 
-**Note**: If you make an existing resource invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX.
+If you make an existing resource invalid, NGINX Ingress Controller rejects it and removes the corresponding configuration from NGINX.
 
 ## Multiple regex routes in a VirtualServerRoute
 

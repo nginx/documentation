@@ -1,9 +1,15 @@
 ---
 title: Migrate from NGINX Ingress Controller to NGINX Gateway Fabric
+description: "Migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric."
 weight: 800
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Move workloads from NGINX Ingress Controller to NGINX Gateway Fabric and the Gateway API model.
+  Use this guide when adopting Gateway API resources in place of Ingress-based configuration.
+f5-keywords: "NGINX Gateway Fabric, migration, NGINX Ingress Controller, Gateway API, Ingress"
+f5-audience: operator
 ---
 
 This document describes how to migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric.
@@ -36,8 +42,10 @@ To convert your existing NGINX Ingress resources to Gateway API resources, first
 Then run the conversion command for the NGINX provider:
    
 ```shell
-ingress2gateway print --providers=nginx --input-file=<your-ingress-file> > gateway-api-resources.yaml
+ingress2gateway print --providers=nginx --input-file=<PATH/TO/INGRESS_FILE> > gateway-api-resources.yaml
 ```
+
+Replace `<PATH/TO/INGRESS_FILE>` with the path to your Ingress manifest.
 
 This tool will analyze your Ingress resources from the input file and output the equivalent Gateway API resources to a file named `gateway-api-resources.yaml`.
 

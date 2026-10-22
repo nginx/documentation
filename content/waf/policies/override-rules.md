@@ -4,7 +4,6 @@ weight: 1800
 toc: true
 f5-content-type: reference
 f5-product: F5 WAF for NGINX
-f5-docs: DOCS-000
 ---
 
 This topic describes override rules feature of F5 WAF for NGINX.
@@ -129,6 +128,39 @@ By default, the actionType field is configured to "extend-policy".
 External references are supported for any policy reference.
 
 {{< /call-out >}}
+
+### Actionable rules
+
+Use an actionable rule to trigger an action directly, without an `override` policy body.
+
+F5 WAF for NGINX supports these actionable rule types:
+
+- Use `violation` to raise the `VIOL_RULE` violation based on your `violation` settings.
+- Use `client-side-integrity` to challenge the matching request with client-side integrity.
+
+When you use `client-side-integrity`, don't include `override` or `violation` objects in the same rule.
+
+Use conditions that match browser-facing HTML flows. F5 WAF for NGINX doesn't apply client-side integrity to non-HTML responses.
+
+{{< call-out class="important" >}}
+
+Client-side integrity relies on the enforcer state cookie. If your virtual server serves plain HTTP, set `secureAttribute` to `never`. If you don't, the browser discards the cookie. F5 WAF for NGINX then challenges the client repeatedly, and the client can't pass the challenge. For more information, see [Cookie enforcement ({{< ref "/waf/policies/cookie-enforcement.md" >}}).
+
+{{< /call-out >}}
+
+```json
+{
+  "policy": {
+    "override-rules": [
+      {
+        "name": "login-csi",
+        "condition": "method == 'POST' and uri.contains('/login')",
+        "actionType": "client-side-integrity"
+      }
+    ]
+  }
+}
+```
 
 ### First match principle
 

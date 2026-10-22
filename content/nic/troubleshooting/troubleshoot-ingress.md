@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1458
 title: Troubleshooting Ingress resources
 toc: true
 weight: 300

@@ -1,10 +1,15 @@
 ---
 title: Access the NGINX Plus dashboard
+description: "Access the NGINX Plus dashboard for real-time NGINX Gateway Fabric metrics."
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1417
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Open the NGINX Plus dashboard to view real-time metrics for NGINX data plane instances.
+  Requires NGINX Plus as the data plane.
+f5-keywords: "NGINX Gateway Fabric, NGINX Plus dashboard, metrics, real-time, monitoring"
+f5-audience: operator
 ---
 
 This topic describes how to view the NGINX Plus dashboard to see real-time metrics.
@@ -15,11 +20,13 @@ The dashboard is enabled by default for NGINX Gateway Fabric deployments that us
 
 ## Connect to the dashboard
 
-To access the dashboard, you will first need to forward connections to port 8765 on your local machine to port 8765 on the NGINX Plus pod (replace `<nginx-plus-pod>` with the actual name of the pod).
+To access the dashboard, you will first need to forward connections to port 8765 on your local machine to port 8765 on the NGINX Plus pod (replace `<NGINX_PLUS_POD>` with the actual name of the pod).
 
 ```shell
-kubectl port-forward <nginx-plus-pod> 8765:8765 -n <nginx-plus-pod-namespace>
+kubectl port-forward <NGINX_PLUS_POD> 8765:8765 -n <NGINX_PLUS_POD_NAMESPACE>
 ```
+
+Replace `<NGINX_PLUS_POD_NAMESPACE>` with the namespace of your NGINX Plus Pod.
 
 Afterwards, use a browser to access [http://127.0.0.1:8765/dashboard.html](http://127.0.0.1:8765/dashboard.html) to view the dashboard.
 

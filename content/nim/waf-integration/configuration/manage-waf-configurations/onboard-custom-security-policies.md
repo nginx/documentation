@@ -55,10 +55,12 @@ Example — upload and publish a policy:
 
 ```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
- -H "Authorization: Bearer <access token>" \
+ -H "Authorization: Bearer <ACCESS_TOKEN>" \
  --header "Content-Type: multipart/form-data" \
  -F "file=@my-custom-policy.json"
 ```
+
+Replace `<ACCESS_TOKEN>` with your access token.
 
 The API response includes the policy ID. Use that ID to reference your custom policy in your NGINX configuration:
 

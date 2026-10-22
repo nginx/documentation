@@ -3,7 +3,6 @@ title: View recent NGINX usage
 description: "View raw, per-record NGINX usage telemetry in NGINX Instance Manager to verify billing data and support compliance audits."
 weight: 350
 toc: true
-f5-docs:
 f5-personas:
 - devops
 - netops
@@ -207,6 +206,8 @@ Query by `nginxUid` to retrieve every record for a specific NGINX Plus instance:
 curl -k -u <USERNAME>:<PASSWORD> \
   "https://<NIM_FQDN>/api/platform/v1/usage-records?deploymentType=vm&nginxUid=<NGINX_INSTANCE_UUID>"
 ```
+
+Replace `<USERNAME>` with your username and `<PASSWORD>` with your password.
 
 Query by `clusterId` to retrieve every record for a specific Kubernetes cluster:
 

@@ -65,9 +65,11 @@ Create a directory and copy your certificate and key to this directory:
 
 ```shell
 mkdir -p /etc/docker/certs.d/private-registry.nginx.com
-cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
-cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
+cp <PATH/TO/NGINX_REPO.CRT> /etc/docker/certs.d/private-registry.nginx.com/client.cert
+cp <PATH/TO/NGINX_REPO.KEY> /etc/docker/certs.d/private-registry.nginx.com/client.key
 ```
+
+Replace `<PATH/TO/NGINX_REPO.CRT>` with the path to your `nginx-repo.crt` client certificate and `<PATH/TO/NGINX_REPO.KEY>` with the path to your `nginx-repo.key` client key.
 
 You should now move to the section based on your configuration type:
 
@@ -185,17 +187,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="alpine-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/alpine-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/alpine-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -203,17 +205,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="amazon-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/amazon-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/amazon-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -221,17 +223,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="debian-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/debian-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/debian-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -239,17 +241,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="oracle-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/oracle-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/oracle-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -257,17 +259,17 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 {{< tabs name="ubuntu-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -281,17 +283,17 @@ The steps are identical for RHEL 8, 9, and 10. In the Dockerfile below, set the 
 
 {{< tabs name="rhel-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/rhel-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/rhel-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -305,17 +307,17 @@ The steps are identical for Rocky Linux 8, 9, and 10. In the Dockerfile below, s
 
 {{< tabs name="rocky-instructions" >}}
 
-{{% tab name="NGINX Open Source" %}}
+{{< tab name="NGINX Open Source" >}}
 
 {{< include "/waf/dockerfiles/rocky-oss.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/waf/dockerfiles/rocky-plus.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -331,16 +333,16 @@ Your folder should contain the following files:
 - _Dockerfile_
 - _custom_log_format.json_ 
 
-To build an image, use the following command for a system that is not RHEL-based, replacing `<your-image-name>` as appropriate:
+To build an image, use the following command for a system that is not RHEL-based, replacing `<YOUR_IMAGE_NAME>` as appropriate:
 
 ```shell
-sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <YOUR_IMAGE_NAME> .
 ```
 
 A RHEL-based system would use the following command instead:
 
 ```shell
-podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <YOUR_IMAGE_NAME> .
 ```
 
 {{< call-out class="note" >}}
@@ -352,13 +354,13 @@ The `--no-cache` option is used to ensure the image is built from scratch, insta
 Verify that your image has been created using the `docker images` command:
 
 ```shell
-docker images <your-image-name>
+docker images <YOUR_IMAGE_NAME>
 ```
 
-Create a container based on this image, replacing <your-container-name> as appropriate:
+Create a container based on this image, replacing <YOUR_CONTAINER_NAME> as appropriate:
 
 ```shell
-docker run --name <your-container-name> -p 80:80 -d <your-image-name>
+docker run --name <YOUR_CONTAINER_NAME> -p 80:80 -d <YOUR_IMAGE_NAME>
 ```
 
 Verify the new container is running using the `docker ps` command:
@@ -378,8 +380,10 @@ load_module modules/ngx_http_app_protect_module.so;
 The Enforcer address must be added at the _http_ context:
 
 ```nginx
-app_protect_enforcer_address <enforcer-address>:<enforcer-port>
+app_protect_enforcer_address <ENFORCER_ADDRESS>:<ENFORCER_PORT>
 ```
+
+Replace `<ENFORCER_ADDRESS>` with the address of the WAF enforcer and `<ENFORCER_PORT>` with the port of the WAF enforcer.
 
 And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ context:
 
@@ -715,7 +719,7 @@ sudo apt-get install app-protect-module-plus
 
 {{< call-out class="important" >}}
 
-The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the following commands, replace `<version>` with your operating system major version: `8`, `9`, or `10`.
+The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the following commands, replace `<VERSION>` with your operating system major version: `8`, `9`, or `10`.
 
 {{< /call-out >}}
 
@@ -730,7 +734,7 @@ Create a file for the F5 WAF for NGINX repository:
 ```shell
 [app-protect-x-oss]
 name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/<version>/$basearch/
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/<VERSION>/$basearch/
 sslclientcert=/etc/ssl/nginx/nginx-repo.crt
 sslclientkey=/etc/ssl/nginx/nginx-repo.key
 gpgcheck=0
@@ -754,7 +758,7 @@ Create a file for the F5 WAF for NGINX repository:
 ```shell
 [app-protect-x-plus]
 name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/<version>/$basearch/
+baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/<VERSION>/$basearch/
 sslclientcert=/etc/ssl/nginx/nginx-repo.crt
 sslclientkey=/etc/ssl/nginx/nginx-repo.key
 gpgcheck=0

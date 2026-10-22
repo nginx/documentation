@@ -1,10 +1,15 @@
 ---
 title: Add certificates for secure authentication
+description: "Add or replace certificates used to secure control plane to data plane authentication."
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1851
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Manage TLS certificates that secure communication between the NGINX Gateway Fabric control plane and data plane pods.
+  By default a cert-generator job creates self-signed certificates at install time.
+f5-keywords: "NGINX Gateway Fabric, certificates, TLS, cert-generator, control plane, data plane"
+f5-audience: operator
 ---
 
 By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed.
@@ -118,7 +123,7 @@ The `dnsName` field in the server Certificate represents the name that the NGINX
 
 {{%tab name="Helm"%}}
 
-The full service name is of the format: `<helm-release-name>-nginx-gateway-fabric.<namespace>.svc`.
+The full service name is of the format: `<RELEASE_NAME>-nginx-gateway-fabric.<NAMESPACE>.svc`.
 
 The default Helm release name used in our installation docs is `ngf`, and the default namespace is `nginx-gateway`, so the `dnsName` should be `ngf-nginx-gateway-fabric.nginx-gateway.svc`.
 
@@ -126,7 +131,7 @@ The default Helm release name used in our installation docs is `ngf`, and the de
 
 {{%tab name="Manifests"%}}
 
-The full service name is of the format: `<service-name>.<namespace>.svc`.
+The full service name is of the format: `<SERVICE_NAME>.<NAMESPACE>.svc`.
 
 By default, the base service name is `nginx-gateway`, and the namespace is `nginx-gateway`, so the `dnsName` should be `nginx-gateway.nginx-gateway.svc`.
 

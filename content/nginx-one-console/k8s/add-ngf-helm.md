@@ -48,9 +48,11 @@ To install the latest stable release of NGINX Gateway Fabric in the **nginx-gate
 
 ```shell
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
-  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> \
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<DATA_PLANE_KEY_SECRET_NAME> \
   -n nginx-gateway
 ```
+
+Replace `<DATA_PLANE_KEY_SECRET_NAME>` with the name of the Kubernetes Secret that contains your data plane key.
 
 {{% /tab %}}
 
@@ -69,7 +71,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
   --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus \
   --set nginx.plus=true \
   --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway \
-  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> 
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<DATA_PLANE_KEY_SECRET_NAME> 
 ```
 
 {{% /tab %}}
@@ -100,7 +102,7 @@ To install the chart into the **nginx-gateway** namespace, run the following com
 
 ```shell
 helm install ngf .  \
-  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> \
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<DATA_PLANE_KEY_SECRET_NAME> \
   -n nginx-gateway
 ```
 
@@ -119,7 +121,7 @@ To install the chart into the **nginx-gateway** namespace, run the following com
 ```shell
 helm install ngf . \
   --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus \
-  --set nginx.nginxOneConsole.dataplaneKeySecretName=<data_plane_key_secret_name> \
+  --set nginx.nginxOneConsole.dataplaneKeySecretName=<DATA_PLANE_KEY_SECRET_NAME> \
   --set nginx.plus=true \
   --set nginx.imagePullSecret=nginx-plus-registry-secret \
   -n nginx-gateway

@@ -1,10 +1,15 @@
 ---
 title: Deploy a Gateway for data plane instances
+description: "Deploy NGINX data plane instances by creating a Gateway and related custom resources."
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1854
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Provision data plane instances through a Gateway and adjust them with NGINX custom resources.
+  Use this after installing the control plane when you are ready to serve traffic.
+f5-keywords: "NGINX Gateway Fabric, Gateway, data plane, NginxProxy, deploy instances"
+f5-audience: operator
 ---
 
 ## Overview
@@ -96,7 +101,7 @@ NAME         TYPE            CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 cafe-nginx   LoadBalancer    10.96.125.117   192.0.2.1   80:30180/TCP   5m2s
 ```
 
-The Service type can be changed, as explained in the next section. NGINX Gateway Fabric uses the created Service to update the **Addresses** field in the **Gateway Status** resource. Using a **LoadBalancer** Service sets this field to the IP address and/or hostname of that service. Without a Service, the pod IP address is used.
+The Service type can be changed, as explained in the next section. NGINX Gateway Fabric uses the created Service to update the **Addresses** field in the **Gateway Status** resource. This field includes the IP addresses listed in the Gateway `spec.addresses` field. A **LoadBalancer** Service adds the IP addresses and hostnames that the load balancer assigns. Other Service types add the cluster IP address only when `spec.addresses` lists no IP addresses. Without a Service, the pod IP address is used.
 
 ## Modify provisioned NGINX instances
 

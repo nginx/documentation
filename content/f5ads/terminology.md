@@ -5,7 +5,6 @@ weight: 9000
 toc: false
 f5-product: F5 Application Delivery Service
 f5-content-type: reference
-f5-docs: DOCS-000
 f5-keywords: "F5 ADS, glossary, terminology, F5 ADS Console, geographical controller, geography, NGINX Capacity Unit, NCU, F5 ADS deployment, F5 ADS organization, service frontend, managed public endpoint, private endpoint, upstream network, network attachment, VPC endpoint, VPC peering, NGINX configuration"
 f5-summary: >
   This glossary defines terms and acronyms used across F5 Application Delivery Service documentation.

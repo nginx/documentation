@@ -3,12 +3,14 @@ title: Configure JSON Web Token (JWT) authentication
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-description: How to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-product: F5 NGINX Gateway Fabric
+description: How to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-keywords: "NGINX Gateway Fabric, JWT, JSON Web Token, AuthenticationFilter, JWKS, NGINX Plus, API auth"
 f5-summary: >
   NGINX Gateway Fabric supports JWT authentication via the AuthenticationFilter CRD, validating JSON Web Tokens in incoming requests using JSON Web Key Sets (JWKS).
   Two JWKS source types are supported: File, where the JWKS is stored in a Kubernetes Secret, and Remote, where NGINX Plus fetches the JWKS from an HTTPS endpoint at runtime.
   JWT authentication requires NGINX Plus and is not supported with open-source NGINX.
+f5-audience: operator
 ---
 
 This guide describes how to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the AuthenticationFilter custom resource definition (CRD).
@@ -158,8 +160,10 @@ Save the public IP address and port of the Gateway into shell variables:
 
 ```shell
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ---
 
@@ -325,8 +329,10 @@ This guide simulates that using curl's `--resolve` option.
 To test the authentication, you need a JWT signed with the private key that corresponds to the public key in your JWKS. You can use [jwt.io](https://jwt.io) or other JWT tools to generate one. Store it in a shell variable:
 
 ```shell
-JWT_TOKEN="<your-signed-jwt>"
+JWT_TOKEN="<SIGNED_JWT>"
 ```
+
+Replace `<SIGNED_JWT>` with your signed JWT.
 
 Access `/coffee` with a valid JWT:
 

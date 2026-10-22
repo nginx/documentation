@@ -1,6 +1,5 @@
 ---
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-product: NGINX Instance Manager
 title: Compile log profiles (REST API)
 description: "Compile an F5 WAF for NGINX security log profile into a deployment bundle using the F5 NGINX Instance Manager REST API."
@@ -29,7 +28,7 @@ Before you begin, make sure you have:
 - **NGINX Instance Manager access**: An account with sufficient permissions to manage WAF log profiles. See [Manage roles and permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
 - **An existing security log profile**: A log profile already created in NGINX Instance Manager. See [Configure log profiles]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/configure-log-profile.md" >}}).
 - **A REST API client**: A tool such as curl or [Postman](https://www.postman.com/) to send requests to the NGINX Instance Manager REST API.
-- **Authentication credentials**: A valid access token or other credentials for the NGINX Instance Manager REST API. See [API overview]({{< ref "/nim//fundamentals/api-overview.md" >}}) for supported authentication methods.
+- **Authentication credentials**: A valid access token or other credentials for the NGINX Instance Manager REST API. See [API overview]({{< ref "/nim/fundamentals/api-overview.md" >}}) for supported authentication methods.
 
 ---
 
@@ -38,10 +37,10 @@ Before you begin, make sure you have:
 The NGINX Instance Manager REST API base URL uses the following format:
 
 ```text
-https://<NIM-FQDN>/api/[nim|platform]/<API_VERSION>
+https://<NIM_FQDN>/api/[nim|platform]/<API_VERSION>
 ```
 
-Replace `<NIM-FQDN>` with the fully qualified domain name of your NGINX Instance Manager host and `<API_VERSION>` with the target API version. All requests require authentication. For details on authentication methods, see the [API overview]({{< ref "/nim//fundamentals/api-overview.md" >}}).
+Replace `<NIM_FQDN>` with the fully qualified domain name of your NGINX Instance Manager host and `<API_VERSION>` with the target API version. All requests require authentication. For details on authentication methods, see the [API overview]({{< ref "/nim/fundamentals/api-overview.md" >}}).
 
 ---
 
@@ -121,5 +120,5 @@ For more information, see:
 - [Configure log profiles]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/configure-log-profile.md" >}})
 - [Review log profiles]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/review-log-profile.md" >}})
 - [Deploy log profiles]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/deploy-log-profile.md" >}})
-- [API overview]({{< ref "/nim//fundamentals/api-overview.md" >}})
+- [API overview]({{< ref "/nim/fundamentals/api-overview.md" >}})
 - [Security Logs]({{< ref "/waf/logging/security-logs.md" >}})

@@ -1,7 +1,6 @@
 ---
 title: Commercial support
 weight: 100
-f5-docs: DOCS-1867
 f5-product: NGINX Ingress Controller
 f5-content-type: how-to
 ---

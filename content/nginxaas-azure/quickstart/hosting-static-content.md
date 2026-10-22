@@ -2,7 +2,6 @@
 title: Hosting static content locally
 weight: 200
 toc: true
-f5-docs: DOCS-1344
 url: /nginxaas-azure/quickstart/hosting-static-content/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
@@ -47,8 +46,10 @@ test-static-files $ tree .
 3. Create the tarball.
 
 ```shell
-test-static-files $ tar -cvzf <path to store tarball>/test.tar.gz *
+test-static-files $ tar -cvzf <TARBALL_DIRECTORY>/test.tar.gz *
 ```
+
+Replace `<TARBALL_DIRECTORY>` with the directory where you want to store the tarball.
 
 4. Upload the tarball following instructions listed in the [NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#upload-gzip-nginx-configuration" >}}) documentation.
 

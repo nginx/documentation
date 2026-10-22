@@ -4,7 +4,6 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: 
 description: "Connect NGINX Gateway Fabric to F5 NGINX Instance Manager to export F5 WAF security events to the Security Dashboard."
 f5-summary: >
   Connect NGINX Gateway Fabric to F5 NGINX Instance Manager to export F5 WAF security events to the Security Dashboard.

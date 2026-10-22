@@ -1,10 +1,15 @@
 ---
 title: Routing traffic to applications
+description: "Route external traffic to Kubernetes applications using NGINX Gateway Fabric."
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1426
+f5-product: F5 NGINX Gateway Fabric
+f5-summary: >
+  Expose applications by attaching HTTPRoutes to a Gateway so external traffic reaches backend Services.
+  This is the foundational routing guide for NGINX Gateway Fabric.
+f5-keywords: "NGINX Gateway Fabric, routing, HTTPRoute, Gateway, applications, external traffic"
+f5-audience: operator
 ---
 
 Learn how to route external traffic to your Kubernetes applications using NGINX Gateway Fabric.
@@ -255,8 +260,10 @@ Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_PORT=<PORT_NUMBER>
 ```
+
+Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 {{< call-out class="note" >}}
 

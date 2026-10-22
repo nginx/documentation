@@ -4,7 +4,6 @@ toc: true
 weight: 200
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-617
 ---
 
 This page describes technical specifications for F5 NGINX Ingress Controller, such as its version compatibility with Kubernetes and other NGINX software.
@@ -27,7 +26,7 @@ We provide the following Docker images, which include NGINX or NGINX Plus bundle
 
 ### Images with NGINX
 
-_All images include NGINX 1.31.6._
+_All images include NGINX 1.31.7._
 
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | DockerHub image | Architectures |
 | ---| --- | --- | --- |
@@ -37,7 +36,7 @@ _All images include NGINX 1.31.6._
 
 ### Images with NGINX Plus
 
-NGINX Plus images include NGINX Plus R37.1.1.2.
+NGINX Plus images include NGINX Plus R37.2.0.1.
 
 #### F5 Container registry
 

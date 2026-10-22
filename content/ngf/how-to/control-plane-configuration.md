@@ -1,10 +1,15 @@
 ---
 title: Control plane configuration
+description: "Dynamically update the NGINX Gateway Fabric control plane configuration."
 weight: 400
 toc: true
-f5-product: NGINX Gateway Fabric
-f5-docs: DOCS-1839
+f5-product: F5 NGINX Gateway Fabric
 f5-content-type: how-to
+f5-summary: >
+  Update NGINX Gateway Fabric control plane settings without reinstalling the product.
+  Use this guide when you need to change controller behavior at runtime.
+f5-keywords: "NGINX Gateway Fabric, control plane, NginxGateway, configuration, dynamic update"
+f5-audience: operator
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric control plane configuration.
@@ -15,7 +20,7 @@ NGINX Gateway Fabric can dynamically update the control plane configuration with
 
 NginxGateway is deployed in the same namespace as the controller (Default: `nginx-gateway`). The resource's default name is based on your [installation method]({{< ref "/ngf/install/" >}}):
 
-- Helm: `<release-name>-config`
+- Helm: `<RELEASE_NAME>-config`
 - Manifests: `nginx-gateway-config`
 
 The control plane only watches this single instance of the custom resource.
