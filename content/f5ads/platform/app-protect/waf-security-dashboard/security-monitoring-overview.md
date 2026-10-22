@@ -1,40 +1,41 @@
 ---
 f5-content-type: concept
 f5-docs: DOCS-000
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 title: Security monitoring overview
 description: "What the F5 WAF for NGINX security monitoring module is, the data pipeline behind it, and what you can do with the data."
 weight: 100
 toc: true
-f5-keywords: "security monitoring, security dashboard, F5 WAF for NGINX, security events, analytics, NGINXaaS Console"
+f5-keywords: "security monitoring, security dashboard, F5 WAF for NGINX, security events, analytics, F5 ADS Console"
 f5-summary: >
-  Security monitoring in NGINXaaS Console centralizes security events from F5 WAF for NGINX instances and exposes them through dashboards.
+  Security monitoring in the F5 ADS Console centralizes security events from F5 WAF for NGINX instances and exposes them through dashboards.
   Use this document to understand what the dashboard shows, where the data comes from, and how it is scoped and retained.
   This document is conceptual; for setup steps see Set up security monitoring.
 f5-audience: operator
 ---
 
-Security monitoring brings F5 WAF for NGINX events from every connected instance into a single place in NGINXaaS Console. This page explains what data the system collects, how it flows, and how it is organized.
+Security monitoring brings F5 WAF for NGINX events from every connected instance into a single place in the F5 ADS Console. This page explains what data the system collects, how it flows, and how it is organized.
 
 ## What is security monitoring?
 
-Security monitoring is the NGINXaaS Console module that ingests F5 WAF for NGINX security events from your data planes, stores them centrally, and exposes them through a security dashboard. It gives you a single view of attacks, violations, and triggered signatures across every NGINX Plus instance you have connected to NGINXaaS Console.
+Security monitoring is the F5 ADS Console module that ingests F5 WAF for NGINX security events from your data planes, stores them centrally, and exposes them through a security dashboard. It gives you a single view of attacks, violations, and triggered signatures across every NGINX Plus instance you have connected to the F5 ADS Console.
 
-This document covers what the module is and how data flows through it. For deployment steps, see [Set up security monitoring]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}}). For details on what each dashboard widget shows, see the [dashboard metrics reference]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/dashboard-metrics-reference.md" >}}).
+This document covers what the module is and how data flows through it. For deployment steps, see [Set up security monitoring]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}}). For details on what each dashboard widget shows, see the [dashboard metrics reference]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/dashboard-metrics-reference.md" >}}).
 ## How security events reach the dashboard
 
 The data pipeline has four stages:
 
 1. **Detection.** F5 WAF for NGINX inspects requests on the data plane and produces a security log entry whenever a request matches a violation, signature, or threat campaign.
-2. **Forwarding.** F5 WAF for NGINX writes the entry over syslog (port `1514` on localhost) using the [`secops_dashboard` log profile]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/default-log-profile.md" >}}). NGINX Agent's OpenTelemetry collector receives it through the `tcplog/nginx_app_protect` receiver.
-3. **Transport.** The collector batches events and exports them to NGINXaaS Console through the `otlp/default` exporter. Batching keeps the upstream call rate low while keeping per-event delivery latency under a minute.
-4. **Storage and query.** NGINXaaS Console parses, indexes, and stores the events.
+2. **Forwarding.** F5 WAF for NGINX writes the entry over syslog (port `1514` on localhost) using the [`secops_dashboard` log profile]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/default-log-profile.md" >}}). NGINX Agent's OpenTelemetry collector receives it through the `tcplog/nginx_app_protect` receiver.
+3. **Transport.** The collector batches events and exports them to the F5 ADS Console through the `otlp/default` exporter. Batching keeps the upstream call rate low while keeping per-event delivery latency under a minute.
+4. **Storage and query.** F5 ADS Console parses, indexes, and stores the events.
 
 Every event carries the support ID, the policy that matched it, the violation and signature details, and the request context (method, URL, host, client IP, X-Forwarded-For, geolocation). Those fields are what the dashboard groups and filters on.
 ## Data scoping
 
 Every security event carries enough context to attribute it to a specific data plane, a specific policy, and the application it targeted.
 
+- **Deployment**: Each event records the F5 ADS deployment ID that produced it. Use this to scope by deployment.
 - **Instance**: Each event records the NGINX instance hostname that produced it. Use this to scope by data plane.
 - **Policy**: Each event records the F5 WAF for NGINX policy that produced it, so you can compare activity across policy versions or rollouts — useful for measuring the impact of a policy change before promoting it.
 - **Destination hostname**: Each event records the HTTP `Host` header sent by the client — the *application* being attacked, not the instance hostname (which identifies the data plane). Use this when one data plane fronts multiple applications and you need to scope by app rather than by infrastructure.
@@ -52,13 +53,13 @@ An operator notices a spike in attack volume on the security dashboard. The oper
 A security engineer suspects a policy is producing false positives. The engineer opens the security dashboard, filters by policy and blocked requests, and reviews the breakdown of triggered signatures. The high-volume signatures with low risk and accuracy stand out as candidates for tuning. The engineer cross-checks a few events against the raw requests to confirm the signature is firing on legitimate traffic before changing the policy.
 ## What security monitoring does not cover
 
-- **Access logs and performance metrics** — security monitoring only ingests F5 WAF for NGINX security events. NGINX access logs and performance telemetry are handled by other parts of NGINXaaS Console.
+- **Access logs and performance metrics** — security monitoring only ingests F5 WAF for NGINX security events. NGINX access logs and performance telemetry are handled by other parts of the F5 ADS Console.
 - **Long-term archival** — events expire after 90 days. Forward to an external SIEM if you need longer retention.
 ## References
 
 For more information, see:
 
-- [Set up security monitoring]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}})
-- [secops_dashboard log profile]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/default-log-profile.md" >}})
-- [Dashboard metrics reference]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/dashboard-metrics-reference.md" >}})
-- [Find a security event by Support ID]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/find-event-by-support-id.md" >}})
+- [Set up security monitoring]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}})
+- [secops_dashboard log profile]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/default-log-profile.md" >}})
+- [Dashboard metrics reference]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/dashboard-metrics-reference.md" >}})
+- [Find a security event by Support ID]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/find-event-by-support-id.md" >}})

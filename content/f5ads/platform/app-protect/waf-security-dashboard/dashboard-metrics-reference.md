@@ -1,7 +1,7 @@
 ---
 f5-content-type: reference
 f5-docs: DOCS-000
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 title: Security dashboard reference
 description: "Tabs, global controls, and widget-to-dimension mapping for the F5 WAF for NGINX security monitoring dashboard."
 weight: 400
@@ -152,6 +152,6 @@ When you select a row, the event detail panel opens. The panel shows every field
 
 For more information, see:
 
-- [Security monitoring overview]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/security-monitoring-overview.md" >}})
-- [Set up security monitoring]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}})
-- [Find a security event by Support ID]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/find-event-by-support-id.md" >}})
+- [Security monitoring overview]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/security-monitoring-overview.md" >}})
+- [Set up security monitoring]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}})
+- [Find a security event by Support ID]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/find-event-by-support-id.md" >}})

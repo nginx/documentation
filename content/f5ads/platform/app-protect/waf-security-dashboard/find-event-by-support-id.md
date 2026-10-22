@@ -1,14 +1,14 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 title: Find a security event by Support ID
-description: "Look up an F5 WAF for NGINX security event in NGINXaaS Console using its Support ID."
+description: "Look up an F5 WAF for NGINX security event in the F5 ADS Console using its Support ID."
 weight: 500
 toc: true
 f5-keywords: "support ID, security event, F5 WAF for NGINX, security dashboard, event lookup, Support ID Details, getSecurityEvent, listSecurityEvents, WAF block, rejection page, triage, 90-day retention"
 f5-summary: >
-  Use the Support ID Details page in NGINXaaS Console to look up a single F5 WAF for NGINX security event by its Support ID.
+  Use the Support ID Details page in the F5 ADS Console to look up a single F5 WAF for NGINX security event by its Support ID.
   This is the fastest way to drill from a customer report, an upstream log line, or an alert into the full WAF event record.
   This guide covers what a Support ID is, where to find one, and how to use the lookup page.
 f5-audience: operator
@@ -16,18 +16,18 @@ f5-audience: operator
 
 ## Overview
 
-Use the Support ID Details page in NGINXaaS Console to look up a single F5 WAF for NGINX security event by its Support ID. F5 WAF for NGINX assigns a unique Support ID to every inspected request, and that ID travels through every system that touches the request: security logs, NGINX access logs, upstream application logs, and the security monitoring dashboard.
+Use the Support ID Details page in the F5 ADS Console to look up a single F5 WAF for NGINX security event by its Support ID. F5 WAF for NGINX assigns a unique Support ID to every inspected request, and that ID travels through every system that touches the request: security logs, NGINX access logs, upstream application logs, and the security monitoring dashboard.
 
-Use this page when you already know the ID of the event you want to inspect — for example, from a customer support case, a raw F5 WAF for NGINX log line, an alert payload, or an upstream application that captured the ID from a request header. To explore events without a known ID, use the Event Logs tab on the [security monitoring dashboard]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/dashboard-metrics-reference.md#event-logs-tab" >}}) instead.
+Use this page when you already know the ID of the event you want to inspect — for example, from a customer support case, a raw F5 WAF for NGINX log line, an alert payload, or an upstream application that captured the ID from a request header. To explore events without a known ID, use the Event Logs tab on the [security monitoring dashboard]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/dashboard-metrics-reference.md#event-logs-tab" >}}) instead.
 ## Before you begin
 
 Before you begin, ensure you have:
 
 - **A Support ID**: A numeric Support ID for the event you want to inspect. See [Where to find a Support ID](#where-to-find-a-support-id) below.
-- **Security monitoring set up**: F5 WAF for NGINX security events must already be flowing into NGINXaaS Console for the event to be available. See [Set up security monitoring]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}}).
+- **Security monitoring set up**: F5 WAF for NGINX security events must already be flowing into the F5 ADS Console for the event to be available. See [Set up security monitoring]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}}).
 ## Look up an event by Support ID
 
-1. In NGINXaaS Console, go to **WAF** > **Support ID Details**.
+1. In the F5 ADS Console, go to **WAF** > **Support ID Details**.
 2. Paste the Support ID into the **Enter a Support ID** field.
 3. The page displays the **Security Event** detail panel for the matching event, including the request, source, and raw request data.
 
@@ -54,8 +54,8 @@ The Security Event detail panel surfaces every field stored on the event:
 
 A Support ID can come from any system that observed the request:
 
-- **NGINXaaS Console Event Logs tab** — every row in the Event Logs table on the [security dashboard]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/dashboard-metrics-reference.md#event-logs-tab" >}}) includes the Support ID. Copy a Support ID from there to share in a ticket, support case, or follow-up message.
-- **F5 WAF for NGINX security logs on the data plane** — the Support ID is the first field in every log line emitted by the [`secops_dashboard` log profile]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/default-log-profile.md" >}}).
+- **F5 ADS Console Event Logs tab** — every row in the Event Logs table on the [security dashboard]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/dashboard-metrics-reference.md#event-logs-tab" >}}) includes the Support ID. Copy a Support ID from there to share in a ticket, support case, or follow-up message.
+- **F5 WAF for NGINX security logs on the data plane** — the Support ID is the first field in every log line emitted by the [`secops_dashboard` log profile]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/default-log-profile.md" >}}).
 - **F5 WAF for NGINX rejection page** — when F5 WAF for NGINX blocks a request, the response page typically includes the Support ID so the user can quote it back to support.
 - **Customer support cases** — end users who hit a Request Rejected page can be asked to provide the Support ID from that page.
 ## Use cases
@@ -71,5 +71,5 @@ An upstream service surfaces an incident referencing a Support ID extracted from
 
 For more information, see:
 
-- [Security dashboard reference]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/dashboard-metrics-reference.md" >}})
-- [Set up security monitoring]({{< ref "/nginxaas/overview/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}})
+- [Security dashboard reference]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/dashboard-metrics-reference.md" >}})
+- [Set up security monitoring]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}})
