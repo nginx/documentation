@@ -89,6 +89,27 @@ Enable integration with ExternalDNS for configuring public DNS entries for Virtu
 
 Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
+### -external-dns-group-version <string> {#cmdoption-external-dns-group-version}
+
+Sets the API group and version of the `DNSEndpoint` resources that NGINX Ingress Controller creates for ExternalDNS. Use the value that matches your ExternalDNS version:
+
+- `externaldns.nginx.org/v1`: For ExternalDNS v0.20.x and earlier, started with `--crd-source-apiversion=externaldns.nginx.org/v1`.
+- `externaldns.k8s.io/v1alpha1`: For ExternalDNS v0.21.0 and later, which reads only this group.
+
+NGINX Ingress Controller doesn't ship the custom resource definition (CRD) for `externaldns.k8s.io/v1alpha1`. Install the CRD separately before you select this group.
+
+If you set any other value, NGINX Ingress Controller doesn't start. If the cluster doesn't serve the selected group and version, NGINX Ingress Controller exits at startup. The log shows this error:
+
+```text
+Cannot enable external-dns: API group/version "<GROUP_VERSION>" is not served by the cluster; install the DNSEndpoint CRD for it
+```
+
+For migration steps, see [Migrate ExternalDNS DNSEndpoint resources to externaldns.k8s.io]({{< ref "/nic/install/upgrade.md#migrate-externaldns-dnsendpoint-resources-to-externaldnsk8sio" >}}).
+
+Requires [-enable-external-dns](#cmdoption-enable-external-dns).
+
+Default `externaldns.nginx.org/v1`.
+
 ### -external-service <string> {#cmdoption-external-service}
 
 Specifies the name of the service with the type LoadBalancer through which the NGINX Ingress Controller pods are exposed externally. The external address of the service is used when reporting the status of Ingress, VirtualServer and VirtualServerRoute resources.
