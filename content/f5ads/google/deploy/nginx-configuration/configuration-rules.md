@@ -1,5 +1,6 @@
 ---
 title: NGINX configuration rules and limits
+description: "Reference for NGINX configuration file restrictions and workflows for F5 Application Delivery Service for Google Cloud."
 weight: 50
 toc: true
 f5-content-type: reference

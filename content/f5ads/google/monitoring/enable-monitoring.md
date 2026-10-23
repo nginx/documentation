@@ -1,5 +1,6 @@
 ---
 title: Enable monitoring
+description: "Enable metric export to Google Cloud Monitoring for F5 Application Delivery Service for Google Cloud deployments."
 weight: 200
 toc: true
 f5-content-type: how-to

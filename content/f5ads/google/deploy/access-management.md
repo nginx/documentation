@@ -1,5 +1,6 @@
 ---
 title: Identity and access management
+description: "Configure Workload Identity Federation so your F5 Application Delivery Service for Google Cloud deployment can access Google Cloud services."
 weight: 600
 toc: true
 f5-content-type: how-to
