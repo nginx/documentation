@@ -49,6 +49,7 @@ These are the data points collected and reported by NGINX Ingress Controller:
 - **IngressAnnotations** List of Ingress annotations managed by NGINX Ingress Controller
 - **AccessControlPolicies** Number of AccessControl policies.
 - **RateLimitPolicies** Number of RateLimit policies.
+- **ConnectionLimitPolicies** Number of ConnectionLimit policies.
 - **APIKeyPolicies** Number of API Key Auth policies.
 - **JWTAuthPolicies** Number of JWTAuth policies.
 - **BasicAuthPolicies** Number of BasicAuth policies.
