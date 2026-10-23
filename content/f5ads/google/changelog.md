@@ -14,6 +14,16 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/f5a
 
 For updates to platform-wide features shared across cloud providers, see the [F5 ADS changelog]({{< ref "/f5ads/platform/changelog.md" >}}).
 
+## October 21, 2026
+
+- {{% icon-feature %}} **Manage NGINX configurations with Terraform**
+
+You can now create and update NGINX configurations with the new `f5ads_configuration` resource in the `F5Networks/f5ads` Terraform provider, version `0.1.0-alpha.6`. Reference the configuration from an `f5ads_deployment` resource to apply it to your deployment.
+
+- [`f5ads_configuration` resource docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs/resources/configuration)
+- [Create or upload using Terraform]({{< ref "/f5ads/google/deploy/nginx-configuration/nginx-configuration-terraform.md" >}})
+- [Deploy using the F5 ADS Terraform provider]({{< ref "/f5ads/google/deploy/create-deployment/deploy-terraform.md" >}})
+
 ## September 15, 2026
 
 - {{% icon-feature %}} **Google Cloud Network Attachment is now optional and modifiable**
