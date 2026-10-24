@@ -9,12 +9,12 @@ toc: true
 f5-keywords: "secops_dashboard, default log profile, security dashboard, F5 WAF for NGINX, log profile, security telemetry, NAP log profile, system-managed profile, pre-compiled, immutable log profile, F5 ADS Console, WAF log profile"
 f5-summary: >
   The `secops_dashboard` log profile is a pre-configured F5 WAF for NGINX log profile that captures security violations in a standardized format for the security monitoring dashboard. It is the default log profile used by the security dashboard.
-  Use it to send security telemetry from your NGINX Plus data planes to the F5 ADS Console.
+  Use it to send security telemetry from your deployments to the F5 ADS Console.
   This document covers what the `secops_dashboard` log profile is, when to use it, and how it differs from custom log profiles.
 f5-audience: operator
 ---
 
-The security monitoring dashboard depends on a consistent set of fields being present on every security event. The `secops_dashboard` log profile is the guarantee of that consistency: it ensures every data plane forwards the same set of fields, so the dashboard can render every event correctly.
+The security monitoring dashboard depends on a consistent set of fields being present on every security event. The `secops_dashboard` log profile is the guarantee of that consistency: it ensures every deployment forwards the same set of fields, so the dashboard can render every event correctly.
 
 ## What is the `secops_dashboard` log profile?
 
@@ -22,7 +22,7 @@ The `secops_dashboard` log profile is a pre-configured, system-managed F5 WAF fo
 
 The `secops_dashboard` log profile is the only log profile guaranteed to produce data the security dashboard can render correctly. Other log profiles can coexist with it and continue to serve other logging destinations such as Security Information and Event Management (SIEM) systems, file logs, or custom syslog endpoints, but they are not interpreted by the security dashboard.
 
-This document covers what the `secops_dashboard` log profile is and when to use it. For the steps to deploy it as part of setting up an instance, see [Set up security monitoring]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}}).
+For the steps to deploy it as part of setting up a deployment, see [Set up security monitoring]({{< ref "/f5ads/platform/app-protect/waf-security-dashboard/set-up-security-monitoring.md" >}}).
 ## References
 
 For more information, see:

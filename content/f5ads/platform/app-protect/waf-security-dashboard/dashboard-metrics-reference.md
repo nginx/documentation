@@ -42,11 +42,9 @@ This control applies one or more filter expressions to every widget on every tab
 
 | Filter | Description |
 |:--- |:--- |
-| **Config Sync Group** | Events from instances in a specific Config Sync Group. |
 | **Country** | A two-letter country code derived from the client IP address. |
+| **Deployment** | The name of an F5 ADS deployment. |
 | **Destination Hostname** | The HTTP `Host` header that the client sent, which identifies the application being attacked. |
-| **Hostname** | The NGINX instance hostname (the data plane host), which identifies the data plane that produced the events. |
-| **Instance** | A specific NGINX instance, identified by object identity rather than hostname. |
 | **IP Address** | The originating client IP address. |
 | **Outcome Reason** | The reason F5 WAF for NGINX produced its decision, such as a matched violation or a blocking rule. |
 | **Policy** | The F5 WAF for NGINX policy that produced the event. |
@@ -68,7 +66,7 @@ This control applies one or more filter expressions to every widget on every tab
 | **Violation Context Value** | The field value where the violation occurred. |
 | **Violation Rating** | The numeric severity rating (0–5) that F5 WAF for NGINX assigned to the violation. |
 
-Use filters to scope the dashboard to a specific policy, instance, hostname, country, IP, signature, violation, or any combination. To go from a metric on the dashboard to the underlying events, apply the relevant filter and switch to the **Event Logs** tab.
+Use filters to scope the dashboard to a specific policy, deployment, IP, signature, violation, or any combination. To go from a metric on the dashboard to the underlying events, apply the relevant filter and switch to the **Event Logs** tab.
 ## Main tab widgets
 
 Each widget on the Main tab has a tooltip that describes the widget's values. These tables add context that the tooltips don't cover, such as how each widget counts rows and which distinct counts each ranked widget reports.
@@ -116,7 +114,7 @@ Each row in a ranked widget shows the hit count for the ranked item and the dist
 | **Top Signatures** | Signature (the same as the **Top Signatures** widget on the Main tab) | URIs, IP addresses, violations, and policies |
 | **Top Signature CVEs** | CVE referenced by one or more signatures | URIs, IP addresses, violations, and policies |
 | **Top Threat Campaigns** | Threat campaign | URIs, IP addresses, violations, and policies |
-| **Top Attacked Instances** | NGINX instance hostname (not the HTTP `Host` header) | URIs, IP addresses, violations, and policies |
+| **Top Attacked Deployments** | Deployment ID | URIs, IP addresses, violations, and policies |
 ## Event Logs tab
 
 The Event Logs tab lists individual security events matching the global filters and time window. The tab has two parts:
@@ -135,7 +133,7 @@ The Event Logs tab lists individual security events matching the global filters 
 | **Source Location** | The country derived from the client IP address, when available. |
 | **Source IP** | The originating client IP address. |
 | **Violation Rating** | The numeric severity rating (0–5) that F5 WAF for NGINX assigned to the violation. |
-| **Support ID** | The unique identifier that F5 WAF for NGINX assigns to the event, which you can use to correlate the event with raw logs on the data plane. |
+| **Support ID** | The unique identifier that F5 WAF for NGINX assigns to the event, which you can use to correlate the event with raw logs from the data planes. |
 
 ### Pagination
 
