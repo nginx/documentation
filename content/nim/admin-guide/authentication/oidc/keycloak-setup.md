@@ -43,7 +43,7 @@ Follow these steps to configure Keycloak.
 3. Select **Create**.
 4. On the **Add Client** form, in the **Client ID** box, type `nim` as the name for the client.
 5. In the **Client Protocol** list, select **openid-connect**.
-6. Set the **Root URL** to the URL of the NGINX Instance Manager instance, for example, `https://<NIM_IP>:443/_codexch`.
+6. Set the **Root URL** to the URL of the NGINX Instance Manager instance, for example, `https://<NIM-FQDN>/_codexch`.
 7. Select **Save**.
 
 After the client is created, configure it as follows:
