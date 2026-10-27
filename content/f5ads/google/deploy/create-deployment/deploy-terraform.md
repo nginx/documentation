@@ -5,16 +5,20 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
-f5-keywords: "F5 ADS for Google Cloud, Terraform, create deployment, F5 ADS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
+f5-keywords: "F5 ADS for Google Cloud, Terraform, create deployment, TLS certificate, F5 ADS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
 f5-summary: >
   Learn how to manage an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider.
-  This guide covers setting up necessary Google Cloud resources, configuring the Terraform provider, and managing the deployment using Terraform.
+  This guide covers Google Cloud network resources, provider setup, certificate preparation, and deployment creation using Terraform.
 f5-audience: operator
 ---
 
 ## Overview
 
-This guide explains how to create an F5 Application Delivery Service for Google Cloud deployment using the [`F5Networks/f5ads` Terraform provider](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs). This guide only covers creating a deployment.
+This guide explains how to create an F5 Application Delivery Service for Google Cloud deployment using the [`F5Networks/f5ads` Terraform provider](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs).
+
+The deployment example uses `f5ads_deployment` to apply an existing NGINX configuration.
+For TLS traffic, you can also upload a certificate with `f5ads_certificate` and add it to that configuration before deployment.
+See [Prepare a certificate for TLS](#prepare-a-certificate-for-tls).
 
 ## Prerequisites
 
@@ -22,14 +26,14 @@ This guide explains how to create an F5 Application Delivery Service for Google 
 
 ## Configure the provider
 
-Add the `f5ads` provider to your Terraform configuration and pin it to the exact alpha version:
+Add the `f5ads` provider to your Terraform configuration and pin it to the exact version:
 
 ```hcl
 terraform {
   required_providers {
     f5ads = {
       source  = "F5Networks/f5ads"
-      version = "0.1.0-alpha.1"
+      version = "0.1.0"
     }
   }
 }
@@ -87,6 +91,21 @@ resource "google_compute_network_attachment" "attachment" {
 {{< call-out class="caution" >}}
 The `f5ads` provider currently only supports network attachments with `connection_preference` set to `ACCEPT_AUTOMATIC`, which accepts connections from all projects. Support for `ACCEPT_MANUAL` is planned for an upcoming release. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for details.
 {{< /call-out >}}
+
+## Prepare a certificate for TLS
+
+If your NGINX configuration uses TLS, follow [Add certificates using Terraform]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-terraform.md" >}}) to create a certificate.
+You can add the `f5ads_certificate.tls` resource to the same Terraform working directory.
+
+Creating the certificate doesn't automatically attach it to a configuration or deployment.
+For the console-managed configuration used in this guide, create the certificate before selecting it in the console.
+Follow [Use a certificate in an NGINX configuration]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md#use-a-certificate-in-an-nginx-configuration" >}}) to add the certificate and key paths.
+Use those paths in the `ssl_certificate` and `ssl_certificate_key` directives.
+Save the configuration, then use its configuration ID and version ID in the deployment below.
+
+For Terraform-managed configurations, reference `f5ads_certificate.tls.id` in the configuration's `managed_certificate` and `managed_key` payloads.
+See the [`f5ads_configuration` resource reference](https://registry.terraform.io/providers/F5Networks/f5ads/0.1.0/docs/resources/configuration) for the payload structure.
+The deployment must reference the configuration version that includes those payloads.
 
 ## Create a deployment
 
@@ -149,3 +168,8 @@ terraform init
 terraform plan
 terraform apply
 ```
+
+## What's next
+
+- [Manage certificates using Terraform]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-terraform.md" >}}).
+- [Monitor your deployment]({{< ref "/f5ads/google/monitoring/enable-monitoring.md" >}}).

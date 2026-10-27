@@ -10,5 +10,5 @@ f5-product: F5 Application Delivery Service for Google Cloud
 - [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install).
 
 {{< call-out class="important" >}}
-The `F5Networks/f5ads` provider is in alpha (`0.1.0-alpha.1`). Pin this exact version in your `required_providers` block, since breaking changes can occur between alpha releases.
+This guide uses version `0.1.0` of the `F5Networks/f5ads` provider. Pin this version in your `required_providers` block to use the documented resource schemas.
 {{< /call-out >}}
