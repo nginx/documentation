@@ -6,9 +6,9 @@ f5-content-type: reference
 f5-product: NGINX Ingress Controller
 f5-description: Reference for every Policy type supported by NGINX Ingress Controller, including fields, examples, and merging behavior.
 f5-summary: >
-  Field-by-field reference for every Policy type, including AccessControl, RateLimit, APIKey, BasicAuth, JWT, IngressMTLS, EgressMTLS, ExternalAuth, OIDC, OIDCNative, Cache, CORS, WAF, and HSTS.
+  Field-by-field reference for every Policy type, including AccessControl, RateLimit, ConnectionLimit, APIKey, BasicAuth, JWT, IngressMTLS, EgressMTLS, ExternalAuth, OIDC, OIDCNative, Cache, CORS, WAF, and HSTS.
   Each section includes an example, a field table, and the merging behavior NGINX Ingress Controller uses when a resource references more than one policy of the same type.
-f5-keywords: "nginx ingress controller, nic, policy resource, access control, rate limit, api key, basic auth, jwt, ingressmtls, egressmtls, external auth, oidc, oidcnative, cache, cors, waf, hsts"
+f5-keywords: "nginx ingress controller, nic, policy resource, access control, rate limit, connection limit, limit_conn, api key, basic auth, jwt, ingressmtls, egressmtls, external auth, oidc, oidcnative, cache, cors, waf, hsts"
 f5-audience: developer, operator
 ---
 
@@ -229,6 +229,120 @@ NGINX Ingress Controller currently supports only one variable at a time.
 |``match`` | the value of the NGINX variable to match against.  Values prefixed with the `~` character denote the following is a [regular expression](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).  | ``string`` | Yes |
 
 {{% /table %}}
+
+## ConnectionLimit
+
+The connection limit policy caps the number of requests that NGINX processes at the same time for each value of a key. Use it to protect backends from slow clients, large uploads, and long downloads. It also protects backends from long-lived requests, such as WebSockets.
+
+A connection limit differs from a [rate limit](#ratelimit). A rate limit controls how often requests arrive. A connection limit controls how many requests are in progress at once, so a long request holds its place until it finishes.
+
+For example, the following policy allows each client IP address 10 requests in progress at the same time:
+
+```yaml
+connectionLimit:
+  connections: 10
+  key: ${binary_remote_addr}
+  zoneSize: 10m
+  rejectCode: 429
+```
+
+The policy works with both NGINX and NGINX Plus. You can reference it from VirtualServer, VirtualServerRoute, and Ingress resources, including mergeable Ingress resources.
+
+{{< call-out class="note" >}}
+
+This feature uses the NGINX [`ngx_http_limit_conn_module`](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html).
+
+{{< /call-out >}}
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``connections`` | The maximum number of requests in progress at the same time for each value of the key. Must fall into the range ``1..65535``. | ``int`` | Yes |
+|``key`` | The requests with the same key value share a counter. The key can contain text, variables, or a combination of them. Put each variable inside ``${}``. Accepted variables are ``${binary_remote_addr}``, ``${request_uri}``, ``${uri}``, ``${args}``, ``${request_method}``, and the ``${arg_<name>}``, ``${http_<name>}``, and ``${cookie_<name>}`` variables. The key can't contain whitespace, quotes, backslashes, or the characters ``#``, ``;``, ``{``, and ``}``. Default is ``${binary_remote_addr}``. | ``string`` | No |
+|``zoneSize`` | The size of the shared memory zone that stores the counters. Specify a number of bytes, or a number with the suffix ``k``, ``K``, ``m``, or ``M``. The zone must be at least eight memory pages, for example ``32k`` with 4 KiB pages. Default is ``10m``. | ``string`` | No |
+|``rejectCode`` | The status code to return in response to rejected requests. Must fall into the range ``400..599``. Default is ``503``. | ``int`` | No |
+|``logLevel`` | The logging level for requests that NGINX rejects, or would reject in dry run mode. Allowed values are ``info``, ``notice``, ``warn``, or ``error``. Default is ``error``. | ``string`` | No |
+|``dryRun`` | Turns on dry run mode. In this mode, NGINX counts and logs requests over the limit, but doesn't reject them. Default is ``false``. | ``bool`` | No |
+|``scale`` | Divides ``connections`` by the number of NGINX Ingress Controller pods. The limit then approximates a limit for the whole cluster. The result is never less than 1. When the number of pods changes, NGINX Ingress Controller updates the limit. Default is ``false``. | ``bool`` | No |
+
+{{% /table %}}
+
+The GitHub repository has complete connection limit examples for each resource type:
+
+- [VirtualServer](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/connection-limit)
+- [Ingress](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/connection-limit)
+- [Mergeable Ingress](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/connection-limit-mergeable)
+
+### How NGINX counts requests
+
+NGINX counts a request after it reads the request headers, and stops counting it when the request finishes. The count includes the time NGINX spends to receive the request body and to send the response. NGINX doesn't count idle keepalive connections. With HTTP/2 and HTTP/3, NGINX counts each request in progress on a connection separately. A low limit for each client can therefore reject the parallel requests of a browser.
+
+Each NGINX Ingress Controller pod keeps its own counters. [Zone sync]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) doesn't apply to connection limits. A key can therefore have up to `connections` requests in progress on every pod.
+
+To approximate one limit for the whole cluster, set `scale` to `true`. The `scale` field works best with a fixed text key, which is the same for every request. With HTTP/2 or sticky sessions, the requests of one client go to one pod. A scaled limit for each client is then stricter than you expect.
+
+When the shared memory zone is full, NGINX rejects requests with a new key value. Each counter for the default key needs about 64 bytes, so the default `10m` zone holds about 160,000 active client addresses.
+
+{{< call-out class="note" >}}
+
+If NGINX Ingress Controller runs behind a load balancer, NAT, or another proxy, `${binary_remote_addr}` holds the address of that device. All clients then share one counter. To count each client separately, use the [`proxy-protocol`]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) ConfigMap key, or the `set-real-ip-from` and `real-ip-header` ConfigMap keys.
+
+{{< /call-out >}}
+
+### Which requests share a counter
+
+NGINX Ingress Controller generates a separate shared memory zone for each policy and each resource that references the policy. All references from one resource share one counter for each policy:
+
+- All routes of a VirtualServer and the VirtualServer `spec` share one counter for each policy.
+- All hosts and paths of an Ingress share one counter for each policy.
+- A VirtualServerRoute or a minion Ingress that references the same policy as its parent gets its own counter.
+- A VirtualServerRoute without a host, which more than one VirtualServer can use, gets one counter for each VirtualServer.
+- Two VirtualServer or Ingress resources that reference the same policy get two counters.
+
+### ConnectionLimit on Ingress
+
+Reference the policy from an Ingress through the `nginx.org/policies` annotation:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+  annotations:
+    nginx.org/policies: connection-limit-policy
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: cafe.example.com
+    http:
+      paths:
+      - path: /coffee
+        pathType: Prefix
+        backend:
+          service:
+            name: coffee-svc
+            port:
+              number: 80
+```
+
+A policy on a standard Ingress or on a master Ingress applies to every host and path of the Ingress. A policy on a minion Ingress applies to the paths of that minion and replaces the master policy there. A minion without a connection limit policy uses the master policy.
+
+### ConnectionLimit merging behavior
+
+A VirtualServer, VirtualServerRoute, or Ingress can reference multiple connection limit policies. For example, this configuration references two policies:
+
+```yaml
+policies:
+- name: connection-limit-per-client
+- name: connection-limit-total
+```
+
+When a resource references more than one connection limit policy, NGINX applies all referenced limits. NGINX rejects a request that exceeds any one of the limits. All limits use the `dryRun`, `logLevel`, and `rejectCode` values of the first policy referenced, `connection-limit-per-client` in this example. If a later policy sets different values, NGINX Ingress Controller adds a warning to the resource.
+
+A connection limit on a route, subroute, or minion Ingress replaces the connection limit on its parent. The limits don't add up. For example, a route with its own connection limit policy doesn't use the connection limit from the VirtualServer `spec`. The route also uses its own `dryRun`, `logLevel`, and `rejectCode` values.
+
+cert-manager can add a path for the HTTP-01 challenge of the Automatic Certificate Management Environment (ACME) protocol. On that path, NGINX Ingress Controller runs the connection limit in dry run mode. A full counter therefore can't block certificate issuance.
 
 ## APIKey
 
