@@ -446,6 +446,10 @@ Conditions:
     Controller Name:         gateway.nginx.org/nginx-gateway-controller
 ```
 
+{{< call-out "note" >}}
+By default, if a request to the Guardrails service fails, the request will be dropped and will not continue to any upstream LLM. However, this can be configured by setting `spec.processors[0].failureMode=FailOpen`, which will allow a request through when the Guardrails service returns an error. For additional information, see the API reference({{< ref "/ngf/reference/api.md" >}}).
+{{< /call-out >}}
+
 ## Send traffic
 
 {{< call-out "note" >}}
@@ -536,6 +540,7 @@ The `PayloadProcessor` is marked `Accepted=False` when its references cannot be 
 
 ## Further reading
 
+- [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the `PayloadProcessor` API.
 - [Scan streaming in AI Security](https://docs.aisecurity.f5.com/api-docs/scan-request-streaming.html)
 - [Installation]({{< ref "/ngf/install/" >}}): install NGINX Gateway Fabric with the `PayloadProcessor` policy enabled.
 - [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn how inherited policies attach to Gateway API resources.
