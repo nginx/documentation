@@ -451,17 +451,24 @@ A query parameter name can't contain a hyphen. NGINX can't read query arguments 
 
 ### Use your own keys
 
-The example Secret holds base64-encoded keys, which is easy to copy but hard to edit. Create a file with your own keys, then build the Secret from it. The `--from-file=auth` flag names the data entry `auth`:
+The example Secret holds base64-encoded keys, which is easy to copy but hard to edit. Create a file with your own keys, then build the Secret from it.
+
+Create the `auth` file:
 
 ```shell
 cat <<EOF > auth
 client-mobile:<API_KEY>
 client-web:<API_KEY>
 EOF
-kubectl create secret generic api-keys --from-file=auth --dry-run=client -o yaml | kubectl apply -f -
 ```
 
 Replace each `<API_KEY>` with a key of your own. Generate keys with a random generator, for example `openssl rand -hex 24`.
+
+Apply the Secret. The `--from-file=auth` flag names the data entry `auth`:
+
+```shell
+kubectl create secret generic api-keys --from-file=auth --dry-run=client -o yaml | kubectl apply -f -
+```
 
 Check what NGINX Gateway Fabric reads by decoding the Secret:
 
