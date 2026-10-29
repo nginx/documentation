@@ -70,95 +70,65 @@ To use NGINX Plus for the API Gateway, follow these steps:
    ```dockerfile
    # syntax=docker/dockerfile:1
 
-   # NGINX PLUS API-GW
-   # NOTE:
-   # NMS does not publish this Docker image and these are only instructions on how to build API-GW with NGINX-PLUS.
-   # This Docker build should be performed by the customer using their own nginx-repo.crt and nginx-repo.key.
-   # API-GW with NGINX-PLUS is needed to enable OIDC.
+# NGINX PLUS API-GW
+# NOTE:
+# NGINX Instance Manager does not publish this Docker image and these are
+# instructions on how to build API-GW with NGINX Plus.
+# This Docker build should be performed by the customer using their own
+# nginx-repo.crt and nginx-repo.key.
+# API-GW with NGINX Plus and the njs module is needed to enable OIDC.
 
-   # Download NMS API gateway Docker image from MyF5 Downloads, https://docs.nginx.com/nginx-management-suite/installation/helm-chart/
-   # Replace "apigw:<VERSION>" with a known release tag.
-   # For example: apigw:2.6.0
+# Replace "apigw:<VERSION>" with a known release tag.
+# For example: apigw:2.6.0
 
-   FROM apigw:<VERSION> as apigw-plus
+FROM apigw:<VERSION> as apigw-plus
 
-   ARG REPO_PATH=.
+ARG REPO_PATH=.
 
-   # Define NGINX versions for NGINX Plus and NGINX Plus modules
-   # Uncomment this block and the versioned nginxPackages in the main RUN
-   # instruction to install a specific release
-   # ENV NGINX_VERSION 21
-   # ENV NJS_VERSION   0.3.9
-   # ENV PKG_RELEASE   1
+USER root
 
-   # Remove any previous version of NGINX
-   RUN apk del nginx*
+# Replace the OSS nginx packages from the base image with NGINX Plus and njs.
+RUN apk del nginx*
 
-   # Download certificate and key from the customer portal (https://cs.nginx.com)
-   # and copy them to the build context
-   COPY ${REPO_PATH}/nginx-repo.crt /etc/apk/cert.pem
-   COPY ${REPO_PATH}/nginx-repo.key /etc/apk/cert.key
+COPY ${REPO_PATH}/nginx-repo.crt /etc/apk/cert.pem
+COPY ${REPO_PATH}/nginx-repo.key /etc/apk/cert.key
 
-   RUN set -x \
-   # Install the latest release of NGINX Plus and/or NGINX Plus modules
-   # Uncomment individual modules if necessary
-   # Use versioned packages over defaults to specify a release
-      && nginxPackages=" \
-          nginx-plus \
-          # nginx-plus=${NGINX_VERSION}-${PKG_RELEASE} \
-          nginx-plus-module-njs \
-          # nginx-plus-module-lua \
-          # nginx-plus-module-xslt \
-          # nginx-plus-module-xslt=${NGINX_VERSION}-${PKG_RELEASE} \
-          # nginx-plus-module-geoip \
-          # nginx-plus-module-geoip=${NGINX_VERSION}-${PKG_RELEASE} \
-          # nginx-plus-module-image-filter \
-          # nginx-plus-module-image-filter=${NGINX_VERSION}-${PKG_RELEASE} \
-          # nginx-plus-module-perl \
-          # nginx-plus-module-perl=${NGINX_VERSION}-${PKG_RELEASE} \
-          # nginx-plus-module-njs=${NGINX_VERSION}.${NJS_VERSION}-${PKG_RELEASE} \
-      " \
-      KEY_SHA512="de7031fdac1354096d3388d6f711a508328ce66c168967ee0658c294226d6e7a161ce7f2628d577d56f8b63ff6892cc576af6f7ef2a6aa2e17c62ff7b6bf0d98 *stdin" \
-      && apk add --no-cache --virtual .cert-deps \
-          openssl vim \
-      && wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \
-      && if [ "$(openssl rsa -pubin -in /tmp/nginx_signing.rsa.pub -text -noout | openssl sha512 -r)" = "$KEY_SHA512" ]; then \
-          echo "key verification succeeded!"; \
-          mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/; \
-      else \
-          echo "key verification failed!"; \
-          exit 1; \
-      fi \
-      && apk del .cert-deps \
-      && apk add -X "https://plus-pkgs.nginx.com/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main" --no-cache $nginxPackages \
-      && if [ -n "/etc/apk/keys/nginx_signing.rsa.pub" ]; then rm -f /etc/apk/keys/nginx_signing.rsa.pub; fi \
-      && if [ -n "/etc/apk/cert.key" && -n "/etc/apk/cert.pem"]; then rm -f /etc/apk/cert.key /etc/apk/cert.pem; fi \
-   # Bring in gettext so we can get `envsubst`, then throw
-   # the rest away. To do this, we need to install `gettext`
-   # then move `envsubst` out of the way so `gettext` can
-   # be deleted completely, then move `envsubst` back.
-      && apk add --no-cache --virtual .gettext gettext \
-      && mv /usr/bin/envsubst /tmp/ \
-      \
-      && runDeps="$( \
-          scanelf --needed --nobanner /tmp/envsubst \
-              | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-              | sort -u \
-              | xargs -r apk info --installed \
-              | sort -u \
-      )" \
-      && apk add --no-cache $runDeps \
-      && apk del .gettext \
-      && mv /tmp/envsubst /usr/local/bin/ \
-   # Bring in tzdata so users can set timezones through environment variables
-      && apk add --no-cache tzdata \
-   # Bring in curl and ca-certificates to make registering on DNS SD easier
-      && apk add --no-cache curl ca-certificates \
-   # Forward request and error logs to Docker log collector
-      && ln -sf /dev/stdout /var/log/nginx/access.log \
-      && ln -sf /dev/stderr /var/log/nginx/error.log
+RUN set -x \
+    && nginxPackages=" \
+        nginx-plus \
+        nginx-plus-module-njs \
+    " \
+    && KEY_SHA512="de7031fdac1354096d3388d6f711a508328ce66c168967ee0658c294226d6e7a161ce7f2628d577d56f8b63ff6892cc576af6f7ef2a6aa2e17c62ff7b6bf0d98 *stdin" \
+    && apk add --no-cache --virtual .cert-deps \
+        openssl \
+    && wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \
+    && if [ "$(openssl rsa -pubin -in /tmp/nginx_signing.rsa.pub -text -noout | openssl sha512 -r)" = "$KEY_SHA512" ]; then \
+        echo "key verification succeeded!"; \
+        mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/; \
+    else \
+        echo "key verification failed!"; \
+        exit 1; \
+    fi \
+    && apk del .cert-deps \
+    && apk add -X "https://pkgs.nginx.com/plus/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main" --no-cache $nginxPackages \
+    && rm -f /etc/nginx/conf.d/default.conf \
+    && rm -f /etc/apk/keys/nginx_signing.rsa.pub /etc/apk/cert.key /etc/apk/cert.pem
 
-   CMD ["nginx", "-g", "daemon off;"]
+# Restore writable paths needed by nginx when running as a non-root user.
+RUN mkdir -p \
+        /var/cache/nginx/client_temp \
+        /var/cache/nginx/proxy_temp \
+        /var/cache/nginx/fastcgi_temp \
+        /var/cache/nginx/uwsgi_temp \
+        /var/cache/nginx/scgi_temp \
+        /var/log/nginx && \
+    chown -R 101:0 /var/cache/nginx /var/log/nginx && \
+    chmod -R g+rwX /var/cache/nginx /var/log/nginx && \
+    chmod -R g+s /var/cache/nginx /var/log/nginx
+
+USER nginx
+
+CMD ["nginx", "-g", "daemon off;"]
 
    # vim:syntax=Dockerfile
    ```
