@@ -59,10 +59,10 @@ This release delivers practical improvements for Kubernetes routing, secret supp
 - [11015](https://github.com/nginx/kubernetes-ingress/pull/11015) Allow cert-manager http-01 challenges through tls redirect and authentication
 - [10989](https://github.com/nginx/kubernetes-ingress/pull/10989) Add ingress and virtualserver options to toggle http/2 per server block
 - [11016](https://github.com/nginx/kubernetes-ingress/pull/11016) Support topology hints traffic distribution
+- [10478](https://github.com/nginx/kubernetes-ingress/pull/10478) Add additional controller services to the helm chart
 
 ### {{% icon bug %}} Fixes
 
-- [10745](https://github.com/nginx/kubernetes-ingress/pull/10745) Remove deleted file from list of files to update in release docs workflow
 - [10793](https://github.com/nginx/kubernetes-ingress/pull/10793) Fix: path quoting on v1 ingress
 - [10813](https://github.com/nginx/kubernetes-ingress/pull/10813) Reset updateallconfigsonbatch after batch mode ends
 - [10824](https://github.com/nginx/kubernetes-ingress/pull/10824) Sort selector-matched virtualserverroutes deterministically
@@ -70,14 +70,19 @@ This release delivers practical improvements for Kubernetes routing, secret supp
 - [10830](https://github.com/nginx/kubernetes-ingress/pull/10830) Match virtualserverroutes by namespace and name for split_clients offset
 - [10897](https://github.com/nginx/kubernetes-ingress/pull/10897) Cors origin port validation redo 9861
 - [9836](https://github.com/nginx/kubernetes-ingress/pull/9836) Fix keepalive annotation in master/minion ingress
-- [10503](https://github.com/nginx/kubernetes-ingress/pull/10503) Fix external pr workflow to update existing do not merge prs
 - [10956](https://github.com/nginx/kubernetes-ingress/pull/10956) Fix: synchronize namespaced informer registries
 - [10588](https://github.com/nginx/kubernetes-ingress/pull/10588) Fix: prevent f5 waf interfering with subrequests
 - [9751](https://github.com/nginx/kubernetes-ingress/pull/9751) Fix(api): make jwt/oidc trustedcertsecret omit-empty so zero value is dropped
 - [10929](https://github.com/nginx/kubernetes-ingress/pull/10929) Fix(external auth): carrying the response code from the /oauth2/signin subrequest breaks oauth2 flow- #10879
-- [10992](https://github.com/nginx/kubernetes-ingress/pull/10992) Remove redundant optional marker
 - [10998](https://github.com/nginx/kubernetes-ingress/pull/10998) Omit empty nodeport from controller service
 - [11042](https://github.com/nginx/kubernetes-ingress/pull/11042) Apply client-max-body-size correctly on virtualserver routes with matches, splits and auth policies
+- [11145](https://github.com/nginx/kubernetes-ingress/pull/11145) Security hardening and minor bug fixes
+- [10230](https://github.com/nginx/kubernetes-ingress/pull/10230) Filter by only ingress controller events when updating status
+- [10791](https://github.com/nginx/kubernetes-ingress/pull/10791) Fix nil pointer panic when namespace is no longer watched
+- [10832](https://github.com/nginx/kubernetes-ingress/pull/10832) Emit allow-empty-ingress-host when custom resources are disabled
+- [10912](https://github.com/nginx/kubernetes-ingress/pull/10912) Report virtualserver warnings when config is unchanged
+- [10874](https://github.com/nginx/kubernetes-ingress/pull/10874) Emit default listener ports when custom resources are disabled
+- [10913](https://github.com/nginx/kubernetes-ingress/pull/10913) Warn when routeselector matches no virtualserverroutes
 
 ### {{% icon arrow-up %}} Dependencies
 
