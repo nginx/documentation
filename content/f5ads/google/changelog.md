@@ -14,6 +14,18 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/f5a
 
 For updates to platform-wide features shared across cloud providers, see the [F5 ADS changelog]({{< ref "/f5ads/platform/changelog.md" >}}).
 
+## October 27, 2026
+
+- {{% icon-feature %}} **Manage SSL/TLS certificates with Terraform**
+
+You can now upload SSL/TLS certificates and private keys with the `f5ads_certificate` resource in the `F5Networks/f5ads` Terraform provider, version `0.1.0`.
+The resource also supports CA certificate bundles without private keys.
+Add the certificate to an NGINX configuration, then apply that configuration to your deployment.
+
+- [`f5ads_certificate` resource docs](https://registry.terraform.io/providers/F5Networks/f5ads/0.1.0/docs/resources/certificate)
+- [Add certificates using Terraform]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-terraform.md" >}})
+- [Deploy using the F5 ADS Terraform provider]({{< ref "/f5ads/google/deploy/create-deployment/deploy-terraform.md#prepare-a-certificate-for-tls" >}})
+
 ## September 15, 2026
 
 - {{% icon-feature %}} **Google Cloud Network Attachment is now optional and modifiable**
