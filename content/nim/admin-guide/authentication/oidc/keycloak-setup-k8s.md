@@ -375,3 +375,64 @@ Example:
 
 Location: https://<KEYCLOAK_HOST>:8443/auth/realms/nginx/protocol/openid-connect/auth?...&redirect_uri=https://<NIM_PUBLIC_HOSTNAME>/_codexch
 Nginx-Management-Suite-Auth: OIDC
+
+## Troubleshooting
+
+### Apigw fails with License file is required
+
+Cause:
+    - license.jwt is not mounted
+
+Fix:
+    - create the nginx-plus-license secret
+    - patch the apigw deployment to mount /etc/nginx/license.jwt
+
+### Apigw fails to load ngx_http_js_module.so
+
+Cause:
+    - njs was not installed
+    - njs modules were not loaded
+    - image build path is not correct
+
+Fix:
+    - confirm the image includes nginx-plus-module-njs
+    - confirm nms-nginx-conf loads:
+    - load_module modules/ngx_http_js_module.so;
+    - load_module modules/ngx_stream_js_module.so;
+    
+### /login redirects to Keycloak, but the browser never completes login
+
+Cause:
+    - NIM cannot reach the Keycloak token endpoint
+
+Symptoms:
+
+    - /_codexch requests appear in logs
+    - token exchange times out
+    - browser appears to spin or return to the sign-in page
+    
+Fix:
+    - Allow the apigw pod egress IP to reach Keycloak on 8443
+    - verify from inside the pod that the token endpoint is reachable
+    
+### Redirect URI mismatch
+
+Cause:
+    - Incorrect Root URL, Valid Redirect URI, or Web Origins in Keycloak
+    - Incorrect NIM public URL
+    - Incorrect :443 or :8443 added to the callback
+    
+Fix:
+    - use the exact NIM public URL
+use as follows:
+    - Root URL: https://<NIM_PUBLIC_HOSTNAME>
+    - Valid Redirect URI: https://<NIM_PUBLIC_HOSTNAME>/_codexch
+    - Web Origins: https://<NIM_PUBLIC_HOSTNAME>
+
+### Apigw fails after enabling OIDC because /var/run/nms files cannot be created
+
+Cause:
+    - OIDC token state files require a writable runtime directory
+
+Fix:
+    - mount an emptyDir volume to /var/run/nms
