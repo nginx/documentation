@@ -9,15 +9,12 @@ f5-summary: >
   Configure Keycloak as the identity provider for F5 NGINX Instance Manager deployed on Kubernetes cluster using OpenID Connect.
   This tutorial walks through creating a Keycloak client, configuring redirect URIs, and connecting Keycloak to NGINX Instance Manager for OIDC authentication.
 ---
-
 ## Overview
-
 This guide explains how to configure Keycloak as an identity provider (IdP) for F5 NGINX Instance Manager. By implementing OIDC for authentication, administrators can simplify user management in NGINX Instance Manager. Instead of creating and managing users individually, administrators can create user groups in NGINX Instance Manager that align with groups in their Identity Provider. Access and permissions for users are determined by the roles assigned to their respective user groups. Users from the Identity Provider who are not part of a group with an assigned role will not have access to NGINX Instance Manager.
 
 We strongly recommend OpenID Connect (OIDC) as the preferred authentication method for NGINX Instance Manager. OIDC brings several benefits, including Single Sign-On (SSO) and simplified user management through user groups.
 
 ## Requirements
-
 To follow the instructions in this guide, ensure you have the following setup for your Keycloak server and NGINX Instance Manager host -- 
 [Keycloak Server](https://docs.nginx.com/nginx-instance-manager/admin-guide/authentication/oidc/keycloak-setup/#keycloak-server)
 
@@ -92,8 +89,10 @@ helm upgrade --install nim ./nim-<VERSION>.tgz \
   --create-namespace \
   -f ./values.yaml \
   --set adminPasswordHash="$(openssl passwd -1 '<PASSWORD>')"
-Check the deployment:
+```
 
+Check the deployment:
+```shell
 kubectl -n nms get pods
 kubectl -n nms get svc
 kubectl -n nms get deploy
@@ -101,7 +100,6 @@ kubectl -n nms get deploy
 At this stage, apigw may fail until the NGINX Plus license is mounted.
 
 ## Add the NGINX Plus license
-
 Create a Kubernetes secret from license.jwt:
  ```shell
   kubectl -n nms create secret generic nginx-plus-license \
@@ -109,7 +107,6 @@ Create a Kubernetes secret from license.jwt:
   ```
 
 Patch the apigw deployment to mount the license:
-
 ```shell
 kubectl -n nms patch deployment apigw --type='json' -p='[
   {
@@ -165,14 +162,12 @@ kubectl -n nms rollout status deployment/apigw --timeout=300s
 ```
 
 ## Get the public NIM URL
-
 Find the external hostname assigned to the API Gateway service:
-
 ```shell
 kubectl -n nms get svc apigw -o wide
 ```
 
-Use this exact public URL for:
+Use this exact public URL for 
 
     - The browser login URL
     - The Keycloak Root URL
@@ -180,9 +175,7 @@ Use this exact public URL for:
     - The Keycloak Web Origins
 
 ## Configure Keycloak
-
 Create or update the Keycloak client.
-
 Example values:
 
     - Client ID: nim
@@ -381,20 +374,24 @@ Nginx-Management-Suite-Auth: OIDC
 ### Apigw fails with License file is required
 
 Cause:
+
     - license.jwt is not mounted
 
 Fix:
+
     - create the nginx-plus-license secret
     - patch the apigw deployment to mount /etc/nginx/license.jwt
 
 ### Apigw fails to load ngx_http_js_module.so
 
 Cause:
+
     - njs was not installed
     - njs modules were not loaded
     - image build path is not correct
 
 Fix:
+
     - confirm the image includes nginx-plus-module-njs
     - confirm nms-nginx-conf loads:
     - load_module modules/ngx_http_js_module.so;
@@ -403,6 +400,7 @@ Fix:
 ### /login redirects to Keycloak, but the browser never completes login
 
 Cause:
+
     - NIM cannot reach the Keycloak token endpoint
 
 Symptoms:
@@ -412,19 +410,24 @@ Symptoms:
     - browser appears to spin or return to the sign-in page
     
 Fix:
+
     - Allow the apigw pod egress IP to reach Keycloak on 8443
     - verify from inside the pod that the token endpoint is reachable
     
 ### Redirect URI mismatch
 
 Cause:
+
     - Incorrect Root URL, Valid Redirect URI, or Web Origins in Keycloak
     - Incorrect NIM public URL
     - Incorrect :443 or :8443 added to the callback
     
 Fix:
+
     - use the exact NIM public URL
+    
 use as follows:
+
     - Root URL: https://<NIM_PUBLIC_HOSTNAME>
     - Valid Redirect URI: https://<NIM_PUBLIC_HOSTNAME>/_codexch
     - Web Origins: https://<NIM_PUBLIC_HOSTNAME>
@@ -432,6 +435,7 @@ use as follows:
 ### Apigw fails after enabling OIDC because /var/run/nms files cannot be created
 
 Cause:
+
     - OIDC token state files require a writable runtime directory
 
 Fix:
