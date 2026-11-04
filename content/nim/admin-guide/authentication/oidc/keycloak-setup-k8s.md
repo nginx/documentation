@@ -167,38 +167,34 @@ kubectl -n nms get svc apigw -o wide
 ```
 
 Use this exact public URL for 
-
-    - The browser login URL
-    - The Keycloak Root URL
-    - The Keycloak Valid Redirect URI
-    - The Keycloak Web Origins
+- The browser login URL
+- The Keycloak Root URL
+- The Keycloak Valid Redirect URI
+- The Keycloak Web Origins
 
 ## Configure Keycloak
 Create or update the Keycloak client.
 Example values:
-
-    - Client ID: nim
-    - Access Type: confidential
-    - Standard Flow Enabled: ON
+- Client ID: nim
+- Access Type: confidential
+- Standard Flow Enabled: ON
 
 Use the NIM public URL exactly:
-
-    - Root URL
+- Root URL
 https://<NIM_PUBLIC_HOSTNAME>
 
-    - Valid Redirect URI
+- Valid Redirect URI
 https://<NIM_PUBLIC_HOSTNAME>/_codexch
 
-    - Web Origins
+- Web Origins
 https://<NIM_PUBLIC_HOSTNAME>
 
 Leave Admin URL blank unless you have a specific requirement for it.
 
 Important:
-
-    - Do not append :443 unless that is actually part of the public URL
-    - Do not use malformed values such as .com_codexch
-    - Ensure the client secret matches the value configured in NIM
+- Do not append :443 unless that is actually part of the public URL
+- Do not use malformed values such as .com_codexch
+- Ensure the client secret matches the value configured in NIM
 
 For general Keycloak setup steps, see: [Guide](https://docs.nginx.com/nginx-instance-manager/admin-guide/authentication/oidc/keycloak-setup/)
 
@@ -206,32 +202,32 @@ For general Keycloak setup steps, see: [Guide](https://docs.nginx.com/nginx-inst
 
 Three ConfigMaps must be updated:
 
-    - nms-openid-conf
-    - nms-http-conf
-    - nms-nginx-conf
+- nms-openid-conf
+- nms-http-conf
+- nms-nginx-conf
 
 ### Update nms-openid-conf
 
 Configure:
 
-    - authorization endpoint
-    - token endpoint
-    - JWKS endpoint
-    - client ID
-    - client secret
-    - OIDC domain
-    - HMAC key
-    - redirect base handling
+- authorization endpoint
+- token endpoint
+- JWKS endpoint
+- client ID
+- client secret
+- OIDC domain
+- HMAC key
+- redirect base handling
 
 Example settings:
 
-    - Keycloak authorization endpoint
+- Keycloak authorization endpoint
 https://<KEYCLOAK_HOST>:8443/auth/realms/nginx/protocol/openid-connect/auth
 
-    - Keycloak token endpoint
+- Keycloak token endpoint
 https://<KEYCLOAK_HOST>:8443/auth/realms/nginx/protocol/openid-connect/token
 
-    - Keycloak JWKS endpoint
+- Keycloak JWKS endpoint
 https://<KEYCLOAK_HOST>:8443/auth/realms/nginx/protocol/openid-connect/certs
 
 Enable the Keycloak claim maps:
@@ -300,11 +296,11 @@ auth_jwt_key_request /_jwks_uri;
 
 Apply these in the protected locations such as:
 
-    - /api
-    - /login
-    - /ui/*.json
-    - module UI routes
-    - Notification gRPC routes if needed
+- /api
+- /login
+- /ui/*.json
+- module UI routes
+- Notification gRPC routes if needed
 
 If your public hostname is long and NGINX reports a hash warning, set:
 
@@ -358,10 +354,10 @@ curl -k -I https://<NIM_PUBLIC_HOSTNAME>/login
 
 Expected result:
 
-    - HTTP 302
-    - Location header points to the Keycloak authorization endpoint
-    - redirect_uri points to https://<NIM_PUBLIC_HOSTNAME>/_codexch
-    - auth header indicates OIDC
+- HTTP 302
+- Location header points to the Keycloak authorization endpoint
+- redirect_uri points to https://<NIM_PUBLIC_HOSTNAME>/_codexch
+- auth header indicates OIDC
 
 Example:
 
@@ -373,69 +369,58 @@ Nginx-Management-Suite-Auth: OIDC
 ### Apigw fails with License file is required
 
 Cause:
-
-    - license.jwt is not mounted
+- license.jwt is not mounted
 
 Fix:
-
-    - create the nginx-plus-license secret
-    - patch the apigw deployment to mount /etc/nginx/license.jwt
+- create the nginx-plus-license secret
+- patch the apigw deployment to mount /etc/nginx/license.jwt
 
 ### Apigw fails to load ngx_http_js_module.so
 
 Cause:
-
-    - njs was not installed
-    - njs modules were not loaded
-    - image build path is not correct
+- njs was not installed
+- njs modules were not loaded
+- image build path is not correct
 
 Fix:
-
-    - confirm the image includes nginx-plus-module-njs
-    - confirm nms-nginx-conf loads:
-    - load_module modules/ngx_http_js_module.so;
-    - load_module modules/ngx_stream_js_module.so;
+- confirm the image includes nginx-plus-module-njs
+- confirm nms-nginx-conf loads:
+- load_module modules/ngx_http_js_module.so;
+- load_module modules/ngx_stream_js_module.so;
     
 ### /login redirects to Keycloak, but the browser never completes login
 
 Cause:
-
-    - NIM cannot reach the Keycloak token endpoint
+- NIM cannot reach the Keycloak token endpoint
 
 Symptoms:
-
-    - /_codexch requests appear in logs
-    - token exchange times out
-    - browser appears to spin or return to the sign-in page
+- /_codexch requests appear in logs
+- token exchange times out
+- browser appears to spin or return to the sign-in page
     
 Fix:
-
-    - Allow the apigw pod egress IP to reach Keycloak on 8443
-    - verify from inside the pod that the token endpoint is reachable
+- Allow the apigw pod egress IP to reach Keycloak on 8443
+- verify from inside the pod that the token endpoint is reachable
     
 ### Redirect URI mismatch
 
 Cause:
-
-    - Incorrect Root URL, Valid Redirect URI, or Web Origins in Keycloak
-    - Incorrect NIM public URL
-    - Incorrect :443 or :8443 added to the callback
+- Incorrect Root URL, Valid Redirect URI, or Web Origins in Keycloak
+- Incorrect NIM public URL
+- Incorrect :443 or :8443 added to the callback
     
 Fix:
-
-    - use the exact NIM public URL
+- use the exact NIM public URL
     
 use as follows:
-
-    - Root URL: https://<NIM_PUBLIC_HOSTNAME>
-    - Valid Redirect URI: https://<NIM_PUBLIC_HOSTNAME>/_codexch
-    - Web Origins: https://<NIM_PUBLIC_HOSTNAME>
+- Root URL: https://<NIM_PUBLIC_HOSTNAME>
+- Valid Redirect URI: https://<NIM_PUBLIC_HOSTNAME>/_codexch
+- Web Origins: https://<NIM_PUBLIC_HOSTNAME>
 
 ### Apigw fails after enabling OIDC because /var/run/nms files cannot be created
 
 Cause:
-
-    - OIDC token state files require a writable runtime directory
+- OIDC token state files require a writable runtime directory
 
 Fix:
     - mount an emptyDir volume to /var/run/nms
