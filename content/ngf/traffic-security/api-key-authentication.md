@@ -17,7 +17,7 @@ This page describes how to set up API key authentication in F5 NGINX Gateway Fab
 
 API key authentication looks for a key in each request. Clients send the key in a request header or a URL query parameter. NGINX Gateway Fabric loads those keys from a Kubernetes Secret into the NGINX data plane, which checks each request and rejects unknown keys before they reach your apps.
 
-API key authentication works with NGINX Open Source and NGINX Plus. Use it for machine-to-machine traffic, such as a mobile app or partner service calling your API. For user sign-in, use [OpenID Connect authentication]({{< ref "/ngf/traffic-security/oidc-authentication.md" >}}) or [basic authentication]({{< ref "/ngf/traffic-security/basic-authentication.md" >}}) instead.
+Use API key authentication for machine-to-machine traffic, such as a backend service or partner integration calling your API. For user sign-in, use [OpenID Connect authentication]({{< ref "/ngf/traffic-security/oidc-authentication.md" >}}) or [basic authentication]({{< ref "/ngf/traffic-security/basic-authentication.md" >}}) instead.
 
 By following these instructions, you create two sample app endpoints: one that requires an API key and one that doesn't. You then send requests with a valid key, an invalid key, and no key, and compare the results.
 
@@ -28,8 +28,6 @@ Keys in a URL are less private than keys in a header. They can appear in browser
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
-- Make sure you have `kubectl` installed and access to a cluster.
-- Check that your cluster has the `authenticationfilters.gateway.nginx.org` CRD. Run `kubectl get crd authenticationfilters.gateway.nginx.org -o jsonpath='{.spec.versions[0].schema.openAPIV3Schema.properties.spec.properties.apiKey.type}'`. The command prints `object` when your CRDs support API keys. If it prints nothing or an error, update your CRDs. See [Update the CRDs](#update-the-crds).
 
 ## Set up the example resources
 
@@ -141,7 +139,7 @@ spec:
 EOF
 ```
 
-The `*.example.com` hostname matches any host that adds one label to `example.com`, such as the `cafe.example.com` host this guide uses.
+The `*.example.com` hostname matches any subdomain of `example.com`, such as the cafe.example.com host this guide uses.
 
 Confirm the Gateway was assigned an IP address and reports a `Programmed=True` status with `kubectl describe`:
 
@@ -165,10 +163,6 @@ GW_PORT=<PORT_NUMBER>
 Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Create the Secret and the filter
-
-{{< call-out class="important" >}}
-API key authentication needs a version of NGINX Gateway Fabric that supports it, and CRDs that know the `apiKey` field. An older control plane ignores the field, so requests pass without a key. If `kubectl` reports `no matches for kind "AuthenticationFilter"`, or the filter is rejected as `Invalid`, fix your CRDs with [Update the CRDs](#update-the-crds) before you continue.
-{{< /call-out >}}
 
 Apply the Secret and the filter together:
 
@@ -401,14 +395,6 @@ Request ID: c7eb0509303de1c160cb7e7d2ac1d99f
 
 The `/tea` route has no AuthenticationFilter, so NGINX Gateway Fabric forwards the request as it is.
 
-### Get the response status without the body
-
-To see only the status code for each case, add the `-o`, `-s`, and `-w` options to curl:
-
-```shell
-curl --resolve cafe.example.com:$GW_PORT:$GW_IP -s -o /dev/null -w "%{http_code}\n" http://cafe.example.com:$GW_PORT/coffee -H "X-API-Key: $GOOD_KEY"
-```
-
 ## The filter at a glance
 
 The `apiKey` fields in the filter you created work as follows:
@@ -427,25 +413,11 @@ The `apiKey` fields in the filter you created work as follows:
 
 NGINX Gateway Fabric reads the keys from the `auth` entry of the Secret and loads them into the NGINX data plane. The data plane matches keys exactly, so an uppercase letter or a trailing space makes a key invalid. The client name isn't used to authorize a request. The name tells you which key belongs to whom, so you can revoke one client without touching the others.
 
-{{< call-out class="note" >}}
-Keys can contain letters, numbers, and the characters `- _ . = + / ~`. NGINX Gateway Fabric skips lines that are malformed or that contain other characters, and it ignores duplicate keys.
-{{< /call-out >}}
-
 **Sources, where the key comes from**
 
 A request passes when any source carries a valid key, so clients can use whichever one suits them. Header names are case-insensitive, so a source named `x-api-key` matches an `X-API-Key` header.
 
 A query parameter name can't contain a hyphen. NGINX can't read query arguments whose names include `-`, so `api-key` is rejected while `api_key` is fine.
-
-**What each request gets**
-
-| Request to `/coffee`                   | Response                           |
-| -------------------------------------- | ---------------------------------- |
-| Header carries a key from the Secret   | `200`: the request reaches the app |
-| Query carries a key from the Secret    | `200`: the request reaches the app |
-| No key in any source                   | `401`: no key was found            |
-| Key isn't in the Secret                | `403`: the key isn't valid         |
-| Request to `/tea`, which has no filter | `200`: no check is made            |
 
 ## Additional configuration
 
@@ -480,7 +452,7 @@ kubectl get secret api-keys -o jsonpath='{.data.auth}' | base64 --decode
 
 Keys come from the Secret, so you can change them without touching the filter or your routes. Change the `auth` file and run the same `kubectl apply` command. NGINX Gateway Fabric reads the changed Secret and updates the keys NGINX accepts.
 
-To revoke a client, delete its line and apply the Secret again. Requests using that key start getting `403`.
+To revoke a client, remove that client's entry from the `auth` file and re-apply the Secret again. Requests using that key will then return `403`.
 
 ### Accept keys in a header only
 
@@ -513,22 +485,8 @@ One Secret means one key list for every route that uses the filter. To give a gr
 kubectl create secret generic partner-keys --from-literal=auth="partner-a:<API_KEY>" --dry-run=client -o yaml | kubectl apply -f -
 ```
 
-### Update the CRDs
-
-CRDs come with NGINX Gateway Fabric. When you upgrade NGINX Gateway Fabric, apply the matching CRDs again:
-
-```shell
-kubectl apply --server-side --force-conflicts -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
-```
-
-The `--force-conflicts` flag is needed when Helm owns the CRDs and you update them with `kubectl`. To learn more, see [Upgrade NGINX Gateway Fabric]({{< ref "/ngf/install/upgrade-version.md#upgrade-nginx-gateway-fabric-crds" >}}).
-
-Run the check from [Before you begin](#before-you-begin) again. It prints `object` when the CRDs are ready.
-
 ## Troubleshooting
 
-- Your cluster is missing the NGINX Gateway Fabric CRDs. `kubectl` then fails with `no matches for kind "AuthenticationFilter" in version "gateway.nginx.org/v1alpha1"`. Confirm your cluster with `kubectl config current-context`, then see [Update the CRDs](#update-the-crds).
-- If the filter is accepted but clients reach the app without a key, your CRDs are older than this feature and dropped the `apiKey` field. Run the CRD check from [Before you begin](#before-you-begin). It must print `object`.
 - Check that the filter is accepted with `kubectl describe authenticationfilters.gateway.nginx.org api-key-auth`. An `Invalid` condition tells you what to fix.
 - If the filter is rejected with a message about the Secret, check two things. The Secret must be in the same namespace as the filter, and its data entry must be named `auth`.
 - If the filter is rejected with a message about `client-name:api-key` entries, every line failed. Check that each line has a name, a colon, and a key, and that the keys use only supported characters.
@@ -536,13 +494,6 @@ Run the check from [Before you begin](#before-you-begin) again. It prints `objec
 - If valid requests get `403`, compare the key the client sends with the decoded Secret, character by character. The check is case-sensitive and rejects extra spaces.
 - If requests without a key get `200`, check that the route rule references the filter. The `extensionRef` needs `group: gateway.nginx.org`, `kind: AuthenticationFilter`, and the filter name.
 - If requests stop working after you change a key, check that `kubectl get secret api-keys -o jsonpath='{.data.auth}' | base64 --decode` shows the keys you expect. NGINX Gateway Fabric ignores duplicate keys.
-
-## Limitations
-
-- The `auth` entry can't be empty. `kubectl create secret` fails when you give it an empty literal value. Use `--from-file`, `--from-literal`, or a manifest that sets `auth` to base64-encoded content.
-- An empty key is not treated as a key. A request with an empty query parameter such as `?api_key=` gets a `401`, the same response as a request with no key.
-- You can define a `Header` source and a `Query` source, but a second header or a second query parameter isn't supported. Add more filters if clients need more key locations.
-- API keys don't expire. NGINX Gateway Fabric has no setting that makes a key invalid on a date. Rotate keys by changing the Secret yourself.
 
 ## Further reading
 
