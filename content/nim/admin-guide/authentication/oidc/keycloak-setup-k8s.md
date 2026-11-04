@@ -23,9 +23,8 @@ Set up a Keycloak server. Refer to the Keycloak [Getting Started](https://www.ke
 ## Build the NGINX Plus API gateway image
 
 The default NIM apigw image is not sufficient for Kubernetes OIDC. You must build a custom API Gateway image that includes:
-
-    - nginx-plus
-    - nginx-plus-module-njs
+- nginx-plus
+- nginx-plus-module-njs
 
 Please follow the how to build nginx-plus image for apigw [Build process](https://docs.nginx.com/nginx-instance-manager/deploy/kubernetes/frequently-used-helm-configs/#use-nginx-plus-for-api-gateway)
 
