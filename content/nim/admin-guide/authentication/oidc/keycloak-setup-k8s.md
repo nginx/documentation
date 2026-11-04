@@ -174,6 +174,7 @@ Use this exact public URL for
 
 ## Configure Keycloak
 Create or update the Keycloak client.
+
 Example values:
 - Client ID: nim
 - Access Type: confidential
@@ -335,33 +336,29 @@ kubectl -n nms rollout status deployment/apigw --timeout=300s
 ```
 ## Validate the deployment
 Check the pod:
-
 ```shell
 kubectl -n nms get pods -l app.kubernetes.io/name=apigw -o wide
 ```
 
 Check logs:
-
 ```shell
 kubectl -n nms logs deployment/apigw --tail=100
 ```
 
 Test the login redirect:
-
 ```shell
 curl -k -I https://<NIM_PUBLIC_HOSTNAME>/login
 ```
 
 Expected result:
-
 - HTTP 302
 - Location header points to the Keycloak authorization endpoint
 - redirect_uri points to https://<NIM_PUBLIC_HOSTNAME>/_codexch
 - auth header indicates OIDC
 
-Example:
+Example --
 
-Location: https://<KEYCLOAK_HOST>:8443/auth/realms/nginx/protocol/openid-connect/auth?...&redirect_uri=https://<NIM_PUBLIC_HOSTNAME>/_codexch
+- Location: https://<KEYCLOAK_HOST>:8443/auth/realms/nginx/protocol/openid-connect/auth?...&redirect_uri=https://<NIM_PUBLIC_HOSTNAME>/_codexch
 Nginx-Management-Suite-Auth: OIDC
 
 ## Troubleshooting
@@ -423,4 +420,4 @@ Cause:
 - OIDC token state files require a writable runtime directory
 
 Fix:
-    - mount an emptyDir volume to /var/run/nms
+- mount an emptyDir volume to /var/run/nms
