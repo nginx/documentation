@@ -250,7 +250,7 @@ The policy works with both NGINX and NGINX Plus. You can reference it from Virtu
 
 {{< call-out class="note" >}}
 
-This feature uses the NGINX [`ngx_http_limit_conn_module`](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html).
+This feature uses the NGINX [`ngx_http_limit_conn_module`](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html) module.
 
 {{< /call-out >}}
 
