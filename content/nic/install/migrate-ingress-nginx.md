@@ -223,13 +223,14 @@ nginx.ingress.kubernetes.io/limit-connections: "number"
 NGINX Ingress Controller:
 
 ```yaml
-http-snippets: |
-    limit_conn_zone $binary_remote_addr zone=zone_name:size;
-routes:
-- path: /path
-    location-snippets: |
-      limit_conn zone_name number;
+connectionLimit:
+    connections: number
+
+    key: ${binary_remote_addr}
+    zoneSize: size
 ```
+
+Reference the [ConnectionLimit policy]({{< ref "/nic/configuration/policy-resource/policy-reference.md#connectionlimit" >}}) from a VirtualServer or VirtualServerRoute, or from an Ingress with the `nginx.org/policies` annotation. Ingress-NGINX Controller sets the status code for rejected requests with the `limit-conn-status-code` ConfigMap key. The policy sets it with the `rejectCode` field.
 
 Ingress-NGINX Controller:
 
@@ -308,9 +309,8 @@ NGINX Ingress Controller:
 rewritePath: "URI"
 ```
 
-There are four Ingress-NGINX Controller annotations without NGINX Ingress resource fields yet: they must be handled using snippets.
+Three Ingress-NGINX Controller annotations don't have NGINX Ingress resource fields yet. Use snippets for these annotations:
 
-- _nginx.ingress.kubernetes.io/limit-connections_
 - _nginx.ingress.kubernetes.io/limit-rate_
 - _nginx.ingress.kubernetes.io/limit-rate-after_
 - _nginx.ingress.kubernetes.io/limit-whitelist_
