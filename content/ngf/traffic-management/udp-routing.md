@@ -7,8 +7,7 @@ f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Expose UDP applications by attaching a UDPRoute to a Gateway listener that defines the external UDP port.
-  UDPRoute is a Gateway API experimental-channel resource and requires experimental features enabled in NGINX Gateway Fabric.
-f5-keywords: "NGINX Gateway Fabric, UDPRoute, UDP, Gateway API, experimental, stream, backend"
+f5-keywords: "NGINX Gateway Fabric, UDPRoute, UDP, Gateway API, stream, backend"
 f5-audience: any
 ---
 
@@ -20,7 +19,7 @@ UDPRoute enables you to expose and route UDP traffic through a Gateway. In this 
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Setup
 
