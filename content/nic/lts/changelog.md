@@ -28,7 +28,7 @@ This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
 
 ## 2026-lts-r10
 
-04 Nov 2026
+05 Nov 2026
 
 ### {{% icon arrow-up %}} Dependencies
 
