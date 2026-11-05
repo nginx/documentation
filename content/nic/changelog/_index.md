@@ -27,7 +27,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ## 5.7.1
 
-04 Nov 2026
+05 Nov 2026
 
 ### {{% icon arrow-up %}} Dependencies
 
