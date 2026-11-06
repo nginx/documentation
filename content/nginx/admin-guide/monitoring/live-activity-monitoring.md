@@ -209,7 +209,7 @@ To enable the API:
     ```
 
 - As an option you can try the [Swagger UI](#swagger_enable) - an interactive documentation tool for the API specification supplied in a OpenAPI YAML file and used with NGINX Plus.
-Download the Swagger UI and the OpenAPI YAML specification, specify a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) for them, for example, */swagger-ui*, the path to its files with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, */usr/share/nginx/html* and limit access to local networks with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives. See [The Swagger UI](#the-swagger-ui) section for details.
+Download the Swagger UI and the OpenAPI YAML specification, specify a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) for them, for example, */swagger-ui*, the path to its files with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, */usr/share/nginx/html* and limit access to local networks with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives. See [Enabling the Swagger UI](#swagger_enable) for details.
 
     ```nginx
     http {
@@ -524,7 +524,7 @@ To enable the Swagger UI:
 
 1. Install and configure the Swagger UI. The installation package and instructions can be found on the [Swagger UI page](https://swagger.io/tools/swagger-ui/download/).
 
-2. Choose the [version of the OpenAPI YAML file](#yaml-version) that matches your version of NGINX Plus, download the file, and put it to the folder containing the Swagger UI files:
+2. Choose the [version of the OpenAPI YAML file](#yaml-version) that matches your version of NGINX Plus, download the file, and put it in the folder containing the Swagger UI files.
 
 3. Configure NGINX Plus to work with the Swagger UI. Create a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), for example, */swagger-ui*:
 
@@ -534,7 +534,7 @@ To enable the Swagger UI:
     }
     ```
 
-4. Specify the path to the Swagger UI files and the YAML spec with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, to `usr/share/nginx/html`:
+4. Specify the path to the Swagger UI files and the YAML spec with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, to `/usr/share/nginx/html`:
 
     ```nginx
     location /swagger-ui {
@@ -553,7 +553,7 @@ To enable the Swagger UI:
     }
     ```
 
-6. It is also recommended enabling Content Security Policy headers that define that all resources are loaded from the same origin as Swagger UI with the [`add_header`](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive:
+6. Also enable Content Security Policy headers with the [`add_header`](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive, so all resources load from the same origin as Swagger UI:
 
     ```nginx
     location /swagger-ui {
