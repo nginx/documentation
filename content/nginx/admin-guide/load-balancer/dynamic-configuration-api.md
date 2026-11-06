@@ -24,7 +24,7 @@ You make these changes with NGINX Plus REST API commands.
 
 ## Prerequisites {#prereq}
 
-Before you use dynamic configuration, make sure you have the following:
+Before you use dynamic configuration, make sure:
 
 1. You are running a [supported release of NGINX Plus]({{< ref "/nginx/releases.md" >}})
 2. You have created upstream groups of application or web servers, as described in [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}) and [TCP/UDP Load Balancing]({{< ref "tcp-udp-load-balancer.md" >}})

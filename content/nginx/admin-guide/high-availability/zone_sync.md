@@ -11,7 +11,7 @@ f5-product: NGINX Plus
 
 ## Introduction {#intro}
 
-When you organize several F5 NGINX Plus instances in a cluster, they can share state data between them, including:
+When you organize several F5 NGINX Plus instances in a cluster, they can share state data, including:
 
 - [sticky learn](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky) session persistence
 - [requests limiting](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/#limit_req)

@@ -145,7 +145,7 @@ centos7-2 $ cat /var/run/nginx-ha-keepalived.state
 STATE=BACKUP
 ```
 
-In version 1.1 and later of the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package, it is possible to dump VRRP extended statistics and data to the filesystem with the following command:
+In version 1.1 and later of the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package, you can dump VRRP extended statistics and data to the filesystem with the following command:
 
 ```shell
 centos7-1 $ service keepalived dump
@@ -164,7 +164,7 @@ service keepalived stop
 
 As it shuts down, `keepalived` sends a VRRP packet with priority `0` to the backup node, which causes the backup node to take over the VIP.
 
-If your cluster is using version 1.1 of the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package, this is a simpler way to force the state change:
+If your cluster uses version 1.1 of the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package, use this command to force the state change:
 
 ```shell
 touch /var/run/keepalived-manual-failover
@@ -176,7 +176,7 @@ chk_manual_failover` block. If the file exists, `keepalived` lowers the priority
 
 ## Adding More Virtual IP Addresses {#ha_addresses}
 
-The configuration created by the {{<nb>}}`nginx-ha-setup`{{</nb>}} script is very basic, and makes a single IP address highly available.
+The configuration created by the {{<nb>}}`nginx-ha-setup`{{</nb>}} script makes a single IP address highly available.
 
 To make more than one IP address highly available:
 
