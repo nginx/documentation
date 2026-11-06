@@ -14,6 +14,17 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/f5a
 
 For updates to platform-wide features shared across cloud providers, see the [F5 ADS changelog]({{< ref "/f5ads/platform/changelog.md" >}}).
 
+## November 6, 2026
+
+- {{% icon-feature %}} **F5 ADS Terraform provider (0.1.0)**
+
+This release adds full lifecycle management for F5 ADS for Google Cloud deployments, including certificates, NGINX configurations, and deployments.
+
+- [Add certificates using Terraform]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-terraform.md" >}})
+- [Manage NGINX configurations using Terraform]({{< ref "/f5ads/google/deploy/nginx-configuration/configuration-terraform.md" >}})
+- [Deploy using the F5 ADS Terraform provider]({{< ref "/f5ads/google/deploy/create-deployment/deploy-terraform.md" >}})
+- [F5 ADS Terraform provider documentation](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs)
+
 ## November 5, 2026
 
 - {{% icon-feature %}} **Manage NGINX configurations with Terraform**
