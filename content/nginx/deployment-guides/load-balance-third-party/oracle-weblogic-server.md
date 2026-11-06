@@ -14,7 +14,7 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 
 [NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that has grown in popularity in recent years because of its scalability, outstanding performance, and small footprint. NGINX Open Source was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). NGINX Open Source's features and performance have made it a staple of high‑performance sites – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
 
-[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, extending the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities that enhance an Oracle WebLogic Server deployment and are instrumental to building web applications at scale:
+[NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of NGINX Open Source. NGINX Plus is a complete application delivery platform, extending the power of NGINX Open Source with a host of enterprise‑ready capabilities that enhance an Oracle WebLogic Server deployment and are instrumental to building web applications at scale:
 
 - Full‑featured [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}), [TCP, and UDP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) load balancing
 - [Intelligent session persistence]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md#session-persistence" >}})
@@ -40,8 +40,8 @@ For more information about deploying a Java application on Oracle Java Cloud Ser
 ## Prerequisites and System Requirements
 
 - An Oracle WebLogic Server application server installed and configured on a physical or virtual system.
-- A Linux system to host NGINX Open Source or NGINX Plus. To avoid potential conflicts with other applications, we recommend you install NGINX Plus on a fresh physical or virtual system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
-- NGINX Open Source 1.9.5 and later, or NGINX Plus R7 and later.
+- A Linux system to host NGINX Open Source or NGINX Plus. To avoid potential conflicts with other applications, install NGINX Plus on a fresh physical or virtual system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
+- A current release of [NGINX Open Source](https://nginx.org/en/download.html) or a [supported release of NGINX Plus]({{< ref "/nginx/releases.md" >}}).
 
 The instructions assume you have basic Linux system administration skills, including the following. Full instructions are not provided for these tasks.
 
@@ -64,17 +64,17 @@ The instructions assume you have basic Linux system administration skills, inclu
 
 If you plan to enable SSL/TLS encryption of traffic between NGINX Open Source or NGINX Plus and clients of your WebLogic Server application, you need to configure a server certificate for NGINX Open Source or NGINX Plus.
 
-- SSL/TLS support is enabled by default in all <span style="white-space: nowrap;">[NGINX Plus packages](https://account.f5.com/myf5)</span> and [NGINX Open Source binaries](https://nginx.org/en/linux_packages.html) provided by NGINX.
-- If you are compiling NGINX Open Source from source, include the <span style="white-space: nowrap;">`--with-http_ssl_module`</span> parameter to enable SSL/TLS support for HTTP traffic (the corresponding parameter for TCP is <span style="white-space: nowrap;">`--with-stream_ssl_module`</span>, and for email is <span style="white-space: nowrap;">`--with-mail_ssl_module`</span>, but this guide does not cover either of those protocol types).
+- SSL/TLS support is enabled by default in all [NGINX Plus packages](https://account.f5.com/myf5) and [NGINX Open Source binaries](https://nginx.org/en/linux_packages.html) provided by NGINX.
+- If you are compiling NGINX Open Source from source, include the {{<nb>}}`--with-http_ssl_module`{{</nb>}} parameter to enable SSL/TLS support for HTTP traffic (the corresponding parameter for TCP is {{<nb>}}`--with-stream_ssl_module`{{</nb>}}, and for email is {{<nb>}}`--with-mail_ssl_module`{{</nb>}}, but this guide does not cover either of those protocol types).
 - If using binaries from other providers, consult the provider documentation to determine if they support SSL/TLS.
 
-There are several ways to obtain a server certificate, including the following. For your convenience, <span style="white-space: nowrap;">step-by-step</span> instructions are provided for the second and third options.
+There are several ways to obtain a server certificate, including the following. For your convenience, {{<nb>}}step-by-step{{</nb>}} instructions are provided for the second and third options.
 
 - If you already have an SSL certificate for NGINX Open Source or NGINX Plus installed on another UNIX or Linux system (including systems running Apache HTTP Server), copy it to the **/etc/nginx/ssl** directory on the NGINX Open Source or NGINX Plus server.
 - Generate a self‑signed certificate as described in [Generating a Self‑Signed Certificate](#certificate-self-signed) below. This is sufficient for testing scenarios, but clients of production deployments generally require a certificate signed by a certificate authority (CA).
 - Request a new certificate from a CA or your organization's security group, as described in [Generating a Certificate Request](#certificate-request) below.
 
-For more details on SSL/TLS termination, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}})</span>.
+For more details on SSL/TLS termination, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}}).
 
 ### Generating a Self-Signed Certificate
 
@@ -82,7 +82,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 1. Log in as the root user on a machine that has the `openssl` software installed.
 
-2. Generate the key pair in PEM format (the default). To encrypt the private key, include the <span style="white-space: nowrap;">`-des3`</span> parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.
+2. Generate the key pair in PEM format (the default). To encrypt the private key, include the {{<nb>}}`-des3`{{</nb>}} parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.
 
    ```shell
    root# openssl genrsa -des3 -out ~/private-key.pem 2048
@@ -96,7 +96,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
    root# cp ~/private-key.pem secure-dir/private-key.pem.backup
    ```
 
-4. Generate the certificate. Include the <span style="white-space: nowrap;">`-new`</span> and <span style="white-space: nowrap;">`-x509`</span> parameters to make a new self-signed certificate. Optionally include the <span style="white-space: nowrap;">`-days`</span> parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
+4. Generate the certificate. Include the {{<nb>}}`-new`{{</nb>}} and {{<nb>}}`-x509`{{</nb>}} parameters to make a new self-signed certificate. Optionally include the {{<nb>}}`-days`{{</nb>}} parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
 
    ```shell
    root# openssl req -new -x509 -key ~/private-key.pem -out ~/self-cert.pem -days 10950
@@ -181,7 +181,7 @@ We recommend, however, that you do not copy text directly from this document. It
 
 ### About Reloading Updated Configuration
 
-We recommend that each time you complete a set of updates to the configuration, you run the <span style="white-space: nowrap;">`nginx` `-t`</span> command to test the configuration file for syntactic validity.
+Each time you complete a set of updates to the configuration, run the {{<nb>}}`nginx` `-t`{{</nb>}} command to test the configuration file for syntactic validity.
 
 ```none
 root# nginx -t
@@ -263,7 +263,7 @@ These directives define virtual servers for HTTP and HTTPS traffic in separate `
 
     Directive documentation: [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return), [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
 
-For more information on configuring SSL/TLS, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}})</span> and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module.
+For more information on configuring SSL/TLS, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}}) and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module.
 
 ### Configuring Basic Load Balancing
 
@@ -308,7 +308,7 @@ By default, NGINX Open Source and NGINX Plus use the Round Robin algorithm for
 
 In NGINX Plus, you can also set up dynamic reconfiguration of an upstream group when the set of backend servers changes, using DNS or an API; see [Enabling Dynamic Reconfiguration of Upstream Groups](#reconfiguration).
 
-For more information on proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
+For more information on proxying and load balancing, see [NGINX Reverse Proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}}) and {{<nb>}}[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}}){{</nb>}} in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
 
 ### Configuring Basic Session Persistence
 
@@ -384,7 +384,7 @@ For more information about proxying WebSocket traffic, see [WebSocket proxying](
 
 Caching assets at the edge of your infrastructure can have many benefits. Even caching a small percent of the requests to your clients for a short period of time can drastically improve the performance of your web applications.
 
-One choice for caching is <span style="white-space: nowrap;">[Oracle Web Cache](https://www.oracle.com/middleware/technologies/webtier.html#WebCache)</span>, a reverse proxy cache and compression engine that can be deployed between the client and server.
+One choice for caching is {{<nb>}}[Oracle Web Cache](https://www.oracle.com/middleware/technologies/webtier.html#WebCache){{</nb>}}, a reverse proxy cache and compression engine that can be deployed between the client and server.
 
 Another alternative is the scalable disk‑based cache in NGINX Open Source and NGINX Plus, which integrates with their reverse proxy capability. There are a variety of useful directives that can be used to finetune caching behavior; for a detailed discussion, see [A Guide to Caching with NGINX and NGINX Plus](https://www.nginx.com/blog/nginx-caching-guide/).
 
@@ -423,19 +423,9 @@ For more complete information on caching, see the [NGINX Plus Admin Guide]({{<
 
 ### Configuring HTTP/2 Support
 
-HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and later. As always, we recommend you run the latest version of software to take advantage of improvements and bug fixes.
+HTTP/2 is supported by default in both NGINX Open Source and NGINX Plus. As always, run the latest version of the software to take advantage of improvements and bug fixes.
 
-- If using NGINX Open Source, note that in version 1.9.5 and later the SPDY module is completely removed from the codebase and replaced with the [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) module. After upgrading to version 1.9.5 or later, you can no longer configure NGINX Open Source to use SPDY. If you want to keep using SPDY, you need to compile NGINX Open Source from the sources in the [NGINX 1.8.x branch](https://nginx.org/en/download.html).
-
-- If using NGINX Plus, in R11 and later the {{<nb>}}**nginx-plus**{{</nb>}} package supports HTTP/2 by default, and the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by separate [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md#nginx-authored-and-nginx-certified-dynamic-modules" >}}) authored by NGINX.
-
-  In NGINX Plus R8 through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
-
-  In NGINX Plus R8 and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY.
-
-    If using NGINX Plus R7, you must install the {{<nb>}}**nginx-plus-http2**{{</nb>}} package instead of the {{<nb>}}**nginx-plus**{{</nb>}} or {{<nb>}}**nginx-plus-extras**{{</nb>}} package.
-
-To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
+To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that you created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
 ```nginx
 # In the 'server' block for HTTPS traffic
@@ -451,7 +441,7 @@ To verify that HTTP/2 translation is working, you can use the "HTTP/2 and SPDY i
 
 The full configuration for basic load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/weblogic-basic.conf) from the NGINX website.
 
-We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of <span style="white-space: nowrap; font-weight: bold;">/etc/nginx/conf.d/weblogic-basic.conf</span>.
+Don't copy text directly from this document. Instead, use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of {{<nb>}}**/etc/nginx/conf.d/weblogic-basic.conf**{{</nb>}}.
 
 ```nginx
 proxy_cache_path /tmp/NGINX_cache/ keys_zone=backcache:10m;
@@ -596,7 +586,7 @@ Because the `health_check` directive is placed in the `location` block, we can e
 
     Directive documentation: [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
 
-2. In the `http` context, include a `match` directive to define the tests that a server must pass to be considered functional. In this example, it must return status code `200`, the <span style="white-space: nowrap;">`Content-Type`</span> response header must be `text/html`, and the response body must match the indicated regular expression.
+2. In the `http` context, include a `match` directive to define the tests that a server must pass to be considered functional. In this example, it must return status code `200`, the {{<nb>}}`Content-Type`{{</nb>}} response header must be `text/html`, and the response body must match the indicated regular expression.
 
    ```nginx
    # In the 'http' block
@@ -674,11 +664,11 @@ For more complete information about NGINX Open Source and NGINX Plus' caching 
 
 ### Enabling Live Activity Monitoring
 
-NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
+NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics. NGINX Plus reports statistics through a RESTful JSON interface, making it easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
 
 <img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide.]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>
+For more information about live activity monitoring, see the [NGINX Plus Admin Guide.]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})
 
 The quickest way to configure live activity monitoring and the built‑in dashboard is to download the sample configuration file from the NGINX website and modify it as necessary. For more complete instructions, see [Live Activity Monitoring of NGINX Plus in 3 Simple Steps](https://www.nginx.com/blog/live-activity-monitoring-nginx-plus-3-simple-steps/) on our blog.
 
@@ -718,7 +708,7 @@ The quickest way to configure live activity monitoring and the built‑in dashbo
 
       Directive documentation: [auth_basic and auth_basic_user_file](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)
 
-    - **Client certificates**, which are part of a complete configuration of SSL/TLS. For more information, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}})</span> and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module.
+    - **Client certificates**, which are part of a complete configuration of SSL/TLS. For more information, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}}) and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module.
 
     - **Firewall**. Configure your firewall to disallow outside access to the port for the dashboard (8080 in the sample configuration file).
 
@@ -747,11 +737,11 @@ The quickest way to configure live activity monitoring and the built‑in dashbo
 
    Directive documentation: [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone)
 
-When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap; font-weight: bold;">http://_nginx-plus-server-address_:8080</span>.
+When you reload the NGINX Plus configuration file, for example by running the {{<nb>}}`nginx -s reload`{{</nb>}} command, the NGINX Plus dashboard is available immediately at {{<nb>}}**http://_nginx-plus-server-address_:8080**{{</nb>}}.
 
 ### Enabling Dynamic Reconfiguration of Upstream Groups
 
-With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either DNS or the NGINX Plus API introduced in <span style="white-space: nowrap;">NGINX Plus R13</span>. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#configuring-http-load-balancing-using-dns">DNS</a> and [API]({{< ref "nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
+With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either DNS or the NGINX Plus API. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#configuring-http-load-balancing-using-dns">DNS</a> and [API]({{< ref "nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
 
 To enable dynamic reconfiguration of your upstream group of WebLogic Server app servers using the NGINX Plus API:
 
@@ -790,7 +780,7 @@ To enable dynamic reconfiguration of your upstream group of WebLogic Server app 
 
 The full configuration for enhanced load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/weblogic-enhanced.conf) from the NGINX website.
 
-We recommend that you do not copy text directly from this document, but instead use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of {{<nb>}}**/etc/nginx/conf.d/weblogic-enhanced.conf**{{</nb>}}.
+Don't copy text directly from this document. Instead, use the method described in [Creating and Modifying Configuration Files](#config-files) to include these directives in your configuration – add an `include` directive to the `http` context of the main **nginx.conf** file to read in the contents of {{<nb>}}**/etc/nginx/conf.d/weblogic-enhanced.conf**{{</nb>}}.
 
 ```nginx
 proxy_cache_path /tmp/NGINX_cache/ keys_zone=backcache:10m;

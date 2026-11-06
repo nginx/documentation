@@ -8,33 +8,30 @@ f5-content-type: how-to
 f5-product: NGINX Plus
 ---
 
-<span id="overview"></span>
-## Overview
+## Overview {#overview}
 
-With F5 NGINX Plus, configuration of upstream servers in a server group can be modified on-the-fly without reloading the servers and NGINX configuration. This is useful for:
+With F5 NGINX Plus, you can modify the configuration of upstream servers in a server group on-the-fly, without reloading the servers or the NGINX configuration. This is useful for:
 
 - autoscaling, when you need to add more servers
 - maintenance, when you need to remove a server, specify a backup server, or take a server down temporarily
 - quick setup, when you need to change upstream server settings such as server weight, active connections, slow start, failure timeouts.
 - monitoring, when you get the state of the server or server group with one command
 
-These changes are made with the NGINX Plus REST API interface with API commands.
+You make these changes with NGINX Plus REST API commands.
 
 > **Note:** In NGINX Plus [Release 12]({{< ref "nginx/releases.md#r12" >}}) and earlier, dynamic configuration was performed with the `upstream_conf` handler. That API (and the extended `status` API) are now deprecated in favor of the NGINX Plus API.
 
 
-<span id="prereq"></span>
-## Prerequisites
+## Prerequisites {#prereq}
 
-Prior to using the dynamic configuration feature, make sure that you have the following environment:
+Before you use dynamic configuration, make sure:
 
-1. NGINX Plus [R13]({{< ref "nginx/releases.md#r13" >}}) or later
+1. You are running a [supported release of NGINX Plus]({{< ref "/nginx/releases.md" >}})
 2. You have created upstream groups of application or web servers, as described in [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}) and [TCP/UDP Load Balancing]({{< ref "tcp-udp-load-balancer.md" >}})
 3. Upstream server groups reside in the shared memory zone, as described in [Sharing Data with Multiple Worker Processes]({{< ref "http-load-balancer.md" >}})
 
 
-<span id="api_setup"></span>
-## Enabling Dynamic Configuration
+## Enabling Dynamic Configuration {#api_setup}
 
 1. Create an upstream server group as described in <a href="../http-load-balancer/#proxying-http-traffic-to-a-group-of-servers">Proxying Traffic to a Group of Servers</a>.
 
@@ -127,8 +124,7 @@ http {
 }
 ```
 
-<span id="api_use"></span>
-## Using the API for Dynamic Configuration
+## Using the API for Dynamic Configuration {#api_use}
 
 The NGINX Plus REST API supports the following HTTP methods:
 
@@ -176,14 +172,12 @@ curl -X PATCH -d '{ "down": true }' -s 'http://127.0.0.1/api/9/http/upstreams/ap
 ```
 
 
-<span id="example"></span>
-### Interactive Example
+### Interactive Example {#example}
 
 You can explore the Swagger interface to the NGINX Plus API in read‑only mode at [https://demo.nginx.com/swagger-ui/](https://demo.nginx.com/swagger-ui/).
 
 
-<span id="state"></span>
-## Configuring Persistence of Dynamic Configuration
+## Configuring Persistence of Dynamic Configuration {#state}
 
 With the basic configuration in
 [Enabling the API](#api_setup), changes made with the API are stored only in the shared memory zone. The changes are discarded when the NGINX Plus configuration file is reloaded.
