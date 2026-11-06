@@ -12,10 +12,9 @@ This article explains how to configure high availability of NGINX Plus instance
 
 > **Note:** This solution is designed to work in environments where IP addresses can be controlled through standard operating system calls, and often does not work in cloud environments where IP addresses are controlled through interfacing with the cloud infrastructure. For information about making NGINX Plus highly available in cloud environments, see the [Deployment Guides]({{< ref "/nginx/deployment-guides/_index.md" >}}).
 
-<span id="ha_support"></span>
-## High Availability Support Based on keepalived
+## High Availability Support Based on keepalived {#ha_support}
 
-NGINX Plus [Release 6]({{< ref "nginx/releases.md#r6" >}}) and later supports a solution for fast and easy configuration of NGINX Plus in an active‑passive high‑availability (HA) setup, based on [keepalived](https://www.keepalived.org/).
+NGINX Plus supports fast, easy configuration for an active‑passive high‑availability (HA) setup, based on [keepalived](https://www.keepalived.org/).
 
 The [keepalived open source project](http://www.keepalived.org/) includes three components:
 
@@ -28,15 +27,14 @@ The [keepalived open source project](http://www.keepalived.org/) includes three 
    If a service on the primary node fails the configured number of health checks, `keepalived` reassigns the virtual IP address from the primary node to the backup (passive) node.
 
 
-<span id="ha_configure"></span>
-## Configuring High Availability
+## Configuring High Availability {#ha_configure}
 
-Run the <span style="white-space: nowrap;">`nginx-ha-setup`</span> script on both nodes as the `root` user (the script is distributed in the <span style="white-space: nowrap;">**nginx-ha-keepalived**</span> package, which must be installed in addition to the base NGINX Plus package). The script configures a highly available NGINX Plus environment with an active‑passive pair of nodes acting as primary and backup. It prompts for the following data:
+Run the {{<nb>}}`nginx-ha-setup`{{</nb>}} script on both nodes as the `root` user (the script is distributed in the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package, which must be installed in addition to the base NGINX Plus package). The script configures a highly available NGINX Plus environment with an active‑passive pair of nodes acting as primary and backup. It prompts for the following data:
 
 - IP address of the local and remote nodes (one of which will be configured as the primary, the other as the backup)
 - One additional free IP address to be used as the cluster endpoint’s (floating) VIP
 
-The configuration of the `keepalived` daemon is recorded in <span style="white-space: nowrap;">**/etc/keepalived/keepalived.conf**</span>. The configuration blocks in the file control notification settings, the VIPs to manage, and the health checks to use to test the services that rely on VIPs. Following is the configuration file created by the <span style="white-space: nowrap;">`nginx-ha-setup`</span> script on a CentOS 7 machine. Note that this is not an NGINX Plus configuration file, so the syntax is different (semicolons are not used to delimit directives, for example).
+The configuration of the `keepalived` daemon is recorded in {{<nb>}}**/etc/keepalived/keepalived.conf**{{</nb>}}. The configuration blocks in the file control notification settings, the VIPs to manage, and the health checks to use to test the services that rely on VIPs. Following is the configuration file created by the {{<nb>}}`nginx-ha-setup`{{</nb>}} script on a CentOS 7 machine. Note that this is not an NGINX Plus configuration file, so the syntax is different (semicolons are not used to delimit directives, for example).
 
 ```none
 global_defs {
@@ -94,8 +92,7 @@ Describing the entire configuration is beyond the scope of this article, but a f
 See [keepalived manpage](https://www.keepalived.org/manpage.html) for more information about `keepalived` directives.
 
 
-<span id="ha_scripts"></span>
-## Using a Health-Check Script to Control Which Server Is Primary
+## Using a Health-Check Script to Control Which Server Is Primary {#ha_scripts}
 
 There is no fencing mechanism in `keepalived`. If the two nodes in a pair are not aware of each other, each assumes it is the primary and assigns the VIP to itself. To prevent this situation, the configuration file defines a script‑execution mechanism called `chk_nginx_service` that runs a script regularly to check whether NGINX Plus is operational, and adjusts the local node’s priority based on the script’s return code. Code `0` (zero) indicates correct operation, and code `1` (or any nonzero code) indicates an error.
 
@@ -110,11 +107,10 @@ The `interval` directive specifies how often the check script executes, in secon
 
 The `rise` and `fall` directives (not used in the sample configuration file) specify how many times the script must succeed or fail before action is taken.
 
-The <span style="white-space: nowrap;">`nginx-ha-check`</span> script provided with the <span style="white-space: nowrap;">**nginx-ha-keepalive**</span> package checks if NGINX Plus is up. We recommend creating additional scripts as appropriate for your local setup.
+The {{<nb>}}`nginx-ha-check`{{</nb>}} script provided with the {{<nb>}}**nginx-ha-keepalive**{{</nb>}} package checks if NGINX Plus is up. Create additional scripts as appropriate for your local setup.
 
 
-<span id="ha_status"></span>
-## Displaying Node State
+## Displaying Node State {#ha_status}
 
 To see which node is currently the primary for a given VIP, run the `ip addr show` command for the interface on which the VRRP instance is defined (in the following commands, interface **eth0** on nodes **centos7-1** and **centos7-2**):
 
@@ -140,7 +136,7 @@ centos7-2 $ ip addr show eth0
 
 In this output, the second `inet` line for **centos7-1** indicates that it is primary – the defined VIP (192.168.100.150) is assigned to it. The other `inet` lines show the primary node's real IP address (192.168.100.100) and the backup node’s IP address (192.168.100.101).
 
-A node’s current state is recorded in the local <span style="white-space: nowrap;">**/var/run/nginx-ha-keepalived.state**</span> file. You can use the `cat` command to display it:
+A node’s current state is recorded in the local {{<nb>}}**/var/run/nginx-ha-keepalived.state**{{</nb>}} file. You can use the `cat` command to display it:
 
 ```shell
 centos7-1 $ cat /var/run/nginx-ha-keepalived.state
@@ -149,7 +145,7 @@ centos7-2 $ cat /var/run/nginx-ha-keepalived.state
 STATE=BACKUP
 ```
 
-In version 1.1 and later of the <span style="white-space: nowrap;">**nginx-ha-keepalived**</span> package, it is possible to dump VRRP extended statistics and data to the filesystem with the following command:
+In version 1.1 and later of the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package, it is possible to dump VRRP extended statistics and data to the filesystem with the following command:
 
 ```shell
 centos7-1 $ service keepalived dump
@@ -158,8 +154,7 @@ centos7-1 $ service keepalived dump
 This command sends signals to the running `keepalived` proccess to write the current state to **/tmp/keepalived.stats** and **/tmp/keepalived.data**.
 
 
-<span id="ha_state"></span>
-## Forcing a State Change
+## Forcing a State Change {#ha_state}
 
 To force the primary node to become the backup, run the following command on it:
 
@@ -169,7 +164,7 @@ service keepalived stop
 
 As it shuts down, `keepalived` sends a VRRP packet with priority `0` to the backup node, which causes the backup node to take over the VIP.
 
-If your cluster is using version 1.1 of the <span style="white-space: nowrap;">**nginx-ha-keepalived**</span> package, this is a simpler way to force the state change:
+If your cluster is using version 1.1 of the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package, this is a simpler way to force the state change:
 
 ```shell
 touch /var/run/keepalived-manual-failover
@@ -179,14 +174,13 @@ This command creates a file checked by the script defined in a `vrrp_script
 chk_manual_failover` block. If the file exists, `keepalived` lowers the priority of the primary node, which causes the backup node to take over the VIP.
 
 
-<span id="ha_addresses"></span>
-## Adding More Virtual IP Addresses
+## Adding More Virtual IP Addresses {#ha_addresses}
 
-The configuration created by the <span style="white-space: nowrap;">`nginx-ha-setup`</span> script is very basic, and makes a single IP address highly available.
+The configuration created by the {{<nb>}}`nginx-ha-setup`{{</nb>}} script is very basic, and makes a single IP address highly available.
 
 To make more than one IP address highly available:
 
-1. Add each new IP address to the `virtual_ipaddress` block in the <span style="white-space: nowrap;">**/etc/keepalived/keepalived.conf**</span> file on both nodes:
+1. Add each new IP address to the `virtual_ipaddress` block in the {{<nb>}}**/etc/keepalived/keepalived.conf**{{</nb>}} file on both nodes:
 
     ```none
     virtual_ipaddress {
@@ -205,10 +199,9 @@ To make more than one IP address highly available:
     ```
 
 
-<span id="ha_addresses_ipv6"></span>
-## Dual-Stack Configuration of IPv4 and IPv6
+## Dual-Stack Configuration of IPv4 and IPv6 {#ha_addresses_ipv6}
 
-In `keepalived` version 1.2.20 and later (and version 1.1 and later of the <span style="white-space: nowrap;">**nginx-ha-keepalived**</span> package), `keepalived` no longer supports mixing IPv4 and IPv6 addresses in one VRRP instance (`virtual_ipaddress` block), because that violates the [VRRP standard](https://tools.ietf.org/html/rfc5798#section-7.4).
+In `keepalived` version 1.2.20 and later (and version 1.1 and later of the {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package), `keepalived` no longer supports mixing IPv4 and IPv6 addresses in one VRRP instance (`virtual_ipaddress` block), because that violates the [VRRP standard](https://tools.ietf.org/html/rfc5798#section-7.4).
 
 There are two ways to configure dual‑stack HA with VRRP:
 
@@ -269,8 +262,7 @@ There are two ways to configure dual‑stack HA with VRRP:
 
     Note that VRRP instances can both use the same `virtual_router_id` since the VRRP IPv4 and IPv6 instances are completely independent of each other.
 
-<span id="ha_troubleshoot"></span>
-## Troubleshooting keepalived and VRRP
+## Troubleshooting keepalived and VRRP {#ha_troubleshoot}
 
 The `keepalived` daemon uses the `syslog` utility for logging. On CentOS, RHEL, and SLES‑based systems, the output is typically written to **/var/log/messages**, whereas on Ubuntu and Debian‑based systems it is written to **/var/log/syslog**. Log entries record events such as startup of the `keepalived` daemon and state transitions.
 
@@ -331,13 +323,11 @@ Several fields in the output are useful for debugging:
 - `auth` – Authentication token sent (set by the `auth_pass` directive)
 
 
-<span id="ha_misc"></span>
-## Keeping F5 NGINX Plus Configuration Files in Sync
+## Keeping F5 NGINX Plus Configuration Files in Sync {#ha_misc}
 
 The NGINX Plus configuration files on the nodes must both define the services that are being made highly available. For information about synchronizing NGINX Plus configuration, see [Synchronizing NGINX Configuration in a Cluster]({{< ref "configuration-sharing.md" >}}).
 
 
-<span id="ha_examples"></span>
-## Additional Configuration Examples
+## Additional Configuration Examples {#ha_examples}
 
-The <span style="white-space: nowrap;">**nginx-ha-keepalived**</span> package includes more configuration examples in the <span style="white-space: nowrap;">**/usr/share/doc/nginx-ha-keepalived**</span> directory.
+The {{<nb>}}**nginx-ha-keepalived**{{</nb>}} package includes more configuration examples in the {{<nb>}}**/usr/share/doc/nginx-ha-keepalived**{{</nb>}} directory.

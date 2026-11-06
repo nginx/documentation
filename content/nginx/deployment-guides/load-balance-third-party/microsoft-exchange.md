@@ -10,8 +10,7 @@ f5-product: NGINX Plus
 
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of Microsoft Exchange<sup>TM</sup> servers. You can deploy Exchange and NGINX Plus on premises, in a private cloud, or in public clouds including Amazon Web Services (AWS), the Google Cloud Platform, and Microsoft Azure. The guide covers the different installation types, and provides complete instructions for customizing both NGINX Plus and Exchange as required.
 
-<span id="about-nginx"></span>
-## About NGINX Plus
+## About NGINX Plus {#about-nginx}
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of the [NGINX Open Source](https://nginx.org/en) software. NGINX Plus is a complete application delivery platform, extending the power of NGINX Open Source with a host of enterprise‑ready capabilities that enhance a Microsoft Exchange server deployment and are instrumental to building web applications at scale:
 
@@ -24,10 +23,9 @@ This deployment guide explains how to use F5 NGINX Plus to load balance traffic 
 - Advanced activity monitoring available via a [Dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-dashboard" >}}) or [REST API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
-<span style="white-space: nowrap;">[NGINX Plus Release 6 R6](https://www.nginx.com/blog/nginx-plus-r6-released/#tcp-load-balancing)</span> introduced full‑featured load balancing of TCP traffic, with support extended to UDP in [<span style="white-space: nowrap;">NGINX Plus R9</span>](https://www.nginx.com/blog/nginx-plus-r9-released/#udp-lb) and continuing enhancements for both protocols included in subsequent releases (for details, see [NGINX Plus Releases]({{< ref "/nginx/releases.md" >}}). Because NGINX Plus load balances TCP, HTTP, and HTTPS traffic, it's ideal for Microsoft Exchange deployments, which use all three protocols.
+Because NGINX Plus load balances TCP, HTTP, and HTTPS traffic, it's ideal for Microsoft Exchange deployments, which use all three protocols.
 
-<span id="using-guide"></span>
-## Using This Guide
+## Using This Guide {#using-guide}
 
 After reviewing [Prerequisites and System Requirements](#prereqs), perform the instructions in these sections:
 
@@ -45,16 +43,15 @@ In the final section, you choose between basic Exchange load balancing and an en
 - For readability reasons, some commands appear on multiple lines. If you want to copy and paste them into a terminal window, we recommend that you first copy them into a text editor, where you can substitute the object names that are appropriate for your deployment and remove any extraneous formatting characters that your browser might insert.
 - We recommend that you do not copy text from the configuration snippets in this guide into your configuration files. For the recommended way to create configuration files, see [Creating and Modifying Configuration Files](#config-files).
 
-<span id="prereqs"></span>
-## Prerequisites and System Requirements
+## Prerequisites and System Requirements {#prereqs}
 
 - Microsoft Exchange 2013 or later, installed and configured on a system running Windows Server 2012 or later. The load balancing functionality is not supported for earlier versions of Microsoft Exchange.
 
   Exchange CASs can be configured for [HTTP Basic authentication](https://tools.ietf.org/html/rfc7617), as specified in this guide.
 
-- A Linux system to host NGINX Plus (in on‑premises and private‑cloud deployments). To avoid potential conflicts with other applications, we recommend that you install NGINX Plus on a fresh system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
+- A Linux system to host NGINX Plus (in on‑premises and private‑cloud deployments). To avoid potential conflicts with other applications, install NGINX Plus on a fresh system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 
-- <span style="white-space: nowrap;">NGINX Plus R7</span> or later. TCP load balancing is available in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Support for the <span style="white-space: nowrap;">Microsoft NT LAN Manager</span> (NTLM) is available in <span style="white-space: nowrap;">NGINX Plus R7</span> and later.
+- A [supported release of NGINX Plus]({{< ref "/nginx/releases.md" >}}), for TCP load balancing and support for Microsoft NT LAN Manager (NTLM) authentication.
 
 The instructions assume you have basic Linux system administration skills, including the following. Full instructions are not provided for these tasks.
 
@@ -70,8 +67,7 @@ Similarly, the instructions assume you have basic Windows system administration 
 - Running PowerShell commands
 - Restarting Internet Information Services (IIS) services
 
-<span id="dns-exchange-firewall"></span>
-## Configuring DNS, Exchange, and Firewalls
+## Configuring DNS, Exchange, and Firewalls {#dns-exchange-firewall}
 
 To prepare for the configuration of NGINX Plus as your Exchange load balancer, first perform the steps in these sections:
 
@@ -79,8 +75,7 @@ To prepare for the configuration of NGINX Plus as your Exchange load balancer, 
 - [Configuring Exchange](#exchange)
 - [Configuring Firewalls](#firewall)
 
-<span id="dns"></span>
-### Configuring DNS
+### Configuring DNS {#dns}
 
 Exchange requires the following Domain Name System (DNS) records for normal operation. Create or modify them as necessary.
 
@@ -108,12 +103,11 @@ Exchange requires the following Domain Name System (DNS) records for normal oper
   _autodiscover._tcp.company.com.    60    SRV    1  10  443  mail.company.com
   ```
 
-<span id="exchange"></span>
-### Configuring Exchange
+### Configuring Exchange {#exchange}
 
-Use Exchange Management Shell (PowerShell) to configure Exchange on each CAS. When running the `Set` command, you must always specify the CAS name and directory (together referred to as the _identity_) for the object being configured. You can either include the <span style="white-space: nowrap;">`-Identity`</span> flag on the `Set` command line, or type the identity at the prompt that appears if you don't include the <span style="white-space: nowrap;">`-Identity`</span> flag (as in the commands in this section).
+Use Exchange Management Shell (PowerShell) to configure Exchange on each CAS. When running the `Set` command, you must always specify the CAS name and directory (together referred to as the _identity_) for the object being configured. You can either include the {{<nb>}}`-Identity`{{</nb>}} flag on the `Set` command line, or type the identity at the prompt that appears if you don't include the {{<nb>}}`-Identity`{{</nb>}} flag (as in the commands in this section).
 
-To obtain an identity if you don't know it, run the `Get` command that corresponds to the `Set` command you need to run. Include the `fl` (formatted list) keyword on the `Get` command line to view the complete output from the command. For example, to obtain identity information for the <span style="white-space: nowrap;">`Set-OutlookAnywhere`</span> command, run this command:
+To obtain an identity if you don't know it, run the `Get` command that corresponds to the `Set` command you need to run. Include the `fl` (formatted list) keyword on the `Get` command line to view the complete output from the command. For example, to obtain identity information for the {{<nb>}}`Set-OutlookAnywhere`{{</nb>}} command, run this command:
 
 ```none
 C:\> Get-OutlookAnywhere | fl
@@ -168,7 +162,7 @@ Repeat these commands on each CAS in your deployment:
    -ExternalUrl https://mail.company.com/OAB
    ```
 
-7. If Exchange 2013 Service <span style="white-space: nowrap;">Pack 1 (SP 1)</span> or later is installed, configure the desired authentication methods for MAPI over HTTP. This sample command configures HTTP Basic authentication. (Note that MAP over HTTP is not available in Exchange 2013 without SP 1.)
+7. If Exchange 2013 Service Pack 1 (SP 1) or later is installed, configure the desired authentication methods for MAPI over HTTP. This sample command configures HTTP Basic authentication. (Note that MAP over HTTP is not available in Exchange 2013 without SP 1.)
 
    ```none
    C:\> Set-MapiVirtualDirectory
@@ -177,14 +171,13 @@ Repeat these commands on each CAS in your deployment:
    -IISAuthenticationMethods Basic
    ```
 
-8. If <span style="white-space: nowrap;">Exchange 2013 SP 1</span> or later is installed, enable MAPI Over HTTP.
+8. If Exchange 2013 SP 1 or later is installed, enable MAPI Over HTTP.
 
    ```none
    C:\> Set-OrganizationConfig -MapiHTTPEnabled
    ```
 
-<span id="firewall"></span>
-### Configuring Firewalls
+### Configuring Firewalls {#firewall}
 
 If there is a firewall between the NGINX Plus server and other applications in your Exchange deployment, configure it to pass through traffic on the ports specified in the table. The columns represent the three types of applications that communicate with the NGINX Plus server – email clients, the NGINX Plus live activity monitoring dashboard on your administrative network, and CASs – and the **x** indicates that the port must be open.
 
@@ -202,19 +195,17 @@ If there is a firewall between the NGINX Plus server and other applications in 
 {{</table >}}
 
 
-<span id="tls-certificate"></span>
-## Configuring an SSL/TLS Certificate for Client Traffic
+## Configuring an SSL/TLS Certificate for Client Traffic {#tls-certificate}
 
 To enable SSL/TLS encryption of traffic between NGINX Plus and Exchange clients, you need to configure a server certificate for NGINX Plus.
 
-There are several ways to obtain the required certificate, including the following. For your convenience, <span style="white-space: nowrap;">step-by-step</span> instructions are provided for the second and third options.
+There are several ways to obtain the required certificate, including the following. For your convenience, {{<nb>}}step-by-step{{</nb>}} instructions are provided for the second and third options.
 
 - If you already have an SSL/TLS server certificate installed on another UNIX or Linux system (including systems running NGINX Open Source, NGINX Plus, or Apache HTTP Server), copy it to the **/etc/nginx/ssl** directory on the NGINX Plus server.
 - Request a new certificate from a certificate authority (CA) or your organization's security group, as described in [Generating a Certificate Request with the openssl Command](#certificate-request).
 - If you already have an SSL/TLS certificate on a Windows system, see [Exporting and Converting an SSL/TLS Certificate from an IIS Server](#certificate-iis).
 
-<span id="certificate-request"></span>
-### Generating a Certificate Request with the openssl Command
+### Generating a Certificate Request with the openssl Command {#certificate-request}
 
 1. Log in as the root user on a machine that has the `openssl` software installed.
 
@@ -246,8 +237,7 @@ There are several ways to obtain the required certificate, including the followi
 
   In the configuration files for Exchange load balancing that you can download from the NGINX website, the filenames for the certificate and private key are **company.com.crt** and **company.com.key**. For a discussion of the file and download instructions, see [Creating and Modifying Configuration Files](#config-files).
 
-<span id="certificate-iis"></span>
-### Exporting and Converting an SSL/TLS Certificate from an IIS Server
+### Exporting and Converting an SSL/TLS Certificate from an IIS Server {#certificate-iis}
 
 On Windows systems, SSL/TLS certificates are packaged in a Public‑Key Cryptography Standards (PKCS) archive file with extension **.pfx**. You need to export the **.pfx** file and convert the contents to the Linux‑compatible PEM format.
 
@@ -255,7 +245,7 @@ Working in the Microsoft Management Console, perform these steps:
 
 1. Open the **Certificates** snap‑in.
 
-2. In the left‑hand navigation pane, click the **Certificates** folder in the logical store for the certificate you want to export (in the following figure, it is <span style="white-space: nowrap; font-weight: bold;">Personal > Certificates</span>).
+2. In the left‑hand navigation pane, click the **Certificates** folder in the logical store for the certificate you want to export (in the following figure, it is {{<nb>}}**Personal > Certificates**{{</nb>}}).
 
 3. In the main pane, right‑click the certificate to be exported (in the following figure, it is **cas01.company.com**).
 
@@ -299,14 +289,13 @@ Working on the NGINX Plus server (which must have the `openssl` software instal
 
    In the configuration files for Exchange load balancing that you can download from the NGINX website, the filenames for the certificate and private key are **company.com.crt** and **company.com.key**. For a discussion of the file and download instructions, see [Creating and Modifying Configuration Files](#config-files).
 
-<span id="config"></span>
-## Configuring NGINX Plus
+## Configuring NGINX Plus {#config}
 
 You can set up NGINX Plus as your Exchange load balancer in either a basic or enhanced configuration. Basic configuration provides complete load‑balancing and reverse‑proxy functions. The enhanced configuration adds the following features to make your deployment more reliable and easier to manage:
 
 - Fine‑grained URL location control – Exchange CASs interact with the various applications used by clients on different types of devices. Creating a separate `location` block for each application isolates the effect of an application outage to users of that application only. Other applications on the CAS continue to run normally.
 - Health checks – Exchange includes a health‑check mechanism for several applications that integrates easily with NGINX Plus health checks.
-- Live activity monitoring – NGINX Plus includes a dashboard that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later.
+- Live activity monitoring – NGINX Plus includes a dashboard that provides key load and performance metrics in real time, including TCP metrics.
 
 For more information about these features in an Exchange load balancer, see [Completing the Configuration of Enhanced Load Balancing](#config-enhanced).
 
@@ -321,8 +310,7 @@ The instructions in these sections are mandatory:
 
 Optionally, you can enable support for HTTP/2 in [Configuring HTTP/2 Support](#http2).
 
-<span id="installing"></span>
-### Installing NGINX Plus
+### Installing NGINX Plus {#installing}
 
 You can install NGINX Plus on premises, in a private cloud, or in a public cloud such as the Amazon Elastic Compute Cloud (EC2), the Google Cloud Platform, or Microsoft Azure. See the instructions for your installation type:
 
@@ -331,8 +319,7 @@ You can install NGINX Plus on premises, in a private cloud, or in a public clou
 - Google Compute Cloud – [Installing NGINX Plus on the Google Cloud Platform]({{< relref "../../admin-guide/installing-nginx/installing-nginx-plus-google-cloud-platform.md" >}})
 - Microsoft Azure – [Installing NGINX Plus on Microsoft Azure]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus-microsoft-azure.md" >}})
 
-<span id="config-files"></span>
-### Creating and Modifying Configuration Files
+### Creating and Modifying Configuration Files {#config-files}
 
 To reduce errors, this guide has you copy directives from files provided by NGINX into your configuration files, instead of using a text editor to type in the directives yourself. Then you go through the sections in this guide (starting with [Configuring Global Settings](#global-settings)) to learn how to modify the directives as required for your deployment.
 
@@ -384,21 +371,20 @@ To set up the conventional configuration scheme, perform these steps:
    }
    ```
 
-2. In the **/etc/nginx/conf.d** directory, create a new file called {{<nb>}}**exchange-http.conf**{{</nb>}} for directives that pertain to Exchange HTTP and HTTPS traffic (or substitute the name you chose in Step 1). Copy in the directives from the `http` configuration block in the downloaded configuration file. Remember not to copy the first line <span style="white-space: nowrap;">(`http` `{`)</span> or the closing curly brace (`}`) for the block, because the `http` block you created in Step 1 already has them.
+2. In the **/etc/nginx/conf.d** directory, create a new file called {{<nb>}}**exchange-http.conf**{{</nb>}} for directives that pertain to Exchange HTTP and HTTPS traffic (or substitute the name you chose in Step 1). Copy in the directives from the `http` configuration block in the downloaded configuration file. Remember not to copy the first line {{<nb>}}(`http` `{`){{</nb>}} or the closing curly brace (`}`) for the block, because the `http` block you created in Step 1 already has them.
 
-3. Also in the **/etc/nginx/conf.d** directory, create a new file called {{<nb>}}**exchange-stream.conf**{{</nb>}} for directives that pertain to Exchange TCP traffic (or substitute the name you chose in Step 1). Copy in the directives from the `stream` configuration block in the dowloaded configuration file. Again, do not copy the first line <span style="white-space: nowrap;">(`stream` `{`)</span> or the closing curly brace (`}`).
+3. Also in the **/etc/nginx/conf.d** directory, create a new file called {{<nb>}}**exchange-stream.conf**{{</nb>}} for directives that pertain to Exchange TCP traffic (or substitute the name you chose in Step 1). Copy in the directives from the `stream` configuration block in the dowloaded configuration file. Again, do not copy the first line {{<nb>}}(`stream` `{`){{</nb>}} or the closing curly brace (`}`).
 
 For reference purposes, the text of the full configuration files is included in this document:
 
 - [Full Configuration for Basic Load Balancing](#full-configuration-basic)
 - [Full Configuration for Enhanced Load Balancing](#full-configuration-enhanced)
 
-We recommend, however, that you do not copy text directly from this document. It does not necessarily use the same mechanisms for positioning text (such as line breaks and white space) as text editors do. In text copied into an editor, lines might run together and indenting of child statements in configuration blocks might be missing or inconsistent. The absence of formatting does not present a problem for NGINX Plus, because (like many compilers) it ignores white space during parsing, relying solely on semicolons and curly braces as delimiters. The absence of white space does, however, make it more difficult for humans to interpret the configuration and modify it without making mistakes.
+However, don't copy text directly from this document. It doesn't necessarily use the same mechanisms for positioning text (such as line breaks and white space) as text editors do. In text copied into an editor, lines might run together and indenting of child statements in configuration blocks might be missing or inconsistent. The absence of formatting doesn't cause problems for NGINX Plus, because (like many compilers) it ignores white space during parsing, relying solely on semicolons and curly braces as delimiters. The absence of white space does, however, make it more difficult for humans to interpret the configuration and modify it without making mistakes.
 
-<span id="reloading"></span>
-#### About Reloading Updated Configuration
+#### About Reloading Updated Configuration {#reloading}
 
-We recommend that each time you complete a set of updates to the configuration, you run the <span style="white-space: nowrap;">`nginx -t`</span> command to test the configuration file for syntactic validity.
+Each time you complete a set of updates to the configuration, run the {{<nb>}}`nginx -t`{{</nb>}} command to test the configuration file for syntactic validity.
 
 ```none
 root# nginx -t
@@ -418,8 +404,7 @@ or
 root# service nginx reload
 ```
 
-<span id="global-settings"></span>
-### Configuring Global Settings
+### Configuring Global Settings {#global-settings}
 
 Verify that the main **nginx.conf** file includes these global directives, adding them as necessary.
 
@@ -440,8 +425,7 @@ events {
 
 Directive documentation: [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log), [events](https://nginx.org/en/docs/ngx_core_module.html#events), [pid](https://nginx.org/en/docs/ngx_core_module.html#pid), [user](https://nginx.org/en/docs/ngx_core_module.html#user), [worker_connections](https://nginx.org/en/docs/ngx_core_module.html#worker_connections), [worker_processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes)
 
-<span id="tcp-load-balancing"></span>
-### Configuring TCP Load Balancing
+### Configuring TCP Load Balancing {#tcp-load-balancing}
 
 The directives in the top‑level `stream` configuration block configure TCP load balancing, and are the same for both basic and enhanced load balancing. Modify them as indicated:
 
@@ -497,8 +481,7 @@ The `status_zone` directives create an entry for each virtual server on the **TC
 
 Similarly, the `zone` directives create an entry for each upstream group on the **TCP Upstreams** tab of the NGINX Plus live activity monitoring dashboard. They also create a shared memory zone for storing configuration and run‑time state information about the servers in the upstream group, which the `nginx` worker processes on the NGINX Plus host use to improve proxying and load‑balancing efficiency.
 
-<span id="global-http"></span>
-### Configuring Global HTTP and HTTPS Settings
+### Configuring Global HTTP and HTTPS Settings {#global-http}
 
 These directives in the top‑level `http` configuration block configure global HTTP and HTTPS settings. Modify them as indicated:
 
@@ -533,8 +516,7 @@ These directives in the top‑level `http` configuration block configure global 
 
    Directive documentation: [tcp_nodelay](https://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nodelay)
 
-<span id="virtual-servers"></span>
-### Configuring Virtual Servers for HTTP and HTTPS Traffic
+### Configuring Virtual Servers for HTTP and HTTPS Traffic {#virtual-servers}
 
 These directives define virtual servers for HTTP and HTTPS traffic in the top‑level `http` configuration block.
 
@@ -609,18 +591,9 @@ These directives define virtual servers for HTTP and HTTPS traffic in the top‑
 
    Directive documentation: [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen), [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return), [server](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server)
 
-<span id="http2"></span>
-### Configuring HTTP/2 Support
+### Configuring HTTP/2 Support {#http2}
 
-HTTP/2 is fully supported in <span style="white-space: nowrap;">NGINX Plus R7</span> and later (as well as NGINX 1.9.5 and later). As always, we recommend you run the latest version of software to take advantage of improvements and bug fixes.
-
-In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY:
-
-- In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the {{<nb>}}**nginx-plus**{{</nb>}} package continues to support HTTP/2 by default, but the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by [dynamic modules](https://www.f5.com/go/product/nginx-modules/).
-
-- For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
-
-If using <span style="white-space: nowrap;">NGINX Plus R7</span>, you must install the {{<nb>}}**nginx-plus-http2**{{</nb>}} package instead of the {{<nb>}}**nginx-plus**{{</nb>}} or {{<nb>}}**nginx-plus-extras**{{</nb>}} package.
+HTTP/2 is supported by default in NGINX Plus. As always, run a [supported release]({{< ref "/nginx/releases.md" >}}) to take advantage of improvements and bug fixes.
 
 To enable HTTP/2 support, add the `http2` directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
@@ -634,20 +607,18 @@ Directive documentation: [http2](https://nginx.org/en/docs/http/ngx_http_v2_modu
 
 To verify that HTTP/2 translation is working, you can use the "HTTP/2 and SPDY indicator" plug‑in available for [Google Chrome](https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/http2-indicator/).
 
-<span id="config-completing"></span>
-## Completing the Configuration of Load Balancing
+## Completing the Configuration of Load Balancing {#config-completing}
 
 The preceding instructions in [Configuring NGINX Plus](#config) are required for both basic and enhanced load balancing. At this point, you proceed to the section for the final desired configuration:
 
 - [Completing the Configuration of Basic Load Balancing](#config-basic)
 - [Completing the Configuration of Enhanced Load Balancing](#config-enhanced)
 
-<span id="config-basic"></span>
-### Completing the Configuration of Basic Load Balancing
+### Completing the Configuration of Basic Load Balancing {#config-basic}
 
 These directives complete the configuration for basic load balancing of Exchange traffic. (To finalize enhanced load balancing instead, proceed to [Completing the Configuration of Enhanced Load Balancing](#config-enhanced).)
 
-1. In the `upstream` block that defines the group of servers across which NGINX Plus load balances HTTPS traffic, include a `server` directive for each of your CASs. With <span style="white-space: nowrap;">NGINX Plus R7</span> and later, you can include the `ntlm` directive to use <span style="white-space: nowrap;">Microsoft NT LAN Manager</span> for authentication.
+1. In the `upstream` block that defines the group of servers across which NGINX Plus load balances HTTPS traffic, include a `server` directive for each of your CASs. You can include the `ntlm` directive to use Microsoft NT LAN Manager for authentication.
 
     ```nginx
     # In the 'http' block
@@ -679,8 +650,7 @@ These directives complete the configuration for basic load balancing of Exchange
 
    Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [proxy_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering), [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass),[proxy_request_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering), [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header)
 
-<span id="full-configuration-basic"></span>
-### Full Configuration for Basic Load Balancing
+### Full Configuration for Basic Load Balancing {#full-configuration-basic}
 
 ```nginx
 user nginx;
@@ -792,8 +762,7 @@ stream {
 }
 ```
 
-<span id="config-enhanced"></span>
-### Completing the Configuration of Enhanced Load Balancing
+### Completing the Configuration of Enhanced Load Balancing {#config-enhanced}
 
 This section describes the configuration for enhanced load balancing of Exchange traffic. The enhancements improve the performance of your NGINX Plus deployment and make it easier to manage.
 
@@ -802,8 +771,7 @@ This section describes the configuration for enhanced load balancing of Exchange
 - [Configuring Application‑Specific Load Balancing](#app-specific-load-balancing)
 - [Enabling the Live Activity Monitoring Dashboard](#monitoring)
 
-<span id="app-specific-load-balancing"></span>
-#### Configuring Application-Specific Load Balancing
+#### Configuring Application-Specific Load Balancing {#app-specific-load-balancing}
 
 Exchange CASs interact with various applications used by clients on different types of devices. The clients access virtual directories and URIs specific to their application. To improve the performance of applications and of NGINX Plus, configure a separate `location` block for each application to enable the features listed in the table.
 
@@ -821,12 +789,11 @@ Exchange CASs interact with various applications used by clients on different ty
 {{</table >}}
 
 
-<span id="url-control"></span>
-##### Configuring Granular URL Location Control
+##### Configuring Granular URL Location Control {#url-control}
 
 1. In the top‑level `http` configuration block, there is a separate `upstream` block for each application, which improves Exchange's overall reliability by isolating the effect of outages to just the affected application. (In other words, creating separate upstream groups means that if an application or directory becomes unavailable, clients can still access the other applications and directories that are functioning and accessible.)
 
-   In each `upstream` block, include a `server` directive for each of your CASs. With <span style="white-space: nowrap;">NGINX Plus R7</span> and later, you can include the `ntlm` directive to use <span style="white-space: nowrap;">Microsoft NT LAN Manager</span> for authentication.
+   In each `upstream` block, include a `server` directive for each of your CASs. You can include the `ntlm` directive to use Microsoft NT LAN Manager for authentication.
 
    ```nginx
    # In the 'http' block
@@ -961,8 +928,7 @@ Exchange CASs interact with various applications used by clients on different ty
 
        Directive documentation: [proxy_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering), [proxy_request_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)
 
-<span id="health-check"></span>
-##### Configuring Application-Specific Health Checks
+##### Configuring Application-Specific Health Checks {#health-check}
 
 For several applications, Exchange includes a health‑check mechanism that you can easily integrate with the health‑check feature in NGINX Plus. Specifically, you configure the NGINX Plus health check to succeed when the Exchange health check succeeds.
 
@@ -997,7 +963,7 @@ CAS02.CORP.Company.com
 
 These directives configure NGINX Plus health checks.
 
-1. In the `server` block for HTTPS traffic (described in [Configuring a Virtual Server for HTTPS Traffic](#https)), this `match` block checks for status code `200` and the string <span style="white-space: nowrap;">`200 OK`</span> in the response body.
+1. In the `server` block for HTTPS traffic (described in [Configuring a Virtual Server for HTTPS Traffic](#https)), this `match` block checks for status code `200` and the string {{<nb>}}`200 OK`{{</nb>}} in the response body.
 
    ```nginx
    # In the 'server' block for HTTPS traffic
@@ -1065,10 +1031,9 @@ These directives configure NGINX Plus health checks.
 
    Directive documentation: [proxy_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering), [proxy_request_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)
 
-<span id="monitoring"></span>
-#### Enabling the Live Activity Monitoring Dashboard
+#### Enabling the Live Activity Monitoring Dashboard {#monitoring}
 
-NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard in NGINX Plus. Follow these instructions to deploy it.
+NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics. NGINX Plus reports statistics through a RESTful JSON interface, making it easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard in NGINX Plus. Follow these instructions to deploy it.
 
 <img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -1090,7 +1055,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
    include conf.d/status.conf;
    ```
 
-    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to {{<nb>}}**status-http.conf**{{</nb>}} means it is captured by the `include` directive for <span style="white-space: nowrap;">`*-http.conf`</span>.
+    If you are using the conventional configuration scheme and your existing `include` directives use the wildcard notation discussed in [Creating and Modifying Configuration Files](#config-files), you can either add a separate `include` directive for **status.conf** as shown above, or change the name of **status.conf** so it is captured by the wildcard in an existing `include` directive in the `http` block. For example, changing it to {{<nb>}}**status-http.conf**{{</nb>}} means it is captured by the `include` directive for {{<nb>}}`*-http.conf`{{</nb>}}.
 
     Directive documentation: [include](https://nginx.org/en/docs/ngx_core_module.html#include)
 
@@ -1118,12 +1083,11 @@ The quickest way to configure the module and the built‑in dashboard is to down
 
    - **Firewall**. Configure your firewall to disallow outside access to the port for the dashboard (8080 in the sample configuration file).
 
-When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap;">**http://_nginx-plus-server-address_:8080**</span>.
+When you reload the NGINX Plus configuration file, for example by running the {{<nb>}}`nginx -s reload`{{</nb>}} command, the NGINX Plus dashboard is available immediately at {{<nb>}}**http://_nginx-plus-server-address_:8080**{{</nb>}}.
 
-For more information about live activity monitoring, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})</span>.
+For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
-<span id="full-configuration-enhanced"></span>
-### Full Configuration for Enhanced Load Balancing
+### Full Configuration for Enhanced Load Balancing {#full-configuration-enhanced}
 
 ```nginx
 user nginx;
@@ -1339,15 +1303,14 @@ stream {
 }
 ```
 
-<span id="revision"></span>
-### Revision History
+### Revision History {#revision}
 
 - Version 7 (June 2025) – Update for the `ssl_protocols` directive
 - Version 6 (May 2024) – Update about HTTP/2 support (the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive)
-- Version 5 (April 2018) – Update for NGINX Plus API (<span style="white-space: nowrap;">NGINX Plus R14</span>)
-- Version 4 (May 2017) – Update about HTTP/2 support (<span style="white-space: nowrap;">NGINX Plus Release 11</span> and later)
-- Version 3 (February 2016) – Conversion to HTML formatting (<span style="white-space: nowrap;">NGINX Plus Release 8</span>)
-- Version 2 (November 2015) – Updates for <span style="white-space: nowrap;">NGINX Plus Release 7</span>
-- Version 1 (May 2015) – Initial version (<span style="white-space: nowrap;">NGINX Plus Release 6</span>)
+- Version 5 (April 2018) – Update for NGINX Plus API (NGINX Plus R14)
+- Version 4 (May 2017) – Update about HTTP/2 support (NGINX Plus Release 11 and later)
+- Version 3 (February 2016) – Conversion to HTML formatting (NGINX Plus Release 8)
+- Version 2 (November 2015) – Updates for NGINX Plus Release 7
+- Version 1 (May 2015) – Initial version (NGINX Plus Release 6)
 
 
