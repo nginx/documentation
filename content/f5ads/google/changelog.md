@@ -14,6 +14,16 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/f5a
 
 For updates to platform-wide features shared across cloud providers, see the [F5 ADS changelog]({{< ref "/f5ads/platform/changelog.md" >}}).
 
+## November 5, 2026
+
+- {{% icon-feature %}} **Manage NGINX configurations with Terraform**
+
+You can now create and update NGINX configurations with the new `f5ads_configuration` resource in the `F5Networks/f5ads` Terraform provider, version `0.1.0-alpha.7`. Reference the configuration from an `f5ads_deployment` resource to apply it to your deployment.
+
+- [`f5ads_configuration` resource docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs/resources/configuration)
+- [Create or upload using Terraform]({{< ref "/f5ads/google/deploy/nginx-configuration/nginx-configuration-terraform.md" >}})
+- [Deploy using the F5 ADS Terraform provider]({{< ref "/f5ads/google/deploy/create-deployment/deploy-terraform.md" >}})
+
 ## September 15, 2026
 
 - {{% icon-feature %}} **Google Cloud Network Attachment is now optional and modifiable**
@@ -40,9 +50,9 @@ You can now manage F5 ADS for Google Cloud deployments with the first release of
   {{< table "table" >}}
 
   | F5 ADS Geography | Google Cloud Regions                              |
-  | ---------------- | -------------------------------------------------- |
-  | APAC              | asia-northeast1, asia-northeast2, asia-northeast3 |
-  | CA                | northamerica-northeast1, northamerica-northeast2  |
+  | ---------------- | ------------------------------------------------- |
+  | APAC             | asia-northeast1, asia-northeast2, asia-northeast3 |
+  | CA               | northamerica-northeast1, northamerica-northeast2  |
 
   {{< /table >}}
 
@@ -100,9 +110,9 @@ See the [Service Frontend]({{< ref "/f5ads/google/overview.md#service-frontend" 
 
   {{< table "table" >}}
 
-  | F5 ADS Geography | Google Cloud Regions |
-  | ---------------- | --------------------- |
-  | APAC | asia-south1, asia-south2 |
+  | F5 ADS Geography | Google Cloud Regions     |
+  | ---------------- | ------------------------ |
+  | APAC             | asia-south1, asia-south2 |
 
   {{< /table >}}
 
@@ -125,8 +135,8 @@ For instructions on getting started, see our documentation to [add certificates 
   {{< table "table" >}}
 
   | F5 ADS Geography | Google Cloud Regions |
-  | ---------------- | --------------------- |
-  | APAC              | asia-southeast1      |
+  | ---------------- | -------------------- |
+  | APAC             | asia-southeast1      |
 
   {{< /table >}}
 
@@ -147,8 +157,8 @@ The previously required configuration is no longer necessary for your deployment
   {{< table "table" >}}
 
   | F5 ADS Geography | Google Cloud Regions          |
-  | ---------------- | ------------------------------ |
-  | EU                | europe-west3, europe-central2 |
+  | ---------------- | ----------------------------- |
+  | EU               | europe-west3, europe-central2 |
 
   {{< /table >}}
 
@@ -163,8 +173,8 @@ See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions
   {{< table "table" >}}
 
   | F5 ADS Geography | Google Cloud Regions        |
-  | ---------------- | ---------------------------- |
-  | EU                | europe-west4, europe-north1 |
+  | ---------------- | --------------------------- |
+  | EU               | europe-west4, europe-north1 |
 
   {{< /table >}}
 
@@ -179,8 +189,8 @@ See the [Supported regions]({{< ref "/f5ads/google/overview.md#supported-regions
   {{< table "table" >}}
 
   | F5 ADS Geography | Google Cloud Regions                   |
-  | ---------------- | ---------------------------------------- |
-  | US                | us-east4, us-west2, us-west3, us-west4 |
+  | ---------------- | -------------------------------------- |
+  | US               | us-east4, us-west2, us-west3, us-west4 |
 
   {{< /table >}}
 
