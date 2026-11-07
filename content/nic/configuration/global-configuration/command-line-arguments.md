@@ -182,6 +182,17 @@ Timeout in milliseconds which NGINX Ingress Controller will wait for a successfu
 
 Default is 60000.
 
+### -batch-reload-window <value> {#cmdoption-batch-reload-window}
+
+The maximum time in milliseconds that NGINX Ingress Controller waits to apply a pending reload during a batch of updates. When many changes arrive at once, NGINX Ingress Controller pauses reloads and processes the changes as a batch. For more information, see [When NGINX Ingress Controller reloads NGINX]({{< ref "/nic/overview/design.md#when-nginx-ingress-controller-reloads-nginx" >}}).
+
+- A higher value means fewer reloads, but NGINX can keep an outdated configuration for longer.
+- A lower value applies configuration changes sooner, but NGINX Ingress Controller reloads NGINX more often.
+
+The value can't be negative. If you set it to `0`, NGINX Ingress Controller applies a pending reload only when the task queue is empty. During continuous changes, a configuration change then waits for its reload until the changes stop.
+
+Default is 2000.
+
 ### -nginx-status {#cmdoption-nginx-status}
 
 Enable the NGINX stub_status, or the NGINX Plus API.
