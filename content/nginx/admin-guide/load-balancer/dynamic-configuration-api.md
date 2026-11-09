@@ -133,7 +133,7 @@ The NGINX Plus REST API supports the following HTTP methods:
 - `PATCH` – Modify the parameters of a particular server
 - `DELETE` – Delete a server from the upstream group
 
-The endpoints and methods for the NGINX Plus API are described in the [NGINX Modules Reference](https://nginx.org/en/docs/http/ngx_http_api_module.html). In addition, the API has a built‑in a Swagger specification that can be used to explore the API and understand the capabilities of each resource. The Swagger documentation can be accessed at `http://_NGINX-host_/swagger-ui/`.
+The endpoints and methods for the NGINX Plus API are described in the [NGINX Modules Reference](https://nginx.org/en/docs/http/ngx_http_api_module.html). In addition, the API has a built‑in OpenAPI specification that you can use to explore the API and understand the capabilities of each resource. You can access the Swagger UI at `http://<NGINX_HOST>/swagger-ui/`.
 
 To change the configuration of an upstream group dynamically, send an HTTP request with the appropriate API method. The following examples use the `curl` command, but any mechanism for making HTTP requests is supported. All request bodies and responses are in JSON format.
 
