@@ -62,7 +62,7 @@ NGINX Certified Partner modules can be found on the [F5 Dynamic Modules page](ht
 
 ### Prerequisites
 
-To get started using dynamic modules, first install the [latest NGINX Plus release]({{< ref "/nginx/releases.md" >}}), following the [installation instructions]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Dynamic modules are supported since [NGINX Plus Release 9]({{< ref "/nginx/releases.md#r9" >}}).
+To get started using dynamic modules, first install the [latest NGINX Plus release]({{< ref "/nginx/releases.md" >}}), following the [installation instructions]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 ## Getting started with the dynamic modules repository
 

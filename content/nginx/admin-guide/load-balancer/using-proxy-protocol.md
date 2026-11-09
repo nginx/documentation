@@ -9,8 +9,7 @@ f5-product: NGINX Plus
 
 This article explains how to configure NGINX and F5 NGINX Plus to accept the PROXY protocol, rewrite the IP address of a load balancer or proxy to the one received in the PROXY protocol header, configure simple logging of a client’s IP address, and enable the PROXY protocol between NGINX and a TCP upstream server.
 
-<span id="intro"></span>
-## Introduction
+## Introduction {#intro}
 
 The [PROXY protocol](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) enables NGINX and NGINX Plus to receive client connection information passed through proxy servers and load balancers such as HAproxy and Amazon Elastic Load Balancer (ELB).
 
@@ -24,22 +23,14 @@ Using this data, NGINX can get the originating IP address of the client in sever
 
 - With the [RealIP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module which rewrites the values in the [`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr) and [`$remote_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_port) variables, replacing the IP address and port of the load balancer with the original client IP address and port. The [`$realip_remote_addr`](https://nginx.org/en/docs/http/ngx_http_realip_module.html#var_realip_remote_addr) and [`$realip_remote_port`](https://nginx.org/en/docs/http/ngx_http_realip_module.html#var_realip_remote_port) variables retain the address and port of the load balancer, and the [`$proxy_protocol_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_addr) and [`$proxy_protocol_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_port) variables retain the original client IP address and port anyway.
 
-<span id="prereq"></span>
-## Prerequisites
+## Prerequisites {#prereq}
 
-- To accept the PROXY protocol v2, NGINX Plus [R16]({{< ref "nginx/releases.md#r16" >}}) and later or NGINX Open Source [1.13.11](https://nginx.org/en/CHANGES) and later
-
-- To accept the PROXY protocol for HTTP, NGINX Plus [R3]({{< ref "nginx/releases.md#r3" >}}) and later or NGINX Open Source [1.5.12](https://nginx.org/en/CHANGES) and later
-
-- For TCP client‑side PROXY protocol support, NGINX Plus [R7]({{< ref "nginx/releases.md#r7" >}}) and later or NGINX Open Source [1.9.3](https://nginx.org/en/CHANGES) and later
-
-- To accept the PROXY protocol for TCP, NGINX Plus [R11]({{< ref "nginx/releases.md#r11" >}}) and later or NGINX Open Source [1.11.4](https://nginx.org/en/CHANGES) and later
+- A supported release of [NGINX Plus]({{< ref "/nginx/releases.md" >}}) or a current release of [NGINX Open Source](https://nginx.org/en/download.html). Both accept the PROXY protocol for HTTP and TCP, including PROXY protocol v2 and TCP client‑side support.
 
 - The Real‑IP modules for [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [Stream TCP](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) are not included in NGINX Open Source by default; see [Installing NGINX Open Source]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) for details. No extra steps are required for NGINX Plus.
 
 
-<span id="listen"></span>
-## Configure NGINX to Accept the PROXY Protocol
+## Configure NGINX to Accept the PROXY Protocol {#listen}
 
 To configure NGINX to accept PROXY protocol headers, add the `proxy_protocol` parameter to the `listen` directive in a `server` block in the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) or [`stream {}`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) block.
 
@@ -64,8 +55,7 @@ stream {
 
 Now you can use the [`$proxy_protocol_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_addr) and [`$proxy_protocol_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_proxy_protocol_port) variables for the client IP address and port and additionally configure the [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [`stream`](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) RealIP modules to replace the IP address of the load balancer in the [`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr) and [`$remote_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_port) variables with the IP address and port of the client.
 
-<span id="realip"></span>
-## Change the Load Balancer's IP Address To the Client IP Address
+## Change the Load Balancer's IP Address To the Client IP Address {#realip}
 
 You can replace the address of the load balancer or TCP proxy with the client IP address received from the PROXY protocol. This can be done with the [HTTP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and [`stream`](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) RealIP modules. With these modules, the [`$remote_addr`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr) and [`$remote_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_port) variables retain the real IP address and port of the client, while the [`$realip_remote_addr`](https://nginx.org/en/docs/http/ngx_http_realip_module.html#var_realip_remote_addr) and [`$realip_remote_port`](https://nginx.org/en/docs/http/ngx_http_realip_module.html#var_realip_remote_port) variables retain the IP address and port of the load balancer.
 
@@ -103,8 +93,7 @@ To change the IP address from the load balancer's IP address to the client's IP 
    }
    ```
 
-<span id="log"></span>
-## Log the Original IP Address
+## Log the Original IP Address {#log}
 
 When you know the original IP address of the client, you can configure the correct logging:
 
@@ -141,8 +130,7 @@ When you know the original IP address of the client, you can configure the corre
      }
      ```
 
-<span id="proxy_protocol"></span>
-## PROXY Protocol for a TCP Connection to an Upstream
+## PROXY Protocol for a TCP Connection to an Upstream {#proxy_protocol}
 
 For a TCP stream, the PROXY protocol can be enabled for connections between NGINX and an upstream server. To enable the PROXY protocol, include the [`proxy_protocol`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_protocol) directive in a `server` block at the `stream {}` level:
 
@@ -156,8 +144,7 @@ stream {
 }
 ```
 
-<span id="example"></span>
-## Example
+## Example {#example}
 
 ```nginx
 http {

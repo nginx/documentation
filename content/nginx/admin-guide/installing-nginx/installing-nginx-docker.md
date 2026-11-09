@@ -9,8 +9,7 @@ f5-product: NGINX Plus
 
 [F5 NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
 
-<span id="prereq"></span>
-## Prerequisites
+## Prerequisites {#prereq}
 
 - The [Docker Engine](https://docs.docker.com/engine/install/) command-line tool
 - for NGINX Plus:
@@ -22,10 +21,9 @@ f5-product: NGINX Plus
 - for NGINX Open Source: [Docker Hub](https://hub.docker.com/) account
 
 
-<span id="nginx_plus_official_images"></span>
-## Use official NGINX Plus Docker images
+## Use official NGINX Plus Docker images {#nginx_plus_official_images}
 
-Since NGINX Plus [Release 31]({{< ref "nginx/releases.md#r31" >}}) you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
+You can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
 
 The NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`.
 
@@ -210,8 +208,8 @@ where:
  - `NGINX_AGENT_SERVER_HOST` sets the domain name or IP address of NGINX Instance Manager. Note that for production environments it is not recommended to expose NGINX Instance Manager to public networks.
  - `NGINX_AGENT_SERVER_TOKEN` sets NGINX One data plane key. See [Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}) for details.
  - `NGINX_AGENT_TLS_ENABLE` enables mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication]({{< ref "agent/configuration/encrypt-communication.md" >}}) for details.
- - `YOUR_REGISTRY` is the path to your private registry.
- - `VERSION_TAG` is the tag assigned when pushing to your registry.
+ - `<YOUR_REGISTRY>` is the path to your private registry.
+ - `<VERSION_TAG>` is the tag assigned when pushing to your registry.
 
 
 <br>
@@ -232,8 +230,7 @@ sudo docker run \
 {{</call-out>}}
 
 
-<span id="docker_oss"></span>
-## Using NGINX Open Source Docker Images
+## Using NGINX Open Source Docker Images {#docker_oss}
 
 You can create an NGINX instance in a Docker container using the NGINX Open Source image from the Docker Hub.
 
@@ -267,8 +264,7 @@ You can create an NGINX instance in a Docker container using the NGINX Open Sour
 This command also allows viewing the port mappings set in the previous step: the `PORTS` field in the output reports that port `80` on the Docker host is mapped to port `80` in the container.
 
 
-<span id="docker_plus_image"></span>
-## Creating custom NGINX Plus Docker Image
+## Creating custom NGINX Plus Docker Image {#docker_plus_image}
 
 As NGINX Plus is a commercial offering, NGINX Plus Docker images are not available at Docker Hub, so first you will need to create an NGINX Plus Docker image.
 
@@ -332,8 +328,7 @@ To generate a custom NGINX Plus image:
 NGINX Plus containers are controlled and managed in the same way as NGINX Open Source containers.
 
 
-<span id="manage"></span>
-## Managing Content and Configuration Files
+## Managing Content and Configuration Files {#manage}
 
 Content served by NGINX and NGINX configuration files can be managed in several ways:
 
@@ -342,8 +337,7 @@ Content served by NGINX and NGINX configuration files can be managed in several 
 - files are maintained in the container
 
 
-<span id="manage_host"></span>
-### Maintaining Content and Configuration Files on the Docker Host
+### Maintaining Content and Configuration Files on the Docker Host {#manage_host}
 
 When the container is created, you can mount a local directory on the Docker host to a directory in the container. The NGINX image uses the default NGINX configuration, which uses `/usr/share/nginx/html` as the container’s root directory and puts configuration files in `/etc/nginx`. For a Docker host with content in the local directory `/var/www` and configuration files in `/var/nginx/conf`, run the command:
 
@@ -358,8 +352,7 @@ docker run --name mynginx2 \
 Any change made to the files in the local directories `/var/www and /var/nginx/conf` on the Docker host are reflected in the directories `/usr/share/nginx/html` and `/etc/nginx` in the container. The `readonly` option means these directories can be changed only on the Docker host, not from within the container.
 
 
-<span id="manage_copy"></span>
-### Copy content and configuration files from the Docker host
+### Copy content and configuration files from the Docker host {#manage_copy}
 
 Docker can copy the content and configuration files from a local directory on the Docker host during container creation. Once a container is created, the files are maintained by creating a new container when files change or by modifying the files in the container.
 
@@ -389,8 +382,7 @@ docker run --name mynginx3 -p 80:80 -d mynginx_image1
 To make changes to the files in the container, use a helper container as described in the next section.
 
 
-<span id="manage_container"></span>
-### Maintain content and configuration files in the container
+### Maintain content and configuration files in the container {#manage_container}
 
 As SSH cannot be used to access the NGINX container, to edit the content or configuration files directly you need to create a helper container that has shell access. For the helper container to have access to the files, create a new image that has the proper Docker data volumes defined for the image:
 
@@ -444,13 +436,11 @@ docker attach mynginx4_files
 To exit the shell and terminate the container, run the `exit` command.
 
 
-<span id="log"></span>
-## Manage logging
+## Manage logging {#log}
 
 You can use default logging or customize logging.
 
-<span id="log_default"></span>
-### Use default logging
+### Use default logging {#log_default}
 
 By default, the NGINX image is configured to send NGINX [access log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) and [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log) to the Docker log collector. This is done by linking them to `stdout` and `stderr`: all messages from both logs are then written to the file `/var/lib/docker/containers/container-ID/container-ID-json.log` on the Docker host. The container‑ID is the long‑form ID returned when you [create a container](#docker_oss_image). To display the long form ID, run the command:
 
@@ -475,8 +465,7 @@ curl --unix-sock /var/run/docker-sock http://localhost/containers/container-name
 To include only access log messages in the output, include only `stdout=1`. To limit the output to error log messages, include only `stderr=1`. For other available options, see [Get container logs](https://docs.docker.com/reference/api/engine/version/v1.45/#tag/Container/operation/ContainerLogs) section of the [Docker Engine API](https://docs.docker.com/reference/api/engine/version/v1.45/) documentation.
 
 
-<span id="log_custom"></span>
-### Use customized logging
+### Use customized logging {#log_custom}
 
 If you want to configure logging differently for certain configuration blocks (such as `server {}` and `location {}`), define a Docker volume for the directory in which to store the log files in the container, create a helper container to access the log files, and use any logging tools. To implement this, create a new image that contains the volume or volumes for the logging files.
 
@@ -492,8 +481,7 @@ VOLUME /var/log/nginx/log
 Then you can [create an image](#docker_plus_image) and use it to create an NGINX container and a helper container that have access to the logging directory. The helper container can have any desired logging tools installed.
 
 
-<span id="control"></span>
-## Control NGINX
+## Control NGINX {#control}
 
 Since there is no direct access to the command line of the NGINX container, NGINX commands cannot be sent to a container directly. Instead, [signals](https://nginx.org/en/docs/control.html) can be sent to a container via Docker `kill` command.
 
