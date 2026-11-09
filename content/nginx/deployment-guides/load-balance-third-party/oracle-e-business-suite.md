@@ -730,7 +730,7 @@ The quickest way to configure live activity monitoring and the built‑in dashbo
 
    Directive documentation: [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone)
 
-When you reload the NGINX Plus configuration file, for example by running the {{<nb>}}`nginx -s reload`{{</nb>}} command, the NGINX Plus dashboard is available immediately at {{<nb>}}**http://_nginx-server-address_:8080**{{</nb>}}.
+When you reload the NGINX Plus configuration file, for example by running the {{<nb>}}`nginx -s reload`{{</nb>}} command, the NGINX Plus dashboard is available immediately at `http://<NGINX_PLUS_SERVER_ADDRESS>:8080`.
 
 For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 

@@ -1083,7 +1083,7 @@ The quickest way to configure the module and the built‑in dashboard is to down
 
    - **Firewall**. Configure your firewall to disallow outside access to the port for the dashboard (8080 in the sample configuration file).
 
-When you reload the NGINX Plus configuration file, for example by running the {{<nb>}}`nginx -s reload`{{</nb>}} command, the NGINX Plus dashboard is available immediately at {{<nb>}}**http://_nginx-plus-server-address_:8080**{{</nb>}}.
+When you reload the NGINX Plus configuration file, for example by running the {{<nb>}}`nginx -s reload`{{</nb>}} command, the NGINX Plus dashboard is available immediately at `http://<NGINX_PLUS_SERVER_ADDRESS>:8080`.
 
 For more information about live activity monitoring, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}).
 
