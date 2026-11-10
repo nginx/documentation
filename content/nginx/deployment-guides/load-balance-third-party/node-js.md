@@ -13,8 +13,7 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 
 
 
-<span id="about-nginx"></span>
-## About NGINX Open Source and NGINX Plus
+## About NGINX Open Source and NGINX Plus {#about-nginx}
 
 [NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that has grown in popularity in recent years because of its scalability, outstanding performance, and small footprint. NGINX Open Source was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). NGINX Open Source's features and performance have made it a staple of high‑performance sites – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
 
@@ -29,8 +28,7 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 - Advanced activity monitoring available via a [Dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-dashboard" >}}) or [REST API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
-<span id="about-nodejs"></span>
-## About Node.js
+## About Node.js {#about-nodejs}
 
 [Node.js](https://nodejs.org/en/about/) is a JavaScript runtime built on the [V8 JavaScript engine](https://v8.dev/). Node.js uses an event‑driven, non‑blocking I/O model that makes it lightweight and efficient. The package ecosystem for Node.js, [npm](https://www.npmjs.com/), is the largest ecosystem of open source libraries in the world.
 
@@ -38,11 +36,10 @@ To download the Node.js software and get installation instructions, visit the [N
 
 The information in this deployment guide applies equally to open source Node.js software and commercially supported Node.js frameworks.
 
-<span id="prereqs"></span>
-## Prerequisites and System Requirements
+## Prerequisites and System Requirements {#prereqs}
 
 - A Node.js application server installed and configured on a physical or virtual system.
-- A Linux system to host NGINX Open Source or NGINX Plus. To avoid potential conflicts with other applications, we recommend you install NGINX Plus on a fresh physical or virtual system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
+- A Linux system to host NGINX Open Source or NGINX Plus. To avoid potential conflicts with other applications, install NGINX Plus on a fresh physical or virtual system. For the list of Linux distributions supported by NGINX Plus, see [NGINX Plus Technical Specifications]({{< ref "nginx/technical-specs.md" >}}).
 - NGINX Open Source or NGINX Plus installed on the physical or virtual system. Some features are available only with [NGINX Plus](#enhanced), including sophisticated session persistence, application health checks, live activity monitoring, and dynamic reconfiguration of upstream groups. For installation instructions for both products, see the [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/installing-nginx/_index.md" >}}).
 
 The instructions assume you have basic Linux system administration skills, including the following. Full instructions are not provided for these tasks.
@@ -61,16 +58,15 @@ The instructions assume you have basic Linux system administration skills, inclu
 - For readability reasons, some commands appear on multiple lines. If you want to copy and paste them into a terminal window, we recommend that you first copy them into a text editor, where you can substitute the object names that are appropriate for your deployment and remove any extraneous formatting characters that your browser might insert.
 - We recommend that you do not copy text from the configuration snippets in this guide into your configuration files. For the recommended way to create configuration files, see [Creating and Modifying Configuration Files](#config-files).
 
-<span id="tls-certificate"></span>
-## Configuring an SSL/TLS Certificate for Client Traffic
+## Configuring an SSL/TLS Certificate for Client Traffic {#tls-certificate}
 
 If you plan to enable SSL/TLS encryption of traffic between NGINX Open Source or NGINX Plus and clients of your Node.js application, you need to configure a server certificate for NGINX Open Source or NGINX Plus.
 
 - SSL/TLS support is enabled by default in all [NGINX Plus packages](https://cs.nginx.com/) and [NGINX Open Source binaries](https://nginx.org/en/linux_packages.html) provided by NGINX.
-- If you are compiling NGINX Open Source from source, include the <span style="white-space: nowrap;">`--with-http_ssl_module`</span> parameter to enable SSL/TLS support for HTTP traffic (the corresponding parameter for TCP/UDP is <span style="white-space: nowrap;">`--with-stream_ssl_module`</span>, and for email is <span style="white-space: nowrap;">`--with-;mail_ssl_module`</span>, but this guide does not cover those protocol types).
+- If you are compiling NGINX Open Source from source, include the {{<nb>}}`--with-http_ssl_module`{{</nb>}} parameter to enable SSL/TLS support for HTTP traffic (the corresponding parameter for TCP/UDP is {{<nb>}}`--with-stream_ssl_module`{{</nb>}}, and for email is {{<nb>}}`--with-mail_ssl_module`{{</nb>}}, but this guide does not cover those protocol types).
 - If using binaries from other providers, consult the provider documentation to determine if they support SSL/TLS.
 
-There are several ways to obtain a server certificate, including the following. For your convenience, <span style="white-space: nowrap;">step-by-step</span> instructions are provided for the second and third options.
+There are several ways to obtain a server certificate, including the following. For your convenience, {{<nb>}}step-by-step{{</nb>}} instructions are provided for the second and third options.
 
 - If you already have an SSL certificate for NGINX Open Source or NGINX Plus installed on another UNIX or Linux system (including systems running Apache HTTP Server), copy it to the **/etc/nginx/ssl** directory on the NGINX Open Source or NGINX Plus server.
 - Generate a self‑signed certificate as described in [Generating a Self‑Signed Certificate](#certificate-self-signed) below. This is sufficient for testing scenarios, but clients of production deployments generally require a certificate signed by a certificate authority (CA).
@@ -84,7 +80,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 1. Log in as the root user on a machine that has the `openssl` software installed.
 
-2. Generate the key pair in PEM format (the default). To encrypt the private key, include the <span style="white-space: nowrap;">`-des3`</span> parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.
+2. Generate the key pair in PEM format (the default). To encrypt the private key, include the {{<nb>}}`-des3`{{</nb>}} parameter. (Other encryption algorithms are available, listed on the man page for the [genrsa](https://www.openssl.org/docs/manmaster/man1/openssl-genrsa.html) command.) You are prompted for the passphrase used as the basis for encryption.
 
    ```shell
    root# openssl genrsa -des3 -out ~/private-key.pem 2048
@@ -98,7 +94,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
    root# cp ~/private-key.pem secure-dir/private-key.pem.backup
    ```
 
-4. Generate the certificate. Include the <span style="white-space: nowrap;">`-new`</span> and <span style="white-space: nowrap;">`-x509`</span> parameters to make a new self‑signed certificate. Optionally include the <span style="white-space: nowrap;">`-days`</span> parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
+4. Generate the certificate. Include the {{<nb>}}`-new`{{</nb>}} and {{<nb>}}`-x509`{{</nb>}} parameters to make a new self‑signed certificate. Optionally include the {{<nb>}}`-days`{{</nb>}} parameter to change the key's validity lifetime from the default of 30 days (10950 days is about 30 years). Respond to the prompts with values appropriate for your testing deployment.
 
    ```shell
    root# openssl req -new -x509 -key ~/private-key.pem -out ~/self-cert.pem \
@@ -137,8 +133,7 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 6. Copy or move the certificate file and associated key files to the **/etc/nginx/ssl** directory on the NGINX Plus server.
 
-<span id="config-files"></span>
-## Creating and Modifying Configuration Files
+## Creating and Modifying Configuration Files {#config-files}
 
 To reduce errors, this guide has you copy directives from files provided by NGINX into your configuration files, instead of using a text editor to type in the directives yourself. Then you go through the sections in this guide (starting with [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers)) to learn how to modify the directives as required for your deployment.
 
@@ -193,7 +188,7 @@ We recommend, however, that you do not copy text directly from this document. It
 
 ### About Reloading Updated Configuration
 
-We recommend that each time you complete a set of updates to the configuration, you run the <span style="white-space: nowrap;">`nginx -t`</span> command to test the configuration file for syntactic validity.
+Each time you complete a set of updates to the configuration, run the {{<nb>}}`nginx -t`{{</nb>}} command to test the configuration file for syntactic validity.
 
 ```none
 root# nginx -t
@@ -213,8 +208,7 @@ or
 root# service nginx reload
 ```
 
-<span id="basic"></span>
-## Configuring Basic Load Balancing with NGINX Open Source or NGINX Plus
+## Configuring Basic Load Balancing with NGINX Open Source or NGINX Plus {#basic}
 
 This section explains how to set up NGINX Open Source or NGINX Plus as a load balancer in front of two Node.js servers. The instructions in the first two sections are mandatory:
 
@@ -232,8 +226,7 @@ The complete configuration file appears in [Full Configuration for Basic Load Ba
 
 If you are using NGINX Plus, you can configure additional enhanced features after you complete the configuration of basic load balancing. See [Configuring Enhanced Load Balancing with NGINX Plus](#enhanced).
 
-<span id="virtual-servers"></span>
-### Configuring Virtual Servers for HTTP and HTTPS Traffic
+### Configuring Virtual Servers for HTTP and HTTPS Traffic {#virtual-servers}
 
 These directives define virtual servers for HTTP and HTTPS traffic in separate `server` blocks in the top‑level `http` configuration block. All HTTP requests are redirected to the HTTPS server.
 
@@ -285,8 +278,7 @@ These directives define virtual servers for HTTP and HTTPS traffic in separate `
 
 For more information on configuring SSL/TLS, see the [NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}}) and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module.
 
-<span id="load-balancing-basic"></span>
-### Configuring Basic Load Balancing
+### Configuring Basic Load Balancing {#load-balancing-basic}
 
 To configure load balancing, you first create a named "upstream group," which lists the backend servers. You then set up NGINX Open Source or NGINX Plus as a reverse proxy and load balancer by referring to the upstream group in one or more `proxy_pass` directives.
 
@@ -328,8 +320,7 @@ In NGINX Plus, you can also set up dynamic reconfiguration of an upstream group
 
 For more information on proxying and load balancing, see [NGINX Reverse Proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}}) and [HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}}) in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
 
-<span id="session-persistence-basic"></span>
-### Configuring Basic Session Persistence
+### Configuring Basic Session Persistence {#session-persistence-basic}
 
 If your application requires basic session persistence (also known as _sticky sessions_), you can implement it in NGINX Open Source with the IP Hash load‑balancing algorithm. (NGINX Plus offers a more sophisticated form of session persistence, as described in [Configuring Advanced Session Persistence](#session-persistence-advanced).)
 
@@ -366,8 +357,7 @@ upstream nodejs {
 
 Directive documentation: [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 
-<span id="websocket"></a>
-### Configuring Proxy of WebSocket Traffic
+### Configuring Proxy of WebSocket Traffic {#websocket}
 
 The WebSocket protocol (defined in [RFC 6455](https://tools.ietf.org/html/rfc6455)) enables simultaneous two‑way communication over a single TCP connection between clients and servers, where each side can send data independently from the other. To initiate the WebSocket connection, the client sends a handshake request to the server, upgrading the request from standard HTTP to WebSocket. The connection is established if the handshake request passes validation, and the server accepts the request. When a WebSocket connection is created, a browser client can send data to a server while simultaneously receiving data from that server.
 
@@ -393,14 +383,13 @@ location /wstunnel/ {
 
 Directive documentation: [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map), [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version), [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header)
 
-The first `proxy_set_header` directive is needed because the `Upgrade` request header is <span style="white-space: nowrap;">hop-by-hop</span>; that is, the HTTP specification explicitly forbids proxies from forwarding it. This directive overrides the prohibition.
+The first `proxy_set_header` directive is needed because the `Upgrade` request header is {{<nb>}}hop-by-hop{{</nb>}}; that is, the HTTP specification explicitly forbids proxies from forwarding it. This directive overrides the prohibition.
 
 The second `proxy_set_header` directive sets the `Connection` header to a value that depends on the test in the `map` block: if the request has an `Upgrade` header, the `Connection` header is set to `upgrade`; otherwise, it is set to `close`.
 
 For more information about proxying WebSocket traffic, see [WebSocket proxying](https://nginx.org/en/docs/http/websocket.html) and [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
 
-<span id="caching"></span>
-### Configuring Content Caching
+### Configuring Content Caching {#caching}
 
 Caching responses from your Node.js app servers can both improve response time to clients and reduce load on the servers, because eligible responses are served immediately from the cache instead of being generated again on the server. There are a variety of useful directives that can be used to fine‑tune caching behavior; for a detailed discussion, see [A Guide to Caching with NGINX](https://www.nginx.com/blog/nginx-caching-guide/).
 
@@ -429,22 +418,11 @@ To enable basic caching of responses from the Node.js app server, add the follow
 
 For more complete information on caching, refer to the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}}) and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module.
 
-<span id="http2"></span>
-### Configuring HTTP/2 Support
+### Configuring HTTP/2 Support {#http2}
 
-HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and later. As always, we recommend you run the latest version of software to take advantage of improvements and bug fixes.
+HTTP/2 is supported by default in both NGINX Open Source and NGINX Plus. As always, run the latest version of the software to take advantage of improvements and bug fixes.
 
-- If using NGINX Open Source, note that in version 1.9.5 and later the SPDY module is completely removed from the codebase and replaced with the [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) module. After upgrading to version 1.9.5 or later, you can no longer configure NGINX Open Source to use SPDY. If you want to keep using SPDY, you need to compile NGINX Open Source from the sources in the [NGINX 1.8.x branch](https://nginx.org/en/download.html).
-
-- If using NGINX Plus, in R11 and later the {{<nb>}}**nginx-plus**{{</nb>}} package supports HTTP/2 by default, and the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by separate [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) authored by NGINX.
-
-  In NGINX Plus R8 through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
-
-  In NGINX Plus R8 and later, NGINX Plus supports HTTP/2 by default, and does not support SPDY.
-
-    If using NGINX Plus R7, you must install the {{<nb>}}**nginx-plus-http2**{{</nb>}} package instead of the {{<nb>}}**nginx-plus**{{</nb>}} or {{<nb>}}**nginx-plus-extras**{{</nb>}} package.
-
-To enable HTTP/2 support, add the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive in the `server` block for HTTPS traffic that we created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
+To enable HTTP/2 support, add the [http2](https://nginx.org/en/docs/http/ngx_http_v2_module.html#http2) directive in the `server` block for HTTPS traffic that you created in [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers), so that it looks like this:
 
 ```nginx
 # In the 'server' block for HTTPS traffic
@@ -457,8 +435,7 @@ Directive documentation: [http2](https://nginx.org/en/docs/http/ngx_http_v2_modu
 To verify that HTTP/2 translation is working, you can use the "HTTP/2 and SPDY indicator" plug‑in available for [Google Chrome](https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/http2-indicator/).
 
 
-<span id="full-configuration-basic"></span>
-### Full Configuration for Basic Load Balancing
+### Full Configuration for Basic Load Balancing {#full-configuration-basic}
 
 The full configuration for basic load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/nodejs-basic.conf) from the NGINX website.
 
@@ -524,8 +501,7 @@ server {
 
 ```
 
-<span id="enhanced"></span>
-## Configuring Enhanced Load Balancing with NGINX Plus
+## Configuring Enhanced Load Balancing with NGINX Plus {#enhanced}
 
 This section explains how to configure enhanced load balancing with some of the extended features in NGINX Plus.
 
@@ -543,8 +519,7 @@ Except as noted, all optional basic features (described in the other subsections
 
 The complete configuration file appears in [Full Configuration for Enhanced Load Balancing](#full-configuration-enhanced).
 
-<span id="session-persistence-advanced"></span>
-### Configuring Advanced Session Persistence
+### Configuring Advanced Session Persistence {#session-persistence-advanced}
 
 NGINX Plus has more sophisticated session persistence methods than open source NGINX, implemented in three variants of the `sticky` directive. In the following example, we add the `sticky cookie` directive to the upstream group we created in [Configuring Basic Load Balancing](#load-balancing-basic).
 
@@ -583,8 +558,7 @@ The first parameter to `sticky cookie` (in the example, `srv_id`) sets the name 
 
 For more information about session persistence, see the <a href="../../../admin-guide/load-balancer/http-load-balancer/#sticky">NGINX Plus Admin Guide</a>.
 
-<span id="health-checks"></span>
-### Configuring Application Health Checks
+### Configuring Application Health Checks {#health-checks}
 
 Health checks are out‑of‑band HTTP requests sent to a server at fixed intervals. They are used to determine whether a server is responsive and functioning correctly, without requiring an actual request from a client.
 
@@ -605,7 +579,7 @@ Because the `health_check` directive is placed in the `location` block, we can e
 
    Directive documentation: [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check)
 
-2. In the `http` context, include a `match` directive to define the tests that a server must pass to be considered functional. In this example, it must return status code `200`, the <span style="white-space: nowrap;">`Content-Type`</span> response header must contain `text/html`, and the response body must match the indicated character string.
+2. In the `http` context, include a `match` directive to define the tests that a server must pass to be considered functional. In this example, it must return status code `200`, the {{<nb>}}`Content-Type`{{</nb>}} response header must contain `text/html`, and the response body must match the indicated character string.
 
    ```nginx
    # In the 'http' block
@@ -646,10 +620,9 @@ Parameter documentation: [slow_start](https://nginx.org/en/docs/http/ngx_http_up
 
 For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
-<span id="live-activity-monitoring"></span>
-### Enabling Live Activity Monitoring
+### Enabling Live Activity Monitoring {#live-activity-monitoring}
 
-NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
+NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics. NGINX Plus reports statistics through a RESTful JSON interface, making it easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
 
 <img src="/nginx/images/nginx-plus-dashboard-r19-overview.png" alt="Dashboard tab in NGINX Plus live activity monitoring dashboard" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -711,12 +684,11 @@ The quickest way to configure the module and the built‑in NGINX Plus dashboar
 
    Directive documentation: [status_zone](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone)
 
-When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap; font-weight: bold;">http://_nginx-plus-server-address_:8080</span>.
+When you reload the NGINX Plus configuration file, for example by running the {{<nb>}}`nginx -s reload`{{</nb>}} command, the NGINX Plus dashboard is available immediately at `http://<NGINX_PLUS_SERVER_ADDRESS>:8080`.
 
-<span id="reconfiguration"></span>
-### Enabling Dynamic Reconfiguration of Upstream Groups
+### Enabling Dynamic Reconfiguration of Upstream Groups {#reconfiguration}
 
-With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either DNS or the NGINX Plus API introduced in <span style="white-space: nowrap;">NGINX Plus R13</span>. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#configuring-http-load-balancing-using-dns">DNS</a> and [API]({{< ref "nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
+With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either DNS or the NGINX Plus API. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#configuring-http-load-balancing-using-dns">DNS</a> and [API]({{< ref "nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
 
 #### Configuring the API Method
 
@@ -785,8 +757,7 @@ upstream nodejs {
 
 Parameter documentation: [service](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#service)
 
-<span id="full-configuration-enhanced"></span>
-### Full Configuration for Enhanced Load Balancing
+### Full Configuration for Enhanced Load Balancing {#full-configuration-enhanced}
 
 The full configuration for enhanced load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/nodejs-enhanced.conf) from the NGINX website.
 
@@ -874,8 +845,7 @@ server {
 }
 ```
 
-<span id="resources"></span>
-## Resources
+## Resources {#resources}
 
 - [NGINX Plus Overview](https://www.f5.com/products/nginx/nginx-plus)
 - [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
