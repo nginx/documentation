@@ -836,8 +836,39 @@ An example ExternalAuth policy for VirtualServer resources is available in the G
 |``sslVerifyDepth`` | Sets the verification depth in the external authentication server certificates chain. The default is ``1``. | ``int`` | No |
 |``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<namespace>/<secret>``. Use a standard `Opaque` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 |``sniName`` | The server name used for SNI and certificate verification when connecting to the external authentication server over TLS. If not specified, defaults to ``<service-name>.<namespace>.svc`` derived from ``authServiceName``. | ``string`` | No |
+|``authResponseHeaders`` | A list of headers from the response of the external authentication server. When the server allows a request with a `2xx` response, NGINX passes these headers to the backend. Up to 32 names. For rules and behavior, see [Pass auth response headers to the backend](#pass-auth-response-headers-to-the-backend). | ``[]string`` | No |
 
 {{% /table %}}
+
+### Pass auth response headers to the backend
+
+Use `authResponseHeaders` to give your backend details about the authenticated client, such as the user name or email. When the external authentication server allows a request with a `2xx` response, NGINX copies each listed header to the backend request. You don't need snippets for this field. It's the equivalent of the ingress-nginx `nginx.ingress.kubernetes.io/auth-response-headers` annotation.
+
+For example, the following policy passes the user name and email that OAuth2 Proxy returns when you set `set_xauthrequest = true` in the OAuth2 Proxy configuration:
+
+```yaml
+externalAuth:
+  authURI: "/oauth2/auth"
+  authServiceName: "default/oauth2-proxy-svc"
+  authResponseHeaders:
+  - X-Auth-Request-User
+  - X-Auth-Request-Email
+```
+
+NGINX handles each listed header as follows:
+
+- The value from the authentication server replaces any header of the same name that the client sends.
+- If the authentication server doesn't return a listed header, NGINX removes that header from the request. As a result, a client can't send its own value for a listed header.
+- If the authentication server returns a header more than once, NGINX joins the values into one header, separated by commas.
+
+The header names in the list must follow these rules:
+
+- Use only letters, digits, and hyphens.
+- Use 46 characters or fewer.
+- Use each name only once. NGINX Ingress Controller compares names without regard to case.
+- Don't use a header that NGINX manages: `Host`, `Connection`, `Proxy-Connection`, `Content-Length`, `Transfer-Encoding`, `TE`, `Keep-Alive`, `Expect`, `Upgrade`, `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Port`, or `X-Forwarded-Proto`.
+
+A VirtualServer or VirtualServerRoute can also set a listed header in `requestHeaders.set`. In that case, NGINX Ingress Controller drops the entry and reports a warning on the resource. The same applies to an Ingress that sets a listed header in the `nginx.org/proxy-set-headers` annotation.
 
 ### ExternalAuth merging behavior
 
