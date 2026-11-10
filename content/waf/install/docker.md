@@ -321,6 +321,24 @@ The steps are identical for Rocky Linux 8, 9, and 10. In the Dockerfile below, s
 
 {{< /tabs >}}
 
+#### AlmaLinux 10
+
+{{< tabs name="almalinux-instructions" >}}
+
+{{< tab name="NGINX Open Source" >}}
+
+{{< include "/waf/dockerfiles/almalinux-oss.md" >}}
+
+{{< /tab >}}
+
+{{< tab name="NGINX Plus" >}}
+
+{{< include "/waf/dockerfiles/almalinux-plus.md" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Build the Docker image
 
 Your folder should contain the following files:
@@ -715,11 +733,11 @@ sudo apt-get install app-protect-module-plus
 
 {{< /tabs >}}
 
-#### Oracle Linux / RHEL / Rocky Linux
+#### Oracle Linux / RHEL / Rocky Linux / AlmaLinux
 
 {{< call-out class="important" >}}
 
-The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the following commands, replace `<VERSION>` with your operating system major version: `8`, `9`, or `10`.
+The steps are identical for Oracle Linux, RHEL, Rocky Linux, and AlmaLinux. In the following commands, replace `<VERSION>` with your operating system major version: `8`, `9`, or `10`. For AlmaLinux, only version `10` is supported.
 
 {{< /call-out >}}
 
@@ -1320,6 +1338,52 @@ CMD ["sh", "/root/entrypoint.sh"]
 # syntax=docker/dockerfile:1
 # For Rocky Linux 10:
 FROM rockylinux/rockylinux:10
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-10.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### AlmaLinux 10
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For AlmaLinux 10:
+FROM almalinux:10
 
 # Install prerequisite packages:
 RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'

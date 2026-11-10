@@ -183,6 +183,24 @@ The steps are identical for Rocky Linux 8, 9, and 10. In the Dockerfile, set the
 
 {{< /tabs >}}
 
+### AlmaLinux 10
+
+{{< tabs name="almalinux-instructions" >}}
+
+{{< tab name="NGINX Open Source" >}}
+
+{{< include "/waf/dockerfiles/almalinux-oss.md" >}}
+
+{{< /tab >}}
+
+{{< tab name="NGINX Plus" >}}
+
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/almalinux-plus.md" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Ubuntu
 
 {{< tabs name="ubuntu-instructions" >}}
