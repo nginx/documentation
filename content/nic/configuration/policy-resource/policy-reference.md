@@ -759,15 +759,6 @@ A JWT policy on a route replaces the JWT policy in the VirtualServer `spec`, inc
 
 A resource can reference more than one JWT policy. As with other JWT policies, NGINX Ingress Controller applies only the first one.
 
-### Differences from F5 NGINX Gateway Fabric
-
-JWT claim authorization uses a structure similar to [JWT claim validation in F5 NGINX Gateway Fabric]({{< ref "/ngf/traffic-security/jwt-claim-validation.md" >}}). If you use both products, note these differences in NGINX Ingress Controller:
-
-- Nested claim names use a period (`.`), not a slash (`/`).
-- The top-level `require` defaults to `All`, not `Any`.
-- `match` also supports `Contains` and `Present`, and checks support `negate`.
-- `errorCode` sets the status code for failed claims.
-
 ## IngressMTLS
 
 The IngressMTLS policy configures client certificate verification.
