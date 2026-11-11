@@ -37,10 +37,24 @@ This tutorial uses the following example values. If you use different values, re
 | `plm` | Helm release name for PLM |
 | `nginx-ingress` | Namespace for NGINX Ingress Controller |
 | `nic` | Helm release name for NGINX Ingress Controller |
-| `security` | Namespace for `APPolicy` and `APLogConf` resources |
+| `security` | Namespace for `APPolicy`, `APLogConf`, and `APSignatures` resources |
 | `default` | Namespace for the Policy, sample application, and routing resource |
 | `webapp.example.com` | Example hostname for VirtualServer routing |
 | `cafe.example.com` | Example hostname for Ingress routing |
+
+## Namespaces and multiple deployments
+
+### Reference resources across namespaces
+
+A Policy can use `APPolicy` and `APLogConf` resources from another namespace with `<NAMESPACE>/<NAME>` in the `apPolicy` and `apLogConf` fields. The PLM Policy Controller and NGINX Ingress Controller must both watch that namespace. If the Policy Controller doesn't watch it, the resources are never compiled. If NGINX Ingress Controller doesn't watch it, the Policy reports `WAF PLM bundle: namespace "<NAMESPACE>" is not watched`. To use updated signatures, the namespace also needs its own `APSignatures` resource. NGINX Ingress Controller doesn't restrict which namespaces a Policy can reference, so control access with RBAC and the controller's watched namespaces.
+
+### Share one PLM installation between data planes
+
+Several NGINX Ingress Controller deployments can share one PLM installation. Configure each one with the same `controller.appprotect.plmStorage` values and install each with `--skip-crds`. Set `spec.ingressClassName` on each Policy, because every controller processes a Policy that has no ingress class. Run the same F5 WAF for NGINX release on the controllers and on PLM, because the WAF enforcer rejects bundles compiled by a different version.
+
+### Run one PLM installation per cluster
+
+A cluster supports only one PLM installation, and each NGINX Ingress Controller deployment connects to a single PLM storage endpoint.
 
 ## Deploy PLM infrastructure
 
@@ -184,7 +198,7 @@ Replace `<PUBLIC_IP_ADDRESS>` with the public IP address of your NGINX Ingress C
 
 ## Define the WAF policy
 
-Create the `security` namespace to hold the `APPolicy` and `APLogConf` resources:
+Create the `security` namespace to hold the `APPolicy`, `APLogConf`, and `APSignatures` resources:
 
 ```shell
 kubectl create namespace security
@@ -581,20 +595,6 @@ kubectl describe policy waf-policy
 ```
 
 A `State: Valid` and `Reason: AddedOrUpdated` status confirms the bundles were fetched successfully.
-
-## Namespaces and multiple deployments
-
-### Reference resources across namespaces
-
-A Policy can use `APPolicy` and `APLogConf` resources from another namespace with `apPolicy: "<NAMESPACE>/<NAME>"`. That namespace needs its own `APSignatures` resource, and both Policy Controller (PLM) and NGINX Ingress Controller must watch it. Otherwise the Policy reports namespace `<NAMESPACE>` is not watched. NGINX Ingress Controller doesn't restrict which namespaces a Policy can reference, so control access with RBAC and the controller's watched namespaces.
-
-### Share one PLM installation between data planes
-
-Several controllers can share one PLM installation. Configure each one with the same `controller.appprotect.plmStorage` values and install each with `--skip-crds`. Set `spec.ingressClassName` on each Policy so only one controller processes it. Every controller must run the same F5 WAF for NGINX release as PLM.
-
-### Run one PLM installation per cluster
-
-A cluster supports only one PLM installation, and each NGINX Ingress Controller deployment connects to a single PLM storage endpoint. To separate teams or environments, use namespaces within one PLM installation.
 
 ## Troubleshooting
 
