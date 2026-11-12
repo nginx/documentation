@@ -521,6 +521,7 @@ This feature uses the NGINX Plus [ngx_http_auth_jwt_module](https://nginx.org/en
 |``secret`` | The name of the Kubernetes secret that stores the JWK. It must be in the same namespace as the Policy resource. Use a standard `Opaque` secret. Store the JWK under the key `jwk`. | ``string`` | Yes |
 |``realm`` | The realm of the JWT. | ``string`` | Yes |
 |``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No |
+|``authorization`` | Claim checks that a valid token must pass. For details, see [JWT claim authorization](#jwt-claim-authorization). | [jwt.authorization](#jwtauthorization) | No |
 
 {{% /table %}}
 
@@ -577,6 +578,7 @@ This feature uses the NGINX Plus directive [auth_jwt_key_request](https://nginx.
 |``sslVerify`` | Turns on verification of the JWKS server SSL certificate. | ``bool`` | No | `false` |
 |``sslVerifyDepth`` | Sets the verification depth in the JWKS server certificates chain. | ``int`` | No | `1` |
 |``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for JWKS server verification. It must be in the same namespace as the Policy resource. Use a standard `Opaque` secret. Store the certificate under the key `ca.crt`. | ``string`` | No | -- |
+|``authorization`` | Claim checks that a valid token must pass. For details, see [JWT claim authorization](#jwt-claim-authorization). | [jwt.authorization](#jwtauthorization) | No | -- |
 
 {{% /table %}}
 
@@ -597,6 +599,165 @@ policies:
 ```
 
 In this example, NGINX Ingress Controller uses the configuration from the first policy reference, `jwt-policy-one`, and ignores `jwt-policy-two`.
+
+## JWT claim authorization
+
+{{< call-out class="note" >}}
+
+This feature is only available with NGINX Plus.
+
+{{< /call-out >}}
+
+A JWT policy accepts every request that has a valid token. To also control which tokens get access, add `authorization` to the JWT policy. Authorization checks the claims in the token, such as its audience, scopes, or roles. NGINX Plus checks the claims only after it validates the token signature and expiry. Use `authorization` with a local Kubernetes secret or with a remote JSON Web Key Set (JWKS).
+
+The following example policy has one rule. A request passes only when the token meets every check in that rule:
+
+```yaml
+jwt:
+  realm: MyProductAPI
+  token: $http_token
+  jwksURI: <URI_TO_REMOTE_SERVER_OR_IDP>
+  keyCache: 1h
+  authorization:
+    rules:
+    - require: All
+      claims:
+      - name: aud
+        match: Contains
+        values: [account]
+      - name: scope
+        match: Contains
+        values: [openid, profile]
+        proxySetHeader: X-Token-Scope
+      - name: realm_access.roles
+        match: Contains
+        values: [blocked]
+        negate: true
+```
+
+Replace `<URI_TO_REMOTE_SERVER_OR_IDP>` with the URI of your remote JWKS server or identity provider.
+
+This policy accepts a token when all of the following are true:
+
+- The `aud` claim contains `account`.
+- The `scope` claim contains `openid` or `profile`.
+- The `realm_access.roles` claim exists and doesn't contain `blocked`.
+
+NGINX also sends the value of the `scope` claim to the upstream in the `X-Token-Scope` header.
+
+If a request has no token or an invalid token, NGINX returns `401`. If the token is valid but its claims fail the rules, NGINX returns `403`. To return `401` for failed claims instead, set `errorCode` to `401`.
+
+{{< call-out class="note" >}}
+
+This feature uses the NGINX Plus directives [`auth_jwt_claim_set`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_claim_set) and [`auth_jwt_require`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_require) from [`ngx_http_auth_jwt_module`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
+
+{{< /call-out >}}
+
+The GitHub repository for NGINX Ingress Controller has complete examples with test tokens:
+
+- [JWT example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/jwt/README.md)
+- [JWKS example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/jwks/README.md)
+
+### JWT.Authorization
+
+{{% table %}}
+
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``errorCode`` | The HTTP status code that NGINX returns when the claims fail the rules. Allowed values are `401` and `403`. Authentication failures always return `401`. | ``int`` | No | `403` |
+|``require`` | Whether the token must pass `Any` rule or `All` rules. | ``string`` | No | `All` |
+|``rules`` | The authorization rules. Set 1-16 rules. | [[]jwt.authorization.rule](#jwtauthorizationrule) | Yes | -- |
+
+{{% /table %}}
+
+### JWT.Authorization.Rule
+
+A rule groups claim checks. By default, a token must pass all rules, but only one check in each rule. To require every check in a rule, set `require` to `All` in that rule.
+
+{{% table %}}
+
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``require`` | Whether the token must pass `Any` check or `All` checks in the rule. | ``string`` | No | `Any` |
+|``claims`` | The claim checks in the rule. Set 1-32 checks. You can check the same claim more than once with a different `match` or `negate`. | [[]jwt.authorization.rule.claim](#jwtauthorizationruleclaim) | Yes | -- |
+
+{{% /table %}}
+
+### JWT.Authorization.Rule.Claim
+
+{{% table %}}
+
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``name`` | The name of the claim. For a nested claim, separate the parts of the name with a period (`.`), for example `realm_access.roles`. Each part of the name can contain only letters, digits, hyphens (`-`), and underscores (`_`). | ``string`` | Yes | -- |
+|``match`` | How NGINX compares the claim to `values`. Allowed values are `Exact`, `Contains`, `Regex`, and `Present`. For details, see [How NGINX matches claims](#how-nginx-matches-claims). | ``string`` | No | `Exact` |
+|``values`` | The values to compare the claim to. The check passes when the claim matches any value. Set 1-32 values. When `match` is `Present`, don't set `values`. For any other `match` type, `values` is required. | ``[]string`` | Conditional | -- |
+|``negate`` | Whether to invert the check. For example, with `match: Contains`, the check passes when the claim exists and contains none of the values. | ``bool`` | No | `false` |
+|``proxySetHeader`` | The name of the request header that NGINX uses to send the claim value to the upstream. Each header name can appear only once in a policy. | ``string`` | No | -- |
+
+{{% /table %}}
+
+### How NGINX matches claims
+
+{{% table %}}
+
+| `match` | Passes when | Passes with `negate: true` when |
+| ---| ---| --- |
+| `Exact` | The claim equals one of the values. The comparison is case-sensitive. | The claim exists and equals none of the values. |
+| `Contains` | The claim contains one of the values. NGINX splits the claim on spaces and commas. With this split, `Contains` works for array claims such as `aud` and for space-separated claims such as `scope`. | The claim exists and contains none of the values. |
+| `Regex` | The claim matches one of the values, which are Perl Compatible Regular Expressions (PCRE). The comparison is case-sensitive. | The claim exists and matches none of the values. |
+| `Present` | The claim exists and isn't empty. | The claim is missing or empty. |
+
+{{% /table %}}
+
+When you write checks, note these behaviors:
+
+- A missing claim fails every `Exact`, `Contains`, and `Regex` check, even with `negate: true`. Only `match: Present` with `negate: true` accepts a missing claim.
+- NGINX treats an empty string (`""`) or an empty array (`[]`) as a missing claim.
+- `Contains` also splits a claim that isn't an array. For example, the `name` claim `Admin User` contains `Admin`.
+- A `Regex` value matches anywhere in the claim. To match the whole claim, start the value with `^` and end it with `$`.
+
+The following rule accepts a token that has no `role` claim or that has a `role` claim other than `guest`:
+
+```yaml
+- require: Any
+  claims:
+  - name: role
+    values: [guest]
+    negate: true
+  - name: role
+    match: Present
+    negate: true
+```
+
+### Forward claims to the upstream
+
+Set `proxySetHeader` on a claim check to send the claim value to the upstream in a request header. This header replaces a header with the same name from the client. NGINX doesn't send the header when the claim is missing, or when the claim value contains a line break.
+
+A route can set the same header in the `requestHeaders` of [Action.Proxy]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#actionproxy" >}}). In that case, the route value takes precedence. NGINX Ingress Controller also sets some headers by default, such as `Host` and `X-Real-IP`. A policy header replaces a default header with the same name.
+
+NGINX forwards the claim even if its check fails, as long as the token passes the policy. For example, with `require: Any`, a token can pass one rule and fail the rule that holds the forwarded claim. If your upstream relies on a forwarded claim, check that claim in a rule that every token must pass.
+
+### Validation
+
+The Kubernetes API rejects a policy that does any of the following:
+
+- Sets `values` with `match: Present`, or sets no `values` for any other `match` type.
+- Sets `proxySetHeader` with `match: Present` and `negate: true`. The claim is missing, so it has no value to forward.
+- Uses a space or a comma in a `Contains` value.
+- Uses `;`, `{`, `}`, `$`, `` ` ``, or a line break in an `Exact` or `Contains` value.
+- Uses named captures or lookbehind in a `Regex` value.
+- Sets `errorCode` to a value other than `401` or `403`.
+
+NGINX Ingress Controller also rejects a policy that has an invalid regular expression, or a repeated header name or check. It also rejects claim names that produce the same NGINX variable, for example `tenant.tier` and `tenant_tier`, or `Role` and `role`. NGINX returns `500` for routes that reference a rejected policy.
+
+You can't check a claim whose name contains a period, a slash, or a colon, such as `https://example.com/roles`. NGINX Ingress Controller reads each period as a separator between nested claims.
+
+### JWT claim authorization merging behavior
+
+A JWT policy on a route replaces the JWT policy in the VirtualServer `spec`, including its `authorization`. NGINX checks only the claims in the policy on the route. If that policy has no `authorization`, NGINX doesn't check claims for that route.
+
+A resource can reference more than one JWT policy. As with other JWT policies, NGINX Ingress Controller applies only the first one.
 
 ## IngressMTLS
 
