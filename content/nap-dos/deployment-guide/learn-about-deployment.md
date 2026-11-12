@@ -151,10 +151,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo dnf remove nginx-plus
     sudo dnf install app-protect-dos
-    sudo systemctl start nginx
     ```
 
-    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
+    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx`.{{< /call-out >}}
+
+    After you restore the configuration, restart NGINX:
+
+    ```shell
+    sudo systemctl restart nginx
+    ```
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
@@ -266,10 +271,16 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl enable nginx.service
     ```
 
-17. Start the NGINX service:
+17. Restart the NGINX service. Use `restart`, not `start`: it works whether or not NGINX is already running, and it loads the new configuration:
 
     ```shell
-    sudo systemctl start nginx
+    sudo systemctl restart nginx
+    ```
+
+    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+
+    ```shell
+    sudo systemctl is-active nginx-app-protect-dos
     ```
 
 18. L4 mitigation
@@ -376,10 +387,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo dnf remove nginx-plus
     sudo dnf install app-protect-dos
-    sudo systemctl start nginx
     ```
 
-    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
+    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx`.{{< /call-out >}}
+
+    After you restore the configuration, restart NGINX:
+
+    ```shell
+    sudo systemctl restart nginx
+    ```
 
 10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
@@ -494,10 +510,16 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl enable nginx.service
     ```
 
-17. Start the NGINX service:
+17. Restart the NGINX service. Use `restart`, not `start`: it works whether or not NGINX is already running, and it loads the new configuration:
 
     ```shell
-    sudo systemctl start nginx
+    sudo systemctl restart nginx
+    ```
+
+    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+
+    ```shell
+    sudo systemctl is-active nginx-app-protect-dos
     ```
 
 18. L4 mitigation
@@ -688,7 +710,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get update
     sudo apt-get remove nginx-plus
     sudo apt-get install app-protect-dos
-    sudo systemctl start nginx
+    sudo systemctl restart nginx
     ```
 
 11. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
@@ -723,11 +745,18 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_accelerated_mitigation on;
     ```
 
-16. Start the NGINX service:
+16. Restart the NGINX service. Use `restart`, not `start`: it works whether or not NGINX is already running, and it loads the new configuration:
 
     ```shell
-    sudo systemctl start nginx
+    sudo systemctl restart nginx
     ```
+
+    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+
+    ```shell
+    sudo systemctl is-active nginx-app-protect-dos
+    ```
+
 17. Start the L4 service:
     ```shell
      sudo systemctl start app-protect-dos-ebpf-manager
@@ -954,10 +983,15 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo dnf remove nginx-plus
     sudo dnf install app-protect-dos
-    sudo systemctl start nginx
     ```
 
-    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
+    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx`.{{< /call-out >}}
+
+    After you restore the configuration, restart NGINX:
+
+    ```shell
+    sudo systemctl restart nginx
+    ```
 
 9. Confirm the NGINX binary version to make sure that you have NGINX Plus installed correctly:
 
@@ -997,10 +1031,16 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl enable nginx.service
     ```
 
-15. Start the NGINX service:
+15. Restart the NGINX service. Use `restart`, not `start`: it works whether or not NGINX is already running, and it loads the new configuration:
 
     ```shell
-    sudo systemctl start nginx
+    sudo systemctl restart nginx
+    ```
+
+    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+
+    ```shell
+    sudo systemctl is-active nginx-app-protect-dos
     ```
 
 16. L4 mitigation
@@ -1895,7 +1935,15 @@ There is no such option for authentications between F5 DoS for NGINX servers and
 
 You can run the following commands to ensure that F5 DoS for NGINX enforcement is operational.
 
-1. Check that the three processes needed for F5 DoS for NGINX are running using `ps aux`:
+1. On a virtual machine, check that the F5 DoS for NGINX service is running. The command must print `active`:
+
+    ```shell
+    sudo systemctl is-active nginx-app-protect-dos
+    ```
+
+    On Alpine, run `rc-service nginx-app-protect-dos status` instead. If the service isn't active, look in `/var/log/adm/admd.log` and `/var/log/adm/adminstall.log`. On systemd-based systems, also check the output of `sudo journalctl -u nginx-app-protect-dos`.
+
+2. Check that the three processes needed for F5 DoS for NGINX are running using `ps aux`:
 
     - admd
     - nginx: master process
@@ -1908,7 +1956,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     nginx      7767   0.0    0.1   615868  8188 ?       Sl    Sep06     0:04  nginx: worker process
     ```
 
-2. Verify that there are no NGINX errors in the `/var/log/nginx/error.log` and that the policy compiled successfully:
+3. Verify that there are no NGINX errors in the `/var/log/nginx/error.log` and that the policy compiled successfully:
 
     ```shell
     2020/09/07 15:33:44 [notice] 9307#9307: using the "epoll" event method
@@ -1921,7 +1969,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     PID <9311>, WORKER <0>, Function adm_ngx_init_process, line 684, version: 22+1.19.4-1.el7.ngx
     ```
 
-3. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
+4. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
 
     a. Simulate good traffic:
 
@@ -1961,7 +2009,10 @@ A threat campaign package is compatible with the NGINX Plus release supported du
 
 You can upgrade to the latest NGINX Plus and App Protect DoS versions by downloading and installing the latest F5 DoS for NGINX package. When upgrading from this package, App Protect DoS will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
 
-If you upgrade your NGINX version outside the App Protect DoS module, App Protect DoS will be uninstalled and you will need to reinstall it. You need to restart NGINX after an upgrade.
+If you upgrade your NGINX version outside the App Protect DoS module, App Protect DoS will be uninstalled and you will need to reinstall it. After an upgrade:
+
+- The upgrade stops the F5 DoS for NGINX service and doesn't start it again, so NGINX runs without DoS protection until you run `sudo systemctl restart nginx`. On Alpine, run `sudo rc-service nginx-app-protect-dos start`, which also restarts NGINX.
+- A reload is not enough, because it keeps the old NGINX binary and DoS module.
 
 ## SELinux
 
