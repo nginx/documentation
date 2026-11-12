@@ -234,6 +234,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 |**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. Requires NGINX Agent 3.x. | "agent.connect.nginx.com" |
 |**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | 443 |
 |**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | false |
+|**nginxAgent.labels** | Key-value labels that NGINX Agent reports to NGINX One Console. For example, `display-name: my-nginx-instance`. If you set `nginxAgent.customConfigMap`, the chart ignores this value. Requires NGINX Agent 3.x. | {} |
 |**nginxAgent.instanceGroup** | Set a custom Instance Group name for the deployment, shown when connected to NGINX Instance Manager. `nginx-ingress.controller.fullname` will be used if not set. Requires NGINX Agent 2.x. | "" |
 |**nginxAgent.instanceManager.host** | FQDN or IP for connecting to NGINX Ingress Controller. Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 2.x. | "" |
 |**nginxAgent.instanceManager.grpcPort** | Port for connecting to NGINX Ingress Controller. Requires NGINX Agent 2.x. | 443 |
