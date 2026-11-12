@@ -21,7 +21,7 @@ f5-summary: >
 
 In environments where F5 NGINX Instance Manager has internet access but NGINX Plus doesn't, NGINX Plus sends usage data to NGINX Instance Manager. NGINX Instance Manager automatically sends the usage reports to F5 for verification, or you can send them manually.
 
-**If usage reporting fails, NGINX Plus stops processing traffic.** Previously reported instances are an exception — see [handling outages](#handling-outages) for details.
+{{< call-out class="important" >}}If usage reporting fails, NGINX Plus stops processing traffic. This rule doesn't apply to instances that already sent a successful report. These instances get a 180-day grace period before traffic processing stops. See [Processing traffic]({{< ref "/solutions/about-subscription-licenses/getting-started.md#processing-traffic" >}}) for details.{{< /call-out >}}
 
 Use the steps below to configure NGINX Plus to report usage data to NGINX Instance Manager and submit the report to F5 for verification.
 
