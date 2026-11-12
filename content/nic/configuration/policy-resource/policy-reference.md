@@ -858,9 +858,15 @@ externalAuth:
 Each listed header works as follows:
 
 - If the server returns the header, its value replaces the value from the client.
-- If the server doesn't return the header, NGINX removes it. Clients can't set a listed header themselves.
+- If the server doesn't return the header, NGINX removes it.
 - If the server returns the header more than once, NGINX joins the values with commas.
 - If a VirtualServer or VirtualServerRoute `requestHeaders.set`, or an Ingress `nginx.org/proxy-set-headers` annotation, also sets the header, NGINX Ingress Controller drops that entry. It reports a warning on the resource.
+
+These rules apply only to routes where the policy's authentication request runs. On the following routes, a spec-level or master policy doesn't run. NGINX passes client values of that policy's headers to the backend unchanged:
+
+- A VirtualServer or VirtualServerRoute route with its own ExternalAuth policy. NGINX handles only the headers that the route's policy lists.
+- A VirtualServer or VirtualServerRoute route with an APIKey policy.
+- A mergeable Ingress minion with its own ExternalAuth policy that uses a different authentication service than the master. NGINX handles only the headers that the minion's policy lists.
 
 ### ExternalAuth merging behavior
 
