@@ -997,8 +997,43 @@ An example ExternalAuth policy for VirtualServer resources is available in the G
 |``sslVerifyDepth`` | Sets the verification depth in the external authentication server certificates chain. The default is ``1``. | ``int`` | No |
 |``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<namespace>/<secret>``. Use a standard `Opaque` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 |``sniName`` | The server name used for SNI and certificate verification when connecting to the external authentication server over TLS. If not specified, defaults to ``<service-name>.<namespace>.svc`` derived from ``authServiceName``. | ``string`` | No |
+|``authResponseHeaders`` | Headers from the external authentication server's response to pass to the backend after a `2xx` response. Up to 32 names. Each name uses only letters, digits, and hyphens, has at most 46 characters, and is unique, ignoring case. Can't include `Host`, `Connection`, `Proxy-Connection`, `Content-Length`, `Transfer-Encoding`, `TE`, `Keep-Alive`, `Expect`, `Upgrade`, `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Port`, or `X-Forwarded-Proto`. See [Pass auth response headers to the backend](#pass-auth-response-headers-to-the-backend). | ``[]string`` | No |
 
 {{% /table %}}
+
+### Pass auth response headers to the backend
+
+Use `authResponseHeaders` to pass client details, such as the user name or email, from the authentication server to the backend. You don't need snippets. It's the equivalent of the ingress-nginx `nginx.ingress.kubernetes.io/auth-response-headers` annotation.
+
+This policy passes the user name and email that OAuth2 Proxy returns when you set `set_xauthrequest = true`:
+
+```yaml
+externalAuth:
+  authURI: "/oauth2/auth"
+  authServiceName: "default/oauth2-proxy-svc"
+  authResponseHeaders:
+  - X-Auth-Request-User
+  - X-Auth-Request-Email
+```
+
+Each listed header works as follows:
+
+- If the server returns the header, its value replaces the value from the client.
+- If the server doesn't return the header, NGINX removes it.
+- If the server returns the header more than once, NGINX joins the values with commas.
+- If a VirtualServer or VirtualServerRoute `requestHeaders.set`, or an Ingress `nginx.org/proxy-set-headers` annotation, also sets the header, NGINX Ingress Controller drops that entry. It reports a warning on the resource.
+
+{{< call-out class="warning" >}}
+
+Don't use snippets to set `underscores_in_headers on` or `ignore_invalid_headers off` when you use `authResponseHeaders`. Either directive lets a client send a header with underscores in its name, such as `TENANT_ID`, to the backend. Header names in `authResponseHeaders` can't contain underscores, so NGINX doesn't replace or remove these headers. Many backends treat `TENANT_ID` and `Tenant-ID` as the same header. The backend can then trust the client's value instead of the authentication server's value.
+
+{{< /call-out >}}
+
+These rules apply only to routes where the policy's authentication request runs. On the following routes, a spec-level or master policy doesn't run. NGINX passes client values of that policy's headers to the backend unchanged:
+
+- A VirtualServer or VirtualServerRoute route with its own ExternalAuth policy. NGINX handles only the headers that the route's policy lists.
+- A VirtualServer or VirtualServerRoute route with an APIKey policy.
+- A mergeable Ingress minion with its own ExternalAuth policy that uses a different authentication service than the master. NGINX handles only the headers that the minion's policy lists.
 
 ### ExternalAuth merging behavior
 
