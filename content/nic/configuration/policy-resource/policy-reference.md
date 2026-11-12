@@ -862,6 +862,12 @@ Each listed header works as follows:
 - If the server returns the header more than once, NGINX joins the values with commas.
 - If a VirtualServer or VirtualServerRoute `requestHeaders.set`, or an Ingress `nginx.org/proxy-set-headers` annotation, also sets the header, NGINX Ingress Controller drops that entry. It reports a warning on the resource.
 
+{{< call-out class="warning" >}}
+
+Don't use snippets to set `underscores_in_headers on` or `ignore_invalid_headers off` when you use `authResponseHeaders`. Either directive lets a client send a header with underscores in its name, such as `TENANT_ID`, to the backend. Header names in `authResponseHeaders` can't contain underscores, so NGINX doesn't replace or remove these headers. Many backends treat `TENANT_ID` and `Tenant-ID` as the same header. The backend can then trust the client's value instead of the authentication server's value.
+
+{{< /call-out >}}
+
 These rules apply only to routes where the policy's authentication request runs. On the following routes, a spec-level or master policy doesn't run. NGINX passes client values of that policy's headers to the backend unchanged:
 
 - A VirtualServer or VirtualServerRoute route with its own ExternalAuth policy. NGINX handles only the headers that the route's policy lists.
