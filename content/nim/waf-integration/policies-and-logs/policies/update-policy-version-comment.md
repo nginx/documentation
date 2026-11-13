@@ -72,7 +72,7 @@ Use `PATCH` to update the comment on a specific policy version.
 
 ### Update a comment
 
-1. Get the UID of the policy version you want to update:
+1. Get the unique identifier (UID) of the policy version you want to update:
 
    ```shell
    curl -G 'https://<NIM_FQDN>/api/platform/v1/security/policies' \
