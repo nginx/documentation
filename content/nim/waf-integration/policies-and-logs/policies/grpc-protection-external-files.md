@@ -572,6 +572,7 @@ Instance Manager doesn't validate `.proto` syntax. The WAF compiler does, so a s
 ## See also
 
 - [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}})
+- [gRPC Protection settings]({{< ref "/nim/waf-integration/policies-and-logs/policies/grpc-protection-settings.md" >}})
 - [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}})
 - [Update a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/update-policy.md" >}})
 - [Publish updates to instances]({{< ref "/nim/waf-integration/policies-and-logs/publish/publish-to-instances.md" >}})
