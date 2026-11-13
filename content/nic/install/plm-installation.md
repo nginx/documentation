@@ -17,6 +17,7 @@ By the end of this tutorial, you'll have:
 
 - A running PLM backend and NGINX Ingress Controller deployment configured for PLM storage.
 - An `APPolicy` and an `APLogConf` resource compiled by PLM.
+- The PLM `APSignatures` resource configured to fetch the latest signatures.
 - A `k8s.nginx.org/v1` Policy that references the compiled resources.
 - The Policy attached to a VirtualServer or an Ingress, with traffic flowing normally and attack payloads blocked.
 
@@ -40,6 +41,20 @@ This tutorial uses the following example values. If you use different values, re
 | `default` | Namespace for the Policy, sample application, and routing resource |
 | `webapp.example.com` | Example hostname for VirtualServer routing |
 | `cafe.example.com` | Example hostname for Ingress routing |
+
+## Namespaces and multiple deployments
+
+### Reference resources across namespaces
+
+A Policy can use `APPolicy` and `APLogConf` resources from another namespace with `<NAMESPACE>/<NAME>` in the `apPolicy` and `apLogConf` fields. The PLM Policy Controller and NGINX Ingress Controller must both watch that namespace. If the Policy Controller doesn't watch it, the resources are never compiled. If NGINX Ingress Controller doesn't watch it, the Policy reports `WAF PLM bundle: namespace "<NAMESPACE>" is not watched`. Signature revisions come from the single `APSignatures` resource in the PLM namespace, which applies to every policy PLM compiles. `APSignatures` resources in other namespaces have no effect. NGINX Ingress Controller doesn't restrict which namespaces a Policy can reference, so control access with RBAC and the controller's watched namespaces.
+
+### Share one PLM installation between data planes
+
+Several NGINX Ingress Controller deployments can share one PLM installation. Configure each one with the same `controller.appprotect.plmStorage` values and install each with `--skip-crds`. Set `spec.ingressClassName` on each Policy, because every controller processes a Policy that has no ingress class. Run the same F5 WAF for NGINX release on the controllers and on PLM, because the WAF enforcer rejects bundles compiled by a different version.
+
+### Run one PLM installation per cluster
+
+A cluster supports only one PLM installation, and each NGINX Ingress Controller deployment connects to a single PLM storage endpoint.
 
 ## Deploy PLM infrastructure
 
@@ -67,7 +82,7 @@ apusersigs.appprotect.f5.com
 NGINX Ingress Controller connects to PLM's SeaweedFS filer over S3 to fetch compiled bundles. Before you install the controller, collect these four values from the PLM installation:
 
 1. **PLM storage URL**: the SeaweedFS filer endpoint (HTTPS or HTTP).
-2. **Credentials Secret**: the S3 credentials Secret. The access key ID is `admin` by default. The secret access key is in the `seaweedfs_admin_secret` field.
+2. **Credentials Secret**: the S3 credentials Secret. The secret access key is in the `seaweedfs_admin_secret` field. The PLM chart sets the access key ID to `adminKey`. NGINX Ingress Controller uses that ID.
 3. **CA Secret** (HTTPS only): verifies the SeaweedFS filer certificate.
 4. **Client TLS Secret** (mutual TLS only): presented by NGINX Ingress Controller when it connects to the filer.
 
@@ -189,6 +204,34 @@ Create the `security` namespace to hold the `APPolicy` and `APLogConf` resources
 kubectl create namespace security
 ```
 
+Before you create the policy, configure signature updates. The PLM chart creates one `APSignatures` resource, named `apsignatures`, in the PLM namespace (`plm-system`). It sets which attack signature, bot signature, and threat campaign revisions PLM compiles into every bundle, whatever namespace the `APPolicy` is in. By default, its `spec` is empty, so PLM uses the signatures included in the compiler image. Each PLM release includes the signatures that were current a few days before the release. Setting `revision: latest` makes PLM fetch updates from the signature repository.
+
+{{< call-out class="note" title="Update the APSignatures resource in the PLM namespace" >}}
+PLM uses only the `APSignatures` resource in its own namespace. `APSignatures` resources in other namespaces, such as `security`, have no effect.
+{{< /call-out >}}
+
+Save the following as `waf-signatures.yaml`:
+
+```yaml
+spec:
+  attack-signatures:
+    revision: latest
+  bot-signatures:
+    revision: latest
+  threat-campaigns:
+    revision: latest
+```
+
+Update the `APSignatures` resource and wait for the signatures to install:
+
+```shell
+kubectl patch apsignatures apsignatures --namespace plm-system \
+  --type merge --patch-file waf-signatures.yaml
+
+kubectl wait --for=jsonpath='{.status.installationState}'=success \
+  apsignatures/apsignatures --namespace plm-system --timeout=300s
+```
+
 Save the following as `waf-resources.yaml`. The file defines an `APPolicy` that blocks attack signatures and masks credit card numbers and social security numbers in responses. It also defines an `APLogConf` for security logging.
 
 ```yaml
@@ -251,6 +294,17 @@ Confirm the compiled bundle location:
 kubectl get appolicy dataguard-blocking --namespace security \
   --output jsonpath='State: {.status.bundle.state}{"\n"}Location: {.status.bundle.location}{"\n"}'
 ```
+
+Confirm the bundle includes the installed signatures:
+
+```shell
+kubectl get apsignatures --namespace plm-system
+
+kubectl get appolicy dataguard-blocking --namespace security \
+  --output jsonpath='{.status.bundle.signatures}{"\n"}'
+```
+
+The dates in `attackSignatures`, `botSignatures`, and `threatCampaigns` correspond to the revisions that `kubectl get apsignatures` lists.
 
 ## Create the Policy
 
@@ -545,4 +599,5 @@ A `State: Valid` and `Reason: AddedOrUpdated` status confirms the bundles were f
 ## Troubleshooting
 
 - **Policy status is `Warning` with reason `BundleFetchFailed`.** Run `kubectl describe appolicy <NAME> --namespace security` and confirm `status.bundle.state` is `ready`. If PLM hasn't compiled the resource yet, the Policy fetch can't proceed.
-- **NGINX Ingress Controller reports the referenced namespace isn't watched.** If `controller.watchNamespace` is set, include the namespace that holds the `APPolicy` and `APLogConf` resources. If `controller.watchSecretNamespace` is set, include the PLM namespace so the controller can observe storage Secret rotation.
+- **Policy status is `Warning` with the message `WAF PLM bundle: namespace "<NAMESPACE>" is not watched`.** If you set `controller.watchNamespace`, include the namespace that holds the `APPolicy` and `APLogConf` resources. If you set `controller.watchSecretNamespace`, include the PLM namespace so the controller notices changes to the CA and client certificate Secrets. The controller always watches the credentials Secret.
+- **The bundle uses the signatures included in the compiler image.** The `APSignatures` resource in the PLM namespace still has an empty `spec`, or the signature installation failed. Run `kubectl get apsignatures --namespace plm-system`. If `STATUS` is `failure`, check `status.errors` on the resource and the Policy Controller logs.
