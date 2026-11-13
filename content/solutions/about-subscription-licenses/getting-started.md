@@ -35,7 +35,7 @@ Starting NGINX Plus requires a valid, unexpired license. If the license has expi
 
 After startup, you can check your license status in the [error log](#log-monitoring). Ensure that the error log is configured at the notice level or a more verbose level.
 
-### Processing traffic
+### Processing traffic {#processing-traffic}
 
 Processing traffic requires:  
 
