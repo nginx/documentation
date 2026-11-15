@@ -37,7 +37,7 @@ Released _October 28th, 2026_.
 
 ### Resolved issues
 
-- Updated Brotli to address a security issue.
+- Updated the Brotli package to address a security issue.
 - Fixed bugs and security issues.
 
 ## F5 WAF for NGINX 5.16.0
@@ -122,7 +122,7 @@ Released _October 28th, 2026_.
 
 ### Resolved issues
 
-- Updated Brotli to address a security issue.
+- Updated the Brotli package to address a security issue.
 - Fixed bugs and security issues.
 
 ## F5 WAF for NGINX 5.14.2
