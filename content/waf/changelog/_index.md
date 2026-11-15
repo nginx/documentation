@@ -13,6 +13,20 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.16.2
+
+Release date: _TBD_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- Fixed a memory leak during request processing.
+- Fixed excessive CPU usage during security logging.
+- Upgraded the Go compiler to version 1.26.11.
+
 ## F5 WAF for NGINX 5.16.1
 
 Released _October 28th, 2026_.
@@ -23,6 +37,7 @@ Released _October 28th, 2026_.
 
 ### Resolved issues
 
+- Updated Brotli to address a security issue.
 - Fixed bugs and security issues.
 
 ## F5 WAF for NGINX 5.16.0
@@ -83,6 +98,20 @@ Released _September 2nd, 2026_.
 
 {{< /table >}}
 
+## F5 WAF for NGINX 5.14.4
+
+Release date: _TBD_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- Fixed a memory leak during request processing.
+- Fixed excessive CPU usage during security logging.
+- Upgraded the Go compiler to version 1.26.11.
+
 ## F5 WAF for NGINX 5.14.3
 
 Released _October 28th, 2026_.
@@ -93,6 +122,7 @@ Released _October 28th, 2026_.
 
 ### Resolved issues
 
+- Updated Brotli to address a security issue.
 - Fixed bugs and security issues.
 
 ## F5 WAF for NGINX 5.14.2
