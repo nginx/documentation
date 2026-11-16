@@ -15,7 +15,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/wa
 
 ## F5 WAF for NGINX 5.16.2
 
-Release date: _November 18, 2026_.
+Release date: _November 18th, 2026_.
 
 ### Important notes
 
@@ -100,7 +100,7 @@ Released _September 2nd, 2026_.
 
 ## F5 WAF for NGINX 5.14.4
 
-Release date: _November 18, 2026_.
+Release date: _November 18th, 2026_.
 
 ### Important notes
 
