@@ -676,6 +676,8 @@ kubectl get gateway gateway -o yaml | yq '.status.listeners'
 
 Each HTTPS listener should report `ResolvedRefs` and `Accepted` conditions with `status: "True"`.
 
+The [send a request with a valid client certificate](#send-a-request-with-a-valid-client-certificate) above should behave identically.
+
 {{< include "ngf/sni-https.md" >}}
 
 ## See also
