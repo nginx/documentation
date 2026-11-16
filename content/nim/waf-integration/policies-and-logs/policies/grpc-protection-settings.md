@@ -19,7 +19,7 @@ f5-audience: admin
 
 ## Overview
 
-Use this reference to look up the settings available for **gRPC Protection** and **gRPC Error Response** in an F5 WAF for NGINX security policy. Both sections are available under **API Protection** in the security policy wizard.
+Use this reference to look up the settings available for **gRPC Protection** and **gRPC Error Response** in an F5 WAF for NGINX security policy. Both sections are available under **API Protection** in the security policy wizard. To open the wizard, create a new policy or edit an existing one. See [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}}) or [Update a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/update-policy.md" >}}).
 
 The **gRPC Protection** section contains **gRPC Profiles** and **gRPC Violations**. A gRPC profile controls how the policy inspects traffic for one gRPC service. gRPC violation actions apply to the whole policy, not to an individual profile. Select **Reset All Fields** in the gRPC Protection section to reset every profile and violation action to its default state.
 
