@@ -376,10 +376,10 @@ Fields:
     - `kind`: Supports `Service`.
     - `name`: Supported.
   - `validation`
-    - `caCertificateRefs`: Supports single reference to a `ConfigMap` or `Secret`, with the CA certificate in a key named `ca.crt`.
+    - `caCertificateRefs`: Supports a single reference to a `ConfigMap`, `Secret`, or `ClusterTrustBundle`. For a `ConfigMap` or `Secret`, the CA certificate must be in a key named `ca.crt`. A `ClusterTrustBundle` is cluster-scoped and holds the CA certificates inline in `spec.trustBundle`.
       - `name`: Supported.
       - `group`: Supported.
-      - `kind`: Supports `ConfigMap` and `Secret`.
+      - `kind`: Supports `ConfigMap`, `Secret`, and `ClusterTrustBundle`.
     - `hostname`: Supported.
     - `wellKnownCertificates`: Supports `System`. This will set the CA certificate to the Alpine system root CA path `/etc/ssl/cert.pem`. NB: This option will only work if the NGINX image used is Alpine based. The NGF NGINX images are Alpine based by default.
     - `subjectAltNames`: Not supported.
