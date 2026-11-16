@@ -305,7 +305,7 @@ kubectl get appolicy dataguard-blocking --namespace security \
 Confirm the bundle includes the installed signatures:
 
 ```shell
-kubectl get apsignatures --namespace plm-system
+kubectl get apsignatures --namespace plm-system  -o wide
 
 kubectl get appolicy dataguard-blocking --namespace security \
   --output jsonpath='{.status.bundle.signatures}{"\n"}'
