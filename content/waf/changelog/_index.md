@@ -23,8 +23,8 @@ Release date: _November 18, 2026_.
 
 ### Resolved issues
 
-- Fixed a memory leak during request processing.
-- Fixed excessive CPU usage during security logging.
+- Fixed a memory leak during request processing under some conditions.
+- Reduced CPU usage during security logging.
 - Upgraded the Go compiler to version 1.26.11.
 
 ## F5 WAF for NGINX 5.16.1
@@ -108,8 +108,8 @@ Release date: _November 18, 2026_.
 
 ### Resolved issues
 
-- Fixed a memory leak during request processing.
-- Fixed excessive CPU usage during security logging.
+- Fixed a memory leak during request processing under some conditions.
+- Reduced CPU usage during security logging.
 - Upgraded the Go compiler to version 1.26.11.
 
 ## F5 WAF for NGINX 5.14.3
