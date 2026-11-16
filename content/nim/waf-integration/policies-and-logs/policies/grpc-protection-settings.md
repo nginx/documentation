@@ -6,7 +6,7 @@ description: >
   profile, upload IDL files, or set the response for blocked gRPC requests.
 canonical: /nginx-instance-manager/waf-integration/policies-and-logs/policies/grpc-protection-settings/
 toc: true
-weight: 700
+weight: 450
 f5-content-type: reference
 f5-product: F5 NGINX Instance Manager
 f5-keywords: "gRPC, gRPC Protection, gRPC profile, IDL file, proto file, attack signature overrides, gRPC violations, gRPC error response, API Protection, WAF policy"
