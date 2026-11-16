@@ -204,7 +204,14 @@ Create the `security` namespace to hold the `APPolicy` and `APLogConf` resources
 kubectl create namespace security
 ```
 
-Before you create the policy, configure signature updates. The PLM chart creates one `APSignatures` resource, named `apsignatures`, in the PLM namespace (`plm-system`). It sets which attack signature, bot signature, and threat campaign revisions PLM compiles into every bundle, whatever namespace the `APPolicy` is in. By default, its `spec` is empty, so PLM uses the signatures included in the compiler image. Each PLM release includes the signatures that were current a few days before the release. Setting `revision: latest` makes PLM fetch updates from the signature repository.
+Before you create the policy, configure signature updates. The PLM chart creates one `APSignatures` resource, named `apsignatures`, in the PLM namespace (`plm-system`). It sets which attack signature, bot signature, and threat campaign revisions PLM compiles into every bundle, whatever namespace the `APPolicy` is in. By default, its `spec` is empty, so PLM uses the signatures included in the compiler image. Each PLM release includes the signatures that were current a few days before the release. Setting `revision: latest` makes PLM fetch updates from the signature repository and this can only be done if PLM is installed with below arguments set in `helm` command.
+
+```shell
+...
+  --set securityUpdatesRepo.cert="$(base64 -w0 < /path/to/nginx-repo.crt)" \
+  --set securityUpdatesRepo.key="$(base64 -w0 < /path/to/nginx-repo.key)"
+...
+```
 
 {{< call-out class="note" title="Update the APSignatures resource in the PLM namespace" >}}
 PLM uses only the `APSignatures` resource in its own namespace. `APSignatures` resources in other namespaces, such as `security`, have no effect.
