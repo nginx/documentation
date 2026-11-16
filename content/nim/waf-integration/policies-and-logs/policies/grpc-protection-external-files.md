@@ -31,6 +31,7 @@ Make sure you have:
 - NGINX Instance Manager 2.24.0 with F5 WAF for NGINX policy management set up. See [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).
 - An access token or basic authentication credentials for the REST API. The examples in this topic use an access token. To use basic authentication instead, replace the `Authorization` header with `-u <USERNAME>:<PASSWORD>`.
 - The `.proto` file for your gRPC service, plus every file it imports, directly or indirectly.
+- The required minimum version of NMS_NAP_Compiler is nms-nap-compiler-v5.777.0 (5.16.0), with the only exception being nms-nap-compiler-v5.690.6 (5.14.2) and later iterations in the 5.14.x series.
 
 ## How file references work
 

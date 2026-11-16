@@ -10,23 +10,19 @@ f5-product: NGINX Plus
 
 This section describes how to create a denylist or allowlist of specific client IP addresses, which denies or allows them access to your site, and how to dynamically maintain the list of addresses.
 
-<span id="overview"></span>
-## Overview
+## Overview {#overview}
 
-In F5 NGINX Plus [Release 13]({{< ref "nginx/releases.md#r13" >}}) (R13) and later, you can denylist some IP addresses as well as create and maintain a database of denylisted IP addresses. You can also explicitly allowlist other IP addresses. The IP addresses database is managed with the NGINX Plus <a href="https://nginx.org/en/docs/http/ngx_http_api_module.html">API</a> and <a target="_blank" href="https://nginx.org/en/docs/http/ngx_http_keyval_module.html">keyval</a> modules.
+With F5 NGINX Plus, you can denylist IP addresses and maintain a database of denylisted addresses. You can also explicitly allowlist IP addresses. You manage the IP address database with the NGINX Plus <a href="https://nginx.org/en/docs/http/ngx_http_api_module.html">API</a> and <a target="_blank" href="https://nginx.org/en/docs/http/ngx_http_keyval_module.html">keyval</a> modules.
 
-NGINX Plus [Release 19]({{< ref "nginx/releases.md#r19" >}}) extends this capability by matching an IP address to any address within a subnet or network range.
+You can also match an IP address to any address within a subnet or network range.
 
+## Prerequisites {#prereq}
 
-<span id="prereq"></span>
-## Prerequisites
+- A [supported release of NGINX Plus]({{< ref "/nginx/releases.md" >}})
 
-NGINX Plus [Release 13]({{< ref "nginx/releases.md#r13" >}}) and later, NGINX Plus [Release 19]({{< ref "nginx/releases.md#r19" >}}) and later for network ranges support.
+## Setup {#setup}
 
-<span id="setup"></span>
-## Setup
-
-First, enable the database for storing the list of denylisted and allowlisted IP addresses.
+First, set up the database for storing the list of denylisted and allowlisted IP addresses.
 
 1. In NGINX Plus configuration file, include the [keyval_zone](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone) directive in the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context to create a memory zone for storing keys and values. This sample directive creates a 1‑MB zone called **one**.
 
@@ -136,8 +132,7 @@ First, enable the database for storing the list of denylisted and allowlisted IP
    }
    ```
 
-<span id="manage"></span><span id="curl"></span>
-## Managing the Key-Value Database
+## Managing the Key-Value Database {#curl}
 
 You can use API methods to update a key‑value database  dynamically, without requiring a reload of NGINX Plus.
 
@@ -169,8 +164,7 @@ All of the following examples operate on the **one** zone, which is accessible a
    ```
 
 
-<span id="example"></span>
-## Full Example
+## Full Example {#example}
 
 The full NGINX Plus configuration:
 
@@ -225,7 +219,6 @@ curl -X POST -d '{
 }' -s 'http://www.example.com/api/6/http/keyvals/one'
 ```
 
-<span id="see-also"></span>
-## See Also
+## See Also {#see-also}
 
 - [Dynamic IP Denylisting with NGINX Plus and fail2ban](https://www.nginx.com/blog/dynamic-ip-denylisting-with-nginx-plus-and-fail2ban/)

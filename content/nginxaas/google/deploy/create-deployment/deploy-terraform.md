@@ -35,7 +35,7 @@ terraform {
   required_providers {
     f5ads = {
       source  = "F5Networks/f5ads"
-      version = "0.1.0-alpha.1"
+      version = "~> 0.1"
     }
   }
 }

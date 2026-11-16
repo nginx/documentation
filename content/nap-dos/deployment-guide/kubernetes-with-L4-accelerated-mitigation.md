@@ -53,21 +53,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="alpine-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/alpine-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="alpine-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/alpine-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -75,21 +75,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="amazon-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/amazon-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="amazon-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/amazon-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -97,21 +97,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="debian-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/debian-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="debian-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/debian-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -119,21 +119,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="rhel8-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/rhel8-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="rhel8-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/rhel8-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -141,21 +141,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="rhel9-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/rhel9-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="rhel9-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/rhel9-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -163,21 +163,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="rhel10-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/rhel10-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="rhel10-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/rhel10-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -185,21 +185,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="rocky-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/rocky9-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="rocky9-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/rocky9-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -207,21 +207,21 @@ Build the NGINX Plus image and the eBPF Manager image from the same F5 DoS for N
 
 {{< tabs name="ubuntu-instructions" >}}
 
-{{% tab name="NGINX Plus" %}}
+{{< tab name="NGINX Plus" >}}
 
 {{< include "/dos/dockerfiles/ubuntu-plus-dos.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
 {{< tabs name="ubuntu-instructions-ebpf" >}}
 
-{{% tab name="EBPF Manager" %}}
+{{< tab name="EBPF Manager" >}}
 
 {{< include "/dos/dockerfiles/ubuntu-ebpf-manager.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -306,36 +306,36 @@ On manifest deployment environment variables need to be set for image repository
 
 {{< tabs name="manifest-files" >}}
 
-{{% tab name=dos-namespace.yaml %}}
+{{< tab name=dos-namespace.yaml >}}
 
 {{< include "dos/k8s_with_ebpf_manifest/dos-namespace.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 
-{{% tab name=dos-nginx-conf-configmap.yaml %}}
+{{< tab name=dos-nginx-conf-configmap.yaml >}}
 
 {{< include "dos/k8s_with_ebpf_manifest/dos-nginx-conf-configmap.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name=dos-log-default-configmap.yaml %}}
+{{< tab name=dos-log-default-configmap.yaml >}}
 
 {{< include "dos/k8s_with_ebpf_manifest/dos-log-default-configmap.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name=dos-deployment.yaml %}}
+{{< tab name=dos-deployment.yaml >}}
 
 {{< include "dos/k8s_with_ebpf_manifest/dos-deployment.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name=dos-service.yaml %}}
+{{< tab name=dos-service.yaml >}}
 
 {{< include "dos/k8s_with_ebpf_manifest/dos-service.md" >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 

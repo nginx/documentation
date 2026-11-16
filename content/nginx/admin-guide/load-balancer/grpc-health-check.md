@@ -8,12 +8,10 @@ f5-content-type: how-to
 f5-product: NGINX Plus
 ---
 
-<span id="intro"></span>
-## Introduction
-F5 NGINX Plus can monitor the health of upstream servers by making active health checks. NGINX Plus R23 supports the [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol) so that upstream gRPC services can be tested for their ability to handle new requests. This is particularly important in dynamic and containerized environments. When adding a new instance of a gRPC service, it is important that requests are sent to the fully operating service.
+## Introduction {#intro}
+F5 NGINX Plus can monitor the health of upstream servers by making active health checks, including gRPC health checks that use the [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol). With gRPC health checks, you can test whether upstream gRPC services can handle new requests. This matters most in dynamic and containerized environments. When you add a new gRPC service instance, send requests only to instances that are fully operational.
 
-<span id="prereq"></span>
-## Prerequisites
+## Prerequisites {#prereq}
 
 - You have configured an upstream group of servers that handles gRPC network traffic and specified a shared memory zone that keeps the state of these servers, for example:
 
@@ -37,8 +35,7 @@ F5 NGINX Plus can monitor the health of upstream servers by making active health
    }
    ```
 
-<span id="hc_grpc"></span>
-## gRPC Servers that accept health checking protocol
+## gRPC Servers that accept health checking protocol {#hc_grpc}
 
 If your gRPC services support the gRPC health checking protocol, specify the [`type=grpc`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check_grpc) parameter of the `health_check` directive:
 
@@ -62,8 +59,7 @@ location / {
 }
 ```
 
-<span id="hc_grpc_status"></span>
-## gRPC Servers that do not accept health checking protocol
+## gRPC Servers that do not accept health checking protocol {#hc_grpc_status}
 
 If your gRPC services do not implement the gRPC health checking protocol, it is still possible to perform health check by sending the `Check` method and expecting a particular [`status code`](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md#status-codes-and-their-use-in-grpc). This will test that the upstream server is responding to gRPC requests. Specify the gRPC error response code with the `grpc_status` parameter:
 
@@ -78,7 +74,6 @@ In this case the response with the gRPC status of `12` / `UNIMPLEMENTED` will be
 
 Note that the `type=grpc` parameter is not compatible with `uri` or `match` parameters of the `health_check` directive. The `type=grpc` parameter must be specified after all other directive parameters: `grpc_service` and `grpc_status` must follow `type=grpc`.
 
-<span id="see_also"></span>
-## See also
+## See also {#see_also}
 
 - [Deploying NGINX Plus as an API Gateway, Part 3: Publishing gRPC Services](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/)

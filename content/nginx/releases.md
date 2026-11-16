@@ -1400,7 +1400,7 @@ NGINX Plus R26 is supported on:
 - The [`js_include`](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_include) directive was removed, the [`js_import`](http://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) directive should be used instead
 - The [`aio sendfile`](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) directive was removed, the [`sendfile`](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) directive should be used instead
 - The third-party `Cookie‑Flag` was removed from the dynamic modules repository, the [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive should be used instead
-- Swagger UI with REST API YAML specification is not included into NGINX Plus packages by default any more and now is a part of [docs.nginx.com]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#the-swagger-ui" >}})
+- Swagger UI with REST API YAML specification is not included into NGINX Plus packages by default any more and now is a part of [docs.nginx.com]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#swagger_enable" >}})
 
 More information: [Announcing NGINX Plus R26](https://www.nginx.com/blog/nginx-plus-r26-released/)
 

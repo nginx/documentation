@@ -1,5 +1,6 @@
 ---
 title: Usage and cost estimator
+description: "Estimate the monthly cost of a F5 Application Delivery Service for Google Cloud deployment based on region, NCUs, and data transfer."
 weight: 200
 toc: true
 f5-content-type: concept

@@ -1,5 +1,6 @@
 ---
 title: NGINX configuration rules and limits
+description: "Reference for NGINX configuration file restrictions and workflows for F5 Application Delivery Service."
 weight: 50
 toc: true
 f5-content-type: reference
@@ -90,6 +91,9 @@ F5 ADS reserves the following listen ports for internal use.
 
 - `49151`
 - `49152`
+- `49153`
+- `1514`
+- `50000`
 
 F5 ADS does not support specific hostnames or IP addresses (other than localhost / loopback addresses) to be used as a `listen` address.
 You must use an unspecified address to listen on all IPs (such as `0.0.0.0`, `[::0]` or `*`) or a local address for use-cases where you do not want the listener exposed via the service endpoint (such as `127.0.0.1` or `localhost`).
