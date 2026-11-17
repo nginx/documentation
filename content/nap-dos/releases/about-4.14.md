@@ -24,7 +24,6 @@ November 18, 2026
 ### Resolved issues
 
 - Fixed an issue where the F5 DoS for NGINX service failed to start while NGINX was running.
-- Fixed bugs.
 
 ### Supported packages
 
