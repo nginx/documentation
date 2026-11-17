@@ -20,7 +20,11 @@ November 18, 2026
 ### New features
 
 - NGINX Plus R37.3.0.1 support
-- The F5 DoS for NGINX service no longer fails to start while NGINX is running.
+
+### Resolved issues
+
+- Fixed an issue where the F5 DoS for NGINX service failed to start while NGINX was running.
+- Fixed bugs.
 
 ### Supported packages
 
