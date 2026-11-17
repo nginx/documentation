@@ -277,7 +277,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl restart nginx
     ```
 
-    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+    Check that the F5 DoS for NGINX service is running. The command must return `active`:
 
     ```shell
     sudo systemctl is-active nginx-app-protect-dos
@@ -516,7 +516,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl restart nginx
     ```
 
-    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+    Check that the F5 DoS for NGINX service is running. The command must return `active`:
 
     ```shell
     sudo systemctl is-active nginx-app-protect-dos
@@ -751,7 +751,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl restart nginx
     ```
 
-    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+    Check that the F5 DoS for NGINX service is running. The command must return `active`:
 
     ```shell
     sudo systemctl is-active nginx-app-protect-dos
@@ -1037,7 +1037,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl restart nginx
     ```
 
-    Check that the F5 DoS for NGINX service is running. The command must print `active`:
+    Check that the F5 DoS for NGINX service is running. The command must return `active`:
 
     ```shell
     sudo systemctl is-active nginx-app-protect-dos
@@ -1935,7 +1935,7 @@ There is no such option for authentications between F5 DoS for NGINX servers and
 
 You can run the following commands to ensure that F5 DoS for NGINX enforcement is operational.
 
-1. On a virtual machine, check that the F5 DoS for NGINX service is running. The command must print `active`:
+1. On a virtual machine, check that the F5 DoS for NGINX service is running. The command must return `active`:
 
     ```shell
     sudo systemctl is-active nginx-app-protect-dos
@@ -1943,7 +1943,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
 
     On Alpine, run `rc-service nginx-app-protect-dos status` instead. If the service isn't active, look in `/var/log/adm/admd.log` and `/var/log/adm/adminstall.log`. On systemd-based systems, also check the output of `sudo journalctl -u nginx-app-protect-dos`.
 
-2. Check that the three processes needed for F5 DoS for NGINX are running using `ps aux`:
+1. Check that the three processes needed for F5 DoS for NGINX are running using `ps aux`:
 
     - admd
     - nginx: master process
@@ -1956,7 +1956,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     nginx      7767   0.0    0.1   615868  8188 ?       Sl    Sep06     0:04  nginx: worker process
     ```
 
-3. Verify that there are no NGINX errors in the `/var/log/nginx/error.log` and that the policy compiled successfully:
+1. Verify that there are no NGINX errors in the `/var/log/nginx/error.log` and that the policy compiled successfully:
 
     ```shell
     2020/09/07 15:33:44 [notice] 9307#9307: using the "epoll" event method
@@ -1969,7 +1969,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     PID <9311>, WORKER <0>, Function adm_ngx_init_process, line 684, version: 22+1.19.4-1.el7.ngx
     ```
 
-4. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
+1. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
 
     a. Simulate good traffic:
 
