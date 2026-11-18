@@ -32,15 +32,10 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 ### {{% icon rocket %}} Features
 
 - [11151](https://github.com/nginx/kubernetes-ingress/pull/11151) Allow variables in proxy-set-headers annotation to achieve parity with virtualserver
-- [11216](https://github.com/nginx/kubernetes-ingress/pull/11216) Add connectionlimit policy
-- [11218](https://github.com/nginx/kubernetes-ingress/pull/11218) Add connectionlimit policy to virtualserver and virtualserverroute
-- [11222](https://github.com/nginx/kubernetes-ingress/pull/11222) Add ingress support for connection limit policy
-- [11187](https://github.com/nginx/kubernetes-ingress/pull/11187) Expand jwtauth policy to include claim validation
-- [11225](https://github.com/nginx/kubernetes-ingress/pull/11225) Add jwt claim validation types and validation
-- [11226](https://github.com/nginx/kubernetes-ingress/pull/11226) Generate nginx config for jwt claim authorization
-- [11227](https://github.com/nginx/kubernetes-ingress/pull/11227) Render jwt claim authorization in the nginx plus virtualserver template
+- [11216](https://github.com/nginx/kubernetes-ingress/pull/11216), [11218](https://github.com/nginx/kubernetes-ingress/pull/11218), [11222](https://github.com/nginx/kubernetes-ingress/pull/11222) Add connectionlimit policy
+- [11187](https://github.com/nginx/kubernetes-ingress/pull/11187), [11225](https://github.com/nginx/kubernetes-ingress/pull/11225), [11226](https://github.com/nginx/kubernetes-ingress/pull/11226), [11227](https://github.com/nginx/kubernetes-ingress/pull/11227),  Expand jwtauth policy to include claim validation
 - [11364](https://github.com/nginx/kubernetes-ingress/pull/11364) Make helm values schema self-contained for offline installs
-- [11423](https://github.com/nginx/kubernetes-ingress/pull/11423) Auth response headers implementation
+- [11423](https://github.com/nginx/kubernetes-ingress/pull/11423) Add Auth response headers support to ExternalAuth policy
 
 ### {{% icon bug %}} Fixes
 
