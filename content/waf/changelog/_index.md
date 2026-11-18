@@ -13,6 +13,12 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.17.0
+
+### New features
+
+- Added support for AlmaLinux 10
+
 ## F5 WAF for NGINX 5.16.1
 
 Released _October 28th, 2026_.

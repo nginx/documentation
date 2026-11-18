@@ -194,6 +194,44 @@ The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands
    app-protect-threat-campaigns
    ```
 
+#### AlmaLinux 10
+
+1. Install the `config-manager` plugin for `dnf`:
+
+   ```shell
+   sudo dnf install wget 'dnf-command(config-manager)'
+   ```
+
+1. Enable the CodeReady Builder (CRB) repository:
+
+   ```shell
+   sudo dnf config-manager --set-enabled crb
+   ```
+
+1. Add the NGINX Plus, F5 WAF for NGINX, and dependencies repositories:
+
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-10.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+
+   sudo dnf install --downloadonly --downloaddir=/offline/packages \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
+
+   {{< call-out class="note" >}}
+   The `dnf` command only downloads packages that aren't installed in the connected environment. Use a connected environment with the same AlmaLinux 10 packages as your disconnected environment.
+   {{< /call-out >}}
+
 #### Ubuntu
 
 1. Install required packages:
@@ -248,11 +286,11 @@ In the disconnected environment, install the packages:
    apk add --allow-untrusted app-protect*.apk nginx-plus*.apk
    ```
 
-- For Amazon Linux 2023, RHEL 9, Rocky Linux 9, RHEL 10, Rocky Linux 10
+- For Amazon Linux 2023, RHEL 9, Rocky Linux 9, RHEL 10, Rocky Linux 10, AlmaLinux 10
 
    ```shell
-   cd /offline
-   dnf localinstall -y *.rpm
+   cd /offline/packages
+   dnf localinstall -y --disablerepo="*" *.rpm
    ```
 
 - For Debian, Ubuntu

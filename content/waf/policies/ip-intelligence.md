@@ -58,6 +58,7 @@ Review the [virtual machine installation instructions]({{< ref "/waf/install/vir
 | Ubuntu                              | _app-protect-ip-intelligence_ |
 | RHEL / Rocky Linux 9                | _app-protect-ip-intelligence_ |
 | RHEL / Rocky Linux 10               | _app-protect-ip-intelligence_ |
+| AlmaLinux 10                        | _app-protect-ip-intelligence_ |
 
 After installing the package, run the client:
 
