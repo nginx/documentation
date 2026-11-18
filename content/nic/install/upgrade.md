@@ -70,6 +70,98 @@ helm upgrade my-release .
 
 {{< /tabs >}}
 
+## Migrate ExternalDNS DNSEndpoint resources to externaldns.k8s.io
+
+ExternalDNS v0.21.0 and later reads `DNSEndpoint` resources only from the upstream `externaldns.k8s.io/v1alpha1` API group. By default, NGINX Ingress Controller writes `DNSEndpoint` resources to its own `externaldns.nginx.org/v1` group. To use ExternalDNS v0.21.0 or later, switch NGINX Ingress Controller to the upstream group.
+
+Use one of these settings to choose the group:
+
+- Helm: `controller.externalDNSGroupVersion`. For more information, see [Helm chart parameters]({{< ref "/nic/install/helm/parameters.md" >}}).
+- Command-line argument: [`-external-dns-group-version`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-external-dns-group-version" >}}).
+
+NGINX Ingress Controller doesn't ship the upstream `DNSEndpoint` CRD. Install it yourself, either with the ExternalDNS Helm chart or from the ExternalDNS repository:
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/external-dns/v0.21.0/config/crd/standard/dnsendpoints.externaldns.k8s.io.yaml
+```
+
+If NGINX Ingress Controller doesn't manage any DNS records yet, install the CRD and set the upstream group. If you have existing records, follow the steps in [Migrate in stages](#migrate-in-stages) to keep every DNS record in place.
+
+The role-based access control (RBAC) permissions depend on how you installed NGINX Ingress Controller:
+
+- The Helm chart grants access only to the group you select.
+- The manifest `deployments/rbac/rbac.yaml` grants access to both groups. You can change the argument without editing RBAC.
+
+### Understand the migration risks
+
+NGINX Ingress Controller doesn't convert or delete existing `DNSEndpoint` resources. You control the cut-over, and the order of the steps protects your DNS records.
+
+{{< call-out class="warning" title="Install the upstream CRD and verify the new DNSEndpoint before ExternalDNS reads it" >}}
+
+If you run ExternalDNS with `--policy=sync`, don't let ExternalDNS read the `externaldns.k8s.io` group before NGINX Ingress Controller populates it. When the CRD exists but has no matching objects, ExternalDNS treats the empty result as valid. It then deletes every DNS record it owns.
+
+With `--policy=upsert-only`, ExternalDNS doesn't delete records, so the records stay in place.
+
+A missing CRD or missing RBAC is safer: ExternalDNS fails to start and doesn't change any records. A `DNSEndpoint` that exists but is empty or out of date is as dangerous as no object at all.
+
+{{< /call-out >}}
+
+If the cluster doesn't serve the group you select, NGINX Ingress Controller exits at startup with this error:
+
+```text
+Cannot enable external-dns: API group/version "externaldns.k8s.io/v1alpha1" is not served by the cluster; install the DNSEndpoint CRD for it
+```
+
+The new pods go into `CrashLoopBackOff`. Your DNS records stay in place, because the old object remains and ExternalDNS still reads it. The effect on traffic depends on your rollout strategy:
+
+- Deployment with the default `RollingUpdate` strategy: the old NGINX Ingress Controller pods keep serving traffic.
+- DaemonSet, or a Deployment with the `Recreate` strategy: the replaced pods are gone. The affected nodes have no running NGINX Ingress Controller until you install the CRD.
+
+After you install the CRD, the new pods start without further action. NGINX Ingress Controller checks for the CRD only at startup. If someone removes the CRD later, NGINX Ingress Controller doesn't detect it.
+
+### Migrate in stages
+
+Migrate before you upgrade ExternalDNS to v0.21.0 or later. ExternalDNS v0.20.x and earlier reads either group, which makes a staged migration possible. Complete the check for each step before you start the next one.
+
+| Step | Action | Check before you continue |
+| ---- | ------ | ------------------------- |
+| 0 | Install the upstream `DNSEndpoint` CRD. An NGINX Ingress Controller upgrade doesn't install it. | `kubectl get crd dnsendpoints.externaldns.k8s.io` succeeds. |
+| 1 | Upgrade NGINX Ingress Controller. Keep the group at the default, `externaldns.nginx.org/v1`. | DNS records are unchanged. The `externaldns.nginx.org/v1` object still exists and is current. |
+| 2 | Set the Helm value `controller.externalDNSGroupVersion: externaldns.k8s.io/v1alpha1`, or the argument `-external-dns-group-version=externaldns.k8s.io/v1alpha1`. | Don't continue until the `externaldns.k8s.io/v1alpha1` object exists. Its `.spec.endpoints` must match the targets and time-to-live (TTL) of the old object. The new NGINX Ingress Controller pods must be Ready. |
+| 3 | Remove `--crd-source-apiversion` from your ExternalDNS v0.20.x configuration. The default of this argument is `externaldns.k8s.io/v1alpha1`, so ExternalDNS now reads the upstream group. | `status.observedGeneration` matches `metadata.generation` on the new object. After one full sync interval, ExternalDNS logs `All records are already up to date`. |
+| 4 | Upgrade ExternalDNS to v0.21.0 or later. | The same check as step 3. |
+| 5 | Delete the old `externaldns.nginx.org/v1` object. | DNS records are unchanged. |
+
+Steps 3 through 5 don't change any DNS records. The old and new objects have the same name and namespace. ExternalDNS builds its ownership label from these values (`crd/<NAMESPACE>/<NAME>`). As a result, the TXT registry record stays the same, and ExternalDNS finds no changes to make.
+
+Keep steps 2 and 3 short and separate:
+
+- Do steps 2 and 3 close together. After step 2, NGINX Ingress Controller stops updating the old object, but ExternalDNS still reads it. ExternalDNS doesn't publish VirtualServer changes that you make between the two steps.
+- Don't combine step 3 with step 4. ExternalDNS v0.21.0 and later ignores `--crd-source-apiversion`, so step 4 also switches the group. If you make both changes at once and your records change, you can't tell which change caused it.
+
+To confirm that ExternalDNS read the new object, compare its observed generation with its generation:
+
+```shell
+kubectl get dnsendpoints.externaldns.k8s.io <VIRTUALSERVER_NAME> -o jsonpath='{.status.observedGeneration}/{.metadata.generation}'
+```
+
+Replace `<VIRTUALSERVER_NAME>` with the name of your VirtualServer. The `DNSEndpoint` has the same name.
+
+When the two values match, ExternalDNS read the resource. ExternalDNS sets `status.observedGeneration` when it reads the resource, before it sends records to your DNS provider. A match confirms that ExternalDNS read the resource, not that the DNS record is live.
+
+### Roll back a migration
+
+Until you delete the old object in step 5, you can return to the starting state. Revert both settings together:
+
+1. Set `controller.externalDNSGroupVersion` (or `-external-dns-group-version`) back to `externaldns.nginx.org/v1`.
+1. Add `--crd-source-apiversion=externaldns.nginx.org/v1` back to your ExternalDNS configuration. If you already upgraded ExternalDNS, roll it back to v0.20.x. ExternalDNS v0.21.0 and later can't read the `externaldns.nginx.org` group.
+
+If you revert only one setting, ExternalDNS reads a group that NGINX Ingress Controller doesn't write to. This causes the same empty result that the warning in [Understand the migration risks](#understand-the-migration-risks) describes.
+
+If you skip step 5, the old object isn't left behind forever. NGINX Ingress Controller sets an owner reference from each `DNSEndpoint` to its VirtualServer. When you delete the VirtualServer, Kubernetes deletes the old object too.
+
+NGINX Ingress Controller manages only the group you select. It never deletes objects in the other group. To delete the old object in step 5, use `kubectl delete` with your own credentials. With a Helm installation, the NGINX Ingress Controller service account loses its permissions on `externaldns.nginx.org` after step 2.
+
 ## Upgrade from 3.x to 4.x
 
 {{< call-out class="warning" title="This upgrade path is intended for 3.x to 4.0.0 only" >}}

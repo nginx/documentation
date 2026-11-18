@@ -18,6 +18,7 @@ Supported policy types are:
 
 - `accessControl`
 - `rateLimit`
+- `connectionLimit`
 - `apiKey`
 - `basicAuth`
 - `jwt`
@@ -42,6 +43,7 @@ Supported policy types are:
 | [`waf`]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}) | Configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}). | Yes | Yes, with `nginx.com/policies` |
 | [`externalAuth`]({{< ref "/nic/configuration/policy-resource/policy-reference.md#externalauth" >}}) | Authenticates client requests using an external authentication server. | Yes | Yes, with `nginx.org/policies` |
 | [`rateLimit`]({{< ref "/nic/configuration/policy-resource/policy-reference.md#ratelimit" >}}) | Controls the request-processing rate for a defined key. | Yes | No |
+| [`connectionLimit`]({{< ref "/nic/configuration/policy-resource/policy-reference.md#connectionlimit" >}}) | Limits the number of requests in progress at the same time for a defined key. | Yes | Yes, with `nginx.org/policies` |
 | [`apiKey`]({{< ref "/nic/configuration/policy-resource/policy-reference.md#apikey" >}}) | Authorizes requests that include a valid API key in a specified header or query parameter. | Yes | No |
 | [`basicAuth`]({{< ref "/nic/configuration/policy-resource/policy-reference.md#basicauth" >}}) | Authenticates client requests using HTTP Basic authentication credentials. | Yes | No |
 | [`jwt`]({{< ref "/nic/configuration/policy-resource/policy-reference.md#jwt-using-a-local-kubernetes-secret" >}}) | Authenticates client requests using JSON Web Tokens (JWT). Requires NGINX Plus. | Yes | No |
