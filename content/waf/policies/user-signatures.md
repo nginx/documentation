@@ -9,7 +9,6 @@ toc: true
 f5-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
 f5-product: F5 WAF for NGINX
-f5-docs: DOCS-1596
 ---
 
 This document describes the user-defined signatures feature of F5 WAF for NGINX.

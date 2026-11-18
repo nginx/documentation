@@ -3,7 +3,6 @@ title: Deploy using the Console
 description: "Create, configure, and connect an F5 Application Delivery Service for AWS deployment using the F5 ADS Console."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, create deployment, F5 ADS Console, NCU, service frontend, PrivateLink, VPC peering"

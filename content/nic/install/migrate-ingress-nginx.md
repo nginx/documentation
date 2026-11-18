@@ -4,7 +4,6 @@ toc: true
 weight: 1000
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1469
 ---
 
 This document describes how to migrate from the community-maintained Ingress-NGINX Controller to F5 NGINX Ingress Controller.

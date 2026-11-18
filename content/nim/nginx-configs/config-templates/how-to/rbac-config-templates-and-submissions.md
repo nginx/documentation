@@ -3,7 +3,6 @@ title: RBAC for config templates and submissions
 description: "Configure role-based access control for NGINX config templates and submissions in F5 NGINX Instance Manager to control who can create, edit, and submit templates."
 weight: 300
 toc: true
-f5-docs: DOCS-1505
 f5-personas:
 - devops
 - netops

@@ -6,7 +6,6 @@ title: Single Sign-On with OpenID Connect and Identity Providers
 toc: true
 weight: 550
 f5-product: NGINX Plus
-f5-docs: DOCS-1690
 f5-content-type: how-to
 ---
 

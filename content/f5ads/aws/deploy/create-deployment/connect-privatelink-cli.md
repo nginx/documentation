@@ -3,7 +3,6 @@ title: Connect to a Private Endpoint deployment using the AWS CLI
 description: "Use the AWS CLI to connect an F5 Application Delivery Service for AWS deployment to an AWS VPC Endpoint"
 weight: 110
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, PrivateLink, AWS CLI, interface VPC endpoint, VPC endpoint, Private Endpoint, service frontend"

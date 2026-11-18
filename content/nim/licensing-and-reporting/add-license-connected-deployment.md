@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-789
 title: Add a license (connected)
 description: "Download a JWT license from MyF5 and apply it to F5 NGINX Instance Manager in a connected (internet-accessible) environment."
 toc: true

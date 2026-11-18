@@ -1,6 +1,5 @@
 ---
 description: Learn about the F5 DoS for NGINX Troubleshooting Guide.
-f5-docs: DOCS-675
 title: Troubleshooting Guide
 toc: true
 weight: 200

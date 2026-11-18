@@ -6,7 +6,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Plus
-f5-docs: DOCS-414
 ---
 
 This guide provides step-by-step instructions for installing NGINX Plus from an official repository on different operating systems. It also covers installing and enabling dynamic modules, as well as enabling NGINX Plus in rootless or offline environments.

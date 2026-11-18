@@ -4,7 +4,6 @@ weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-1026
 description: "Grant users access to Security Monitoring dashboards in F5 NGINX Instance Manager using role-based access control."
 f5-summary: >
   Grant users access to the Security Monitoring dashboards in F5 NGINX Instance Manager by assigning the required RBAC permissions.

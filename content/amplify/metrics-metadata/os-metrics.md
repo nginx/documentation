@@ -4,7 +4,6 @@ description: List of OS Metrics
 weight: 20
 toc: true
 noindex: true
-f5-docs: DOCS-974
 f5-product: AMPLIF
 ---
 

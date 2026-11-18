@@ -1,6 +1,5 @@
 ---
 title: About subscription licenses
-f5-docs: DOCS-000
 weight: 1
 f5-content-type: landing-page
 f5-landing-page: true

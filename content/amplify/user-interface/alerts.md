@@ -3,7 +3,6 @@ title: Alerts
 description: Learn about the Alerts page of the User Interface.
 weight: 60
 toc: false
-f5-docs: DOCS-979
 f5-product: AMPLIF
 ---
 

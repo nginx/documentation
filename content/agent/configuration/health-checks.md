@@ -3,7 +3,6 @@ title: Health checks
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-docs: DOCS-1677
 f5-product: NGINX Agent
 ---
 

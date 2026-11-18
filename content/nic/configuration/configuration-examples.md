@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-584
 title: Configuration examples
 toc: true
 weight: 400

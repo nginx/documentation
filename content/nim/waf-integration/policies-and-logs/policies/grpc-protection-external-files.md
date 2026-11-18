@@ -3,7 +3,6 @@ title: Create a gRPC security policy with external files
 description: Upload .proto files with an F5 WAF for NGINX policy in F5 NGINX Instance Manager so the policy can protect your gRPC services.
 toc: true
 weight: 800
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 NGINX Instance Manager
 f5-keywords: "gRPC, proto, IDL, file references, WAF policy, REST API"
@@ -32,6 +31,7 @@ Make sure you have:
 - NGINX Instance Manager 2.24.0 with F5 WAF for NGINX policy management set up. See [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).
 - An access token or basic authentication credentials for the REST API. The examples in this topic use an access token. To use basic authentication instead, replace the `Authorization` header with `-u <USERNAME>:<PASSWORD>`.
 - The `.proto` file for your gRPC service, plus every file it imports, directly or indirectly.
+- The required minimum version of NMS_NAP_Compiler is nms-nap-compiler-v5.777.0 (5.16.0), with the only exception being nms-nap-compiler-v5.690.6 (5.14.2) and later iterations in the 5.14.x series.
 
 ## How file references work
 

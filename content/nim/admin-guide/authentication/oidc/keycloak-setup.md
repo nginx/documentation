@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1268
 title: 'Keycloak: Set up OIDC authentication'
 toc: true
 weight: 400

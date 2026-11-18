@@ -2,7 +2,6 @@
 title: TransportServer resources
 toc: true
 weight: 600
-f5-docs: DOCS-598
 f5-content-type : reference
 f5-product: NGINX Ingress Controller
 ---

@@ -3,7 +3,6 @@ title: Prerequisites
 description: "Subscribe to F5 Application Delivery Service for Google Cloud in the Google Cloud Marketplace and link the subscription to an F5 ADS organization."
 weight: 100
 toc: false
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, prerequisites, Google Cloud Marketplace, subscribe, subscription, F5 ADS Console, account"

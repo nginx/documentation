@@ -5,7 +5,6 @@ weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-1657
 f5-summary: >
   Download a JWT license from MyF5 and apply it to F5 NGINX Instance Manager in a disconnected (offline) environment to unlock all features.
   In a disconnected environment, the license is applied manually and usage reports are submitted to F5 separately from a system with internet access.

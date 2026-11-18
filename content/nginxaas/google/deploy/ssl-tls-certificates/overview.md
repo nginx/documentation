@@ -9,7 +9,6 @@ f5-product: F5 Application Delivery Service for Google Cloud
 f5-product-former: F5 NGINXaaS for Google Cloud
 canonical: /app-delivery/google/deploy/ssl-tls-certificates/overview/
 f5-ref-path: /f5ads/google/deploy/ssl-tls-certificates/overview/
-f5-docs: DOCS-000
 f5-keywords: "NGINXaaS for Google Cloud, SSL, TLS, certificates, Google Secret Manager, certificate rotation, PEM, ML-DSA, post-quantum, PQC"
 f5-summary: >
   This reference covers the SSL/TLS certificate types and formats F5 NGINXaaS for Google Cloud supports, including post-quantum ML-DSA certificates, and the two ways to manage them: the NGINXaaS Console and Google Secret Manager.

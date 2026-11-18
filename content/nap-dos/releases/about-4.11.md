@@ -4,7 +4,6 @@ description: "Release notes for F5 DoS for NGINX 4.11, which moves to the NGINX 
 f5-keywords: "F5 DoS for NGINX, release notes, 4.11, NGINX Plus R37.0, Debian 11"
 toc: true
 weight: 10
-f5-docs: DOCS-1783
 f5-content-type: reference
 f5-product: F5 DoS for NGINX
 f5-summary: >

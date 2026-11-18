@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1859
 title: Management ConfigMap resource
 toc: true
 weight: 300

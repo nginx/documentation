@@ -2,6 +2,7 @@
 title: F5 Application Delivery Service for AWS
 url: /app-delivery/aws/
 canonical: /app-delivery/aws/
+description: "A fully managed load balancer and application delivery service for AWS, built on F5 NGINX Plus."
 linkTitle: F5 ADS for AWS
 f5-subtitle: A fully managed load balancer and application delivery service for AWS, built on F5 NGINX Plus
 cascade:

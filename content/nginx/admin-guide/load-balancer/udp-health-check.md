@@ -1,7 +1,6 @@
 ---
 description: This chapter describes how to configure different types of health checks
   for UDP servers in a load‑balanced upstream server group.
-f5-docs: DOCS-421
 title: UDP Health Checks
 toc: true
 weight: 500

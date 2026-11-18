@@ -1,7 +1,6 @@
 ---
 description: Capture information from the client IP address in variables, using the
   MaxMind GeoIP databases, with the GeoIP dynamic module supported by NGINX, Inc.
-f5-docs: DOCS-386
 title: GeoIP
 toc: true
 weight: 100

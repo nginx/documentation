@@ -3,7 +3,6 @@ title: Graphs
 description: Learn about the Graphs page of the User Interface.
 weight: 20
 toc: false
-f5-docs: DOCS-982
 f5-product: AMPLIF
 ---
 

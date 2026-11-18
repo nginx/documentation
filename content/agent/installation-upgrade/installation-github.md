@@ -2,7 +2,6 @@
 title: Installation from GitHub release
 weight: 200
 toc: true
-f5-docs: DOCS-1090
 f5-content-type: how-to
 f5-product: NGINX Agent
 ---

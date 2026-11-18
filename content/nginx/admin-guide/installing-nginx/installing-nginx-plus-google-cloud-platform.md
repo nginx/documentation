@@ -1,7 +1,6 @@
 ---
 description: Install F5 NGINX Plus on the Google Cloud Platform, to provide sophisticated
   Layer 7 load balancing for your apps running on Google Compute Engine.
-f5-docs: DOCS-412
 title: Install NGINX Plus on the Google Cloud Platform
 toc: true
 weight: 400

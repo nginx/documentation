@@ -3,7 +3,6 @@ title: Enable post-quantum cryptography
 description: "Configure F5 NGINXaaS for Google Cloud to use hybrid ML-KEM key exchange or ML-DSA certificates for post-quantum TLS protection."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/google/quickstart/pqc/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud

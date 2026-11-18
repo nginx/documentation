@@ -4,7 +4,6 @@ toc: true
 weight: 500
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-594
 ---
 
 This topic explains how to spread Ingress configuration across different namespaces in F5 NGINX Ingress Controller.

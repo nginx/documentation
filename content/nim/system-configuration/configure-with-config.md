@@ -1,6 +1,5 @@
 ---
 description: ''
-f5-docs: DOCS-1100
 title: Configure settings with nms.conf
 toc: true
 weight: 1

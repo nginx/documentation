@@ -4,7 +4,6 @@ weight: 1
 toc: true
 f5-content-type: reference
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-938
 description: "Release notes for F5 NGINX Instance Manager, listing new features, improvements, resolved issues, and upgrade notes for each version."
 f5-summary: >
   Review what changed in each release of F5 NGINX Instance Manager.

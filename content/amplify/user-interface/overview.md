@@ -3,7 +3,6 @@ title: Overview
 description: Learn about the Overview page of the User Interface.
 weight: 10
 toc: true
-f5-docs: DOCS-984
 f5-product: AMPLIF
 ---
 

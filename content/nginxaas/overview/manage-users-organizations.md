@@ -2,7 +2,6 @@
 title: Manage users and organizations
 weight: 300
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/overview/manage-users-organizations/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service

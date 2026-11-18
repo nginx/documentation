@@ -4,7 +4,6 @@ description: Learn about F5 NGINX Amplify Agent's configuration analysis feature
 weight: 600
 toc: true
 noindex: true
-f5-docs: DOCS-961
 f5-product: AMPLIF
 ---
 

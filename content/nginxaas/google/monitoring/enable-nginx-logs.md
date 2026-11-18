@@ -2,7 +2,6 @@
 title: Enable NGINX logs
 weight: 350
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-nginx-logs/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud

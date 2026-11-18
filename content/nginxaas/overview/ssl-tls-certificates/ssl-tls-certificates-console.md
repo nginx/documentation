@@ -2,7 +2,6 @@
 title: Add certificates using the NGINXaaS Console
 weight: 100
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service

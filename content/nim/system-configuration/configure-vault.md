@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-999
 title: Use Vault for storing secrets
 toc: true
 weight: 200

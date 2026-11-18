@@ -5,7 +5,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
-f5-docs: DOCS-878
 f5-review-priority: high
 ---
 

@@ -3,7 +3,6 @@ title: Analyzer
 description: Learn about the Analyzer page of the User Interface.
 weight: 50
 toc: false
-f5-docs: DOCS-980
 f5-product: AMPLIF
 ---
 

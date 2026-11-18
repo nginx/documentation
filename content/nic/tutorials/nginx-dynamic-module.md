@@ -4,7 +4,6 @@ toc: true
 weight: 1800
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1231
 ---
 
 This document describes how to use NGINX Ingress Controller with NGINX dynamic modules.

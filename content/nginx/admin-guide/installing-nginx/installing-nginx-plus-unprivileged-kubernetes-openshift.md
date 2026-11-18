@@ -6,7 +6,6 @@ toc: true
 weight: 650
 f5-product: F5 NGINX Plus
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-keywords: "NGINX Plus, Kubernetes, OpenShift, non-root, unprivileged, rootless, UID, GID, SCC, NGINX Agent, NGINX Instance Manager, NGINX One Console, docker-image-builder"
 f5-summary: >
   This guide shows how to run NGINX Plus as an unprivileged pod on Kubernetes or Red Hat OpenShift.

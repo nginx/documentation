@@ -4,7 +4,6 @@ description: Learn what to check if F5 NGINX Amplify Agent isn't reporting metri
 weight: 500
 toc: true
 noindex: true
-f5-docs: DOCS-966
 f5-product: AMPLIF
 ---
 

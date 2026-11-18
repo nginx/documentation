@@ -4,7 +4,6 @@ description: "API reference for NGINX Gateway Fabric custom resources under gate
 weight: 100
 f5-content-type: reference
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1855
 f5-summary: >
   Browse generated API documentation for NGINX Gateway Fabric custom resource definitions.
   Packages include gateway.nginx.org/v1alpha1 and gateway.nginx.org/v1alpha2.

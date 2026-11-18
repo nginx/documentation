@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1197
 title: Automate OIDC with Microsoft Entra
 toc: true
 weight: 300
