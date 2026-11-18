@@ -26,6 +26,48 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.8.0
+
+18 Nov 2026
+
+### {{% icon rocket %}} Features
+
+- [11151](https://github.com/nginx/kubernetes-ingress/pull/11151) Allow variables in proxy-set-headers annotation to achieve parity with virtualserver
+- [11216](https://github.com/nginx/kubernetes-ingress/pull/11216) Add connectionlimit policy
+- [11218](https://github.com/nginx/kubernetes-ingress/pull/11218) Add connectionlimit policy to virtualserver and virtualserverroute
+- [11222](https://github.com/nginx/kubernetes-ingress/pull/11222) Add ingress support for connection limit policy
+- [11187](https://github.com/nginx/kubernetes-ingress/pull/11187) Expand jwtauth policy to include claim validation
+- [11225](https://github.com/nginx/kubernetes-ingress/pull/11225) Add jwt claim validation types and validation
+- [11226](https://github.com/nginx/kubernetes-ingress/pull/11226) Generate nginx config for jwt claim authorization
+- [11227](https://github.com/nginx/kubernetes-ingress/pull/11227) Render jwt claim authorization in the nginx plus virtualserver template
+- [11364](https://github.com/nginx/kubernetes-ingress/pull/11364) Make helm values schema self-contained for offline installs
+- [11423](https://github.com/nginx/kubernetes-ingress/pull/11423) Auth response headers implementation
+
+### {{% icon bug %}} Fixes
+
+- [11144](https://github.com/nginx/kubernetes-ingress/pull/11144) Sync: security hardening and minor bug fixes for main
+- [11121](https://github.com/nginx/kubernetes-ingress/pull/11121) Selectable externaldns crd apiversion
+- [11001](https://github.com/nginx/kubernetes-ingress/pull/11001) Stop dropping plus endpoint updates and bound batch staleness
+- [11298](https://github.com/nginx/kubernetes-ingress/pull/11298) Fix malformed event and status messages for ingress, virtualserver, virtualserverroute and transportserver resources
+- [11346](https://github.com/nginx/kubernetes-ingress/pull/11346) Merge nginx-agent.conf labels into `--labels` for nginx agent 3
+- [11469](https://github.com/nginx/kubernetes-ingress/pull/11469) Sync: security hardening and minor bug fixes for release-5.8
+
+### {{% icon arrow-up %}} Dependencies
+
+- [11268](https://github.com/nginx/kubernetes-ingress/pull/11268), [11434](https://github.com/nginx/kubernetes-ingress/pull/11434), [11154](https://github.com/nginx/kubernetes-ingress/pull/11154), [11177](https://github.com/nginx/kubernetes-ingress/pull/11177), [11353](https://github.com/nginx/kubernetes-ingress/pull/11353), [11158](https://github.com/nginx/kubernetes-ingress/pull/11158), [11198](https://github.com/nginx/kubernetes-ingress/pull/11198), [11219](https://github.com/nginx/kubernetes-ingress/pull/11219), [11233](https://github.com/nginx/kubernetes-ingress/pull/11233), [11267](https://github.com/nginx/kubernetes-ingress/pull/11267), [11257](https://github.com/nginx/kubernetes-ingress/pull/11257), [11230](https://github.com/nginx/kubernetes-ingress/pull/11230), [11266](https://github.com/nginx/kubernetes-ingress/pull/11266), [11285](https://github.com/nginx/kubernetes-ingress/pull/11285), [11309](https://github.com/nginx/kubernetes-ingress/pull/11309), [11399](https://github.com/nginx/kubernetes-ingress/pull/11399), [11333](https://github.com/nginx/kubernetes-ingress/pull/11333), [11398](https://github.com/nginx/kubernetes-ingress/pull/11398) & [11450](https://github.com/nginx/kubernetes-ingress/pull/11450) Bump Go dependencies
+- [11123](https://github.com/nginx/kubernetes-ingress/pull/11123), [11126](https://github.com/nginx/kubernetes-ingress/pull/11126), [11433](https://github.com/nginx/kubernetes-ingress/pull/11433), [11374](https://github.com/nginx/kubernetes-ingress/pull/11374), [11202](https://github.com/nginx/kubernetes-ingress/pull/11202), [11195](https://github.com/nginx/kubernetes-ingress/pull/11195), [11295](https://github.com/nginx/kubernetes-ingress/pull/11295), [11235](https://github.com/nginx/kubernetes-ingress/pull/11235), [11316](https://github.com/nginx/kubernetes-ingress/pull/11316), [11342](https://github.com/nginx/kubernetes-ingress/pull/11342), [11339](https://github.com/nginx/kubernetes-ingress/pull/11339), [11368](https://github.com/nginx/kubernetes-ingress/pull/11368), [11375](https://github.com/nginx/kubernetes-ingress/pull/11375), [11384](https://github.com/nginx/kubernetes-ingress/pull/11384), [11383](https://github.com/nginx/kubernetes-ingress/pull/11383), [11394](https://github.com/nginx/kubernetes-ingress/pull/11394), [11397](https://github.com/nginx/kubernetes-ingress/pull/11397) & [11412](https://github.com/nginx/kubernetes-ingress/pull/11412) Bump Docker dependencies
+- [11369](https://github.com/nginx/kubernetes-ingress/pull/11369) Update module github.com/mikefarah/yq/v4 to v4.54.3 (main)
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.8.0 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.8.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.8.0 images from the F5 Container registry or build your own image from the 5.8.0 source code.
+- For Helm, use version 2.9.0 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.37.
+
 ## 5.7.0
 
 14 Oct 2026
