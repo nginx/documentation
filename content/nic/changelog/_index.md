@@ -29,6 +29,17 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 18 Nov 2026
 
+NGINX Ingress Controller 5.8.0 adds connection limits, JWT claim based routing and auth response headers without snippets, allowing a easier migration patch from ingress-nginx. It also supports Helm installs in offline clusters, makes reloads faster during rolling deployments and includes several stability improvements and bug fixes.
+
+- Connection limits: A new policy limits how many requests each client, or each resource, can have in progress at once. It works on Ingress, VirtualServer and VirtualServerRoute resources without snippets. It’s the counterpart to Ingress-NGINX’s limit-connections annotation.
+- Auth response headers: ExternalAuth policies can pass user, email or tenant headers from your authentication service’s response to your backends. It’s the counterpart to Community Ingress-NGINX’s auth-response-headers annotation.
+- Offline Helm installs: The Helm chart now validates your values without internet access, so you can install and upgrade in air-gapped clusters or behind a firewall.
+- NGINX variables in `nginx.org/proxy-set-headers`: This Ingress annotation now accepts the same NGINX variables that VirtualServer request headers do.
+- ExternalDNS 0.21+ support: A new -external-dns-group-version flag lets VirtualServer DNS records work with newer ExternalDNS versions. The default is unchanged.
+- JWT claim authorization (NGINX Plus): VirtualServer and VirtualServerRoute resources can check a token’s claims before a request reaches the upstream.
+- Faster reloads during rolling deployments: When endpoints change constantly, a pending reload now waits no more than 2 seconds, so NGINX stops sending traffic to terminated pods sooner. You can change the wait with -batch-reload-window or controller.batchReloadWindow.
+- Fewer reloads with NGINX Plus: Endpoint changes keep reaching NGINX Plus through its API while changes are being batched, so endpoint churn no longer causes constant reloads.
+
 ### {{% icon rocket %}} Features
 
 - [11151](https://github.com/nginx/kubernetes-ingress/pull/11151) Allow variables in proxy-set-headers annotation to achieve parity with virtualserver
