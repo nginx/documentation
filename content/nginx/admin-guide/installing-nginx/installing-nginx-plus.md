@@ -90,38 +90,6 @@ Before you begin, make sure you have:
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
-
-## Amazon Linux 2 CR packages {#install_amazon2}
-
-1. {{< include "nginx-plus/install/check-tech-specs.md" >}}
-
-1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
-
-1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
-
-1. {{< include "nginx-plus/install/install-ca-certificates-dependency-yum.md" >}}
-
-1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
-
-1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
-
-1. Add the NGINX Plus repository to your Amazon Linux 2 instance. Download the [nginx-plus-amazon2.repo](https://cs.nginx.com/static/files/nginx-plus-amazon2.repo) file to **/etc/yum.repos.d**:
-
-   ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-amazon2.repo
-   ```
-
-1. {{< include "nginx-plus/install/install-nginx-plus-package-yum.md" >}}
-
-1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
-
-1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
-
-1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
-
-1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
-
-
 ## RHEL-based 8.1+ CR packages {#install_rhel8}
 
 Supported RHEL-based systems include RHEL 8.1+, Oracle Linux 8.1+, AlmaLinux 8, and Rocky Linux 8. 
@@ -754,7 +722,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    Expected output of the command:
 
    ```shell
-   nginx version: nginx/1.31.6 (nginx-plus-r37.2.0)
+   nginx version: nginx/1.31.8 (nginx-plus-r37.3.0)
    ```
 
 1. Prepare the build environment.
@@ -787,10 +755,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
 
    - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.31.6:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.31.8:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.31.6.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.31.8.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -806,7 +774,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    First, establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.31.6/ && \
+   cd nginx-1.31.8/ && \
    ./configure --with-compat --add-dynamic-module=../<MODULE_SOURCES> && \
    make modules
    ```
@@ -828,7 +796,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.31.6.so
+   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.31.8.so
    ```
 
 1. Transfer the resulting `.so` file from your build environment to the production environment.
@@ -840,7 +808,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    - `/usr/local/etc/nginx/modules` for FreeBSD
 
    ```shell
-   sudo cp ngx_http_hello_world_module_1.31.6.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.31.6.so
+   sudo cp ngx_http_hello_world_module_1.31.8.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.31.8.so
    ```
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
@@ -947,13 +915,36 @@ This section explains how to install NGINX Plus and its [dynamic modules]({{< re
 
 To install NGINX Plus offline, you will need a machine connected to the Internet to get the NGINX Plus package, JWT license, SSL certificate and key. Then your can transfer these files to the target server for offline installation.
 
-### Step 1: Obtaining files on the machine connected to the Internet {#offline-obtain-files}
+### Obtain files on the machine connected to the Internet {#offline-obtain-files}
 
-1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+1. Choose which release track of NGINX Plus you want to use: Long-Term Support (LTS) or Continuous Releases (CR). See [Releases]({{< ref "/nginx/releases.md" >}}) for details.
 
-1. Transfer the files to the target server that doesn't have online access and where NGINX Plus will be installed.
+1. Make sure you have configured access to the NGINX Plus repository for the chosen release track. For NGINX Plus LTS, see instructions for your operating system in [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}). For NGINX Plus CR, see instructions for your operating system in [Installing NGINX Plus CR]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
-### Step 2: Installing NGINX Plus on a server without Internet connectivity
+1. Create a directory for the downloaded packages and change to it:
+
+   ```shell
+   mkdir -p ~/Downloads/nginx-plus
+   cd ~/Downloads/nginx-plus
+   ```
+
+1. Find the required package. For example, on Ubuntu, refresh the local APT repository indexes and list the available versions of the `nginx-plus` package:
+
+   ```shell
+   sudo apt update
+   apt-cache madison nginx-plus
+   ```
+
+1. Download the required version. Use an exact version returned by the previous command:
+
+   ```shell
+   apt download 'nginx-plus=37.3.0-1~noble'
+   ```
+   The `.deb` file is saved in the current directory without being installed. Make sure the package matches the target server's release and architecture.
+
+1. Transfer the downloaded package and any required dependency packages to the offline target server where NGINX Plus will be installed.
+
+### Install NGINX Plus on a server without Internet connectivity
 
 1. {{< include "nginx-plus/install/back-up-config-and-logs.md" >}}
 
@@ -965,7 +956,7 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
 
 1. Install the NGINX Plus package or a dynamic module. Any older NGINX Plus package is automatically replaced.
 
-    - **For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux**:
+    - **For RHEL, Amazon Linux 2023, CentOS, Oracle Linux, AlmaLinux and Rocky Linux**:
 
          ```shell
          sudo rpm -ihv <RPM_PACKAGE_NAME>
