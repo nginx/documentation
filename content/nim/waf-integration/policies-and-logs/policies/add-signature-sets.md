@@ -128,3 +128,9 @@ From the **Web Protection** section, select **Attack Signature Exceptions**. Thi
 In the NGINX Instance Manager web interface, you can review and change saved policies at any time. Go to **WAF** > **Policies** to view or edit an existing policy.
 
 For a complete list of available signature sets and detailed information about attack signatures, see the [Attack Signatures]({{< ref "/waf/policies/attack-signatures.md" >}}) documentation.
+
+## See also
+
+- [gRPC Protection settings]({{< ref "/nim/waf-integration/policies-and-logs/policies/grpc-protection-settings.md" >}})
+- [Add cookies, parameters, and URLs]({{< ref "/nim/waf-integration/policies-and-logs/policies/cookies-parameters-urls.md" >}})
+- [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}})

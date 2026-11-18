@@ -2,7 +2,7 @@
 title: "Matching types: Explicit vs. Wildcard"
 description: Learn how explicit and wildcard matching determine how F5 WAF for NGINX identifies and protects URLs, cookies, and parameters.
 toc: true
-weight: 700
+weight: 550
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
 f5-summary: >
