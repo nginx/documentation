@@ -27,7 +27,7 @@ We provide the following Docker images, which include NGINX or NGINX Plus bundle
 
 ### Images with NGINX
 
-_All images include NGINX 1.31.7._
+_All images include NGINX 1.31.9._
 
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | DockerHub image | Architectures |
 | ---| --- | --- | --- |
@@ -37,7 +37,7 @@ _All images include NGINX 1.31.7._
 
 ### Images with NGINX Plus
 
-NGINX Plus images include NGINX Plus R37.2.0.1.
+NGINX Plus images include NGINX Plus R37.3.0.1.
 
 #### F5 Container registry
 
