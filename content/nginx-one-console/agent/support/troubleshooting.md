@@ -3,7 +3,6 @@ title: Troubleshooting
 toc: true
 weight: 700
 f5-content-type: reference
-f5-docs: DOCS-1878
 f5-product: NGINX Agent
 ---
 

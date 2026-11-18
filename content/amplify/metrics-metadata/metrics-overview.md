@@ -4,7 +4,6 @@ description: Learn about the metrics and metadata F5 NGINX Amplify collects.
 weight: 10
 toc: true
 noindex: true
-f5-docs: DOCS-972
 f5-product: AMPLIF
 ---
 

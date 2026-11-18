@@ -6,9 +6,11 @@ f5-files:
 - content/solutions/about-subscription-licenses/getting-started.md
 ---
 
-Monitor the [NGINX error log](https://nginx.org/en/docs/ngx_core_module.html#error_log), usually at `/var/log/nginx/error.log`, to identify subscription issues early. The log records problems such as failed usage reports or licenses that are about to expire. Check it regularly to avoid downtime and stay compliant.
+Monitor the [NGINX error log](https://nginx.org/en/docs/ngx_core_module.html#error_log), usually at `/var/log/nginx/error.log`, to identify subscription issues early. The log records problems such as failed usage reports or licenses that are about to expire. NGINX Plus also logs the license status at startup. Check the error log regularly to avoid downtime and stay compliant.
 
-You can also use the [license API endpoint](https://demo.nginx.com/api/9/license) to check license status programmatically. For details, see the [ngx_http_api_module docs](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_license_object).
+To ensure that all license-related messages are logged, set the error log level to `notice` or a more verbose level. 
+
+You can also use the [license API endpoint](https://demo.nginx.com/api/9/license) to check license status programmatically. For details, see the [`ngx_http_api_module` docs](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_license_object).
 
 Examples of log entries:
 

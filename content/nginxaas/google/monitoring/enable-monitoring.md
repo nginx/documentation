@@ -2,7 +2,6 @@
 title: Enable monitoring
 weight: 200
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-monitoring/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud

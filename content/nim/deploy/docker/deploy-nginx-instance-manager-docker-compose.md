@@ -3,7 +3,6 @@ description: ''
 title: Deploy using Docker Compose
 toc: true
 weight: 100
-f5-docs: DOCS-1653
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
 f5-summary: >

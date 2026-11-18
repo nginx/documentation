@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1438
 f5-product:
 - F5 NGINX Gateway Fabric
 - F5 NGINX One Console

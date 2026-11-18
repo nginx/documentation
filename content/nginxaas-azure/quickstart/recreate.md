@@ -2,7 +2,6 @@
 title: Recreating a deployment
 weight: 500
 toc: true
-f5-docs: DOCS-1378
 url: /nginxaas-azure/quickstart/recreate/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure

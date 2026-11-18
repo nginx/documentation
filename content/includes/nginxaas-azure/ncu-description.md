@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1476
 f5-product: NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/billing/overview.md

@@ -3,7 +3,6 @@ title: Install NGINX Amplify Agent
 description: Learn how to install F5 NGINX Amplify Agent.
 weight: 100
 toc: true
-f5-docs: DOCS-968
 f5-product: AMPLIF
 ---
 

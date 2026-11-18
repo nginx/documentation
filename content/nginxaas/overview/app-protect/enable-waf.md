@@ -3,7 +3,6 @@ title: Turn on F5 WAF for NGINX
 description: "Turn on F5 WAF for NGINX on an NGINXaaS deployment using the NGINXaaS Console."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/overview/app-protect/enable-waf/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service

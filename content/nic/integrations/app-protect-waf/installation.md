@@ -4,7 +4,6 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-579
 ---
 
 This document explains how to build a F5 NGINX Ingress Controller image with F5 WAF for NGINX from source code.

@@ -1,7 +1,6 @@
 ---
 description: Capture detailed information about errors and request processing in log
   files, either locally or via syslog.
-f5-docs: DOCS-426
 title: Configuring Logging
 toc: true
 weight: 200

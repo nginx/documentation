@@ -4,7 +4,6 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Agent
-f5-docs: DOCS-1229
 ---
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.

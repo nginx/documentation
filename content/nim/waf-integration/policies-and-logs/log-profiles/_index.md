@@ -1,6 +1,5 @@
 ---
 title: Security log profiles
-f5-docs: 
 weight: 300
 url: /nginx-instance-manager/waf-integration/policies-and-logs/log-profiles/
 f5-product: NGINX Instance Manager

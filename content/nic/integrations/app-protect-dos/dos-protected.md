@@ -4,7 +4,6 @@ toc: true
 weight: 300
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-581
 ---
 
 F5 DoS for NGINX protected resource specification

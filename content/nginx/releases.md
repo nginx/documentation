@@ -1,7 +1,6 @@
 ---
 description: Release information for F5 NGINX Plus, a complete application delivery
   platform, including new features and a list of supported platforms.
-f5-docs: DOCS-472
 title: Releases
 toc: true
 weight: 300
@@ -20,17 +19,17 @@ Since May 13, 2026, NGINX Plus follows a new release model: F5 NGINX Commercial 
 
 Each release version is available in two tracks:
 
-[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.6.2` LTS](#pls.37.0.6).
+[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.8.1` LTS](#pls.37.0.8).
 
-[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.1.2` CR](#pls.37.1.1).
+[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.3.0.1` CR](#pls.37.3.0).
 
 ### Release schedule
 
 Each new LTS release version is published annually and supported for three years.
 
-LTS Track builds are released as soon as important bug fixes and security patches are available. The latest LTS build was released on September 15, 2026.
+LTS Track builds are released as soon as important bug fixes and security patches are available. The latest LTS build was released on November 18, 2026.
 
-CR Track builds are released regularly and include the latest features and enhancements, in addition to bug fixes and security patches. The latest CR build was released on September 15, 2026.
+CR Track builds are released regularly and include the latest features and enhancements, in addition to bug fixes and security patches. The latest CR build was released on November 18, 2026.
 
 ### Release numbering
 
@@ -78,15 +77,47 @@ LTS patch versions follow the numbering format: `PLS.37.0.<PATCH>.<PACKAGE>`: th
 
 To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
 
+### NGINX Plus PLS.37.0.8.1 LTS {#pls.37.0.8}
+_November 18, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
+
+NGINX Plus PLS.37.0.8.1 LTS is a security release.
+
+- Security fix: a buffer overflow might occur in a worker process when using the [`try_files`](https://nginx.org/en/docs/http/ngx_http_core_module.html#try_files) and [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directives in certain configurations ([CVE-2026-125283](https://my.f5.com/manage/s/article/K000163933)).
+
+- Security fix: a flow control window overflow in HTTP/2 might allow an attacker to cause a segmentation fault in a worker process, or might have potential other impact ([CVE-2026-123007](https://my.f5.com/manage/s/article/K000163926)).
+
+- Security fix: use-after-free might occur in a worker process when using HTTP/3 if worker_connections were not enough ([CVE-2026-121810](https://my.f5.com/manage/s/article/K000163927)).
+
+- Security fix: use-after-free condition might occur if the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive was used and the same name was simultaneously resolved in subrequests, allowing an attacker who is able to trigger name resolution to cause segmentation fault in a worker process, or might have potential other impact ([CVE-2026-123634](https://my.f5.com/manage/s/article/K000163925)).
+
+- Security fix: use-after-free might occur in a worker process in the mail proxy server ([CVE-2026-113425](https://my.f5.com/manage/s/article/K000163931)).
+
+- Security fix: in the stream module, an attacker who is able to complete the SSL handshake synchronously might cause client SSL certificates to be verified using the configuration of the default server rather than the virtual server selected by SNI ([CVE-2026-120967](https://my.f5.com/manage/s/article/K000163934)).
+
+- Security fix: worker processes might get caught in an endless loop while reading the request body over SSL ([CVE-2026-118899](https://my.f5.com/manage/s/article/K000163930)).
+
+{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+
+### NGINX Plus PLS.37.0.7.1 LTS {#pls.37.0.7}
+_October 14, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
+
+NGINX Plus PLS.37.0.7.1 LTS is a security release.
+
+- Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with the [`proxy_request_buffering`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering) directive enabled, an unauthenticated remote attacker may be able to inject data into a proxied request ([CVE-2026-95101](https://my.f5.com/manage/s/article/K000162613)).
+
+- Security fix: use-after-free might occur in a worker process when using HTTP/2 if worker_connections were not enough ([CVE-2026-123633](https://my.f5.com/manage/s/article/K000163928)).
+
+- Security fix: the [`ngx_stream_ssl_preread_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html) module might interpret malformed `ClientHello` messages differently than other TLS implementations, which might result in bypassing security restrictions ([CVE-2026-123640](https://my.f5.com/manage/s/article/K000163935)).
+
 ### NGINX Plus PLS.37.0.6.2 LTS {#pls.37.0.6}
 _September 15, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
 
 NGINX Plus PLS.37.0.6.2 LTS is a security release.
 
-- Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with OpenSSL versions 3.5.0 and earlier, a limited heap buffer overflow may occur during TLS handshake processing under certain configurations. The condition is non-deterministic and beyond an attacker's control. This may cause a heap buffer overflow in the NGINX worker process, potentially resulting in restart and/or limited data corruption. ([CVE-2026-90439](https://my.f5.com/manage/s/article/K000162604)).
-
-{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+- Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with OpenSSL versions 3.5.0 and earlier, a limited heap buffer overflow may occur during TLS handshake processing under certain configurations. The condition is non-deterministic and beyond an attacker's control. This may cause a heap buffer overflow in the NGINX worker process, potentially resulting in restart and/or limited data corruption ([CVE-2026-90439](https://my.f5.com/manage/s/article/K000162604)).
 
 
 ### NGINX Plus PLS.37.0.5.1 LTS {#pls.37.0.5}
@@ -94,6 +125,15 @@ _September 2, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
 
 NGINX Plus PLS.37.0.5.1 LTS is a bugfix release. We recommend that all users on the LTS track upgrade to the latest LTS release to ensure they are running the most stable and secure version of NGINX Plus.
+
+- Security fix: when a location is configured with the [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directive together with [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) and a [`set`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) or [`return`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) directive referencing the `$request_filename` variable, a heap buffer overflow may occur while processing a crafted HTTP request. The issue may also occur when `$request_filename` is used in an access log format. This may cause an NGINX worker process to restart and, if Address Space Layout Randomization (ASLR) is disabled or bypassed, may allow code execution ([CVE-2026-15176](https://my.f5.com/manage/s/article/K000162416)).
+
+- Security fix: when the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive uses regular expression matching and the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive or an [`access_log`](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) format references the map’s regular expression capture variables before the map output variable, a heap buffer overflow may occur while processing a crafted HTTP request. The issue may also occur when a non-cacheable variable is used in a string expression under certain conditions. This may cause an NGINX worker process to restart and, if Address Space Layout Randomization (ASLR) is disabled or bypassed, may allow code execution ([CVE-2026-93479](https://my.f5.com/manage/s/article/K000162607)).
+
+- Security fix in the [`ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module: when the [`ssl_session_cache`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache) directive is configured with a shared cache and no [`ssl_session_ticket_key`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_ticket_key) directives are specified to automatically rotate SSL session ticket keys, a remote unauthenticated attacker may forge client SSL sessions. The condition is non-deterministic and beyond the attacker’s control. This may allow an attacker to bypass client certificate verification and gain unauthorized access to sensitive resources or information ([CVE-2026-97629](https://my.f5.com/manage/s/article/K000162606)).
+
+- Security fix in the [`ngx_http_core_module`](https://nginx.org/en/docs/http/ngx_http_core_module.html) module: when asynchronous file I/O ([`aio`](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio)) is enabled in certain configurations, processing Server Side Includes (SSI) containing [`include virtual`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html#commands) commands may trigger a use-after-free condition in the NGINX worker process. This may cause memory corruption or a worker process crash and, if Address Space Layout Randomization (ASLR) is disabled or bypassed, may allow code execution ([CVE-2026-97205](https://my.f5.com/manage/s/article/K000162608)).
+
 
 ### NGINX Plus PLS.37.0.4.1 LTS {#pls.37.0.4}
 _July 22, 2026_<br/>
@@ -206,6 +246,105 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 
 Continuous Releases (CR) track includes the newest features and performance improvements as well as security fixes and CVE mitigations. CRs are never patched, security fixes are delivered as the next CR. Only latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
 
+### NGINX Plus PLS.37.3.0.1 CR {#pls.37.3.0}
+_November 18, 2026_<br/>
+_Based on NGINX Open Source 1.31.8_
+
+NGINX Plus PLS.37.3.0.1 CR is both a feature and security release.
+
+- Auth JWT: the [`refresh_on_miss`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#refresh_on_miss) parameter of the [`auth_jwt_key_cache`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache) directive.
+
+- Change: now the path specified in the [`working_directory`](https://nginx.org/en/docs/ngx_core_module.html#working_directory) directive is relative to nginx prefix directory, but not to the current directory.
+
+- Security fix: when NGINX Plus is configured to use the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module with dynamic certificate loading and the [`ngx_stream_proxy_module`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html) module with the [`proxy_protocol v2`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_protocol) directive, an abbreviated SSL handshake can cause a worker process to terminate which may lead to a denial-of-service ([CVE-2026-120993](https://my.f5.com/manage/s/article/K000163932)).
+
+- Security fix: a buffer overflow might occur in a worker process when using the [`try_files`](https://nginx.org/en/docs/http/ngx_http_core_module.html#try_files) and [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directives in certain configurations ([CVE-2026-125283](https://my.f5.com/manage/s/article/K000163933)).
+
+- Security fix: a flow control window overflow in HTTP/2 might allow an attacker to cause a segmentation fault in a worker process, or might have potential other impact ([CVE-2026-123007](https://my.f5.com/manage/s/article/K000163926)).
+
+- Security fix: use-after-free might occur in a worker process when using HTTP/3 if worker_connections were not enough ([CVE-2026-121810](https://my.f5.com/manage/s/article/K000163927)).
+
+- Security fix: use-after-free condition might occur if the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive was used and the same name was simultaneously resolved in subrequests, allowing an attacker who is able to trigger name resolution to cause segmentation fault in a worker process, or might have potential other impact ([CVE-2026-123634](https://my.f5.com/manage/s/article/K000163925)).
+
+- Security fix: use-after-free might occur in a worker process in the mail proxy server ([CVE-2026-113425](https://my.f5.com/manage/s/article/K000163931)).
+
+- Security fix: in the stream module, an attacker who is able to complete the SSL handshake synchronously might cause client SSL certificates to be verified using the configuration of the default server rather than the virtual server selected by SNI ([CVE-2026-120967](https://my.f5.com/manage/s/article/K000163934)).
+
+- Security fix: worker processes might get caught in an endless loop while reading the request body over SSL ([CVE-2026-118899](https://my.f5.com/manage/s/article/K000163930)).
+
+{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.3.0.1 CR](https://community.f5.com/t/f5-nginx-plus-37-3-release-now-available/77695) blog post. {{< /call-out >}}
+
+NGINX Plus PLS.37.3.0.1 CR is supported on:
+
+{{<table>}}
+| Distribution                     | Versions                        | Architecture    |
+|----------------------------------|---------------------------------|-----------------|
+| AlmaLinux                        | 8.1+, 9.7+, 10                  | x86_64, aarch64 |
+| Alpine Linux                     | 3.22, 3.23, 3.24                | x86_64, aarch64 |
+| Amazon Linux                     | 2023                            | x86_64, aarch64 |
+| Debian                           | 12, 13                          | x86_64, aarch64 |
+| FreeBSD                          | 14.3+, 15.0+                    | amd64           |
+| Oracle Linux                     | 8.1+, 9.7+                      | x86_64, aarch64 |
+| RHEL                             | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| Rocky Linux                      | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| SUSE Linux Enterprise Server     | 15 SP7+ (x86_64 only), 16       | x86_64, aarch64 |
+| Ubuntu                           | 22.04, 24.04, 26.04             | x86_64, aarch64 |
+{{</table >}}
+
+**Notes:**
+
+- Alpine Linux 3.21 is removed
+
+
+### NGINX Plus PLS.37.2.0.1 CR {#pls.37.2.0}
+_October 14, 2026_<br/>
+_Based on NGINX Open Source 1.31.6_
+
+NGINX Plus PLS.37.2.0.1 CR is a feature release.
+
+- The [NGINX Database Connector module](https://nginx.org/en/docs/http/ngx_http_db_module.html), which retrieves values for specified keys from Redis databases, also supports authentication and result caching.
+- The [`session_sync_leeway`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#session_sync_leeway) directive for the Native OIDC module, which addresses session synchronization delays between cluster nodes.
+- NGINX license status logging at startup when the configured error log level is `notice` or more verbose.
+- PROXY Protocol version 2 support for the `proxy_protocol` directive in the [Stream](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_protocol) and [Mail](https://nginx.org/en/docs/mail/ngx_mail_proxy_module.html#proxy_protocol) modules.
+- Support for [predicate locations](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), which sets a configuration based on the value of a variable evaluated during request processing.
+- The [`ngx_http_json_module`](https://nginx.org/en/docs/http/ngx_http_json_module.html) module, which extracts values from a JSON document and makes them available as variables.
+- The [`client_body_early_read`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_early_read) directive, which enables the client request body to be read immediately after the request headers are received based on specified conditions.
+
+- Changes in behavior:
+  - The QUIC transport parameters extension received over an SSL connection is now always ignored.
+  -  HTTP/2 and gRPC requests to upstream servers are now always sent with the `:authority` pseudo-header, while HTTP/1.1 requests are sent with the `Host` header.
+
+- Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with the [`proxy_request_buffering`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering) directive enabled, an unauthenticated remote attacker may be able to inject data into a proxied request ([CVE-2026-95101](https://my.f5.com/manage/s/article/K000162613)).
+
+- Security fix: use-after-free might occur in a worker process when using HTTP/2 if worker_connections were not enough ([CVE-2026-123633](https://my.f5.com/manage/s/article/K000163928)).
+
+- Security fix: the [`ngx_stream_ssl_preread_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html) module might interpret malformed `ClientHello` messages differently than other TLS implementations, which might result in bypassing security restrictions ([CVE-2026-123640](https://my.f5.com/manage/s/article/K000163935)).
+
+{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.2.0.1 CR](https://community.f5.com/t/f5-nginx-plus-37-2-release-now-available/77548) blog post. {{< /call-out >}}
+
+NGINX Plus PLS.37.2.0.1 CR is supported on:
+
+{{<table>}}
+| Distribution                     | Versions                        | Architecture    |
+|----------------------------------|---------------------------------|-----------------|
+| AlmaLinux                        | 8.1+, 9.7+, 10                  | x86_64, aarch64 |
+| Alpine Linux                     | 3.21, 3.22, 3.23, 3.24          | x86_64, aarch64 |
+| Amazon Linux                     | 2023                            | x86_64, aarch64 |
+| Debian                           | 12, 13                          | x86_64, aarch64 |
+| FreeBSD                          | 14.3+, 15.0+                    | amd64           |
+| Oracle Linux                     | 8.1+, 9.7+                      | x86_64, aarch64 |
+| RHEL                             | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| Rocky Linux                      | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| SUSE Linux Enterprise Server     | 15 SP7+ (x86_64 only), 16       | x86_64, aarch64 |
+| Ubuntu                           | 22.04, 24.04, 26.04             | x86_64, aarch64 |
+{{</table >}}
+
+**Notes:**
+
+- Alpine Linux 3.21 is deprecated
+- Debian 11 is removed
+
+
 ### NGINX Plus PLS.37.1.1.2 CR {#pls.37.1.1}
 _September 15, 2026_<br/>
 _Based on NGINX Open Source 1.31.3_
@@ -266,6 +405,14 @@ NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
   - Fixed issues in the `ngx_http_tunnel_module` module.
 
+  - Security fix: when a location is configured with the [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directive together with [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) and a [`set`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) or [`return`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) directive referencing the `$request_filename` variable, a heap buffer overflow may occur while processing a crafted HTTP request. The issue may also occur when `$request_filename` is used in an access log format. This may cause an NGINX worker process to restart and, if Address Space Layout Randomization (ASLR) is disabled or bypassed, may allow code execution ([CVE-2026-15176](https://my.f5.com/manage/s/article/K000162416)).
+
+  - Security fix: when the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive uses regular expression matching and the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive or an [`access_log`](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) format references the map’s regular expression capture variables before the map output variable, a heap buffer overflow may occur while processing a crafted HTTP request. The issue may also occur when a non-cacheable variable is used in a string expression under certain conditions. This may cause an NGINX worker process to restart and, if Address Space Layout Randomization (ASLR) is disabled or bypassed, may allow code execution ([CVE-2026-93479](https://my.f5.com/manage/s/article/K000162607)).
+
+  - Security fix in the [`ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module: when the [`ssl_session_cache`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache) directive is configured with a shared cache and no [`ssl_session_ticket_key`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_ticket_key) directives are specified to automatically rotate SSL session ticket keys, a remote unauthenticated attacker may forge client SSL sessions. The condition is non-deterministic and beyond the attacker’s control. This may allow an attacker to bypass client certificate verification and gain unauthorized access to sensitive resources or information ([CVE-2026-97629](https://my.f5.com/manage/s/article/K000162606)).
+
+  - Security fix in the [`ngx_http_core_module`](https://nginx.org/en/docs/http/ngx_http_core_module.html) module: when asynchronous file I/O ([`aio`](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio)) is enabled in certain configurations, processing Server Side Includes (SSI) containing [`include virtual`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html#commands) commands may trigger a use-after-free condition in the NGINX worker process. This may cause memory corruption or a worker process crash and, if Address Space Layout Randomization (ASLR) is disabled or bypassed, may allow code execution ([CVE-2026-97205](https://my.f5.com/manage/s/article/K000162608)).
+
 {{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.1.0.1 CR](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-1-release-now-available/347466) blog post. {{< /call-out >}}
 
 NGINX Plus PLS.37.1.0.1 CR is supported on:
@@ -281,7 +428,7 @@ NGINX Plus PLS.37.1.0.1 CR is supported on:
 | Oracle Linux                     | 8.1+, 9.7+                      | x86_64, aarch64 |
 | RHEL                             | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
 | Rocky Linux                      | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
-| SUSE Linux Enterprise Server     | 15 SP7+, 16                     | x86_64, aarch64 |
+| SUSE Linux Enterprise Server     | 15 SP7+ (x86_64 only), 16       | x86_64, aarch64 |
 | Ubuntu                           | 22.04, 24.04, 26.04             | x86_64, aarch64 |
 {{</table >}}
 
@@ -1330,7 +1477,7 @@ NGINX Plus R26 is supported on:
 - The [`js_include`](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_include) directive was removed, the [`js_import`](http://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) directive should be used instead
 - The [`aio sendfile`](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) directive was removed, the [`sendfile`](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) directive should be used instead
 - The third-party `Cookie‑Flag` was removed from the dynamic modules repository, the [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive should be used instead
-- Swagger UI with REST API YAML specification is not included into NGINX Plus packages by default any more and now is a part of [docs.nginx.com]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#the-swagger-ui" >}})
+- Swagger UI with REST API YAML specification is not included into NGINX Plus packages by default any more and now is a part of [docs.nginx.com]({{< ref "/nginx/admin-guide/monitoring/live-activity-monitoring.md#swagger_enable" >}})
 
 More information: [Announcing NGINX Plus R26](https://www.nginx.com/blog/nginx-plus-r26-released/)
 

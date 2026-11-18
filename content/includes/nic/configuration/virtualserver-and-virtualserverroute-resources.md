@@ -4,7 +4,6 @@ toc: true
 weight: 700
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-599
 ---
 
 This document is reference material for the VirtualServer and VirtualServerRoute resources used by F5 NGINX Ingress Controller.

@@ -1,7 +1,6 @@
 ---
 description: Create a highly available active-active deployment of F5 NGINX Plus on
   Microsoft Azure in combination with the Azure Standard Load Balancer.
-f5-docs: DOCS-457
 title: Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standard
   Load Balancer
 toc: true

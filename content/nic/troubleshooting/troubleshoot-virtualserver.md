@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1461
 title: Troubleshooting VirtualServer resources
 toc: true
 weight: 600

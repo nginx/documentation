@@ -1,6 +1,5 @@
 ---
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-product: NGINX Instance Manager
 title: Download log profile bundles (REST API)
 description: "Download a compiled F5 WAF for NGINX security log profile bundle from F5 NGINX Instance Manager using the REST API."

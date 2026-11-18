@@ -1,7 +1,6 @@
 ---
 description: Verify compliance with [FIPS 140-2](https://csrc.nist.gov/publications/detail/fips/140/2/final)
   security requirements for cryptographic modules.
-f5-docs: DOCS-385
 title: FIPS Status Check
 toc: true
 weight: 100

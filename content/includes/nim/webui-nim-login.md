@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1334
 f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/nginx-instances/manage-instance-groups.md

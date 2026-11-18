@@ -4,7 +4,6 @@ toc: true
 weight: 1800
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1181
 ---
 
 This document outlines how to integrate F5 NGINX Ingress Controller with Open Service Mesh (OSM)

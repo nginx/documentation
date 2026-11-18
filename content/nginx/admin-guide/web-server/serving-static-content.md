@@ -1,7 +1,6 @@
 ---
 description: Configure NGINX and F5 NGINX Plus to serve static content, with type-specific
   root directories, checks for file existence, and performance optimizations.
-f5-docs: DOCS-442
 title: Serve Static Content
 toc: true
 weight: 200

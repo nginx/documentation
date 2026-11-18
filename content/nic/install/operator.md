@@ -4,7 +4,6 @@ toc: true
 weight: 600
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-604
 ---
 
 This document explains how to install F5 NGINX Ingress Controller using NGINX Ingress Operator.

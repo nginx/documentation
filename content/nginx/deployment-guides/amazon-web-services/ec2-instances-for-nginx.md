@@ -6,7 +6,6 @@ description: Create Amazon Elastic Compute Cloud (EC2) instances for running NGI
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Plus
-f5-docs: DOCS-444
 ---
 
 This guide explains how to create instances in the Amazon Elastic Compute Cloud (EC2) that can run NGINX Open Source and F5 NGINX Plus.

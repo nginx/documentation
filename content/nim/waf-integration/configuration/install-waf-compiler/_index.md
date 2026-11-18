@@ -1,6 +1,5 @@
 ---
 title: Install the WAF compiler
-f5-docs: 
 weight: 100
 url: /nginx-instance-manager/waf-integration/configuration/install-waf-compiler/
 f5-product: NGINX Instance Manager

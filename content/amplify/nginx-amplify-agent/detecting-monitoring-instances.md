@@ -4,7 +4,6 @@ description: Learn how F5 NGINX Amplify Agent detects NGINX Instances.
 weight: 300
 toc: true
 noindex: true
-f5-docs: DOCS-962
 f5-product: AMPLIF
 ---
 

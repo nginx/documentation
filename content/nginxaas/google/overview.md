@@ -2,7 +2,6 @@
 title: Overview and architecture
 weight: 100
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/google/overview/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud

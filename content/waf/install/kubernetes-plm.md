@@ -5,7 +5,6 @@ weight: 300
 toc: false
 f5-product: F5 WAF for NGINX
 f5-content-type: concept
-f5-docs: DOCS-000
 f5-keywords: "F5 WAF for NGINX, Policy Lifecycle Management, PLM, Kubernetes, NGINX Ingress Controller, NGINX Gateway Fabric"
 f5-summary: >
   This page introduces Policy Lifecycle Management (PLM) for F5 WAF for NGINX in Kubernetes.
