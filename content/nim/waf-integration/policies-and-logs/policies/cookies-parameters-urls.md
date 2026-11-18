@@ -182,3 +182,9 @@ See [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violat
    - If enabled, you can override attack signatures for this specific URL.
    - For details on signature configuration, see [Add Signature Sets]({{< ref "/nim/waf-integration/policies-and-logs/policies/add-signature-sets.md" >}}).
 5. Select **Add URL** to save your configuration.
+
+## See also
+
+- [Add signature sets and exceptions]({{< ref "/nim/waf-integration/policies-and-logs/policies/add-signature-sets.md" >}})
+- [gRPC Protection settings]({{< ref "/nim/waf-integration/policies-and-logs/policies/grpc-protection-settings.md" >}})
+- [Matching types: Explicit vs. Wildcard]({{< ref "/nim/waf-integration/policies-and-logs/policies/waf-policy-matching-types.md" >}})

@@ -78,3 +78,10 @@ After updating the policy, you can [publish it]({{< ref "/nim/waf-integration/po
 {{%/tab%}}
 
 {{</tabs>}}
+
+## See also
+
+- [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}})
+- [gRPC Protection settings]({{< ref "/nim/waf-integration/policies-and-logs/policies/grpc-protection-settings.md" >}})
+- [Update the comment on a security policy version]({{< ref "/nim/waf-integration/policies-and-logs/policies/update-policy-version-comment.md" >}})
+- [Publish updates to instances]({{< ref "/nim/waf-integration/policies-and-logs/publish/publish-to-instances.md" >}})
