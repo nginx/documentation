@@ -5,12 +5,12 @@ f5-files:
 ---
 
 {{<table>}}
-| Distribution                 | Supported on [PLS.37.2 CR]({{< ref "nginx/releases.md#pls.37.2.0" >}})            | Supported on [PLS.37.1 CR]({{< ref "nginx/releases.md#pls.37.1.1" >}})            |
+| Distribution                 | Supported on [PLS.37.3 CR]({{< ref "nginx/releases.md#pls.37.3.0" >}})            | Supported on [PLS.37.2 CR]({{< ref "nginx/releases.md#pls.37.2.0" >}})            |
 |------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | AlmaLinux                    | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64) <br> 10 (x86_64, aarch64)      | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64) <br> 10 (x86_64, aarch64)      |
-| Alpine Linux                 | 3.21 (x86_64, aarch64) <br> 3.22 (x86_64, aarch64) <br> 3.23 (x86_64, aarch64) <br> 3.24 (x86_64, aarch64) | 3.21 (x86_64, aarch64) <br> 3.22 (x86_64, aarch64) <br> 3.23 (x86_64, aarch64) <br> 3.24 (x86_64, aarch64) |
+| Alpine Linux                 | 3.22 (x86_64, aarch64) <br> 3.23 (x86_64, aarch64) <br> 3.24 (x86_64, aarch64)    | 3.21 (x86_64, aarch64) <br> 3.22 (x86_64, aarch64) <br> 3.23 (x86_64, aarch64) <br> 3.24 (x86_64, aarch64) |
 | Amazon Linux                 | 2023 (x86_64, aarch64)                                                            | 2023 (x86_64, aarch64)                                                            |
-| Debian                       | 12 (x86_64, aarch64) <br> 13 (x86_64, aarch64)                                    | 11 (x86_64, aarch64) <br> 12 (x86_64, aarch64) <br> 13 (x86_64, aarch64)          |
+| Debian                       | 12 (x86_64, aarch64) <br> 13 (x86_64, aarch64)                                    | 12 (x86_64, aarch64) <br> 13 (x86_64, aarch64)                                    |
 | FreeBSD                      | 14.3+ (amd64) <br> 15.0+ (amd64)                                                  | 14.3+ (amd64) <br> 15.0+ (amd64)                                                  |
 | Oracle Linux                 | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64)                                | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64)                                |
 | Red Hat Enterprise Linux     | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64) <br> 10.1+ (x86_64, aarch64)   | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64) <br> 10.1+ (x86_64, aarch64)   |
