@@ -18,7 +18,7 @@ Keeping your NGINX Plus installation updated ensures it includes the latest feat
 
 Before upgrading, verify the following:
 
-1. Your operating system is configured to retrieve binary packages from the official NGINX Plus repository: ensure that `nginx-plus.crt` and `nginx-plus.key` and repository file are set. See installation instructions for your operating system: [Amazon Linux 2023]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_amazon2023" >}}), [Amazon Linux 2]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_amazon2" >}}), [RHEL-based 8.1]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_rhel8" >}}), [RHEL-based 9]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_rhel" >}}), [RHEL-based 10]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_rhel10" >}}), [Debian]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_debian" >}}), [Ubuntu]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_debian_ubuntu" >}}), [FreeBSD]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_freebsd" >}}), [SLES]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_suse" >}}), [Alpine]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_alpine" >}}).
+1. Your operating system is configured to retrieve binary packages from the official NGINX Plus repository: ensure that `nginx-plus.crt` and `nginx-plus.key` and repository file are set. See installation instructions for your operating system: [Amazon Linux 2023]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_amazon2023" >}}), [RHEL-based 8.1]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_rhel8" >}}), [RHEL-based 9]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_rhel" >}}), [RHEL-based 10]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_rhel10" >}}), [Debian]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_debian" >}}), [Ubuntu]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_debian_ubuntu" >}}), [FreeBSD]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_freebsd" >}}), [SLES]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_suse" >}}), [Alpine]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_alpine" >}}).
 
 2. Your NGINX Plus subscription is active. You can verify your subscription on the [MyF5 Customer Portal](https://account.f5.com/myf5).
 
@@ -74,7 +74,7 @@ Before upgrading, verify the following:
      The output of the command:
 
      ```shell
-     nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
+     nginx version: nginx/1.29.8 (nginx-plus-r37.0.8)
      ```
 
    - Check the error log:
