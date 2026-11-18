@@ -39,7 +39,6 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon bug %}} Fixes
 
-- [11144](https://github.com/nginx/kubernetes-ingress/pull/11144) Sync: security hardening and minor bug fixes for main
 - [11121](https://github.com/nginx/kubernetes-ingress/pull/11121) Selectable externaldns crd apiversion
 - [11001](https://github.com/nginx/kubernetes-ingress/pull/11001) Stop dropping plus endpoint updates and bound batch staleness
 - [11298](https://github.com/nginx/kubernetes-ingress/pull/11298) Fix malformed event and status messages for ingress, virtualserver, virtualserverroute and transportserver resources
