@@ -1,7 +1,6 @@
 ---
 description: Understand the basic elements in an NGINX or F5 NGINX Plus configuration
   file, including directives and contexts.
-f5-docs: DOCS-378
 title: Create NGINX Plus and NGINX Configuration Files
 toc: true
 weight: 100
@@ -18,7 +17,7 @@ NGINX Open Source: location depends on the package system used to install NGINX 
 You can verify the exact configuration file path with the `--conf-path=` parameter in the output of the `nginx -V` command:
 
 ```shell
- nginx -V 2>&1 | awk -F: '/configure arguments/ {print $2}' | xargs -n1
+ nginx -V 2>&1 | sed -n 's/^configure arguments: *//p' | xargs -n1
 ```
 
 Sample output:

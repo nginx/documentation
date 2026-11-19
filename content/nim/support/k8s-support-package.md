@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1123
 title: Create a support package from a Helm installation
 toc: true
 weight: 200

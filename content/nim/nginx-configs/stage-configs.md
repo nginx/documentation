@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1277
 title: Stage NGINX configs
 toc: true
 weight: 1

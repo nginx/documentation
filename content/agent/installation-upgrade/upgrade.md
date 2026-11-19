@@ -2,7 +2,6 @@
 title: Upgrade NGINX Agent package
 weight: 600
 toc: true
-f5-docs: DOCS-1227
 f5-content-type: how-to
 f5-product: NGINX Agent
 ---

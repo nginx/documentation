@@ -3,7 +3,6 @@ title: Enable monitoring
 description: "Learn how to enable, view, and disable Amazon CloudWatch metric export for F5 Application Delivery Service for AWS deployments."
 weight: 200
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, CloudWatch, metrics, monitoring, Embedded Metric Format, EMF, CloudWatch Logs, status_zone"

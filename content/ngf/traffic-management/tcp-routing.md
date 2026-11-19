@@ -7,8 +7,7 @@ f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
   Expose TCP applications by attaching a TCPRoute to a Gateway listener that defines the external port.
-  TCPRoute is a Gateway API experimental-channel resource and requires experimental features enabled in NGINX Gateway Fabric.
-f5-keywords: "NGINX Gateway Fabric, TCPRoute, TCP, Gateway API, experimental, stream, backend"
+f5-keywords: "NGINX Gateway Fabric, TCPRoute, TCP, Gateway API, stream, backend"
 f5-audience: any
 ---
 
@@ -20,7 +19,7 @@ TCPRoute is a Gateway API resource that is used to configure routing for TCP con
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Setup
 

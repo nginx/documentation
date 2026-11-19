@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-469
 title: NGINX Directives Index
 url: /nginx/directives
 weight: 700

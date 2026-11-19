@@ -2,7 +2,6 @@
 title: Upgrade channels
 weight: 150
 toc: true
-f5-docs: DOCS-1480
 url: /nginxaas-azure/quickstart/upgrade-channels/
 f5-content-type: reference
 f5-product: NGINXaaS for Azure

@@ -1,7 +1,6 @@
 ---
 title: Open source components
 f5-content-type: reference
-f5-docs: DOCS-1343
 nollms: true
 ---
 

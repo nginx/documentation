@@ -3,7 +3,6 @@ description: Deploy F5 NGINX Instance Manager using an official, F5-maintained r
 title: Deploy rootless using Docker Compose
 toc: true
 weight: 150
-f5-docs:
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
 f5-summary: >

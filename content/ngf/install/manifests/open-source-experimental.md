@@ -6,7 +6,6 @@ weight: 300
 toc: true
 f5-content-type: installation-guide
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1429
 f5-summary: >
   Apply Kubernetes manifests to install NGINX Gateway Fabric with NGINX Open Source and experimental Gateway API features enabled.
   Use this path when you need experimental resources without Helm.

@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-000
 f5-files:
 - content/nginxaas/google/deploy/create-deployment/deploy-console.md
 - content/nginxaas/google/overview.md

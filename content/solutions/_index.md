@@ -1,7 +1,6 @@
 ---
 title: Subscription licensing & solutions
 url: /solutions/
-f5-docs: DOCS-000
 toc: true
 weight: 1
 f5-content-type: landing-page

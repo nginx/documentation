@@ -1,6 +1,5 @@
 ---
 description: Learn about the F5 DoS for NGINX Request Log Mechanism.
-f5-docs: DOCS-668
 title: Access Log Request Mechanism
 toc: true
 weight: 160

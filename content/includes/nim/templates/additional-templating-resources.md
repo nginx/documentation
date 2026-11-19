@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1500
 f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/nginx-configs/config-templates/concepts/augment-templates.md

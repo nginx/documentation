@@ -2,7 +2,6 @@
 title: NGINX App Protect 1.0
 toc: true
 weight: 260
-f5-docs: DOCS-672
 f5-content-type: reference
 f5-product: F5 DOS for NGINX
 ---

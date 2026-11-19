@@ -1,6 +1,5 @@
 ---
 title: Publish updates
-f5-docs: 
 weight: 400
 url: /nginx-instance-manager/waf-integration/policies-and-logs/publish/
 f5-product: NGINX Instance Manager

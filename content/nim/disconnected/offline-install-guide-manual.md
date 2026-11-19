@@ -5,7 +5,6 @@ toc: true
 noindex: true
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-000
 description: "Manually install or upgrade F5 NGINX Instance Manager in a disconnected environment by downloading packages on a connected host and transferring them offline."
 f5-summary: >
   Install or upgrade F5 NGINX Instance Manager in an environment without internet access by manually downloading and transferring packages.
@@ -204,7 +203,7 @@ To manually update the CVE list in an air-gapped environment, run the following 
 
 ```shell
 sudo chmod 777 /usr/share/nms/cve.xml && \
-sudo curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nms/cve.xml && \
+sudo curl -s https://raw.githubusercontent.com/nginx/nginx.org/main/xml/en/security_advisories.xml > /usr/share/nms/cve.xml && \
 sudo chmod 644 /usr/share/nms/cve.xml && \
 sudo systemctl restart nms-dpm
 ```

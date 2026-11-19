@@ -4,7 +4,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
-f5-docs: DOCS-795
 description: "Configure Microsoft Entra (Azure AD) as the OIDC identity provider for F5 NGINX Instance Manager to enable Single Sign-On and centralized user management."
 f5-summary: >
   Configure Microsoft Entra as the identity provider for F5 NGINX Instance Manager using OpenID Connect.

@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1654
 title: Deploy NGINX Plus in a container (data plane)
 toc: true
 weight: 200

@@ -3,7 +3,6 @@ title: Install from GitHub package files
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-docs: DOCS-1876
 f5-product: NGINX Agent
 ---
 

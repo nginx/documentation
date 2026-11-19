@@ -3,7 +3,6 @@ title: Overview and architecture
 description: "Overview of F5 Application Delivery Service for Google Cloud architecture, capabilities, and how it integrates with your Google Cloud environment."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, architecture, service frontend, private endpoint, managed public endpoint, upstream network, NGINX Capacity Unit, NCU, geographical controller"

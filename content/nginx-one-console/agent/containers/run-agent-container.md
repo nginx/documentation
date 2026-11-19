@@ -3,7 +3,6 @@ title: Run the NGINX Agent in a container
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-docs: DOCS-1872
 f5-product: NGINX Agent
 ---
 

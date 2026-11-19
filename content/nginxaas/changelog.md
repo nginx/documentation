@@ -2,7 +2,6 @@
 title: "Changelog"
 weight: 1000
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/changelog/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service

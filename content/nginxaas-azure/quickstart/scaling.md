@@ -2,7 +2,6 @@
 title: Scaling guidance
 weight: 100
 toc: true
-f5-docs: DOCS-989
 url: /nginxaas-azure/quickstart/scaling/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure

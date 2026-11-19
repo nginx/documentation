@@ -5,7 +5,6 @@ weight: 700
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1840
 f5-summary: >
   Scale control plane and data plane components separately to match availability and traffic needs.
   Use this guide when sizing NGINX Gateway Fabric for production workloads.

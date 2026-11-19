@@ -1,7 +1,6 @@
 ---
 description: This article explains how to control authentication of your web resources
   using JWT authentication.
-f5-docs: DOCS-429
 title: Setting up JWT Authentication
 toc: true
 weight: 500
@@ -147,7 +146,7 @@ To implement JWT for authentication:
    }
    ```
 
-   It is recommended to enable JWT key caching to get the optimal performance from the JWT module. For example, you can use the [`auth_jwt_key_cache`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache) directive for the above configuration, and enable the JWT key caching for one hour. Note that if the [`auth_jwt_key_request`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) or [`auth_jwt_key_file`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) are configured dynamically with variables, [`auth_jwt_key_cache`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache) cannot be used.
+   It is recommended to enable JWT key caching to get the optimal performance from the JWT module. For example, you can use the [`auth_jwt_key_cache`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache) directive for the above configuration, and enable the JWT key caching for one hour. Note that if the [`auth_jwt_key_request`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) or [`auth_jwt_key_file`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) are configured dynamically with variables, [`auth_jwt_key_cache`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache) cannot be used. The `refresh_on_miss` parameter enables reloading the keys before the cache expires if a token has a non-empty `kid` that is not found among the cached keys.
 
    ```nginx
    server {
@@ -159,7 +158,7 @@ To implement JWT for authentication:
            auth_jwt_type        encrypted;
            auth_jwt_key_file    private_jwe_keys.jwk;
            auth_jwt_key_request /public_jws_keys;
-           auth_jwt_key_cache   1h;
+           auth_jwt_key_cache   1h refresh_on_miss;
        }
 
        location /public_jws_keys {
@@ -261,7 +260,7 @@ server {
 
     location / {
         auth_jwt             "closed site";
-        auth_jwt_key_cache   1h;
+        auth_jwt_key_cache   1h refresh_on_miss;
         auth_jwt_key_request /_jwks_uri;    # Keys will be fetched by subrequest
 
         proxy_pass http://my_backend;

@@ -2,7 +2,6 @@
 title: Configure alerts
 weight: 300
 toc: true
-f5-docs: DOCS-985
 url: /nginxaas-azure/monitoring/configure-alerts/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure

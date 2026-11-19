@@ -1,7 +1,6 @@
 ---
 title: Set up WAF configuration management
 description: Learn how to manage F5 WAF for NGINX configurations in F5 NGINX Instance Manager using the web interface or REST API.
-f5-docs: 
 weight: 200
 f5-content-type: landing-page
 f5-landing-page: true

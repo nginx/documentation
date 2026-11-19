@@ -1,7 +1,6 @@
 ---
 description: Load balance HTTP traffic across web or application server groups, with
   several algorithms and advanced features like slow-start and session persistence.
-f5-docs: DOCS-418
 title: HTTP Load Balancing
 toc: true
 weight: 100
@@ -350,11 +349,11 @@ If a domain name resolves to several IP addresses, the addresses are saved to th
 
 ## Load balancing of Microsoft Exchange servers {#ntlm}
 
-In [NGINX Plus Release 7]({{< ref "/nginx/releases.md#r7" >}}) and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
+NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
 
 To set up load balancing of Microsoft Exchange servers:
 
-   <span id="step1"></span>
+   <a id="step1"></a>
 1. In a `location` block, configure proxying to the upstream group of Microsoft Exchange servers with the [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive:
 
    ```nginx
@@ -404,8 +403,7 @@ To set up load balancing of Microsoft Exchange servers:
    ```
 
 
-<span id="ntlm_example"></span>
-### Complete NTLM Example
+### Complete NTLM Example {#ntlm_example}
 
 ```nginx
 http {

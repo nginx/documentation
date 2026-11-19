@@ -3,7 +3,6 @@ title: Account Settings
 description: Learn about the Account settings for the User Interface.
 weight: 70
 toc: true
-f5-docs: DOCS-978
 f5-product: AMPLIF
 ---
 

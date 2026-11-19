@@ -2,7 +2,6 @@
 title: F5 DoS for NGINX 4.2
 toc: true
 weight: 100
-f5-docs: DOCS-1254
 f5-content-type: reference
 f5-product: F5 DOS for NGINX
 ---

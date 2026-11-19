@@ -5,7 +5,6 @@ weight: 400
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1424
 f5-summary: >
   Configure HTTP redirects and path rewrites so clients reach the correct URLs.
   Use these filters when migrating paths or enforcing HTTPS and canonical hosts.

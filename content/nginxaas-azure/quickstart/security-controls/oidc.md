@@ -5,7 +5,6 @@ toc: true
 weight: 300
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
-f5-docs: DOCS-1646
 ---
 
 ## Overview
@@ -378,14 +377,13 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
 
 ## Limitations of Native OIDC vs NJS
 
-The Native OIDC implementation has the following limitations compared to the NJS-based implementation:
+The Native OIDC implementation has the following limitation compared to the NJS-based implementation:
 
-- Proof Key for Code Exchange (PKCE) Support
-- Front-Channel Logout
-- Back-Channel Logout
+- **Back-Channel Logout**: Back-channel logout is not currently supported in the Native OIDC module.
 
-These features will be added in future releases.
-
+{{< call-out class="note" >}}
+Starting with NGINX Plus Release 36 (R36), the Native OIDC module supports Proof Key for Code Exchange ([PKCE](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce)) and [Front-Channel Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#frontchannel_logout_uri) (`frontchannel_logout_uri`).
+{{< /call-out >}}
 
 ## Troubleshooting
 
@@ -403,6 +401,6 @@ These features will be added in future releases.
 
 - [Single Sign-On with Microsoft Entra ID]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id.md" >}})
 
-- [Single Sign-On with OpenID Connect and Identity Providers]({{< ref "nginx/admin-guide/security-controls/configuring-oidc.md" >}})
+- [Single Sign-On with OpenID Connect and Identity Providers]({{< ref "/nginx/admin-guide/security-controls/configuring-oidc.md" >}})
 
 - [Terraform snippets for sample Native OIDC](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/configurations/native-oidc)

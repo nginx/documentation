@@ -305,10 +305,10 @@ Multiple AccessPolicies can target the same resource. When they share the same `
 
 NGINX Gateway Fabric turns each AccessPolicy into NGINX `allow` and `deny` directives. NGINX checks a request against these rules in order and stops at the first match. When NGINX blocks a request, it returns a `403 Forbidden` response.
 
-The `action` field also sets what happens to a request that matches no rule:
+The `action` field sets what happens to requests that match a rule and to requests that don't:
 
-- `Allow`: NGINX passes the request.
-- `Deny`: NGINX blocks the request.
+- `Allow`: NGINX passes requests that match a rule and blocks all other requests.
+- `Deny`: NGINX blocks requests that match a rule and passes all other requests.
 
 A rule without a `source` matches every client. In an `Allow` policy, this rule passes all requests. In a `Deny` policy, this rule blocks all requests.
 

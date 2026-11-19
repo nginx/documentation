@@ -6,9 +6,9 @@ f5-content-type: reference
 f5-product: NGINX Ingress Controller
 f5-description: Reference for every Policy type supported by NGINX Ingress Controller, including fields, examples, and merging behavior.
 f5-summary: >
-  Field-by-field reference for every Policy type, including AccessControl, RateLimit, APIKey, BasicAuth, JWT, IngressMTLS, EgressMTLS, ExternalAuth, OIDC, OIDCNative, Cache, CORS, WAF, and HSTS.
+  Field-by-field reference for every Policy type, including AccessControl, RateLimit, ConnectionLimit, APIKey, BasicAuth, JWT, IngressMTLS, EgressMTLS, ExternalAuth, OIDC, OIDCNative, Cache, CORS, WAF, and HSTS.
   Each section includes an example, a field table, and the merging behavior NGINX Ingress Controller uses when a resource references more than one policy of the same type.
-f5-keywords: "nginx ingress controller, nic, policy resource, access control, rate limit, api key, basic auth, jwt, ingressmtls, egressmtls, external auth, oidc, oidcnative, cache, cors, waf, hsts"
+f5-keywords: "nginx ingress controller, nic, policy resource, access control, rate limit, connection limit, limit_conn, api key, basic auth, jwt, ingressmtls, egressmtls, external auth, oidc, oidcnative, cache, cors, waf, hsts"
 f5-audience: developer, operator
 ---
 
@@ -230,6 +230,120 @@ NGINX Ingress Controller currently supports only one variable at a time.
 
 {{% /table %}}
 
+## ConnectionLimit
+
+The connection limit policy caps the number of requests that NGINX processes at the same time for each value of a key. Use it to protect backends from slow clients, large uploads, and long downloads. It also protects backends from long-lived requests, such as WebSockets.
+
+A connection limit differs from a [rate limit](#ratelimit). A rate limit controls how often requests arrive. A connection limit controls how many requests are in progress at once, so a long request holds its place until it finishes.
+
+For example, the following policy allows each client IP address 10 requests in progress at the same time:
+
+```yaml
+connectionLimit:
+  connections: 10
+  key: ${binary_remote_addr}
+  zoneSize: 10m
+  rejectCode: 429
+```
+
+The policy works with both NGINX and NGINX Plus. You can reference it from VirtualServer, VirtualServerRoute, and Ingress resources, including mergeable Ingress resources.
+
+{{< call-out class="note" >}}
+
+This feature uses the NGINX [`ngx_http_limit_conn_module`](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html) module.
+
+{{< /call-out >}}
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``connections`` | The maximum number of requests in progress at the same time for each value of the key. Must fall into the range ``1..65535``. | ``int`` | Yes |
+|``key`` | The requests with the same key value share a counter. The key can contain text, variables, or a combination of them. Put each variable inside ``${}``. Accepted variables are ``${binary_remote_addr}``, ``${request_uri}``, ``${uri}``, ``${args}``, ``${request_method}``, and the ``${arg_<name>}``, ``${http_<name>}``, and ``${cookie_<name>}`` variables. The key can't contain whitespace, quotes, backslashes, or the characters ``#``, ``;``, ``{``, and ``}``. Default is ``${binary_remote_addr}``. | ``string`` | No |
+|``zoneSize`` | The size of the shared memory zone that stores the counters. Specify a number of bytes, or a number with the suffix ``k``, ``K``, ``m``, or ``M``. The zone must be at least eight memory pages, for example ``32k`` with 4 KiB pages. Default is ``10m``. | ``string`` | No |
+|``rejectCode`` | The status code to return in response to rejected requests. Must fall into the range ``400..599``. Default is ``503``. | ``int`` | No |
+|``logLevel`` | The logging level for requests that NGINX rejects, or would reject in dry run mode. Allowed values are ``info``, ``notice``, ``warn``, or ``error``. Default is ``error``. | ``string`` | No |
+|``dryRun`` | Turns on dry run mode. In this mode, NGINX counts and logs requests over the limit, but doesn't reject them. Default is ``false``. | ``bool`` | No |
+|``scale`` | Divides ``connections`` by the number of NGINX Ingress Controller pods. The limit then approximates a limit for the whole cluster. The result is never less than 1. When the number of pods changes, NGINX Ingress Controller updates the limit. Default is ``false``. | ``bool`` | No |
+
+{{% /table %}}
+
+The GitHub repository has complete connection limit examples for each resource type:
+
+- [VirtualServer](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/connection-limit)
+- [Ingress](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/connection-limit)
+- [Mergeable Ingress](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/connection-limit-mergeable)
+
+### How NGINX counts requests
+
+NGINX counts a request after it reads the request headers, and stops counting it when the request finishes. The count includes the time NGINX spends to receive the request body and to send the response. NGINX doesn't count idle keepalive connections. With HTTP/2 and HTTP/3, NGINX counts each request in progress on a connection separately. A low limit for each client can therefore reject the parallel requests of a browser.
+
+Each NGINX Ingress Controller pod keeps its own counters. [Zone sync]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) doesn't apply to connection limits. A key can therefore have up to `connections` requests in progress on every pod.
+
+To approximate one limit for the whole cluster, set `scale` to `true`. The `scale` field works best with a fixed text key, which is the same for every request. With HTTP/2 or sticky sessions, the requests of one client go to one pod. A scaled limit for each client is then stricter than you expect.
+
+When the shared memory zone is full, NGINX rejects requests with a new key value. Each counter for the default key needs about 64 bytes, so the default `10m` zone holds about 160,000 active client addresses.
+
+{{< call-out class="note" >}}
+
+If NGINX Ingress Controller runs behind a load balancer, NAT, or another proxy, `${binary_remote_addr}` holds the address of that device. All clients then share one counter. To count each client separately, use the [`proxy-protocol`]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) ConfigMap key, or the `set-real-ip-from` and `real-ip-header` ConfigMap keys.
+
+{{< /call-out >}}
+
+### Which requests share a counter
+
+NGINX Ingress Controller generates a separate shared memory zone for each policy and each resource that references the policy. All references from one resource share one counter for each policy:
+
+- All routes of a VirtualServer and the VirtualServer `spec` share one counter for each policy.
+- All hosts and paths of an Ingress share one counter for each policy.
+- A VirtualServerRoute or a minion Ingress that references the same policy as its parent gets its own counter.
+- A VirtualServerRoute without a host, which more than one VirtualServer can use, gets one counter for each VirtualServer.
+- Two VirtualServer or Ingress resources that reference the same policy get two counters.
+
+### ConnectionLimit on Ingress
+
+Reference the policy from an Ingress through the `nginx.org/policies` annotation:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+  annotations:
+    nginx.org/policies: connection-limit-policy
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: cafe.example.com
+    http:
+      paths:
+      - path: /coffee
+        pathType: Prefix
+        backend:
+          service:
+            name: coffee-svc
+            port:
+              number: 80
+```
+
+A policy on a standard Ingress or on a master Ingress applies to every host and path of the Ingress. A policy on a minion Ingress applies to the paths of that minion and replaces the master policy there. A minion without a connection limit policy uses the master policy.
+
+### ConnectionLimit merging behavior
+
+A VirtualServer, VirtualServerRoute, or Ingress can reference multiple connection limit policies. For example, this configuration references two policies:
+
+```yaml
+policies:
+- name: connection-limit-per-client
+- name: connection-limit-total
+```
+
+When a resource references more than one connection limit policy, NGINX applies all referenced limits. NGINX rejects a request that exceeds any one of the limits. All limits use the `dryRun`, `logLevel`, and `rejectCode` values of the first policy referenced, `connection-limit-per-client` in this example. If a later policy sets different values, NGINX Ingress Controller adds a warning to the resource.
+
+A connection limit on a route, subroute, or minion Ingress replaces the connection limit on its parent. The limits don't add up. For example, a route with its own connection limit policy doesn't use the connection limit from the VirtualServer `spec`. The route also uses its own `dryRun`, `logLevel`, and `rejectCode` values.
+
+cert-manager can add a path for the HTTP-01 challenge of the Automatic Certificate Management Environment (ACME) protocol. On that path, NGINX Ingress Controller runs the connection limit in dry run mode. A full counter therefore can't block certificate issuance.
+
 ## APIKey
 
 The API Key auth policy configures NGINX to authorize client requests based on the presence of a valid API Key in a header or query parameter specified in the policy.
@@ -407,6 +521,7 @@ This feature uses the NGINX Plus [ngx_http_auth_jwt_module](https://nginx.org/en
 |``secret`` | The name of the Kubernetes secret that stores the JWK. It must be in the same namespace as the Policy resource. Use a standard `Opaque` secret. Store the JWK under the key `jwk`. | ``string`` | Yes |
 |``realm`` | The realm of the JWT. | ``string`` | Yes |
 |``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No |
+|``authorization`` | Claim checks that a valid token must pass. For details, see [JWT claim authorization](#jwt-claim-authorization). | [jwt.authorization](#jwtauthorization) | No |
 
 {{% /table %}}
 
@@ -463,6 +578,7 @@ This feature uses the NGINX Plus directive [auth_jwt_key_request](https://nginx.
 |``sslVerify`` | Turns on verification of the JWKS server SSL certificate. | ``bool`` | No | `false` |
 |``sslVerifyDepth`` | Sets the verification depth in the JWKS server certificates chain. | ``int`` | No | `1` |
 |``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for JWKS server verification. It must be in the same namespace as the Policy resource. Use a standard `Opaque` secret. Store the certificate under the key `ca.crt`. | ``string`` | No | -- |
+|``authorization`` | Claim checks that a valid token must pass. For details, see [JWT claim authorization](#jwt-claim-authorization). | [jwt.authorization](#jwtauthorization) | No | -- |
 
 {{% /table %}}
 
@@ -483,6 +599,165 @@ policies:
 ```
 
 In this example, NGINX Ingress Controller uses the configuration from the first policy reference, `jwt-policy-one`, and ignores `jwt-policy-two`.
+
+## JWT claim authorization
+
+{{< call-out class="note" >}}
+
+This feature is only available with NGINX Plus.
+
+{{< /call-out >}}
+
+A JWT policy accepts every request that has a valid token. To also control which tokens get access, add `authorization` to the JWT policy. Authorization checks the claims in the token, such as its audience, scopes, or roles. NGINX Plus checks the claims only after it validates the token signature and expiry. Use `authorization` with a local Kubernetes secret or with a remote JSON Web Key Set (JWKS).
+
+The following example policy has one rule. A request passes only when the token meets every check in that rule:
+
+```yaml
+jwt:
+  realm: MyProductAPI
+  token: $http_token
+  jwksURI: <URI_TO_REMOTE_SERVER_OR_IDP>
+  keyCache: 1h
+  authorization:
+    rules:
+    - require: All
+      claims:
+      - name: aud
+        match: Contains
+        values: [account]
+      - name: scope
+        match: Contains
+        values: [openid, profile]
+        proxySetHeader: X-Token-Scope
+      - name: realm_access.roles
+        match: Contains
+        values: [blocked]
+        negate: true
+```
+
+Replace `<URI_TO_REMOTE_SERVER_OR_IDP>` with the URI of your remote JWKS server or identity provider.
+
+This policy accepts a token when all of the following are true:
+
+- The `aud` claim contains `account`.
+- The `scope` claim contains `openid` or `profile`.
+- The `realm_access.roles` claim exists and doesn't contain `blocked`.
+
+NGINX also sends the value of the `scope` claim to the upstream in the `X-Token-Scope` header.
+
+If a request has no token or an invalid token, NGINX returns `401`. If the token is valid but its claims fail the rules, NGINX returns `403`. To return `401` for failed claims instead, set `errorCode` to `401`.
+
+{{< call-out class="note" >}}
+
+This feature uses the NGINX Plus directives [`auth_jwt_claim_set`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_claim_set) and [`auth_jwt_require`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_require) from [`ngx_http_auth_jwt_module`](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
+
+{{< /call-out >}}
+
+The GitHub repository for NGINX Ingress Controller has complete examples with test tokens:
+
+- [JWT example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/jwt/README.md)
+- [JWKS example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/jwks/README.md)
+
+### JWT.Authorization
+
+{{% table %}}
+
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``errorCode`` | The HTTP status code that NGINX returns when the claims fail the rules. Allowed values are `401` and `403`. Authentication failures always return `401`. | ``int`` | No | `403` |
+|``require`` | Whether the token must pass `Any` rule or `All` rules. | ``string`` | No | `All` |
+|``rules`` | The authorization rules. Set 1-16 rules. | [[]jwt.authorization.rule](#jwtauthorizationrule) | Yes | -- |
+
+{{% /table %}}
+
+### JWT.Authorization.Rule
+
+A rule groups claim checks. By default, a token must pass all rules, but only one check in each rule. To require every check in a rule, set `require` to `All` in that rule.
+
+{{% table %}}
+
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``require`` | Whether the token must pass `Any` check or `All` checks in the rule. | ``string`` | No | `Any` |
+|``claims`` | The claim checks in the rule. Set 1-32 checks. You can check the same claim more than once with a different `match` or `negate`. | [[]jwt.authorization.rule.claim](#jwtauthorizationruleclaim) | Yes | -- |
+
+{{% /table %}}
+
+### JWT.Authorization.Rule.Claim
+
+{{% table %}}
+
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``name`` | The name of the claim. For a nested claim, separate the parts of the name with a period (`.`), for example `realm_access.roles`. Each part of the name can contain only letters, digits, hyphens (`-`), and underscores (`_`). | ``string`` | Yes | -- |
+|``match`` | How NGINX compares the claim to `values`. Allowed values are `Exact`, `Contains`, `Regex`, and `Present`. For details, see [How NGINX matches claims](#how-nginx-matches-claims). | ``string`` | No | `Exact` |
+|``values`` | The values to compare the claim to. The check passes when the claim matches any value. Set 1-32 values. When `match` is `Present`, don't set `values`. For any other `match` type, `values` is required. | ``[]string`` | Conditional | -- |
+|``negate`` | Whether to invert the check. For example, with `match: Contains`, the check passes when the claim exists and contains none of the values. | ``bool`` | No | `false` |
+|``proxySetHeader`` | The name of the request header that NGINX uses to send the claim value to the upstream. Each header name can appear only once in a policy. | ``string`` | No | -- |
+
+{{% /table %}}
+
+### How NGINX matches claims
+
+{{% table %}}
+
+| `match` | Passes when | Passes with `negate: true` when |
+| ---| ---| --- |
+| `Exact` | The claim equals one of the values. The comparison is case-sensitive. | The claim exists and equals none of the values. |
+| `Contains` | The claim contains one of the values. NGINX splits the claim on spaces and commas. With this split, `Contains` works for array claims such as `aud` and for space-separated claims such as `scope`. | The claim exists and contains none of the values. |
+| `Regex` | The claim matches one of the values, which are Perl Compatible Regular Expressions (PCRE). The comparison is case-sensitive. | The claim exists and matches none of the values. |
+| `Present` | The claim exists and isn't empty. | The claim is missing or empty. |
+
+{{% /table %}}
+
+When you write checks, note these behaviors:
+
+- A missing claim fails every `Exact`, `Contains`, and `Regex` check, even with `negate: true`. Only `match: Present` with `negate: true` accepts a missing claim.
+- NGINX treats an empty string (`""`) or an empty array (`[]`) as a missing claim.
+- `Contains` also splits a claim that isn't an array. For example, the `name` claim `Admin User` contains `Admin`.
+- A `Regex` value matches anywhere in the claim. To match the whole claim, start the value with `^` and end it with `$`.
+
+The following rule accepts a token that has no `role` claim or that has a `role` claim other than `guest`:
+
+```yaml
+- require: Any
+  claims:
+  - name: role
+    values: [guest]
+    negate: true
+  - name: role
+    match: Present
+    negate: true
+```
+
+### Forward claims to the upstream
+
+Set `proxySetHeader` on a claim check to send the claim value to the upstream in a request header. This header replaces a header with the same name from the client. NGINX doesn't send the header when the claim is missing, or when the claim value contains a line break.
+
+A route can set the same header in the `requestHeaders` of [Action.Proxy]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#actionproxy" >}}). In that case, the route value takes precedence. NGINX Ingress Controller also sets some headers by default, such as `Host` and `X-Real-IP`. A policy header replaces a default header with the same name.
+
+NGINX forwards the claim even if its check fails, as long as the token passes the policy. For example, with `require: Any`, a token can pass one rule and fail the rule that holds the forwarded claim. If your upstream relies on a forwarded claim, check that claim in a rule that every token must pass.
+
+### Validation
+
+The Kubernetes API rejects a policy that does any of the following:
+
+- Sets `values` with `match: Present`, or sets no `values` for any other `match` type.
+- Sets `proxySetHeader` with `match: Present` and `negate: true`. The claim is missing, so it has no value to forward.
+- Uses a space or a comma in a `Contains` value.
+- Uses `;`, `{`, `}`, `$`, `` ` ``, or a line break in an `Exact` or `Contains` value.
+- Uses named captures or lookbehind in a `Regex` value.
+- Sets `errorCode` to a value other than `401` or `403`.
+
+NGINX Ingress Controller also rejects a policy that has an invalid regular expression, or a repeated header name or check. It also rejects claim names that produce the same NGINX variable, for example `tenant.tier` and `tenant_tier`, or `Role` and `role`. NGINX returns `500` for routes that reference a rejected policy.
+
+You can't check a claim whose name contains a period, a slash, or a colon, such as `https://example.com/roles`. NGINX Ingress Controller reads each period as a separator between nested claims.
+
+### JWT claim authorization merging behavior
+
+A JWT policy on a route replaces the JWT policy in the VirtualServer `spec`, including its `authorization`. NGINX checks only the claims in the policy on the route. If that policy has no `authorization`, NGINX doesn't check claims for that route.
+
+A resource can reference more than one JWT policy. As with other JWT policies, NGINX Ingress Controller applies only the first one.
 
 ## IngressMTLS
 
@@ -722,8 +997,43 @@ An example ExternalAuth policy for VirtualServer resources is available in the G
 |``sslVerifyDepth`` | Sets the verification depth in the external authentication server certificates chain. The default is ``1``. | ``int`` | No |
 |``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<namespace>/<secret>``. Use a standard `Opaque` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 |``sniName`` | The server name used for SNI and certificate verification when connecting to the external authentication server over TLS. If not specified, defaults to ``<service-name>.<namespace>.svc`` derived from ``authServiceName``. | ``string`` | No |
+|``authResponseHeaders`` | Headers from the external authentication server's response to pass to the backend after a `2xx` response. Up to 32 names. Each name uses only letters, digits, and hyphens, has at most 46 characters, and is unique, ignoring case. Can't include `Host`, `Connection`, `Proxy-Connection`, `Content-Length`, `Transfer-Encoding`, `TE`, `Keep-Alive`, `Expect`, `Upgrade`, `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Port`, or `X-Forwarded-Proto`. See [Pass auth response headers to the backend](#pass-auth-response-headers-to-the-backend). | ``[]string`` | No |
 
 {{% /table %}}
+
+### Pass auth response headers to the backend
+
+Use `authResponseHeaders` to pass client details, such as the user name or email, from the authentication server to the backend. You don't need snippets. It's the equivalent of the ingress-nginx `nginx.ingress.kubernetes.io/auth-response-headers` annotation.
+
+This policy passes the user name and email that OAuth2 Proxy returns when you set `set_xauthrequest = true`:
+
+```yaml
+externalAuth:
+  authURI: "/oauth2/auth"
+  authServiceName: "default/oauth2-proxy-svc"
+  authResponseHeaders:
+  - X-Auth-Request-User
+  - X-Auth-Request-Email
+```
+
+Each listed header works as follows:
+
+- If the server returns the header, its value replaces the value from the client.
+- If the server doesn't return the header, NGINX removes it.
+- If the server returns the header more than once, NGINX joins the values with commas.
+- If a VirtualServer or VirtualServerRoute `requestHeaders.set`, or an Ingress `nginx.org/proxy-set-headers` annotation, also sets the header, NGINX Ingress Controller drops that entry. It reports a warning on the resource.
+
+{{< call-out class="warning" >}}
+
+Don't use snippets to set `underscores_in_headers on` or `ignore_invalid_headers off` when you use `authResponseHeaders`. Either directive lets a client send a header with underscores in its name, such as `TENANT_ID`, to the backend. Header names in `authResponseHeaders` can't contain underscores, so NGINX doesn't replace or remove these headers. Many backends treat `TENANT_ID` and `Tenant-ID` as the same header. The backend can then trust the client's value instead of the authentication server's value.
+
+{{< /call-out >}}
+
+These rules apply only to routes where the policy's authentication request runs. On the following routes, a spec-level or master policy doesn't run. NGINX passes client values of that policy's headers to the backend unchanged:
+
+- A VirtualServer or VirtualServerRoute route with its own ExternalAuth policy. NGINX handles only the headers that the route's policy lists.
+- A VirtualServer or VirtualServerRoute route with an APIKey policy.
+- A mergeable Ingress minion with its own ExternalAuth policy that uses a different authentication service than the master. NGINX handles only the headers that the minion's policy lists.
 
 ### ExternalAuth merging behavior
 

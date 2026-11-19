@@ -7,7 +7,6 @@ toc: true
 weight: 400
 f5-content-type: reference
 f5-product: NGINX Plus
-f5-docs: DOCS-473
 ---
 
 NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).
@@ -36,20 +35,18 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 
 ## Supported SSL/TLS versions
 
-NGINX Plus supports the following SSL/TLS protocols:
+For SSL/TLS protocols support, NGINX Plus relies on the cryptographic libraries used in the operating system, usually OpenSSL:
 
-- SSLv2
-- SSLv3
-- TLSv1
-- TLSv1.1
-- TLSv1.2
 - TLSv1.3
+- TLSv1.2
+- TLSv1.1
+- TLSv1
 
 You can configure which protocols to enable or disable with the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive.
 
 TLSv1.2 and earlier are supported on all operating systems listed in [Supported Distributions](#supported-distributions).
 
-TLSv1.3 is supported starting from NGINX Plus R17 and is enabled by default in NGINX Plus R29 and later. It requires OpenSSL 1.1.1 or higher. Note that not all operating systems supported by NGINX Plus include OpenSSL 1.1.1. Check your operating system's documentation to confirm TLSv1.3 compatibility.
+TLS 1.3 is supported starting with NGINX Plus R17 and is enabled by default in NGINX Plus R29 and later. It requires OpenSSL 1.1.1 or later, which is available on all currently supported operating systems.
 
 TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
 
@@ -70,30 +67,30 @@ See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-gu
 
 ### Core
 
-- [Core](https://nginx.org/en/docs/ngx_core_module.html) – Control basic functioning (mutexes, events, thread pools, workers, and so on)
+- [Core](https://nginx.org/en/docs/ngx_core_module.html) – Configure core NGINX runtime and event handling, including master and worker processes, connection acceptance and processing, accept mutexes, logging, thread pools, and worker resource limits
 
 ### Clustering
 
-- [Zone Sync](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) – Synchronize [shared memory zones](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone) among nodes in a cluster
+- [Zone Sync](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) – Synchronize runtime state stored in supported shared memory zones across NGINX Plus nodes in a cluster
 
 ### HTTP Core
 
-- [HTTP Core](https://nginx.org/en/docs/http/ngx_http_core_module.html) – Process HTTP traffic
-- [Addition](https://nginx.org/en/docs/http/ngx_http_addition_module.html) – Prepend and append data to a response
-- [Auto Index](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html) – Generate directory listings
-- [Charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html) – Add character set in `Content-Type` field of HTTP response header, and define or convert between character sets
-- [Empty GIF](https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html) – Generate empty image response
-- [Gunzip](https://nginx.org/en/docs/http/ngx_http_gunzip_module.html) – Decompress responses for clients that don’t support compression
-- [Gzip](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) – Use GZIP to compress HTTP responses
-- [Gzip Static](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) – Serve pre-compressed files from disk
-- [Headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html) – Add fields to HTTP response headers, including `Cache-Control` and `Expires`
+- [HTTP Core](https://nginx.org/en/docs/http/ngx_http_core_module.html) – Configure HTTP servers and locations, request processing, URI matching, client request handling, static file delivery
+- [Addition](https://nginx.org/en/docs/http/ngx_http_addition_module.html) – Add the responses of specified subrequests before or after an HTTP response body
+- [Autoindex](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html) – Generate directory listings when an index file is not found
+- [Charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html) – Add a character set to the `Content-Type` field of HTTP response header and convert response content between character sets
+- [Empty GIF](https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html) – Generate and return a transparent 1×1-pixel GIF image from memory
+- [Gunzip](https://nginx.org/en/docs/http/ngx_http_gunzip_module.html) – Decompress gzip-encoded responses for clients that do not support gzip encoding
+- [Gzip](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) – Compress HTTP response bodies using gzip encoding
+- [Gzip Static](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) – Serve precompressed `.gz` files from disk instead of generating gzip-compressed responses at runtime
+- [Headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html) – Add fields to HTTP response headers and trailers, including `Expires` and `Cache-Control` headers
 - [Index](https://nginx.org/en/docs/http/ngx_http_index_module.html) – Specify index files used in directory requests
-- [Internal Redirect](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html) – Allow internal redirects after checking request or connection processing limits, and access limits
-- [Random Index](https://nginx.org/en/docs/http/ngx_http_random_index_module.html) – Select random index file for directory request
-- [Real IP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) – Determine true origin IP address for proxied traffic
-- [SSI](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) – Process Server Side Includes (SSI) commands
-- [User ID](https://nginx.org/en/docs/http/ngx_http_userid_module.html) – Set cookies that uniquely identify clients
-- [WebDAV](https://nginx.org/en/docs/http/ngx_http_dav_module.html) – Implement WebDAV file management
+- [Internal Redirect](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html) – Perform an internal redirect after request-processing, connection, and access limits have been applied
+- [Random Index](https://nginx.org/en/docs/http/ngx_http_random_index_module.html) – Process requests ending with a slash by selecting a random file from the requested directory as the index file
+- [Real IP](https://nginx.org/en/docs/http/ngx_http_realip_module.html) – Replace the client address and port with values obtained from a trusted HTTP header or the PROXY protocol
+- [SSI](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) – Process Server Side Includes (SSI) commands embedded in HTTP response bodies
+- [User ID](https://nginx.org/en/docs/http/ngx_http_userid_module.html) – Set and receive cookies that uniquely identify clients
+- [WebDAV](https://nginx.org/en/docs/http/ngx_http_dav_module.html) – Provide file-management operations using the WebDAV `PUT`, `DELETE`, `MKCOL`, `COPY`, and `MOVE` methods
 
 ### HTTP Access Control and Authentication
 
@@ -170,6 +167,8 @@ See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-gu
 - [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) – Provide REST API for accessing metrics, configuring upstream server groups dynamically, and managing key-value pairs, without the need to reload NGINX configuration
 - [Key-Value Store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) – Create variables with values taken from key-value pairs managed by the [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_keyvals_)
 - [Management](https://nginx.org/en/docs/ngx_mgmt_module.html) – [Configure licensing and usage reporting]({{< ref "solutions/about-subscription-licenses.md" >}}) of NGINX Plus installation to F5 licensing endpoint or [NGINX Instance Manager]({{< ref "nim/index.md" >}})
+- [Database Connector](https://nginx.org/en/docs/http/ngx_http_db_module.html) – Retrieve values from Redis database
+- [JSON](https://nginx.org/en/docs/http/ngx_http_json_module.html) – Extract values from JSON documents and make them available as variables
 
 ### TCP and UDP Proxying and Load Balancing
 

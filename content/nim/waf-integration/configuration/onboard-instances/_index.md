@@ -1,6 +1,5 @@
 ---
 title: Onboard instances
-f5-docs: 
 weight: 400
 url: /nginx-instance-manager/waf-integration/configuration/onboard-instances/
 f5-product: NGINX Instance Manager

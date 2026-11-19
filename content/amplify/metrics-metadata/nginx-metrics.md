@@ -4,7 +4,6 @@ description: List of NGINX Metrics
 weight: 30
 toc: true
 noindex: true
-f5-docs: DOCS-973
 f5-product: AMPLIF
 ---
 
