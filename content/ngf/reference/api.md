@@ -287,6 +287,20 @@ JWTAuth
 </tr>
 <tr>
 <td>
+<code>apiKey</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.APIKeyAuth">
+APIKeyAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>APIKey configures API Key Authentication.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>type</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha1.AuthType">
@@ -1047,8 +1061,8 @@ SnippetsFilterSpec
 <td>
 <code>snippets</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Snippet">
-[]Snippet
+<a href="#gateway.nginx.org/v1alpha1.FilterSnippet">
+[]FilterSnippet
 </a>
 </em>
 </td>
@@ -1244,8 +1258,8 @@ UpstreamSettingsPolicySpec
 <td>
 <code>zoneSize</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Size">
-Size
+<a href="#gateway.nginx.org/v1alpha1.ZoneSize">
+ZoneSize
 </a>
 </em>
 </td>
@@ -1254,7 +1268,11 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 2m.
+Explicit values set here override the global NginxProxy.ZoneSize setting.
+Set to &ldquo;auto&rdquo; to enable automatic sizing: NGF starts every upstream&rsquo;s zone at a flat 64k,
+regardless of profile, and automatically doubles it if NGINX fails to reload because the
+zone is too small, up to NginxProxy.ZoneSizeMaxSize.
+Default: inherited from NginxProxy.ZoneSize.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -1523,6 +1541,125 @@ sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </td>
 <td>
 <p>Status defines the state of the WAFPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.APIKeyAuth">APIKeyAuth
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.APIKeyAuth" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterSpec">AuthenticationFilterSpec</a>)
+</p>
+<p>
+<p>APIKeyAuth configures API Key Authentication.
+Clients must send a valid API key in a request header or URL query parameter.
+Keys are stored in the Secret&rsquo;s &ldquo;auth&rdquo; entry as one &ldquo;client-name:api-key&rdquo; pair per line.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>secretRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>SecretRef references a Secret containing the API keys in the same namespace.
+The Secret&rsquo;s &ldquo;auth&rdquo; entry must contain one &ldquo;client-name:api-key&rdquo; pair per line.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sources</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.APIKeySourceEntry">
+[]APIKeySourceEntry
+</a>
+</em>
+</td>
+<td>
+<p>Sources defines where clients can provide the API key.
+At least one source must be specified.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.APIKeySource">APIKeySource
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.APIKeySource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.APIKeySourceEntry">APIKeySourceEntry</a>)
+</p>
+<p>
+<p>APIKeySource defines where clients send the API key.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Header&#34;</p></td>
+<td><p>APIKeySourceHeader specifies that the API key is sent in a request header.</p>
+</td>
+</tr><tr><td><p>&#34;Query&#34;</p></td>
+<td><p>APIKeySourceQuery specifies that the API key is sent in a URL query parameter.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.APIKeySourceEntry">APIKeySourceEntry
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.APIKeySourceEntry" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.APIKeyAuth">APIKeyAuth</a>)
+</p>
+<p>
+<p>APIKeySourceEntry defines a single location where clients can provide an API key.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.APIKeySource">
+APIKeySource
+</a>
+</em>
+</td>
+<td>
+<p>Type specifies the source type: Header or Query.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name is the header name or query parameter name that contains the API key.</p>
 </td>
 </tr>
 </tbody>
@@ -2083,7 +2220,10 @@ User-Agent, and Connection headers for health check requests, and these cannot b
 <th>Description</th>
 </tr>
 </thead>
-<tbody><tr><td><p>&#34;Basic&#34;</p></td>
+<tbody><tr><td><p>&#34;APIKey&#34;</p></td>
+<td><p>AuthTypeAPIKey is the API Key Authentication mechanism.</p>
+</td>
+</tr><tr><td><p>&#34;Basic&#34;</p></td>
 <td><p>AuthTypeBasic is the HTTP Basic Authentication mechanism.</p>
 </td>
 </tr><tr><td><p>&#34;JWT&#34;</p></td>
@@ -2197,6 +2337,20 @@ JWTAuth
 <td>
 <em>(Optional)</em>
 <p>JWT configures JSON Web Token authentication (NGINX Plus).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>apiKey</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.APIKeyAuth">
+APIKeyAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>APIKey configures API Key Authentication.</p>
 </td>
 </tr>
 <tr>
@@ -3182,6 +3336,79 @@ Support: Gateway.</p>
 <td>
 <p>Controllers is a list of Gateway API controllers that processed the ExternalLoadBalancer
 and the status of the ExternalLoadBalancer with respect to each controller.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.FailureMode">FailureMode
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.FailureMode" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PayloadProcessorEntry">PayloadProcessorEntry</a>)
+</p>
+<p>
+<p>FailureMode determines how a processor behaves when it cannot reach a verdict,
+for example when the external service is unreachable, times out, or returns an
+error.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;FailClosed&#34;</p></td>
+<td><p>FailureModeFailClosed rejects the request when the processor fails to reach
+a verdict. This is the default and preserves a secure-by-default posture.</p>
+</td>
+</tr><tr><td><p>&#34;FailOpen&#34;</p></td>
+<td><p>FailureModeFailOpen allows the request through when the processor fails to
+reach a verdict.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.FilterSnippet">FilterSnippet
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.FilterSnippet" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.SnippetsFilterSpec">SnippetsFilterSpec</a>)
+</p>
+<p>
+<p>FilterSnippet represents an NGINX configuration snippet for SnippetsFilter.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>context</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.SnippetsFilterContext">
+SnippetsFilterContext
+</a>
+</em>
+</td>
+<td>
+<p>Context is the NGINX context to insert the snippet into.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>value</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Value is the NGINX configuration snippet.</p>
 </td>
 </tr>
 </tbody>
@@ -4239,6 +4466,7 @@ distributing requests evenly across all upstream servers.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.APIKeyAuth">APIKeyAuth</a>,
 <a href="#gateway.nginx.org/v1alpha1.BasicAuth">BasicAuth</a>,
 <a href="#gateway.nginx.org/v1alpha1.BundleAuth">BundleAuth</a>,
 <a href="#gateway.nginx.org/v1alpha1.ExtProcessConfig">ExtProcessConfig</a>,
@@ -4883,6 +5111,14 @@ e.g. <code>https://nim.example.com</code>.</p>
 </tr><tr><td><p>&#34;main&#34;</p></td>
 <td><p>NginxContextMain is the main context of the NGINX configuration.</p>
 </td>
+</tr><tr><td><p>&#34;stream&#34;</p></td>
+<td><p>NginxContextStream is the stream context of the NGINX configuration.
+<a href="https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream">https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream</a></p>
+</td>
+</tr><tr><td><p>&#34;stream.server&#34;</p></td>
+<td><p>NginxContextStreamServer is the stream server context of the NGINX configuration.
+<a href="https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server">https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server</a></p>
+</td>
 </tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha1.NginxGatewayConditionReason">NginxGatewayConditionReason
@@ -5411,6 +5647,21 @@ ExtProcessConfig
 <td>
 <em>(Optional)</em>
 <p>ExtProcess defines the configuration for an ExtProcess processor that delegates to an external service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>failureMode</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.FailureMode">
+FailureMode
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>FailureMode determines the behavior when this processor fails to reach a verdict,
+for example when the external service is unreachable, times out, or returns an error.</p>
 </td>
 </tr>
 <tr>
@@ -6504,7 +6755,6 @@ string
 <a href="#gateway.nginx.org/v1alpha1.ProxyBuffering">ProxyBuffering</a>,
 <a href="#gateway.nginx.org/v1alpha1.ProxyBuffers">ProxyBuffers</a>,
 <a href="#gateway.nginx.org/v1alpha1.RateLimitRule">RateLimitRule</a>,
-<a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>,
 <a href="#gateway.nginx.org/v1alpha2.CompressionBuffers">CompressionBuffers</a>,
 <a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
 </p>
@@ -6518,7 +6768,6 @@ Examples: 1024, 8k, 1m.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.SnippetsFilterSpec">SnippetsFilterSpec</a>,
 <a href="#gateway.nginx.org/v1alpha1.SnippetsPolicySpec">SnippetsPolicySpec</a>)
 </p>
 <p>
@@ -6607,6 +6856,40 @@ SnippetsFilter is invalid.</p>
 </td>
 </tr></tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.SnippetsFilterContext">SnippetsFilterContext
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SnippetsFilterContext" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.FilterSnippet">FilterSnippet</a>)
+</p>
+<p>
+<p>SnippetsFilterContext represents the NGINX configuration context supported by SnippetsFilter.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;http&#34;</p></td>
+<td><p>SnippetsFilterContextHTTP is the http context of the NGINX configuration.
+<a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#http">https://nginx.org/en/docs/http/ngx_http_core_module.html#http</a></p>
+</td>
+</tr><tr><td><p>&#34;http.server&#34;</p></td>
+<td><p>SnippetsFilterContextHTTPServer is the server context of the NGINX configuration.
+<a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server">https://nginx.org/en/docs/http/ngx_http_core_module.html#server</a></p>
+</td>
+</tr><tr><td><p>&#34;http.server.location&#34;</p></td>
+<td><p>SnippetsFilterContextHTTPServerLocation is the location context of the NGINX configuration.
+<a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#location">https://nginx.org/en/docs/http/ngx_http_core_module.html#location</a></p>
+</td>
+</tr><tr><td><p>&#34;main&#34;</p></td>
+<td><p>SnippetsFilterContextMain is the main context of the NGINX configuration.</p>
+</td>
+</tr></tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.SnippetsFilterSpec">SnippetsFilterSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SnippetsFilterSpec" title="Permanent link">¶</a>
 </h3>
@@ -6629,8 +6912,8 @@ SnippetsFilter is invalid.</p>
 <td>
 <code>snippets</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Snippet">
-[]Snippet
+<a href="#gateway.nginx.org/v1alpha1.FilterSnippet">
+[]FilterSnippet
 </a>
 </em>
 </td>
@@ -6897,8 +7180,8 @@ Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html
 <td>
 <code>zoneSize</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Size">
-Size
+<a href="#gateway.nginx.org/v1alpha1.ZoneSize">
+ZoneSize
 </a>
 </em>
 </td>
@@ -6907,7 +7190,11 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 2m.
+Explicit values set here override the global NginxProxy.ZoneSize setting.
+Set to &ldquo;auto&rdquo; to enable automatic sizing: NGF starts every upstream&rsquo;s zone at a flat 64k,
+regardless of profile, and automatically doubles it if NGINX fails to reload because the
+zone is too small, up to NginxProxy.ZoneSizeMaxSize.
+Default: inherited from NginxProxy.ZoneSize.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -7169,6 +7456,20 @@ SecurityLogDestination
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.ZoneSize">ZoneSize
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ZoneSize" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>ZoneSize is a string value representing the size of an NGINX upstream shared memory zone.
+ZoneSize can be specified in bytes, kilobytes (k), megabytes (m), or gigabytes (g), or set to
+the special value &ldquo;auto&rdquo; to enable automatic sizing.
+Examples: 1024, 8k, 1m, auto.</p>
+</p>
 <hr/>
 <h2 id="gateway.nginx.org/v1alpha2">gateway.nginx.org/v1alpha2</h2>
 <p>
@@ -7510,8 +7811,8 @@ WAFSpec
 <td>
 <code>zoneSize</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Size">
-Size
+<a href="#gateway.nginx.org/v1alpha1.ZoneSize">
+ZoneSize
 </a>
 </em>
 </td>
@@ -7519,9 +7820,26 @@ Size
 <em>(Optional)</em>
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
-the larger memory zone is required.
+the larger memory zone is required. Set to &ldquo;auto&rdquo; to enable automatic sizing.
 Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>zoneSizeMaxSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ZoneSizeMaxSize is the maximum zone size that automatic sizing (ZoneSize: &ldquo;auto&rdquo;) can grow to.
+Once a zone reaches this size, NGF stops growing it and surfaces an error if it is still too
+small.
+Default: &ldquo;512m&rdquo;.</p>
 </td>
 </tr>
 <tr>
@@ -9850,8 +10168,8 @@ WAFSpec
 <td>
 <code>zoneSize</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Size">
-Size
+<a href="#gateway.nginx.org/v1alpha1.ZoneSize">
+ZoneSize
 </a>
 </em>
 </td>
@@ -9859,9 +10177,26 @@ Size
 <em>(Optional)</em>
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
-the larger memory zone is required.
+the larger memory zone is required. Set to &ldquo;auto&rdquo; to enable automatic sizing.
 Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>zoneSizeMaxSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ZoneSizeMaxSize is the maximum zone size that automatic sizing (ZoneSize: &ldquo;auto&rdquo;) can grow to.
+Once a zone reaches this size, NGF stops growing it and surfaces an error if it is still too
+small.
+Default: &ldquo;512m&rdquo;.</p>
 </td>
 </tr>
 <tr>
@@ -10538,6 +10873,30 @@ IP address in the X-Forwarded-For HTTP header.
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<code>labels</code><br/>
+<em>
+map[string]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Labels are added to the ServiceMonitor resource metadata.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>annotations</code><br/>
+<em>
+map[string]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Annotations are added to the ServiceMonitor resource metadata.</p>
+</td>
+</tr>
 <tr>
 <td>
 <code>namespaceSelector</code><br/>

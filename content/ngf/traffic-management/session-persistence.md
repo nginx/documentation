@@ -190,7 +190,7 @@ Replace `<PORT_NUMBER>` with the port number you use to access your Gateway.
 
 ## Configure cookie-based session persistence
 
-You can configure session persistence by specifying the `sessionPersistence` field on an `HTTPRouteRule` or `GRPCRouteRule`. This configuration is translated to the `sticky cookie` directive on the NGINX data plane. In this guide, you’ll create a `tea` HTTPRoute with `sessionPersistence` configured at the rule level and then verify how traffic behaves when the route has multiple backend Pods.
+You can configure session persistence by specifying the `sessionPersistence` field on an `HTTPRouteRule` or `GRPCRouteRule`. As of Gateway API v1.7.0, cookie-specific settings are nested under `cookie`, and the cookie name moved from `sessionName` to `cookie.name`. This configuration is translated to the `sticky cookie` directive on the NGINX data plane. In this guide, you’ll create a `tea` HTTPRoute with `sessionPersistence` configured at the rule level and then verify how traffic behaves when the route has multiple backend Pods.
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -213,13 +213,16 @@ spec:
     - name: tea
       port: 80
     sessionPersistence:
-      sessionName: "cookie-tea"
       type: Cookie
       absoluteTimeout: 24h
-      cookieConfig:
+      cookie:
+        name: "cookie-tea"
+        path: /tea
         lifetimeType: Permanent
 EOF
 ```
+
+{{< call-out class="note" >}}Starting in Gateway API v1.7.0, the cookie `path` attribute defaults to `/` instead of being derived from the route match. Set `cookie.path` explicitly, as shown above, to scope the cookie to a specific path.{{< /call-out >}}
 
 Verify the `tea` HTTPRoute is `Accepted`:
 
