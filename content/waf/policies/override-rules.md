@@ -91,19 +91,20 @@ An example could look like the following:
           "$ref": "file:///NginxStrictPolicy.json"
         }
       },
+      {
         "name": "usa-only",
         "condition": "geolocation != 'US'",
-                "actionType": "violation",
-                "violation": {
-                    "block": true,
-                    "alarm": true,
-                    "attackType": {
-                           "name": "Forceful Browsing"
-                       },
-                    "description": "Attempt to access from outside the USA",
-                    "rating": 4
-                }
+        "actionType": "violation",
+        "violation": {
+          "block": true,
+          "alarm": true,
+          "attackType": {
+            "name": "Forceful Browsing"
+          },
+          "description": "Attempt to access from outside the USA",
+          "rating": 4
         }
+      }
     ]
   }
 }
