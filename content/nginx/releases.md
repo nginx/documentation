@@ -43,6 +43,8 @@ Starting with NGINX Plus PLS.37 LTS, release numbering became unified with other
 
 - **Fourth number** represents the packaging version, i.e. changes to the distributable package that are not related to NGINX Plus code itself. Starts at `1`, increments only when something changes at the packaging level.
 
+{{< call-out class="note" title="Note" >}} `nginx -v` does not display the fourth (packaging) number. For example, package version `NGINX Plus PLS.37.3.0.1` displays `nginx-plus-r37.3.0`. If you installed NGINX Plus via a package manager and need to verify the full installed package version, use your OS package manager. {{< /call-out >}}
+
 ### Upgrade strategy
 
 When planning your upgrade from NGINX Plus R36, choose the release track that best matches your operational needs and priorities. Typical adoption patterns and considerations include:
