@@ -5,7 +5,7 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-keywords: "NGINX Gateway Fabric, backend mTLS, upstream TLS, BackendTLSPolicy, service mesh alternative"
+f5-keywords: "NGINX Gateway Fabric, backend mTLS, upstream TLS, BackendTLSPolicy, service mesh alternative, ClusterTrustBundle"
 f5-summary: >
    NGINX Gateway Fabric can encrypt traffic from the Gateway to a backend application using mutual TLS, configured through BackendTLSPolicy together with the Gateway's backend TLS settings.
    BackendTLSPolicy validates the certificate the backend presents during the TLS handshake, and the Gateway's `tls.backend.clientCertificateRef` presents a client certificate that the backend can validate against its trusted CA.
@@ -43,6 +43,12 @@ sequenceDiagram
 ```
 
 ## Before you begin
+
+{{< call-out class="note" >}}
+Instead of referencing a `Secret` for the backend CA, the `BackendTLSPolicy` can validate the backend certificate against a cluster-scoped [`ClusterTrustBundle`](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#cluster-trust-bundles) explained in the [using a ClusterTrustBundle](#using-a-clustertrustbundle) section. This is useful when a single CA is shared across namespaces, because a `ClusterTrustBundle` is cluster-scoped and does not need to be duplicated per namespace.
+
+Referencing a `ClusterTrustBundle` as a `caCertificateRef` is an experimental feature. It requires the Gateway API experimental-channel CRDs, NGF running with experimental features enabled, and a Kubernetes 1.37+ cluster, where `ClusterTrustBundle` (`certificates.k8s.io/v1`) is generally available. Follow the correct instructions on installation to enable experimental features.
+{{< /call-out >}}
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
@@ -442,6 +448,84 @@ Status:
     Controller Name:         gateway.nginx.org/nginx-gateway-controller
 Events:                      <none>
 ```
+
+---
+
+## Using a ClusterTrustBundle
+
+Instead of referencing a `Secret` for the backend CA, the `BackendTLSPolicy` can validate the backend certificate against a cluster-scoped [`ClusterTrustBundle`](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#cluster-trust-bundles). This is useful when a single CA is shared across namespaces, because a `ClusterTrustBundle` is cluster-scoped and does not need to be duplicated per namespace.
+
+{{< call-out class="note" >}}Referencing a `ClusterTrustBundle` as a `caCertificateRef` is an experimental feature (GEP-5075). It requires the Gateway API experimental-channel CRDs, NGF running with [experimental features enabled]({{< ref "/ngf/install/" >}}), and a Kubernetes 1.37+ cluster, where `ClusterTrustBundle` (`certificates.k8s.io/v1`) is generally available.{{< /call-out >}}
+
+Unlike a `Secret` or `ConfigMap`, a `ClusterTrustBundle` cannot reference another object: the CA PEM must be inlined into `spec.trustBundle`. Extract the local CA that cert-manager created in the `local-ca-secret` Secret:
+
+```shell
+kubectl get secret local-ca-secret -n cert-manager -o jsonpath='{.data.ca\.crt}' | base64 -d
+```
+
+Create a `ClusterTrustBundle` named `backend-ca`, pasting the CA PEM from the previous command into `spec.trustBundle`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: certificates.k8s.io/v1
+kind: ClusterTrustBundle
+metadata:
+  name: backend-ca
+spec:
+  trustBundle: |
+    -----BEGIN CERTIFICATE-----
+    <example correct indentation>
+    <PASTE the ca.crt from local-ca-secret each line indented to match the begin and end certificate lines>
+    <example correct indentation>
+    -----END CERTIFICATE-----
+EOF
+```
+
+{{< call-out class="note" >}}The `spec.trustBundle` must contain one or more PEM-wrapped X.509 CA certificates, each with the CA basic-constraint set, with no PEM block headers and no duplicate certificates. Indent each line of the pasted PEM to match the `trustBundle` block.{{< /call-out >}}
+
+Update the `BackendTLSPolicy` so its `caCertificateRefs` points at the `backend-ca` `ClusterTrustBundle` instead of the `backend-cert` Secret. Because a `ClusterTrustBundle` is cluster-scoped, the reference does not include a `namespace`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: backend-tls
+spec:
+  targetRefs:
+  - group: ''
+    kind: Service
+    name: secure-app
+  validation:
+    caCertificateRefs:
+    - group: certificates.k8s.io
+      kind: ClusterTrustBundle
+      name: backend-ca
+    hostname: secure-app.example.com
+EOF
+```
+
+Confirm the Policy still resolves its references and is accepted:
+
+```shell
+kubectl describe backendtlspolicies.gateway.networking.k8s.io
+```
+
+```text
+Status:
+  Ancestors:
+    Conditions:
+      Message:               All CACertificateRefs are resolved
+      Reason:                ResolvedRefs
+      Status:                True
+      Type:                  ResolvedRefs
+      Message:               The Policy is accepted
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+```
+
+The rest of this guide continues with the `Secret`-based `BackendTLSPolicy`. If you switched to the `ClusterTrustBundle`, the traffic verification steps below behave identically.
 
 ---
 
