@@ -1,14 +1,14 @@
 ---
 title: F5 DoS for NGINX 4.14
-description: "Release notes for F5 DoS for NGINX 4.14, which adds support for NGINX Plus R37.3.0.1 and includes bug fixes."
-f5-keywords: "F5 DoS for NGINX, release notes, 4.14, NGINX Plus R37.3.0.1"
+description: "Release notes for F5 DoS for NGINX 4.14, which adds support for NGINX Plus R37.3.1.1 and includes bug fixes."
+f5-keywords: "F5 DoS for NGINX, release notes, 4.14, NGINX Plus R37.3.1.1"
 toc: true
 weight: 2
 f5-content-type: reference
 f5-product: F5 DoS for NGINX
 f5-summary: >
   Review what changed in F5 DoS for NGINX 4.14 and check whether your platform and NGINX Plus version are supported.
-  Version 4.14 adds support for NGINX Plus R37.3.0.1 and includes bug fixes.
+  Version 4.14 adds support for NGINX Plus R37.3.1.1 and includes bug fixes.
 ---
 
 F5 DoS for NGINX provides behavioral protection against denial-of-service (DoS) attacks for your web applications.
@@ -19,7 +19,7 @@ November 18, 2026
 
 ### New features
 
-- NGINX Plus R37.3.0.1 support
+- NGINX Plus R37.3.1.1 support
 
 ### Resolved issues
 
@@ -27,18 +27,18 @@ November 18, 2026
 
 ### Supported packages
 
-| Distribution name          | Package file                                          |
-|----------------------------|-------------------------------------------------------|
-| Alpine 3.22                | _app-protect-dos-37+4.14.0-r1.apk_                    |
-| Amazon Linux 2023          | _app-protect-dos-37+4.14.0-1.amzn2023.ngx.x86_64.rpm_ |
-| RHEL 8 and Rocky Linux 8   | _app-protect-dos-37+4.14.0-1.el8.ngx.x86_64.rpm_      |
-| RHEL 9 and Rocky Linux 9   | _app-protect-dos-37+4.14.0-1.el9.ngx.x86_64.rpm_      |
-| RHEL 10 and Rocky Linux 10 | _app-protect-dos-37+4.14.0-1.el10.ngx.x86_64.rpm_     |
-| Debian 12                  | _app-protect-dos_37+4.14.0-1\~bookworm_amd64.deb_     |
-| Debian 13                  | _app-protect-dos_37+4.14.0-1\~trixie_amd64.deb_       |
-| Ubuntu 22.04               | _app-protect-dos_37+4.14.0-1\~jammy_amd64.deb_        |
-| Ubuntu 24.04               | _app-protect-dos_37+4.14.0-1\~noble_amd64.deb_        |
-| NGINX Plus                 | _NGINX Plus R37.3_                                    |
+| Distribution name          | Package file                                           |
+|----------------------------|--------------------------------------------------------|
+| Alpine 3.22                | _app-protect-dos-37+4.14.0-r1.apk_                     |
+| Amazon Linux 2023          | _app-protect-dos-37+4.14.0-1.amzn2023.ngx.x86_64.rpm_  |
+| RHEL 8 and Rocky Linux 8   | _app-protect-dos-37+4.14.0-1.el8.ngx.x86_64.rpm_       |
+| RHEL 9 and Rocky Linux 9   | _app-protect-dos-37+4.14.0-1.el9.ngx.x86_64.rpm_       |
+| RHEL 10 and Rocky Linux 10 | _app-protect-dos-37+4.14.0-1.el10.ngx.x86_64.rpm_      |
+| Debian 12                  | _app-protect-dos_37+4.14.0-1\~bookworm_amd64.deb_      |
+| Debian 13                  | _app-protect-dos_37+4.14.0-1\~trixie_amd64.deb_        |
+| Ubuntu 22.04               | _app-protect-dos_37+4.14.0-1\~jammy_amd64.deb_         |
+| Ubuntu 24.04               | _app-protect-dos_37+4.14.0-1\~noble_amd64.deb_         |
+| NGINX Plus                 | _NGINX Plus R37.3 (based on NGINX Open Source 1.31.8)_ |
 
 ### Important notes
 
