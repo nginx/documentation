@@ -19,17 +19,17 @@ Since May 13, 2026, NGINX Plus follows a new release model: F5 NGINX Commercial 
 
 Each release version is available in two tracks:
 
-[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.8.1` LTS](#pls.37.0.8).
+[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.9.1` LTS](#pls.37.0.9).
 
-[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.3.0.1` CR](#pls.37.3.0).
+[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.3.1.1` CR](#pls.37.3.1).
 
 ### Release schedule
 
 Each new LTS release version is published annually and supported for three years.
 
-LTS Track builds are released as soon as important bug fixes and security patches are available. The latest LTS build was released on November 18, 2026.
+LTS Track builds are released as soon as important bug fixes and security patches are available. The latest LTS build was released on November 23, 2026.
 
-CR Track builds are released regularly and include the latest features and enhancements, in addition to bug fixes and security patches. The latest CR build was released on November 18, 2026.
+CR Track builds are released regularly and include the latest features and enhancements, in addition to bug fixes and security patches. The latest CR build was released on November 23, 2026.
 
 ### Release numbering
 
@@ -79,6 +79,16 @@ LTS patch versions follow the numbering format: `PLS.37.0.<PATCH>.<PACKAGE>`: th
 
 To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
 
+### NGINX Plus PLS.37.0.9.1 LTS {#pls.37.0.9}
+_November 23, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
+
+NGINX Plus PLS.37.0.9.1 LTS is a security release.
+
+- Security fix: when NGINX Plus is configured to use TLS 1.3 early data ([`ssl_early_data on`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data)), an attacker can use a specially crafted TLS 1.3 connection to drive an nginx worker into a tight loop in which it repeatedly retries the same send without ever making progress. The worker keeps accepting new connections and handling the existing ones, but one CPU core is pinned at 100% for as long as the attacker holds the connection open ([CVE-2026-132779](https://my.f5.com/manage/s/article/K000163947)).
+
+{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+
 ### NGINX Plus PLS.37.0.8.1 LTS {#pls.37.0.8}
 _November 18, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
@@ -98,8 +108,6 @@ NGINX Plus PLS.37.0.8.1 LTS is a security release.
 - Security fix: in the stream module, an attacker who is able to complete the SSL handshake synchronously might cause client SSL certificates to be verified using the configuration of the default server rather than the virtual server selected by SNI ([CVE-2026-120967](https://my.f5.com/manage/s/article/K000163934)).
 
 - Security fix: worker processes might get caught in an endless loop while reading the request body over SSL ([CVE-2026-118899](https://my.f5.com/manage/s/article/K000163930)).
-
-{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
 
 ### NGINX Plus PLS.37.0.7.1 LTS {#pls.37.0.7}
 _October 14, 2026_<br/>
@@ -247,6 +255,14 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 ## NGINX Plus PLS.37 Continuous release (CR) track {#cr}
 
 Continuous Releases (CR) track includes the newest features and performance improvements as well as security fixes and CVE mitigations. CRs are never patched, security fixes are delivered as the next CR. Only latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
+
+### NGINX Plus PLS.37.3.1.1 CR {#pls.37.3.1}
+_November 23, 2026_<br/>
+_Based on NGINX Open Source 1.31.8_
+
+NGINX Plus PLS.37.3.1.1 CR is a security release.
+
+- Security fix: when NGINX Plus is configured to use TLS 1.3 early data ([`ssl_early_data on`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data)), an attacker can use a specially crafted TLS 1.3 connection to drive an nginx worker into a tight loop in which it repeatedly retries the same send without ever making progress. The worker keeps accepting new connections and handling the existing ones, but one CPU core is pinned at 100% for as long as the attacker holds the connection open ([CVE-2026-132779](https://my.f5.com/manage/s/article/K000163947)).
 
 ### NGINX Plus PLS.37.3.0.1 CR {#pls.37.3.0}
 _November 18, 2026_<br/>
