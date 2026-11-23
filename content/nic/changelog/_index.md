@@ -31,10 +31,9 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon bug %}} Fixes
 
-- [11514](https://github.com/nginx/kubernetes-ingress/pull/11514) Sync: security hardening and minor bug fixes for release-5.8
-
 ### {{% icon arrow-up %}} Dependencies
 
+- [11514](https://github.com/nginx/kubernetes-ingress/pull/11514) Nginx and F5 WAF for Nginx version updates
 - [11462](https://github.com/nginx/kubernetes-ingress/pull/11462), [11463](https://github.com/nginx/kubernetes-ingress/pull/11463) & [11461](https://github.com/nginx/kubernetes-ingress/pull/11461) Bump Go dependencies
 - [11460](https://github.com/nginx/kubernetes-ingress/pull/11460) Bump Docker dependencies
 
