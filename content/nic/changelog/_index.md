@@ -29,8 +29,6 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 23 Nov 2026
 
-### {{% icon bug %}} Fixes
-
 ### {{% icon arrow-up %}} Dependencies
 
 - [11514](https://github.com/nginx/kubernetes-ingress/pull/11514) Nginx and F5 WAF for Nginx version updates
