@@ -666,7 +666,7 @@ spec:
 EOF
 ```
 
-With this configuration, the default validation (applied to the `https-2` listener on port `8443`) validates client certificates against the `client-ca` `ClusterTrustBundle`, while the `perPort` override on port `443` continues to use the `per-port-validation-ca-secret` Secret.
+With this configuration, the default validation (applied to the `https-2` listener on port `8443`) validates client certificates against the `client-ca` `ClusterTrustBundle`, while the `perPort` override on port `443` continues to use the `per-port-validation-ca-secret` Secret. The same `ClusterTrustBundle` reference also works for `TLS` listeners (used with TLSRoute) that terminate TLS with `tls.mode: Terminate`.
 
 Confirm the Gateway's listeners still resolve their references:
 
