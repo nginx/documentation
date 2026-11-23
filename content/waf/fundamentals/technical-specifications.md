@@ -34,8 +34,6 @@ You can deploy F5 WAF for NGINX in the following environments:
 | AlmaLinux          | 10                  |
 | Ubuntu             | 22.04, 24.04, 26.04 |
 
-AlmaLinux 10 support starts with F5 WAF for NGINX 5.17.0.
-
 For release-specific packages, view the [Changelog]({{< ref "/waf/changelog.md" >}}).
 
 ### Package dependencies

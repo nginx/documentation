@@ -229,7 +229,7 @@ The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands
    ```
 
    {{< call-out class="note" >}}
-   The `dnf` command only downloads packages that aren't installed in the connected environment. Use a connected environment with the same AlmaLinux 10 packages as your disconnected environment.
+   The `dnf` command only downloads packages that are not installed in the connected environment. Use a connected environment with the same AlmaLinux 10 packages as your disconnected environment.
    {{< /call-out >}}
 
 #### Ubuntu
