@@ -10,5 +10,5 @@ f5-files:
 - [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install).
 
 {{< call-out class="important" >}}
-The `F5Networks/f5ads` provider is in alpha (`0.1.0-alpha.1`). Pin this exact version in your `required_providers` block, since breaking changes can occur between alpha releases.
+This guide uses the [latest version](https://registry.terraform.io/providers/F5Networks/f5ads/latest) of the `F5Networks/f5ads` provider.
 {{< /call-out >}}

@@ -1,6 +1,6 @@
 ---
 title: Deploy using the Terraform provider
-description: "Create and configure an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider."
+description: "Create and set up an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider."
 weight: 100
 toc: true
 f5-content-type: how-to
@@ -8,7 +8,7 @@ f5-product: F5 Application Delivery Service for Google Cloud
 f5-keywords: "F5 ADS for Google Cloud, Terraform, create deployment, F5 ADS configuration, F5 ADS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
 f5-summary: >
   Learn how to manage an F5 Application Delivery Service for Google Cloud deployment using the Terraform provider.
-  This guide covers setting up necessary Google Cloud resources, configuring the Terraform provider, and managing the deployment using Terraform.
+  This guide covers Google Cloud network resources, provider setup, and deployment creation using Terraform.
 f5-audience: operator
 ---
 
@@ -23,13 +23,15 @@ The examples in this guide use two resources:
 
 Terraform resolves these references automatically when you run `terraform apply`. You don't need to copy IDs or import resources that you create with Terraform.
 
-To use an existing configuration, see [Import an existing configuration]({{< ref "/f5ads/google/deploy/nginx-configuration/nginx-configuration-terraform.md#import-an-existing-configuration" >}}). To manage an existing deployment, first define a matching resource and [import the deployment](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs/resources/deployment#import).
+To create and manage a configuration with Terraform, see [Manage NGINX configurations using Terraform]({{< ref "/f5ads/google/deploy/nginx-configuration/configuration-terraform.md" >}}).
 
 ## Prerequisites
 
+{{< include "/f5ads/terraform-prerequisites.md" >}}
+
 {{< include "/f5ads/google/terraform-prerequisites.md" >}}
 
-## Configure the provider
+## Set up the provider
 
 {{< include "/f5ads/google/terraform-provider-config.md" >}}
 
@@ -68,7 +70,7 @@ The `f5ads` provider currently only supports network attachments with `connectio
 
 ## Prepare an NGINX configuration
 
-Follow [Create or upload using Terraform]({{< ref "/f5ads/google/deploy/nginx-configuration/nginx-configuration-terraform.md" >}}) to add an `f5ads_configuration.example` resource to the same Terraform working directory. You can define the NGINX configuration inline or upload local files.
+Follow [Manage NGINX configurations using Terraform]({{< ref "/f5ads/google/deploy/nginx-configuration/configuration-terraform.md" >}}) to add an `f5ads_configuration.example` resource to the same Terraform working directory.
 
 You don't need to apply the configuration separately. The deployment references it, so Terraform creates both resources in the correct order during `terraform apply`.
 
@@ -82,6 +84,10 @@ To apply your configuration to a deployment, reference the configuration from th
 Replace `<RESOURCE_NAME>` with the local name declared in your `f5ads_configuration` resource block. For example, `resource "f5ads_configuration" "example"` uses `example`, as shown in the deployment example.
 
 Both fields are required. Terraform uses the references to create the configuration first and apply it to the deployment. You don't need a separate step to link the resources. Applying file changes creates a new configuration version and updates the deployment to use it.
+
+{{< call-out class="important" >}}
+If you use a configuration created in the Console, replace the Terraform references below with its configuration ID and version ID.
+{{< /call-out >}}
 
 Choose a frontend type for your deployment. Refer to [Service frontend]({{< ref "/f5ads/google/overview.md#service-frontend" >}}) for more information on these two frontend types.
 
