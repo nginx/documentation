@@ -6,4 +6,4 @@ f5-content-type: reference
 f5-product: F5 WAF for NGINX
 ---
 
-{{< include "waf/policy.html" >}}
+{{< include "waf/policy.md" >}}
