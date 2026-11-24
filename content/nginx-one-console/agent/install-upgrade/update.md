@@ -10,7 +10,7 @@ f5-product: NGINX Agent
 
 {{< include "/agent/installation/update.md" >}}
 
-## Find specific Agent version instances
+## Find specific NGINX Agent version instances
 
 If you manage many instances in F5 NGINX One Console, filter the **Instances** list to find instances running a specific NGINX Agent version (such as v2):
 
