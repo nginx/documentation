@@ -17,6 +17,7 @@ F5 Application Delivery Service deployment, restrictions, and available directiv
 You can upload NGINX configurations to your ${product} deployment using the F5 ADS Console:
 
 - [Upload using the console]({{< ref "/f5ads/platform/nginx-configuration/nginx-configuration-console.md" >}})
+- [Import from a tar.gz archive]({{< ref "/f5ads/platform/nginx-configuration/import-export-configuration.md" >}})
 
 The topics below explain NGINX configuration restrictions and which directives are supported, unsupported, or cannot be overridden.
 
