@@ -15,10 +15,10 @@ f5-product: NGINX Agent
 If you manage many instances in F5 NGINX One Console, filter the **Instances** list to find instances running a specific NGINX Agent version (such as v2):
 
 1. Go to **Manage** > **Instances**.
-2. Select the settings (gear) icon next to the search box.
-3. Select **Agent Version** to show the column.
-4. Select **Add Filter**, then select **Agent Version**.
-5. Select the version(s) you want to find (for example, **v2.x**). The **Instances** list now shows only instances running the selected version(s).
+1. Select the settings (gear) icon next to the search box.
+1. Select **Agent Version** to show the column.
+1. Select **Add Filter**, then select **Agent Version**.
+1. Select the version(s) you want to find (for example, **v2.x**). The **Instances** list now shows only instances running the selected version(s).
 
 ## Migrate NGINX Agent running in containers
 
