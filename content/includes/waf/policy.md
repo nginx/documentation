@@ -12,12 +12,6 @@
 
 ---
 
-<span id="policy/accessProfileReference"></span>
-
-`accessProfileReference`
-
----
-
 <span id="policy/applicationLanguage"></span>
 
 `applicationLanguage`
@@ -56,12 +50,6 @@
 
 ---
 
-<span id="policy/browserDefinitionReference"></span>
-
-`browserDefinitionReference`
-
----
-
 `brute-force-attack-preventions`
 
 * **Type:** `array of objects`
@@ -69,12 +57,6 @@
   There is default configuration (one with bruteForceProtectionForAllLoginPages flag and without url) that applies to all configured login URLs unless there exists another brute force configuration for a specific login page.
 * **External reference:** Yes (`bruteForceAttackPreventionReference`)
 * **Subfields:** [See fields](<#policy/brute-force-attack-preventions>)
-
----
-
-<span id="policy/bruteForceAttackPreventionReference"></span>
-
-`bruteForceAttackPreventionReference`
 
 ---
 
@@ -97,30 +79,12 @@
 
 ---
 
-<span id="policy/characterSetReference"></span>
-
-`characterSetReference`
-
----
-
 `cookie-settings`
 
 * **Type:** `object`
 * **Description:** The maximum length of a cookie header name and value that the system processes. The system calculates and enforces a cookie header length based on the sum of the length of the cookie header name and value.
 * **External reference:** Yes (`cookieSettingsReference`)
 * **Subfields:** [See fields](<#policy/cookie-settings>)
-
----
-
-<span id="policy/cookieReference"></span>
-
-`cookieReference`
-
----
-
-<span id="policy/cookieSettingsReference"></span>
-
-`cookieSettingsReference`
 
 ---
 
@@ -153,30 +117,12 @@
 
 ---
 
-<span id="policy/csrfProtectionReference"></span>
-
-`csrfProtectionReference`
-
----
-
-<span id="policy/csrfUrlReference"></span>
-
-`csrfUrlReference`
-
----
-
 `data-guard`
 
 * **Type:** `object`
 * **Description:** Data Guard feature can prevent responses from exposing sensitive information by masking the data.
 * **External reference:** Yes (`dataGuardReference`)
 * **Subfields:** [See fields](<#policy/data-guard>)
-
----
-
-<span id="policy/dataGuardReference"></span>
-
-`dataGuardReference`
 
 ---
 
@@ -199,18 +145,13 @@
 
 ---
 
-<span id="policy/disallowedGeolocationReference"></span>
-
-`disallowedGeolocationReference`
-
----
-
 <span id="policy/enforcementMode"></span>
 
 `enforcementMode`
 
 * **Type:** `string`
-* **Default:** `transparent`
+* **Default:** `blocking`
+* **Schema default:** `transparent`
 * **Allowed Values:** `blocking` | `transparent`
 * **Description:** How the system processes a request that triggers a security policy violation.
   - **Blocking:** When the enforcement mode is set to blocking, traffic is blocked if it causes a violation (configured for blocking).
@@ -225,18 +166,6 @@
 * **Description:** This section contains all enforcer settings.
 * **External reference:** Yes (`enforcerSettingsReference`)
 * **Subfields:** [See fields](<#policy/enforcer-settings>)
-
----
-
-<span id="policy/enforcerSettingsReference"></span>
-
-`enforcerSettingsReference`
-
----
-
-<span id="policy/filetypeReference"></span>
-
-`filetypeReference`
 
 ---
 
@@ -277,23 +206,11 @@
 
 ---
 
-<span id="policy/generalReference"></span>
-
-`generalReference`
-
----
-
 `graphql-profiles`
 
 * **Type:** `array of objects`
 * **External reference:** Yes (`graphqlProfileReference`)
 * **Subfields:** [See fields](<#policy/graphql-profiles>)
-
----
-
-<span id="policy/graphqlProfileReference"></span>
-
-`graphqlProfileReference`
 
 ---
 
@@ -305,30 +222,12 @@
 
 ---
 
-<span id="policy/grpcProfileReference"></span>
-
-`grpcProfileReference`
-
----
-
 `header-settings`
 
 * **Type:** `object`
 * **Description:** The maximum length of an HTTP header name and value that the system processes. The system calculates and enforces the HTTP header length based on the sum of the length of the HTTP header name and value.
 * **External reference:** Yes (`headerSettingsReference`)
 * **Subfields:** [See fields](<#policy/header-settings>)
-
----
-
-<span id="policy/headerReference"></span>
-
-`headerReference`
-
----
-
-<span id="policy/headerSettingsReference"></span>
-
-`headerSettingsReference`
 
 ---
 
@@ -349,23 +248,11 @@
 
 ---
 
-<span id="policy/hostNameReference"></span>
-
-`hostNameReference`
-
----
-
 `idl-files`
 
 * **Type:** `array of objects`
 * **External reference:** Yes (`idlFileReference`)
 * **Subfields:** [See fields](<#policy/idl-files>)
-
----
-
-<span id="policy/idlFileReference"></span>
-
-`idlFileReference`
 
 ---
 
@@ -386,18 +273,6 @@
 
 ---
 
-<span id="policy/ipAddressListReference"></span>
-
-`ipAddressListReference`
-
----
-
-<span id="policy/ipIntelligenceReference"></span>
-
-`ipIntelligenceReference`
-
----
-
 `json-profiles`
 
 * **Type:** `array of objects`
@@ -411,18 +286,6 @@
 * **Type:** `array of objects`
 * **External reference:** Yes (`jsonValidationFileReference`)
 * **Subfields:** [See fields](<#policy/json-validation-files>)
-
----
-
-<span id="policy/jsonProfileReference"></span>
-
-`jsonProfileReference`
-
----
-
-<span id="policy/jsonValidationFileReference"></span>
-
-`jsonValidationFileReference`
 
 ---
 
@@ -440,24 +303,6 @@
 * **Description:** A login page is a URL in a web application that requests must pass through to get to the authenticated URLs. Use login pages, for example, to prevent forceful browsing of restricted parts of the web application, by defining access permissions for users. Login pages also allow session tracking of user sessions.
 * **External reference:** Yes (`loginPageReference`)
 * **Subfields:** [See fields](<#policy/login-pages>)
-
----
-
-<span id="policy/loginEnforcementReference"></span>
-
-`loginEnforcementReference`
-
----
-
-<span id="policy/loginPageReference"></span>
-
-`loginPageReference`
-
----
-
-<span id="policy/methodReference"></span>
-
-`methodReference`
 
 ---
 
@@ -496,18 +341,6 @@
 
 ---
 
-<span id="policy/overrideRuleReference"></span>
-
-`overrideRuleReference`
-
----
-
-<span id="policy/parameterReference"></span>
-
-`parameterReference`
-
----
-
 `parameters`
 
 * **Type:** `array of objects`
@@ -522,23 +355,10 @@
 `performStaging`
 
 * **Type:** `boolean`
-* **Default:** `true`
+* **Default:** `false`
+* **Schema default:** `true`
 * **Description:** Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.
 * **External reference:** No
-
----
-
-`rate-limiting-rules`
-
-* **Type:** `array of objects`
-* **External reference:** Yes (`rateLimitingRuleReference`)
-* **Subfields:** [See fields](<#policy/rate-limiting-rules>)
-
----
-
-<span id="policy/rateLimitingRuleReference"></span>
-
-`rateLimitingRuleReference`
 
 ---
 
@@ -548,12 +368,6 @@
 * **Description:** The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, &lt;%TS.request.ID()%&gt;, that the system replaces with a support ID number when it issues the page.
 * **External reference:** Yes (`responsePageReference`)
 * **Subfields:** [See fields](<#policy/response-pages>)
-
----
-
-<span id="policy/responsePageReference"></span>
-
-`responsePageReference`
 
 ---
 
@@ -570,24 +384,12 @@
 
 ---
 
-<span id="policy/sensitiveParameterReference"></span>
-
-`sensitiveParameterReference`
-
----
-
 `server-technologies`
 
 * **Type:** `array of objects`
 * **Description:** The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.
 * **External reference:** Yes (`serverTechnologyReference`)
 * **Subfields:** [See fields](<#policy/server-technologies>)
-
----
-
-<span id="policy/serverTechnologyReference"></span>
-
-`serverTechnologyReference`
 
 ---
 
@@ -613,30 +415,6 @@
 * **Type:** `object`
 * **External reference:** Yes (`signatureSettingReference`)
 * **Subfields:** [See fields](<#policy/signature-settings>)
-
----
-
-<span id="policy/signatureReference"></span>
-
-`signatureReference`
-
----
-
-<span id="policy/signatureRequirementReference"></span>
-
-`signatureRequirementReference`
-
----
-
-<span id="policy/signatureSetReference"></span>
-
-`signatureSetReference`
-
----
-
-<span id="policy/signatureSettingReference"></span>
-
-`signatureSettingReference`
 
 ---
 
@@ -667,18 +445,6 @@
 
 ---
 
-<span id="policy/threatCampaignReference"></span>
-
-`threatCampaignReference`
-
----
-
-<span id="policy/urlReference"></span>
-
-`urlReference`
-
----
-
 `urls`
 
 * **Type:** `array of objects`
@@ -702,12 +468,6 @@
 * **Type:** `array of objects`
 * **External reference:** Yes (`xmlProfileReference`)
 * **Subfields:** [See fields](<#policy/xml-profiles>)
-
----
-
-<span id="policy/xmlProfileReference"></span>
-
-`xmlProfileReference`
 
 ---
 
@@ -1020,14 +780,6 @@
 
 ---
 
-`captchaBypassCriteria`
-
-* **Type:** `object`
-* **Description:** Specifies configuration for CAPTCHA Bypass Mitigation.
-* **Subfields:** [See fields](<#policy/brute-force-attack-preventions/captchaBypassCriteria>)
-
----
-
 `clientSideIntegrityBypassCriteria`
 
 * **Type:** `object`
@@ -1041,14 +793,6 @@
 * **Type:** `object`
 * **Description:** Specifies configuration for detecting distributed brute force attacks.
 * **Subfields:** [See fields](<#policy/brute-force-attack-preventions/detectionCriteria>)
-
----
-
-`loginAttemptsFromTheSameDeviceId`
-
-* **Type:** `object`
-* **Description:** Specifies configuration for detecting brute force attacks for Device ID.
-* **Subfields:** [See fields](<#policy/brute-force-attack-preventions/loginAttemptsFromTheSameDeviceId>)
 
 ---
 
@@ -1124,45 +868,6 @@
 * **Type:** `object`
 * **Description:** Reference to the URL used in login URL configuration (policy/login-pages). This login URL is protected by Brute Force Protection feature.
 * **Subfields:** [See fields](<#policy/urls>)
-
----
-
-<h3 id="policy/brute-force-attack-preventions/captchaBypassCriteria"><code>captchaBypassCriteria</code></h3>
-
-<span id="policy/brute-force-attack-preventions/captchaBypassCriteria/action"></span>
-
-`action`
-
-* **Type:** `string`
-* **Default:** `alarm-and-drop`
-* **Allowed Values:** `alarm-and-blocking-page` | `alarm-and-drop` | `alarm-and-honeypot-page`
-* **Description:** Specifies action that is applied when defined threshold is reached.
-
-  - **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.
-  - **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.
-  - **alarm-and-honeypot-page**: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.
-
----
-
-<span id="policy/brute-force-attack-preventions/captchaBypassCriteria/enabled"></span>
-
-`enabled`
-
-* **Type:** `boolean`
-* **Default:** `true`
-* **Description:** When enabled, the system counts successful CAPTCHA challenges with failed logins from IP Address / Device ID.
-
----
-
-<span id="policy/brute-force-attack-preventions/captchaBypassCriteria/threshold"></span>
-
-`threshold`
-
-* **Type:** `integer`
-* **Default:** `5`
-* **Minimum:** `1`
-* **Maximum:** `100`
-* **Description:** After configured threshold (number of successful CAPTCHA challenges with failed logins from IP Address / Device ID) defined action will be applied for the next login attempt
 
 ---
 
@@ -1253,48 +958,6 @@
 * **Minimum:** `1`
 * **Maximum:** `10000`
 * **Description:** After configured threshold (number of failed login attempts within measurementPeriod) defined action will be applied for the next login attempt.           
-
----
-
-<h3 id="policy/brute-force-attack-preventions/loginAttemptsFromTheSameDeviceId"><code>loginAttemptsFromTheSameDeviceId</code></h3>
-
-<span id="policy/brute-force-attack-preventions/loginAttemptsFromTheSameDeviceId/action"></span>
-
-`action`
-
-* **Type:** `string`
-* **Default:** `alarm-and-captcha`
-* **Allowed Values:** `alarm` | `alarm-and-blocking-page` | `alarm-and-captcha` | `alarm-and-client-side-integrity` | `alarm-and-drop` | `alarm-and-honeypot-page`
-* **Description:** Specifies action that is applied when defined threshold is reached.
-
-  - **alarm**: The system will log the login attempt.
-  - **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.
-  - **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.
-  - **alarm-and-client-side-integrity**: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.
-  - **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.
-  - **alarm-and-honeypot-page**: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.
-
----
-
-<span id="policy/brute-force-attack-preventions/loginAttemptsFromTheSameDeviceId/enabled"></span>
-
-`enabled`
-
-* **Type:** `boolean`
-* **Default:** `false`
-* **Description:** When enabled, the system counts failed login attempts for Device ID.
-
----
-
-<span id="policy/brute-force-attack-preventions/loginAttemptsFromTheSameDeviceId/threshold"></span>
-
-`threshold`
-
-* **Type:** `integer`
-* **Default:** `3`
-* **Minimum:** `1`
-* **Maximum:** `100`
-* **Description:** After configured threshold (number of failed login attempts for Device ID) defined action will be applied for the next login attempt.
 
 ---
 
@@ -1426,7 +1089,8 @@
 `maximumCookieHeaderLength`
 
 * **Type:** `integer` | `string`
-* **Default:** `any`
+* **Default:** `4096`
+* **Schema default:** `any`
 * **Allowed Values:** Integer values | `any`
 * **Minimum:** `1`
 * **Maximum:** `65536`
@@ -1864,7 +1528,8 @@
 `httpOnlyAttribute`
 
 * **Type:** `boolean`
-* **Default:** `false`
+* **Default:** `true`
+* **Schema default:** `false`
 * **Description:** Specifies, when true, that the system adds the state cookie HttpOnly attribute.
 
 ---
@@ -1874,7 +1539,8 @@
 `sameSiteAttribute`
 
 * **Type:** `string`
-* **Default:** `none`
+* **Default:** `strict`
+* **Schema default:** `none`
 * **Allowed Values:** `lax` | `none` | `none-value` | `strict`
 * **Description:** The value for the state cookie SameSite attribute:
 
@@ -1890,7 +1556,8 @@
 `secureAttribute`
 
 * **Type:** `string`
-* **Default:** `never`
+* **Default:** `always`
+* **Schema default:** `never`
 * **Allowed Values:** `always` | `never`
 * **Description:** The value for the state cookie Secure attribute:
 
@@ -2591,7 +2258,8 @@
 `maximumHttpHeaderLength`
 
 * **Type:** `integer` | `string`
-* **Default:** `any`
+* **Default:** `4096`
+* **Schema default:** `any`
 * **Allowed Values:** Integer values | `any`
 * **Minimum:** `1`
 * **Maximum:** `65536`
@@ -4386,108 +4054,6 @@
 
 ---
 
-<span id="policy/rate-limiting-rules"></span>
-
-## rate-limiting-rules
-
-<span id="policy/rate-limiting-rules/condition"></span>
-
-`condition`
-
-* **Type:** `string`
-
----
-
-`limit`
-
-* **Type:** `object`
-* **Subfields:** [See fields](<#policy/rate-limiting-rules/limit>)
-
----
-
-`mitigation`
-
-* **Type:** `object`
-* **Subfields:** [See fields](<#policy/rate-limiting-rules/mitigation>)
-
----
-
-<span id="policy/rate-limiting-rules/name"></span>
-
-`name`
-
-* **Type:** `string`
-
----
-
-<span id="policy/rate-limiting-rules/scope"></span>
-
-`scope`
-
-* **Type:** `string`
-* **Allowed Values:** `global` | `per-user`
-
----
-
-<h3 id="policy/rate-limiting-rules/limit"><code>limit</code></h3>
-
-<span id="policy/rate-limiting-rules/limit/maxRequests"></span>
-
-`maxRequests`
-
-* **Type:** `integer`
-* **Minimum:** `1`
-* **Maximum:** `2147483647`
-
----
-
-<span id="policy/rate-limiting-rules/limit/periodDuration"></span>
-
-`periodDuration`
-
-* **Type:** `integer`
-* **Minimum:** `1`
-
----
-
-<span id="policy/rate-limiting-rules/limit/periodUnits"></span>
-
-`periodUnits`
-
-* **Type:** `string`
-* **Allowed Values:** `minutes` | `seconds`
-
----
-
-<h3 id="policy/rate-limiting-rules/mitigation"><code>mitigation</code></h3>
-
-<span id="policy/rate-limiting-rules/mitigation/action"></span>
-
-`action`
-
-* **Type:** `string`
-* **Allowed Values:** `alert` | `block`
-
----
-
-<span id="policy/rate-limiting-rules/mitigation/periodDuration"></span>
-
-`periodDuration`
-
-* **Type:** `integer`
-* **Minimum:** `1`
-
----
-
-<span id="policy/rate-limiting-rules/mitigation/periodUnits"></span>
-
-`periodUnits`
-
-* **Type:** `string`
-* **Allowed Values:** `minutes` | `seconds`
-
----
-
 <span id="policy/response-pages"></span>
 
 ## response-pages
@@ -4951,7 +4517,8 @@
 `signatureStaging`
 
 * **Type:** `boolean`
-* **Default:** `true`
+* **Default:** `false`
+* **Schema default:** `true`
 
 ---
 
@@ -6055,7 +5622,7 @@
 `name`
 
 * **Type:** `string`
-* **Allowed Values:** `VIOL_ACCESS_UNAUTHORIZED` | `VIOL_ACCESS_INVALID` | `VIOL_ACCESS_MALFORMED` | `VIOL_ACCESS_MISSING` | `VIOL_ASM_COOKIE_MODIFIED` | `VIOL_BLACKLISTED_IP` | `VIOL_BOT_CLIENT` | `VIOL_BRUTE_FORCE` | `VIOL_COOKIE_EXPIRED` | `VIOL_COOKIE_LENGTH` | `VIOL_COOKIE_MALFORMED` | `VIOL_COOKIE_MODIFIED` | `VIOL_CSRF` | `VIOL_DATA_GUARD` | `VIOL_ENCODING` | `VIOL_EVASION` | `VIOL_FILETYPE` | `VIOL_FILE_UPLOAD` | `VIOL_FILE_UPLOAD_IN_BODY` | `VIOL_GRAPHQL_MALFORMED` | `VIOL_GRAPHQL_FORMAT` | `VIOL_GRAPHQL_INTROSPECTION_QUERY` | `VIOL_GRAPHQL_ERROR_RESPONSE` | `VIOL_GRPC_FORMAT` | `VIOL_GRPC_MALFORMED` | `VIOL_GRPC_METHOD` | `VIOL_HEADER_LENGTH` | `VIOL_HEADER_METACHAR` | `VIOL_HEADER_REPEATED` | `VIOL_HTTP_PROTOCOL` | `VIOL_HTTP_RESPONSE_STATUS` | `VIOL_JSON_FORMAT` | `VIOL_JSON_MALFORMED` | `VIOL_JSON_SCHEMA` | `VIOL_LOGIN` | `VIOL_LOGIN_URL_BYPASSED` | `VIOL_LOGIN_URL_EXPIRED` | `VIOL_MANDATORY_HEADER` | `VIOL_MANDATORY_PARAMETER` | `VIOL_MANDATORY_REQUEST_BODY` | `VIOL_METHOD` | `VIOL_PARAMETER` | `VIOL_PARAMETER_ARRAY_VALUE` | `VIOL_PARAMETER_DATA_TYPE` | `VIOL_PARAMETER_EMPTY_VALUE` | `VIOL_PARAMETER_LOCATION` | `VIOL_PARAMETER_MULTIPART_NULL_VALUE` | `VIOL_PARAMETER_NAME_METACHAR` | `VIOL_PARAMETER_NUMERIC_VALUE` | `VIOL_PARAMETER_REPEATED` | `VIOL_PARAMETER_STATIC_VALUE` | `VIOL_PARAMETER_VALUE_BASE64` | `VIOL_PARAMETER_VALUE_LENGTH` | `VIOL_PARAMETER_VALUE_METACHAR` | `VIOL_PARAMETER_VALUE_REGEXP` | `VIOL_POST_DATA_LENGTH` | `VIOL_QUERY_STRING_LENGTH` | `VIOL_RATE_LIMIT` | `VIOL_RATING_THREAT` | `VIOL_RATING_NEED_EXAMINATION` | `VIOL_REQUEST_MAX_LENGTH` | `VIOL_REQUEST_LENGTH` | `VIOL_THREAT_CAMPAIGN` | `VIOL_URL` | `VIOL_URL_CONTENT_TYPE` | `VIOL_URL_LENGTH` | `VIOL_URL_METACHAR` | `VIOL_XML_FORMAT` | `VIOL_XML_MALFORMED` | `VIOL_GEOLOCATION` | `VIOL_WEBSOCKET_BAD_REQUEST` | `VIOL_MALICIOUS_IP`
+* **Allowed Values:** `VIOL_ACCESS_UNAUTHORIZED` | `VIOL_ACCESS_INVALID` | `VIOL_ACCESS_MALFORMED` | `VIOL_ACCESS_MISSING` | `VIOL_ASM_COOKIE_MODIFIED` | `VIOL_BLACKLISTED_IP` | `VIOL_BOT_CLIENT` | `VIOL_BRUTE_FORCE` | `VIOL_COOKIE_EXPIRED` | `VIOL_COOKIE_LENGTH` | `VIOL_COOKIE_MALFORMED` | `VIOL_COOKIE_MODIFIED` | `VIOL_CSRF` | `VIOL_DATA_GUARD` | `VIOL_ENCODING` | `VIOL_EVASION` | `VIOL_FILETYPE` | `VIOL_FILE_UPLOAD` | `VIOL_FILE_UPLOAD_IN_BODY` | `VIOL_GRAPHQL_MALFORMED` | `VIOL_GRAPHQL_FORMAT` | `VIOL_GRAPHQL_INTROSPECTION_QUERY` | `VIOL_GRAPHQL_ERROR_RESPONSE` | `VIOL_GRPC_FORMAT` | `VIOL_GRPC_MALFORMED` | `VIOL_GRPC_METHOD` | `VIOL_HEADER_LENGTH` | `VIOL_HEADER_METACHAR` | `VIOL_HEADER_REPEATED` | `VIOL_HTTP_PROTOCOL` | `VIOL_HTTP_RESPONSE_STATUS` | `VIOL_JSON_FORMAT` | `VIOL_JSON_MALFORMED` | `VIOL_JSON_SCHEMA` | `VIOL_LOGIN` | `VIOL_LOGIN_URL_BYPASSED` | `VIOL_LOGIN_URL_EXPIRED` | `VIOL_MANDATORY_HEADER` | `VIOL_MANDATORY_PARAMETER` | `VIOL_MANDATORY_REQUEST_BODY` | `VIOL_METHOD` | `VIOL_PARAMETER` | `VIOL_PARAMETER_ARRAY_VALUE` | `VIOL_PARAMETER_DATA_TYPE` | `VIOL_PARAMETER_EMPTY_VALUE` | `VIOL_PARAMETER_LOCATION` | `VIOL_PARAMETER_MULTIPART_NULL_VALUE` | `VIOL_PARAMETER_NAME_METACHAR` | `VIOL_PARAMETER_NUMERIC_VALUE` | `VIOL_PARAMETER_REPEATED` | `VIOL_PARAMETER_STATIC_VALUE` | `VIOL_PARAMETER_VALUE_BASE64` | `VIOL_PARAMETER_VALUE_LENGTH` | `VIOL_PARAMETER_VALUE_METACHAR` | `VIOL_PARAMETER_VALUE_REGEXP` | `VIOL_POST_DATA_LENGTH` | `VIOL_QUERY_STRING_LENGTH` | `VIOL_RATING_THREAT` | `VIOL_RATING_NEED_EXAMINATION` | `VIOL_REQUEST_MAX_LENGTH` | `VIOL_REQUEST_LENGTH` | `VIOL_THREAT_CAMPAIGN` | `VIOL_URL` | `VIOL_URL_CONTENT_TYPE` | `VIOL_URL_LENGTH` | `VIOL_URL_METACHAR` | `VIOL_XML_FORMAT` | `VIOL_XML_MALFORMED` | `VIOL_GEOLOCATION` | `VIOL_WEBSOCKET_BAD_REQUEST` | `VIOL_MALICIOUS_IP`
 
 ---
 
