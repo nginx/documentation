@@ -35,7 +35,7 @@ services:
   # NIM - NGINX Instance Manager
   # ---------------------------------------------------------------------------
   nim:
-    image: private-registry.nginx.com/nms/nim-rootless:2.25.0
+    image: private-registry.nginx.com/nms/nim-rootless:2.25.1
     hostname: nim
     depends_on:
       clickhouse:
