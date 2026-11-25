@@ -11,7 +11,7 @@ f5-summary: >
     by the Gateway to clients, while Frontend TLS validates incoming client certificates against referenced
     CA certificates. Frontend TLS provides a required default validation configuration applied to all HTTPS
     listeners, which can be overridden for a specific port using the perPort configuration.
-f5-keywords: ngf, nginx-gateway-fabric, kubernetes, cert-manager, tls, mtls, secure
+f5-keywords: ngf, nginx-gateway-fabric, kubernetes, cert-manager, tls, mtls, secure, ClusterTrustBundle
 f5-audience: operator
 ---
 
@@ -31,7 +31,7 @@ Both **Default** and **Per-port** can be configured with one of two validation m
 - **AllowValidOnly** (default): When set, a valid client certificate must be presented. Connections without a valid certificate are rejected.
 - **AllowInsecureFallback**: When set, all connections with either a valid or invalid certificate are allowed, as well as no certificate.
 
-CA certificates can be stored in either a `Secret` or a `ConfigMap`, and must contain the `ca.crt` key.
+CA certificates can be stored in a `Secret` or `ConfigMap` (which must contain the `ca.crt` key), or in a cluster-scoped `ClusterTrustBundle` (which holds the CA certificates inline in `spec.trustBundle`).
 
 The following diagram shows how the TLS handshake takes place between the client and NGINX Gateway Fabric:
 
@@ -51,6 +51,12 @@ sequenceDiagram
 ```
 
 ## Before you begin
+
+{{< call-out class="note" >}}
+Instead of referencing a `Secret` or `ConfigMap` for client certificate validation, Frontend TLS can validate incoming client certificates against a cluster-scoped [`ClusterTrustBundle`](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#cluster-trust-bundles) explained in the [using a ClusterTrustBundle](#using-a-clustertrustbundle) section. This is useful when a single client CA is shared across namespaces, because a `ClusterTrustBundle` is cluster-scoped and does not need to be duplicated per namespace.
+
+Referencing a `ClusterTrustBundle` as a `caCertificateRef` is an experimental feature. It requires the Gateway API experimental-channel CRDs, NGF running with experimental features enabled, and a Kubernetes 1.37+ cluster, where `ClusterTrustBundle` (`certificates.k8s.io/v1`) is generally available. Follow the correct instructions on installation to enable experimental features.
+{{< /call-out >}}
 
 Before starting, you will need:
 
@@ -315,7 +321,7 @@ Key details:
 **Frontend TLS**:
 - The `tls.frontend.default.validation` section defines the default client certificate validation. This applies to all HTTPS listeners unless overridden by a `perPort` configuration. This references the Secret `default-validation-ca-secret`.
 - The `tls.frontend.perPort` section overrides the default validation for a specific listener port. In this example, port `443` uses `AllowValidOnly` mode with the `per-port-validation-ca-secret` CA.
-- The `caCertificateRefs` field references the CA certificate used to validate client certificates. This can be either a `Secret` or a `ConfigMap` with a `ca.crt` key.
+- The `caCertificateRefs` field references the CA certificate used to validate client certificates. This can be a `Secret` or `ConfigMap` with a `ca.crt` key, or a cluster-scoped `ClusterTrustBundle` that holds the CA certificates inline in `spec.trustBundle`. See [using a ClusterTrustBundle](#using-a-clustertrustbundle).
 - If `mode` is omitted, `AllowValidOnly` is applied by default.
 
 Confirm the Gateway was created and is programmed:
@@ -579,6 +585,98 @@ Date: 05/May/2026:08:08:51 +0000
 URI: /tea
 Request ID: c326f89b0541b6109cf2a9306c45d0cd
 ```
+
+## Using a ClusterTrustBundle
+
+Instead of referencing a `Secret` or `ConfigMap` for client certificate validation, Frontend TLS can validate incoming client certificates against a cluster-scoped [`ClusterTrustBundle`](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#cluster-trust-bundles). This is useful when a single client CA is shared across namespaces, because a `ClusterTrustBundle` is cluster-scoped and does not need to be duplicated per namespace.
+
+{{< call-out class="note" >}}Referencing a `ClusterTrustBundle` as a `caCertificateRef` is an experimental feature (GEP-5075). It requires the Gateway API experimental-channel CRDs, NGF running with [experimental features enabled]({{< ref "/ngf/install/" >}}), and a Kubernetes 1.37+ cluster, where `ClusterTrustBundle` (`certificates.k8s.io/v1`) is generally available.{{< /call-out >}}
+
+Unlike a `Secret` or `ConfigMap`, a `ClusterTrustBundle` cannot reference another object: the CA PEM must be inlined into `spec.trustBundle`. Extract the CA that cert-manager created for the default validation in the `default-validation-ca-secret` Secret:
+
+```shell
+kubectl get secret default-validation-ca-secret -o jsonpath='{.data.ca\.crt}' | base64 -d
+```
+
+Create a `ClusterTrustBundle` named `client-ca`, pasting the CA PEM from the previous command into `spec.trustBundle`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: certificates.k8s.io/v1
+kind: ClusterTrustBundle
+metadata:
+  name: client-ca
+spec:
+  trustBundle: |
+    -----BEGIN CERTIFICATE-----
+    <example correct indentation>
+    <PASTE the ca.crt from default-validation-ca-secret each line indented to match the begin and end certificate lines>
+    <example correct indentation>
+    -----END CERTIFICATE-----
+EOF
+```
+
+{{< call-out class="note" >}}The `spec.trustBundle` must contain one or more PEM-wrapped X.509 CA certificates, each with the CA basic-constraint set, with no PEM block headers and no duplicate certificates. Indent each line of the pasted PEM to match the `trustBundle` block.{{< /call-out >}}
+
+Update the Gateway so the default Frontend TLS validation references the `client-ca` `ClusterTrustBundle` instead of the `default-validation-ca-secret` Secret. Because a `ClusterTrustBundle` is cluster-scoped, the reference does not include a `namespace`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: cafe-secret
+  - name: https-2
+    port: 8443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: cafe-secret
+  tls:
+    frontend:
+      default: # Default applies to all other HTTPS listeners
+        validation:
+          caCertificateRefs:
+          - group: certificates.k8s.io
+            kind: ClusterTrustBundle
+            name: client-ca
+      perPort:
+      - port: 443 # perPort overrides default for this port
+        tls:
+          validation:
+            caCertificateRefs:
+            - group: ""
+              kind: Secret
+              name: per-port-validation-ca-secret
+              namespace: default
+            mode: AllowValidOnly
+EOF
+```
+
+With this configuration, the default validation (applied to the `https-2` listener on port `8443`) validates client certificates against the `client-ca` `ClusterTrustBundle`, while the `perPort` override on port `443` continues to use the `per-port-validation-ca-secret` Secret. The same `ClusterTrustBundle` reference also works for `TLS` listeners (used with TLSRoute) that terminate TLS with `tls.mode: Terminate`.
+
+Confirm the Gateway's listeners still resolve their references:
+
+```shell
+kubectl get gateway gateway -o yaml | yq '.status.listeners'
+```
+
+Each HTTPS listener should report `ResolvedRefs` and `Accepted` conditions with `status: "True"`.
+
+The [send a request with a valid client certificate](#send-a-request-with-a-valid-client-certificate) above should behave identically.
 
 {{< include "ngf/sni-https.md" >}}
 
