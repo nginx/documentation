@@ -279,7 +279,7 @@ Configures NGINX Ingress Controller to watch only those namespaces with label fo
 
 ### -watch-secret-namespace <string> {#cmdoption-watch-secret-namespace}
 
-Comma-separated list of namespaces in which NGINX Ingress Controller watches Secrets. These namespaces are a subset of the namespaces NGINX Ingress Controller watches, which are all namespaces unless you set `-watch-namespace` or `-watch-namespace-label`. NGINX Ingress Controller ignores a listed namespace that it doesn't watch. If this argument is not set, NGINX Ingress Controller watches Secrets in every namespace it watches.
+Comma-separated list of namespaces that NGINX Ingress Controller watches for Secrets. List a subset of the namespaces that `-watch-namespace` or `-watch-namespace-label` selects. If you don't set either argument, NGINX Ingress Controller watches all namespaces.
 
 ### -enable-prometheus-metrics {#cmdoption-enable-prometheus-metrics}
 
