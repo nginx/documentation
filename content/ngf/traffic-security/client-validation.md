@@ -19,9 +19,7 @@ Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabri
 
 ## Overview
 
-This guide shows how to configure client-to-Gateway validation using the Gateway's Frontend TLS settings. The examples demonstrate how to validate client certificates and present the Gateway's certificate to the client. This protects communication between the client and the Gateway with mutual TLS so that only authorized requests reach the backend.
-
-Frontend TLS works with both **HTTPS** listeners and **TLS Terminate** listeners. The main example in this guide uses HTTPS listeners with HTTPRoutes. A [separate section](#use-mutual-tls-with-tls-terminate-listeners) covers TLS Terminate listeners with TLSRoutes.
+This guide shows how to configure client-to-Gateway validation using the Gateway's Frontend TLS settings for both **HTTPS** and **TLS Terminate** Listeners. The examples demonstrate how to validate client certificates and present the Gateway's certificate to the client. This protects communication between the client and the Gateway with mutual TLS so that only authorized requests reach the backend.
 
 With Frontend TLS, the Gateway validates incoming client certificates against one or more CA certificates. You can configure validation at two levels:
 
