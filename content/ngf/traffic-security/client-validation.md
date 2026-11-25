@@ -684,27 +684,35 @@ The [send a request with a valid client certificate](#send-a-request-with-a-vali
 
 The same `tls.frontend` configuration also works for TLS Terminate listeners (`protocol: TLS`, `tls.mode: Terminate`). With TLS Terminate, the Gateway terminates TLS and forwards plain TCP traffic to the backend. You use a `TLSRoute` instead of an `HTTPRoute` to route traffic.
 
-### Configure frontend TLS on a TLS Terminate listener
+### Add a TLS Terminate listener to the existing Gateway
+
+Apply the updated Gateway manifest to add a TLS Terminate listener. The manifest keeps the existing HTTPS listeners and frontend validation settings.
 
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: tls-gateway
+  name: gateway
 spec:
   gatewayClassName: nginx
-  tls:
-    frontend:
-      default:
-        validation:
-          caCertificateRefs:
-          - group: ""
-            kind: Secret
-            name: default-validation-ca-secret
-            namespace: default
-          mode: AllowValidOnly
   listeners:
+  - name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: cafe-secret
+  - name: https-2
+    port: 8443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: cafe-secret
   - name: tls-terminate
     port: 8445
     protocol: TLS
@@ -714,6 +722,25 @@ spec:
       certificateRefs:
       - kind: Secret
         name: cafe-secret
+  tls:
+    frontend:
+      default:
+        validation:
+          caCertificateRefs:
+          - kind: Secret
+            group: ""
+            name: default-validation-ca-secret
+            namespace: default
+      perPort:
+      - port: 443
+        tls:
+          validation:
+            caCertificateRefs:
+            - group: ""
+              kind: Secret
+              name: per-port-validation-ca-secret
+              namespace: default
+            mode: AllowValidOnly
 EOF
 ```
 
@@ -729,7 +756,7 @@ metadata:
   name: app-tls-route
 spec:
   parentRefs:
-  - name: tls-gateway
+  - name: gateway
     sectionName: tls-terminate
   hostnames:
   - "cafe.example.com"
@@ -744,14 +771,13 @@ EOF
 
 Because TLS Terminate listeners handle raw TCP, you can't test them with `curl`. Use `openssl s_client` instead.
 
-Save the public IP address and port of the Gateway:
+Store the TLS listener port in a variable:
 
 ```text
-GW_IP=XXX.YYY.ZZZ.III
 GW_TLS_PORT=<PORT_NUMBER>
 ```
 
-Replace `<PORT_NUMBER>` with the port number you use to access your Gateway on port 8445.
+Replace `<PORT_NUMBER>` with the port that maps to the `tls-terminate` listener (port 8445).
 
 Send a request with a valid client certificate:
 
