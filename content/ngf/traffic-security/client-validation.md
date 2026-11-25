@@ -684,15 +684,7 @@ The [send a request with a valid client certificate](#send-a-request-with-a-vali
 
 The same `tls.frontend` configuration also works for TLS Terminate listeners (`protocol: TLS`, `tls.mode: Terminate`). With TLS Terminate, the Gateway terminates TLS and forwards plain TCP traffic to the backend. You use a `TLSRoute` instead of an `HTTPRoute` to route traffic.
 
-### Example Gateway with a TLS Terminate listener
-
-This example reuses the following resources from the earlier steps:
-
-- [CA certificates and issuers](#create-ca-certificates-and-issuers) for client certificate validation.
-- [Backend applications](#deploy-example-applications) (`coffee`) as the upstream service.
-- [Client test certificates](#setup-configuration-test) (`nginx-secret-default`) to send requests with a valid client certificate.
-
-If you haven't created these resources yet, complete those sections first.
+### Configure frontend TLS on a TLS Terminate listener
 
 ```yaml
 kubectl apply -f - <<EOF
