@@ -115,17 +115,19 @@ To enable writing the debugging log to a file:
 <span id="error_log_memory"></span>
 ### Writing the Debugging Log to Memory
 
-The debugging log can be written to a memory using a cyclic buffer. The advantage is that logging on the debug level will not have significant impact on performance under high load.
+The debugging log can be written to memory using a cyclic buffer. The advantage is that logging on the debug level will not have a significant impact on performance under high load.
 
 To enable writing the debug log to memory:
 
-1. Make sure your NGINX is configured with the `--with-debug` configuration option. Run the command and check if the output contains the `--with-debug` line:
+1. Make sure your NGINX binary is configured with the `--with-debug` configuration option. Run the command and check if the output contains `--with-debug`:
 
     ```shell
     nginx -V 2>&1 | grep -- '--with-debug'
     ```
 
-2. In NGINX configuration file, enable a memory buffer for debug logging with the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive specified in the `main` context:
+    If you are using the F5 NGINX Plus debug binary, check `nginx-debug -V 2>&1 | grep -- '--with-debug'`.
+
+2. In the NGINX configuration file, enable a memory buffer for debug logging with the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive specified in the `main` context:
 
     ```nginx
     error_log memory:32m debug;
@@ -135,43 +137,59 @@ To enable writing the debug log to memory:
     }
     ```
 
+    {{< call-out class="note" >}}Make sure no `error_log` directive in an `http`, `server`, or `location` block overrides the `main`-level directive, or requests handled by those scopes will not be written to the memory buffer.{{< /call-out >}}
+
+3. Reload or restart NGINX (or the `nginx-debug` service) to apply the configuration changes.
+
 #### Extracting Debug Log From Memory
 
-The log can be extracted from the memory buffer using a script executed in the GDB debugger.
+The log can be extracted from the memory buffer using a GDB script executed in batch mode.
+
+{{< call-out class="note" >}}
+
+- **Debugging symbols required**: Pre-built Linux packages strip debugging symbols from the NGINX binary. Before running GDB, install the matching debug symbols package (`nginx-plus-dbg` for F5 NGINX Plus or `nginx-dbg` for NGINX Open Source), for example with `sudo apt install nginx-plus-dbg` or `sudo dnf install nginx-plus-dbg`. Without debugging symbols, GDB cannot resolve internal structures such as `ngx_cycle` or `ngx_log_memory_buf_t`.
+- **Capture timing**: Extracting the memory buffer takes a one-time snapshot of what is currently in the cyclic buffer, and GDB pauses the worker process while attached. Send or wait for the traffic you want to debug before running GDB.
+
+{{< /call-out >}}
 
 To extract the debugging log from memory:
 
-1. Obtain the PID of NGINX worker process:
+1. Obtain the PID of an NGINX worker process:
 
     ```shell
-    ps axu |grep nginx
+    ps aux | grep 'nginx: worker'
     ```
 
-2. Launch the GDB debugger:
+2. Create a GDB script file (for example, `/tmp/dump_log.gdb`) that locates the memory log writer and dumps the buffer to `/tmp/debug_log.txt`:
 
     ```shell
-    sudo gdb -p <NGINX_PID>
-    ```
-
-    Replace `<NGINX_PID>` with the process ID of the NGINX process you obtained in the previous step.
-
-3. Copy the script, paste it to GDB and press “Enter”. The script will save the log in the _debug_log.txt_ file located in the current directory:
-
-    ```nginx
+    cat << 'EOF' > /tmp/dump_log.gdb
     set $log = ngx_cycle->log
-    while $log->writer != ngx_log_memory_writer
+    while $log && $log->writer != ngx_log_memory_writer
         set $log = $log->next
     end
     set $buf = (ngx_log_memory_buf_t *) $log->wdata
-    dump binary memory debug_log.txt $buf->start $buf->end
+    dump binary memory /tmp/debug_log.txt $buf->start $buf->end
+    EOF
     ```
 
-4. Quit GDB by pressing CTRL+D.
-5. Open the file “_debug_log.txt_” located in the current directory:
+    {{< call-out class="note" >}}Running the commands from a script file in batch mode minimizes how long the worker process is paused and avoids multi-line bracketed paste syntax errors in newer GDB versions (such as GDB 15). If you run GDB interactively instead, enter or paste one line at a time.{{< /call-out >}}
+
+3. Run GDB in batch mode against the worker process PID:
 
     ```shell
-    sudo less debug_log.txt
+    sudo gdb -batch -p <NGINX_PID> -x /tmp/dump_log.gdb
     ```
+
+    Replace `<NGINX_PID>` with the process ID of the NGINX worker process you obtained in step 1.
+
+4. Inspect the extracted log file:
+
+    ```shell
+    strings /tmp/debug_log.txt | less
+    ```
+
+    Because the dump is a raw cyclic memory buffer, unused space contains NUL bytes. Using `strings` or `grep -a` filters the output to readable log lines.
 
 <span id="error_log_ip"></span>
 ### Debug Log for Selected IPs
