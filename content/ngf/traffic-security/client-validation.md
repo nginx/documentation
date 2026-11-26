@@ -1,17 +1,17 @@
 ---
 title: Securing frontend client traffic using mutual TLS
-description: "Configure mutual TLS so NGINX Gateway Fabric validates client certificates on HTTPS listeners."
+description: "Configure mutual TLS so NGINX Gateway Fabric validates client certificates on HTTPS and TLS Terminate listeners."
 weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
 f5-summary: >
     Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabric using the Gateway's
-    Listener HTTPS and Frontend TLS settings. The Listener HTTPS settings configure the certificate presented
-    by the Gateway to clients, while Frontend TLS validates incoming client certificates against referenced
-    CA certificates. Frontend TLS provides a required default validation configuration applied to all HTTPS
-    listeners, which can be overridden for a specific port using the perPort configuration.
-f5-keywords: ngf, nginx-gateway-fabric, kubernetes, cert-manager, tls, mtls, secure, ClusterTrustBundle
+    Frontend TLS settings. Frontend TLS validates incoming client certificates against referenced CA
+    certificates for both HTTPS and TLS Terminate listeners. Frontend TLS provides a required default
+    validation configuration applied to all HTTPS and TLS Terminate listeners, which you can override
+    for a specific port using the perPort configuration.
+f5-keywords: ngf, nginx-gateway-fabric, kubernetes, cert-manager, tls, mtls, secure, tlsroute, tls-terminate, ClusterTrustBundle
 f5-audience: operator
 ---
 
@@ -19,7 +19,7 @@ Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabri
 
 ## Overview
 
-This guide shows how to configure client-to-Gateway validation using the Gateway's Listener HTTPS (HTTP over TLS) settings together with the Gateway's Frontend TLS settings. The example demonstrates how to validate client certificates and present the Gateway's certificate to the client. This ensures communication between the client and the Gateway is protected with mutual TLS, and only authorized requests are processed and sent to the backend.
+This guide shows how to configure client-to-Gateway validation using the Gateway's Frontend TLS settings for both **HTTPS** and **TLS Terminate** Listeners. The examples demonstrate how to validate client certificates and present the Gateway's certificate to the client. This protects communication between the client and the Gateway with mutual TLS so that only authorized requests reach the backend.
 
 With Frontend TLS, the Gateway validates incoming client certificates against one or more CA certificates. You can configure validation at two levels:
 
@@ -61,7 +61,7 @@ Referencing a `ClusterTrustBundle` as a `caCertificateRef` is an experimental fe
 Before starting, you will need:
 
 - Administrator access to a Kubernetes cluster.
-- [Helm](https://helm.sh/) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed locally.
+- [Helm](https://helm.sh/) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) installed locally.
 - [NGINX Gateway Fabric deployed]({{< ref "/ngf/install/" >}}) in the Kubernetes cluster.
 
 ## Install cert-manager
@@ -586,6 +586,129 @@ URI: /tea
 Request ID: c326f89b0541b6109cf2a9306c45d0cd
 ```
 
+## Use mutual TLS with TLS Terminate listeners
+
+The same `tls.frontend` configuration also works for TLS Terminate listeners (`protocol: TLS`, `tls.mode: Terminate`). With TLS Terminate, the Gateway terminates TLS and forwards plain TCP traffic to the backend. You use a `TLSRoute` instead of an `HTTPRoute` to route traffic.
+
+### Add a TLS Terminate listener to the existing Gateway
+
+Apply the updated Gateway manifest to add a TLS Terminate listener. The manifest keeps the existing HTTPS listeners and frontend validation settings.
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: cafe-secret
+  - name: https-2
+    port: 8443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: cafe-secret
+  - name: tls-terminate
+    port: 8445
+    protocol: TLS
+    hostname: "cafe.example.com"
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: cafe-secret
+  tls:
+    frontend:
+      default:
+        validation:
+          caCertificateRefs:
+          - kind: Secret
+            group: ""
+            name: default-validation-ca-secret
+            namespace: default
+      perPort:
+      - port: 443
+        tls:
+          validation:
+            caCertificateRefs:
+            - group: ""
+              kind: Secret
+              name: per-port-validation-ca-secret
+              namespace: default
+            mode: AllowValidOnly
+EOF
+```
+
+### Create a TLSRoute
+
+Use a `TLSRoute` to route traffic from the TLS Terminate listener to the backend:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: TLSRoute
+metadata:
+  name: app-tls-route
+spec:
+  parentRefs:
+  - name: gateway
+    sectionName: tls-terminate
+  hostnames:
+  - "cafe.example.com"
+  rules:
+  - backendRefs:
+    - name: coffee
+      port: 80
+EOF
+```
+
+### Test the TLS Terminate listener
+
+Because TLS Terminate listeners handle raw TCP, you can't test them with `curl`. Use `openssl s_client` instead.
+
+Store the TLS listener port in a variable:
+
+```text
+GW_TLS_PORT=<PORT_NUMBER>
+```
+
+Replace `<PORT_NUMBER>` with the port that maps to the `tls-terminate` listener (port 8445).
+
+Send a request with a valid client certificate:
+
+```shell
+openssl s_client -connect $GW_IP:$GW_TLS_PORT \
+  -servername cafe.example.com \
+  -cert <(kubectl get secret nginx-secret-default -o jsonpath='{.data.tls\.crt}' | base64 -d) \
+  -key <(kubectl get secret nginx-secret-default -o jsonpath='{.data.tls\.key}' | base64 -d) \
+  -CAfile <(kubectl get secret cafe-secret -o jsonpath='{.data.ca\.crt}' | base64 -d) \
+  -quiet
+```
+
+If the handshake succeeds, the connection is accepted and traffic reaches the backend.
+
+Send a request without a client certificate:
+
+```shell
+openssl s_client -connect $GW_IP:$GW_TLS_PORT \
+  -servername cafe.example.com \
+  -CAfile <(kubectl get secret cafe-secret -o jsonpath='{.data.ca\.crt}' | base64 -d) \
+  -quiet
+```
+
+The Gateway rejects the connection because no client certificate was provided.
+
 ## Using a ClusterTrustBundle
 
 Instead of referencing a `Secret` or `ConfigMap` for client certificate validation, Frontend TLS can validate incoming client certificates against a cluster-scoped [`ClusterTrustBundle`](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#cluster-trust-bundles). This is useful when a single client CA is shared across namespaces, because a `ClusterTrustBundle` is cluster-scoped and does not need to be duplicated per namespace.
@@ -686,3 +809,4 @@ The [send a request with a valid client certificate](#send-a-request-with-a-vali
 - [HTTPS termination]({{< ref "/ngf/traffic-management/https-termination.md" >}}): Configure HTTPS termination and HTTP-to-HTTPS redirects.
 - [Secure traffic using Let's Encrypt and cert-manager]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}})
 - [Securing backend traffic using mutual TLS]({{< ref "/ngf/traffic-security/secure-backend.md" >}})
+- [Configure TLS routing with TLSRoute]({{< ref "/ngf/traffic-management/tlsroute.md" >}})
