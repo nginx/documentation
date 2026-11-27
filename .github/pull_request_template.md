@@ -29,3 +29,10 @@ Before sharing this pull request, I completed the following checklist:
 - [ ] I have waited to ensure my changes pass tests, and addressed any discovered issues
 
 [^1]: Potentially sensitive information includes personally identify information (PII), authentication credentials, and live URLs. Refer to the [style guide](https://github.com/F5Docs/style-guide/blob/main/terminology/sensitive-information.md) for guidance about placeholder content.
+
+### For reviewers
+
+When you review this PR, select from these options:
+- **Comment**: Suggest changes, but don't block the PR.
+- **Approve**: You're OK with merging as is. You can still suggest changes.
+- **Request changes**: You want to block the PR. Authors won't be able to merge until you update your review to **Comment** or **Approve**.
