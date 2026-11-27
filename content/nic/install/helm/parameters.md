@@ -258,7 +258,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **prometheus.serviceMonitor.selectorMatchLabels** | A set of labels to allow the selection of endpoints for the ServiceMonitor. | {service: "nginx-ingress-prometheus-service"} |
 | **prometheus.serviceMonitor.endpoints** | A list of endpoints allowed as part of this ServiceMonitor. | [port: prometheus] |
 | **rbac.create** | Configures RBAC. | true |
-| **rbac.clusterrole.create** | Creates the ClusterRole and the ClusterRoleBinding when `rbac.create` is also `true`. Set to `false` for more fine-grained control over RBAC, for example when you use `controller.watchNamespace`. | true |
+| **rbac.clusterrole.create** | Configures creation of ClusterRole and ClusterRoleBinding. Creation can be disabled when more fine-grained control over RBAC is required. For example when `controller.watchNamespace` is used. When disabled, both must be created manually. | true |
 | **serviceInsight.create** | Expose NGINX Plus Service Insight endpoint. | false |
 | **serviceInsight.port** | Configures the port to expose endpoints. | 9114 |
 | **serviceInsight.scheme** | Configures the HTTP scheme to use for connections to the Service Insight endpoint. | http |
