@@ -2,8 +2,9 @@
 f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/changelog/_index.md
-- content/nic/install/waf-helm.md
-- content/nic/integrations/app-protect-waf-v5/installation.md
+- content/nic/integrations/waf/current/helm-local-bundles.md
+- content/nic/integrations/waf/current/installation.md
+- content/nic/integrations/waf/legacy/migrate/local-bundles.md
 - content/nic/technical-specifications.md
 ---
 

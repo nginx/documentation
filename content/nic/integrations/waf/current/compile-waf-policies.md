@@ -1,10 +1,16 @@
 ---
-title: Compile F5 WAF for NGINX policies using NGINX Instance Manager
-weight: 300
+title: Compile policy bundles with NGINX Instance Manager
+linkTitle: "Local bundles with NGINX Instance Manager"
+description: Use the NGINX Instance Manager API to compile an F5 WAF for NGINX policy bundle, then copy it to NGINX Ingress Controller as a local bundle.
+weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Ingress Controller
+f5-product: F5 NGINX Ingress Controller
+aliases:
+  - /nginx-ingress-controller/integrations/app-protect-waf-v5/compile-waf-policies/
 ---
+
+**Applies to:** Current F5 WAF for NGINX integration, bundle-based (local bundles)
 
 ## Overview
 
@@ -14,7 +20,7 @@ F5 WAF for NGINX uses policies to configure which security features are set. Whe
 
 By using NGINX Instance Manager to compile WAF policies, the policy bundle can also be used immediately by NGINX Ingress Controller without reloading.
 
-{{< call-out class="tip" >}} NGINX Ingress Controller can fetch compiled bundles directly from NGINX Instance Manager or NGINX One Console without the manual download and upload steps described on this page. See [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for details on automated bundle fetching with optional polling for updates. {{< /call-out >}}
+{{< call-out class="tip" >}} NGINX Ingress Controller can fetch compiled bundles directly from NGINX Instance Manager or NGINX One Console without the manual download and upload steps described on this page. See [Fetch policy bundles from a remote source]({{< ref "/nic/integrations/waf/current/bundle-sources.md" >}}) for details on automated bundle fetching with optional polling for updates. {{< /call-out >}}
 
 The following steps describe how to use the NGINX Instance Manager API to create a new security policy, compile a bundle, then add it to NGINX Ingress Controller.
 
@@ -22,7 +28,7 @@ The following steps describe how to use the NGINX Instance Manager API to create
 
 - A working [NGINX Instance Manager]({{< ref "/nim/deploy/" >}}) instance.
 - An [NGINX Instance Manager user]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) for API requests.
-- A NGINX Ingress Controller [deployment with F5 WAF for NGINX]({{< ref "/nic/integrations/app-protect-waf/installation.md" >}}).
+- An NGINX Ingress Controller [deployment with F5 WAF for NGINX]({{< ref "/nic/integrations/waf/current/installation.md" >}}).
 
 ## Create a new security policy
 
@@ -224,7 +230,7 @@ curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/logprofiles/secops_dash
 
 ## Add volumes and volumeMounts
 
-To use WAF security bundles, your NGINX Ingress Controller instance must have *volumes* and *volumeMounts*. Precise paths are used to detect when bundles are uploaded to the cluster.
+To use security bundles, your NGINX Ingress Controller instance must have *volumes* and *volumeMounts* for the bundle folder, `/etc/app_protect/bundles`. Precise paths are used to detect when bundles are uploaded to the cluster.
 
 Here is an example of what to add:
 
@@ -368,7 +374,7 @@ Upload the binary file to the NGINX Ingress Controller pods.
 {{%tab name="Helm"%}}
 
 ```shell
-kubectl cp /your/local/path/<BUNDLE_NAME>.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles<BUNDLE_NAME>.tgz -c nginx-ingress
+kubectl cp /your/local/path/<BUNDLE_NAME>.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles/<BUNDLE_NAME>.tgz -c nginx-ingress
 ```
 
 Replace `<BUNDLE_NAME>` with the name of your bundle.
@@ -378,7 +384,7 @@ Replace `<BUNDLE_NAME>` with the name of your bundle.
 {{%tab name="Manifests"%}}
 
 ```shell
-kubectl cp /your/local/path/<BUNDLE_NAME>.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles<BUNDLE_NAME>.tgz -c nginx-plus-ingress
+kubectl cp /your/local/path/<BUNDLE_NAME>.tgz  <NAMESPACE>/<POD_NAME>:etc/app_protect/bundles/<BUNDLE_NAME>.tgz -c nginx-plus-ingress
 ```
 
 {{% /tab %}}
@@ -387,11 +393,11 @@ kubectl cp /your/local/path/<BUNDLE_NAME>.tgz  <NAMESPACE>/<POD_NAME>:etc/app_pr
 
 ---
 
-## Create WAF policy
+## Create the Policy resource
 
-To process a bundle, you must create a new WAF policy. This policy is added to `/etc/app_protect/bundles`, allowing NGINX Ingress Controller to load it into WAF.
+To use the bundle, create an NGINX Ingress Controller Policy resource that references it. NGINX Ingress Controller loads the bundle from `/etc/app_protect/bundles`.
 
-The example below shows the required WAF policy, for the *apBundle* field you must use the [security bundle](#download-the-security-policy-bundle) binary file (a tarball).  The *apLogBundle* field contains the `secops_dashboard.tgz` [file](#download-the-security-log-bundle).
+In the following example, the *apBundle* field names the [security bundle](#download-the-security-policy-bundle) binary file (a tarball). The *apLogBundle* field names the `secops_dashboard.tgz` [file](#download-the-security-log-bundle).
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -404,17 +410,17 @@ spec:
     apBundle: "<BUNDLE_NAME>.tgz"
     securityLogs:
     - enable: true
-        apLogBundle: "secops_dashboard.tgz"
-        logDest: "<SECURITY_LOG_DESTINATION_URL>"
+      apLogBundle: "secops_dashboard.tgz"
+      logDest: "<SECURITY_LOG_DESTINATION_URL>"
 ```
 
-Replace `<WAF_POLICY_NAME>` with the name of your WAF policy and `<SECURITY_LOG_DESTINATION_URL>` with the URL of your security log destination.
+Replace `<WAF_POLICY_NAME>` with the name of your Policy resource and `<SECURITY_LOG_DESTINATION_URL>` with the URL of your security log destination.
 
 ---
 
 ## Create VirtualServer resource and apply policy
 
-Once the WAF policy has been created, link it to your *virtualServer resource*.
+After you create the Policy resource, link it to your *VirtualServer resource*.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1

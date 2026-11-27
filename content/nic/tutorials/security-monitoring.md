@@ -6,6 +6,8 @@ f5-content-type: how-to
 f5-product: NGINX Ingress Controller
 ---
 
+**Applies to:** Current and legacy F5 WAF for NGINX integrations
+
 This document explains how to use NGINX Ingress Controller to configure NGINX Agent to send F5 WAF for NGINX metrics to NGINX Security Monitoring.
 
 You can send security metrics to either:
@@ -138,7 +140,7 @@ This guide assumes that you have an NGINX One Console account with access to cre
 
     Replace `<DATA_PLANE_KEY>` with your data plane key.
 
-- Use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). Images without the `-agent` suffix include NGINX Agent 2 and are not compatible with NGINX One Console. See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for the full list of available image variants.
+- Use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for the legacy F5 WAF for NGINX integration, or `debian-plus-nap-v5-agent` for the current integration). Images without the `-agent` suffix include NGINX Agent 2 and are not compatible with NGINX One Console. See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for the full list of available image variants.
 
 ## Deploy NGINX Ingress Controller with NGINX Agent
 
@@ -264,11 +266,11 @@ This applies to deployments using NGINX Instance Manager and NGINX One Console. 
 
 Configure the WAF Policy `logDest` to send logs to the NGINX Agent syslog listener at `syslog:server=127.0.0.1:1514`.
 
-For F5 WAF for NGINX v4, see the [VirtualServer example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring) and [Ingress example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring) in the repository. Do not modify the APLogConf in these examples, because NGINX Agent expects a specific log format.
+For the legacy F5 WAF for NGINX integration with in-pod compilation, see the [VirtualServer example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring) and [Ingress example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring) in the repository. Do not modify the APLogConf in these examples, because NGINX Agent expects a specific log format.
 
-For F5 WAF for NGINX v5, see the [VirtualServer example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring-v5) and [Ingress example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring-v5) in the repository. Compile policy and log configurations into bundles (`.tgz` files). Do not use APPolicy and APLogConf custom resources. The log bundle must be compiled from a log profile that matches the format required by NGINX Security Monitoring. See the [F5 WAF for NGINX v5 configuration guide]({{< ref "/nic/integrations/app-protect-waf-v5/configuration.md" >}}) for details on compiling policy and log bundles.
+For F5 WAF for NGINX, see the [VirtualServer example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring-v5) and [Ingress example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring-v5) in the repository. These examples use local bundles: compile policy and log configurations into bundles (`.tgz` files) instead of using APPolicy and APLogConf custom resources. The log bundle must be compiled from a log profile that matches the format required by NGINX Security Monitoring. See [Use local policy bundles with F5 WAF for NGINX]({{< ref "/nic/integrations/waf/current/local-bundles.md" >}}) for details on compiling policy and log bundles.
 
-When using NGINX One Console, you can create and manage WAF policies under **WAF > Policies**. After you create a policy, compile it into a `.tgz` bundle using the waf-compiler image and copy it to the pod at `/etc/app_protect/bundles/`. See [Compile WAF Policy from JSON to Bundle]({{< ref "/nic/install/waf-helm.md#compile-waf-policy-from-json-to-bundle" >}}) for the compilation steps.
+When using NGINX One Console with F5 WAF for NGINX, you can create and manage WAF policies under **WAF > Policies**. After you create a policy, compile it into a `.tgz` bundle using the waf-compiler image and copy it to the pod at `/etc/app_protect/bundles/`. See [Compile a policy bundle from JSON]({{< ref "/nic/integrations/waf/current/helm-local-bundles.md#compile-a-policy-bundle-from-json" >}}) for the compilation steps.
 
 For the required log bundle, the `secops_dashboard` log profile is available to download directly from **WAF > Log Profiles** in NGINX One Console — no compilation needed. See [Set up security monitoring](https://docs.nginx.com/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring/) in the NGINX One Console documentation for details.
 
@@ -325,7 +327,7 @@ Replace `<RELEASE_NAME>` with the name of your Helm release.
 {{%tab name="Using Manifests"%}}
 
 1. Update the container image in your Deployment or DaemonSet to an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 
-   For example, depending on your Linux distribution, you could use `debian-plus-nap-agent` for WAF v4, or `debian-plus-nap-v5-agent` for WAF v5.
+   For example, depending on your Linux distribution, you could use `debian-plus-nap-agent` for the legacy F5 WAF for NGINX integration, or `debian-plus-nap-v5-agent` for the current integration.
 
 2. Update the container args to remove `-agent-instance-group`:
 

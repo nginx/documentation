@@ -1,9 +1,0 @@
----
-title: F5 WAF for NGINX v5
-url: /nginx-ingress-controller/integrations/app-protect-waf-v5/
-description: Learn how to use NGINX Ingress Controller for Kubernetes with F5 WAF for NGINX version 5.
-weight: 200
-menu:
-  docs:
-    parent: NGINX Ingress Controller
----

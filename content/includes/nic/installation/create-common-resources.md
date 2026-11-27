@@ -3,7 +3,7 @@ f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
-- content/nic/integrations/app-protect-waf/installation.md
+- content/nic/integrations/waf/legacy/installation.md
 ---
 
 In this section, you'll create resources that most NGINX Ingress Controller installations require:

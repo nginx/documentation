@@ -358,7 +358,9 @@ For more information, see [Set up topology-aware routing]({{< ref "/nic/configur
 
 ### -enable-app-protect {#cmdoption-enable-app-protect}
 
-Enables support for App Protect.
+Enables support for F5 WAF for NGINX.
+
+**Applies to:** Current and legacy F5 WAF for NGINX integrations. For the differences, see [Choose an F5 WAF for NGINX deployment]({{< ref "/nic/integrations/waf/choose-deployment.md" >}}).
 
 Requires [-nginx-plus](#cmdoption-nginx-plus).
 
@@ -366,7 +368,9 @@ Requires [-nginx-plus](#cmdoption-nginx-plus).
 
 ### -app-protect-log-level <string> {#cmdoption-app-protect-log-level}
 
-Sets log level for App Protect. Allowed values: fatal, error, warn, info, debug, trace.
+Sets log level for F5 WAF for NGINX. Allowed values: fatal, error, warn, info, debug, trace.
+
+**Applies to:** Legacy F5 WAF for NGINX integration.
 
 Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdoption-enable-app-protect).
 
@@ -420,13 +424,19 @@ Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmd
 
 ### -enable-app-protect-ip-intelligence {#cmdoption-enable-app-protect-ip-intelligence}
 
-Enables App Protect IP Intelligence. Defaults to `false`. *Only applies to WAF single-container deployments*.
+Enables F5 WAF for NGINX IP Intelligence. Defaults to `false`.
+
+**Applies to:** Legacy F5 WAF for NGINX integration. The current integration runs IP intelligence in the `waf-ip-intelligence` container instead.
 
 Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdoption-enable-app-protect).
 
 ### -plm-storage-url {#cmdoption-plm-storage-url}
 
 SeaweedFS S3 endpoint from which NGINX Ingress Controller fetches the policy and logconf bundle. Leave empty to turn off PLM support.
+
+When set, CRD-based policies use Policy Lifecycle Management (PLM) instead of in-pod compilation. NGINX Ingress Controller watches the `appprotect.f5.com/v1` CRDs that the PLM Helm chart installs, instead of the `v1beta1` CRDs.
+
+**Applies to:** Current F5 WAF for NGINX integration. For details, see [Install F5 WAF for NGINX with Policy Lifecycle Management]({{< ref "/nic/integrations/waf/current/plm-installation.md" >}}).
 
 ### -plm-storage-credentials-secret {#cmdoption-plm-storage-credentials-secret}
 

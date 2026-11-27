@@ -93,7 +93,7 @@ Upgrade or install NGINX Ingress Controller with the following command to config
       --set nginxAgent.endpointHost=agent.connect.nginx.com
     ```
 
-- For NGINX Plus with F5 WAF for NGINX v5, set `controller.appprotect.v5=true` and configure the enforcer and config manager images. See the [F5 WAF for NGINX v5 installation guide]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}) for the additional Helm values required.
+- For NGINX Plus with the current F5 WAF for NGINX integration (formerly F5 WAF for NGINX v5), set `controller.appprotect.v5=true` and configure the enforcer and config manager images. See [Build NGINX Ingress Controller for the current F5 WAF for NGINX integration]({{< ref "/nic/integrations/waf/current/installation.md" >}}) for the additional Helm values required.
 
 The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}})
 for instructions on how to generate your dataplane key from the NGINX One Console.

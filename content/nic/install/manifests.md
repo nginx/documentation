@@ -84,7 +84,7 @@ _F5 DoS for NGINX_:
 
 _F5 WAF for NGINX_:
 
-{{< call-out class="note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
+{{< call-out class="note" >}} These `appprotect.f5.com/v1beta1` CRDs are for in-pod compilation, which only the legacy F5 WAF for NGINX integration supports. Skip this step if you use policy bundles or Policy Lifecycle Management (PLM). For details, see [Choose an F5 WAF for NGINX deployment]({{< ref "/nic/integrations/waf/choose-deployment.md" >}}). {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
@@ -102,7 +102,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 _F5 WAF for NGINX_:
 
-{{< call-out class="note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
+{{< call-out class="note" >}} These `appprotect.f5.com/v1beta1` CRDs are for in-pod compilation, which only the legacy F5 WAF for NGINX integration supports. Skip this step if you use policy bundles or Policy Lifecycle Management (PLM). For details, see [Choose an F5 WAF for NGINX deployment]({{< ref "/nic/integrations/waf/choose-deployment.md" >}}). {{< /call-out >}}
 
 ```shell
 kubectl apply -f config/crd/bases/appprotect.f5.com_aplogconfs.yaml

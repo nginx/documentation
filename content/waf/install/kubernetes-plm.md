@@ -29,5 +29,5 @@ PLM supersedes the early access preview previously known as Kubernetes operation
 
 To use PLM in your cluster, deploy it with your chosen Kubernetes traffic management solution:
 
-- **F5 NGINX Ingress Controller**: For environments that use standard Kubernetes Ingress or NGINX `VirtualServer` resources, see [Install NGINX Ingress Controller with F5 WAF for NGINX using PLM]({{< ref "/nic/install/plm-installation.md" >}}).
+- **F5 NGINX Ingress Controller**: For environments that use standard Kubernetes Ingress or NGINX `VirtualServer` resources, see [Install F5 WAF for NGINX with Policy Lifecycle Management]({{< ref "/nic/integrations/waf/current/plm-installation.md" >}}) in the NGINX Ingress Controller documentation.
 - **F5 NGINX Gateway Fabric**: For environments that use the Kubernetes Gateway API (`Gateway` and `HTTPRoute` resources), see [Get started with F5 WAF for NGINX (PLM)]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).

@@ -1,15 +1,23 @@
 ---
-title: Upgrade NGINX Ingress Controller to F5 WAF for NGINX with PLM
-weight: 210
+title: Migrate from in-pod compilation to Policy Lifecycle Management
+linkTitle: "From in-pod compilation"
+description: Move an NGINX Ingress Controller deployment from the legacy F5 WAF for NGINX integration with in-pod compilation to the current F5 WAF for NGINX integration with Policy Lifecycle Management (PLM).
+weight: 100
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Ingress Controller
 f5-description: >
-  Upgrade an existing F5 NGINX Ingress Controller deployment from in-pod App Protect policy compilation (v1beta1 CRDs) to F5 WAF for NGINX with Policy Lifecycle Management (PLM).
+  Upgrade an existing F5 NGINX Ingress Controller deployment from the legacy F5 WAF for NGINX integration with in-pod policy compilation (v1beta1 CRDs) to the current F5 WAF for NGINX integration with Policy Lifecycle Management (PLM).
 f5-audience: operator
+aliases:
+  - /nginx-ingress-controller/install/plm-upgrade/
 ---
 
-Use this guide to upgrade an existing F5 NGINX Ingress Controller + F5 WAF for NGINX deployment from in-pod App Protect policy compilation to Policy Lifecycle Management (PLM). PLM compiles `APPolicy` and `APLogConf` resources in a dedicated controller and stores the resulting bundles in an in-cluster S3-compatible object store. NGINX Ingress Controller then fetches the compiled bundles instead of compiling them in the data plane.
+**Applies to:** From the legacy F5 WAF for NGINX integration, CRD-based (in-pod compilation), to the current F5 WAF for NGINX integration, CRD-based (PLM)
+
+Use this guide to upgrade an existing F5 NGINX Ingress Controller deployment from the legacy F5 WAF for NGINX integration with in-pod policy compilation to the current F5 WAF for NGINX integration with Policy Lifecycle Management (PLM). PLM compiles `APPolicy` and `APLogConf` resources in a dedicated controller and stores the resulting bundles in an in-cluster S3-compatible object store. NGINX Ingress Controller then fetches the compiled bundles instead of compiling them in the data plane.
+
+The upgrade switches the image to `nginx-ic-nap-v5/nginx-plus-ingress` and sets `controller.appprotect.v5=true`. Your deployment moves from the legacy integration to the current integration, which is the only integration that supports PLM.
 
 Under PLM, the fields you already write on the NGINX Ingress Controller `Policy` resource (`waf.apPolicy` and `waf.securityLogs[].apLogConf`) continue to work unchanged. You don't need to rewrite the `k8s.nginx.org/v1` Policy manifest for a VirtualServer or Ingress during the upgrade.
 
@@ -24,7 +32,7 @@ By the end of this guide, you'll have:
 
 Before you start, make sure you have:
 
-- An existing NGINX Ingress Controller + F5 WAF for NGINX deployment running in your cluster.
+- An existing NGINX Ingress Controller deployment that runs the legacy F5 WAF for NGINX integration with in-pod compilation. To confirm, see [Check which integration you run]({{< ref "/nic/integrations/waf/choose-deployment.md#check-which-integration-you-run" >}}).
 - Existing `APPolicy` and `APLogConf` resources served by the `appprotect.f5.com/v1beta1` CRDs shipped with your current NGINX Ingress Controller installation.
 - `kubectl` and Helm access to the cluster.
 - Credentials for `private-registry.nginx.com`.
@@ -104,7 +112,7 @@ Record the Secret references in `<NAMESPACE>/<NAME>` form. When you run `helm up
 
 ## Apply the NGINX Ingress Controller CRDs
 
-Before you run `helm upgrade`, apply the NGINX Ingress Controller CRDs from the bundled manifest for your target release. The `deploy/crds.yaml` bundle contains every CRD the controller needs (`VirtualServer`, `VirtualServerRoute`, `Policy`, `TransportServer`, `GlobalConfiguration`, `DNSEndpoint`). The bundle deliberately excludes the App Protect CRDs, which PLM owns.
+Before you run `helm upgrade`, apply the NGINX Ingress Controller CRDs from the bundled manifest for your target release. The `deploy/crds.yaml` bundle contains every CRD the controller needs (`VirtualServer`, `VirtualServerRoute`, `Policy`, `TransportServer`, `GlobalConfiguration`, `DNSEndpoint`). The bundle deliberately excludes the `appprotect.f5.com` CRDs, which PLM owns.
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
@@ -116,7 +124,7 @@ Follow this section if your existing NGINX Ingress Controller deployment routes 
 
 ### Upgrade NGINX Ingress Controller with PLM storage
 
-Upgrade the NGINX Ingress Controller release. `--reuse-values` preserves your existing configuration. The `--set` flags overlay PLM storage on top. `--skip-crds` prevents Helm from touching CRDs, because you applied the NGINX Ingress Controller CRDs in the previous step and PLM owns the App Protect CRDs.
+Upgrade the NGINX Ingress Controller release. `--reuse-values` preserves your existing configuration. The `--set` flags overlay PLM storage on top. `--skip-crds` prevents Helm from touching CRDs, because you applied the NGINX Ingress Controller CRDs in the previous step and PLM owns the `appprotect.f5.com` CRDs.
 
 This example uses HTTPS PLM storage with mutual TLS. For HTTP storage, set `controller.appprotect.plmStorage.url` to `http://<HOST>:8333` and omit the `caSecret` and `clientSSLSecret` flags.
 
@@ -208,7 +216,7 @@ Follow this section if your existing NGINX Ingress Controller deployment routes 
 
 ### Audit Ingress annotations
 
-Under PLM, NGINX Ingress Controller doesn't support the App Protect Ingress annotations:
+Under PLM, NGINX Ingress Controller doesn't support these Ingress annotations, which use in-pod compilation:
 
 - `appprotect.f5.com/app-protect-policy`
 - `appprotect.f5.com/app-protect-security-log`
@@ -218,7 +226,7 @@ An Ingress that uses these annotations is accepted but produces a warning after 
 
 ### Upgrade NGINX Ingress Controller with PLM storage
 
-Run the same `helm upgrade` command shown in [Section 1, step 1](#1-upgrade-nginx-ingress-controller-with-plm-storage).
+Run the same `helm upgrade` command shown in [Upgrade NGINX Ingress Controller with PLM storage](#upgrade-nginx-ingress-controller-with-plm-storage) in Section 1.
 
 ### Verify Ingress traffic
 
@@ -226,7 +234,7 @@ For each Ingress, send a normal request and confirm the application responds. Th
 
 ### Confirm bundles come from PLM storage
 
-Use the same procedure as [Section 1, step 4](#4-confirm-bundles-come-from-plm-storage).
+Use the same procedure as [Confirm bundles come from PLM storage](#confirm-bundles-come-from-plm-storage) in Section 1.
 
 ## Troubleshooting
 

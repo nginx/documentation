@@ -1,7 +1,8 @@
 ---
-title: Configure remote F5 WAF for NGINX bundle sources
+title: Fetch policy bundles from a remote source
+linkTitle: "Bundle sources"
 description: "Configure NGINX Ingress Controller to fetch F5 WAF for NGINX policy bundles from NGINX One Console, NGINX Instance Manager, or an HTTPS server."
-f5-keywords: "F5 WAF for NGINX, WAF policy bundle, apBundleSource, apLogBundleSource, NGINX One Console, NGINX Instance Manager, HTTPS bundle source, waf-bundle Secret, NGINX Ingress Controller, VirtualServer, Policy resource, bundle polling"
+f5-keywords: "F5 WAF for NGINX, WAF policy bundle, bundle sources, apBundleSource, apLogBundleSource, NGINX One Console, NGINX Instance Manager, HTTPS bundle source, waf-bundle Secret, NGINX Ingress Controller, VirtualServer, Policy resource, bundle polling"
 f5-summary: >
   Use this guide to configure NGINX Ingress Controller to automatically fetch compiled F5 WAF for NGINX
   policy bundles from NGINX One Console, NGINX Instance Manager, or any HTTPS server, instead of
@@ -12,10 +13,14 @@ f5-summary: >
   does not cover compiling WAF policies or NGINX One Console/NGINX Instance Manager setup themselves.
 f5-audience: operator
 toc: true
-weight: 1800
+weight: 300
 f5-content-type: how-to
-f5-product: NGINX Ingress Controller
+f5-product: F5 NGINX Ingress Controller
+aliases:
+  - /nginx-ingress-controller/integrations/app-protect-waf-v5/bundle-sources/
 ---
+
+**Applies to:** Current F5 WAF for NGINX integration, bundle-based (bundle sources)
 
 ## Overview
 
@@ -35,7 +40,7 @@ Complete end-to-end NGINX Ingress Controller with F5 WAF for NGINX bundle source
 
 ### Before you begin
 
-- NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
+- NGINX Ingress Controller deployed with [F5 WAF for NGINX]({{< ref "/nic/integrations/waf/current/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/integrations/waf/current/helm-local-bundles.md" >}}).
 - An [NGINX One Console]({{< ref "/nginx-one-console/" >}}) account with a published WAF policy. See [Manage policies]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
@@ -52,7 +57,7 @@ kubectl create secret generic n1c-credentials \
   --from-literal=token=<YOUR_API_TOKEN>
 ```
 
-### Create a WAF Policy
+### Create the Policy resource
 
 Create a Policy resource using `apBundleSource` with `type: N1C`:
 
@@ -192,7 +197,7 @@ Replace `<SYSLOG_POD>` with the name of your syslog pod.
 
 ### Before you begin
 
-- NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
+- NGINX Ingress Controller deployed with [F5 WAF for NGINX]({{< ref "/nic/integrations/waf/current/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/integrations/waf/current/helm-local-bundles.md" >}}).
 - A working [NGINX Instance Manager]({{< ref "/nim/" >}}) instance with a compiled policy bundle. See [Create a security policy bundle]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
@@ -227,7 +232,7 @@ kubectl create secret generic nim-credentials \
 
 {{% /tabs %}}
 
-### Create a WAF Policy
+### Create the Policy resource
 
 Create a Policy resource using `apBundleSource` with `type: NIM`:
 
@@ -361,8 +366,8 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ### Before you begin
 
-- NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
-- A compiled `.tgz` policy bundle hosted on an HTTPS server. To compile a policy bundle, see [Compile F5 WAF for NGINX policies]({{< ref "/nic/integrations/app-protect-waf-v5/compile-waf-policies.md" >}}).
+- NGINX Ingress Controller deployed with [F5 WAF for NGINX]({{< ref "/nic/integrations/waf/current/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/integrations/waf/current/helm-local-bundles.md" >}}).
+- A compiled `.tgz` policy bundle hosted on an HTTPS server. To compile a policy bundle, see [Compile policy bundles with NGINX Instance Manager]({{< ref "/nic/integrations/waf/current/compile-waf-policies.md" >}}) or the [F5 WAF for NGINX compiler]({{< ref "/waf/configure/compiler.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
 ### Host compiled bundles on an HTTPS server
@@ -419,7 +424,7 @@ Skip this step if your HTTPS server uses a publicly trusted certificate.
     --key=</path/to/tls.key>
   ```
 
-### Create a WAF Policy
+### Create the Policy resource
 
 Create a Policy resource using `apBundleSource` with `type: HTTPS`. The `url` must be the full path to the `.tgz` bundle file:
 
