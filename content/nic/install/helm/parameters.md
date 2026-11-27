@@ -158,26 +158,26 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.pod.annotations** | The annotations of the NGINX Ingress Controller pod. | {} |
 | **controller.pod.extraLabels** | The additional extra labels of the NGINX Ingress Controller pod. For a key that's also in `commonLabels`, the pod uses this value. If you set a label that the chart manages, the Helm install or upgrade fails. | {} |
 | **controller.appprotect.enable** | Enables the F5 WAF for NGINX module in the NGINX Ingress Controller. | false |
-| **controller.appprotect.v5** | Enables F5 WAF for NGINX v5. | false |
+| **controller.appprotect.v5** | Deploys the F5 WAF for NGINX containers (`waf-enforcer` and `waf-config-mgr`) and the `app-protect-bundles` volume. Set it to `true` for images for the current F5 WAF for NGINX integration, such as `nginx-ic-nap-v5/nginx-plus-ingress`, and to `false` for images for the legacy F5 WAF for NGINX integration. The value must match the image, because the chart can't check it. For details, see [Choose an F5 WAF for NGINX deployment]({{< ref "/nic/integrations/waf/choose-deployment.md" >}}). | false |
 | **controller.appprotect.plmStorage.url** | SeaweedFS S3 endpoint from which NGINX Ingress Controller fetches the policy and logconf bundle. Leave empty to turn off PLM support. Requires `controller.appprotect.v5` to be `true`. | "" |
 | **controller.appprotect.plmStorage.credentialsSecret** | Secret containing the SeaweedFS admin secret in the `seaweedfs_admin_secret` key. Format: `<NAMESPACE>/<NAME>`. | "" |
 | **controller.appprotect.plmStorage.caSecret** | Optional Secret containing the SeaweedFS admin secret under `seaweedfs_admin_secret`. Format: `<NAMESPACE>/<NAME>`. | "" |
 | **controller.appprotect.plmStorage.clientSSLSecret** | Optional Secret containing `tls.crt` and `tls.key` for SeaweedFS mTLS. Format: `<NAMESPACE>/<NAME>`. | "" |
 | **controller.appprotect.plmStorage.insecureSkipVerify** | Turns off SeaweedFS TLS verification. For development and testing only. | false |
-| **controller.appprotect.volumes** | Volumes for F5 WAF for NGINX v5. | [{"name": "app-protect-bd-config", "emptyDir": {}},{"name": "app-protect-config", "emptyDir": {}},{"name": "app-protect-bundles", "emptyDir": {}}] |
-| **controller.appprotect.enforcer.host** | Host that the F5 WAF for NGINX v5 Enforcer runs on. | "127.0.0.1" |
-| **controller.appprotect.enforcer.port** | Port that the F5 WAF for NGINX v5 Enforcer runs on. | 50000 |
-| **controller.appprotect.enforcer.image.repository** | The image repository of the F5 WAF for NGINX v5 Enforcer. | private-registry.nginx.com/nap/waf-enforcer |
-| **controller.appprotect.enforcer.image.tag** | The tag of the F5 WAF for NGINX v5 Enforcer. | "5.6.0" |
-| **controller.appprotect.enforcer.image.digest** | The digest of the F5 WAF for NGINX v5 Enforcer. Takes precedence over tag if set. | "" |
-| **controller.appprotect.enforcer.image.pullPolicy** | The pull policy for the F5 WAF for NGINX v5 Enforcer image. | IfNotPresent |
-| **controller.appprotect.enforcer.securityContext** | The security context for F5 WAF for NGINX v5 Enforcer container. | {} |
-| **controller.appprotect.configManager.image.repository** | The image repository of the F5 WAF for NGINX v5 Configuration Manager. | private-registry.nginx.com/nap/waf-config-mgr |
-| **controller.appprotect.configManager.image.tag** | The tag of the F5 WAF for NGINX v5 Configuration Manager. | "5.6.0" |
-| **controller.appprotect.configManager.image.digest** | The digest of the F5 WAF for NGINX v5 Configuration Manager. Takes precedence over tag if set. | "" |
-| **controller.appprotect.configManager.image.pullPolicy** | The pull policy for the F5 WAF for NGINX v5 Configuration Manager image. | IfNotPresent |
-| **controller.appprotect.configManager.securityContext** | The security context for F5 WAF for NGINX v5 Configuration Manager container. | {"allowPrivilegeEscalation":false,"runAsUser":101,"runAsNonRoot":true,"capabilities":{"drop":["all"]}} |
-| **controller.appprotect.ipIntelligence.resources** | The resources of the F5 WAF for NGINX v5 IP Intelligence container. | {} |
+| **controller.appprotect.volumes** | Volumes for F5 WAF for NGINX. | [{"name": "app-protect-bd-config", "emptyDir": {}},{"name": "app-protect-config", "emptyDir": {}},{"name": "app-protect-bundles", "emptyDir": {}}] |
+| **controller.appprotect.enforcer.host** | Host that the F5 WAF for NGINX Enforcer runs on. | "127.0.0.1" |
+| **controller.appprotect.enforcer.port** | Port that the F5 WAF for NGINX Enforcer runs on. | 50000 |
+| **controller.appprotect.enforcer.image.repository** | The image repository of the F5 WAF for NGINX Enforcer. | private-registry.nginx.com/nap/waf-enforcer |
+| **controller.appprotect.enforcer.image.tag** | The tag of the F5 WAF for NGINX Enforcer. | "5.6.0" |
+| **controller.appprotect.enforcer.image.digest** | The digest of the F5 WAF for NGINX Enforcer. Takes precedence over tag if set. | "" |
+| **controller.appprotect.enforcer.image.pullPolicy** | The pull policy for the F5 WAF for NGINX Enforcer image. | IfNotPresent |
+| **controller.appprotect.enforcer.securityContext** | The security context for F5 WAF for NGINX Enforcer container. | {} |
+| **controller.appprotect.configManager.image.repository** | The image repository of the F5 WAF for NGINX Configuration Manager. | private-registry.nginx.com/nap/waf-config-mgr |
+| **controller.appprotect.configManager.image.tag** | The tag of the F5 WAF for NGINX Configuration Manager. | "5.6.0" |
+| **controller.appprotect.configManager.image.digest** | The digest of the F5 WAF for NGINX Configuration Manager. Takes precedence over tag if set. | "" |
+| **controller.appprotect.configManager.image.pullPolicy** | The pull policy for the F5 WAF for NGINX Configuration Manager image. | IfNotPresent |
+| **controller.appprotect.configManager.securityContext** | The security context for F5 WAF for NGINX Configuration Manager container. | {"allowPrivilegeEscalation":false,"runAsUser":101,"runAsNonRoot":true,"capabilities":{"drop":["all"]}} |
+| **controller.appprotect.ipIntelligence.resources** | The resources of the F5 WAF for NGINX IP Intelligence container. | {} |
 | **controller.appprotect.logLevel** | Sets the log level for F5 WAF for NGINX | N/A |
 | **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
 | **controller.appprotectdos.debug** | Enable debugging for App Protect DoS. | false |

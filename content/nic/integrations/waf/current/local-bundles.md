@@ -1,14 +1,20 @@
 ---
-title: Configure F5 WAF for NGINX with NGINX Ingress Controller
-weight: 200
+title: Use local policy bundles with F5 WAF for NGINX
+linkTitle: "Local bundles"
+description: Compile an F5 WAF for NGINX policy bundle, copy it to the bundle folder, and reference it from an NGINX Ingress Controller Policy resource.
+weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: NGINX Ingress Controller
+f5-product: F5 NGINX Ingress Controller
+aliases:
+  - /nginx-ingress-controller/integrations/app-protect-waf-v5/configuration/
 ---
+
+**Applies to:** Current F5 WAF for NGINX integration, bundle-based (local bundles)
 
 ## Overview
 
-This document explains how to use F5 NGINX Ingress Controller to configure [F5 WAF for NGINX v5]({{< ref "/waf/" >}}).
+This document explains how to use [F5 WAF for NGINX]({{< ref "/waf/" >}}) with local policy bundles in F5 NGINX Ingress Controller. You copy compiled bundles to the bundle folder, `/etc/app_protect/bundles`, and reference them from a Policy resource.
 
 {{< call-out class="note" >}} There are complete NGINX Ingress Controller with F5 WAF for NGINX [example resources on GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5). {{< /call-out >}}
 
@@ -16,9 +22,9 @@ This document explains how to use F5 NGINX Ingress Controller to configure [F5 W
 
 NGINX Ingress Controller has global configuration parameters that match those in F5 WAF for NGINX. They are found in the [ConfigMap resource]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}): the F5 WAF for NGINX parameters are prefixed with `app-protect*`.
 
-## Enable F5 WAF for NGINX v5
+## Turn on F5 WAF for NGINX
 
-F5 WAF for NGINX v5 can be enabled for VirtualServer, VirtualServerRoute, and Ingress resources through a Policy resource that references a WAF bundle or bundle source. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}).
+You turn on F5 WAF for NGINX for VirtualServer, VirtualServerRoute, and Ingress resources with an NGINX Ingress Controller Policy resource. The Policy resource references a local bundle, a bundle source, or, with Policy Lifecycle Management (PLM), an `APPolicy` resource. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}).
 
 {{< call-out class="note" >}}
 
@@ -30,17 +36,19 @@ A `Cache` policy with `cacheBackgroundUpdate` also uses subrequests. These subre
 
 ---
 
-## F5 WAF for NGINX Bundles
+## Add policy bundles to the bundle folder
 
 F5 WAF for NGINX bundles for VirtualServer custom resources are defined by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
 
-Before applying a policy, a WAF policy bundle must be created, then copied to a volume mounted to `/etc/app_protect/bundles`.
+Before applying a policy, a policy bundle must be created, then copied to a volume mounted to `/etc/app_protect/bundles`. This is the bundle folder for the current F5 WAF for NGINX integration. The legacy F5 WAF for NGINX integration uses a different folder, so check [which integration you run]({{< ref "/nic/integrations/waf/choose-deployment.md#check-which-integration-you-run" >}}) before you copy bundles.
 
-{{< call-out class="tip" >}} Instead of manually placing bundles on a mounted volume, you can configure NGINX Ingress Controller to fetch bundles from a remote source automatically. See [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for details on NGINX One Console, NGINX Instance Manager, and HTTPS source types. {{< /call-out >}}
+To compile a policy bundle, use the [F5 WAF for NGINX compiler]({{< ref "/waf/configure/compiler.md" >}}), as shown in [Install F5 WAF for NGINX with Helm and local bundles]({{< ref "/nic/integrations/waf/current/helm-local-bundles.md" >}}). You can also [compile policy bundles with NGINX Instance Manager]({{< ref "/nic/integrations/waf/current/compile-waf-policies.md" >}}).
+
+{{< call-out class="tip" >}} Instead of manually placing bundles on a mounted volume, you can configure NGINX Ingress Controller to fetch bundles from a remote source automatically. See [Fetch policy bundles from a remote source]({{< ref "/nic/integrations/waf/current/bundle-sources.md" >}}) for details on NGINX One Console, NGINX Instance Manager, and HTTPS source types. {{< /call-out >}}
 
 {{< call-out class="note" >}} NGINX Ingress Controller supports `securityLogs` for policy bundles. Log bundles must also be copied to a volume mounted to `/etc/app_protect/bundles`. {{< /call-out >}}
 
-This example shows how a policy is configured by referencing a generated WAF Policy Bundle:
+This example shows an NGINX Ingress Controller Policy resource that references a local policy bundle:
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -78,13 +86,13 @@ Replace `<LOG_BUNDLE_NAME>` with the name of your log bundle.
 
 ## Configure NGINX Plus Ingress Controller using Virtual Server resources
 
-This example shows how to deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX v5, deploy a simple web application, and then configure load balancing and WAF protection for that application using the VirtualServer resource.
+This example shows how to deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX, deploy a simple web application, and then configure load balancing and WAF protection for that application using the VirtualServer resource.
 
 {{< call-out class="note" >}} You can find the files for this example on [GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5).{{< /call-out >}}
 
 ### Prerequisites
 
-1. Follow the installation [instructions]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX version 5.
+1. Follow the installation [instructions]({{< ref "/nic/integrations/waf/current/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX.
 
 2. Save the public IP address of NGINX Ingress Controller into a shell variable:
 
@@ -116,11 +124,11 @@ Create the syslog service and pod for the F5 WAF for NGINX security logs:
    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5/syslog.yaml
    ```
 
-### Deploy the WAF Policy
+### Deploy the Policy resource
 
-{{< call-out class="note" >}} Configuration settings in the Policy resource enable WAF protection by configuring F5 WAF for NGINX with the log configuration created in the previous step. The policy bundle referenced as `your_policy_bundle_name.tgz` need to be created and placed in the `/etc/app_protect/bundles` volume first.{{< /call-out >}}
+{{< call-out class="note" >}} Configuration settings in the Policy resource enable WAF protection by configuring F5 WAF for NGINX with the log configuration created in the previous step. The policy bundle referenced as `your_policy_bundle_name.tgz` needs to be created and placed in the `/etc/app_protect/bundles` volume first.{{< /call-out >}}
 
-Create and deploy the WAF policy.
+Create and deploy the Policy resource.
 
  ```shell
   kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5/waf.yaml

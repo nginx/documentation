@@ -1,12 +1,18 @@
 ---
-title: Configure F5 WAF for NGINX with NGINX Ingress Controller
+title: Configure the legacy F5 WAF for NGINX integration
+linkTitle: "Configure policies"
+description: Configure the legacy F5 WAF for NGINX integration in NGINX Ingress Controller with APPolicy, APLogConf, and APUserSig resources, or with local policy bundles.
 weight: 200
 toc: true
-type: how-to
-f5-product: NGINX Ingress Controller
+f5-content-type: how-to
+f5-product: F5 NGINX Ingress Controller
+aliases:
+  - /nginx-ingress-controller/integrations/app-protect-waf/configuration/
 ---
 
-This document explains how to use F5 NGINX Ingress Controller to configure F5 WAF for NGINX.
+**Applies to:** Legacy F5 WAF for NGINX integration, CRD-based (in-pod compilation) and bundle-based (local bundles)
+
+This document explains how to use F5 NGINX Ingress Controller to configure the legacy F5 WAF for NGINX integration. With in-pod compilation, you define policies as `appprotect.f5.com/v1beta1` resources, and NGINX Ingress Controller compiles them in the pod. With local bundles, you copy compiled bundles to the bundle folder, `/etc/nginx/waf/bundles`.
 
 {{< call-out class="note" >}} Check out the complete NGINX Ingress Controller with F5 WAF for NGINX example resources on GitHub [for VirtualServer resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf) and [for Ingress resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-waf).{{< /call-out >}}
 
@@ -163,7 +169,7 @@ You can define F5 WAF for NGINX [User-Defined Signatures](/nginx-app-protect-waf
 
 The field `revisionDatetime` is not currently supported.
 
-`APUserSig` resources increase the reload time of NGINX Plus compared with `APPolicy` and `APLogConf` resources. Read [NGINX fails to start or reload]({{< ref "/nic/integrations/app-protect-waf-v5/troubleshoot-app-protect-waf.md#nginx-fails-to-start-or-reload" >}}) for more information.
+`APUserSig` resources increase the reload time of NGINX Plus compared with `APPolicy` and `APLogConf` resources. Read [NGINX fails to start or reload]({{< ref "/nic/integrations/waf/legacy/troubleshoot.md#nginx-fails-to-start-or-reload" >}}) for more information.
 
 {{< /call-out >}}
 
@@ -233,7 +239,7 @@ spec:
 
 You can define F5 WAF for NGINX bundles for VirtualServer custom resources by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
 
-Before applying a policy, a WAF policy bundle must be created, then copied to a volume mounted to `/etc/nginx/waf/bundles`.
+Before applying a policy, a policy bundle must be created, then copied to a volume mounted to `/etc/nginx/waf/bundles`. This is the bundle folder for the legacy F5 WAF for NGINX integration. The current integration uses `/etc/app_protect/bundles` instead, so check [which integration you run]({{< ref "/nic/integrations/waf/choose-deployment.md#check-which-integration-you-run" >}}) before you copy bundles.
 
 {{< call-out class="note" >}} NGINX Ingress Controller supports `securityLogs` for policy bundles when using `apLogBundle` instead of `apLogConf`. Log bundles must also be copied to a volume mounted to `/etc/nginx/waf/bundles`. {{< /call-out >}}
 
@@ -275,7 +281,7 @@ Replace `<LOG_BUNDLE_NAME>` with the name of your log bundle.
 
 F5 WAF IP Intelligence lets you restrict access based on the source IP address reputation. You can block traffic from known malicious sources such as botnets, scanners, tor proxies, and more.
 
-{{< call-out "note" >}} IP Intelligence requires additional setup during installation. See the [installation guide]({{< ref "/nic/integrations/app-protect-waf/installation.md#enable-ip-intelligence" >}}) for setup instructions. {{< /call-out >}}
+{{< call-out "note" >}} IP Intelligence requires additional setup during installation. See the [installation guide]({{< ref "/nic/integrations/waf/legacy/installation.md#enable-f5-waf-for-nginx-module-requires-nginx-plus" >}}) for setup instructions. {{< /call-out >}}
 
 To enable IP intelligence in your WAF policy:
 
@@ -403,7 +409,7 @@ These are the typical steps to deploy an OpenAPI protection Policy in NGINX Ingr
 2. Add the reference to the desired OpenAPI file.
 3. Make other custom changes if needed (e.g. enable Data Guard protection).
 4. Use a tool to convert the result to YAML. There are many, for example: [`yq` utility](https://github.com/mikefarah/yq).
-5. Add the YAML properties to create an `APPolicy` Custom Resource putting the policy itself (as in step 4) within the `spec` property of the Custom Resource. Refer to the [F5 WAF for NGINX Policies](#nginx-app-protect-waf-policies) section above.
+5. Add the YAML properties to create an `APPolicy` Custom Resource putting the policy itself (as in step 4) within the `spec` property of the Custom Resource. Refer to the [F5 WAF for NGINX Policies](#waf-policies) section.
 6. Create a `Policy` object which references the `APPolicy` Custom Resource as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/waf.yaml).
 7. Finally, attach the `Policy` object to a `VirtualServer` resource as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/virtual-server.yaml).
 
@@ -537,13 +543,13 @@ The `link` option is also available in the `openApiFileReference` property and i
 
 ## Configuration in NGINX Plus Ingress Controller using Virtual Server Resource
 
-In this example we deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX, deploy a simple web application, and then configure load balancing and WAF protection for that application using the VirtualServer resource.
+In this example we deploy NGINX Ingress Controller with NGINX Plus and the legacy F5 WAF for NGINX integration, deploy a simple web application, and then configure load balancing and WAF protection for that application using the VirtualServer resource.
 
 {{< call-out class="note" >}} You can find the example, and the files referenced, on [GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf).{{< /call-out >}}
 
 ## Prerequisites
 
-1. Follow the installation [instructions]({{< ref "/nic/integrations/app-protect-waf/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX.
+1. Follow the installation [instructions]({{< ref "/nic/integrations/waf/legacy/installation.md" >}}) to deploy NGINX Ingress Controller with NGINX Plus and the legacy F5 WAF for NGINX integration.
 2. Save the public IP address of NGINX Ingress Controller into a shell variable:
 
    ```shell

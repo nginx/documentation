@@ -3,8 +3,8 @@ f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
-- content/nic/integrations/app-protect-waf-v5/installation.md
-- content/nic/integrations/app-protect-waf/installation.md
+- content/nic/integrations/waf/current/installation.md
+- content/nic/integrations/waf/legacy/installation.md
 ---
 
 To make sure your NGINX Ingress Controller pods reach the `Ready` state, you'll need to create custom resource definitions (CRDs) for various components.

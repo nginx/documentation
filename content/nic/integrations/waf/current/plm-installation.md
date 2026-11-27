@@ -1,5 +1,7 @@
 ---
-title: Install NGINX Ingress Controller with F5 WAF for NGINX using PLM
+title: Install F5 WAF for NGINX with Policy Lifecycle Management
+linkTitle: "Policy Lifecycle Management"
+description: Install NGINX Ingress Controller with F5 WAF for NGINX and Policy Lifecycle Management (PLM), then protect a VirtualServer or Ingress with an APPolicy resource.
 weight: 200
 toc: true
 f5-content-type: tutorial
@@ -9,9 +11,15 @@ f5-description: >
   Lifecycle Management (PLM). Deploy WAF-protected traffic using either a
   VirtualServer or an Ingress resource.
 f5-audience: operator
+aliases:
+  - /nginx-ingress-controller/install/plm-installation/
 ---
 
+**Applies to:** Current F5 WAF for NGINX integration, CRD-based (PLM)
+
 Use this guide to install F5 NGINX Ingress Controller with F5 WAF for NGINX using Policy Lifecycle Management (PLM). PLM defines WAF policies as Kubernetes custom resources, compiles them automatically, and stores the compiled bundles in an in-cluster S3-compatible object store. NGINX Ingress Controller then fetches the bundles from PLM storage and enforces the policies at request time.
+
+PLM runs only on the current F5 WAF for NGINX integration, formerly F5 WAF for NGINX v5. If you run the legacy F5 WAF for NGINX integration with `APPolicy` resources, see [Migrate from in-pod compilation to Policy Lifecycle Management]({{< ref "/nic/integrations/waf/legacy/migrate/plm.md" >}}) instead.
 
 By the end of this tutorial, you'll have:
 
@@ -46,7 +54,7 @@ This tutorial uses the following example values. If you use different values, re
 
 ### Reference resources across namespaces
 
-A Policy can use `APPolicy` and `APLogConf` resources from another namespace with `<NAMESPACE>/<NAME>` in the `apPolicy` and `apLogConf` fields. The PLM Policy Controller and NGINX Ingress Controller must both watch that namespace. If the Policy Controller doesn't watch it, the resources are never compiled. If NGINX Ingress Controller doesn't watch it, the Policy reports `WAF PLM bundle: namespace "<NAMESPACE>" is not watched`. Signature revisions come from the single `APSignatures` resource in the PLM namespace, which applies to every policy PLM compiles. `APSignatures` resources in other namespaces have no effect. NGINX Ingress Controller doesn't restrict which namespaces a Policy can reference, so control access with RBAC and the controller's watched namespaces.
+A Policy can use `APPolicy` and `APLogConf` resources from another namespace with `<NAMESPACE>/<NAME>` in the `apPolicy` and `apLogConf` fields. The F5 WAF Policy Controller, which the PLM Helm chart installs, and NGINX Ingress Controller must both watch that namespace. If the Policy Controller doesn't watch it, the resources are never compiled. If NGINX Ingress Controller doesn't watch it, the Policy reports `WAF PLM bundle: namespace "<NAMESPACE>" is not watched`. Signature revisions come from the single `APSignatures` resource in the PLM namespace, which applies to every policy PLM compiles. `APSignatures` resources in other namespaces have no effect. NGINX Ingress Controller doesn't restrict which namespaces a Policy can reference, so control access with RBAC and the controller's watched namespaces.
 
 ### Share one PLM installation between data planes
 
@@ -58,7 +66,7 @@ A cluster supports only one PLM installation, and each NGINX Ingress Controller 
 
 ## Deploy PLM infrastructure
 
-Install the PLM backend before installing NGINX Ingress Controller. The PLM backend provisions the App Protect v1 CRDs, the Policy Controller, the compiler service, and the SeaweedFS storage backend in the `plm-system` namespace.
+Install the PLM backend before installing NGINX Ingress Controller. The PLM backend provisions the `appprotect.f5.com/v1` CRDs, the F5 WAF Policy Controller, the compiler service, and the SeaweedFS storage backend in the `plm-system` namespace.
 
 {{< include "waf/plm-deploy-infrastructure.md" >}}
 
@@ -120,7 +128,7 @@ Record the Secret references in `<NAMESPACE/NAME>` form. You'll pass all four va
 
 ## Install NGINX Ingress Controller with PLM storage
 
-Because PLM owns the `appprotect.f5.com/v1` CRDs, you must apply the controller's own CRDs before running `helm install`. The `deploy/crds.yaml` bundle contains every CRD the controller needs (`VirtualServer`, `VirtualServerRoute`, `Policy`, `TransportServer`, `GlobalConfiguration`, `DNSEndpoint`). The bundle deliberately excludes the App Protect CRDs, which PLM owns.
+Because PLM owns the `appprotect.f5.com/v1` CRDs, you must apply the controller's own CRDs before running `helm install`. The `deploy/crds.yaml` bundle contains every CRD the controller needs (`VirtualServer`, `VirtualServerRoute`, `Policy`, `TransportServer`, `GlobalConfiguration`, `DNSEndpoint`). The bundle deliberately excludes the `appprotect.f5.com` CRDs, which PLM owns.
 
 Download your NGINX Ingress Controller subscription’s JSON Web Token and rename it to `nginx-repo.jwt`.
 
@@ -349,6 +357,7 @@ kubectl wait --for=jsonpath='{.status.state}'=Valid \
 If the Policy stays in `Warning` with a `BundleFetchFailed` reason, see [Troubleshooting](#troubleshooting).
 
 Choose how to attach the Policy:
+
 - [Attach to a VirtualServer](#attach-to-a-virtualserver)
 - [Attach to an Ingress](#attach-to-an-ingress)
 
@@ -572,7 +581,7 @@ curl --resolve cafe.example.com:$IC_HTTP_PORT:$IC_IP \
 
 The response body is `Request Rejected`.
 
-Under PLM, the Ingress-only App Protect annotations (`appprotect.f5.com/app-protect-policy` and `appprotect.f5.com/app-protect-security-log`) aren't supported. Use the `k8s.nginx.org/v1` Policy resource and the `nginx.com/policies` annotation instead, as shown above.
+Under PLM, the `appprotect.f5.com/app-protect-policy` and `appprotect.f5.com/app-protect-security-log` Ingress annotations aren't supported, because they use in-pod compilation. Use the `k8s.nginx.org/v1` Policy resource and the `nginx.com/policies` annotation instead, as shown in this section.
 
 ## Verify bundles on disk
 

@@ -1489,7 +1489,9 @@ A `Cache` policy with `cacheBackgroundUpdate` also uses subrequests. These subre
 
 The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 
-For example, the following policy turns on the referenced APPolicy. You can configure multiple APLogConfs with log destinations:
+Which fields you use depends on your F5 WAF for NGINX integration and policy-management method. Each field lists the combinations it applies to. For the options and supported combinations, see [Choose an F5 WAF for NGINX deployment]({{< ref "/nic/integrations/waf/choose-deployment.md" >}}).
+
+For example, the following policy turns on the referenced APPolicy. You can configure multiple APLogConfs with log destinations. This example uses CRD-based policy management: Policy Lifecycle Management (PLM) on the current F5 WAF for NGINX integration, or in-pod compilation on the legacy F5 WAF for NGINX integration.
 
 ```yaml
 waf:
@@ -1511,12 +1513,12 @@ waf:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``enable`` | Turns on F5 WAF for NGINX. | ``bool`` | Yes |
-|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. References an APPolicy CR by `[<NAMESPACE>/]<NAME>`. When you start the Ingress Controller with `-plm-storage-url`, PLM must have compiled the referenced APPolicy (status.bundle.state == ready). Mutually exclusive with `apBundle`. | `string` | No |
-|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy`` and ``apBundleSource``. | ``string`` | No |
-|``apBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the WAF policy bundle. Mutually exclusive with ``apBundle`` and ``apPolicy``. | [waf.apBundleSource](#wafapbundlesource) | No |
+|``apPolicy`` | References an `APPolicy` resource by `[<NAMESPACE>/]<NAME>`. The meaning depends on the policy-management method. When you start the Ingress Controller with `-plm-storage-url`, it names an `appprotect.f5.com/v1` `APPolicy` that [Policy Lifecycle Management (PLM)]({{< ref "/nic/integrations/waf/current/plm-installation.md" >}}) must have compiled (`status.bundle.state == ready`). Otherwise, it names an `appprotect.f5.com/v1beta1` [APPolicy]({{< ref "/nic/integrations/waf/legacy/configuration.md#waf-policies" >}}) that NGINX Ingress Controller compiles in the pod. Mutually exclusive with `apBundle`. **Applies to:** Current integration with PLM, and legacy F5 WAF for NGINX integration with in-pod compilation. | `string` | No |
+|``apBundle`` | The file name of a [local policy bundle]({{< ref "/nic/integrations/waf/current/local-bundles.md" >}}). NGINX Ingress Controller looks for the file in the bundle folder for the integration that it uses: `/etc/app_protect/bundles/` for the current F5 WAF for NGINX integration, or `/etc/nginx/waf/bundles/` for [the legacy F5 WAF for NGINX integration]({{< ref "/nic/integrations/waf/legacy/configuration.md#waf-bundles" >}}). To find your integration, see [Check which integration you run]({{< ref "/nic/integrations/waf/choose-deployment.md#check-which-integration-you-run" >}}). Mutually exclusive with ``apPolicy`` and ``apBundleSource``. **Applies to:** Current and legacy integrations, with local bundles. | ``string`` | No |
+|``apBundleSource`` | [Remote source]({{< ref "/nic/integrations/waf/current/bundle-sources.md" >}}) for fetching the WAF policy bundle. Mutually exclusive with ``apBundle`` and ``apPolicy``. **Applies to:** Current integration, with bundle sources. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``securityLog.enable`` | **Deprecated:** Turns on the security log. | ``bool`` | No |
-|``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/integrations/waf/legacy/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
+|``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/integrations/waf/current/local-bundles.md" >}}) resource. Uses the same bundle folder as `apBundle`. Only works with ``apBundle``. | ``string`` | No |
 |``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<IP_ADDRESS>; localhost; <FQDN>:<PORT>``, ``stderr``, ``<ABSOLUTE_PATH_TO_FILE>``. | ``string`` | No |
 |``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecuritylogs) | No |
 
@@ -1529,9 +1531,9 @@ waf:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``enable`` | Turns on the security log. | ``bool`` | No |
-|``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. `apLogConf` references an APLogconf CR by `[<NAMESPACE>/]<NAME>`. When you start the Ingress Controller with `-plm-storage-url`, PLM must have compiled the referenced APLogConf (`status.bundle.state == ready`). Only works with `apPolicy`. | ``string`` | No |
-|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. Mutually exclusive with ``apLogBundleSource``. | ``string`` | No |
-|``apLogBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. | [waf.apBundleSource](#wafapbundlesource) | No |
+|``apLogConf`` | References an `APLogConf` resource by `[<NAMESPACE>/]<NAME>`. Like `apPolicy`, the meaning depends on the policy-management method. When you start the Ingress Controller with `-plm-storage-url`, it names an `appprotect.f5.com/v1` `APLogConf` that PLM must have compiled (`status.bundle.state == ready`). Otherwise, it names an `appprotect.f5.com/v1beta1` [APLogConf]({{< ref "/nic/integrations/waf/legacy/configuration.md#waf-logs" >}}) that NGINX Ingress Controller compiles in the pod. Only works with `apPolicy`. **Applies to:** Current integration with PLM, and legacy F5 WAF for NGINX integration with in-pod compilation. | ``string`` | No |
+|``apLogBundle`` | The file name of a [log bundle]({{< ref "/nic/integrations/waf/current/local-bundles.md" >}}). NGINX Ingress Controller looks for the file in the same bundle folder as `apBundle`. Only works with ``apBundle``. Mutually exclusive with ``apLogBundleSource``. **Applies to:** Current and legacy integrations, with local bundles. | ``string`` | No |
+|``apLogBundleSource`` | [Remote source]({{< ref "/nic/integrations/waf/current/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. **Applies to:** Current integration, with bundle sources. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<IP_ADDRESS>; localhost; <FQDN>:<PORT>``, ``stderr``, ``<ABSOLUTE_PATH_TO_FILE>``. | ``string`` | No |
 
 {{% /table %}}
@@ -1544,7 +1546,7 @@ The `apBundleSource` object configures how NGINX Ingress Controller fetches a pr
 - **NIM (NGINX Instance Manager)** -- fetch policies compiled and managed through NGINX Instance Manager. See [bundle docs]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
 - **HTTPS** -- fetch compiled `.tgz` bundles from any HTTPS server or endpoint.
 
-For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}).
+For details and examples, see [Fetch policy bundles from a remote source]({{< ref "/nic/integrations/waf/current/bundle-sources.md" >}}). Bundle sources apply to the current F5 WAF for NGINX integration.
 
 {{% table %}}
 

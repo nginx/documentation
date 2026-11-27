@@ -1,12 +1,18 @@
 ---
-title: Install NGINX Ingress Controller and F5 WAF for NGINX with Docker and Helm
+title: Install F5 WAF for NGINX with Helm and local bundles
+linkTitle: "Local bundles with Helm"
+description: Compile an F5 WAF for NGINX policy bundle with the compiler image, install NGINX Ingress Controller with Helm, and copy the bundle into the pod.
 toc: true
-weight: 200
+weight: 500
 f5-content-type: how-to
 f5-product: F5 NGINX Ingress Controller
+aliases:
+  - /nginx-ingress-controller/install/waf-helm/
 ---
 
-This document describes how to use a local F5 WAF for NGINX v5 Docker image to compile WAF policies, and how to deploy them with F5 NGINX Ingress Controller.
+**Applies to:** Current F5 WAF for NGINX integration, bundle-based (local bundles)
+
+This document describes how to use a local F5 WAF for NGINX Docker image to compile WAF policies, and how to deploy them with F5 NGINX Ingress Controller.
 
 This is accomplished with the following steps:
 
@@ -34,7 +40,7 @@ This is accomplished with the following steps:
 
 {{< include "nic/compatibility-tables/nic-nap.md" >}}
 
-## Compile WAF Policy from JSON to Bundle
+## Compile a policy bundle from JSON
 
 Pull the `waf-compiler` image with:
 
@@ -189,9 +195,9 @@ kubectl get pods
 
 ## Copy the policy bundle into the running instance
 
-Get the name of the pod from the `kubectl get pods` command above.
+Get the name of the pod from the `kubectl get pods` command in the previous section.
 
-Copy the file into the `nginx-ingress` container within the pod:
+Copy the file into the bundle folder for the current F5 WAF for NGINX integration, `/etc/app_protect/bundles`, in the `nginx-ingress` container within the pod:
 
 ```shell
 kubectl cp ./compiled_policy.tgz \
