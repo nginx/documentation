@@ -80,16 +80,6 @@ When you set NGINX Ingress Controller to use debug mode, the setting also applie
 
 ## Known issues
 
-Users have reported the following issues when they use NGINX Ingress Controller with the F5 WAF for NGINX module. These issues commonly occur when a cluster has many Ingress resources with F5 WAF for NGINX turned on.
-
 ### Subrequests compatibility
 
 {{< include "nic/waf/troubleshoot-subrequests.md" >}}
-
-### NGINX configuration drift
-
-{{< include "nic/waf/troubleshoot-configuration-drift.md" >}}
-
-### NGINX fails to start or reload
-
-{{< include "nic/waf/troubleshoot-reload-timeout.md" >}}

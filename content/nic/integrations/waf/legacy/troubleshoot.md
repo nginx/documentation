@@ -146,11 +146,22 @@ Users have reported the following issues when they use NGINX Ingress Controller 
 
 ### NGINX configuration drift
 
-{{< include "nic/waf/troubleshoot-configuration-drift.md" >}}
+When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the F5 WAF for NGINX module turned on, typical reload times are around 150ms. If the F5 WAF for NGINX module is turned on and is being used by any number of Ingress resources, these reloads might take a few seconds instead.
+
+If you are running more than one instance of NGINX Ingress Controller, the extended reload time may cause the NGINX configuration of your instances to be out of sync. This can occur because there is no order imposed on how NGINX Ingress Controller processes the Kubernetes resources. The configurations will be the same after all instances have completed the reload.
+
+To reduce these inconsistencies, don't apply changes to multiple resources handled by NGINX Ingress Controller at the same time.
 
 ### NGINX fails to start or reload
 
-{{< include "nic/waf/troubleshoot-reload-timeout.md" >}}
+The first time NGINX Ingress Controller starts, or whenever there is a change that requires reloading NGINX, NGINX Ingress Controller verifies that the reload was successful. The timeout for this verification is typically 4 seconds. When F5 WAF for NGINX is turned on, this timeout increases to 20 seconds.
+
+This timeout is typically enough to verify configurations. However, when NGINX Ingress Controller handles many Ingress resources with F5 WAF for NGINX turned on at the same time, you might need to extend the timeout further. For example:
+
+- You need to apply a large number of Ingress resources at once.
+- You are running NGINX Ingress Controller for the first time in a cluster where Ingress resources with F5 WAF for NGINX turned on are already present.
+
+You can increase this timeout by setting the `nginx-reload-timeout` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-nginx-reload-timeout" >}}).
 
 When using the User Defined Signature feature, an update to an `APUserSig` requires more reload time from NGINX Plus compared with the other F5 WAF for NGINX resources. As a consequence, F5 recommends increasing the `nginx-reload-timeout` to 30 seconds if you're planning to use this feature.
 

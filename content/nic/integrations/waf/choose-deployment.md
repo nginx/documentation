@@ -18,9 +18,12 @@ Two choices shape how F5 WAF for NGINX works with F5 NGINX Ingress Controller: t
 
 ## What is an F5 WAF for NGINX deployment
 
-An F5 WAF for NGINX deployment combines an integration with a policy-management method. The integration is how NGINX Ingress Controller runs F5 WAF for NGINX in the pod. It's the integration that's legacy, not F5 WAF for NGINX itself. The policy-management method is how a compiled policy reaches the pod.
+Every deployment makes two choices:
 
-The two choices are independent. Older versions of these guides used one version number, v4 or v5, for both. That shorthand no longer works. For example, Policy Lifecycle Management (PLM) defines policies as Kubernetes resources, like in-pod compilation, but PLM runs only on the current integration.
+- **Integration**: How NGINX Ingress Controller runs F5 WAF for NGINX in the pod. There's a current integration and a legacy integration. Only the integration is legacy, not F5 WAF for NGINX.
+- **Policy-management method**: How a compiled policy gets to the pod.
+
+Older versions of these guides used v4 and v5 to describe both choices at once. Don't rely on that. For example, Policy Lifecycle Management (PLM) uses Kubernetes resources for policies, but it runs only on the current integration.
 
 ### Integration
 
