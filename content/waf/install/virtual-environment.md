@@ -156,11 +156,11 @@ findDeps app-protect=<DESIRED_VERSION>
 
 {{< /details >}}
 
-### Oracle Linux / RHEL / Rocky Linux
+### Oracle Linux / RHEL / Rocky Linux / AlmaLinux
 
 {{< call-out class="important" >}}
 
-The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<VERSION>` with your operating system major version: `8`, `9`, or `10`.
+The steps are identical for Oracle Linux, RHEL, Rocky Linux, and AlmaLinux. In the commands below, replace `<VERSION>` with your operating system major version: `8`, `9`, or `10`. For AlmaLinux, only version `10` is supported.
 
 {{< /call-out >}}
 
@@ -174,6 +174,12 @@ Add F5 WAF for NGINX dependencies:
 
 ```shell
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+```
+
+Install the `dnf config-manager` plugin if it isn't already installed:
+
+```shell
+sudo dnf install 'dnf-command(config-manager)'
 ```
 
 Enable F5 WAF for NGINX dependencies:
