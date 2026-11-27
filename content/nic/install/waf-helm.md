@@ -3,25 +3,23 @@ title: Install NGINX Ingress Controller and F5 WAF for NGINX with Docker and Hel
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1861
+f5-product: F5 NGINX Ingress Controller
 ---
 
-This document describes how to build a local F5 WAF for NGINX v5 Docker image with NGINX Plus Ingress
-Controller, which can be used to compile WAF policies.
+This document describes how to use a local F5 WAF for NGINX v5 Docker image to compile WAF policies, and how to deploy them with F5 NGINX Ingress Controller.
 
 This is accomplished with the following steps:
 
 - Prepare license secrets to enable a Kubernetes deployment
-- Use a F5 WAF for NGINX Docker image to transform a policy JSON file into a compiled bundle
+- Use an F5 WAF for NGINX Docker image to transform a policy JSON file into a compiled bundle
 - Configure PersistentVolumes so the deployed F5 WAF for NGINX instance can access the compiled bundle
-- Deploy NGINX Plus Ingress Controller with F5 WAF for NGINX
+- Deploy NGINX Ingress Controller with F5 WAF for NGINX
 - Test example services to validate that the WAF policies work
 
 ## Prepare Secrets and credentials
 
-1. Download your NGINX Ingress Controller subscription's JSON Web Token, SSL Certificate, and Private Key from MyF5.
-   You can use the same JSON Web Token, Certificate, and Key as NGINX Plus in your MyF5 portal.
+1. Download the JSON Web Token, SSL certificate, and private key for your NGINX Ingress Controller subscription from MyF5.
+   You can use the same JSON Web Token, certificate, and key as NGINX Plus in your MyF5 portal.
 1. Rename the files to the following:
    - `nginx-repo.crt`
    - `nginx-repo.key`
@@ -50,7 +48,7 @@ Download the [provided WAF Policy JSON](https://raw.githubusercontent.com/nginx/
 curl -L https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/tests/data/ap-waf-v5/wafv5.json -o /tmp/wafv5.json
 ```
 
-Use your pulled NAP Docker image (`private-registry.nginx.com/nap/waf-compiler:{{<nic-waf-release-version>}}`) to compile the policy bundle:
+Use your pulled F5 WAF for NGINX Docker image (`private-registry.nginx.com/nap/waf-compiler:{{<nic-waf-release-version>}}`) to compile the policy bundle:
 
 ```shell
 # Using your newly created image
@@ -132,7 +130,7 @@ kubectl get pv
 kubectl get pvc
 ```
 
-## Deploy NGINX Plus NIC Controller with NAP Enabled using Helm
+## Deploy NGINX Ingress Controller with F5 WAF for NGINX using Helm
 
 Add the official NGINX Helm repository:
 
@@ -161,12 +159,12 @@ Install the required CRDs for NGINX Ingress Controller:
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
 ```
 
-Using Helm, install NGINX Ingress Controller
+Install NGINX Ingress Controller with Helm:
 
 ```shell
 helm upgrade --install nic nginx-stable/nginx-ingress \
    --set controller.image.repository="private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress" \
-   --set controller.image.tag="{{< nic-version >}}-alpine-fips" \
+   --set controller.image.tag="{{< nic-version >}}" \
    --set controller.nginxplus=true \
    --set controller.appprotect.enable=true \
    --set controller.appprotect.v5=true \

@@ -1,6 +1,5 @@
 ---
 f5-content-type: how-to
-f5-docs: DOCS-000
 f5-product: NGINX One Console
 title: Submit and copy templates from the Templates list
 description: "Use the Submit and Make a Copy row actions on the Templates list to submit or copy config templates without API calls."

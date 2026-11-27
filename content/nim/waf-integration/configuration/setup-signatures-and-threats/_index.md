@@ -1,6 +1,5 @@
 ---
 title: Set up attack signatures, bot signatures, and threat campaigns
-f5-docs: 
 weight: 200
 f5-landing-page: true
 url: /nginx-instance-manager/waf-integration/configuration/setup-signatures-and-threats/

@@ -2,7 +2,6 @@
 title: Product telemetry
 toc: true
 weight: 500
-f5-docs: DOCS-1857
 f5-product: NGINX Ingress Controller
 f5-content-type: reference
 ---
@@ -49,6 +48,7 @@ These are the data points collected and reported by NGINX Ingress Controller:
 - **IngressAnnotations** List of Ingress annotations managed by NGINX Ingress Controller
 - **AccessControlPolicies** Number of AccessControl policies.
 - **RateLimitPolicies** Number of RateLimit policies.
+- **ConnectionLimitPolicies** Number of ConnectionLimit policies.
 - **APIKeyPolicies** Number of API Key Auth policies.
 - **JWTAuthPolicies** Number of JWTAuth policies.
 - **BasicAuthPolicies** Number of BasicAuth policies.

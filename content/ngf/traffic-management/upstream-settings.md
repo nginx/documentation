@@ -5,7 +5,6 @@ weight: 1000
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1845
 f5-summary: >
   The UpstreamSettingsPolicy API configures how NGINX connects to upstream applications referenced by HTTPRoute or GRPCRoute services.
   Apply this direct policy to services to set load-balancing methods, upstream zone size, and keepalive behavior.
@@ -443,6 +442,14 @@ upstream default_tea_80 {
     server 10.244.0.15:8080;
 }
 ```
+
+### Size upstream zones automatically
+
+To have NGINX Gateway Fabric size the zone of each upstream for you, set `zoneSize` to `auto`. Set it in an `UpstreamSettingsPolicy` for specific Services, or in the `NginxProxy` resource for all Services.
+
+With `auto`, each upstream zone starts at `64k`. When NGINX reports that a zone is too small or out of memory, NGINX Gateway Fabric doubles the zone and applies the configuration again. The `zoneSizeMaxSize` field of the `NginxProxy` resource sets the largest size a zone can reach. The default is `512m`. When the number of endpoints stays at 25% or less of what a zone fits for 2 minutes, NGINX Gateway Fabric halves the zone. The smallest zone size is `64k`.
+
+Automatic sizing applies only to the upstreams of HTTPRoutes and GRPCRoutes.
 
 ## Enable keepalive connections
 

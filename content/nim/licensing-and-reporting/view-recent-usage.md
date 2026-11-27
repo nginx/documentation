@@ -3,7 +3,6 @@ title: View recent NGINX usage
 description: "View raw, per-record NGINX usage telemetry in NGINX Instance Manager to verify billing data and support compliance audits."
 weight: 350
 toc: true
-f5-docs:
 f5-personas:
 - devops
 - netops

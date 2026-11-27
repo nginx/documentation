@@ -1,8 +1,8 @@
 ---
 title: Enable NGINX logs
+description: "Export NGINX access, error, and F5 WAF for NGINX security logs from F5 Application Delivery Service for Google Cloud to Cloud Logging."
 weight: 350
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---

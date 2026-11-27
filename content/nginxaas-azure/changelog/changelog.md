@@ -3,7 +3,6 @@ title: "2026"
 weight: 100
 toc: true
 f5-content-type: reference
-f5-docs: "DOCS-870"
 f5-product: NGINXaaS for Azure
 url: /nginxaas-azure/changelog/
 ---
@@ -16,22 +15,23 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
 ## August 17, 2026
 
-- {{% icon-feature %}} **NGINXaaS is now running NGINX Plus 37.0.4 in the Stable Upgrade Channel**
+- {{% icon-feature %}} **NGINXaaS is now running NGINX Plus PLS.37.0 LTS in the Stable Upgrade Channel**
 
-  NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have now been automatically upgraded to [NGINX Plus 37.0.4]({{< ref "/nginx/releases.md#pls.37.0.4" >}}). This upgrade also includes the following new directives:
+  NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have now been automatically upgraded to [NGINX Plus PLS.37.0 LTS]({{< ref "/nginx/releases.md#lts" >}}). This upgrade also includes the following new directives:
   - [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag)
   - [`max_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers)
   - [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file)
 
-  Upstream response time histogram metrics are now available in Azure Monitor. For more information, see the [Metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}). For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#configuration-directives-list" >}}).
+  Upstream response time histogram metrics are now available in Azure Monitor. For more information, see the [Metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}). However, the [ACME protocol support](https://nginx.org/en/docs/http/ngx_http_acme_module.html) feature is not supported in NGINXaaS due to the use of active-active deployments.
 
-  If your deployment is affected by the R37 behavior changes, see the [NGINX Plus 37.0 behavior impact]({{< ref "/nginxaas-azure/known-issues.md#nginx-plus-370-behavior-impact" >}}) section of the **Known issues** page.
+ For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#configuration-directives-list" >}}).
 
   {{< call-out class="important" >}}
 
-  The [ACME protocol support](https://nginx.org/en/docs/http/ngx_http_acme_module.html) feature is not currently supported in NGINXaaS due to active-active deployments.
+  Patch versions of NGINX Plus are not listed in this changelog.  Your deployment will automatically update to the latest patch version as new versions become available. To see which version your deployment is using, view the deployment **Overview** page on the Azure portal.
 
   {{< /call-out >}}
+
 
 ## July 29, 2026
   NGINX Plus 37.0.4 is now available on the **Preview** [upgrade channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels" >}}) and will be promoted to the **Stable** upgrade channel starting the week of August 17, 2026.

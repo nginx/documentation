@@ -4,7 +4,6 @@ description: Learn about F5 NGINX Amplify Agent.
 weight: 1
 toc: true
 noindex: true
-f5-docs: DOCS-960
 f5-product: AMPLIF
 ---
 

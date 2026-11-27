@@ -2,7 +2,6 @@
 title: Encrypt communication
 toc: true
 weight: 200
-f5-docs: DOCS-802
 f5-product: NGINX Agent
 ---
 

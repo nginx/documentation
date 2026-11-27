@@ -3,7 +3,6 @@ title: Deploy using the Terraform provider
 description: "Create, and configure an F5 NGINXaaS for Google Cloud deployment using the Terraform provider."
 weight: 100
 toc: true
-f5-docs: DOCS-000
 url: /nginxaas/google/deploy/create-deployment/deploy-terraform/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
@@ -36,7 +35,7 @@ terraform {
   required_providers {
     f5ads = {
       source  = "F5Networks/f5ads"
-      version = "0.1.0-alpha.1"
+      version = "~> 0.1"
     }
   }
 }

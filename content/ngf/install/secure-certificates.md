@@ -5,7 +5,6 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1851
 f5-summary: >
   Manage TLS certificates that secure communication between the NGINX Gateway Fabric control plane and data plane pods.
   By default a cert-generator job creates self-signed certificates at install time.

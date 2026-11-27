@@ -5,7 +5,6 @@ weight: 800
 toc: true
 f5-content-type: reference
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1411
 f5-summary: >
   NGINX Gateway Fabric follows the F5 support policy documented in the linked knowledge base article.
   Use this page to find how to get help for production and community deployments.

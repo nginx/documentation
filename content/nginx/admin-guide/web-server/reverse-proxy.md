@@ -1,7 +1,6 @@
 ---
 description: Configure NGINX as a reverse proxy for HTTP and other protocols, with
   support for modifying request headers and fine-tuned buffering of responses.
-f5-docs: DOCS-441
 title: NGINX Reverse Proxy
 toc: true
 weight: 300

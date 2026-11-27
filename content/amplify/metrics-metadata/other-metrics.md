@@ -4,7 +4,6 @@ description: Learn about other metrics used by F5 NGINX Amplify
 weight: 40
 toc: true
 noindex: true
-f5-docs: DOCS-975
 f5-product: AMPLIF
 ---
 

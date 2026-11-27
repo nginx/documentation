@@ -1,27 +1,26 @@
 ---
-title: "Automate API access with client credentials"
-description: "Learn how to set up OAuth2 client credentials for programmatic access to the F5 Application Delivery Service API."
+title: "Automate access with client credentials"
+description: "Learn how to set up OAuth2 client credentials for automating access to F5 Application Delivery Service."
 weight: 400
 toc: true
 f5-product: F5 Application Delivery Service
 f5-content-type: how-to
-f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
+f5-keywords: "client credentials, OAuth2, automation, Terraform"
 f5-summary: >
-    Use this guide to create OAuth2 client credentials in the F5 ADS Console and exchange
-    them for an access token that authenticates requests to the F5 Application Delivery Service API.
-    Client credentials enable access for automation toolchains such as CI/CD pipelines,
-    allowing you to manage Deployments, Configurations, and Certificates APIs.
+    Use this guide to create OAuth2 client credentials in the F5 ADS Console.
+    Client credentials are currently supported for use with the F5 ADS Terraform provider,
+    allowing you to manage Deployments, Configurations, and Certificates.
     Credentials are scoped to a single organization.
 f5-audience: operator
 ---
 
 ## Overview
 
-This guide explains how to create and use client credentials for automating access to F5 Application Delivery Service APIs. Client credentials enable automation tools such as CI/CD pipelines to manage certain F5 ADS resources without requiring user login.
+This guide explains how to create and use client credentials for automating access to F5 Application Delivery Service. Client credentials are currently supported for use with the F5 ADS Terraform provider, which uses them to manage certain F5 ADS resources without requiring user login.
 
 Client credentials work the same way regardless of which cloud your F5 ADS organization is associated with.
 
-To authenticate, you exchange your client credentials (client ID and secret) for a short-lived access token from the F5 ADS token endpoint. This access token is then used in the Authorization header of your API requests. Access tokens have limited validity, after which you'll need to request a new one using the same credentials.
+To authenticate, the Terraform provider exchanges your client credentials (client ID and secret) for a short-lived access token from the F5 ADS token endpoint. Access tokens have limited validity, after which a new one is requested using the same credentials.
 
 Client credentials are scoped to an organization and expire after a set period (up to 1 year, 6 months recommended).
 
@@ -92,56 +91,11 @@ Expired credentials are not automatically removed. You must manually delete cred
 
 ## Use client credentials for authentication
 
-Learn how to obtain and use access tokens from your client credentials to authenticate API requests.
+Use client credentials with the [F5 ADS Terraform provider]({{< ref "/f5ads/google/deploy/create-deployment/deploy-terraform.md" >}}).
 
 {{< call-out class="note" >}}
-Client credential access to these resources isn’t officially supported yet.
+Calling the F5 ADS APIs directly isn't officially supported. If you have questions or issues, [contact F5 support]({{< ref "/f5ads/support.md" >}}).
 {{< /call-out >}}
-
-### Exchange credentials for an access token
-
-Use the client credentials to obtain an access token from the token endpoint.
-
-**Endpoint**: `POST https://<GEO>.api.nginxaas.net/api/v1/auth/token`
-
-**Example using cURL**:
-
-```bash
-curl -X POST "https://<GEO>.api.nginxaas.net/api/v1/auth/token" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "client_id": "<CLIENT_ID>",
-    "client_secret": "<CLIENT_SECRET>",
-    "grant_type": "client_credentials"
-  }'
-```
-
-**Response**:
-
-```json
-{
-  "access_token": "<ACCESS_TOKEN>",
-  "token_type": "Bearer",
-  "expires_in": 3600
-}
-```
-
-### Use the access token
-
-Include the access token in the Authorization header when making API requests.
-
-**Example**:
-
-```bash
-curl -X GET "https://<GEO>.api.nginxaas.net/api/v1/deployments" \
-  -H "Authorization: Bearer <ACCESS_TOKEN>"
-```
-
-### Access token validity
-
-- **Duration**: Access tokens are valid for 1 hour from issuance
-- **Reauthentication**: When a token expires, request a new one using the same client credentials, if the client credentials are still active
-- **Scope**: Tokens are also scoped to the organization associated with the client credentials
 
 ## Security best practices
 
@@ -161,31 +115,6 @@ If you attempt to authenticate with invalid or expired credentials, you will rec
 - Check if the client has expired
 - Create new credentials if necessary
 
-**Example error response**:
-
-```json
-{
-  "error": "unauthorized",
-  "error_description": "token is expired/invalid"
-}
-```
-
-### Forbidden APIs
-
-Client credentials can only access the Certificates, Configs, and Deployments APIs. Attempting to access any other API with client credentials returns a `403 Forbidden` response. In this case:
-
-- Verify you are using the correct API endpoint
-- Ensure the API is one of the supported resources
-
-**Example error response**:
-
-```json
-{
-  "error": "forbidden",
-  "error_description": "Client credentials do not have permission to access this resource"
-}
-```
-
 ## Quick reference
 
 | Property | Value |
@@ -196,4 +125,3 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Client limit per organization | 10 clients contact [NGINX Support]({{< ref "/f5ads/support.md" >}}) to increase |
 | Access token validity | 1 hour |
 | Supported resources | Deployments, Configs, Certificates |
-| Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/auth/token` |

@@ -8,7 +8,7 @@ f5-description: Ingress-specific limitations and behavior for Policy resources, 
 f5-summary: >
   Explains how Policy support on Ingress resources differs from VirtualServer and VirtualServerRoute support.
   Covers WAF policy annotations, egress mTLS TLS requirements, and how policies behave on master and minion Ingresses.
-f5-keywords: "nginx ingress controller, nic, ingress, policy resource, waf, egress mtls, mergeable ingress, master, minion"
+f5-keywords: "nginx ingress controller, nic, ingress, policy resource, waf, egress mtls, connection limit, mergeable ingress, master, minion"
 f5-audience: developer, operator
 ---
 
@@ -86,6 +86,8 @@ For mergeable Ingress:
 - Policies on the minion override policies of the same type from the master.
 
 This matches the general expectation that a more specific resource overrides a broader one.
+
+For `connectionLimit`, the minion limit replaces the master limit for the paths of the minion. The two limits don't add up. A minion without a `connectionLimit` policy uses the master limit.
 
 For `egressMTLS`, there is one extra detail:
 

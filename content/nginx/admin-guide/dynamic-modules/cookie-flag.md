@@ -2,7 +2,6 @@
 description: Set `HttpOnly`, `SameSite`, and `secure` flags on cookies in `Set-Cookie`
   upstream response headers with the **Cookie-Flag** dynamic module, community-authored
   and supported by NGINX, Inc.
-f5-docs: DOCS-382
 title: Cookie-Flag
 toc: true
 weight: 100

@@ -2,7 +2,6 @@
 title: NGINX Variables Index
 url: /nginx/variables
 weight: 800
-f5-docs: DOCS-1681
 f5-content-type: redirect
 f5-product: NGINX Plus
 ---

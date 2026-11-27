@@ -4,7 +4,6 @@ weight: 1950
 toc: true
 f5-content-type: reference
 f5-product: F5 WAF for NGINX
-f5-docs: DOCS-000
 ---
 
 When new attack signatures are introduced in an F5 WAF for NGINX policy, they are first tested in a staging environment before being promoted to production.

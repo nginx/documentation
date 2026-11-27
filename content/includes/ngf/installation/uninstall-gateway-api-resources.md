@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1436
 f5-product: NGINX Gateway Fabric
 f5-files:
 - content/ngf/how-to/gateway-api-inference-extension.md

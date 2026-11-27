@@ -1,6 +1,5 @@
 ---
 title: Configure WAF on instances
-f5-docs: 
 weight: 600
 f5-landing-page: false
 url: /nginx-instance-manager/waf-integration/configuration/manage-waf-configurations/

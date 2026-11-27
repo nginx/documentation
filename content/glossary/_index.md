@@ -1,7 +1,6 @@
 ---
 description: ''
 title: F5 NGINX Glossary
-f5-docs: DOCS-602
 weight: 1000
 toc: true
 f5-content-type: reference

@@ -5,7 +5,6 @@ weight: 500
 toc: true
 f5-content-type: how-to
 f5-product: F5 NGINX Gateway Fabric
-f5-docs: DOCS-1849
 f5-summary: >
   Modify request and response headers for applications fronted by NGINX Gateway Fabric.
   Use header filters to pass metadata, remove sensitive values, or adjust client-visible responses.

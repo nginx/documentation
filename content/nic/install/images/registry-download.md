@@ -4,7 +4,6 @@ toc: true
 weight: 100
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-605
 ---
 
 This page describes how to download an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry.

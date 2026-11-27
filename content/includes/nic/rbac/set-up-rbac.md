@@ -1,5 +1,4 @@
 ---
-f5-docs: DOCS-1468
 f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md

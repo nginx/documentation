@@ -3,7 +3,6 @@ title: Connect upstream applications using the AWS CLI
 description: "Use the AWS CLI to create a VPC peering connection so an F5 Application Delivery Service for AWS deployment can reach applications in your upstream VPC."
 weight: 120
 toc: true
-f5-docs: DOCS-000
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, VPC peering, AWS CLI, upstream connectivity, upstream network, route table"

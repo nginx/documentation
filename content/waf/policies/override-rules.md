@@ -4,7 +4,6 @@ weight: 1800
 toc: true
 f5-content-type: reference
 f5-product: F5 WAF for NGINX
-f5-docs: DOCS-000
 ---
 
 This topic describes override rules feature of F5 WAF for NGINX.
@@ -92,19 +91,20 @@ An example could look like the following:
           "$ref": "file:///NginxStrictPolicy.json"
         }
       },
+      {
         "name": "usa-only",
         "condition": "geolocation != 'US'",
-                "actionType": "violation",
-                "violation": {
-                    "block": true,
-                    "alarm": true,
-                    "attackType": {
-                           "name": "Forceful Browsing"
-                       },
-                    "description": "Attempt to access from outside the USA",
-                    "rating": 4
-                }
+        "actionType": "violation",
+        "violation": {
+          "block": true,
+          "alarm": true,
+          "attackType": {
+            "name": "Forceful Browsing"
+          },
+          "description": "Attempt to access from outside the USA",
+          "rating": 4
         }
+      }
     ]
   }
 }
@@ -145,7 +145,7 @@ Use conditions that match browser-facing HTML flows. F5 WAF for NGINX doesn't ap
 
 {{< call-out class="important" >}}
 
-Client-side integrity relies on the enforcer state cookie. If your virtual server serves plain HTTP, set `secureAttribute` to `never`. If you don't, the browser discards the cookie. F5 WAF for NGINX then challenges the client repeatedly, and the client can't pass the challenge. For more information, see [Cookie enforcement ({{< ref "/waf/policies/cookie-enforcement.md" >}}).
+Client-side integrity relies on the enforcer state cookie. If your virtual server serves plain HTTP, set `secureAttribute` to `never`. If you don't, the browser discards the cookie. F5 WAF for NGINX then challenges the client repeatedly, and the client can't pass the challenge. For more information, see [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
 
 {{< /call-out >}}
 

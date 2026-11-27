@@ -3,7 +3,6 @@ title: Install from Open Source repo
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-docs: DOCS-1873
 f5-product: NGINX Agent
 ---
 

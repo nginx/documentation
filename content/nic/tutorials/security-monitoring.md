@@ -4,7 +4,6 @@ toc: true
 weight: 1800
 f5-content-type: how-to
 f5-product: NGINX Ingress Controller
-f5-docs: DOCS-1856
 ---
 
 This document explains how to use NGINX Ingress Controller to configure NGINX Agent to send F5 WAF for NGINX metrics to NGINX Security Monitoring.

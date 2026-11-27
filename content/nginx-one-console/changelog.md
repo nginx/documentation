@@ -4,11 +4,18 @@ toc: true
 weight: 99999
 f5-content-type: reference
 f5-product: NGINX One Console
-f5-docs: DOCS-1394
 nollms: true
 ---
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
+
+## November 18, 2026
+
+### Security: Ignore CVE findings
+
+You can now manage your active security findings by choosing to ignore Common Vulnerabilities and Exposures (CVE) that require manual resolution. You can ignore CVEs associated with external modules (such as `ngx_http_js_module`), view a list of ignored findings, and restore them to normal detection at any time.
+
+For more information, see [Manage CVE findings]({{< ref "/nginx-one-console/secure-your-fleet/manage-cve-findings.md" >}}).
 
 ## October 12, 2026
 

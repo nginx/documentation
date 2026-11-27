@@ -5,7 +5,6 @@ description: Learn how to use the Python Azure Management SDK to manage NGINXaaS
   Azure deployments.
 toc: true
 f5-content-type: how-to
-f5-docs: DOCS-1095
 f5-product: NGINXaaS for Azure
 url: /nginxaas-azure/client-tools/sdk/
 ---

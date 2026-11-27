@@ -3,7 +3,6 @@ title: F5 Global Default base template
 description: "Reference guide for the F5 Global Default base template in F5 NGINX Instance Manager, which provides the foundational elements for building NGINX configurations from templates."
 weight: 110
 toc: true
-f5-docs: DOCS-1503
 f5-personas:
 - devops
 - netops

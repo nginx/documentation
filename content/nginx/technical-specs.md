@@ -7,7 +7,6 @@ toc: true
 weight: 400
 f5-content-type: reference
 f5-product: NGINX Plus
-f5-docs: DOCS-473
 ---
 
 NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).

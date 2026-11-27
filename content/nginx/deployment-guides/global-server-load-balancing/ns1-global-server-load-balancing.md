@@ -1,7 +1,6 @@
 ---
 description: Deploy global server load balancing (GSLB) for domains registered with
   DNS services provider NS1 and proxied by F5 NGINX Plus.
-f5-docs: DOCS-449
 title: Global Server Load Balancing with NS1 and NGINX Plus
 toc: true
 weight: 100
